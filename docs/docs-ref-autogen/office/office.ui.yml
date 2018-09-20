@@ -1,0 +1,157 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 26ce48cc61720d1f718d6ca3a76cf4dd6b640df8
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24046500"
+items:
+- uid: office.Office.UI
+  summary: >-
+    Stellt Objekte und Methoden, die Sie verwenden können, erstellen und Bearbeiten von UI-Komponenten, beispielsweise Dialogfelder in Ihrer Office-Add-ins.
+
+
+    Besuchen Sie "[Verwendung der Dialogfeld-API in Ihrer Office-Add-ins](https://docs.microsoft.com/office/dev/add-ins/develop/dialog-api-in-office-add-ins)<!-- -->" Weitere Informationen.
+  name: Office.UI
+  fullName: office.Office.UI
+  langs:
+  - typeScript
+  type: interface
+  package: office
+  children:
+  - office.Office.UI.closeContainer
+  - office.Office.UI.displayDialogAsync
+  - office.Office.UI.messageParent
+- uid: office.Office.UI.closeContainer
+  summary: Schließt den UI-Container, in dem der JavaScript-Code ausgeführt wird.
+  remarks: >-
+    <table><tr><td>Hosts</td><td>Excel, Word, PowerPoint, Outlook (Minimum Anforderungssatz: Postfach 1.5)</td></tr></table>
+
+
+    Das Verhalten dieser Methode wird wie folgt angegeben:
+
+
+    - Über eine Benutzeroberfläche weniger Befehlsschaltfläche aufgerufen: keine Auswirkung. Jedes über displayDialogAsync geöffnete Dialogfeld bleibt geöffnet.
+
+
+    - Von einem Taskpane aufgerufen: der Aufgabenbereich wird geschlossen. Jeder Dialog DisplayDialogAsync geöffnet wird ebenfalls geschlossen. Wenn der Aufgabenbereich Anheften unterstützt und vom Benutzer angeheftet wurde, wird das Anheften rückgängig gemacht.
+
+
+    - Von einer Erweiterung Modul aufgerufen: keine Auswirkung.
+  name: closeContainer()
+  fullName: office.Office.UI.closeContainer
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'closeContainer(): void;'
+    return:
+      type:
+      - void
+      description: ''
+- uid: office.Office.UI.displayDialogAsync
+  summary: Zeigt ein Dialogfeld zum Anzeigen oder Abfragen von Informationen vom Benutzer oder zum Webnavigation zu ermöglichen.
+  remarks: >-
+    <table><tr><td>Hosts</td><td>Word, Excel, Outlook, PowerPoint</td></tr>
+
+
+    <tr><td>Anforderungssätze</td><td>DialogAPI Postfach 1.4</td></tr></table>
+
+
+    Diese Methode steht in der DialogApi Verpflichtung für Word, Excel oder PowerPoint-add-ins, und im Postfach Anforderung 1.4 für Outlook festgelegt. Weitere Informationen zum Angeben einer Anforderung, die im Manifest festlegen, finden Sie unter [Angeben von Office-API-Anforderungen für Hosts und](https://docs.microsoft.com/office/dev/add-ins/develop/specify-office-hosts-and-api-requirements)<!-- -->.
+
+
+    Die erste Seite muss sich in derselben Domäne wie die übergeordnete Seite (der Parameter StartAddress). Nachdem die Startseite geladen wurde, können Sie zu anderen Domänen wechseln.
+
+
+    Eine beliebige Seite aufrufen `office.context.ui.messageParent` muss auch auf der gleichen Domäne wie die übergeordnete Seite.
+
+
+    **Entwurfsaspekte**:
+
+
+    Die folgenden Entwurfsüberlegungen gelten für Dialogfelder:
+
+
+    - Aufgabenbereich Office-Add-in kann nur ein Dialogfeld gleichzeitig geöffnet haben. Mehrere Dialogfelder können von Add-In-Befehle (benutzerdefiniertes Menübandschaltflächen oder Menübefehle) gleichzeitig geöffnet sein.
+
+
+    - Jedes Dialogfeld kann vom Benutzer verschoben und in der Größe geändert werden.
+
+
+    - Jedes Dialogfeld wird beim Öffnen auf dem Bildschirm zentriert.
+
+
+    - Dialogfelder werden im Vordergrund der Hostanwendung und in der Reihenfolge angezeigt, in der sie erstellt wurden.
+
+
+    Verwenden Sie ein Dialogfelder zu folgenden Zwecken:
+
+
+    - Anzeigen von Authentifizierungsseiten zum Sammeln von Benutzeranmeldeinformationen
+
+
+    - Einen Bildschirm Fehler/Fortschritt/Eingabe eines Befehls ShowTaskpane oder ExecuteAction anzeigen.
+
+
+    - Vorübergehende Vergrößerung der Oberfläche, die einem Benutzer zum Durchführen einer Aufgabe zur Verfügung steht.
+
+
+    Verwenden Sie ein Dialogfeld nicht zur Interaktion mit einem Dokument. Verwenden Sie stattdessen einen Aufgabenbereich.
+
+
+    Ein Entwurfsmuster, nach dem Sie ein Dialogfeld erstellen können, finden Sie unter [Client-Dialogfeld](https://github.com/OfficeDev/Office-Add-in-UX-Design-Patterns/blob/master/Patterns/Client_Dialog.md) im Repository „Office-Add-in-UX-Design-Patterns“ auf GitHub.
+
+
+    **DisplayDialogAsync Fehler**:
+
+
+    <table> <tr> <th>Codenummer</th> <th>Bedeutung</th> </tr> <tr> <td>12004</td> <td>Die Domäne der URL übergeben DisplayDialogAsync ist nicht vertrauenswürdig. Die Domäne muss entweder derselben Domäne wie der Hostseite (einschließlich Protokoll-und Anschlussnummer) oder muss registriert werden die <AppDomains> Abschnitt des Manifests-Add-in.</td> </tr> <tr> <td>12005</td> <td>Die URL an DisplayDialogAsync übergeben wird das HTTP-Protokoll verwendet. HTTPS ist erforderlich. (In einigen Versionen von Office ist die Fehlermeldung zurückgegeben, die mit 12005 identisch für 12004 zurückgegebene.)</td> </tr> <tr> <td>12007</td> <td>Ein Dialogfeld ist bereits im Aufgabenbereich geöffnet. Für ein Aufgabenbereich-Add-In kann nur ein Dialogfeld geöffnet sein.</td> </tr> </table>
+
+
+    Die Eigenschaften des AsyncResult-Objekts können Sie in der an die DisplayDialogAsync-Methode übergebenen Rückruffunktion die folgenden Informationen zurückzugeben.
+
+
+    <table> <tr> <th>Eigenschaft</th> <th>Verwendung</th> </tr> <tr> <td>AsyncResult.value</td> <td>Greift auf das DialogObjekt zu.</td> </tr> <tr> <td>AsyncResult.status</td> <td>Verwenden Sie diese Eigenschaft, um zu ermitteln, ob der Vorgang erfolgreich war.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Verwenden Sie diese Eigenschaft, um auf ein Error-Objekt zuzugreifen, das Informationen zu dem Fehler bereitstellt, wenn der Vorgang fehlgeschlagen ist.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Zugriff auf Ihr benutzerdefiniertes Object oder den Wert, wenn Sie eins als AsyncContext Parameter weitergegeben haben.</td> </tr> </table>
+  name: displayDialogAsync(startAddress, options, callback)
+  fullName: office.Office.UI.displayDialogAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'displayDialogAsync(startAddress: string, options?: DialogOptions, callback?: (result: AsyncResult<Dialog>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: startAddress
+      description: Akzeptiert die anfänglichen HTTPS-URL, die im Dialogfeld wird geöffnet.
+      type:
+      - string
+    - id: options
+      description: Optional. Nimmt ein[Office.DialogOptions](xref:office.Office.DialogOptions) -Objekt, um das Dialogfeld Anzeige definieren.
+      type:
+      - office.Office.DialogOptions
+    - id: callback
+      description: Optional. Akzeptiert eine Rückrufmethode, die den Versuch der Dialogfelderstellung zu behandelt. Bei erfolgreicher ist die "AsyncResult.Value" ein Dialog-Objekt.
+      type:
+      - '(result: AsyncResult<Dialog>) => void'
+- uid: office.Office.UI.messageParent
+  summary: Übermittelt eine Nachricht vom Dialogfeld an die übergeordnete/öffnende Seite. Die Seite, die diese API aufruft, muss sich in derselben Domäne wie die übergeordnete Seite befinden.
+  name: messageParent(messageObject)
+  fullName: office.Office.UI.messageParent
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'messageParent(messageObject: any): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: messageObject
+      description: Akzeptiert eine Nachricht aus dem Dialogfeld, die an das Add-In übermittelt wird.
+      type:
+      - any

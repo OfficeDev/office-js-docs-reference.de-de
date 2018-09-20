@@ -1,0 +1,185 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: aee49a59fbafd167d595aab091a28c486f2acf1e
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24046555"
+items:
+- uid: outlook.Office.RoamingSettings
+  summary: >-
+    Die mit den Methoden des RoamingSettings-Objekts erstellten Einstellungen werden pro Add-In und pro Benutzer gespeichert. Dies bedeutet, dass sie nur für das Add-In verfügbar sind, mit der sie erstellt wurden, sowie nur über das Postfach des Benutzers, in dem sie gespeichert sind.
+
+
+    Während die Outlook-Add-in-API Zugriff auf diese Einstellungen auf nur das Add-in, die sie erstellt hat beschränkt, sollten diese Einstellungen nicht sicheren Speicher berücksichtigt werden. Sie können mithilfe der Exchange-Webdienste oder Extended MAPI zugegriffen werden. Sie sollten nicht zum Speichern von vertraulichen Informationen wie Benutzeranmeldeinformationen oder Sicherheitstokens verwendet werden.
+
+
+    Der Name einer Einstellung ist eine Zeichenfolge, während der Wert vom Typ „string“, „number“, „boolean“, „null“, „object“ oder „array“ sein kann.
+
+
+    Der Zugriff auf das RoamingSettings-Objekt erfolgt über die roamingSettings-Eigenschaft im Office.context-Namespace.
+
+
+    Wichtig: RoamingSettings-Objekt wird aus dem dauerhaften Speicher initialisiert nur, wenn Sie zuerst das Add-In geladen wird. Für Aufgabenbereiche bedeutet dies, dass es nur initialisiert wird, wenn zunächst im Aufgabenbereich geöffnet wird. Im Aufgabenbereich navigiert zu einer anderen Seite oder lädt die aktuelle Seite erneut, wird das Objekt im Arbeitsspeicher auf seine Anfangswerte zurückgesetzt, auch wenn Ihr Add-in Änderungen beibehalten hat. Die permanenten Änderungen ist nicht verfügbar, bis der Aufgabenbereich geschlossen und erneut geöffnet wird.
+
+
+    \[[API-Satz: Postfach 1.0](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>Eingeschränkt</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
+
+    ####Beispiele für
+
+
+    ```javascript
+
+    // Get the current value of the 'myKey' setting
+
+    var value = Office.context.roamingSettings.get('myKey');
+
+    // Update the value of the 'myKey' setting
+
+    Office.context.roamingSettings.set('myKey', 'Hello World!');
+
+    // Persist the change
+
+    Office.context.roamingSettings.saveAsync();
+
+    ```
+  name: Office.RoamingSettings
+  fullName: outlook.Office.RoamingSettings
+  langs:
+  - typeScript
+  type: interface
+  package: outlook
+  children:
+  - outlook.Office.RoamingSettings.get
+  - outlook.Office.RoamingSettings.remove
+  - outlook.Office.RoamingSettings.saveAsync
+  - outlook.Office.RoamingSettings.set
+- uid: outlook.Office.RoamingSettings.get
+  summary: >-
+    Ruft die angegebene Einstellung ab.
+
+
+    \[[API-Satz: Postfach 1.0](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>Eingeschränkt</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
+  name: get(name)
+  fullName: outlook.Office.RoamingSettings.get
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'get(name: string): any;'
+    return:
+      type:
+      - any
+      description: 'Typ: String \| Anzahl \| Boolean \| Objekt \| Array'
+    parameters:
+    - id: name
+      description: Der Name der abzurufenden Einstellung. Bei der Angabe des Namens wird die Groß-/Kleinschreibung berücksichtigt.
+      type:
+      - string
+- uid: outlook.Office.RoamingSettings.remove
+  summary: >-
+    Entfernt die angegebene Einstellung
+
+
+    \[[API-Satz: Postfach 1.0](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>Eingeschränkt</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
+  name: remove(name)
+  fullName: outlook.Office.RoamingSettings.remove
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'remove(name: string): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: name
+      description: Der Name der zu entfernenden Einstellung. Bei der Angabe des Namens wird die Groß-/Kleinschreibung berücksichtigt.
+      type:
+      - string
+- uid: outlook.Office.RoamingSettings.saveAsync
+  summary: >-
+    Speichert die Einstellungen.
+
+
+    Alle von einem Add-In bereits gespeicherten Einstellungen werden bei der Initialisierung geladen, daher können Sie während der Gültigkeitszeit der Sitzung einfach die Methoden set und get verwenden, um mit der speicherinternen Kopie des Einstellungseigenschaftenbehälters zu arbeiten. Wenn Sie die Einstellungen speichern möchten, damit sie bei der nächsten Verwendung des Add-Ins verfügbar sind, verwenden Sie die saveAsync-Methode.
+
+
+    \[[API-Satz: Postfach 1.0](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>Eingeschränkt</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
+  name: saveAsync(callback)
+  fullName: outlook.Office.RoamingSettings.saveAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'saveAsync(callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: callback
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die Funktion übergebenen Callback-Parameter mit einem einzelnen Parameter vom Typ Office.AsyncResult aufgerufen.
+      type:
+      - '(result: AsyncResult<void>) => void'
+- uid: outlook.Office.RoamingSettings.set
+  summary: >-
+    Legt die angegebene Einstellung fest oder erstellt sie.
+
+
+    Die Methode set erstellt eine neue Einstellung mit dem angegebenen Namen (falls sie noch nicht vorhanden ist), oder legt eine vorhandene Einstellung mit dem angegebenen Namen fest. Der Wert wird im Dokument als JSON-Seriendarstellung seines Datentyps gespeichert.
+
+
+    Für die Einstellungen der einzelnen Add-Ins sind jeweils höchstens 2 MB verfügbar, und jede einzelne Einstellung ist auf 32 KB beschränkt.
+
+
+    Jede Änderung an den Einstellungen mithilfe der set-Funktion werden erst auf dem Server gespeichert, wenn die saveAsync-Funktion aufgerufen wird.
+
+
+    \[[API-Satz: Postfach 1.0](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>Eingeschränkt</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
+  name: set(name, value)
+  fullName: outlook.Office.RoamingSettings.set
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(name: string, value: any): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: name
+      description: Der Name der festzulegenden oder zu erstellenden Einstellung. Groß-/Kleinschreibung des Namens wird beachtet.
+      type:
+      - string
+    - id: value
+      description: Gibt den zu speichernden Wert an.
+      type:
+      - any
