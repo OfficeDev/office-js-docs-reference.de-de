@@ -1,0 +1,204 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 199ac82dede1eefade22e13ef663b5aadc98e999
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24046855"
+items:
+- uid: excel.Excel.ChartCollection
+  summary: >-
+    Eine Sammlung aller Diagrammobjekte in einem Arbeitsblatt.
+
+
+    \[[API-Satz: ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: Excel.ChartCollection
+  fullName: excel.Excel.ChartCollection
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: excel
+  children:
+  - excel.Excel.ChartCollection.add
+  - excel.Excel.ChartCollection.count
+  - excel.Excel.ChartCollection.getCount
+  - excel.Excel.ChartCollection.getItem
+  - excel.Excel.ChartCollection.getItemAt
+  - excel.Excel.ChartCollection.getItemOrNullObject
+  - excel.Excel.ChartCollection.items
+  - excel.Excel.ChartCollection.load
+  - excel.Excel.ChartCollection.toJSON
+- uid: excel.Excel.ChartCollection.add
+  summary: >-
+    Erstellt ein neues Diagramm.
+
+
+    \[[API-Satz: ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: add(type, sourceData, seriesBy)
+  fullName: excel.Excel.ChartCollection.add
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'add(type: Excel.ChartType, sourceData: Range, seriesBy?: Excel.ChartSeriesBy): Excel.Chart;'
+    return:
+      type:
+      - excel.Excel.Chart
+      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// Add a chart of chartType \"ColumnClustered\" on worksheet \"Charts\" \n// with sourceData from Range \"A1:B4\" and seriresBy is set to be \"auto\".\nExcel.run(function (ctx) { \n    var rangeSelection = \"A1:B4\";\n    var range = ctx.workbook.worksheets.getItem(sheetName)\n        .getRange(rangeSelection);\n    var chart = ctx.workbook.worksheets.getItem(sheetName)\n        .charts.add(\"ColumnClustered\", range, \"auto\");    return ctx.sync().then(function() {\n            console.log(\"New Chart Added\");\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: type
+      description: Stellt den Typ eines Diagramms dar. Einzelheiten finden Sie unter Excel.ChartType.
+      type:
+      - excel.Excel.ChartType
+    - id: sourceData
+      description: Das den Quelldaten entsprechende Range-Objekt.
+      type:
+      - Range
+    - id: seriesBy
+      description: Optional. Gibt an, dass die Möglichkeit Spalten und Zeilen als Datenreihen im Diagramm verwendet werden. Einzelheiten finden Sie unter Excel.ChartSeriesBy.
+      type:
+      - excel.Excel.ChartSeriesBy
+- uid: excel.Excel.ChartCollection.count
+  summary: >-
+    Gibt die Anzahl der Diagramme im Arbeitsblatt zurück. Schreibgeschützt.
+
+
+    \[[API-Satz: ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: count
+  fullName: excel.Excel.ChartCollection.count
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly count: number;'
+    return:
+      type:
+      - number
+- uid: excel.Excel.ChartCollection.getCount
+  summary: >-
+    Gibt die Anzahl der Diagramme im Arbeitsblatt zurück.
+
+
+    \[[API-Satz: ExcelApi 1.4](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getCount()
+  fullName: excel.Excel.ChartCollection.getCount
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getCount(): OfficeExtension.ClientResult<number>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<number>
+      description: ''
+- uid: excel.Excel.ChartCollection.getItem
+  summary: >-
+    Ruft ein Diagramm über seinen Namen ab. Wenn mehrere Diagramme mit demselben Namen vorhanden sind, wird das erste zurückgegeben.
+
+
+    \[[API-Satz: ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getItem(name)
+  fullName: excel.Excel.ChartCollection.getItem
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getItem(name: string): Excel.Chart;'
+    return:
+      type:
+      - excel.Excel.Chart
+      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var chartname = 'Chart1';\n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(chartname);\n    return ctx.sync().then(function() {\n            console.log(chart.height);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nExcel.run(function (ctx) { \n    var chartId = 'SamplChartId';\n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(chartId);\n    return ctx.sync().then(function() {\n            console.log(chart.height);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nExcel.run(function (ctx) { \n    var lastPosition = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.count - 1;\n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItemAt(lastPosition);\n    return ctx.sync().then(function() {\n            console.log(chart.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: name
+      description: Der Name des abzurufenden Diagramms.
+      type:
+      - string
+- uid: excel.Excel.ChartCollection.getItemAt
+  summary: >-
+    Ruft ein Diagramm anhand seiner Position in der Sammlung ab.
+
+
+    \[[API-Satz: ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getItemAt(index)
+  fullName: excel.Excel.ChartCollection.getItemAt
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getItemAt(index: number): Excel.Chart;'
+    return:
+      type:
+      - excel.Excel.Chart
+      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var lastPosition = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.count - 1;\n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItemAt(lastPosition);\n    return ctx.sync().then(function() {\n            console.log(chart.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: index
+      description: Index-Wert des abzurufenden Objekts. Nullindiziert.
+      type:
+      - number
+- uid: excel.Excel.ChartCollection.getItemOrNullObject
+  summary: >-
+    Dient zum Abrufen eines Diagramms mit dem Namen. Wenn mehrere Diagramme mit dem gleichen Namen vorhanden sind, wird der ersten zurückgegeben werden soll. Wenn das Diagramm nicht vorhanden ist, wird ein null-Objekt zurückzugeben.
+
+
+    \[[API-Satz: ExcelApi 1.4](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getItemOrNullObject(name)
+  fullName: excel.Excel.ChartCollection.getItemOrNullObject
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getItemOrNullObject(name: string): Excel.Chart;'
+    return:
+      type:
+      - excel.Excel.Chart
+      description: ''
+    parameters:
+    - id: name
+      description: Der Name des abzurufenden Diagramms.
+      type:
+      - string
+- uid: excel.Excel.ChartCollection.items
+  summary: Ruft die geladene untergeordnete Elemente in dieser Auflistung ab.
+  name: items
+  fullName: excel.Excel.ChartCollection.items
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly items: Excel.Chart[];'
+    return:
+      type:
+      - Excel.Chart[]
+- uid: excel.Excel.ChartCollection.load
+  summary: Warteschlangen ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen "context.sync()" aufrufen, bevor Sie die Eigenschaften lesen.
+  remarks: "Zusätzlich zu dieser Signatur hat diese Methode die folgenden Signaturen:\n\n`load(option?: { select?: string; expand?: string; }): Excel.ChartCollection`-Option.select ist eine durch Trennzeichen getrennte Zeichenfolge, die die Eigenschaften zum Laden gibt an, wobei options.expand ist eine durch Kommas getrennte Zeichenfolge, die Navigationseigenschaften zum Laden angibt.\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.ChartCollection`-Nur auf Auflistungstypen verfügbar. Es ist ähnlich wie die jeweils vorhergehende Signatur. Option.Top gibt die maximale Anzahl der Auflistungselemente, die im Ergebnis enthalten sein können. Option.Skip gibt die Anzahl der Elemente, die übersprungen und nicht in das Ergebnis eingeschlossen werden sollen. Wenn option.top angegeben wird, wird das Resultset starten, nachdem die angegebene Anzahl von Elementen übersprungen wird.\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var charts = ctx.workbook.worksheets.getItem(\"Sheet1\").charts;\n    charts.load('items');\n    return ctx.sync().then(function() {\n        for (var i = 0; i < charts.items.length; i++)\n        {\n            console.log(charts.items[i].name);\n        }\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Get the number of charts\nExcel.run(function (ctx) { \n    var charts = ctx.workbook.worksheets.getItem(\"Sheet1\").charts;\n    charts.load('count');\n    return ctx.sync().then(function() {\n        console.log(\"charts: Count= \" + charts.count);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  name: load(option)
+  fullName: excel.Excel.ChartCollection.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): Excel.ChartCollection;'
+    return:
+      type:
+      - excel.Excel.ChartCollection
+      description: ''
+    parameters:
+    - id: option
+      description: Eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die zum Laden die Eigenschaften angeben.
+      type:
+      - string | string[]
+- uid: excel.Excel.ChartCollection.toJSON
+  name: toJSON()
+  fullName: excel.Excel.ChartCollection.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.ChartCollectionData;'
+    return:
+      type:
+      - excel.Excel.Interfaces.ChartCollectionData
+      description: ''
