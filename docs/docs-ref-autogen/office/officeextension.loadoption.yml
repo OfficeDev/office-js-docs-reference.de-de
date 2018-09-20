@@ -1,0 +1,127 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 2bc30a82c50ce11d0aa784fccac3c9a4bc94dda9
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24046063"
+items:
+- uid: office.OfficeExtension.LoadOption
+  summary: Gibt an, welche Eigenschaften eines Objekts geladen werden soll. Diese Auslastung geschieht, wenn die sync()-Methode ausgeführt wird. Dies synchronisiert die Staaten zwischen Office und entsprechende JavaScript-Proxy-Objekten.
+  remarks: >-
+    Für Word ist die bevorzugte Methode zum Angeben der Eigenschaften und paging-Informationen mithilfe von eine literale Zeichenfolge. Die ersten beiden Beispiele zeigen die bevorzugte Methode zum Anfordern von Eigenschaften für Absätze in einer Auflistung Absatz mit Text und der Schriftschnitt Größe:
+
+
+    `context.load(paragraphs, 'text, font/size');`
+
+
+    `paragraphs.load('text, font/size');`
+
+
+    Hier sehen Sie ein ähnliches Beispiel mit Objektnotation (einschließlich Paging):
+
+
+    `context.load(paragraphs, {select: 'text, font/size', expand: 'font', top: 50, skip: 0});`
+
+
+    `paragraphs.load({select: 'text, font/size', expand: 'font', top: 50, skip: 0});`
+
+
+    Hinweis: Wenn keine bestimmten Eigenschaften des Schriftartenobjekts in der select-Anweisung angegeben sind, gibt die expand-Anweisung an, dass alle Schriftarteneigenschaften geladen werden.
+
+    #### <a name="examples"></a>Beispiele
+
+
+    ```javascript
+
+    // This example shows how to get the paragraphs in the Word document
+
+    // along with their text and font size properties.
+
+
+    // Run a batch operation against the Word object model.
+
+    Word.run(function (context) {
+        // Create a proxy object for the paragraphs collection.
+        var paragraphs = context.document.body.paragraphs;
+
+        // Queue a commmand to load the text and font properties.
+        // It is best practice to always specify the property set.
+        // Otherwise, all properties are returned on the object.
+        context.load(paragraphs, 'text, font/size');
+
+        // Synchronize the document state by executing the queued commands,
+        // and return a promise to indicate task completion.
+        return context.sync().then(function () {
+            // Insert code that works with the paragraphs loaded by context.load().
+        })
+    })
+
+    .catch(function (error) {
+        console.log('Error: ' + JSON.stringify(error));
+        if (error instanceof OfficeExtension.Error) {
+            console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+        }
+    });
+
+    ```
+  name: OfficeExtension.LoadOption
+  fullName: office.OfficeExtension.LoadOption
+  langs:
+  - typeScript
+  type: interface
+  package: office
+  children:
+  - office.OfficeExtension.LoadOption.expand
+  - office.OfficeExtension.LoadOption.select
+  - office.OfficeExtension.LoadOption.skip
+  - office.OfficeExtension.LoadOption.top
+- uid: office.OfficeExtension.LoadOption.expand
+  summary: Eine durch Trennzeichen getrennte Zeichenfolge oder ein Array von Zeichenfolgen, gibt, die die Navigationseigenschaften geladen werden.
+  name: expand
+  fullName: office.OfficeExtension.LoadOption.expand
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'expand?: string | string[];'
+    return:
+      type:
+      - string | string[]
+- uid: office.OfficeExtension.LoadOption.select
+  summary: Eine durch Trennzeichen getrennte Zeichenfolge oder ein Array von Zeichenfolgen, gibt, die die Eigenschaften geladen werden.
+  name: select
+  fullName: office.OfficeExtension.LoadOption.select
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'select?: string | string[];'
+    return:
+      type:
+      - string | string[]
+- uid: office.OfficeExtension.LoadOption.skip
+  summary: Nur auf Auflistungstypen verwendet. Gibt die Anzahl der Elemente in der Auflistung, die übersprungen und nicht in das Ergebnis eingeschlossen werden sollen. Wenn oben angegeben ist, wird das Resultset starten, nachdem die angegebene Anzahl von Elementen übersprungen wird.
+  name: skip
+  fullName: office.OfficeExtension.LoadOption.skip
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'skip?: number;'
+    return:
+      type:
+      - number
+- uid: office.OfficeExtension.LoadOption.top
+  summary: Nur auf Auflistungstypen verwendet. Gibt die maximale Anzahl der Auflistungselemente, die im Ergebnis enthalten sein können.
+  name: top
+  fullName: office.OfficeExtension.LoadOption.top
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'top?: number;'
+    return:
+      type:
+      - number
+      description: "\n#### <a name=\"examples\"></a>Examples\n\n```javascript\n// This OneNote example shows how to get the page title and indentation level\n// of the top five pages in the current section.\nOneNote.run(function (context) {\n    // Get the pages in the current section.\n    var pages = context.application.getActiveSection().pages;\n\n    // Queue a command to load the pages.           \n    pages.load({ \"select\":\"title,pageLevel\", \"top\":5, \"skip\":0 });\n    return context.sync()\n        .then(function() {\n            // Iterate through the collection of pages.    \n            $.each(pages.items, function(index, page) {\n                // Show some properties.\n                console.log(\"Page title: \" + page.title);\n                console.log(\"Indentation level: \" + page.pageLevel);\n            });\n        }).catch(function(error) {\n            console.log(\"Error: \" + error);\n            if (error instanceof OfficeExtension.Error) {\n                console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n            }\n        })\n    });\n```"

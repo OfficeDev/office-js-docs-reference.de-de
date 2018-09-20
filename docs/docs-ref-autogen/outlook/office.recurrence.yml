@@ -1,0 +1,193 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: dd15143e190d6547d619792a71bee3ea4ab71509
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24044995"
+items:
+- uid: outlook.Office.Recurrence
+  summary: >-
+    Das Serie-Objekt stellt Methoden zum Abrufen und Festlegen des Serienmusters von Terminen jedoch nur das Serienmuster von Besprechungsanfragen erhalten möchten. Er muss ein Wörterbuch mit den folgenden Schlüssel: SeriesTime, RecurrenceType RecurrenceProperties, und RecurrenceTimeZone (optional).
+
+
+    \[[API-Satz: Postfach Preview](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
+
+
+    **Status**
+
+
+    <table> <tr> <th>Status</th> <th>Bearbeitet werden?</th> <th>Angezeigt werden können?</th> </tr> <tr> <td>Organisator des Termins - Serie verfassen</td> <td>Ja (SetAsync)</td> <td>Ja (GetAsync)</td> </tr> <tr> <td>Organisator des Termins - Instanz erstellen</td> <td>Keine (SetAsync gibt Fehler)</td> <td>Ja (GetAsync)</td> </tr> <tr> <td>Besprechungsteilnehmer - Serie lesen</td> <td>Keine (SetAsync nicht verfügbar)</td> <td>Ja (item.recurrence)</td> </tr> <tr> <td>Besprechungsteilnehmer - Instanz lesen</td> <td>Keine (SetAsync nicht verfügbar)</td> <td>Ja (item.recurrence)</td> </tr> <tr> <td>Besprechungsanfrage - Serie lesen</td> <td>Keine (SetAsync nicht verfügbar)</td> <td>Ja (item.recurrence)</td> </tr> <tr> <td>Besprechungsanfrage - Instanz lesen</td> <td>Keine (SetAsync nicht verfügbar)</td> <td>Ja (item.recurrence)</td> </tr> </table>
+  isPreview: true
+  name: Office.Recurrence
+  fullName: outlook.Office.Recurrence
+  langs:
+  - typeScript
+  type: interface
+  package: outlook
+  children:
+  - outlook.Office.Recurrence.getAsync
+  - outlook.Office.Recurrence.recurrenceProperties
+  - outlook.Office.Recurrence.recurrenceTimeZone
+  - outlook.Office.Recurrence.recurrenceType
+  - outlook.Office.Recurrence.seriesTime
+  - outlook.Office.Recurrence.setAsync
+- uid: outlook.Office.Recurrence.getAsync
+  summary: >-
+    Gibt das aktuelle Objekt Serie einer Terminserie zurück.
+
+
+    Diese Methode gibt das gesamte Serie-Objekt für die Terminserie.
+
+
+    \[[API-Satz: Postfach Preview](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: "<table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>\n\n<tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>\n\nZusätzlich zu den wichtigsten Signatur hat diese Methode auch diese Signatur:\n\n`getAsync(callback?: (result: AsyncResult&lt;Office.Recurrence&gt;) => void): void;`\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// This example gets the recurrence object of an appointment or meeting request item.\nOffice.context.mailbox.item.recurrence.getAsync(callback);\nfunction callback(asyncResult){\n    var context = asyncResult.context;\n    var recurrence = asyncResult.value;\n    var endDate = recurrence.seriesTime.getEndDate();\n}\n\n// The following is an example of the results of the getAsync call.\nRecurrence = {\n    \"recurrenceType\": \"weekly\",\n    \"recurrenceProperties\": {\"interval\": 2, \"days\": [\"mon\",\"thu\",\"fri\"], \"firstDayOfWeek\": \"sun\"},\n    \"seriesTime\": {seriesTimeObject}, \n    \"recurrenceTimeZone\": {\"name\": \"Pacific Standard Time\", \"offset\": -480}}\n```"
+  isPreview: true
+  name: getAsync(options, callback)
+  fullName: outlook.Office.Recurrence.getAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<Office.Recurrence>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: options
+      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. AsyncContext: Entwickler können bereitstellen, ein Objekt, das sie in der Rückrufmethode zugreifen möchten.'
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die in der Callback-Parameter übergebene Funktion mit einem einzelnen Parameter, AsyncResult, aufgerufen, der ein Office.AsyncResult-Objekt ist. Die `value` -Eigenschaft des Ergebnisses ist ein Serie-Objekt.
+      type:
+      - '(result: AsyncResult<Office.Recurrence>) => void'
+- uid: outlook.Office.Recurrence.recurrenceProperties
+  summary: >-
+    Ruft ab oder legt die Eigenschaften der Terminserie.
+
+
+    \[[API-Satz: Postfach Preview](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
+  isPreview: true
+  name: recurrenceProperties
+  fullName: outlook.Office.Recurrence.recurrenceProperties
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'recurrenceProperties: RecurrenceProperties;'
+    return:
+      type:
+      - outlook.Office.RecurrenceProperties
+- uid: outlook.Office.Recurrence.recurrenceTimeZone
+  summary: >-
+    Ruft ab oder legt die Eigenschaften der Terminserie.
+
+
+    \[[API-Satz: Postfach Preview](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
+  isPreview: true
+  name: recurrenceTimeZone
+  fullName: outlook.Office.Recurrence.recurrenceTimeZone
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'recurrenceTimeZone: Office.MailboxEnums.RecurrenceTimeZone;'
+    return:
+      type:
+      - outlook.Office.MailboxEnums.RecurrenceTimeZone
+- uid: outlook.Office.Recurrence.recurrenceType
+  summary: >-
+    Ruft ab oder legt den Typ der Terminserie.
+
+
+    \[[API-Satz: Postfach Preview](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
+  isPreview: true
+  name: recurrenceType
+  fullName: outlook.Office.Recurrence.recurrenceType
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'recurrenceType: Office.MailboxEnums.RecurrenceType;'
+    return:
+      type:
+      - outlook.Office.MailboxEnums.RecurrenceType
+- uid: outlook.Office.Recurrence.seriesTime
+  summary: >-
+    Das [Office.SeriesTime](xref:outlook.Office.SeriesTime) -Objekt können Sie die Start- und Enddaten Terminserie und den üblichen Start und Endzeit der Instanzen verwalten. **Dieses Objekt ist nicht in UTC-Zeit.** Stattdessen wird sie in der Zeitzone angegeben durch den Wert RecurrenceTimeZone oder standardmäßig auf die Zeitzone des Elements festgelegt.
+
+
+    \[[API-Satz: Postfach Preview](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
+  isPreview: true
+  name: seriesTime
+  fullName: outlook.Office.Recurrence.seriesTime
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'seriesTime: Office.SeriesTime;'
+    return:
+      type:
+      - outlook.Office.SeriesTime
+- uid: outlook.Office.Recurrence.setAsync
+  summary: >-
+    Das Serienmuster einer Terminserie festgelegt.
+
+
+    Hinweis: SetAsync sollte nur für die Datenreihe und keine Instanz Elemente verfügbar sein.
+
+
+    \[[API-Satz: Postfach Preview](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: "<table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>\n\n<tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen</td></tr>\n\n<tr><td>Fehler</td><td>InvalidEndTime - ist die Endzeit des Termins vor der Startzeit.</td></tr></table>\n\nZusätzlich zu den wichtigsten Signatur hat diese Methode auch diese Signatur:\n\n`setAsync(recurrencePattern: Recurrence, callback?: (result: AsyncResult<void>) => void): void;`\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// The following example sets the recurrence pattern of an appointment series.\nvar seriesTimeObject = new SeriesTime(); \nseriesTimeObject.setStartDate(2017,11,2);  \nseriesTimeObject.setEndDate(2017,12,2); \nseriesTimeObject.setStartTime(10,30); \nseriesTimeObject.setDuration(30);\n\nvar pattern = {\n    \"seriesTime\": seriesTimeObject,\n    \"type\": \"weekly\",\n    \"properties\": {\"interval\": 1, \"days\": [\"tue\", \"thu\"], \"firstDayOfWeek\": \"sun\"},\n    \"recurrenceTimeZone\": {\"name\": \"Pacific Standard Time\"}}; \n\nOffice.context.mailbox.item.recurrence.setAsync(pattern, options, callback);\n\n//Result: This created a recurring event from November 2, 2017 to December 2, 2017\n//        at 10:30 A.M. to 11 A.M. PST every Tuesday and Thursday.\n```"
+  isPreview: true
+  name: setAsync(recurrencePattern, options, callback)
+  fullName: outlook.Office.Recurrence.setAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setAsync(recurrencePattern: Recurrence, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: recurrencePattern
+      description: Ein Serie-Objekt.
+      type:
+      - outlook.Office.Recurrence
+    - id: options
+      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. AsyncContext: Entwickler können bereitstellen, ein Objekt, das sie in der Rückrufmethode zugreifen möchten.'
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die in der Callback-Parameter übergebene Funktion mit einem einzelnen Parameter, AsyncResult, aufgerufen, der ein Office.AsyncResult-Objekt ist.
+      type:
+      - '(result: AsyncResult<void>) => void'
