@@ -1,0 +1,1270 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 41ec175702d26d620a32e2c152d897a07ea7d0ec
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24046989"
+items:
+- uid: outlook.Office.AppointmentCompose
+  summary: >-
+    Der Termin Organisator Modus des [Office.context.mailbox.item](xref:outlook.Office.Item)<!-- -->.
+
+
+    Wichtig: Dies ist ein interner Outlook-Objekt nicht direkt über vorhandene Schnittstellen verfügbar gemacht. Sie sollten behandeln Sie dies als ein Modus der `Office.context.mailbox.item`. Verweisen Sie auf den Seiten-Objektmodell finden Sie weitere Informationen.
+  name: Office.AppointmentCompose
+  fullName: outlook.Office.AppointmentCompose
+  langs:
+  - typeScript
+  type: interface
+  extends:
+  - Appointment
+  package: outlook
+  children:
+  - outlook.Office.AppointmentCompose.addFileAttachmentAsync
+  - outlook.Office.AppointmentCompose.addFileAttachmentFromBase64Async
+  - outlook.Office.AppointmentCompose.addHandlerAsync
+  - outlook.Office.AppointmentCompose.addItemAttachmentAsync
+  - outlook.Office.AppointmentCompose.body
+  - outlook.Office.AppointmentCompose.close
+  - outlook.Office.AppointmentCompose.dateTimeCreated
+  - outlook.Office.AppointmentCompose.dateTimeModifed
+  - outlook.Office.AppointmentCompose.end
+  - outlook.Office.AppointmentCompose.getInitializationContextAsync
+  - outlook.Office.AppointmentCompose.getSelectedDataAsync
+  - outlook.Office.AppointmentCompose.itemType
+  - outlook.Office.AppointmentCompose.loadCustomPropertiesAsync
+  - outlook.Office.AppointmentCompose.location
+  - outlook.Office.AppointmentCompose.notificationMessages
+  - outlook.Office.AppointmentCompose.optionalAttendees
+  - outlook.Office.AppointmentCompose.organizer
+  - outlook.Office.AppointmentCompose.recurrence
+  - outlook.Office.AppointmentCompose.removeAttachmentAsync
+  - outlook.Office.AppointmentCompose.removeHandlerAsync
+  - outlook.Office.AppointmentCompose.requiredAttendees
+  - outlook.Office.AppointmentCompose.saveAsync
+  - outlook.Office.AppointmentCompose.seriesId
+  - outlook.Office.AppointmentCompose.setSelectedDataAsync
+  - outlook.Office.AppointmentCompose.start
+  - outlook.Office.AppointmentCompose.subject
+- uid: outlook.Office.AppointmentCompose.addFileAttachmentAsync
+  summary: >-
+    Fügt eine Datei zu einer Nachricht oder einem Termin als Anlage hinzu.
+
+
+    Die addFileAttachmentAsync-Methode lädt die Datei am angegebenen URI hoch und fügt sie an das Element im Verfassenformular an.
+
+
+    Anschließend können Sie die ID mit der removeAttachmentAsync-Methode in der gleichen Sitzung zum Entfernen der Anlage verwenden.
+
+
+    \[[API-Satz: Postfach 1.1](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organisator eines Termins</td></tr>
+
+
+    <tr><td>Fehler</td><td>AttachmentSizeExceeded - die Anlage ist größer als zulässig.</td></tr><tr><td></td><td>FileTypeNotSupported - Anlage hat eine Erweiterung, die nicht zulässig ist.</td></tr><tr><td></td><td>NumberOfAttachmentsExceeded - Nachricht oder Termin weist zu viele Anhänge auf.</td></tr></table>
+
+
+    Zusätzlich zu dieser Signatur hat die-Methode auch die folgenden Signaturen:
+
+
+    `addFileAttachmentAsync(uri: string, attachmentName: string): void;`
+
+
+    `addFileAttachmentAsync(uri: string, attachmentName: string, options: Office.AsyncContextOptions): void;`
+
+
+    `addFileAttachmentAsync(uri: string, attachmentName: string, callback: (result: AsyncResult<string>) => void): void;`
+
+    #### <a name="examples"></a>Beispiele
+
+
+    ```javascript
+
+    function callback(result) {
+        if (result.error) {
+            showMessage(result.error);
+        } else {
+            showMessage("Attachment added");
+        }
+    }
+
+
+    function addAttachment() {
+        // The values in asyncContext can be accessed in the callback
+        var options = { 'asyncContext': { var1: 1, var2: 2 } };
+
+        var attachmentURL = "https://contoso.com/rtm/icon.png";
+        Office.context.mailbox.item.addFileAttachmentAsync(attachmentURL, attachmentURL, options, callback);
+    }
+
+    ```
+  name: addFileAttachmentAsync(uri, attachmentName, options, callback)
+  fullName: outlook.Office.AppointmentCompose.addFileAttachmentAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addFileAttachmentAsync(uri: string, attachmentName: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: uri
+      description: Der URI, der den Speicherort der an die Nachricht oder den Termin anzuhängenden Datei angibt. Die maximale Länge ist 2048 Zeichen.
+      type:
+      - string
+    - id: attachmentName
+      description: Der Name der Anlage, der beim Hochladen der Anlage angezeigt wird. Die maximale Länge ist 255 Zeichen.
+      type:
+      - string
+    - id: options
+      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. AsyncContext: Entwickler können bereitstellen, ein Objekt, das sie in der Rückrufmethode zugreifen möchten. IsInline: true gibt an, dass die Anlage Inline im Textkörper Nachricht angezeigt werden wird und nicht in der Anlagenliste angezeigt werden soll.'
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Wenn die Methode abgeschlossen ist, wird die in der Callback-Parameter übergebene Funktion mit einen einzelnen Parameter vom Typ AsyncResult aufgerufen. Klicken Sie auf Erfolg wird die Anlage-ID in der asyncResult.value-Eigenschaft bereitgestellt. Wenn das Hochladen der Anlage fehlschlägt, enthält das asyncResult-Objekt ein Error-Objekt mit einer Fehlerbeschreibung.
+      type:
+      - '(result: AsyncResult<string>) => void'
+- uid: outlook.Office.AppointmentCompose.addFileAttachmentFromBase64Async
+  summary: >-
+    Fügt eine Datei zu einer Nachricht oder einem Termin als Anlage hinzu.
+
+
+    Die addFileAttachmentFromBase64Async-Methode die Datei aus der base64-Codierung und fügt diese an das Element in dem Formular zum Verfassen. Diese Methode gibt die Anlage-ID in der AsyncResult.value-Objekt zurück.
+
+
+    Anschließend können Sie die ID mit der removeAttachmentAsync-Methode in der gleichen Sitzung zum Entfernen der Anlage verwenden.
+
+
+    \[[API-Satz: Postfach Preview](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organisator eines Termins</td></tr>
+
+
+    <tr><td>Fehler</td><td>AttachmentSizeExceeded - die Anlage ist größer als zulässig.</td></tr><tr><td></td><td>FileTypeNotSupported - Anlage hat eine Erweiterung, die nicht zulässig ist.</td></tr><tr><td></td><td>NumberOfAttachmentsExceeded - Nachricht oder Termin weist zu viele Anhänge auf.</td></tr></table>
+
+    ####Beispiele für
+
+
+    ```javascript
+
+    Office.context.mailbox.item.addFileAttachmentFromBase64Async(
+        base64String,
+        "cute_bird.png",
+        {
+            isInline: true
+        },
+        function (asyncResult) {
+            Office.context.mailbox.item.body.setAsync(
+                "<p>Here's a cute bird!</p><img src='cid:cute_bird.png'>",
+                {
+                    "coercionType": "html"
+                },
+                function (asyncResult) {
+                });
+        });
+    ```
+  name: addFileAttachmentFromBase64Async(base64File, attachmentName, options, callback)
+  fullName: outlook.Office.AppointmentCompose.addFileAttachmentFromBase64Async
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addFileAttachmentFromBase64Async(base64File: string, attachmentName: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: base64File
+      description: Die base64-codierte Inhalt eines Bilds oder eine Datei, eine e-Mail oder ein Ereignis hinzugefügt werden soll.
+      type:
+      - string
+    - id: attachmentName
+      description: Der Name der Anlage, der beim Hochladen der Anlage angezeigt wird. Die maximale Länge ist 255 Zeichen.
+      type:
+      - string
+    - id: options
+      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. AsyncContext: Entwickler können bereitstellen, ein Objekt, das sie in der Rückrufmethode zugreifen möchten. IsInline: true gibt an, dass die Anlage Inline im Textkörper Nachricht angezeigt werden wird und nicht in der Anlagenliste angezeigt werden soll.'
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Wenn die Methode abgeschlossen ist, wird die in der Callback-Parameter übergebene Funktion mit einen einzelnen Parameter vom Typ AsyncResult aufgerufen. Klicken Sie auf Erfolg wird die Anlage-ID in der asyncResult.value-Eigenschaft bereitgestellt. Wenn das Hochladen der Anlage fehlschlägt, enthält das asyncResult-Objekt ein Error-Objekt mit einer Fehlerbeschreibung.
+      type:
+      - '(result: AsyncResult<string>) => void'
+- uid: outlook.Office.AppointmentCompose.addHandlerAsync
+  summary: >-
+    Fügt einen Ereignishandler für ein unterstütztes Ereignis hinzu.
+
+
+    Derzeit sind die unterstützten Ereignistypen `Office.EventType.AppointmentTimeChanged`, `Office.EventType.RecipientsChanged`, und `Office.EventType.RecurrencePatternChanged`.
+
+
+    \[[API-Satz: Postfach Preview](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organisator eines Termins</td></tr></table>
+
+
+    Zusätzlich zu dieser Signatur hat die-Methode auch die folgende Signatur:
+
+
+    `addHandlerAsync(eventType:EventType, handler: any, callback?: (result: AsyncResult<void>) => void): void;`
+  isPreview: true
+  name: addHandlerAsync(eventType, handler, options, callback)
+  fullName: outlook.Office.AppointmentCompose.addHandlerAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addHandlerAsync(eventType:EventType, handler: any, options?: any, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: eventType
+      description: Das Ereignis, das den Handler aufrufen soll
+      type:
+      - EventType
+    - id: handler
+      description: Die Funktion für die Ereignisbehandlung. Die Funktion muss einen einzelnen Parameter akzeptieren, der ein Objektliteral ist. Die Type-Eigenschaft für den Parameter entspricht den EventType-Parameter an die AddHandlerAsync übergeben.
+      type:
+      - any
+    - id: options
+      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. AsyncContext: Entwickler können bereitstellen, ein Objekt, das sie in der Rückrufmethode zugreifen möchten.'
+      type:
+      - any
+    - id: callback
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die in der Callback-Parameter übergebene Funktion mit einem einzelnen Parameter, AsyncResult, aufgerufen, der ein Office.AsyncResult-Objekt ist.
+      type:
+      - '(result: AsyncResult<void>) => void'
+- uid: outlook.Office.AppointmentCompose.addItemAttachmentAsync
+  summary: >-
+    Fügt der Nachricht oder dem Termin ein Exchange-Objekt, wie z. B. eine Nachricht, als Anhang hinzu.
+
+
+    Die  addItemAttachmentAsync-Methode hängt das Objekt mit dem angegebenen Exchangebezeichner an das Element im Formular zum Verfassen an. Wenn Sie eine Rückrufmethode angeben, wird die Methode mit einem Parameter, asyncResult, aufgerufen, der entweder den Anhangsbezeichner oder einen Code enthält, der etwaige Fehler angibt, die beim Anhängen des Objekts aufgetreten sind. Sie können ggf. den options-Parameter verwenden, um Statusinformationen an die Rückrufmethode zu übergeben.
+
+
+    Anschließend können Sie die ID mit der removeAttachmentAsync-Methode in der gleichen Sitzung zum Entfernen der Anlage verwenden.
+
+
+    Wenn Ihre Office-Add-Ins in Outlook Web App ausgeführt wird, kann die AddItemAttachmentAsync-Methode Elemente der Elemente anfügen, die Sie bearbeiten; Allerdings Dies wird nicht unterstützt und wird nicht empfohlen.
+
+
+    \[[API-Satz: Postfach 1.1](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organisator eines Termins</td></tr>
+
+
+    <tr><td>Fehler</td><td>NumberOfAttachmentsExceeded - Nachricht oder Termin weist zu viele Anhänge auf.</td></tr></table>
+
+
+    Zusätzlich zu den wichtigsten Signatur hat diese Methode auch diese Signaturen:
+
+
+    `addItemAttachmentAsync(itemId: any, attachmentName: string): void;`
+
+
+    `addItemAttachmentAsync(itemId: any, attachmentName: string, options: Office.AsyncContextOptions): void;`
+
+
+    `addItemAttachmentAsync(itemId: any, attachmentName: string, callback: (result: AsyncResult<string>) => void): void;`
+
+    #### <a name="examples"></a>Beispiele
+
+
+    ```javascript
+
+    // The following example adds an existing Outlook item as an attachment
+
+    // with the name `My Attachment`.
+
+    function callback(result) {
+        if (result.error) {
+            showMessage(result.error);
+        } else {
+            showMessage("Attachment added");
+        }
+    }
+
+
+    function addAttachment() {
+        // EWS ID of item to attach
+        // (Shortened for readability)
+        var itemId = "AAMkADI1...AAA=";
+
+        // The values in asyncContext can be accessed in the callback
+        var options = { 'asyncContext': { var1: 1, var2: 2 } };
+
+        Office.context.mailbox.item.addItemAttachmentAsync(itemId, "My Attachment", options, callback);
+    }
+
+    ```
+  name: addItemAttachmentAsync(itemId, attachmentName, options, callback)
+  fullName: outlook.Office.AppointmentCompose.addItemAttachmentAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addItemAttachmentAsync(itemId: any, attachmentName: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: itemId
+      description: Der Exchange-Bezeichner des Objekts, das angehängt werden soll. Die maximale Länge beträgt 100 Zeichen.
+      type:
+      - any
+    - id: attachmentName
+      description: Der Name der Anlage, der beim Hochladen der Anlage angezeigt wird. Die maximale Länge ist 255 Zeichen.
+      type:
+      - string
+    - id: options
+      description: 'Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. AsyncContext: Entwickler können bereitstellen, ein Objekt, das sie in der Rückrufmethode zugreifen möchten.'
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Wenn die Methode abgeschlossen ist, wird die Funktion übergebenen Callback-Parameter mit einem einzelnen Parameter vom Typ Office.AsyncResult aufgerufen. Klicken Sie auf Erfolg wird die Anlage-ID in der asyncResult.value-Eigenschaft bereitgestellt. Wenn Hinzufügen der Anlage fehlschlägt, enthält das AsyncResult-Objekt ein Error-Objekt, das eine Beschreibung des Fehlers bereitstellt.
+      type:
+      - '(result: AsyncResult<string>) => void'
+- uid: outlook.Office.AppointmentCompose.body
+  summary: >-
+    Ruft ein Objekt ab, das Methoden zum Bearbeiten des Textkörpers eines Elements bereitstellt.
+
+
+    \[[API-Satz: Postfach 1.1](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organisator eines Termins</td></tr></table>
+  name: body
+  fullName: outlook.Office.AppointmentCompose.body
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'body: Office.Body;'
+    return:
+      type:
+      - outlook.Office.Body
+- uid: outlook.Office.AppointmentCompose.close
+  summary: >-
+    Schließt das aktuelle Element, das erstellt wurde
+
+
+    Die Verhalten der close-Methode hängt von den aktuellen Status des Elements verfasst wird. Wenn das Element nicht gespeicherte Änderungen enthält, fordert der Client den Benutzer zu speichern, verwerfen oder schließen Sie die Aktion an.
+
+
+    Wenn die Nachricht im Outlook-Desktopclient eine Inlineantwort ist, hat die close-Methode keine Auswirkung.
+
+
+    Hinweis: In Outlook im Web wird, wenn das Element einen Termin handelt und zuvor gespeichert wurde SaveAsync mit, der Benutzer aufgefordert, speichern oder Abbrechen, auch wenn keine Änderungen aufgetreten sind, seit der letzten des Elements Speicherung verwerfen.
+
+
+    \[[API-Satz: 1.3 Postfachs](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>Eingeschränkt</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organisator eines Termins</td></tr></table>
+  name: close()
+  fullName: outlook.Office.AppointmentCompose.close
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'close(): void;'
+    return:
+      type:
+      - void
+      description: ''
+- uid: outlook.Office.AppointmentCompose.dateTimeCreated
+  summary: >-
+    Ruft das Datum und die Uhrzeit der Erstellung eines Elements ab. Nur Lesemodus.
+
+
+    \[[API-Satz: Postfach 1.0](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organisator eines Termins</td></tr></table>
+  name: dateTimeCreated
+  fullName: outlook.Office.AppointmentCompose.dateTimeCreated
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'dateTimeCreated: Date;'
+    return:
+      type:
+      - Date
+- uid: outlook.Office.AppointmentCompose.dateTimeModifed
+  summary: >-
+    Ruft das Datum und die Uhrzeit der letzten Änderung eines Elements ab. Nur Lesemodus.
+
+
+    \[[API-Satz: Postfach 1.0](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organisator eines Termins</td></tr></table>
+
+
+    Hinweis: Dieses Element wird in Outlook für iOS oder Outlook für Android nicht unterstützt.
+  name: dateTimeModifed
+  fullName: outlook.Office.AppointmentCompose.dateTimeModifed
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'dateTimeModifed: Date;'
+    return:
+      type:
+      - Date
+- uid: outlook.Office.AppointmentCompose.end
+  summary: >-
+    Ruft Datum und Zeit für das Ende des Termins ab oder legt diese fest.
+
+
+    Die End-Eigenschaft ist ein [Office.Time](xref:outlook.Office.Time) -Objekt, das als Wert (Coordinated Universal Time, UTC) Datum und Uhrzeit. ConvertToLocalClientTime-Methode können Sie um den Wert der End-Eigenschaft auf den Client lokale Datum und die Uhrzeit zu konvertieren.
+
+
+    Wenn Sie die Time.setAsync-Methode verwenden, um die Endzeit im Verfassenmodus festzulegen, sollten Sie die convertToUtcClientTime-Methode verwenden, um die Ortszeit auf dem Client für den Server in UTC umzuwandeln.
+
+
+    \[[API-Satz: Postfach 1.0](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organisator eines Termins</td></tr></table>
+
+    ####Beispiele für
+
+
+    ```javascript
+
+    // The following example sets the end time of an appointment in compose mode by
+
+    // using the `setAsync` method of the `Time` object.
+
+    var endTime = new Date("3/14/2015");
+
+    var options = {
+        // Pass information that can be used
+        // in the callback
+        asyncContext: {verb:"Set"}
+    }
+
+    Office.context.mailbox.item.end.setAsync(endTime, options, function(result) {
+        if (result.error) {
+            console.debug(result.error);
+        } else {
+            // Access the asyncContext that was passed to the setAsync function
+            console.debug("End Time " + result.asyncContext.verb);
+        }
+    });
+
+    ```
+  name: end
+  fullName: outlook.Office.AppointmentCompose.end
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'end: Time;'
+    return:
+      type:
+      - Time
+- uid: outlook.Office.AppointmentCompose.getInitializationContextAsync
+  summary: >-
+    Ruft Initialisierungsdaten ab, die übergeben werden, wenn das Add-In durch eine Nachricht mit Aktionen aktiviert wird.
+
+
+    Hinweis: Diese Methode wird nur von Outlook 2016 für Windows (Klick-und-Los-Versionen größer als 16.0.8413.1000) und Outlook im Web für Office 365 unterstützt.
+
+
+    \[[API-Satz: Postfach Preview](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organisator eines Termins</td></tr></table>
+
+
+    Weitere Informationen zu [bearbeitungsfähige Nachrichten](https://docs.microsoft.com/outlook/actionable-messages/invoke-add-in-from-actionable-message)<!-- -->.
+  isPreview: true
+  name: getInitializationContextAsync(options, callback)
+  fullName: outlook.Office.AppointmentCompose.getInitializationContextAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getInitializationContextAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: options
+      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. AsyncContext: Entwickler können bereitstellen, ein Objekt, das sie in der Rückrufmethode zugreifen möchten.'
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die Funktion übergebenen Callback-Parameter mit einem einzelnen Parameter vom Typ Office.AsyncResult aufgerufen. Bei Erfolg werden die Initialisierungsdaten als Zeichenfolge in der Eigenschaft "AsyncResult.Value" bereitgestellt. Ist kein Initialisierung Kontext, enthält das AsyncResult-Objekt ein Error-Objekt, mit dessen codeeigenschaft auf 9020 festgelegt und die Name-Eigenschaft auf GenericResponseError festgelegt.
+      type:
+      - '(result: AsyncResult<string>) => void'
+- uid: outlook.Office.AppointmentCompose.getSelectedDataAsync
+  summary: >-
+    Gibt asynchron ausgewählte Daten aus dem Betreff oder Textkörper einer Nachricht zurück.
+
+
+    Wenn keine Auswahl vorhanden ist, aber der Cursor sich im Nachrichtentext oder Betreff befindet, gibt die Methode NULL für die ausgewählten Daten zurück. Wenn ein anderes Feld als der Textkörper oder Betreff ausgewählt ist, gibt die Methode den InvalidSelection-Fehler zurück.
+
+
+    Rufen Sie für den Zugriff auf die ausgewählten Daten aus der Callbackmethode asyncResult.value.data auf. Rufen Sie für den Zugriff auf die Quelleigenschaft, aus der die Auswahl stammt, asyncResult.value.sourceProperty auf, was entweder body oder subject entspricht.
+
+
+    \[[API-Satz: Postfach 1.2](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organisator eines Termins</td></tr></table>
+
+    ####Beispiele für
+
+
+    ```javascript
+
+    // getting selected data
+
+    Office.initialize = function () {
+        Office.context.mailbox.item.getSelectedDataAsync(Office.CoercionType.Text, {}, getCallback);
+    }
+
+
+    function getCallback(asyncResult) {
+        var text = asyncResult.value.data;
+        var prop = asyncResult.value.sourceProperty;
+
+        Office.context.mailbox.item.setSelectedDataAsync('Setting ' + prop + ': ' + text, {}, setCallback);
+    }
+
+
+    function setCallback(asyncResult) {
+        // check for errors
+    }
+
+    ```
+  name: getSelectedDataAsync(coerciontype, options, callback)
+  fullName: outlook.Office.AppointmentCompose.getSelectedDataAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getSelectedDataAsync(coerciontype: Office.CoercionType, options: Office.AsyncContextOptions, callback: (result: AsyncResult<any>) => void): void;'
+    return:
+      type:
+      - void
+      description: Die ausgewählten Daten als Zeichenfolge mit dem durch coercionType bestimmten Format.
+    parameters:
+    - id: coerciontype
+      description: ''
+      type:
+      - office.Office.CoercionType
+    - id: options
+      description: 'Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. AsyncContext: Entwickler können bereitstellen, ein Objekt, das sie in der Rückrufmethode zugreifen möchten.'
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Wenn die Methode abgeschlossen ist, wird die Funktion übergebenen Callback-Parameter mit einem einzelnen Parameter vom Typ AsyncResult aufgerufen.
+      type:
+      - '(result: AsyncResult<any>) => void'
+- uid: outlook.Office.AppointmentCompose.itemType
+  summary: >-
+    Ruft den Typ des Elements ab, das eine Instanz darstellt.
+
+
+    Die itemType-Eigenschaft gibt einen der Werte der ItemType-Enumeration zurück, der angibt, ob es sich bei der item-Objektinstanz um eine Nachricht oder einen Termin handelt.
+
+
+    \[[API-Satz: Postfach 1.0](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organisator eines Termins</td></tr></table>
+  name: itemType
+  fullName: outlook.Office.AppointmentCompose.itemType
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'itemType: Office.MailboxEnums.ItemType;'
+    return:
+      type:
+      - outlook.Office.MailboxEnums.ItemType
+- uid: outlook.Office.AppointmentCompose.loadCustomPropertiesAsync
+  summary: >-
+    Lädt asynchron benutzerdefinierte Eigenschaften für dieses Add-In für das ausgewählte Element.
+
+
+    Benutzerdefinierte Eigenschaften werden als Schlüssel-/Wert-Paare pro App und pro Element gespeichert. Diese Methode gibt ein CustomProperties-Objekt im Callback zurück, das Methoden für den Zugriff auf die benutzerdefinierten Eigenschaften für das aktuelle Element und das aktuelle Add-In bietet. Benutzerdefinierte Eigenschaften sind für das Element nicht verschlüsselt und sollten darum nicht als sicherer Speicher verwendet werden.
+
+
+    Die benutzerdefinierten Eigenschaften werden als CustomProperties-Objekt in der asyncResult.value-Eigenschaft bereitgestellt. Dieses Objekt kann verwendet werden, um benutzerdefinierte Eigenschaften aus dem Element abzurufen, festzulegen und zu entfernen und um Änderungen am benutzerdefinierten Eigenschaftssatz wieder auf dem Server zu speichern.
+
+
+    \[[API-Satz: Postfach 1.0](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organisator eines Termins</td></tr></table>
+  name: loadCustomPropertiesAsync(callback, userContext)
+  fullName: outlook.Office.AppointmentCompose.loadCustomPropertiesAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'loadCustomPropertiesAsync(callback: (result: AsyncResult<Office.CustomProperties>) => void, userContext?: any): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: callback
+      description: Wenn die Methode abgeschlossen ist, wird die Funktion übergebenen Callback-Parameter mit einem einzelnen Parameter vom Typ Office.AsyncResult aufgerufen.
+      type:
+      - '(result: AsyncResult<Office.CustomProperties>) => void'
+    - id: userContext
+      description: Optional. Entwickler können ein beliebiges Objekt bereitstellen, den sie in der Rückruffunktion zugreifen möchten. Dieses Objekt kann von der asyncResult.asyncContext-Eigenschaft in der Callback-Funktion zugegriffen werden.
+      type:
+      - any
+- uid: outlook.Office.AppointmentCompose.location
+  summary: >-
+    Dient zum Abrufen oder Festlegen der [Office.Location](xref:outlook.Office.Location) eines Termins. Die location-Eigenschaft gibt ein Location-Objekt zurück, das Methoden zum Abrufen und Festlegen des Orts für einen Termin bereitstellt.
+
+
+    \[[API-Satz: Postfach 1.0](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organisator eines Termins</td></tr></table>
+
+    ####Beispiele für
+
+
+    ```javascript
+
+    var userContext = { value : 1 };
+
+    Office.context.mailbox.item.location.getAsync( { context: userContext}, callback);
+
+
+    function callback(asyncResult) {
+        var context = asyncResult.context;
+        var location = asyncResult.value;
+    }
+
+    ```
+  name: location
+  fullName: outlook.Office.AppointmentCompose.location
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'location: Location;'
+    return:
+      type:
+      - Location
+- uid: outlook.Office.AppointmentCompose.notificationMessages
+  summary: >-
+    Ruft die Benachrichtigungen für ein Element ab.
+
+
+    \[[API-Satz: 1.3 Postfachs](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organisator eines Termins</td></tr></table>
+  name: notificationMessages
+  fullName: outlook.Office.AppointmentCompose.notificationMessages
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'notificationMessages: Office.NotificationMessages;'
+    return:
+      type:
+      - outlook.Office.NotificationMessages
+- uid: outlook.Office.AppointmentCompose.optionalAttendees
+  summary: >-
+    Ermöglicht den Zugriff auf die optionalen Teilnehmer eines Ereignisses. Der Typ des Objekts und die Zugriffsebene, hängt von den Modus des aktuellen Elements ab. OptionalAttendees-Eigenschaft gibt ein [Office.Recipients](xref:outlook.Office.Recipients) -Objekt, das Methoden zum Abrufen oder Aktualisieren der optionalen Teilnehmer für eine Besprechung bereitstellt.
+
+
+    \[[API-Satz: Postfach 1.0](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organisator eines Termins</td></tr></table>
+
+    ####Beispiele für
+
+
+    ```javascript
+
+    Office.context.mailbox.item.optionalAttendees.setAsync( ['alice@contoso.com', 'bob@contoso.com'] );
+
+    Office.context.mailbox.item.optionalAttendees.addAsync( ['jason@contoso.com'] );
+
+    Office.context.mailbox.item.optionalAttendees.getAsync(callback);
+
+
+    function callback(asyncResult) {
+        var arrayOfOptionalAttendeesRecipients = asyncResult.value;
+    }
+
+    ```
+  name: optionalAttendees
+  fullName: outlook.Office.AppointmentCompose.optionalAttendees
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'optionalAttendees: Recipients;'
+    return:
+      type:
+      - Recipients
+- uid: outlook.Office.AppointmentCompose.organizer
+  summary: >-
+    Dient zum Abrufen des Organisators für die angegebene Besprechung ein.
+
+
+    Die Organisator-Eigenschaft gibt ein [Organisator](xref:outlook.Office.Organizer) -Objekt, das eine Methode zum Abrufen des Werts der Organisator bereitgestellt.
+
+
+    \[[API-Satz: Postfach Preview](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organisator eines Termins</td></tr></table>
+
+    ####Beispiele für
+
+
+    ```javascript
+
+    var organizerName = Office.context.mailbox.item.organizer.displayName;
+
+    var organizerAddress = Office.context.mailbox.item.organizer.emailAddress;
+
+    ```
+  isPreview: true
+  name: organizer
+  fullName: outlook.Office.AppointmentCompose.organizer
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'organizer: Office.Organizer;'
+    return:
+      type:
+      - outlook.Office.Organizer
+- uid: outlook.Office.AppointmentCompose.recurrence
+  summary: >-
+    Ruft ab oder legt das Serienmuster eines Termins.
+
+
+    Die Serieneigenschaft gibt ein Serie-Objekt für Termin- oder Besprechungsanfragen zurück, wenn ein Element eine Datenreihe oder eine Instanz einer Serie ist. `null`wird für einzelne Termine und Besprechungsanfragen von einzelnen Terminen zurückgegeben.
+
+
+    Hinweis: Besprechungsanfragen weisen eine ItemClass IPM. Schedule.Meeting.Request.
+
+
+    Hinweis: Wenn das Serie Objekt null ist, bedeutet dies, dass das Objekt einen einzelnen Termin oder eine Besprechungsanfrage an einen einzelnen Termin und nicht um einen Teil einer Reihe.
+
+
+    \[[API-Satz: Postfach Preview](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organisator eines Termins</td></tr></table>
+  isPreview: true
+  name: recurrence
+  fullName: outlook.Office.AppointmentCompose.recurrence
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'recurrence: Recurrence;'
+    return:
+      type:
+      - outlook.Office.Recurrence
+- uid: outlook.Office.AppointmentCompose.removeAttachmentAsync
+  summary: >-
+    Entfernt eine Anlage aus einer Nachricht oder einem Termin.
+
+
+    Die removeAttachmentAsync-Methode entfernt den Anhang mit dem angegebenen Bezeichner aus dem Element. Als bewährte Vorgehensweise sollten Sie den Anhangsbezeichner nur dann zum Entfernen eines Anhangs verwenden, wenn die gleiche Mail-App den Anhang in der gleichen Sitzung hinzugefügt hat. In Outlook Web App und OWA for Devices ist der Anhangsbezeichner nur innerhalb der gleichen Sitzung gültig. Eine Sitzung ist abgeschlossen, wenn der Benutzer die App schließt, oder wenn der Benutzer in einem eingebetteten Formular mit dem Verfassen beginnt und den Vorgang dann in einem separaten Fenster fortsetzt.
+
+
+    \[[API-Satz: Postfach 1.1](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organisator eines Termins</td></tr>
+
+
+    <tr><td>Fehler</td><td>InvalidAttachmentId - Anlage-ID ist nicht vorhanden.</td></tr></table>
+
+
+    Zusätzlich zu dieser Signatur hat die-Methode auch die folgenden Signaturen:
+
+
+    `removeAttachmentAsync(attachmentIndex: string): void;`
+
+
+    `removeAttachmentAsync(attachmentIndex: string, options: Office.AsyncContextOptions): void;`
+
+
+    `removeAttachmentAsync(attachmentIndex: string, callback: (result: AsyncResult<void>) => void): void;`
+
+    #### <a name="examples"></a>Beispiele
+
+
+    ```javascript
+
+    // The following code removes an attachment with an identifier of '0'.
+
+    Office.context.mailbox.item.removeAttachmentAsync(
+        '0',
+        { asyncContext : null },
+        function (asyncResult)
+        {
+            console.log(asyncResult.status);
+        }
+    );
+
+    ```
+  name: removeAttachmentAsync(attachmentIndex, options, callback)
+  fullName: outlook.Office.AppointmentCompose.removeAttachmentAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'removeAttachmentAsync(attachmentIndex: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: attachmentIndex
+      description: Der Bezeichner des Anhangs, der entfernt werden soll. Die maximale Länge der Zeichenfolge ist 100 Zeichen.
+      type:
+      - string
+    - id: options
+      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. AsyncContext: Entwickler können bereitstellen, ein Objekt, das sie in der Rückrufmethode zugreifen möchten.'
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die Funktion übergebenen Callback-Parameter mit einem einzelnen Parameter vom Typ Office.AsyncResult aufgerufen. Wenn die Anlage entfernt ein Fehler auftritt, wird die asyncResult.error-Eigenschaft einen Fehlercode mit den Grund für den Fehler enthalten.
+      type:
+      - '(result: AsyncResult<void>) => void'
+- uid: outlook.Office.AppointmentCompose.removeHandlerAsync
+  summary: >-
+    Entfernt einen Ereignishandler für ein Ereignis unterstützt.
+
+
+    Derzeit sind die unterstützten Ereignistypen `Office.EventType.AppointmentTimeChanged`, `Office.EventType.RecipientsChanged`, und `Office.EventType.RecurrencePatternChanged`.
+
+
+    \[[API-Satz: Postfach Preview](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organisator eines Termins</td></tr></table>
+
+
+    Zusätzlich zu dieser Signatur hat die-Methode auch die folgende Signatur:
+
+
+    `removeHandlerAsync(eventType:EventType, handler: any, callback?: (result: AsyncResult<void>) => void): void;`
+  isPreview: true
+  name: removeHandlerAsync(eventType, handler, options, callback)
+  fullName: outlook.Office.AppointmentCompose.removeHandlerAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'removeHandlerAsync(eventType:EventType, handler: any, options?: any, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: eventType
+      description: Das Ereignis, das den Handler aufrufen soll
+      type:
+      - EventType
+    - id: handler
+      description: Die Funktion für die Ereignisbehandlung. Die Funktion muss einen einzelnen Parameter akzeptieren, der ein Objektliteral ist. Die Type-Eigenschaft für den Parameter entspricht den EventType-Parameter an die RemoveHandlerAsync übergeben.
+      type:
+      - any
+    - id: options
+      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. AsyncContext: Entwickler können bereitstellen, ein Objekt, das sie in der Rückrufmethode zugreifen möchten.'
+      type:
+      - any
+    - id: callback
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die in der Callback-Parameter übergebene Funktion mit einem einzelnen Parameter, AsyncResult, aufgerufen, der ein Office.AsyncResult-Objekt ist.
+      type:
+      - '(result: AsyncResult<void>) => void'
+- uid: outlook.Office.AppointmentCompose.requiredAttendees
+  summary: >-
+    Ermöglicht den Zugriff auf die erforderlichen Teilnehmer eines Ereignisses. Der Typ des Objekts und die Zugriffsebene, hängt von den Modus des aktuellen Elements ab. RequiredAttendees-Eigenschaft gibt ein [Office.Recipients](xref:outlook.Office.Recipients) -Objekt, das Methoden zum Abrufen oder Aktualisieren der erforderlichen Teilnehmer für eine Besprechung bereitstellt.
+
+
+    \[[API-Satz: Postfach 1.0](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organisator eines Termins</td></tr></table>
+
+    ####Beispiele für
+
+
+    ```javascript
+
+    Office.context.mailbox.item.requiredAttendees.setAsync( ['alice@contoso.com', 'bob@contoso.com'] );
+
+    Office.context.mailbox.item.requiredAttendees.addAsync( ['jason@contoso.com'] );
+
+    Office.context.mailbox.item.requiredAttendees.getAsync(callback);
+
+
+    function callback(asyncResult) {
+        var arrayOfRequiredAttendeesRecipients = asyncResult.value;
+    }
+
+    ```
+  name: requiredAttendees
+  fullName: outlook.Office.AppointmentCompose.requiredAttendees
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'requiredAttendees: Recipients;'
+    return:
+      type:
+      - Recipients
+- uid: outlook.Office.AppointmentCompose.saveAsync
+  summary: >-
+    Speicher asynchron ein Element. .
+
+
+    Beim Aufrufen speichert diese Methode die aktuelle Nachricht als Entwurf und  gibt die Element-ID über die Callbackmethode zurück. In Outlook Web App oder Outlook im Onlinemodus wird das Element auf dem Server gespeichert. In Outlook im Cache-Modus wird das Element im lokalen Cache gespeichert.
+
+
+    Da Termine kein Zustand Entwurf haben, wenn für einen Termin in SaveAsync aufgerufen wird Verfassenmodus, wird das Element als normale Termin auf den Kalender des Benutzers gespeichert werden. Neue Termine, die noch nicht gespeichert wurde, werden keine Einladung gesendet. Speichern von vorhandenen Termin sendet ein Update an Teilnehmer hinzugefügt oder entfernt wurden.
+
+
+    Hinweis: Wenn Ihr Add-in-Aufrufe SaveAsync für ein Element im Verfassenmodus, um eine ItemId zur Verwendung mit Exchange-Webdienste oder REST-API erhalten möchten, beachten Sie, dass wenn Outlook im Cache-Modus ist, es kann einige Zeit dauern, bevor das Element tatsächlich auf dem Server synchronisiert wird. Bis das Element synchronisiert ist, wird die Verwendung der ItemId einen Fehler zurück.
+
+
+    Hinweis: Die folgenden Clients haben unterschiedlichem Verhalten für SaveAsync Termine im Verfassenmodus:
+
+
+    - Outlook für Mac unterstützt keine SaveAsync auf einer Besprechung im Verfassenmodus. SaveAsync für eine Besprechung in Outlook für Mac aufrufen, wird einen Fehler zurückgegeben.
+
+
+    - Outlook im Web immer sendet eine Einladung oder Verfassenmodus aktualisieren, wenn für einen Termin in SaveAsync aufgerufen wird.
+
+
+    \[[API-Satz: 1.3 Postfachs](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organisator eines Termins</td></tr>
+
+
+    <tr><td>Fehler</td><td>InvalidAttachmentId - Anlage-ID ist nicht vorhanden.</td></tr></table>
+
+
+    Zusätzlich zu dieser Signatur hat die-Methode auch die folgenden Signaturen:
+
+
+    `saveAsync(): void;`
+
+
+    `saveAsync(options: Office.AsyncContextOptions): void;`
+
+
+    `saveAsync(callback: (result: AsyncResult<void>) => void): void;`
+
+    #### <a name="examples"></a>Beispiele
+
+
+    ```javascript
+
+    Office.context.mailbox.item.saveAsync(
+        function callback(result) {
+            // Process the result
+        });
+
+    // The following is an example of the
+
+    // `result` parameter passed to the
+
+    // callback function. The `value`
+
+    // property contains the item ID of
+
+    // the item.
+
+    {
+        "value":"AAMkADI5...AAA=",
+        "status":"succeeded"
+    }
+
+    ```
+  name: saveAsync(options, callback)
+  fullName: outlook.Office.AppointmentCompose.saveAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'saveAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: options
+      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. AsyncContext: Entwickler können bereitstellen, ein Objekt, das sie in der Rückrufmethode zugreifen möchten.'
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die Funktion übergebenen Callback-Parameter mit einem einzelnen Parameter vom Typ Office.AsyncResult aufgerufen.
+      type:
+      - '(result: AsyncResult<void>) => void'
+- uid: outlook.Office.AppointmentCompose.seriesId
+  summary: >-
+    Ruft die Id der Datenreihe, zu der eine Instanz gehört.
+
+
+    In OWA und Outlook gibt die SeriesId die Exchange-Webdienste (EWS)-ID des übergeordneten (Reihe)-Elements, das dieses Element gehört. Bei iOS und Android gibt die SeriesId jedoch die REST-ID des übergeordneten Elements.
+
+
+    Hinweis: Der von der SeriesId-Eigenschaft zurückgegebene Bezeichner ist identisch mit der Exchange-Webdienste Elementbezeichner. Die SeriesId-Eigenschaft ist nicht identisch mit den Outlook-IDs von der Outlook-REST-API verwendet. REST-API-Aufrufe dieser Wert verwenden, sollten sie konvertiert werden, bevor Office.context.mailbox.convertToRestId verwenden. Weitere Informationen finden Sie unter [Verwenden der Outlook-REST-APIs aus einem Outlook-add-in](https://docs.microsoft.com/outlook/add-ins/use-rest-api)<!-- -->.
+
+
+    Die SeriesId-Eigenschaft gibt null für Elemente, die nicht über das übergeordnete Elemente wie einzelne Termine, Serienelementen, verfügen oder Besprechungsanfragen und gibt für alle anderen Elemente, die keine Besprechungsanfragen sind nicht definiert.
+
+
+    \[[API-Satz: Postfach Preview](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organisator eines Termins</td></tr></table>
+  isPreview: true
+  name: seriesId
+  fullName: outlook.Office.AppointmentCompose.seriesId
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'seriesId: string;'
+    return:
+      type:
+      - string
+- uid: outlook.Office.AppointmentCompose.setSelectedDataAsync
+  summary: >-
+    Fügt asynchron Daten in den Textkörper oder Betreff einer Nachricht ein.
+
+
+    Die SetSelectedDataAsync-Methode fügt die angegebene Zeichenfolge an der Cursorposition im Betreff oder Textkörper des Elements oder, wenn Text im Editor ausgewählt ist, ersetzt den markierten Text. Wenn der Cursor nicht im Feld Nachrichtentext oder Betreff ist, wird ein Fehler zurückgegeben. Nach dem Einfügen wird am Ende des eingefügten Inhalt der Cursor platziert.
+
+
+    \[[API-Satz: Postfach 1.2](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organisator eines Termins</td></tr>
+
+
+    <tr><td>Fehler</td><td>InvalidAttachmentId - Anlage-ID ist nicht vorhanden.</td></tr></table>
+
+
+    Zusätzlich zu dieser Signatur hat die-Methode auch die folgenden Signaturen:
+
+
+    `setSelectedDataAsync(data: string): void;`
+
+
+    `setSelectedDataAsync(data: string, options: Office.AsyncContextOptions &amp; CoercionTypeOptions): void;`
+
+
+    `setSelectedDataAsync(data: string, callback: (result: AsyncResult<void>) => void): void;`
+
+    #### <a name="examples"></a>Beispiele
+
+
+    ```javascript
+
+    Office.context.mailbox.item.setSelectedDataAsync("Hello World!");
+
+    Office.context.mailbox.item.setSelectedDataAsync("<b>Hello World!</b>", { coercionType : "html" });
+
+    ```
+  name: setSelectedDataAsync(data, options, callback)
+  fullName: outlook.Office.AppointmentCompose.setSelectedDataAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setSelectedDataAsync(data: string, options?: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: data
+      description: Die einzufügenden Daten. Die Daten dürfen 1.000.000 Zeichen nicht überschreiten. Werden mehr als 1.000.000 Zeichen übergeben, wird eine ArgumentOutOfRange-Ausnahme ausgelöst.
+      type:
+      - string
+    - id: options
+      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. AsyncContext: Entwickler können bereitstellen, ein Objekt, das sie in der Rückrufmethode zugreifen möchten. CoercionType: Wenn Text die aktuelle Formatvorlage in Outlook Web App und Outlook angewendet wird. Wenn das Feld ein HTML-Editor ist, werden nur die Textdaten eingefügt, selbst wenn es sich bei den Daten um HTML-Daten handelt. Wenn html und das Feld unterstützt HTML (nicht der Betreff), die aktuelle Formatvorlage in Outlook Web App angewendet, und das Standardformat wird in Outlook angewendet. Wenn das Feld ein Textfeld ist, wird ein InvalidDataFormat-Fehler zurückgegeben. Wenn coercionType nicht festgelegt ist, hängt das Ergebnis vom Feld ab: Ist das Feld vom Typ HTML, wird HTML verwendet; ist das Feld vom Typ Text, wird unformatierter Text verwendet.'
+      type:
+      - Office.AsyncContextOptions & CoercionTypeOptions
+    - id: callback
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die Funktion übergebenen Callback-Parameter mit einem einzelnen Parameter vom Typ Office.AsyncResult aufgerufen.
+      type:
+      - '(result: AsyncResult<void>) => void'
+- uid: outlook.Office.AppointmentCompose.start
+  summary: >-
+    Ruft Datum und Zeit für den Beginn des Termins ab oder legt Datum und Uhrzeit fest.
+
+
+    Die Start-Eigenschaft ist ein [Office.Time](xref:outlook.Office.Time) -Objekt, das als Wert (Coordinated Universal Time, UTC) Datum und Uhrzeit. ConvertToLocalClientTime-Methode können Sie um den Wert auf den Client lokale Datum und die Uhrzeit zu konvertieren.
+
+
+    Wenn Sie die Time.setAsync-Methode verwenden, um die Startzeit im Verfassenmodus festzulegen, sollten Sie die convertToUtcClientTime-Methode verwenden, um die Ortszeit auf dem Client für den Server in UTC umzuwandeln.
+
+
+    \[[API-Satz: Postfach 1.0](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organisator eines Termins</td></tr></table>
+
+    ####Beispiele für
+
+
+    ```javascript
+
+    // The following example sets the start time of an appointment in compose mode by
+
+    // using the `setAsync` method of the `Time` object.
+
+    var startTime = new Date("3/14/2015");
+
+    var options = {
+        // Pass information that can be used
+        // in the callback
+        asyncContext: {verb:"Set"}
+    }
+
+    Office.context.mailbox.item.start.setAsync(startTime, options, function(result) {
+        if (result.error) {
+            console.debug(result.error);
+        } else {
+            // Access the asyncContext that was passed to the setAsync function
+            console.debug("Start Time " + result.asyncContext.verb);
+        }
+    });
+
+    ```
+  name: start
+  fullName: outlook.Office.AppointmentCompose.start
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'start: Time;'
+    return:
+      type:
+      - Time
+- uid: outlook.Office.AppointmentCompose.subject
+  summary: >-
+    Ruft die Beschreibung ab, die im Betrefffeld eines Elements angezeigt wird, oder legt sie fest.
+
+
+    Die subject-Eigenschaft ruft den gesamten Betreff des Elements ab oder legt ihn fest – so, wie er vom E-Mail-Server gesendet wird.
+
+
+    Der subject-Eigenschaft gibt ein Subject-Objekt zurück, das Methoden zum Abrufen und Festlegen des Betreffs bereitstellt.
+
+
+    \[[API-Satz: Postfach 1.0](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Organisator eines Termins</td></tr></table>
+
+    ####Beispiele für
+
+
+    ```javascript
+
+    Office.context.mailbox.item.subject.getAsync(callback);
+
+
+    function callback(asyncResult) {
+        var subject = asyncResult.value;
+    }
+
+    ```
+  name: subject
+  fullName: outlook.Office.AppointmentCompose.subject
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'subject: Subject;'
+    return:
+      type:
+      - Subject

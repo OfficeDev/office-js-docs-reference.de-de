@@ -1,0 +1,129 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 6334a8faa8272bdce78a343404e36d9ded5dd3bd
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24047223"
+items:
+- uid: excel.Excel.TableRow
+  summary: >-
+    Stellt eine Zeile in einer Tabelle dar.
+
+
+    Beachten Sie, dass im Gegensatz zu Bereichen oder Spalten, die angepasst werden, wenn neue Zeilen/Spalten, bevor Sie diese hinzugefügt werden, ein TableRow-Objekt den physischen Standort der Tabellenzeile, jedoch nicht die Daten darstellen. D. h., weiterhin Wenn die Daten sortiert ist oder wenn neue Zeilen hinzugefügt werden, eine Tabellenzeile am Index zeigen Sie für die sie erstellt wurde.
+
+
+    \[[API-Satz: ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: Excel.TableRow
+  fullName: excel.Excel.TableRow
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: excel
+  children:
+  - excel.Excel.TableRow.delete
+  - excel.Excel.TableRow.getRange
+  - excel.Excel.TableRow.index
+  - excel.Excel.TableRow.load
+  - excel.Excel.TableRow.toJSON
+  - excel.Excel.TableRow.values
+- uid: excel.Excel.TableRow.delete
+  summary: >-
+    Löscht die Zeile aus der Tabelle.
+
+
+    \[[API-Satz: ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: delete()
+  fullName: excel.Excel.TableRow.delete
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'delete(): void;'
+    return:
+      type:
+      - void
+      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var tableName = 'Table1';\n    var row = ctx.workbook.tables.getItem(tableName).rows.getItemAt(2);\n    row.delete();\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- uid: excel.Excel.TableRow.getRange
+  summary: >-
+    Ruft das Bereichsobjekt ab, das mit der gesamten Zeile verknüpft ist.
+
+
+    \[[API-Satz: ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: getRange()
+  fullName: excel.Excel.TableRow.getRange
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getRange(): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var tableName = 'Table1';\n    var row = ctx.workbook.tables.getItem(tableName).rows.getItemAt(0);\n    var rowRange = row.getRange();\n    rowRange.load('address');\n    return ctx.sync().then(function() {\n        console.log(rowRange.address);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- uid: excel.Excel.TableRow.index
+  summary: >-
+    Gibt die Indexnummer der Zeile in der Zeilenauflistung der Tabelle zurück. Nullindiziert. Schreibgeschützt.
+
+
+    \[[API-Satz: ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: index
+  fullName: excel.Excel.TableRow.index
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly index: number;'
+    return:
+      type:
+      - number
+- uid: excel.Excel.TableRow.load
+  summary: Warteschlangen ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen "context.sync()" aufrufen, bevor Sie die Eigenschaften lesen.
+  remarks: "Zusätzlich zu dieser Signatur hat diese Methode die folgenden Signaturen:\n\n`load(option?: { select?: string; expand?: string; }): Excel.TableRow`-Option.select ist eine durch Trennzeichen getrennte Zeichenfolge, die die Eigenschaften zum Laden gibt an, wobei options.expand ist eine durch Kommas getrennte Zeichenfolge, die Navigationseigenschaften zum Laden angibt.\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.TableRow`-Nur auf Auflistungstypen verfügbar. Es ist ähnlich wie die jeweils vorhergehende Signatur. Option.Top gibt die maximale Anzahl der Auflistungselemente, die im Ergebnis enthalten sein können. Option.Skip gibt die Anzahl der Elemente, die übersprungen und nicht in das Ergebnis eingeschlossen werden sollen. Wenn option.top angegeben wird, wird das Resultset starten, nachdem die angegebene Anzahl von Elementen übersprungen wird.\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var tableName = 'Table1';\n    var row = ctx.workbook.tables.getItem(tableName).rows.getItem(0);\n    row.load('index');\n    return ctx.sync().then(function() {\n        console.log(row.index);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nExcel.run(function (ctx) { \n    var tables = ctx.workbook.tables;\n    var newValues = [[\"New\", \"Values\", \"For\", \"New\", \"Row\"]];\n    var tableName = 'Table1';\n    var row = ctx.workbook.tables.getItem(tableName).rows.getItemAt(2);\n    row.values = newValues;\n    row.load('values');\n    return ctx.sync().then(function() {\n        console.log(row.values);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  name: load(option)
+  fullName: excel.Excel.TableRow.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): Excel.TableRow;'
+    return:
+      type:
+      - excel.Excel.TableRow
+      description: ''
+    parameters:
+    - id: option
+      description: Eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die zum Laden die Eigenschaften angeben.
+      type:
+      - string | string[]
+- uid: excel.Excel.TableRow.toJSON
+  name: toJSON()
+  fullName: excel.Excel.TableRow.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.TableRowData;'
+    return:
+      type:
+      - excel.Excel.Interfaces.TableRowData
+      description: ''
+- uid: excel.Excel.TableRow.values
+  summary: >-
+    Die unformatierten Werte des angegebenen Bereichs darstellt. Die zurückgegebenen Daten konnte vom Typ String, Nummer oder ein boolescher Wert sein. Zellen, die Fehler enthalten, gibt die Fehlerzeichenfolge zurück.
+
+
+    \[[API-Satz: ExcelApi 1.1](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: values
+  fullName: excel.Excel.TableRow.values
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'values: any[][];'
+    return:
+      type:
+      - any[][]

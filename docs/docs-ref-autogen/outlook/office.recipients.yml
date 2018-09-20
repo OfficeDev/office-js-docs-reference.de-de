@@ -1,0 +1,275 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: e179bf4d58a97d54c954a7f94a9f95e186a8cf7d
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24046709"
+items:
+- uid: outlook.Office.Recipients
+  summary: '\[[API-Satz: Postfach 1.1](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]'
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen</td></tr></table>
+  name: Office.Recipients
+  fullName: outlook.Office.Recipients
+  langs:
+  - typeScript
+  type: interface
+  package: outlook
+  children:
+  - outlook.Office.Recipients.addAsync
+  - outlook.Office.Recipients.getAsync
+  - outlook.Office.Recipients.setAsync
+- uid: outlook.Office.Recipients.addAsync
+  summary: >-
+    Fügt einen Liste der Empfänger den vorhandenen Empfängern für einen Termin oder eine Nachricht hinzu.
+
+
+    Der recipients-Parameter kann ein Array folgender Elemente sein:
+
+
+    - Zeichenfolgen mit SMTP-E-Mail-Adressen
+
+
+    - EmailUser-Objekte
+
+
+    - EmailAddressDetails-Objekte
+
+
+    \[[API-Satz: Postfach 1.1](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen</td></tr>
+
+
+    <tr><td>Fehler</td><td>NumberOfRecipientsExceeded - die Anzahl der Empfänger überschritt 100 Einträge.</td></tr></table>
+
+
+    Zusätzlich zu den wichtigsten Signatur hat diese Methode auch diese Signaturen:
+
+
+    `addAsync(recipients: (string | EmailUser | EmailAddressDetails)[]): void;`
+
+
+    `addAsync(recipients: (string | EmailUser | EmailAddressDetails)[], options: Office.AsyncContextOptions): void;`
+
+
+    `addAsync(recipients: (string | EmailUser | EmailAddressDetails)[], callback: (result: AsyncResult<void>) => void): void;`
+
+    #### <a name="examples"></a>Beispiele
+
+
+    ```javascript
+
+    // The following example creates an array of EmailUser objects
+
+    // and adds them to the To recipients of the message.
+
+    var newRecipients = [
+        {
+            "displayName": "Allie Bellew",
+            "emailAddress": "allieb@contoso.com"
+        },
+        {
+            "displayName": "Alex Darrow",
+            "emailAddress": "alexd@contoso.com"
+        }
+    ];
+
+
+    Office.context.mailbox.item.to.addAsync(newRecipients, function(result) {
+        if (result.error) {
+            showMessage(result.error);
+        } else {
+            showMessage("Recipients added");
+        }
+    });
+
+    ```
+  name: addAsync(recipients, options, callback)
+  fullName: outlook.Office.Recipients.addAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addAsync(recipients: (string | EmailUser | EmailAddressDetails)[], options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: recipients
+      description: Die Empfänger, die der Empfängerliste hinzugefügt werden sollen.
+      type:
+      - (string | EmailUser | EmailAddressDetails)[]
+    - id: options
+      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. AsyncContext: Entwickler können bereitstellen, ein Objekt, das sie in der Rückrufmethode zugreifen möchten.'
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die Funktion übergebenen Callback-Parameter mit einem einzelnen Parameter vom Typ Office.AsyncResult aufgerufen. Wenn der Empfänger hinzufügen ein Fehler auftritt, wird die asyncResult.error-Eigenschaft einen Fehlercode enthalten.
+      type:
+      - '(result: AsyncResult<void>) => void'
+- uid: outlook.Office.Recipients.getAsync
+  summary: >-
+    Ruft eine Empfängerliste für einen Termin oder eine Nachricht ab.
+
+
+    Wenn der Aufruf abgeschlossen ist, enthält die asyncResult.value-Eigenschaft ein Array von [Office.EmailAddressDetails](xref:outlook.Office.EmailAddressDetails) -Objekten.
+
+
+    \[[API-Satz: Postfach 1.1](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen</td></tr></table>
+
+
+    Zusätzlich zu den wichtigsten Signatur hat diese Methode auch diese Signatur:
+
+
+    `getAsync(callback: (result: AsyncResult&lt;Office.EmailAddressDetails[]&gt;) => void): void;`
+
+    #### <a name="examples"></a>Beispiele
+
+
+    ```javascript
+
+    // The following example gets the optional attendees of a meeting.
+
+    Office.context.mailbox.item.optionalAttendees.getAsync(function(result) {
+        if (result.error) {
+            showMessage(result.error);
+        } else {
+            var msg = "";
+            result.value.forEach(function(recip, index) {
+                msg = msg + recip.displayName + " (" + recip.emailAddress + ");";
+            });
+            showMessage(msg);
+        }
+    });
+
+    ```
+  name: getAsync(options, callback)
+  fullName: outlook.Office.Recipients.getAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getAsync(options: Office.AsyncContextOptions, callback: (result: AsyncResult<Office.EmailAddressDetails[]>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: options
+      description: 'Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. AsyncContext: Entwickler können bereitstellen, ein Objekt, das sie in der Rückrufmethode zugreifen möchten.'
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Wenn die Methode abgeschlossen ist, wird die Funktion übergebenen Callback-Parameter mit einem einzelnen Parameter vom Typ Office.AsyncResult aufgerufen. Die `value` -Eigenschaft des Ergebnisses ist ein Array von EmailAddressDetails-Objekten.
+      type:
+      - '(result: AsyncResult<Office.EmailAddressDetails[]>) => void'
+- uid: outlook.Office.Recipients.setAsync
+  summary: >-
+    Legt eine Empfängerliste für einen Termin oder eine Nachricht fest.
+
+
+    Die setAsync-Methode überschreibt die aktuelle Empfängerliste.
+
+
+    Der recipients-Parameter kann ein Array folgender Elemente sein:
+
+
+    - Zeichenfolgen mit SMTP-E-Mail-Adressen
+
+
+    - [Office.EmailUser](xref:outlook.Office.EmailUser) -Objekte
+
+
+    - [Office.EmailAddressDetails](xref:outlook.Office.EmailAddressDetails) -Objekte
+
+
+    \[[API-Satz: Postfach 1.1](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen</td></tr>
+
+
+    <tr><td>Fehler</td><td>NumberOfRecipientsExceeded - die Anzahl der Empfänger überschritt 100 Einträge.</td></tr></table>
+
+
+    Zusätzlich zu den wichtigsten Signatur hat diese Methode auch diese Signaturen:
+
+
+    `setAsync(recipients: (string | EmailUser | EmailAddressDetails)[]): void;`
+
+
+    `setAsync(recipients: (string | EmailUser | EmailAddressDetails)[], options: Office.AsyncContextOptions): void;`
+
+
+    `setAsync(recipients: (string | EmailUser | EmailAddressDetails)[], callback: (result: AsyncResult<void>) => void): void;`
+
+    #### <a name="examples"></a>Beispiele
+
+
+    ```javascript
+
+    // The following example creates an array of EmailUser objects and
+
+    // replaces the CC recipients of the message with the array.
+
+    var newRecipients = [
+        {
+            "displayName": "Allie Bellew",
+            "emailAddress": "allieb@contoso.com"
+        },
+        {
+            "displayName": "Alex Darrow",
+            "emailAddress": "alexd@contoso.com"
+        }
+    ];
+
+
+    Office.context.mailbox.item.cc.setAsync(newRecipients, function(result) {
+        if (result.error) {
+            showMessage(result.error);
+        } else {
+            showMessage("Recipients overwritten");
+        }
+    });
+
+    ```
+  name: setAsync(recipients, options, callback)
+  fullName: outlook.Office.Recipients.setAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setAsync(recipients: (string | EmailUser | EmailAddressDetails)[], options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: recipients
+      description: Die Empfänger, die der Empfängerliste hinzugefügt werden sollen.
+      type:
+      - (string | EmailUser | EmailAddressDetails)[]
+    - id: options
+      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. AsyncContext: Entwickler können bereitstellen, ein Objekt, das sie in der Rückrufmethode zugreifen möchten.'
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die Funktion übergebenen Callback-Parameter mit einem einzelnen Parameter vom Typ Office.AsyncResult aufgerufen. Wenn der Empfänger nicht festgelegt werden enthält die asyncResult.error-Eigenschaft einen Code, der etwaige Fehler angibt, der beim Hinzufügen der Daten aufgetreten ist.
+      type:
+      - '(result: AsyncResult<void>) => void'

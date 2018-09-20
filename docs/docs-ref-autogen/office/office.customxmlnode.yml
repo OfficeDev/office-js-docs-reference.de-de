@@ -1,0 +1,278 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 76d0713ffe5aa33cf020eb37a24a216e9adbc93c
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24046633"
+items:
+- uid: office.Office.CustomXmlNode
+  summary: Stellt einen XML-Knoten in einer Struktur in einem Dokument dar.
+  remarks: >-
+    <table><tr><td>Anforderungssätze</td><td>CustomXmlParts</td></tr></table>
+
+
+    **Supportdetails**
+
+
+    In der folgenden Matrix ein großes Y gibt an, dass diese Schnittstelle in der entsprechenden Office-hostanwendung unterstützt wird. Eine leere Zelle gibt an, dass die Office-hostanwendung diese Schnittstelle nicht unterstützt.
+
+
+    Weitere Informationen zu Office-Host-Anwendung und Server-Anforderungen, finden Sie unter [Anforderungen für die Ausführung von Office-Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
+
+
+    *Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office für Windows Desktop </th><th> Office Online (im Browser) </th><th> Office für iPad </th></tr> <tr><td><strong>Word</strong></td><td> v </td><td> v </td><td> v </td></tr> </table>
+  name: Office.CustomXmlNode
+  fullName: office.Office.CustomXmlNode
+  langs:
+  - typeScript
+  type: interface
+  package: office
+  children:
+  - office.Office.CustomXmlNode.baseName
+  - office.Office.CustomXmlNode.getNodesAsync
+  - office.Office.CustomXmlNode.getNodeValueAsync
+  - office.Office.CustomXmlNode.getTextAsync
+  - office.Office.CustomXmlNode.getXmlAsync
+  - office.Office.CustomXmlNode.namespaceUri
+  - office.Office.CustomXmlNode.nodeType
+  - office.Office.CustomXmlNode.setNodeValueAsync
+  - office.Office.CustomXmlNode.setTextAsync
+  - office.Office.CustomXmlNode.setXmlAsync
+- uid: office.Office.CustomXmlNode.baseName
+  summary: Ruft den Basisnamen des Knotens ohne Namespacepräfix ab, falls vorhanden.
+  remarks: "<table><tr><td>Anforderungssätze</td><td>CustomXmlParts</td></tr></table>\n#### Beispiele\n\n```javascript\nfunction showXmlNodeBaseNames() {\n    Office.context.document.customXmlParts.getByIdAsync(\n        \"{3BC85265-09D6-4205-B665-8EB239A8B9A1}\", function (result) {\n        var xmlPart = result.value;\n        xmlPart.getNodesAsync('*/*', function (nodeResults) {\n            for (i = 0; i < nodeResults.value.length; i++) {\n                var node = nodeResults.value[i];\n                write(node.baseName);\n            }\n        });\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  name: baseName
+  fullName: office.Office.CustomXmlNode.baseName
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'baseName: string;'
+    return:
+      type:
+      - string
+- uid: office.Office.CustomXmlNode.getNodesAsync
+  summary: Ruft die Knoten zugeordnet den XPath-Ausdruck ab.
+  remarks: "<table><tr><td>Anforderungssätze</td><td>CustomXmlParts</td></tr></table>\n#### Beispiele\n\n```javascript\nfunction showXmlChildNodes() {\n    Office.context.document.customXmlParts.getByIdAsync(\n        \"{3BC85265-09D6-4205-B665-8EB239A8B9A1}\", function (result) {\n        var xmlPart = result.value;\n        xmlPart.getNodesAsync('*', function (nodeResults) {\n            for (i = 0; i < nodeResults.value.length; i++) {\n                var node = nodeResults.value[i];\n                node.getNodesAsync('*', function (nodeResults) {\n                    write(nodeResults.value.length + \" childNodes\");\n                });\n            }\n        });\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  name: getNodesAsync(xPath, options, callback)
+  fullName: office.Office.CustomXmlNode.getNodesAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getNodesAsync(xPath: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<CustomXmlNode[]>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: xPath
+      description: 'Der XPath-Ausdruck, der die abzurufenden Knoten angibt. Erforderlich. '
+      type:
+      - string
+    - id: options
+      description: Bietet die Möglichkeit zur Beibehaltung von Kontextdaten eines beliebigen Typs, die für die Verwendung in einem Rückruf unverändert.
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Optional. Eine Funktion, die bei der Rückgabe des Rückrufs aufgerufen wird, dessen einziger Parameter vom Typ[Office.AsyncResult](xref:office.Office.AsyncResult)ist<!-- -->. Die `value` -Eigenschaft des Ergebnisses ist ein Array von CustomXmlNode-Objekten, die durch den XPath-Ausdruck übergeben angegebenen Knoten darstellen, der `xPath` Parameter.
+      type:
+      - '(result: AsyncResult<CustomXmlNode[]>) => void'
+- uid: office.Office.CustomXmlNode.getNodeValueAsync
+  summary: Ruft den Wert des Knotens ab.
+  remarks: "<table><tr><td>Anforderungssätze</td><td>CustomXmlParts</td></tr></table>\n#### Beispiele\n\n```javascript\nfunction showXmlNodeValues() {\n    Office.context.document.customXmlParts.getByIdAsync(\n        \"{3BC85265-09D6-4205-B665-8EB239A8B9A1}\", function (result) {\n        var xmlPart = result.value;\n        xmlPart.getNodesAsync('*/*', function (nodeResults) {\n            for (i = 0; i < nodeResults.value.length; i++) {\n                var node = nodeResults.value[i];\n                node.getNodeValueAsync(function (asyncResult) {\n                    write(asyncResult.value);\n                });\n            }\n        });\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  name: getNodeValueAsync(options, callback)
+  fullName: office.Office.CustomXmlNode.getNodeValueAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getNodeValueAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: options
+      description: Bietet die Möglichkeit zur Beibehaltung von Kontextdaten eines beliebigen Typs, die für die Verwendung in einem Rückruf unverändert.
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Optional. Eine Funktion, die bei der Rückgabe des Rückrufs aufgerufen wird, dessen einziger Parameter vom Typ[Office.AsyncResult](xref:office.Office.AsyncResult)ist<!-- -->. Die `value` -Eigenschaft das Ergebnis ist eine Zeichenfolge mit dem Wert des Knotens verwiesen wird.
+      type:
+      - '(result: AsyncResult<string>) => void'
+- uid: office.Office.CustomXmlNode.getTextAsync
+  summary: Ruft den Text eines XML-Knotens in eine benutzerdefinierte XML-Komponente ab.
+  remarks: "<table><tr><td>Anforderungssätze</td><td>CustomXmlParts</td></tr></table>\n#### Beispiele\n\n```javascript\n// Get the built-in core properties XML part by using its ID. This results in a call to Word.\nOffice.context.document.customXmlParts.getByIdAsync(\n    \"{6C3C8BC8-F283-45AE-878A-BAB7291924A1}\", function (getByIdAsyncResult) {\n    \n    // Access the XML part.\n    var xmlPart = getByIdAsyncResult.value;\n    \n    // Add namespaces to the namespace manager. These two calls result in two calls to Word.\n    xmlPart.namespaceManager.addNamespaceAsync(\n        'cp',\n        'http://schemas.openxmlformats.org/package/2006/metadata/core-properties',\n        function () {\n        xmlPart.namespaceManager.addNamespaceAsync(\n            'dc', \n            'http://purl.org/dc/elements/1.1/', \n            function () {\n\n            // Get XML nodes by using an Xpath expression. This results in a call to Word.\n            xmlPart.getNodesAsync(\"/cp:coreProperties/dc:title\", function (getNodesAsyncResult) {\n                \n                // Get the first node returned by using the Xpath expression. \n                var node = getNodesAsyncResult.value[0];\n                \n                // Get the text value of the node and use the asyncContext. This results in a call to Word. \n                // The results are logged to the browser console.\n                node.getTextAsync({asyncContext: \"StateNormal\"}, function (getTextAsyncResult) {\n                  console.log(\"Text of the title element = \" + getTextAsyncResult.value;\n                  console.log(\"The asyncContext value = \" + getTextAsyncResult.asyncContext;\n                });\n            });\n        });\n    });\n});\n```"
+  name: getTextAsync(options, callback)
+  fullName: office.Office.CustomXmlNode.getTextAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getTextAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: options
+      description: Bietet die Möglichkeit zur Beibehaltung von Kontextdaten eines beliebigen Typs, die für die Verwendung in einem Rückruf unverändert.
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Optional. Eine Funktion, die bei der Rückgabe des Rückrufs aufgerufen wird, dessen einziger Parameter vom Typ[Office.AsyncResult](xref:office.Office.AsyncResult)ist<!-- -->. Die `value` -Eigenschaft das Ergebnis ist eine Zeichenfolge, die den inneren Text der referenzierten Knoten enthält.
+      type:
+      - '(result: AsyncResult<string>) => void'
+- uid: office.Office.CustomXmlNode.getXmlAsync
+  summary: Ruft den Knoten XML ab.
+  remarks: "<table><tr><td>Anforderungssätze</td><td>CustomXmlParts</td></tr></table>\n#### Beispiele\n\n```javascript\nfunction showXmlNodeInnerXml() {\n    Office.context.document.customXmlParts.getByIdAsync(\n        \"{3BC85265-09D6-4205-B665-8EB239A8B9A1}\", function (result) {\n        var xmlPart = result.value;\n        xmlPart.getNodesAsync('*', function (nodeResults) {\n            for (i = 0; i < nodeResults.value.length; i++) {\n                var node = nodeResults.value[i];\n                node.getXmlAsync(function (asyncResult) {\n                    write(asyncResult.value);\n                });\n            }\n        });\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  name: getXmlAsync(options, callback)
+  fullName: office.Office.CustomXmlNode.getXmlAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getXmlAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: options
+      description: Bietet die Möglichkeit zur Beibehaltung von Kontextdaten eines beliebigen Typs, die für die Verwendung in einem Rückruf unverändert.
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Optional. Eine Funktion, die bei der Rückgabe des Rückrufs aufgerufen wird, dessen einziger Parameter vom Typ[Office.AsyncResult](xref:office.Office.AsyncResult)ist<!-- -->. Die `value` -Eigenschaft das Ergebnis ist eine Zeichenfolge, die den XML-Code des Knotens verwiesen wird.
+      type:
+      - '(result: AsyncResult<string>) => void'
+- uid: office.Office.CustomXmlNode.namespaceUri
+  summary: Ruft die Zeichenfolgendarstellung der GUID des CustomXMLPart ab.
+  remarks: "<table><tr><td>Anforderungssätze</td><td>CustomXmlParts</td></tr></table>\n#### Beispiele\n\n```javascript\nfunction showXmlNamespaceUri() {\n    Office.context.document.customXmlParts.getByIdAsync(\n        \"{3BC85265-09D6-4205-B665-8EB239A8B9A1}\", function (result) {\n        var xmlPart = result.value;\n        xmlPart.getNodesAsync('*/*', function (nodeResults) {\n            for (i = 0; i < nodeResults.value.length; i++) {\n                var node = nodeResults.value[i];\n                write(node.namespaceUri);\n            }\n        });\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  name: namespaceUri
+  fullName: office.Office.CustomXmlNode.namespaceUri
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'namespaceUri: string;'
+    return:
+      type:
+      - string
+- uid: office.Office.CustomXmlNode.nodeType
+  summary: Ruft den Typ des CustomXMLNode-Objekts ab.
+  remarks: "<table><tr><td>Anforderungssätze</td><td>CustomXmlParts</td></tr></table>\n#### Beispiele\n\n```javascript\nfunction showXmlNodeType() {\n    Office.context.document.customXmlParts.getByIdAsync(\n        \"{3BC85265-09D6-4205-B665-8EB239A8B9A1}\", function (result) {\n        var xmlPart = result.value;\n        xmlPart.getNodesAsync('*/*', function (nodeResults) {\n            for (i = 0; i < nodeResults.value.length; i++) {\n                var node = nodeResults.value[i];\n                write(node.nodeType);\n            }\n        });\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  name: nodeType
+  fullName: office.Office.CustomXmlNode.nodeType
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'nodeType: string;'
+    return:
+      type:
+      - string
+- uid: office.Office.CustomXmlNode.setNodeValueAsync
+  summary: Legt den Wert des Knotens fest.
+  remarks: "<table><tr><td>Anforderungssätze</td><td>CustomXmlParts</td></tr></table>\n#### Beispiele\n\n```javascript\nfunction setXmlNodeValue() {\n    Office.context.document.customXmlParts.getByIdAsync(\n        \"{3BC85265-09D6-4205-B665-8EB239A8B9A1}\", function (result) {\n        var xmlPart = result.value;\n        xmlPart.getNodesAsync('*/*', function (nodeResults) {\n            for (i = 0; i < nodeResults.value.length; i++) {\n                var node = nodeResults.value[i];\n                write(node);\n                node.setNodeValueAsync(\"item number\" + i, {}, function (result) { });\n            }\n        });\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  name: setNodeValueAsync(value, options, callback)
+  fullName: office.Office.CustomXmlNode.setNodeValueAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setNodeValueAsync(value: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: value
+      description: Der Wert für den Knoten festgelegt werden soll
+      type:
+      - string
+    - id: options
+      description: Bietet die Möglichkeit zur Beibehaltung von Kontextdaten eines beliebigen Typs, die für die Verwendung in einem Rückruf unverändert.
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Optional. Eine Funktion, die bei der Rückgabe des Rückrufs aufgerufen wird, dessen einziger Parameter vom Typ[Office.AsyncResult](xref:office.Office.AsyncResult)ist<!-- -->.
+      type:
+      - '(result: AsyncResult<void>) => void'
+- uid: office.Office.CustomXmlNode.setTextAsync
+  summary: Legt den Text eines XML-Knotens in einer benutzerdefinierten XML-Komponente asynchron fest.
+  remarks: "<table><tr><td>Hosts</td><td>Word</td></tr>\n\n<tr><td>Anforderungssätze</td><td>CustomXmlParts</td></tr></table>\n#### Beispiele\n\n```javascript\n// Learn how to set the text value of a node in a custom XML part from the following example.\n\n// Get the built-in core properties XML part by using its ID. This results in a call to Word.\nOffice.context.document.customXmlParts.getByIdAsync(\n    \"{6C3C8BC8-F283-45AE-878A-BAB7291924A1}\",\n    function (getByIdAsyncResult) {\n    \n    // Access the XML part.\n    var xmlPart = getByIdAsyncResult.value;\n    \n    // Add namespaces to the namespace manager. These two calls result in two calls to Word.\n    xmlPart.namespaceManager.addNamespaceAsync(\n        'cp', \n        'http://schemas.openxmlformats.org/package/2006/metadata/core-properties', \n        function () {\n        xmlPart.namespaceManager.addNamespaceAsync(\n            'dc', \n            'http://purl.org/dc/elements/1.1/', \n            function () {\n\n            // Get XML nodes by using an Xpath expression. This results in a call to the host.\n            xmlPart.getNodesAsync(\"/cp:coreProperties/dc:subject\", function (getNodesAsyncResult) {\n                \n                // Get the first node returned by using the Xpath expression.\n                // This will be the subject element in this example.\n                var subjectNode = getNodesAsyncResult.value[0];\n                \n                // Set the text value of the subject node and use the asyncContext. \n                // This results in a call to the host.  The results are logged to the browser console.\n                subjectNode.setTextAsync(\n                    \"newSubject\", \n                    {asyncContext: \"StateNormal\"}, \n                    function (setTextAsyncResult) {\n                        console.log(\"The status of the call: \" + setTextAsyncResult.status);\n                        console.log(\"The asyncContext value = \" + setTextAsyncResult.asyncContext);\n                });\n            });\n        });\n    });\n});\n```"
+  name: setTextAsync(text, options, callback)
+  fullName: office.Office.CustomXmlNode.setTextAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setTextAsync(text: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: text
+      description: Erforderlich. Der Textwert des XML-Knotens.
+      type:
+      - string
+    - id: options
+      description: Bietet die Möglichkeit zur Beibehaltung von Kontextdaten eines beliebigen Typs, die für die Verwendung in einem Rückruf unverändert.
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Optional. Eine Funktion, die bei der Rückgabe des Rückrufs aufgerufen wird, dessen einziger Parameter vom Typ[Office.AsyncResult](xref:office.Office.AsyncResult)ist<!-- -->.
+      type:
+      - '(result: AsyncResult<void>) => void'
+- uid: office.Office.CustomXmlNode.setXmlAsync
+  summary: Legt den XML-Knoten fest.
+  remarks: >-
+    <table><tr><td>Anforderungssätze</td><td>CustomXmlParts</td></tr></table>
+
+    #### Beispiele
+
+
+    ```javascript
+
+    function setXmlNodeInnerXml() {
+        Office.context.document.customXmlParts.getByIdAsync(
+            "{3BC85265-09D6-4205-B665-8EB239A8B9A1}", function (result) {
+            var xmlPart = result.value;
+            xmlPart.getNodesAsync('*', function (nodeResults) {
+                for (i = 0; i < nodeResults.value.length; i++) {
+                    var node = nodeResults.value[i];
+                    node.setXmlAsync("<childNode>" + i + "</childNode>");
+                }
+            });
+        });
+    }
+
+    ```
+  name: setXmlAsync(xml, options, callback)
+  fullName: office.Office.CustomXmlNode.setXmlAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setXmlAsync(xml: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: xml
+      description: Den XML-Code für den Knoten festgelegt werden soll
+      type:
+      - string
+    - id: options
+      description: Bietet die Möglichkeit zur Beibehaltung von Kontextdaten eines beliebigen Typs, die für die Verwendung in einem Rückruf unverändert.
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Optional. Eine Funktion, die bei der Rückgabe des Rückrufs aufgerufen wird, dessen einziger Parameter vom Typ[Office.AsyncResult](xref:office.Office.AsyncResult)ist<!-- -->.
+      type:
+      - '(result: AsyncResult<void>) => void'

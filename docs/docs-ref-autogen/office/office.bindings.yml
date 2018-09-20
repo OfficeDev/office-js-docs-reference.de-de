@@ -1,0 +1,209 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 1591c27f02ae5d0c52698ec0d22dcaf974cde419
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24046632"
+items:
+- uid: office.Office.Bindings
+  summary: Stellt die Bindungen des Add-Ins innerhalb des Dokuments dar.
+  name: Office.Bindings
+  fullName: office.Office.Bindings
+  langs:
+  - typeScript
+  type: interface
+  package: office
+  children:
+  - office.Office.Bindings.addFromNamedItemAsync
+  - office.Office.Bindings.addFromPromptAsync
+  - office.Office.Bindings.addFromSelectionAsync
+  - office.Office.Bindings.document
+  - office.Office.Bindings.getAllAsync
+  - office.Office.Bindings.getByIdAsync
+  - office.Office.Bindings.releaseByIdAsync
+- uid: office.Office.Bindings.addFromNamedItemAsync
+  summary: Erstellt eine Bindung gegen ein benanntes Objekt im Dokument.
+  remarks: "<table><tr><td>Anforderungssätze</td><td>MatrixBindings, TableBindings, TextBindings</td></tr></table>\n\nIn Excel kann Deritemname-Parameter auf einen benannten Bereich oder eine Tabelle verweisen.\n\nStandardmäßig wird in Excel der ersten hinzugefügten Tabelle der Name \"Tabelle1\" und der zweiten hinzugefügten Tabelle der Name \"Tabelle2\" zugewiesen und so weiter. Verwenden Sie die Tabellenname-Eigenschaft zuweisen, indem Sie einen aussagekräftigen Namen für eine Tabelle in der Excel-Benutzeroberfläche auf Tabellentools \\| Registerkarte \"Entwurf\" des Menübands.\n\nHinweis: In Excel, wenn eine Tabelle als benanntes Element festlegen, Sie müssen der Name vollständig qualifiziert Einbeziehung der Arbeitsblattname im Namen der Tabelle in diesem Format: \"Sheet1! Table1 \"\n\nFür Word bezieht sich auf die Title-Eigenschaft des ein Rich-Text-Inhaltssteuerelement der ItemName-Parameter. (Sie können nicht als das Rich-Text-Inhaltssteuerelement Inhaltssteuerelemente Binden).\n\nStandardmäßig wird ein Inhaltssteuerelement kein Title-Wert, der zugewiesen. Um über die Word-Benutzeroberfläche einen aussagefähigen Namen zuzuweisen, nachdem Sie über die Gruppe Steuerelemente auf der Registerkarte Entwickler im Menüband ein  Rich Text-Inhaltssteuerelement hinzugefügt haben, verwenden Sie den Befehl Eigenschaften in der Gruppe Steuerelemente. Das Dialogfeld  Eigenschaften von Inhaltssteuerelementen wird geöffnet. Anschließend legen Sie für die Title-Eigenschaft des Inhaltssteuerelements den Namen fest, auf den Sie von Ihrem Code verweisen möchten.\n\nHinweis: In Word, wenn es gibt mehrere Rich-Text-Inhaltssteuerelemente mit dem gleichen Wert Titeleigenschaft (Name), und Sie versuchen, zu binden eines diese Inhalte steuert mit dieser Methode (durch Angeben des Namens als ItemName-Parameter), der Vorgang fehl.\n\n**Supportdetails**\n\nEin Häkchen (v) in der folgenden Matrix weist darauf hin, dass diese Methode in der entsprechenden Office-Hostanwendung unterstützt wird. Eine leere Zelle weist darauf hin, dass die Office-Hostanwendung diese Methode nicht unterstützt.\n\nWeitere Informationen zu Office-Host-Anwendung und Server-Anforderungen, finden Sie unter [Anforderungen für die Ausführung von Office-Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.\n\n*Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office für Windows Desktop </th><th> Office Online (im Browser) </th><th> Office für iPad </th></tr> <tr><td><strong>Zugriff</strong></td><td> </td><td> v </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> v </td><td> v </td><td> v </td></tr> <tr><td><strong>Word</strong></td><td> v </td><td> v </td><td> v </td></tr> </table>\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// The following example adds a binding to the myRange named item in Excel as a \"matrix\" binding,\n// and assigns the binding's id as myMatrix.\nfunction bindNamedItem() {\n    Office.context.document.bindings.addFromNamedItemAsync(\n        \"myRange\", \"matrix\", {id:'myMatrix'}, function (result) {\n        if (result.status == 'succeeded'){\n            write('Added new binding with type: ' + result.value.type + ' and id: ' + result.value.id);\n            }\n        else\n            write('Error: ' + result.error.message);\n    });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n\n// The following example adds a binding to the Table1 named item in Excel as a \"table\" binding,\n// and assigns the binding's id as myTable.\nfunction bindNamedItem() {\n    Office.context.document.bindings.addFromNamedItemAsync(\n        \"Table1\", \"table\", {id:'myTable'}, function (result) {\n        if (result.status == 'succeeded'){\n            write('Added new binding with type: ' + result.value.type + ' and id: ' + result.value.id);\n            }\n        else\n            write('Error: ' + result.error.message);\n    });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n\n// The following example creates a text binding in Word to a rich text content control named \"FirstName\",\n// assigns the id \"firstName\", and then displays that information.\nfunction bindContentControl() {\n    Office.context.document.bindings.addFromNamedItemAsync('FirstName', \n        Office.BindingType.Text, {id:'firstName'},\n        function (result) {\n            if (result.status === Office.AsyncResultStatus.Succeeded) {\n                write('Control bound. Binding.id: '\n                    + result.value.id + ' Binding.type: ' + result.value.type);\n            } else {\n                write('Error:', result.error.message);\n            }\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  name: addFromNamedItemAsync(itemName, bindingType, options, callback)
+  fullName: office.Office.Bindings.addFromNamedItemAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addFromNamedItemAsync(itemName: string, bindingType: BindingType, options?: AddBindingFromNamedItemOptions, callback?: (result: AsyncResult<Binding>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: itemName
+      description: Name des Objekts im Dokument gebunden werden kann. Beispielsweise 'MyExpenses'-Tabelle in Excel. "
+      type:
+      - string
+    - id: bindingType
+      description: Die[Office.BindingType](xref:office.Office.BindingType) für die Daten. Die Methode gibt null, wenn das ausgewählte Objekt in den angegebenen Typ umgewandelt werden kann.
+      type:
+      - BindingType
+    - id: options
+      description: Bietet Optionen zum Konfigurieren der Bindung, die erstellt wird.
+      type:
+      - office.Office.AddBindingFromNamedItemOptions
+    - id: callback
+      description: Optional. Eine Funktion, die bei der Rückgabe des Rückrufs aufgerufen wird, dessen einziger Parameter vom Typ[Office.AsyncResult](xref:office.Office.AsyncResult)ist<!-- -->. Die `value` -Eigenschaft des Ergebnisses ist das Binding-Objekt, das das angegebene benannte Element darstellt.
+      type:
+      - '(result: AsyncResult<Binding>) => void'
+- uid: office.Office.Bindings.addFromPromptAsync
+  summary: Erstellen einer Bindung nach Bestätigung durch den Benutzer im Dokument eine Auswahl treffen muss.
+  remarks: "<table><tr><td>Anforderungssätze</td><td>Nicht in einem Satz</td></tr></table>\n\nFügt der Bindings-Auflistung ein Bindungsobjekt des angegebenen Typs hinzu, das mit der bereitgestellten id angegeben wird. Bei der Methode tritt ein Fehler auf, wenn die angegebene Auswahl nicht gefunden werden kann.\n\n**Supportdetails**\n\nEin Häkchen (v) in der folgenden Matrix weist darauf hin, dass diese Methode in der entsprechenden Office-Hostanwendung unterstützt wird. Eine leere Zelle weist darauf hin, dass die Office-Hostanwendung diese Methode nicht unterstützt.\n\nWeitere Informationen zu Office-Host-Anwendung und Server-Anforderungen, finden Sie unter [Anforderungen für die Ausführung von Office-Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.\n\n*Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office für Windows Desktop </th><th> Office Online (im Browser) </th><th> Office für iPad </th></tr> <tr><td><strong>Zugriff</strong></td><td> </td><td> v </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> v </td><td> v </td><td> v </td></tr> </table>\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nfunction addBindingFromPrompt() {\n    Office.context.document.bindings.addFromPromptAsync(\n        Office.BindingType.Text, \n        { id: 'MyBinding', promptText: 'Select text to bind to.' },\n        function (asyncResult) {\n            write('Added new binding with type: ' + asyncResult.value.type + ' and id: ' + asyncResult.value.id);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  name: addFromPromptAsync(bindingType, options, callback)
+  fullName: office.Office.Bindings.addFromPromptAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addFromPromptAsync(bindingType: BindingType, options?: AddBindingFromPromptOptions, callback?: (result: AsyncResult<Binding>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: bindingType
+      description: Gibt den Typ des Bindungsobjekts zu erstellen. Erforderlich.  Gibt null zurück, wenn das ausgewählte Objekt nicht in den angegebenen Typ umgewandelt werden kann.
+      type:
+      - BindingType
+    - id: options
+      description: Bietet Optionen zum Konfigurieren der Aufforderung, und identifizieren die Bindung, die erstellt wird.
+      type:
+      - office.Office.AddBindingFromPromptOptions
+    - id: callback
+      description: Optional. Eine Funktion, die bei der Rückgabe des Rückrufs aufgerufen wird, dessen einziger Parameter vom Typ[Office.AsyncResult](xref:office.Office.AsyncResult)ist<!-- -->. Die `value` -Eigenschaft des Ergebnisses ist das Binding-Objekt, das die vom Benutzer angegebene Auswahl darstellt.
+      type:
+      - '(result: AsyncResult<Binding>) => void'
+- uid: office.Office.Bindings.addFromSelectionAsync
+  summary: Erstellen einer Bindung basierend auf der aktuellen Auswahl des Benutzers an.
+  remarks: "<table><tr><td>Anforderungssätze</td><td>MatrixBindings, TableBindings, TextBindings</td></tr></table>\n\nDer Bindings-Sammlung mit der angegebenen Id identifiziert hinzugefügt den angegebenen Typ des Binding-Objekt.\n\nHinweis In Excel, wenn Sie Aufrufen der AddFromSelectionAsync-Methode in einer vorhandenen Bindung Binding.id übergeben, die \"Binding.Type\", der die Bindung verwendet wird und dieses Typs kann nicht geändert werden, indem Sie einen anderen Wert für den BindingType-Parameter angeben. Wenn Sie eine vorhandene id verwenden und den bindingType ändern müssen, rufen Sie die Bindings.releaseByIdAsync-Methode auf, um die Bindung zu lösen. Rufen Sie dann die addFromSelectionAsync-Methode auf, um die Bindung mit einem neuen Typ wiederherzustellen.\n\n**Supportdetails**\n\nEin Häkchen (v) in der folgenden Matrix weist darauf hin, dass diese Methode in der entsprechenden Office-Hostanwendung unterstützt wird. Eine leere Zelle weist darauf hin, dass die Office-Hostanwendung diese Methode nicht unterstützt.\n\nWeitere Informationen zu Office-Host-Anwendung und Server-Anforderungen, finden Sie unter [Anforderungen für die Ausführung von Office-Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.\n\n*Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office für Windows Desktop </th><th> Office Online (im Browser) </th><th> Office für iPad </th></tr> <tr><td><strong>Zugriff</strong></td><td> </td><td> v </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> v </td><td> v </td><td> v </td></tr> <tr><td><strong>Word</strong></td><td> v </td><td> v </td><td> v </td></tr> </table>\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nfunction addBindingFromSelection() {\n    Office.context.document.bindings.addFromSelectionAsync(Office.BindingType.Text, { id: 'MyBinding' }, \n        function (asyncResult) {\n        write('Added new binding with type: ' + asyncResult.value.type + ' and id: ' + asyncResult.value.id);\n        }\n    );\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  name: addFromSelectionAsync(bindingType, options, callback)
+  fullName: office.Office.Bindings.addFromSelectionAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addFromSelectionAsync(bindingType: BindingType, options?: AddBindingFromSelectionOptions, callback?: (result: AsyncResult<Binding>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: bindingType
+      description: Gibt den Typ des Bindungsobjekts zu erstellen. Erforderlich.  Gibt null zurück, wenn das ausgewählte Objekt nicht in den angegebenen Typ umgewandelt werden kann.
+      type:
+      - BindingType
+    - id: options
+      description: Bietet Optionen zum Konfigurieren der Aufforderung, und identifizieren die Bindung, die erstellt wird.
+      type:
+      - office.Office.AddBindingFromSelectionOptions
+    - id: callback
+      description: Optional. Eine Funktion, die bei der Rückgabe des Rückrufs aufgerufen wird, dessen einziger Parameter vom Typ[Office.AsyncResult](xref:office.Office.AsyncResult)ist<!-- -->. Die `value` -Eigenschaft des Ergebnisses ist das Binding-Objekt, das die vom Benutzer angegebene Auswahl darstellt.
+      type:
+      - '(result: AsyncResult<Binding>) => void'
+- uid: office.Office.Bindings.document
+  summary: Ruft ein [Office.Document](xref:office.Office.Document) -Objekt, das diesem Satz von Bindungen zugeordnete Dokument darstellt.
+  remarks: >-
+    **Supportdetails**
+
+
+    Ein Häkchen (v) in der folgenden Matrix weist darauf hin, dass diese Eigenschaft in der entsprechenden Office-Hostanwendung unterstützt wird. Eine leere Zelle weist darauf hin, dass die Office-Hostanwendung diese Eigenschaft nicht unterstützt.
+
+
+    Weitere Informationen zu Office-Host-Anwendung und Server-Anforderungen, finden Sie unter [Anforderungen für die Ausführung von Office-Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
+
+
+    *Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office für Windows Desktop </th><th> Office Online (im Browser) </th><th> Office für iPad </th></tr> <tr><td><strong>Zugriff</strong></td><td> </td><td> v </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> v </td><td> v </td><td> v </td></tr> <tr><td><strong>Word</strong></td><td> v </td><td> v </td><td> v </td></tr> </table>
+  name: document
+  fullName: office.Office.Bindings.document
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'document: Document;'
+    return:
+      type:
+      - Document
+- uid: office.Office.Bindings.getAllAsync
+  summary: Ruft alle vorher erstellten Bindungen ab.
+  remarks: "<table><tr><td>Anforderungssätze</td><td>MatrixBindings, TableBindings, TextBindings</td></tr></table>\n\n**Supportdetails**\n\nEin Häkchen (v) in der folgenden Matrix weist darauf hin, dass diese Methode in der entsprechenden Office-Hostanwendung unterstützt wird. Eine leere Zelle weist darauf hin, dass die Office-Hostanwendung diese Methode nicht unterstützt.\n\nWeitere Informationen zu Office-Host-Anwendung und Server-Anforderungen, finden Sie unter [Anforderungen für die Ausführung von Office-Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.\n\n*Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office für Windows Desktop </th><th> Office Online (im Browser) </th><th> Office für iPad </th></tr> <tr><td><strong>Zugriff</strong></td><td> </td><td> v </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> v </td><td> v </td><td> v </td></tr> <tr><td><strong>Word</strong></td><td> v </td><td> v </td><td> v </td></tr> </table>\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nfunction displayAllBindingNames() {\n    Office.context.document.bindings.getAllAsync(function (asyncResult) {\n        var bindingString = '';\n        for (var i in asyncResult.value) {\n            bindingString += asyncResult.value[i].id + '\\n';\n        }\n        write('Existing bindings: ' + bindingString);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  name: getAllAsync(options, callback)
+  fullName: office.Office.Bindings.getAllAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getAllAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<Binding[]>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: options
+      description: Bietet die Möglichkeit zur Beibehaltung von Kontextdaten eines beliebigen Typs, die für die Verwendung in einem Rückruf unverändert.
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Eine Funktion, die bei der Rückgabe des Rückrufs aufgerufen wird, dessen einziger Parameter vom Typ[Office.AsyncResult](xref:office.Office.AsyncResult)ist<!-- -->. Die `value` -Eigenschaft des Ergebnisses ist ein Array, das jede Bindung erstellt für das referenzierte Bindings-Objekt enthält.
+      type:
+      - '(result: AsyncResult<Binding[]>) => void'
+- uid: office.Office.Bindings.getByIdAsync
+  summary: Ruft eine Bindung auf Grundlage des Namens
+  remarks: "<table><tr><td>Anforderungssätze</td><td>CustomXmlParts, MatrixBindings, TableBindings, TextBindings</td></tr></table>\n\nSchlägt fehl, wenn die angegebene Id nicht vorhanden ist.\n\n**Supportdetails**\n\nEin Häkchen (v) in der folgenden Matrix weist darauf hin, dass diese Methode in der entsprechenden Office-Hostanwendung unterstützt wird. Eine leere Zelle weist darauf hin, dass die Office-Hostanwendung diese Methode nicht unterstützt.\n\nWeitere Informationen zu Office-Host-Anwendung und Server-Anforderungen, finden Sie unter [Anforderungen für die Ausführung von Office-Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.\n\n*Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office für Windows Desktop </th><th> Office Online (im Browser) </th><th> Office für iPad </th></tr> <tr><td><strong>Zugriff</strong></td><td> </td><td> v </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> v </td><td> v </td><td> v </td></tr> <tr><td><strong>Word</strong></td><td> v </td><td> v </td><td> v </td></tr> </table>\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nfunction displayBindingType() {\n    Office.context.document.bindings.getByIdAsync('MyBinding', function (asyncResult) {\n        write('Retrieved binding with type: ' + asyncResult.value.type + ' and id: ' + asyncResult.value.id);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  name: getByIdAsync(id, options, callback)
+  fullName: office.Office.Bindings.getByIdAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getByIdAsync(id: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<Binding>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: id
+      description: 'Gibt den eindeutigen Namen des Binding-Objekts. Erforderlich. '
+      type:
+      - string
+    - id: options
+      description: Bietet die Möglichkeit zur Beibehaltung von Kontextdaten eines beliebigen Typs, die für die Verwendung in einem Rückruf unverändert.
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Optional. Eine Funktion, die bei der Rückgabe des Rückrufs aufgerufen wird, dessen einziger Parameter vom Typ[Office.AsyncResult](xref:office.Office.AsyncResult)ist<!-- -->. Die `value` -Eigenschaft des Ergebnisses ist durch die in den Anruf Id angegebene Binding-Objekt.
+      type:
+      - '(result: AsyncResult<Binding>) => void'
+- uid: office.Office.Bindings.releaseByIdAsync
+  summary: Entfernt die Bindung aus dem Dokument
+  remarks: "<table><tr><td>Anforderungssätze</td><td>MatrixBindings, TableBindings, TextBindings</td></tr></table>\n\nSchlägt fehl, wenn die angegebene Id nicht vorhanden ist.\n\n**Supportdetails**\n\nEin Häkchen (v) in der folgenden Matrix weist darauf hin, dass diese Methode in der entsprechenden Office-Hostanwendung unterstützt wird. Eine leere Zelle weist darauf hin, dass die Office-Hostanwendung diese Methode nicht unterstützt.\n\nWeitere Informationen zu Office-Host-Anwendung und Server-Anforderungen, finden Sie unter [Anforderungen für die Ausführung von Office-Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.\n\n*Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office für Windows Desktop </th><th> Office Online (im Browser) </th><th> Office für iPad </th></tr> <tr><td><strong>Zugriff</strong></td><td> </td><td> v </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> v </td><td> v </td><td> v </td></tr> <tr><td><strong>Word</strong></td><td> v </td><td> v </td><td> v </td></tr> </table>\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nOffice.context.document.bindings.releaseByIdAsync(\"MyBinding\", function (asyncResult) { \n    write(\"Released MyBinding!\"); \n}); \n// Function that writes to a div with id='message' on the page. \nfunction write(message){ \n    document.getElementById('message').innerText += message;  \n}\n```"
+  name: releaseByIdAsync(id, options, callback)
+  fullName: office.Office.Bindings.releaseByIdAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'releaseByIdAsync(id: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: id
+      description: Gibt den eindeutigen Namen an, der zum Identifizieren des Objekts verwendet werden soll. Erforderlich.
+      type:
+      - string
+    - id: options
+      description: Bietet die Möglichkeit zur Beibehaltung von Kontextdaten eines beliebigen Typs, die für die Verwendung in einem Rückruf unverändert.
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Optional. Eine Funktion, die bei der Rückgabe des Rückrufs aufgerufen wird, dessen einziger Parameter vom Typ[Office.AsyncResult](xref:office.Office.AsyncResult)ist<!-- -->.
+      type:
+      - '(result: AsyncResult<void>) => void'

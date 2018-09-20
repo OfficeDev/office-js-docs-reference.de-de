@@ -1,0 +1,268 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 710d131a5f459dabeffa2ba938c93fa77d860d7b
+ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 09/20/2018
+ms.locfileid: "24047235"
+items:
+- uid: onenote.OneNote.Outline
+  summary: >-
+    Stellt einen Container für Paragraph-Objekte dar.
+
+
+    \[[API-Satz: OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: OneNote.Outline
+  fullName: onenote.OneNote.Outline
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - OfficeExtension.ClientObject
+  package: onenote
+  children:
+  - onenote.OneNote.Outline.appendHtml
+  - onenote.OneNote.Outline.appendImage
+  - onenote.OneNote.Outline.appendRichText
+  - onenote.OneNote.Outline.appendTable
+  - onenote.OneNote.Outline.id
+  - onenote.OneNote.Outline.isTitle
+  - onenote.OneNote.Outline.load
+  - onenote.OneNote.Outline.pageContent
+  - onenote.OneNote.Outline.paragraphs
+  - onenote.OneNote.Outline.toJSON
+  - onenote.OneNote.Outline.track
+  - onenote.OneNote.Outline.untrack
+- uid: onenote.OneNote.Outline.appendHtml
+  summary: >-
+    Fügt den angegebenen HTML-Code am Ende der Gliederung hinzu.
+
+
+    \[[API-Satz: OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: appendHtml(html)
+  fullName: onenote.OneNote.Outline.appendHtml
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'appendHtml(html: string): void;'
+    return:
+      type:
+      - void
+      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nOneNote.run(function (context) {\n\n    // Gets the active page.\n    var activePage = context.application.getActivePage();\n\n    // Get pageContents of the activePage. \n    var pageContents = activePage.contents;\n\n    // Queue a command to load the pageContents to access its data.\n    context.load(pageContents);\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function() {\n            if (pageContents.items.length != 0 && pageContents.items[0].type == \"Outline\")\n            {\n                // First item is an outline.\n                outline = pageContents.items[0].outline;\n\n                // Queue a command to append a paragraph to the outline.\n                outline.appendHtml(\"<p>new paragraph</p>\");\n\n                // Run the queued commands.\n                return context.sync();\n            }\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: html
+      description: Die HTML-Zeichenfolge, die angefügt werden soll. Die JavaScript-API von OneNote-add-ins finden Sie unter[HTML unterstützt](https://docs.microsoft.com/office/dev/add-ins/onenote/onenote-add-ins-page-content#supported-html) .
+      type:
+      - string
+- uid: onenote.OneNote.Outline.appendImage
+  summary: >-
+    Fügt das angegebene Bild am Ende der Gliederung hinzu.
+
+
+    \[[API-Satz: OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: appendImage(base64EncodedImage, width, height)
+  fullName: onenote.OneNote.Outline.appendImage
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'appendImage(base64EncodedImage: string, width: number, height: number): OneNote.Image;'
+    return:
+      type:
+      - onenote.OneNote.Image
+      description: ''
+    parameters:
+    - id: base64EncodedImage
+      description: HTML-Zeichenfolge, die angefügt werden soll.
+      type:
+      - string
+    - id: width
+      description: Optional. Breite in der Maßeinheit Punkt. Der Standardwert ist null, und die Bildbreite wird beachtet.
+      type:
+      - number
+    - id: height
+      description: Optional. Höhe in der Maßeinheit Punkt. Der Standardwert ist null, und die Bildhöhe wird beachtet.
+      type:
+      - number
+- uid: onenote.OneNote.Outline.appendRichText
+  summary: >-
+    Fügt den angegebenen Text am Ende der Gliederung hinzu.
+
+
+    \[[API-Satz: OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: appendRichText(paragraphText)
+  fullName: onenote.OneNote.Outline.appendRichText
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'appendRichText(paragraphText: string): OneNote.RichText;'
+    return:
+      type:
+      - onenote.OneNote.RichText
+      description: ''
+    parameters:
+    - id: paragraphText
+      description: HTML-Zeichenfolge, die angefügt werden soll.
+      type:
+      - string
+- uid: onenote.OneNote.Outline.appendTable
+  summary: >-
+    Fügt eine Tabelle mit der angegebenen Anzahl von Zeilen und Spalten am Ende der Gliederung hinzu.
+
+
+    \[[API-Satz: OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: appendTable(rowCount, columnCount, values)
+  fullName: onenote.OneNote.Outline.appendTable
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'appendTable(rowCount: number, columnCount: number, values?: string[][]): OneNote.Table;'
+    return:
+      type:
+      - OneNote.Table
+      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nOneNote.run(function (context) {\n\n    // Gets the active page.\n    var activePage = context.application.getActivePage();\n\n    // Get pageContents of the activePage. \n    var pageContents = activePage.contents;\n\n    // Queue a command to load the pageContents to access its data.\n    context.load(pageContents);\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function() {\n            if (pageContents.items.length != 0 && pageContents.items[0].type == \"Outline\") {\n                // First item is an outline.\n                var outline = pageContents.items[0].outline;\n\n                // Queue a command to append a paragraph to the outline.\n                outline.appendTable(2, 2, [[1, 2],[3, 4]]);\n\n                // Run the queued commands.\n                return context.sync();\n            }\n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: rowCount
+      description: Erforderlich. Die Anzahl der Zeilen in der Tabelle.
+      type:
+      - number
+    - id: columnCount
+      description: Erforderlich. Die Anzahl der Spalten in der Tabelle.
+      type:
+      - number
+    - id: values
+      description: Optionales 2D-Array. Wenn die entsprechenden Zeichenfolgen im Array angegeben sind, werden die Zellen gefüllt.
+      type:
+      - string[][]
+- uid: onenote.OneNote.Outline.id
+  summary: >-
+    Ruft die ID des Outline-Objekts ab. Schreibgeschützt.
+
+
+    \[[API-Satz: OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: id
+  fullName: onenote.OneNote.Outline.id
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly id: string;'
+    return:
+      type:
+      - string
+- uid: onenote.OneNote.Outline.isTitle
+  summary: >-
+    Überprüfen Sie, ob die Gliederung Titel Gliederung handelt.
+
+
+    \[[API-Satz: OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: isTitle()
+  fullName: onenote.OneNote.Outline.isTitle
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'isTitle(): OfficeExtension.ClientResult<boolean>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<boolean>
+      description: ''
+- uid: onenote.OneNote.Outline.load
+  summary: Warteschlangen ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen "context.sync()" aufrufen, bevor Sie die Eigenschaften lesen.
+  remarks: >-
+    Zusätzlich zu dieser Signatur hat diese Methode die folgenden Signaturen:
+
+
+    `load(option?: { select?: string; expand?: string; }): OneNote.Outline`-Option.select ist eine durch Trennzeichen getrennte Zeichenfolge, die die Eigenschaften zum Laden gibt an, wobei options.expand ist eine durch Kommas getrennte Zeichenfolge, die Navigationseigenschaften zum Laden angibt.
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Outline`-Nur auf Auflistungstypen verfügbar. Es ist ähnlich wie die jeweils vorhergehende Signatur. Option.Top gibt die maximale Anzahl der Auflistungselemente, die im Ergebnis enthalten sein können. Option.Skip gibt die Anzahl der Elemente, die übersprungen und nicht in das Ergebnis eingeschlossen werden sollen. Wenn option.top angegeben wird, wird das Resultset starten, nachdem die angegebene Anzahl von Elementen übersprungen wird.
+  name: load(option)
+  fullName: onenote.OneNote.Outline.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): OneNote.Outline;'
+    return:
+      type:
+      - onenote.OneNote.Outline
+      description: ''
+    parameters:
+    - id: option
+      description: Eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die zum Laden die Eigenschaften angeben.
+      type:
+      - string | string[]
+- uid: onenote.OneNote.Outline.pageContent
+  summary: >-
+    Ruft das PageContent-Objekt ab, das die Gliederung enthält. Dieses Objekt definiert die Position der Gliederung auf der Seite. Schreibgeschützt.
+
+
+    \[[API-Satz: OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: pageContent
+  fullName: onenote.OneNote.Outline.pageContent
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly pageContent: OneNote.PageContent;'
+    return:
+      type:
+      - onenote.OneNote.PageContent
+- uid: onenote.OneNote.Outline.paragraphs
+  summary: >-
+    Ruft die Auflistung von Paragraph-Objekten in der Gliederung ab. Schreibgeschützt.
+
+
+    \[[API-Satz: OneNoteApi 1.1](/javascript/office/requirement-sets/onenote-api-requirement-sets)\]
+  name: paragraphs
+  fullName: onenote.OneNote.Outline.paragraphs
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly paragraphs: OneNote.ParagraphCollection;'
+    return:
+      type:
+      - onenote.OneNote.ParagraphCollection
+- uid: onenote.OneNote.Outline.toJSON
+  name: toJSON()
+  fullName: onenote.OneNote.Outline.toJSON
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): OneNote.Interfaces.OutlineData;'
+    return:
+      type:
+      - onenote.OneNote.Interfaces.OutlineData
+      description: ''
+- uid: onenote.OneNote.Outline.track
+  summary: Nachverfolgen Sie das Objekt für die automatische Anpassung basierend auf Änderungen im Dokument umgebenden. Dieser Aufruf ist eine Abkürzung für context.trackedObjects.add(thisObject). Wenn Sie mithilfe dieses Objekts hinweg "Sync" Anrufe und außerhalb der sequenzielle Ausführung eines ".run" Batch und Get "InvalidObjectPath" Fehler beim Festlegen einer Eigenschaft oder Aufrufen einer Methode für das Objekt, mussten Sie das Objekt nachverfolgten Objekts hinzugefügt haben Auflistung, wenn das Objekt erstellt wurde.
+  name: track()
+  fullName: onenote.OneNote.Outline.track
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'track(): OneNote.Outline;'
+    return:
+      type:
+      - onenote.OneNote.Outline
+      description: ''
+- uid: onenote.OneNote.Outline.untrack
+  summary: Lösen Sie den Speicher, die mit diesem Objekt verknüpft ist, wenn es zuvor erzeugt wurde. Dieses Anrufs ist die Abkürzung für context.trackedObjects.remove(thisObject). Viele nachverfolgte Objekte verlangsamt der Host-Anwendung, also denken Sie alle Objekte frei Sie hinzufügen, sobald Sie fertig sind deren Verwendung. Sie müssen "context.sync()" aufrufen, bevor die Speicher Version wirksam wird.
+  name: untrack()
+  fullName: onenote.OneNote.Outline.untrack
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'untrack(): OneNote.Outline;'
+    return:
+      type:
+      - onenote.OneNote.Outline
+      description: ''
