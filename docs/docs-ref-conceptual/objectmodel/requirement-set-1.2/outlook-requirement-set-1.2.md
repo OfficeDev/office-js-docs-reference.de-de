@@ -1,6 +1,6 @@
 # <a name="outlook-add-in-api-requirement-set-12"></a>Outlook-Add-In-API-Anforderungssatz 1.2
 
-Die Outlook-Add-In-API-Teilmenge der JavaScript-API für Office umfasst Objekte, Methoden, Eigenschaften und Ereignisse, die Sie in Outlook-Add-Ins verwenden können.
+Die Outlook-add-in-API-Teilmenge der JavaScript-API für Office umfasst Objekte, Methoden, Eigenschaften und Ereignisse für die Verwendung in einer Outlook-add-Ins.
 
 > [!NOTE]
 > Diese Dokumentation ist für eine [Anforderung festgelegt](/javascript/office/requirement-sets/outlook-api-requirement-sets) als die aktuelle Anforderungssatz. 

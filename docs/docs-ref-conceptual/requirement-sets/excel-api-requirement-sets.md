@@ -12,11 +12,12 @@ Führen Sie Excel-add-ins in mehreren Versionen von Office, einschließlich Offi
 |  Anforderungssatz  |  Office 365 für Windows\*  |  Office 365 für iPad  |  Office 365 für Mac  | Office Online  |  Office Online Server  |
 |:-----|-----|:-----|:-----|:-----|:-----|
 | Beta  | Bitte [Besuchen Sie unsere JavaScript-API für Excel open-Spezifikation Seite](https://github.com/OfficeDev/office-js-docs/tree/ExcelJs_OpenSpec)! |
-| ExcelApi1.7  | Version 1801 (Build 9001.2171) oder höher| 2,9 oder höher | 16,9 oder höher | April 2018 | Bald verfügbar |
-| ExcelApi1.6  | Version 1704 (Build 8201.2001) oder höher| 2.2 oder höher |15.36 oder höher| April 2017 | Bald verfügbar|
-| ExcelApi1.5  | Version 1703 (Build 8067.2070) oder höher| 2.2 oder höher |15.36 oder höher| März 2017 | Bald verfügbar|
-| ExcelApi1.4 | Version 1701 (Build 7870.2024) oder höher| 2.2 oder höher |15.36 oder höher| Januar 2017 | Bald verfügbar|
-| ExcelApi1.3  | Version 1608 (Build 7369.2055) oder höher| 1.27 oder höher |  15.27 oder höher| September 2016 | Version 1608 (Build 7601.6800) oder höher|
+| ExcelApi1.8  | Version 1808 (Build 10730.20102) oder höher | 2,17 oder höher | 16,17 oder höher | September 2018 | Bald verfügbar |
+| ExcelApi1.7  | Version 1801 (Build 9001.2171) oder höher   | 2,9 oder höher | 16,9 oder höher | April 2018 | Bald verfügbar |
+| ExcelApi1.6  | Version 1704 (Build 8201.2001) oder höher   | 2.2 oder höher |15.36 oder höher| April 2017 | Bald verfügbar|
+| ExcelApi1.5  | Version 1703 (Build 8067.2070) oder höher   | 2.2 oder höher |15.36 oder höher| März 2017 | Bald verfügbar|
+| ExcelApi1.4  | Version 1701 (Build 7870.2024) oder höher   | 2.2 oder höher |15.36 oder höher| Januar 2017 | Bald verfügbar|
+| ExcelApi1.3  | Version 1608 (Build 7369.2055) oder höher | 1.27 oder höher |  15.27 oder höher| September 2016 | Version 1608 (Build 7601.6800) oder höher|
 | ExcelApi1.2  | Version 1601 (Build 6741.2088) oder höher | 1.21 oder höher | 15.22 oder höher| Januar 2016 ||
 | ExcelApi1.1  | Version 1509 (Build 4266.1001) oder höher | 1.19 oder höher | 15.20 oder höher| Januar 2016 ||
 
@@ -31,9 +32,279 @@ Weitere Informationen zu Versionen, Build-Nummern und Office Online Server finde
 - 
   [Office Online Server-Übersicht](https://docs.microsoft.com/officeonlineserver/office-online-server-overview)
 
+## <a name="whats-new-in-excel-javascript-api-18"></a>Was ist neu in Excel JavaScript-API 1,8
+
+Die JavaScript-API für Excel-Anforderung Set 1,8 Features enthalten APIs für PivotTables, die datenüberprüfung, Diagramme, Ereignisse für Diagramme, Leistungsoptionen und Arbeitsmappe erstellen.
+
+### <a name="pivottable"></a>PivotTable
+
+Welle 2 der PivotTable-APIs können-add-ins die Hierarchien einer PivotTable festgelegt. Jetzt können Sie steuern, die Daten und wie es aggregiert werden. Unsere [PivotTable Artikel](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-pivottables) mehr über die neue PivotTable-Funktionen.
+
+### <a name="data-validation"></a>Datenüberprüfung
+
+Data Validation-können, die Sie steuern, welche eines Benutzers in einem Arbeitsblatt eingibt. Sie können Zellen auf vordefinierte Antwort wird beschränken oder Popup Warnungen zu unerwünschten Eingabe übergeben. Erfahren Sie mehr über das [Hinzufügen von datenüberprüfung auf Bereiche](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-data-validation) heute.
+
+### <a name="charts"></a>Diagramme
+
+Eine neue Runde des Diagramms APIs werden noch größere programmgesteuerte Kontrolle über Diagrammelemente. Sie haben nun größer Zugriff auf die Legende, Achsen, Trendlinie und Zeichnungsfläche.
+
+### <a name="events"></a>Events
+
+Weitere [Ereignisse](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-events) wurden für Diagramme hinzugefügt. Haben Sie Ihre reagieren-add-in für Benutzer, die Interaktion mit dem Diagramm. Sie können auch die [Umschaltfläche Ereignisse](https://docs.microsoft.com/office/dev/add-ins/excel/performance#enable-and-disable-events) auslösen, über die gesamte Arbeitsmappe.
+
+
+|Objekt| Neuerungen| Beschreibung|Anforderungssatz|
+|:----|:----|:----|:----|
+|[application](/javascript/api/excel/excel.application)|_Methode_ > [createWorkbook(base64File: string)](/javascript/api/excel/excel.application)|Erstellt eine neue Arbeitsmappe ausgeblendete mit optionalen base64-codierten XLSX-Dateien.|1,8|
+|[basicDataValidation](/javascript/api/excel/excel.basicdatavalidation)|_Eigenschaft_ > formula1|Ruft ab oder legt diesen fest Formula1, d. h. Mindestwert oder Wert des Operators abhängig.|1,8|
+|[basicDataValidation](/javascript/api/excel/excel.basicdatavalidation)|_Eigenschaft_ > formula2|Ruft ab oder legt diesen fest Formula2, d. h. Höchstwert oder Wert des Operators abhängig.|1,8|
+|[basicDataValidation](/javascript/api/excel/excel.basicdatavalidation)|_Beziehung_ > Operator|Der Operator für die Validierung der Daten verwendet.|1,8|
+|[chart](/javascript/api/excel/excel.chart)|_Eigenschaft_ > CategoryLabelLevel|Zurückgeben oder festlegen eine ChartCategoryLabelLevel-Enumeration-Konstante, die in Bezug auf die Ebene der, in dem die Kategorie Beschriftungen aus einer Führungslinie basieren wird sind. Lese-/Schreibzugriff.|1,8|
+|[chart](/javascript/api/excel/excel.chart)|_Eigenschaft_ > PlotVisibleOnly|True, Wenn nur sichtbare Zellen gezeichnet werden. False, Wenn sichtbare und ausgeblendete Zellen gezeichnet werden. ReadWrite.|1,8|
+|[chart](/javascript/api/excel/excel.chart)|_Eigenschaft_ > SeriesNameLevel|Zurückgeben oder festlegen eine ChartSeriesNameLevel-Enumeration-Konstante, die in Bezug auf die Ebene der, in dem die Namen von Datenreihen aus Quelle wird werden. Lese-/Schreibzugriff.|1,8|
+|[chart](/javascript/api/excel/excel.chart)|_Eigenschaft_ > ShowDataLabelsOverMaximum|Stellt dar, ob für die datenbeschriftungen angezeigt, wenn der Wert größer als der maximale Wert für die Größenachse ist.|1,8|
+|[chart](/javascript/api/excel/excel.chart)|_Eigenschaft_ > style|Zurückgeben oder Festlegen des Diagrammformats für das Diagramm. ReadWrite.|1,8|
+|[chart](/javascript/api/excel/excel.chart)|_Beziehung_ > DisplayBlanksAs|Gibt zurück oder legt fest, wie leere Zellen in einem Diagramm gezeichnet werden. ReadWrite.|1,8|
+|[chart](/javascript/api/excel/excel.chart)|_Beziehung_ > PlotArea|Die PlotArea für das Diagramm darstellt. Schreibgeschützt.|1,8|
+|[chart](/javascript/api/excel/excel.chart)|_Beziehung_ > PlotBy|Gibt zurück oder legt fest, wie die Spalten und Zeilen als Datenreihen im Diagramm verwendet werden. ReadWrite.|1,8|
+|[chartActivatedEventArgs](/javascript/api/excel/excel.chartactivatedeventargs)|_Eigenschaft_ > ChartId|Ruft die Id des Diagramms, das aktiviert wird.|1,8|
+|[chartActivatedEventArgs](/javascript/api/excel/excel.chartactivatedeventargs)|_Eigenschaft_ > Typ|Ruft den Typ des Ereignisses ab.|1,8|
+|[chartActivatedEventArgs](/javascript/api/excel/excel.chartactivatedeventargs)|_Eigenschaft_ > WorksheetId|Ruft die Id des Arbeitsblatts, in dem das Diagramm aktiviert wird.|1,8|
+|[chartAddedEventArgs](/javascript/api/excel/excel.chartaddedeventargs)|_Eigenschaft_ > ChartId|Ruft die Id des Diagramms, das dem Arbeitsblatt hinzugefügt wird.|1,8|
+|[chartAddedEventArgs](/javascript/api/excel/excel.chartaddedeventargs)|_Eigenschaft_ > Typ|Ruft den Typ des Ereignisses ab.|1,8|
+|[chartAddedEventArgs](/javascript/api/excel/excel.chartaddedeventargs)|_Eigenschaft_ > WorksheetId|Ruft die Id des Arbeitsblatts in der das Diagramm hinzugefügt wird.|1,8|
+|[chartAddedEventArgs](/javascript/api/excel/excel.chartaddedeventargs)|_Beziehung_ > Quelle|Ruft die Quelle des Ereignisses ab.|1,8|
+|[chartAxis](/javascript/api/excel/excel.chartaxis)|_Eigenschaft_ > IsBetweenCategories|Stellt dar, ob die Größenachse die Rubrikenachse zwischen den Rubriken schneidet.|1,8|
+|[chartAxis](/javascript/api/excel/excel.chartaxis)|_Eigenschaft_ > mit mehreren Ebenen|Stellt dar, ob eine Achse mit mehreren Ebenen oder nicht ist.|1,8|
+|[chartAxis](/javascript/api/excel/excel.chartaxis)|_Eigenschaft_ > numberFormat|Stellt den Formatierungscode für den Abstand zwischen Achsenbeschriftung dar.|1,8|
+|[chartAxis](/javascript/api/excel/excel.chartaxis)|_Eigenschaft_ > Offset|Den Abstand zwischen den Beschriftungsebenen und den Abstand zwischen der ersten Ebene und der Achsenlinie darstellt. Der Wert muss eine ganze Zahl zwischen 0 und 1000 sein.|1,8|
+|[chartAxis](/javascript/api/excel/excel.chartaxis)|_Eigenschaft_ > PositionAt|Stellt die angegebene Achsenposition Schnittpunkt mit die anderen Achse an. Sie sollten die SetPositionAt(double)-Methode verwenden, um diese Eigenschaft festzulegen. Schreibgeschützt.|1,8|
+|[chartAxis](/javascript/api/excel/excel.chartaxis)|_Eigenschaft_ > TextOrientation|Stellt die Ausrichtung des Texts der Achse Teilstrich Beschriftung. Der Wert muss eine ganze Zahl sein entweder von-90 bis 90 oder 180 für Text vertikal ausgerichtet.|1,8|
+|[chartAxis](/javascript/api/excel/excel.chartaxis)|_Beziehung_ > Ausrichtung|Stellt die Ausrichtung für die Beschriftung der angegebenen Achse Teilstrich dar.|1,8|
+|[chartAxis](/javascript/api/excel/excel.chartaxis)|_Beziehung_ > Position|Stellt die angegebene Achsenposition Schnittpunkt mit die anderen Achse an.|1,8|
+|[chartAxis](/javascript/api/excel/excel.chartaxis)|_Methode_ > [SetPositionAt(value: double)](/javascript/api/excel/excel.chartaxis)|Festlegen der angegebenen Achsenposition Schnittpunkt mit die anderen Achse an.|1,8|
+|[chartAxisFormat](/javascript/api/excel/excel.chartaxisformat)|_Beziehung_ > Füllung|Stellt die Formatierung Diagramm ausfüllen. Schreibgeschützt.|1,8|
+|[chartAxisTitle](/javascript/api/excel/excel.chartaxistitle)|_Methode_ > [SetFormula(formula: string)](/javascript/api/excel/excel.chartaxistitle)|Ein String-Wert, der die Formel des Diagrammtitels Achse unter Verwendung der A1-Schreibweise darstellt.|1,8|
+|[chartAxisTitleFormat](/javascript/api/excel/excel.chartaxistitleformat)|_Beziehung_ > Rahmen|Stellt das Rahmenformat, das Color, Linestyle und Weight enthält. Schreibgeschützt.|1,8|
+|[chartAxisTitleFormat](/javascript/api/excel/excel.chartaxistitleformat)|_Beziehung_ > Füllung|Stellt die Formatierung Diagramm ausfüllen. Schreibgeschützt.|1,8|
+|[chartBorder](/javascript/api/excel/excel.chartborder)|_Methode_ > [clear()](/javascript/api/excel/excel.chartborder)|Deaktivieren Sie das Rahmenformat eines Diagrammelements.|1,8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_Eigenschaft_ > AutoText|Boolescher Wert, wenn Daten automatisch bezeichnen generiert basierend auf Kontext angemessenen Text.|1,8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_Eigenschaft_ > Formel|String-Wert, der die Formel des Diagramms Datenbeschriftung unter Verwendung der A1-Schreibweise darstellt.|1,8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_Eigenschaft_ > height|Gibt die Höhe des Datenbeschriftung Diagramms in Punkt zurück. Schreibgeschützt. NULL, wenn das Diagramm Datenbeschriftung nicht sichtbar ist. Schreibgeschützt.|1,8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_Eigenschaft_ > linken|Stellt den Abstand in Punkt vom linken Rand des Diagramms Datenbeschriftung zum linken Rand des Diagrammbereichs dar. NULL, wenn das Diagramm Datenbeschriftung nicht sichtbar ist.|1,8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_Eigenschaft_ > numberFormat|String-Wert, der den Formatierungscode für Datenbeschriftung darstellt.|1,8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_Eigenschaft_ > text|Eine Zeichenfolge, die den Text der Datenbeschriftung in einem Diagramm darstellt.|1,8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_Eigenschaft_ > TextOrientation|Stellt die Ausrichtung von Text der Datenbeschriftung Diagramm dar. Der Wert muss eine ganze Zahl sein entweder von-90 bis 90 oder 180 für Text vertikal ausgerichtet.|1,8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_Eigenschaft_ > oben|Stellt den Abstand in Punkt vom oberen Rand der Datenbeschriftung an den Anfang der Diagrammfläche des Diagramms dar. NULL, wenn das Diagramm Datenbeschriftung nicht sichtbar ist.|1,8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_Eigenschaft_ > width|Gibt die Breite in Punkt, der Datenbeschriftung Diagramm zurück. Schreibgeschützt. NULL, wenn das Diagramm Datenbeschriftung nicht sichtbar ist. Schreibgeschützt.|1,8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_Beziehung_ > Format|Stellt das Format des Diagramms Datenbeschriftung. Schreibgeschützt.|1,8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_Beziehung_ > horizontalAlignment|Die horizontale Ausrichtung für die Datenbeschriftung Diagramm darstellt.|1,8|
+|[chartDataLabel](/javascript/api/excel/excel.chartdatalabel)|_Beziehung_ > verticalAlignment|Stellt die vertikale Ausrichtung des Diagramms Datenbeschriftung an.|1,8|
+|[chartDataLabelFormat](/javascript/api/excel/excel.chartdatalabelformat)|_Beziehung_ > Rahmen|Stellt das Rahmenformat, das Color, Linestyle und Weight enthält. Schreibgeschützt.|1,8|
+|[chartDataLabels](/javascript/api/excel/excel.chartdatalabels)|_Eigenschaft_ > AutoText|Stellt dar, ob datenbeschriftungen automatisch basierend auf Kontext angemessenen Text generiert.|1,8|
+|[chartDataLabels](/javascript/api/excel/excel.chartdatalabels)|_Eigenschaft_ > numberFormat|Stellt den Formatierungscode für datenbeschriftungen an.|1,8|
+|[chartDataLabels](/javascript/api/excel/excel.chartdatalabels)|_Eigenschaft_ > TextOrientation|Stellt die Ausrichtung von Text Datenbeschriftungstyp. Der Wert muss eine ganze Zahl sein, entweder von-90 bis 90 oder 0 bis 180 für Text vertikal ausgerichtet.|1,8|
+|[chartDataLabels](/javascript/api/excel/excel.chartdatalabels)|_Beziehung_ > horizontalAlignment|Die horizontale Ausrichtung für die Datenbeschriftung Diagramm darstellt.|1,8|
+|[chartDataLabels](/javascript/api/excel/excel.chartdatalabels)|_Beziehung_ > verticalAlignment|Stellt die vertikale Ausrichtung des Diagramms Datenbeschriftung an.|1,8|
+|[chartDeactivatedEventArgs](/javascript/api/excel/excel.chartdeactivatedeventargs)|_Eigenschaft_ > ChartId|Ruft die Id des Diagramms, das deaktiviert wird.|1,8|
+|[chartDeactivatedEventArgs](/javascript/api/excel/excel.chartdeactivatedeventargs)|_Eigenschaft_ > Typ|Ruft den Typ des Ereignisses ab.|1,8|
+|[chartDeactivatedEventArgs](/javascript/api/excel/excel.chartdeactivatedeventargs)|_Eigenschaft_ > WorksheetId|Ruft die Id des Arbeitsblatts, in dem das Diagramm deaktiviert wird.|1,8|
+|[chartDeletedEventArgs](/javascript/api/excel/excel.chartdeletedeventargs)|_Eigenschaft_ > ChartId|Ruft die Id des Diagramms, der aus dem Arbeitsblatt gelöscht wird.|1,8|
+|[chartDeletedEventArgs](/javascript/api/excel/excel.chartdeletedeventargs)|_Eigenschaft_ > Typ|Ruft den Typ des Ereignisses ab.|1,8|
+|[chartDeletedEventArgs](/javascript/api/excel/excel.chartdeletedeventargs)|_Eigenschaft_ > WorksheetId|Ruft die Id des Arbeitsblatts, in dem das Diagramm gelöscht wird.|1,8|
+|[chartDeletedEventArgs](/javascript/api/excel/excel.chartdeletedeventargs)|_Beziehung_ > Quelle|Ruft die Quelle des Ereignisses ab.|1,8|
+|[chartLegendEntry](/javascript/api/excel/excel.chartlegendentry)|_Eigenschaft_ > height|Stellt die Höhe des die LegendEntry auf die Diagrammlegende dar. Schreibgeschützt.|1,8|
+|[chartLegendEntry](/javascript/api/excel/excel.chartlegendentry)|_Eigenschaft_ > index|Stellt den Index der LegendEntry der Diagrammlegende dar. Schreibgeschützt.|1,8|
+|[chartLegendEntry](/javascript/api/excel/excel.chartlegendentry)|_Eigenschaft_ > linken|Links vom ein LegendEntry Diagramm darstellt. Schreibgeschützt.|1,8|
+|[chartLegendEntry](/javascript/api/excel/excel.chartlegendentry)|_Eigenschaft_ > oben|Im oberen Bereich des ein LegendEntry Diagramm darstellt. Schreibgeschützt.|1,8|
+|[chartLegendEntry](/javascript/api/excel/excel.chartlegendentry)|_Eigenschaft_ > width|Die Breite des der LegendEntry im Diagramm Legende darstellt. Schreibgeschützt.|1,8|
+|[chartLegendFormat](/javascript/api/excel/excel.chartlegendformat)|_Beziehung_ > Rahmen|Stellt das Rahmenformat, das Color, Linestyle und Weight enthält. Schreibgeschützt.|1,8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_Eigenschaft_ > height|Stellt den Wert für die Höhe des PlotArea dar.|1,8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_Eigenschaft_ > InsideHeight|Stellt den Wert InsideHeight PlotArea dar.|1,8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_Eigenschaft_ > InsideLeft|Stellt den Wert InsideLeft PlotArea dar.|1,8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_Eigenschaft_ > InsideTop|Stellt den Wert InsideTop PlotArea dar.|1,8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_Eigenschaft_ > InsideWidth|Stellt den Wert InsideWidth PlotArea dar.|1,8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_Eigenschaft_ > linken|Stellt den linken PlotArea-Wert.|1,8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_Eigenschaft_ > oben|Stellt den oberen Wert PlotArea dar.|1,8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_Eigenschaft_ > width|Den Breitenwert des PlotArea darstellt.|1,8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_Beziehung_ > Format|Stellt die Formatierung der ein Diagramm PlotArea. Schreibgeschützt.|1,8|
+|[chartPlotArea](/javascript/api/excel/excel.chartplotarea)|_Beziehung_ > Position|Stellt die Position des PlotArea dar.|1,8|
+|[chartPlotAreaFormat](/javascript/api/excel/excel.chartplotareaformat)|_Beziehung_ > Rahmen|Stellt die Rahmenattribute einer PlotArea Diagramm dar. Schreibgeschützt.|1,8|
+|[chartPlotAreaFormat](/javascript/api/excel/excel.chartplotareaformat)|_Beziehung_ > Füllung|Stellt die Füllung eines Objekts dar, einschließlich Informationen zur Hintergrundformatierung. Schreibgeschützt.|1,8|
+|[chartSeries](/javascript/api/excel/excel.chartseries)|_Eigenschaft_ > Explosion|Zurückgeben oder festlegen den Explosionswert für Kreis- oder Ringsegments Segments. Gibt 0 (null) zurück, wenn keine Explosion vorhanden ist (die Spitze des Segments ist in der Mitte des Diagramms). ReadWrite.|1,8|
+|[chartSeries](/javascript/api/excel/excel.chartseries)|_Eigenschaft_ > FirstSliceAngle|Zurückgeben oder festlegen den Winkel des ersten Kreis- oder Ringsegments Segments in Grad (vertikal im Uhrzeigersinn). Gilt nur für Kreis-, 3-d Kreis- und Ringdiagrammen. Ein Wert zwischen 0 und 360 kann sein. ReadWrite|1,8|
+|[chartSeries](/javascript/api/excel/excel.chartseries)|_Eigenschaft_ > InvertIfNegative|True, wenn Microsoft Excel das Muster im Element invertiert, wenn es eine negative Zahl entspricht. ReadWrite.|1,8|
+|[chartSeries](/javascript/api/excel/excel.chartseries)|_Eigenschaft_ > überlappen|Gibt an, wie Balken und Spalten angeordnet sind. Ein Wert zwischen-100 und 100 kann sein. Gilt nur für 2D-Diagramme Balken und 2 2D-Säulendiagramme. ReadWrite.|1,8|
+|[chartSeries](/javascript/api/excel/excel.chartseries)|_Eigenschaft_ > SecondPlotSize|Zurückgeben oder Festlegen der Größe des sekundären Abschnitts entweder ein Kreis-aus-Kreis oder Balken-aus-Kreis-Diagramms als Prozentsatz der Größe des primären Kreises. Ein Wert zwischen 5 und 200 kann sein. ReadWrite.|1,8|
+|[chartSeries](/javascript/api/excel/excel.chartseries)|_Eigenschaft_ > VaryByCategories|True, wenn Microsoft Excel jeden Datenpunkt eine andere Farbe oder ein Muster zuweist. Das Diagramm darf nur eine Datenreihe enthalten. ReadWrite.|1,8|
+|[chartSeries](/javascript/api/excel/excel.chartseries)|_Beziehung_ > AxisGroup|Zurückgeben oder festlegen die Gruppe für die angegebene Datenreihe. ReadWrite|1,8|
+|[chartSeries](/javascript/api/excel/excel.chartseries)|_Beziehung_ > DataLabels|Eine Auflistung aller DataLabel in der Datenreihe darstellt. Schreibgeschützt.|1,8|
+|[chartSeries](/javascript/api/excel/excel.chartseries)|_Beziehung_ > SplitType|Gibt zurück oder legt fest, die ein Kreis-aus-Kreis oder Balken-aus-Kreis-Diagramms geteilt werden wie. ReadWrite.|1,8|
+|[chartTrendline](/javascript/api/excel/excel.charttrendline)|_Eigenschaft_ > BackwardPeriod|Stellt die Anzahl der Zeiträume, die die sich eine Trendlinie zurück erstreckt.|1,8|
+|[chartTrendline](/javascript/api/excel/excel.charttrendline)|_Eigenschaft_ > ForwardPeriod|Stellt die Anzahl der Zeiträume, die die sich eine Trendlinie vorwärts erstreckt.|1,8|
+|[chartTrendline](/javascript/api/excel/excel.charttrendline)|_Eigenschaft_ > ShowEquation|True, wenn die Formel für die sich eine Trendlinie im Diagramm angezeigt wird.|1,8|
+|[chartTrendline](/javascript/api/excel/excel.charttrendline)|_Eigenschaft_ > ShowRSquared|True, wenn der R-quadrierten für die sich eine Trendlinie im Diagramm angezeigt wird.|1,8|
+|[chartTrendline](/javascript/api/excel/excel.charttrendline)|_Beziehung_ > Beschriftung|Repräsentiert die Beschriftung einer Trendlinie Diagramm. Schreibgeschützt.|1,8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_Eigenschaft_ > AutoText|Boolescher Wert, wenn Trendlinie Bezeichnung automatisch basierend auf Kontext angemessenen Text generiert.|1,8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_Eigenschaft_ > Formel|String-Wert, der die Formel des Diagramms Trendlinie Bezeichnung unter Verwendung der A1-Schreibweise darstellt.|1,8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_Eigenschaft_ > height|Gibt die Höhe des Diagramms Trendlinie Beschriftung in Punkt zurück. Schreibgeschützt. NULL, wenn das Diagramm Trendlinie Bezeichnung nicht sichtbar ist. Schreibgeschützt.|1,8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_Eigenschaft_ > linken|Stellt den Abstand in Punkt vom linken Rand des Diagramms Trendlinie Beschriftung zum linken Rand des Diagrammbereichs dar. NULL, wenn das Diagramm Trendlinie Bezeichnung nicht sichtbar ist.|1,8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_Eigenschaft_ > numberFormat|String-Wert, der den Formatierungscode für Bezeichnung Trendlinie darstellt.|1,8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_Eigenschaft_ > text|Eine Zeichenfolge, die den Text der Beschriftung Trendlinie in einem Diagramm darstellt.|1,8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_Eigenschaft_ > TextOrientation|Stellt die Ausrichtung von Text des Diagramms Trendlinie Beschriftung. Der Wert muss eine ganze Zahl sein entweder von-90 bis 90 oder 180 für Text vertikal ausgerichtet.|1,8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_Eigenschaft_ > oben|Stellt den Abstand in Punkt vom oberen Rand des Diagramms Trendlinie Beschriftung an den Anfang der Diagrammfläche. NULL, wenn das Diagramm Trendlinie Bezeichnung nicht sichtbar ist.|1,8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_Eigenschaft_ > width|Gibt die Breite des Diagramms Trendlinie Beschriftung in Punkt zurück. Schreibgeschützt. NULL, wenn das Diagramm Trendlinie Bezeichnung nicht sichtbar ist. Schreibgeschützt.|1,8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_Beziehung_ > Format|Stellt das Format des Diagramms Trendlinie Beschriftung. Schreibgeschützt.|1,8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_Beziehung_ > horizontalAlignment|Die horizontale Ausrichtung für Diagramm Trendlinie Beschriftung repräsentiert.|1,8|
+|[chartTrendlineLabel](/javascript/api/excel/excel.charttrendlinelabel)|_Beziehung_ > verticalAlignment|Stellt die vertikale Ausrichtung des Diagramms Trendlinie Beschriftung.|1,8|
+|[chartTrendlineLabelFormat](/javascript/api/excel/excel.charttrendlinelabelformat)|_Beziehung_ > Rahmen|Stellt das Rahmenformat, das Color, Linestyle und Weight enthält. Schreibgeschützt.|1,8|
+|[chartTrendlineLabelFormat](/javascript/api/excel/excel.charttrendlinelabelformat)|_Beziehung_ > Füllung|Stellt das Füllformat des aktuellen Texts Diagramm Trendlinie dar. Schreibgeschützt.|1,8|
+|[chartTrendlineLabelFormat](/javascript/api/excel/excel.charttrendlinelabelformat)|_Beziehung_ > font|Stellt die Schriftattribute (Name der Schriftart, Schriftgrad, Farbe usw.) für ein Diagramm Trendlinie Label. Schreibgeschützt.|1,8|
+|[createWorkbookPostProcessAction](/javascript/api/excel/excel.createworkbookpostprocessaction)|_Eigenschaft_ > FakeFileId|Überträgt zusätzliche Daten an den Client-seitigen, z. B. WorksheetId für TableSelectionChangedEvent.|1,8|
+|[createWorkbookPostProcessAction](/javascript/api/excel/excel.createworkbookpostprocessaction)|_Eigenschaft_ > fileBase64|Überträgt zusätzliche Daten an den Client-seitigen, z. B. WorksheetId für TableSelectionChangedEvent.|1,8|
+|[createWorkbookPostProcessAction](/javascript/api/excel/excel.createworkbookpostprocessaction)|_Beziehung_ > ActionType|Überträgt zusätzliche Daten an den Client-seitigen, z. B. WorksheetId für TableSelectionChangedEvent.|1,8|
+|[customDataValidation](/javascript/api/excel/excel.customdatavalidation)|_Eigenschaft_ > Formel| Eine benutzerdefinierte Daten Validation-Formel. Dadurch wird die spezielle Eingaberegeln, z. B. verhindern, dass Duplikate oder Einschränken der Summe in einen Bereich von Tabellenzellen erstellt.|1,8|
+|[dataPivotHierarchy](/javascript/api/excel/excel.datapivothierarchy)|_Eigenschaft_ > id|ID des der DataPivotHierarchy. Schreibgeschützt.|1,8|
+|[dataPivotHierarchy](/javascript/api/excel/excel.datapivothierarchy)|_Eigenschaft_ > name|Name der DataPivotHierarchy.|1,8|
+|[dataPivotHierarchy](/javascript/api/excel/excel.datapivothierarchy)|_Eigenschaft_ > numberFormat|Von der DataPivotHierarchy Zahlenformat.|1,8|
+|[dataPivotHierarchy](/javascript/api/excel/excel.datapivothierarchy)|_Eigenschaft_ > Position|Die Position für das DataPivotHierarchy.|1,8|
+|[dataPivotHierarchy](/javascript/api/excel/excel.datapivothierarchy)|_Beziehung_ > Feld|Gibt die PivotFields der DataPivotHierarchy zugeordnet. Schreibgeschützt.|1,8|
+|[dataPivotHierarchy](/javascript/api/excel/excel.datapivothierarchy)|_Beziehung_ > ShowAs|Bestimmt, ob die Daten als eine bestimmte zusammenfassende Berechnung soll oder nicht angezeigt werden.|1,8|
+|[dataPivotHierarchy](/javascript/api/excel/excel.datapivothierarchy)|_Beziehung_ > SummarizeBy|Bestimmt, ob alle Elemente der DataPivotHierarchy anzeigen.|1,8|
+|[dataPivotHierarchy](/javascript/api/excel/excel.datapivothierarchy)|_Methode_ > [setToDefault()](/javascript/api/excel/excel.datapivothierarchy#settodefault)|Die DataPivotHierarchy auf deren Standardwerte zurückgesetzt.|1,8|
+|[dataPivotHierarchyCollection](/javascript/api/excel/excel.datapivothierarchycollection)|_Eigenschaft_ > items|Eine Auflistung von DataPivotHierarchy-Objekten. Schreibgeschützt.|1,8|
+|[dataPivotHierarchyCollection](/javascript/api/excel/excel.datapivothierarchycollection)|_Methode_ > [Add(pivotHierarchy: PivotHierarchy)](/javascript/api/excel/excel.datapivothierarchycollection)|Die aktuelle Achse hinzugefügt der PivotHierarchy.|1,8|
+|[dataPivotHierarchyCollection](/javascript/api/excel/excel.datapivothierarchycollection)|_Methode_ > [getCount()](/javascript/api/excel/excel.datapivothierarchycollection)|Ruft die Anzahl der Pivot-Hierarchien in der Auflistung ab.|1,8|
+|[dataPivotHierarchyCollection](/javascript/api/excel/excel.datapivothierarchycollection)|_Methode_ > [getItem(name: string)](/javascript/api/excel/excel.datapivothierarchycollection)|Ruft eine DataPivotHierarchy nach dessen Name oder die Id ab.|1,8|
+|[dataPivotHierarchyCollection](/javascript/api/excel/excel.datapivothierarchycollection)|_Methode_ > [getItemOrNullObject(name: string)](/javascript/api/excel/excel.datapivothierarchycollection)|Ruft eine DataPivotHierarchy nach Namen ab. Wenn die DataPivotHierarchy nicht vorhanden ist, wird ein null-Objekt zurückzugeben.|1,8|
+|[dataPivotHierarchyCollection](/javascript/api/excel/excel.datapivothierarchycollection)|_Methode_ > [Remove(DataPivotHierarchy: DataPivotHierarchy)](/javascript/api/excel/excel.datapivothierarchycollection)|Entfernt die PivotHierarchy aus der aktuellen Achse an.|1,8|
+|[dataValidation](/javascript/api/excel/excel.datavalidation)|_Eigenschaft_ > IgnoreBlanks|Leerzeichen ignorieren: keine datenüberprüfung auf leere Zellen erfolgt, wird standardmäßig auf "true".|1,8|
+|[dataValidation](/javascript/api/excel/excel.datavalidation)|_Eigenschaft_ > ungültig|Stellt dar, wenn alle Zellwerte entsprechend der Regeln für die Validierung gültig sind. Schreibgeschützt.|1,8|
+|[dataValidation](/javascript/api/excel/excel.datavalidation)|_Beziehung_ > ErrorAlert|Fehlermeldung, wenn Benutzer ungültige Daten eingibt.|1,8|
+|[dataValidation](/javascript/api/excel/excel.datavalidation)|_Beziehung_ > Aufforderung|Aufforderung, wenn Benutzer eine Zelle auswählt.|1,8|
+|[dataValidation](/javascript/api/excel/excel.datavalidation)|_Beziehung_ > Regel|Daten Überprüfungsregel, die verschiedene Typen von datenüberprüfungskriterien enthält.|1,8|
+|[dataValidation](/javascript/api/excel/excel.datavalidation)|_Beziehung_ > type|Geben Sie die Überprüfung, [Excel.DataValidationType](/javascript/api/excel/excel.datavalidationtype) Einzelheiten finden Sie unter. Schreibgeschützt.|1,8|
+|[dataValidation](/javascript/api/excel/excel.datavalidation)|_Methode_ > [clear()](/javascript/api/excel/excel.datavalidation)|Löscht die Überprüfung aus dem aktuellen Bereich.|1,8|
+|[dataValidationErrorAlert](/javascript/api/excel/excel.datavalidationerroralert)|_Eigenschaft_ > Nachricht|Fehlermeldung darstellt.|1,8|
+|[dataValidationErrorAlert](/javascript/api/excel/excel.datavalidationerroralert)|_Eigenschaft_ > ShowAlert|Bestimmt, ob für eine Warnung Fehlerdialogfeld angezeigt werden oder nicht, wenn der Benutzer ungültige Daten eingibt. Der Standardwert ist true.|1,8|
+|[dataValidationErrorAlert](/javascript/api/excel/excel.datavalidationerroralert)|_Eigenschaft_ > title|Fehler, Warnung Dialogfeldtitel darstellt.|1,8|
+|[dataValidationErrorAlert](/javascript/api/excel/excel.datavalidationerroralert)|_Beziehung_ > Formatvorlage|Stellt die datenüberprüfung Benachrichtigungstyp, finden Sie ausführliche [Excel.DataValidationAlertStyle](/javascript/api/excel/excel.datavalidationalertstyle) .|1,8|
+|[dataValidationPrompt](/javascript/api/excel/excel.datavalidationprompt)|_Eigenschaft_ > Nachricht|Stellt die Nachricht der Ansage dar.|1,8|
+|[dataValidationPrompt](/javascript/api/excel/excel.datavalidationprompt)|_Eigenschaft_ > ShowPrompt|Bestimmt, ob die Meldung wird angezeigt, wenn Benutzer eine Zelle mit einer Validierung auswählt.|1,8|
+|[dataValidationPrompt](/javascript/api/excel/excel.datavalidationprompt)|_Eigenschaft_ > title|Stellt den Titel für die Aufforderung zur dar.|1,8|
+|[dataValidationRule](/javascript/api/excel/excel.datavalidationrule)|_Beziehung_ > benutzerdefinierte|Benutzerdefinierte datenüberprüfungskriterien.|1,8|
+|[dataValidationRule](/javascript/api/excel/excel.datavalidationrule)|_Beziehung_ > Datum|Datum datenüberprüfungskriterien.|1,8|
+|[dataValidationRule](/javascript/api/excel/excel.datavalidationrule)|_Beziehung_ > decimal|Gültigkeitskriterien Decimal-Datentyp.|1,8|
+|[dataValidationRule](/javascript/api/excel/excel.datavalidationrule)|_Beziehung_ > list|Liste datenüberprüfungskriterien.|1,8|
+|[dataValidationRule](/javascript/api/excel/excel.datavalidationrule)|_Beziehung_ > TextLength|TextLength datenüberprüfungskriterien.|1,8|
+|[dataValidationRule](/javascript/api/excel/excel.datavalidationrule)|_Beziehung_ > Zeit|Zeit datenüberprüfungskriterien.|1,8|
+|[dataValidationRule](/javascript/api/excel/excel.datavalidationrule)|_Beziehung_ > WholeNumber|WholeNumber datenüberprüfungskriterien.|1,8|
+|[dateTimeDataValidation](/javascript/api/excel/excel.datetimedatavalidation)|_Eigenschaft_ > formula1|Ruft ab oder legt diesen fest Formula1, d. h. Mindestwert oder Wert je nach den Operator.|1,8|
+|[dateTimeDataValidation](/javascript/api/excel/excel.datetimedatavalidation)|_Eigenschaft_ > formula2|Ruft ab oder legt diesen fest Formula2, d. h. Höchstwert oder Wert je nach den Operator.|1,8|
+|[dateTimeDataValidation](/javascript/api/excel/excel.datetimedatavalidation)|_Beziehung_ > Operator|Der Operator für die Validierung der Daten verwendet.|1,8|
+|[enableEventsPostProcessAction](/javascript/api/excel/excel.enableeventspostprocessaction)|_Eigenschaft_ > IsEnableEvents {|Überträgt zusätzliche Daten an den Client-seitigen, z. B. WorksheetId für TableSelectionChangedEvent.|1,8|
+|[enableEventsPostProcessAction](/javascript/api/excel/excel.enableeventspostprocessaction)|_Beziehung_ > ActionType|Überträgt zusätzliche Daten an den Client-seitigen, z. B. WorksheetId für TableSelectionChangedEvent.|1,8|
+|[enableEventsPostProcessAction](/javascript/api/excel/excel.enableeventspostprocessaction)|_Beziehung_ > ControlId|Überträgt zusätzliche Daten an den Client-seitigen, z. B. WorksheetId für TableSelectionChangedEvent.|1,8|
+|[filterPivotHierarchy](/javascript/api/excel/excel.filterpivothierarchy)|_Eigenschaft_ > EnableMultipleFilterItems|Bestimmt, ob mehrere Filtern von Elementen zu ermöglichen.|1,8|
+|[filterPivotHierarchy](/javascript/api/excel/excel.filterpivothierarchy)|_Eigenschaft_ > id|ID des der FilterPivotHierarchy. Schreibgeschützt.|1,8|
+|[filterPivotHierarchy](/javascript/api/excel/excel.filterpivothierarchy)|_Eigenschaft_ > name|Name der FilterPivotHierarchy.|1,8|
+|[filterPivotHierarchy](/javascript/api/excel/excel.filterpivothierarchy)|_Eigenschaft_ > Position|Die Position für das FilterPivotHierarchy.|1,8|
+|[filterPivotHierarchy](/javascript/api/excel/excel.filterpivothierarchy)|_Beziehung_ > fields|Gibt die PivotFields der FilterPivotHierarchy zugeordnet. Schreibgeschützt.|1,8|
+|[filterPivotHierarchy](/javascript/api/excel/excel.filterpivothierarchy)|_Methode_ > [setToDefault()](/javascript/api/excel/excel.filterpivothierarchy)|Die FilterPivotHierarchy auf deren Standardwerte zurückgesetzt.|1,8|
+|[filterPivotHierarchyCollection](/javascript/api/excel/excel.filterpivothierarchycollection)|_Eigenschaft_ > items|Eine Auflistung von FilterPivotHierarchy-Objekten. Schreibgeschützt.|1,8|
+|[filterPivotHierarchyCollection](/javascript/api/excel/excel.filterpivothierarchycollection)|_Methode_ > [Add(pivotHierarchy: PivotHierarchy)](/javascript/api/excel/excel.filterpivothierarchycollection)|Die aktuelle Achse hinzugefügt der PivotHierarchy. Wenn die Hierarchie an anderer Stelle auf der Zeilen-, Spalten- oder Filterachse vorhanden ist, wird es aus diesem Speicherort entfernt werden.|1,8|
+|[filterPivotHierarchyCollection](/javascript/api/excel/excel.filterpivothierarchycollection)|_Methode_ > [getCount()](/javascript/api/excel/excel.filterpivothierarchycollection)|Ruft die Anzahl der Pivot-Hierarchien in der Auflistung ab.|1,8|
+|[filterPivotHierarchyCollection](/javascript/api/excel/excel.filterpivothierarchycollection)|_Methode_ > [getItem(name: string)](/javascript/api/excel/excel.filterpivothierarchycollection)|Ruft eine FilterPivotHierarchy nach dessen Name oder die Id ab.|1,8|
+|[filterPivotHierarchyCollection](/javascript/api/excel/excel.filterpivothierarchycollection)|_Methode_ > [getItemOrNullObject(name: string)](/javascript/api/excel/excel.filterpivothierarchycollection)|Ruft eine FilterPivotHierarchy nach Namen ab. Wenn die FilterPivotHierarchy nicht vorhanden ist, wird ein null-Objekt zurückzugeben.|1,8|
+|[filterPivotHierarchyCollection](/javascript/api/excel/excel.filterpivothierarchycollection)|_Methode_ > [Remove(filterPivotHierarchy: FilterPivotHierarchy)](/javascript/api/excel/excel.filterpivothierarchycollection)|Entfernt die PivotHierarchy aus der aktuellen Achse an.|1,8|
+|[listDataValidation](/javascript/api/excel/excel.listdatavalidation)|_Eigenschaft_ > InCellDropDown|Zeigt die Liste in Zelle Dropdown-Liste oder nicht, wird standardmäßig auf "true".|1,8|
+|[listDataValidation](/javascript/api/excel/excel.listdatavalidation)|_Eigenschaft_ > Quelle|Quelle der Liste für die datenüberprüfung|1,8|
+|[openWorkbookPostProcessAction](/javascript/api/excel/excel.openworkbookpostprocessaction)|_Eigenschaft_ > FakeFileId|Überträgt zusätzliche Daten an den Client-seitigen, z. B. WorksheetId für TableSelectionChangedEvent.|1,8|
+|[openWorkbookPostProcessAction](/javascript/api/excel/excel.openworkbookpostprocessaction)|_Beziehung_ > ActionType|Überträgt zusätzliche Daten an den Client-seitigen, z. B. WorksheetId für TableSelectionChangedEvent.|1,8|
+|[pivotField](/javascript/api/excel/excel.pivotfield)|_Eigenschaft_ > id|ID des PivotFields. Schreibgeschützt.|1,8|
+|[pivotField](/javascript/api/excel/excel.pivotfield)|_Eigenschaft_ > name|Name des PivotFields.|1,8|
+|[pivotField](/javascript/api/excel/excel.pivotfield)|_Eigenschaft_ > ShowAllItems|Bestimmt, ob alle Elemente des PivotFields anzuzeigen.|1,8|
+|[pivotField](/javascript/api/excel/excel.pivotfield)|_Beziehung_ > Elemente|Gibt die PivotFields PivotFields zugeordnet. Schreibgeschützt.|1,8|
+|[pivotField](/javascript/api/excel/excel.pivotfield)|_Beziehung_ > Teilergebnisse|Teilergebnisse des PivotFields.|1,8|
+|[pivotField](/javascript/api/excel/excel.pivotfield)|_Methode_ > [SortByLabels(sortby: SortBy)](/javascript/api/excel/excel.pivotfield)|Sortiert das PivotField. Wenn eine DataPivotHierarchy angegeben wird, klicken Sie dann sortieren angewendet wird basierend auf dem, wenn nicht Sortierung basiert auf das PivotField selbst.|1,8|
+|[pivotFieldCollection](/javascript/api/excel/excel.pivotfieldcollection)|_Eigenschaft_ > items|Eine Auflistung von PivotField-Objekten. Schreibgeschützt.|1,8|
+|[pivotFieldCollection](/javascript/api/excel/excel.pivotfieldcollection)|_Methode_ > [getCount()](/javascript/api/excel/excel.pivotfieldcollection)|Ruft die Anzahl der Pivot-Hierarchien in der Auflistung ab.|1,8|
+|[pivotFieldCollection](/javascript/api/excel/excel.pivotfieldcollection)|_Methode_ > [getItem(name: string)](/javascript/api/excel/excel.pivotfieldcollection)|Ruft eine PivotHierarchy nach dessen Name oder die Id ab.|1,8|
+|[pivotFieldCollection](/javascript/api/excel/excel.pivotfieldcollection)|_Methode_ > [getItemOrNullObject(name: string)](/javascript/api/excel/excel.pivotfieldcollection)|Ruft eine PivotHierarchy nach Namen ab. Wenn die PivotHierarchy nicht vorhanden ist, wird ein null-Objekt zurückzugeben.|1,8|
+|[pivotHierarchy](/javascript/api/excel/excel.pivothierarchy)|_Eigenschaft_ > id|ID des der PivotHierarchy. Schreibgeschützt.|1,8|
+|[pivotHierarchy](/javascript/api/excel/excel.pivothierarchy)|_Eigenschaft_ > name|Name der PivotHierarchy.|1,8|
+|[pivotHierarchy](/javascript/api/excel/excel.pivothierarchy)|_Beziehung_ > fields|Gibt die PivotFields der PivotHierarchy zugeordnet. Schreibgeschützt.|1,8|
+|[pivotHierarchyCollection](/javascript/api/excel/excel.pivothierarchycollection)|_Eigenschaft_ > items|Eine Auflistung von PivotHierarchy-Objekten. Schreibgeschützt.|1,8|
+|[pivotHierarchyCollection](/javascript/api/excel/excel.pivothierarchycollection)|_Methode_ > [getCount()](/javascript/api/excel/excel.pivothierarchycollection)|Ruft die Anzahl der Pivot-Hierarchien in der Auflistung ab.|1,8|
+|[pivotHierarchyCollection](/javascript/api/excel/excel.pivothierarchycollection)|_Methode_ > [getItem(name: string)](/javascript/api/excel/excel.pivothierarchycollection)|Ruft eine PivotHierarchy nach dessen Name oder die Id ab.|1,8|
+|[pivotHierarchyCollection](/javascript/api/excel/excel.pivothierarchycollection)|_Methode_ > [getItemOrNullObject(name: string)](/javascript/api/excel/excel.pivothierarchycollection)|Ruft eine PivotHierarchy nach Namen ab. Wenn die PivotHierarchy nicht vorhanden ist, wird ein null-Objekt zurückzugeben.|1,8|
+|[pivotItem](/javascript/api/excel/excel.pivotitem)|_Eigenschaft_ > id|ID des PivotItem-Objekts. Schreibgeschützt.|1,8|
+|[pivotItem](/javascript/api/excel/excel.pivotitem)|_Eigenschaft_ > IsExpanded|Bestimmt, ob das Element erweitert wird, um untergeordnete Elemente anzuzeigen, oder wenn es ausgeblendet ist und untergeordnete Elemente werden ausgeblendet.|1,8|
+|[pivotItem](/javascript/api/excel/excel.pivotitem)|_Eigenschaft_ > name|Name des PivotItem-Objekts.|1,8|
+|[pivotItem](/javascript/api/excel/excel.pivotitem)|_Eigenschaft_ > sichtbar|Bestimmt, ob PivotItem-Objekts angezeigt wird.|1,8|
+|[pivotItemCollection](/javascript/api/excel/excel.pivotitemcollection)|_Eigenschaft_ > items|Eine Auflistung von PivotItem-Objekte. Schreibgeschützt.|1,8|
+|[pivotItemCollection](/javascript/api/excel/excel.pivotitemcollection)|_Methode_ > [getCount()](/javascript/api/excel/excel.pivotitemcollection)|Ruft die Anzahl der Pivot-Hierarchien in der Auflistung ab.|1,8|
+|[pivotItemCollection](/javascript/api/excel/excel.pivotitemcollection)|_Methode_ > [getItem(name: string)](/javascript/api/excel/excel.pivotitemcollection)|Ruft eine PivotHierarchy nach dessen Name oder die Id ab.|1,8|
+|[pivotItemCollection](/javascript/api/excel/excel.pivotitemcollection)|_Methode_ > [getItemOrNullObject(name: string)](/javascript/api/excel/excel.pivotitemcollection)|Ruft eine PivotHierarchy nach Namen ab. Wenn die PivotHierarchy nicht vorhanden ist, wird ein null-Objekt zurückzugeben.|1,8|
+|[pivotLayout](/javascript/api/excel/excel.pivotlayout)|_Eigenschaft_ > ShowColumnGrandTotals|True, wenn der PivotTable-Bericht Gesamtergebnisse für Spalten summiert.|1,8|
+|[pivotLayout](/javascript/api/excel/excel.pivotlayout)|_Eigenschaft_ > ShowRowGrandTotals|True, wenn der PivotTable-Bericht Gesamtergebnisse für Zeilen angezeigt.|1,8|
+|[pivotLayout](/javascript/api/excel/excel.pivotlayout)|_Eigenschaft_ > SubtotalLocation|Diese Eigenschaft gibt die SubtotalLocationType aller Felder in der PivotTable an. Wenn Felder unterschiedlichen Zustände haben, wird dieser null sein. Mögliche Werte sind: AtTop, AtBottom.|1,8|
+|[pivotLayout](/javascript/api/excel/excel.pivotlayout)|_Beziehung_ > LayoutType|Diese Eigenschaft gibt die PivotLayoutType aller Felder in der PivotTable an. Wenn Felder unterschiedlichen Zustände haben, wird dieser null sein.|1,8|
+|[pivotLayout](/javascript/api/excel/excel.pivotlayout)|_Methode_ > [getColumnLabelRange()](/javascript/api/excel/excel.pivotlayout)|Gibt den Bereich, in denen die PivotTable Spaltenüberschriften befinden.|1,8|
+|[pivotLayout](/javascript/api/excel/excel.pivotlayout)|_Methode_ > [getDataBodyRange()](/javascript/api/excel/excel.pivotlayout)|Gibt den Bereich, in denen die PivotTable Datenwerte befinden.|1,8|
+|[pivotLayout](/javascript/api/excel/excel.pivotlayout.md)|_Methode_ > [getFilterAxisRange()](/javascript/api/excel/excel.pivotlayout)|Gibt den Bereich der Filterbereich der PivotTable zurück.|1,8|
+|[pivotLayout](/javascript/api/excel/excel.pivotlayout)|_Methode_ > [getRange()](/javascript/api/excel/excel.pivotlayout)|Gibt den Bereich die PivotTable, vorhanden ist, ausgenommen Filterbereich zurück.|1,8|
+|[pivotLayout](/javascript/api/excel/excel.pivotlayout)|_Methode_ > [getRowLabelRange()](/javascript/api/excel/excel.pivotlayout)|Gibt den Bereich, in denen die PivotTable zeilenbeschriftungen befinden.|1,8|
+|[pivotTable](/javascript/api/excel/excel.pivottable)|_Beziehung_ > ColumnHierarchies|Die Spalte Pivot Hierarchien der PivotTable. Schreibgeschützt.|1,8|
+|[pivotTable](/javascript/api/excel/excel.pivottable)|_Beziehung_ > DataHierarchies|Die Daten Pivot Hierarchien der PivotTable. Schreibgeschützt.|1,8|
+|[pivotTable](/javascript/api/excel/excel.pivottable)|_Beziehung_ > FilterHierarchies|Die Filter Pivot Hierarchien der PivotTable. Schreibgeschützt.|1,8|
+|[pivotTable](/javascript/api/excel/excel.pivottable)|_Beziehung_ > Hierarchien|Die Pivot-Hierarchien der PivotTable. Schreibgeschützt.|1,8|
+|[pivotTable](/javascript/api/excel/excel.pivottable)|_Beziehung_ > Layout|Die PivotLayout beschreiben das Layout und die visuelle Struktur der PivotTable. Schreibgeschützt.|1,8|
+|[pivotTable](/javascript/api/excel/excel.pivottable)|_Beziehung_ > RowHierarchies|Die Zeile Pivot Hierarchien der PivotTable. Schreibgeschützt.|1,8|
+|[pivotTable](/javascript/api/excel/excel.pivottable)|_Methode_ > [delete()](/javascript/api/excel/excel.pivottable)|Löscht die PivotTable.|1,8|
+|[pivotTableCollection](/javascript/api/excel/excel.pivottablecollection)|_Methode_ > [Add(name: string, source: object, destination: object)](/javascript/api/excel/excel.pivottablecollection)|Hinzufügen einer Pivottable basierend auf den angegebenen Quelldaten und fügt ihn an der linken oberen Zelle des Zielbereichs.|1,8|
+|[range](/javascript/api/excel/excel.range)|_Beziehung_ > DataValidation|Gibt ein Data Validation-Objekt zurück. Schreibgeschützt.|1,8|
+|[rowColumnPivotHierarchy](/javascript/api/excel/excel.rowcolumnpivothierarchy)|_Eigenschaft_ > id|ID des der RowColumnPivotHierarchy. Schreibgeschützt.|1,8|
+|[rowColumnPivotHierarchy](/javascript/api/excel/excel.rowcolumnpivothierarchy)|_Eigenschaft_ > name|Name der RowColumnPivotHierarchy.|1,8|
+|[rowColumnPivotHierarchy](/javascript/api/excel/excel.rowcolumnpivothierarchy)|_Eigenschaft_ > Position|Die Position für das RowColumnPivotHierarchy.|1,8|
+|[rowColumnPivotHierarchy](/javascript/api/excel/excel.rowcolumnpivothierarchy)|_Beziehung_ > fields|Gibt die PivotFields der RowColumnPivotHierarchy zugeordnet. Schreibgeschützt.|1,8|
+|[rowColumnPivotHierarchy](/javascript/api/excel/excel.rowcolumnpivothierarchy)|_Methode_ > [setToDefault()](/javascript/api/excel/excel.rowcolumnpivothierarchy)|Die RowColumnPivotHierarchy auf deren Standardwerte zurückgesetzt.|1,8|
+|[rowColumnPivotHierarchyCollection](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|_Eigenschaft_ > items|Eine Auflistung von RowColumnPivotHierarchy-Objekten. Schreibgeschützt.|1,8|
+|[rowColumnPivotHierarchyCollection](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|_Methode_ > [Add(pivotHierarchy: PivotHierarchy)](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|Die aktuelle Achse hinzugefügt der PivotHierarchy. Ist die Hierarchie vorhanden ist, an anderer Stelle in der Zeile, Spalte|1,8|
+|[rowColumnPivotHierarchyCollection](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|_Methode_ > [getCount()](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|Ruft die Anzahl der Pivot-Hierarchien in der Auflistung ab.|1,8|
+|[rowColumnPivotHierarchyCollection](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|_Methode_ > [getItem(name: string)](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|Ruft eine RowColumnPivotHierarchy nach dessen Name oder die Id ab.|1,8|
+|[rowColumnPivotHierarchyCollection](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|_Methode_ > [getItemOrNullObject(name: string)](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|Ruft eine RowColumnPivotHierarchy nach Namen ab. Wenn die RowColumnPivotHierarchy nicht vorhanden ist, wird ein null-Objekt zurückzugeben.|1,8|
+|[rowColumnPivotHierarchyCollection](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|_Methode_ > [Remove(rowColumnPivotHierarchy: RowColumnPivotHierarchy)](/javascript/api/excel/excel.rowcolumnpivothierarchycollection)|Entfernt die PivotHierarchy aus der aktuellen Achse an.|1,8|
+|[Laufzeit](/javascript/api/excel/excel.runtime)|_Eigenschaft_ > EnableEvents|Umschalten von JavaScript-Ereignisse in der aktuellen Taskpane oder Content-add-in.|1,8|
+|[showAsRule](/javascript/api/excel/excel.showasrule)|_Beziehung_ > BaseField|Das base PivotField die Berechnung ShowAs basieren soll, falls zutreffend basierend auf dem ShowAsCalculation, andernfalls null.|1,8|
+|[showAsRule](/javascript/api/excel/excel.showasrule)|_Beziehung_ > BaseItem|Basiselements auf die Berechnung ShowAs, falls zutreffend basieren Grundlage auf der ShowAsCalculation, andernfalls null.|1,8|
+|[showAsRule](/javascript/api/excel/excel.showasrule)|_Beziehung_ > Berechnung|Die ShowAs Berechnung, die für die Daten-PivotField verwendet.|1,8|
+|[Formatvorlage](/javascript/api/excel/excel.style)|_Eigenschaft_ > AutoIndent|Gibt an, ob Text automatisch eingezogen wird, wenn die Ausrichtung des Texts in einer Zelle auf gleiche Verteilung festgelegt ist.|1,8|
+|[Formatvorlage](/javascript/api/excel/excel.style)|_Eigenschaft_ > TextOrientation|Die Ausrichtung von Text für die Formatvorlage.|1,8|
+|[Teilergebnisse](/javascript/api/excel/excel.subtotals)|_Eigenschaft_ > Automatische|Wenn automatisch auf "true", und klicken Sie dann alle anderen Werte festgelegt ist wird ignoriert werden, wenn die Teilergebnisse festlegen.|1,8|
+|[Teilergebnisse](/javascript/api/excel/excel.subtotals)|_Eigenschaft_ > durchschnittliche| |1,8|
+|[Teilergebnisse](/javascript/api/excel/excel.subtotals)|_Eigenschaft_ > Count| |1,8|
+|[Teilergebnisse](/javascript/api/excel/excel.subtotals)|_Eigenschaft_ > CountNumbers| |1,8|
+|[Teilergebnisse](/javascript/api/excel/excel.subtotals)|_Eigenschaft_ > max| |1,8|
+|[Teilergebnisse](/javascript/api/excel/excel.subtotals)|_Eigenschaft_ > min| |1,8|
+|[Teilergebnisse](/javascript/api/excel/excel.subtotals)|_Eigenschaft_ > Produkt| |1,8|
+|[Teilergebnisse](/javascript/api/excel/excel.subtotals)|_Eigenschaft_ > StandardDeviation| |1,8|
+|[Teilergebnisse](/javascript/api/excel/excel.subtotals)|_Eigenschaft_ > StandardDeviationP| |1,8|
+|[Teilergebnisse](/javascript/api/excel/excel.subtotals)|_Eigenschaft_ > Summe| |1,8|
+|[Teilergebnisse](/javascript/api/excel/excel.subtotals)|_Eigenschaft_ > Abweichung| |1,8|
+|[Teilergebnisse](/javascript/api/excel/excel.subtotals)|_Eigenschaft_ > VarianceP| |1,8|
+|[Tabelle](/javascript/api/excel/excel.table)|_Eigenschaft_ > LegacyId|Gibt eine numerische Id zurück. Schreibgeschützt.|1,8|
+|[workbook](/javascript/api/excel/excel.workbook)|_Eigenschaft_ > ReadOnly|True, wenn die Arbeitsmappe im schreibgeschützten Modus geöffnet ist. Schreibgeschützt.|1,8|
+|[workbookCreated](/javascript/api/excel/excel.workbookcreated)|_Eigenschaft_ > id|Gibt einen Wert, der das WorkbookCreated-Objekt eindeutig identifiziert. Schreibgeschützt.|1,8|
+|[workbookCreated](/javascript/api/excel/excel.workbookcreated)|_Methode_ > [open()](/javascript/api/excel/excel.workbookcreated)|Öffnen Sie die Arbeitsmappe.|1,8|
+|[worksheet](/javascript/api/excel/excel.worksheet)|_Eigenschaft_ > ShowGridlines|Ruft ab oder legt diesen fest im Arbeitsblatt Gitternetzlinien Kennzeichnung.|1,8|
+|[worksheet](/javascript/api/excel/excel.worksheet)|_Eigenschaft_ > ShowHeadings|Ruft ab oder legt diesen fest im Arbeitsblatt Überschriften Kennzeichnung.|1,8|
+|[worksheetCalculatedEventArgs](/javascript/api/excel/excel.worksheetcalculatedeventargs)|_Eigenschaft_ > Typ|Ruft den Typ des Ereignisses ab.|1,8|
+|[worksheetCalculatedEventArgs](/javascript/api/excel/excel.worksheetcalculatedeventargs)|_Eigenschaft_ > WorksheetId|Ruft die Id des Arbeitsblatts, das berechnet wird.|1,8|
+
 ## <a name="whats-new-in-excel-javascript-api-17"></a>Was ist neu in Excel JavaScript-API 1.7
 
-Die JavaScript-API für Excel-Anforderung Set 1.7 Features enthalten APIs für Diagramme, Ereignisse, die datenüberprüfung, Arbeitsblättern, Bereiche, Dokumenteigenschaften, benannte Elemente, die Schutzoptionen für und Formatvorlagen.
+Die JavaScript-API für Excel-Anforderung Set 1.7 Features enthalten APIs für Diagramme, Ereignisse, Arbeitsblättern, Bereiche, Dokumenteigenschaften, benannte Elemente, die Schutzoptionen für und Formatvorlagen.
 
 ### <a name="customize-charts"></a>Anpassen von Diagrammen
 

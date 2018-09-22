@@ -1,6 +1,6 @@
 # <a name="outlook-add-in-api-requirement-set-16"></a>Outlook-add-in-API-Anforderung festlegen 1.6
 
-Die Outlook-Add-In-API-Teilmenge der JavaScript-API für Office umfasst Objekte, Methoden, Eigenschaften und Ereignisse, die Sie in Outlook-Add-Ins verwenden können.
+Die Outlook-add-in-API-Teilmenge der JavaScript-API für Office umfasst Objekte, Methoden, Eigenschaften und Ereignisse für die Verwendung in einer Outlook-add-Ins.
 
 ## <a name="whats-new-in-16"></a>Was ist neu in 1.6?
 

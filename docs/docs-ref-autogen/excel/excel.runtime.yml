@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: d0c809c95c1a86bb8c3dc35df52a4282d7ef4600
-ms.sourcegitcommit: beffe9455dace422e85b92f0105c54ff7b594cbf
+ms.openlocfilehash: 03e423369c3c502dcc4debceb603889b2e823660
+ms.sourcegitcommit: e9cb2f2717e1cf062a2f6ffe6a382d7b9b934ba0
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 09/20/2018
-ms.locfileid: "24044890"
+ms.lasthandoff: 09/21/2018
+ms.locfileid: "24062807"
 items:
 - uid: excel.Excel.Runtime
   summary: >-
@@ -21,7 +21,51 @@ items:
   - OfficeExtension.ClientObject
   package: excel
   children:
+  - excel.Excel.Runtime.enableEvents
+  - excel.Excel.Runtime.load
   - excel.Excel.Runtime.toJSON
+- uid: excel.Excel.Runtime.enableEvents
+  summary: >-
+    Ein-/schalten Sie JavaScript-Ereignisse im aktuellen Taskpane oder Content-add-in aus.
+
+
+    \[[API-Satz: ExcelApi 1,8](/javascript/office/requirement-sets/excel-api-requirement-sets)\]
+  name: enableEvents
+  fullName: excel.Excel.Runtime.enableEvents
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'enableEvents: boolean;'
+    return:
+      type:
+      - boolean
+- uid: excel.Excel.Runtime.load
+  summary: Warteschlangen ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen "context.sync()" aufrufen, bevor Sie die Eigenschaften lesen.
+  remarks: >-
+    Zusätzlich zu dieser Signatur hat diese Methode die folgenden Signaturen:
+
+
+    `load(option?: { select?: string; expand?: string; }): Excel.Runtime`-Option.select ist eine durch Trennzeichen getrennte Zeichenfolge, die die Eigenschaften zum Laden gibt an, wobei options.expand ist eine durch Kommas getrennte Zeichenfolge, die Navigationseigenschaften zum Laden angibt.
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Runtime`-Nur auf Auflistungstypen verfügbar. Es ist ähnlich wie die jeweils vorhergehende Signatur. Option.Top gibt die maximale Anzahl der Auflistungselemente, die im Ergebnis enthalten sein können. Option.Skip gibt die Anzahl der Elemente, die übersprungen und nicht in das Ergebnis eingeschlossen werden sollen. Wenn option.top angegeben wird, wird das Resultset starten, nachdem die angegebene Anzahl von Elementen übersprungen wird.
+  name: load(option)
+  fullName: excel.Excel.Runtime.load
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: string | string[]): Excel.Runtime;'
+    return:
+      type:
+      - excel.Excel.Runtime
+      description: ''
+    parameters:
+    - id: option
+      description: Eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die zum Laden die Eigenschaften angeben.
+      type:
+      - string | string[]
 - uid: excel.Excel.Runtime.toJSON
   name: toJSON()
   fullName: excel.Excel.Runtime.toJSON
@@ -29,11 +73,8 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'toJSON:'
+    content: 'toJSON(): Excel.Interfaces.RuntimeData;'
     return:
       type:
-      - >-
-        {
-                    [key: string]: string;
-                }
+      - excel.Excel.Interfaces.RuntimeData
       description: ''

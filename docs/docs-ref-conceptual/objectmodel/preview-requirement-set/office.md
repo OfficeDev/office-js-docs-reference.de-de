@@ -88,11 +88,11 @@ Gibt das einem Ereignishandler zugeordnete Ereignis an.
 
 | Name | Typ | Beschreibung | Mindestanforderung set |
 |---|---|---|---|
-|`AppointmentTimeChanged`| Zeichenfolge | Der Termin Datums- oder Zeitwerte für die ausgewählte Datenreihe geändert wurde. | Vorschau |
+|`AppointmentTimeChanged`| Zeichenfolge | Datum und Uhrzeit der ausgewählten Termins oder einer Datenreihe geändert wurde. | 1.7 |
 |`ItemChanged`| String | Das ausgewählte Element wurde geändert. | 1,5 |
 |`OfficeThemeChanged`| String | Das ausgewählte Element wurde geändert. | Vorschau |
-|`RecipientsChanged`| Zeichenfolge | Die Empfängerliste des ausgewählten Elements wurde geändert. | Vorschau |
-|`RecurrencePatternChanged`| Zeichenfolge | Das Serienmuster der ausgewählten Datenreihe geändert wurde. | Vorschau |
+|`RecipientsChanged`| Zeichenfolge | Die Empfängerliste des ausgewählten Elements oder eines Termins Speicherorts wurde geändert. | 1.7 |
+|`RecurrenceChanged`| Zeichenfolge | Das Serienmuster der ausgewählten Datenreihe geändert wurde. | 1.7 |
 
 ##### <a name="requirements"></a>Anforderungen
 

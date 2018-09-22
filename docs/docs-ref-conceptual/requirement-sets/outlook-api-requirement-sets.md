@@ -18,9 +18,9 @@ Das Festlegen einer Mindestanforderungssatzversion im Manifest steuert, in welch
 
 ## <a name="using-apis-from-later-requirement-sets"></a>Verwenden von APIs aus neueren Anforderungssätzen
 
-Das Festlegen eines Anforderungssatzes beschränkt nicht die verfügbaren APIs, die das Add-In verwenden kann. Wenn das Add-In beispielsweise Anforderungssatz 1.1 angibt, aber in einem Outlook-Client ausgeführt wird, der 1.3 unterstützt, kann das Add-In APIs aus Anforderungssatz 1.3 verwenden.
+Festlegen von keinem Anforderungssatz schränkt nicht verfügbare APIs, die das Add-in verwenden können. Angenommen, wenn das Add-in gibt Anforderung 1.1 festgelegt, aber es in einem Outlook-Client die 1.3 unterstützen ausgeführt wird, kann das Add-in APIs aus Anforderungssatz 1.3 verwenden.
 
-Wenn Entwickler neuere APIs verwenden möchten, können sie einfach mithilfe der Standard-JavaScript-Methode ihr Vorhandensein überprüfen.
+Für die Verwendung neuer APIs können Entwickler nur für ihre Existenz überprüfen Sie mithilfe der Standardmethode JavaScript:
 
 ```js
 if (item.somePropertyOrFunction !== undefined) {
@@ -40,7 +40,7 @@ Die folgenden Clients unterstützen Outlook-Add-Ins.
 
 | Client | Unterstützte API-Anforderungssätze |
 | --- | --- |
-| Outlook 2016 (Klick-und-Los) für Windows | 1.1, 1.2, 1.3, 1.4, 1,5, 1,6 |
+| Outlook 2016 (Klick-und-Los) für Windows | 1.1, 1.2, 1.3, 1.4, 1,5, 1.6, 1.7 |
 | Outlook 2016 (MSI) für Windows | 1.1, 1.2, 1.3, 1.4 |
 | Outlook 2016 für Mac | 1.1, 1.2, 1.3, 1.4, 1,5, 1,6 |
 | Outlook 2013 für Windows | 1.1, 1.2, 1.3, 1.4 |
@@ -50,5 +50,5 @@ Die folgenden Clients unterstützen Outlook-Add-Ins.
 | Outlook Web App (Exchange 2013 lokal) | 1.1 |
 | Outlook Web App (Exchange 2016 lokal) | 1.1, 1.2. 1.3 |
 
-> [!NOTE] 
+> [!NOTE]
 > Unterstützung für 1.3 in Outlook 2013 wurde als Teil der [Dezember 8 2015, aktualisieren für Outlook 2013 (KB3114349)](https://support.microsoft.com/kb/3114349)hinzugefügt. Unterstützung für 1.4 in Outlook 2013 wurde als Teil der [September 13, 2016, aktualisieren für Outlook 2013 (KB3118280)](https://support.microsoft.com/help/3118280)hinzugefügt.

@@ -1,0 +1,419 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 7615bc2ca5990926e5ae04061da45b654c281fc2
+ms.sourcegitcommit: 9b0526d43475e18288823139e53c2a70f1a7e7b2
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 09/22/2018
+ms.locfileid: "24969179"
+items:
+- uid: Outlook_1_7.Office.ItemCompose
+  summary: >-
+    Der Modus zum Verfassen von [Office.context.mailbox.item](xref:Outlook_1_7.Office.Item)<!-- -->.
+
+
+    Wichtig: Dies ist ein interner Outlook-Objekt nicht direkt über vorhandene Schnittstellen verfügbar gemacht. Sie sollten behandeln Sie dies als ein Modus der `Office.context.mailbox.item`. Verweisen Sie auf den Seiten-Objektmodell finden Sie weitere Informationen.
+  name: Office.ItemCompose
+  fullName: Outlook_1_7.Office.ItemCompose
+  langs:
+  - typeScript
+  type: interface
+  extends:
+  - Item
+  package: Outlook_1_7
+  children:
+  - Outlook_1_7.Office.ItemCompose.addFileAttachmentAsync
+  - Outlook_1_7.Office.ItemCompose.addItemAttachmentAsync
+  - Outlook_1_7.Office.ItemCompose.close
+  - Outlook_1_7.Office.ItemCompose.getSelectedDataAsync
+  - Outlook_1_7.Office.ItemCompose.removeAttachmentAsync
+  - Outlook_1_7.Office.ItemCompose.saveAsync
+  - Outlook_1_7.Office.ItemCompose.setSelectedDataAsync
+  - Outlook_1_7.Office.ItemCompose.subject
+- uid: Outlook_1_7.Office.ItemCompose.addFileAttachmentAsync
+  summary: >-
+    Fügt eine Datei zu einer Nachricht oder einem Termin als Anlage hinzu.
+
+
+    Die addFileAttachmentAsync-Methode lädt die Datei am angegebenen URI hoch und fügt sie an das Element im Verfassenformular an.
+
+
+    Anschließend können Sie die ID mit der removeAttachmentAsync-Methode in der gleichen Sitzung zum Entfernen der Anlage verwenden.
+
+
+    \[[API-Satz: Postfach 1.1](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen</td></tr>
+
+
+    <tr><td>Fehler</td><td>AttachmentSizeExceeded - die Anlage ist größer als zulässig.</td></tr><td></td><td>FileTypeNotSupported - Anlage hat eine Erweiterung, die nicht zulässig ist.</td></tr><td></td><td>NumberOfAttachmentsExceeded - Nachricht oder Termin weist zu viele Anhänge auf.</td></tr></table>
+
+
+    Zusätzlich zu dieser Signatur hat die-Methode auch die folgenden Signaturen:
+
+
+    `addFileAttachmentAsync(uri: string, attachmentName: string): void;`
+
+
+    `addFileAttachmentAsync(uri: string, attachmentName: string, options: Office.AsyncContextOptions): void;`
+
+
+    `addFileAttachmentAsync(uri: string, attachmentName: string, callback: (result: AsyncResult<string>) => void): void;`
+  name: addFileAttachmentAsync(uri, attachmentName, options, callback)
+  fullName: Outlook_1_7.Office.ItemCompose.addFileAttachmentAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addFileAttachmentAsync(uri: string, attachmentName: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: uri
+      description: Der URI, der den Speicherort der an die Nachricht oder den Termin anzuhängenden Datei angibt. Die maximale Länge ist 2048 Zeichen.
+      type:
+      - string
+    - id: attachmentName
+      description: Der Name der Anlage, der beim Hochladen der Anlage angezeigt wird. Die maximale Länge ist 255 Zeichen.
+      type:
+      - string
+    - id: options
+      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. AsyncContext: Entwickler können bereitstellen, ein Objekt, das sie in der Rückrufmethode zugreifen möchten. IsInline: true gibt an, dass die Anlage Inline im Textkörper Nachricht angezeigt werden wird und nicht in der Anlagenliste angezeigt werden soll.'
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Wenn die Methode abgeschlossen ist, wird die in der Callback-Parameter übergebene Funktion mit einen einzelnen Parameter vom Typ AsyncResult aufgerufen. Klicken Sie auf Erfolg wird die Anlage-ID in der asyncResult.value-Eigenschaft bereitgestellt. Wenn das Hochladen der Anlage fehlschlägt, enthält das asyncResult-Objekt ein Error-Objekt mit einer Fehlerbeschreibung.
+      type:
+      - '(result: AsyncResult<string>) => void'
+- uid: Outlook_1_7.Office.ItemCompose.addItemAttachmentAsync
+  summary: >-
+    Fügt der Nachricht oder dem Termin ein Exchange-Objekt, wie z. B. eine Nachricht, als Anhang hinzu.
+
+
+    Die  addItemAttachmentAsync-Methode hängt das Objekt mit dem angegebenen Exchangebezeichner an das Element im Formular zum Verfassen an. Wenn Sie eine Rückrufmethode angeben, wird die Methode mit einem Parameter, asyncResult, aufgerufen, der entweder den Anhangsbezeichner oder einen Code enthält, der etwaige Fehler angibt, die beim Anhängen des Objekts aufgetreten sind. Sie können ggf. den options-Parameter verwenden, um Statusinformationen an die Rückrufmethode zu übergeben.
+
+
+    Anschließend können Sie die ID mit der removeAttachmentAsync-Methode in der gleichen Sitzung zum Entfernen der Anlage verwenden.
+
+
+    Wenn Ihr Office-Add-In in Outlook Web App ausgeführt wird, kann die addItemAttachmentAsync-Methode Objekte an andere Objekte als das Element anhängen, das Sie bearbeiten; dies wird allerdings nicht unterstützt und nicht empfohlen.
+
+
+    \[[API-Satz: Postfach 1.1](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen</td></tr>
+
+
+    <tr><td>Fehler</td><td>NumberOfAttachmentsExceeded - Nachricht oder Termin weist zu viele Anhänge auf.</td></tr></table>
+
+
+    Zusätzlich zu dieser Signatur hat diese Methode auch die folgenden Signaturen:
+
+
+    `addItemAttachmentAsync(itemId: any, attachmentName: string): void;`
+
+
+    `addItemAttachmentAsync(itemId: any, attachmentName: string, options: Office.AsyncContextOptions): void;`
+
+
+    `addItemAttachmentAsync(itemId: any, attachmentName: string, callback: (result: AsyncResult<string>) => void): void;`
+  name: addItemAttachmentAsync(itemId, attachmentName, options, callback)
+  fullName: Outlook_1_7.Office.ItemCompose.addItemAttachmentAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'addItemAttachmentAsync(itemId: any, attachmentName: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: itemId
+      description: Der Exchange-Bezeichner des Objekts, das angehängt werden soll. Die maximale Länge beträgt 100 Zeichen.
+      type:
+      - any
+    - id: attachmentName
+      description: Der Name der Anlage, der beim Hochladen der Anlage angezeigt wird. Die maximale Länge ist 255 Zeichen.
+      type:
+      - string
+    - id: options
+      description: 'Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. AsyncContext: Entwickler können bereitstellen, ein Objekt, das sie in der Rückrufmethode zugreifen möchten.'
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Wenn die Methode abgeschlossen ist, wird die Funktion übergebenen Callback-Parameter mit einem einzelnen Parameter vom Typ Office.AsyncResult aufgerufen. Klicken Sie auf Erfolg wird die Anlage-ID in der asyncResult.value-Eigenschaft bereitgestellt. Wenn Hinzufügen der Anlage fehlschlägt, enthält das AsyncResult-Objekt ein Error-Objekt, das eine Beschreibung des Fehlers bereitstellt.
+      type:
+      - '(result: AsyncResult<string>) => void'
+- uid: Outlook_1_7.Office.ItemCompose.close
+  summary: >-
+    Schließt das aktuelle Element, das erstellt wurde
+
+
+    Die Verhalten der close-Methode hängt von den aktuellen Status des Elements verfasst wird. Wenn das Element nicht gespeicherte Änderungen enthält, fordert der Client den Benutzer zu speichern, verwerfen oder schließen Sie die Aktion an.
+
+
+    Wenn die Nachricht im Outlook-Desktopclient eine Inlineantwort ist, hat die close-Methode keine Auswirkung.
+
+
+    Hinweis: In Outlook im Web wird, wenn das Element einen Termin handelt und zuvor gespeichert wurde SaveAsync mit, der Benutzer aufgefordert, speichern oder Abbrechen, auch wenn keine Änderungen aufgetreten sind, seit der letzten des Elements Speicherung verwerfen.
+
+
+    \[[API-Satz: 1.3 Postfachs](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>Eingeschränkt</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen</td></tr></table>
+  name: close()
+  fullName: Outlook_1_7.Office.ItemCompose.close
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'close(): void;'
+    return:
+      type:
+      - void
+      description: ''
+- uid: Outlook_1_7.Office.ItemCompose.getSelectedDataAsync
+  summary: >-
+    Gibt asynchron ausgewählte Daten aus dem Betreff oder Textkörper einer Nachricht zurück.
+
+
+    Wenn keine Auswahl vorhanden ist, aber der Cursor sich im Nachrichtentext oder Betreff befindet, gibt die Methode NULL für die ausgewählten Daten zurück. Wenn ein anderes Feld als der Textkörper oder Betreff ausgewählt ist, gibt die Methode den InvalidSelection-Fehler zurück.
+
+
+    Rufen Sie für den Zugriff auf die ausgewählten Daten aus der Callbackmethode asyncResult.value.data auf. Rufen Sie für den Zugriff auf die Quelleigenschaft, aus der die Auswahl stammt, asyncResult.value.sourceProperty auf, was entweder body oder subject entspricht.
+
+
+    \[[API-Satz: Postfach 1.2](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen</td></tr></table>
+  name: getSelectedDataAsync(coerciontype, callback)
+  fullName: Outlook_1_7.Office.ItemCompose.getSelectedDataAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getSelectedDataAsync(coerciontype: Office.CoercionType, callback: (result: AsyncResult<any>) => void): void;'
+    return:
+      type:
+      - void
+      description: Die ausgewählten Daten als Zeichenfolge mit dem durch coercionType bestimmten Format.
+    parameters:
+    - id: coerciontype
+      description: ''
+      type:
+      - office.Office.CoercionType
+    - id: callback
+      description: Wenn die Methode abgeschlossen ist, wird die Funktion übergebenen Callback-Parameter mit einem einzelnen Parameter vom Typ Office.AsyncResult aufgerufen.
+      type:
+      - '(result: AsyncResult<any>) => void'
+- uid: Outlook_1_7.Office.ItemCompose.removeAttachmentAsync
+  summary: >-
+    Entfernt eine Anlage aus einer Nachricht oder einem Termin.
+
+
+    Die removeAttachmentAsync-Methode entfernt den Anhang mit dem angegebenen Bezeichner aus dem Element. Als bewährte Vorgehensweise sollten Sie den Anhangsbezeichner nur dann zum Entfernen eines Anhangs verwenden, wenn die gleiche Mail-App den Anhang in der gleichen Sitzung hinzugefügt hat. In Outlook Web App und OWA for Devices ist der Anhangsbezeichner nur innerhalb der gleichen Sitzung gültig. Eine Sitzung ist abgeschlossen, wenn der Benutzer die App schließt, oder wenn der Benutzer in einem eingebetteten Formular mit dem Verfassen beginnt und den Vorgang dann in einem separaten Fenster fortsetzt.
+
+
+    \[[API-Satz: Postfach 1.1](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen</td></tr>
+
+
+    <tr><td>Fehler</td><td>InvalidAttachmentId - Anlage-ID ist nicht vorhanden.</td></tr></table>
+
+
+    Zusätzlich zu dieser Signatur hat die-Methode auch die folgenden Signaturen:
+
+
+    `removeAttachmentAsync(attachmentIndex: string): void;`
+
+
+    `removeAttachmentAsync(attachmentIndex: string, options: Office.AsyncContextOptions): void;`
+
+
+    `removeAttachmentAsync(attachmentIndex: string, callback: (result: AsyncResult<void>) => void): void;`
+  name: removeAttachmentAsync(attachmentIndex, options, callback)
+  fullName: Outlook_1_7.Office.ItemCompose.removeAttachmentAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'removeAttachmentAsync(attachmentIndex: string, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: attachmentIndex
+      description: Der Bezeichner des Anhangs, der entfernt werden soll. Die maximale Länge der Zeichenfolge ist 100 Zeichen.
+      type:
+      - string
+    - id: options
+      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. AsyncContext: Entwickler können bereitstellen, ein Objekt, das sie in der Rückrufmethode zugreifen möchten.'
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die Funktion übergebenen Callback-Parameter mit einem einzelnen Parameter vom Typ Office.AsyncResult aufgerufen. Wenn die Anlage entfernt ein Fehler auftritt, wird die asyncResult.error-Eigenschaft einen Fehlercode mit den Grund für den Fehler enthalten.
+      type:
+      - '(result: AsyncResult<void>) => void'
+- uid: Outlook_1_7.Office.ItemCompose.saveAsync
+  summary: >-
+    Speicher asynchron ein Element. .
+
+
+    Beim Aufrufen speichert diese Methode die aktuelle Nachricht als Entwurf und  gibt die Element-ID über die Callbackmethode zurück. In Outlook Web App oder Outlook im Onlinemodus wird das Element auf dem Server gespeichert. In Outlook im Cache-Modus wird das Element im lokalen Cache gespeichert.
+
+
+    Da Termine kein Zustand Entwurf haben, wenn für einen Termin in SaveAsync aufgerufen wird Verfassenmodus, wird das Element als normale Termin auf den Kalender des Benutzers gespeichert werden. Neue Termine, die noch nicht gespeichert wurde, werden keine Einladung gesendet. Speichern von vorhandenen Termin sendet ein Update an Teilnehmer hinzugefügt oder entfernt wurden.
+
+
+    Hinweis: Wenn Ihr Add-in-Aufrufe SaveAsync für ein Element im Verfassenmodus, um eine ItemId zur Verwendung mit Exchange-Webdienste oder REST-API erhalten möchten, beachten Sie, dass wenn Outlook im Cache-Modus ist, es kann einige Zeit dauern, bevor das Element tatsächlich auf dem Server synchronisiert wird. Bis das Element synchronisiert ist, wird die Verwendung der ItemId einen Fehler zurück.
+
+
+    Hinweis: Die folgenden Clients haben unterschiedlichem Verhalten für SaveAsync Termine im Verfassenmodus:
+
+
+    - Outlook für Mac unterstützt keine SaveAsync auf einer Besprechung im Verfassenmodus. SaveAsync für eine Besprechung in Outlook für Mac aufrufen, wird einen Fehler zurückgegeben.
+
+
+    - Outlook im Web immer sendet eine Einladung oder Verfassenmodus aktualisieren, wenn für einen Termin in SaveAsync aufgerufen wird.
+
+
+    \[[API-Satz: 1.3 Postfachs](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen</td></tr>
+
+
+    <tr><td>Fehler</td><td>InvalidAttachmentId - Anlage-ID ist nicht vorhanden.</td></tr></table>
+
+
+    Zusätzlich zu dieser Signatur hat die-Methode auch die folgenden Signaturen:
+
+
+    `saveAsync(): void;`
+
+
+    `saveAsync(options: Office.AsyncContextOptions): void;`
+
+
+    `saveAsync(callback: (result: AsyncResult<void>) => void): void;`
+  name: saveAsync(options, callback)
+  fullName: Outlook_1_7.Office.ItemCompose.saveAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'saveAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: options
+      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. AsyncContext: Entwickler können bereitstellen, ein Objekt, das sie in der Rückrufmethode zugreifen möchten.'
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die Funktion übergebenen Callback-Parameter mit einem einzelnen Parameter vom Typ Office.AsyncResult aufgerufen. Wenn die Anlage entfernt ein Fehler auftritt, wird die asyncResult.error-Eigenschaft einen Fehlercode mit den Grund für den Fehler enthalten.
+      type:
+      - '(result: AsyncResult<void>) => void'
+- uid: Outlook_1_7.Office.ItemCompose.setSelectedDataAsync
+  summary: >-
+    Fügt asynchron Daten in den Textkörper oder Betreff einer Nachricht ein.
+
+
+    Die SetSelectedDataAsync-Methode fügt die angegebene Zeichenfolge an der Cursorposition im Betreff oder Textkörper des Elements oder, wenn Text im Editor ausgewählt ist, ersetzt den markierten Text. Wenn der Cursor nicht im Feld Nachrichtentext oder Betreff ist, wird ein Fehler zurückgegeben. Nach dem Einfügen wird am Ende des eingefügten Inhalt der Cursor platziert.
+
+
+    \[[API-Satz: Postfach 1.2](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen</td></tr>
+
+
+    <tr><td>Fehler</td><td>InvalidAttachmentId - Anlage-ID ist nicht vorhanden.</td></tr></table>
+
+
+    Zusätzlich zu dieser Signatur hat die-Methode auch die folgenden Signaturen:
+
+
+    `setSelectedDataAsync(data: string): void;`
+
+
+    `setSelectedDataAsync(data: string, options: Office.AsyncContextOptions &amp; CoercionTypeOptions): void;`
+
+
+    `setSelectedDataAsync(data: string, callback: (result: AsyncResult<void>) => void): void;`
+  name: setSelectedDataAsync(data, options, callback)
+  fullName: Outlook_1_7.Office.ItemCompose.setSelectedDataAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setSelectedDataAsync(data: string, options?: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: data
+      description: Die einzufügenden Daten. Die Daten dürfen 1.000.000 Zeichen nicht überschreiten. Werden mehr als 1.000.000 Zeichen übergeben, wird eine ArgumentOutOfRange-Ausnahme ausgelöst.
+      type:
+      - string
+    - id: options
+      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. AsyncContext: Entwickler können bereitstellen, ein Objekt, das sie in der Rückrufmethode zugreifen möchten. CoercionType: Wenn Text die aktuelle Formatvorlage in Outlook Web App und Outlook angewendet wird. Wenn das Feld ein HTML-Editor ist, werden nur die Textdaten eingefügt, selbst wenn es sich bei den Daten um HTML-Daten handelt. Wenn html und das Feld unterstützt HTML (nicht der Betreff), die aktuelle Formatvorlage in Outlook Web App angewendet, und das Standardformat wird in Outlook angewendet. Wenn das Feld ein Textfeld ist, wird ein InvalidDataFormat-Fehler zurückgegeben. Wenn coercionType nicht festgelegt ist, hängt das Ergebnis vom Feld ab: Ist das Feld vom Typ HTML, wird HTML verwendet; ist das Feld vom Typ Text, wird unformatierter Text verwendet.'
+      type:
+      - Office.AsyncContextOptions & CoercionTypeOptions
+    - id: callback
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die Funktion übergebenen Callback-Parameter mit einem einzelnen Parameter vom Typ Office.AsyncResult aufgerufen.
+      type:
+      - '(result: AsyncResult<void>) => void'
+- uid: Outlook_1_7.Office.ItemCompose.subject
+  summary: >-
+    Ruft die Beschreibung ab, die im Betrefffeld eines Elements angezeigt wird, oder legt sie fest.
+
+
+    Die subject-Eigenschaft ruft den gesamten Betreff des Elements ab oder legt ihn fest – so, wie er vom E-Mail-Server gesendet wird.
+
+
+    Der subject-Eigenschaft gibt ein Subject-Objekt zurück, das Methoden zum Abrufen und Festlegen des Betreffs bereitstellt.
+
+
+    \[[API-Satz: Postfach 1.0](/javascript/office/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
+  name: subject
+  fullName: Outlook_1_7.Office.ItemCompose.subject
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'subject: Subject;'
+    return:
+      type:
+      - Subject
