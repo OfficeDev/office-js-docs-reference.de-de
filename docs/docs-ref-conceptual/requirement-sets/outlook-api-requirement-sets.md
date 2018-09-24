@@ -40,6 +40,8 @@ Die folgenden Clients unterstützen Outlook-Add-Ins.
 
 | Client | Unterstützte API-Anforderungssätze |
 | --- | --- |
+| Outlook-2019 für Windows | 1.1, 1.2, 1.3, 1.4, 1,5, 1,6 |
+| 2019 von Outlook für Mac | 1.1, 1.2, 1.3, 1.4, 1,5, 1,6 |
 | Outlook 2016 (Klick-und-Los) für Windows | 1.1, 1.2, 1.3, 1.4, 1,5, 1.6, 1.7 |
 | Outlook 2016 (MSI) für Windows | 1.1, 1.2, 1.3, 1.4 |
 | Outlook 2016 für Mac | 1.1, 1.2, 1.3, 1.4, 1,5, 1,6 |
