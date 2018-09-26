@@ -78,7 +78,7 @@ Im Manifest der App muss die Berechtigung **ReadItem** angegeben sein, damit das
 Im Verfassenmodus müssen Sie die [`saveAsync`](Office.context.mailbox.item.md#saveasyncoptions-callback)-Methode aufrufen, bevor Sie das `restUrl`-Element verwenden können. Die App muss über **ReadWriteItem**-Berechtigungen verfügen, um die `saveAsync`-Methode aufzurufen.
 
 > [!NOTE]
-> Outlook-Clients für lokale Installationen von Exchange 2016 mit einer benutzerdefinierten REST-URL konfiguriert verbunden werden einen ungültigen Wert für zurückgeben `restUrl`.
+> Outlook-Clients mit der lokale Installationen von Exchange 2016 verbunden oder höher mit einer benutzerdefinierten REST-URL konfiguriert werden einen ungültigen Wert für zurückgeben `restUrl`.
 
 ##### <a name="type"></a>Typ:
 

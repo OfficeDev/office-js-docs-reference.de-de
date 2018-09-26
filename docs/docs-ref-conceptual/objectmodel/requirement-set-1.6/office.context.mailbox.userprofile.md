@@ -25,7 +25,7 @@
 ####  <a name="accounttype-string"></a>AccountType: Zeichenfolge
 
 > [!NOTE]
-> Dieser Member ist derzeit nur in unterstützten Outlook 2016 für Mac, build 16.9.1212 und höher.
+> Dieser Member wird derzeit nur in Outlook 2016 oder unterstützt höher für Mac (build 16.9.1212 oder höher).
 
 Ruft den Kontotyp des Benutzers, dem Postfach zugeordnete ab. In der folgenden Tabelle sind die möglichen Werte aufgeführt.
 

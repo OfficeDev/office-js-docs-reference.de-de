@@ -49,7 +49,7 @@ Die folgenden Clients unterstützen Outlook-Add-Ins.
 | Outlook für iPhone | 1.1, 1.2, 1.3, 1.4, 1.5 |
 | Outlook für Android | 1.1, 1.2, 1.3, 1.4, 1.5 |
 | Outlook im Web (Office 365 und Outlook.com) | 1.1, 1.2, 1.3, 1.4, 1,5, 1,6 |
-| Outlook Web App (Exchange 2013 lokal) | 1.1 |
+| Outlook Web App (Exchange 2013 lokal) | 1.1 |
 | Outlook Web App (Exchange 2016 lokal) | 1.1, 1.2. 1.3 |
 
 > [!NOTE]

@@ -2,7 +2,7 @@
 
 Anforderungssätze sind benannte Gruppen von API-Mitgliedern. Office-Add-ins anforderungssätzen im Manifest angegebenen verwenden oder eine Überprüfung zur Laufzeit verwenden, um zu bestimmen, ob ein Office-Host APIs unterstützt, die ein Add-in muss. Weitere Informationen finden Sie unter [Office-Versionen und Anforderung festgelegt](https://docs.microsoft.com/office/dev/add-ins/develop/office-versions-and-requirement-sets).
 
-Führen Sie Word-add-ins in mehreren Versionen von Office, einschließlich Office 2016 für Windows, Office für iPad, Office für Mac und Office Online. Die folgende Tabelle enthält die Word anforderungssätze, die Office-hostanwendungen, die Anforderung festgelegt, und der Build oder Version Numbers für Anwendungsbereiche unterstützen.
+Word-add-ins führen Sie über mehrere Versionen von Office, einschließlich Office 2016 oder höher für Windows, Office für iPad, Office für Mac und Office Online. Die folgende Tabelle enthält die Word anforderungssätze, die Office-hostanwendungen, die Anforderung festgelegt, und der Build oder Version Numbers für Anwendungsbereiche unterstützen.
 
 > [!NOTE]
 > Für die anforderungssätze, die als Beta gekennzeichnet sind, verwenden Sie die angegebene (oder höhere) Version von Office-Software und die Beta-Bibliothek mit dem CDN verwenden: https://appsforoffice.microsoft.com/lib/beta/hosted/office.js.

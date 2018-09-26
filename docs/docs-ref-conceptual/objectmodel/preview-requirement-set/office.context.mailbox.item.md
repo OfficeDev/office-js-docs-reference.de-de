@@ -1453,7 +1453,7 @@ Typ: Array.<(String|[Contact](/javascript/api/outlook/office.contact)|[MeetingSu
 Ruft Initialisierungsdaten ab, die übergeben werden, wenn das Add-In [durch eine Nachricht mit Aktionen aktiviert](https://docs.microsoft.com/outlook/actionable-messages/invoke-add-in-from-actionable-message) wird.
 
 > [!NOTE]
-> Diese Methode wird nur vom Outlook 2016 für Windows (größer als 16.0.8413.1000 Klick-und-Los-Versionen) und Outlook im Web für Office 365 unterstützt.
+> Diese Methode wird nur vom Outlook 2016 oder höher für Windows (höher als 16.0.8413.1000 Klick-und-Los-Versionen) und Outlook im Web für Office 365 unterstützt.
 
 ##### <a name="parameters"></a>Parameter:
 |Name|Typ|Attribute|Beschreibung|

@@ -26,7 +26,7 @@ Wenn Sie TypeScript verwenden und über npm verfügen, können Sie die TypeScrip
 
 Verwenden Sie einen Office.initialize-Ereignishandler, um Ihr Add-In auszuführen. Unter [Grundlegendes zur API](https://docs.microsoft.com/office/dev/add-ins/develop/understanding-the-javascript-api-for-office) finden Sie weitere Informationen zur Add-In-Initialisierung.
 
-Add-Ins für Word 2016 werden durch Übergeben einer Funktion an die **Word.run()**-Methode ausgeführt . Die Funktion in der **run**-Methode muss ein Kontextargument besitzen. Dieses [Kontextobjekt](/javascript/api/word/word.requestcontext) unterscheidet sich dem Kontextobjekt, das Sie aus dem Office-Objekt abrufen, obwohl es ebenfalls für die Interaktion mit der Word-Laufzeitumgebung verwendet wird. Das folgenden Beispiel zeigt, wie ein Word-Add-In mithilfe der **Word.run()**-Methode initialisiert und ausgeführt wird.
+Add-ins, die als Ziel Word 2016 oder später ausführen, indem Sie eine Funktion in der **Word.run()** -Methode übergeben. Die an die **run** -Methode übergebene Funktion benötigen eine Kontextargument. Dieses [Objekt "Context"](/javascript/api/word/word.requestcontext) unterscheidet sich das Context-Objekt, das Sie aus der Office-Objekts abrufen, aber er wird auch für die Interaktion mit der Word-Runtime-Umgebung verwendet. Das Context-Objekt ermöglicht den Zugriff auf das JavaScript-API für Word-Objektmodell. Im folgenden Beispiel wird veranschaulicht, wie initialisieren und Ausführen einer Word-add-Ins mithilfe der **Word.run()** -Methode.
 
 ```js
 (function () {

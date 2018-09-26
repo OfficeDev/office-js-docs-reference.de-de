@@ -1,6 +1,6 @@
 # <a name="excel-javascript-api-overview"></a>Excel-JavaScript-API (Übersicht)
 
-Sie können die JavaScript-APIs verwenden, um Add-Ins für Excel 2016 zu erstellen. Die folgende Liste enthält die Excel-Objekte auf hoher Ebene, die in der API verfügbar sind. Jeder Seite-Verknüpfung enthält eine Beschreibung der Eigenschaften, Ereignisse und Methoden, die für das Objekt verfügbar sind. Erkunden Sie die Links aus dem Menü, um mehr zu erfahren.
+Die JavaScript-API für Excel können zum Erstellen von Add-Ins für Excel 2016 oder höher. Die folgende Liste enthält die Excel-Objekte auf hoher Ebene, die in der API verfügbar sind. Jeder Seite-Verknüpfung enthält eine Beschreibung der Eigenschaften, Ereignisse und Methoden, die für das Objekt verfügbar sind. Erkunden Sie die Links aus dem Menü, um mehr zu erfahren.
 
 Einige der zentralen Excel-Objekte sind zur einfacheren Handhabung unten aufgeführt: 
 

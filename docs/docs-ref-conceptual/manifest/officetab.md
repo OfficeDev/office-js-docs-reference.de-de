@@ -8,9 +8,9 @@ Definiert die Registerkarte des Menübands, auf der Ihr Add-In-Befehl angezeigt 
 |:-----|:-----|:-----|
 |  Group      | Ja |  Definiert eine Gruppe von Befehlen. Sie können nur eine Gruppe pro Add-In zu der Standardregisterkarte hinzufügen.  |
 
-Nachfolgend finden Sie die gültigen `id`-Werte nach Host. **Fett formatierte** Werte werden sowohl auf dem Desktop als auch online unterstützt (z. B. Word 2016 für Windows und Word Online). 
+Nachfolgend finden Sie die gültige `id`-Werte nach Host. Werte in **Fettschrift** werden in Desktop- und online (beispielsweise Word 2016 oder höher für Windows und Word Online) unterstützt.
 
-### <a name="outlook"></a>Outlook 
+### <a name="outlook"></a>Outlook
 
 - **TabDefault**
 

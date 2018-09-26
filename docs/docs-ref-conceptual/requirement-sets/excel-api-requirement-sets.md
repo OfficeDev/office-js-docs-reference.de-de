@@ -2,7 +2,7 @@
 
 Anforderungssätze sind benannte Gruppen von API-Mitgliedern. Office-Add-ins anforderungssätzen im Manifest angegebenen verwenden oder eine Überprüfung zur Laufzeit verwenden, um zu bestimmen, ob ein Office-Host APIs unterstützt, die ein Add-in muss. Weitere Informationen finden Sie unter [Office-Versionen und Anforderung festgelegt](https://docs.microsoft.com/office/dev/add-ins/develop/office-versions-and-requirement-sets).
 
-Führen Sie Excel-add-ins in mehreren Versionen von Office, einschließlich Office 2016 für Windows, Office für iPad, Office für Mac und Office Online. Die folgende Tabelle enthält die Excel-anforderungssätze, Office-hostanwendungen, die jede Anforderungssatz und die Buildversionen unterstützt oder-Nummer Anwendungen.
+Excel-add-ins führen Sie über mehrere Versionen von Office, einschließlich Office 2016 oder höher für Windows, Office für iPad, Office für Mac und Office Online. Die folgende Tabelle enthält die Excel-anforderungssätze, Office-hostanwendungen, die jede Anforderungssatz und die Buildversionen unterstützt oder-Nummer Anwendungen.
 
 > [!NOTE]
 > Jeder API, die als **Beta** markiert ist, ist nicht für die Endbenutzer Produktion bereit. Wir stellen ihnen für Entwickler versucht, sie Auschecken in Umgebungen für Entwicklung und Test zur Verfügung. Es ist nicht vorgesehen, gegen Produktion/Business critical Dokumente verwendet werden soll.
