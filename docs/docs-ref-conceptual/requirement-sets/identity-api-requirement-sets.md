@@ -24,7 +24,7 @@ Informationen zu allgemeinen API-Anforderungssätzen finden Sie unter [Allgemein
 
 ## <a name="identityapi-11"></a>IdentityAPI 1.1 
 
-Die Single Sign-On-IdentityAPI 1.1 ist die erste Version der API. Weitere Informationen zur API finden Sie unter der `getAccessTokenAsync` -Methode in der [Office.Auth](/javascript/api/office/office.auth) Referenzthema.
+Die Single Sign-On-IdentityAPI 1.1 ist die erste Version der API. Ausführliche Informationen über diese API Siehe Abschnitt [SSO-API-Referenz](https://docs.microsoft.com/office/dev/add-ins/develop/sso-in-office-add-ins#sso-api-reference) [SSO in einem Add-in aktivieren](https://docs.microsoft.com/office/dev/add-ins/develop/sso-in-office-add-ins).
 
 ## <a name="see-also"></a>Siehe auch
 
