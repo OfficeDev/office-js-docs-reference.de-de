@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 6c616ec330f09b7d31dc22942a4a25639e73a1d4
-ms.sourcegitcommit: c1149d24b38f20daf9ce690cd0761ec1ceb7333d
+ms.openlocfilehash: 2aac9cd9cd3a0c9ab9b91f311f7637f786170cf7
+ms.sourcegitcommit: 4bbd18c863a4140ad456b859f9c0309e153e10b2
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/17/2018
-ms.locfileid: "25586276"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "25912886"
 items:
 - uid: outlook.Office.AppointmentCompose
   summary: >-
@@ -30,6 +30,7 @@ items:
   - outlook.Office.AppointmentCompose.dateTimeCreated
   - outlook.Office.AppointmentCompose.dateTimeModifed
   - outlook.Office.AppointmentCompose.end
+  - outlook.Office.AppointmentCompose.getAttachmentsAsync
   - outlook.Office.AppointmentCompose.getInitializationContextAsync
   - outlook.Office.AppointmentCompose.getSelectedDataAsync
   - outlook.Office.AppointmentCompose.itemType
@@ -207,7 +208,7 @@ items:
     Fügt einen Ereignishandler für ein unterstütztes Ereignis hinzu.
 
 
-    Derzeit sind die unterstützten Ereignistypen `Office.EventType.AppointmentTimeChanged` <!-- -->, `Office.EventType.RecipientsChanged` <!-- -->, und `Office.EventType.RecurrenceChanged` <!-- -->.
+    Derzeit sind die unterstützten Ereignistypen `Office.EventType.AppointmentTimeChanged` <!-- -->, `Office.EventType.RecipientsChanged` <!-- -->, und `Office.EventType.RecurrenceChanged` <!-- -->. In der Vorschau `Office.EventType.AttachmentsChanged` wird ebenfalls unterstützt.
 
 
     \[[API-Satz: Postfach 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -496,6 +497,34 @@ items:
     return:
       type:
       - Time
+- uid: outlook.Office.AppointmentCompose.getAttachmentsAsync
+  summary: >-
+    Ruft das Element Anlagen als ein Array ab.
+
+
+    \[[API-Satz: Postfach Preview](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: "<table><tr><td>[Minimale Berechtigung](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>\n\n<tr><td>[Zutreffend Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen</td></tr></table>\n####Beispiele für\n\n```javascript\nvar item = Office.context.mailbox.item;\nvar outputString = \"\";\nitem.getAttachmentsAsync(callback);  \nfunction callback(result) {\n    if (result.value.length > 0) {\n        for (i = 0 ; i < result.value.length ; i++) {\n            var _att = result.value [i];\n            outputString += \"<BR>\" + i + \". Name: \";\n            outputString += _att.name;\n            outputString += \"<BR>ID: \" + _att.id;\n            outputString += \"<BR>contentType: \" + _att.contentType;\n            outputString += \"<BR>size: \" + _att.size;\n            outputString += \"<BR>attachmentType: \" + _att.attachmentType;\n            outputString += \"<BR>isInline: \" + _att.isInline;\n        }\n    }\n}\n```"
+  isPreview: true
+  name: getAttachmentsAsync(options, callback)
+  fullName: outlook.Office.AppointmentCompose.getAttachmentsAsync
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getAttachmentsAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<Office.AttachmentDetails[]>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: options
+      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. AsyncContext: Entwickler können bereitstellen, ein Objekt, das sie in der Rückrufmethode zugreifen möchten.'
+      type:
+      - office.Office.AsyncContextOptions
+    - id: callback
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die Funktion übergebenen Callback-Parameter mit einem einzelnen Parameter vom Typ Office.AsyncResult aufgerufen. Wenn der Aufruf fehlschlägt, enthält die Eigenschaft asyncResult.error und Fehlercode mit den Grund für den Fehler.
+      type:
+      - '(result: AsyncResult<Office.AttachmentDetails[]>) => void'
 - uid: outlook.Office.AppointmentCompose.getInitializationContextAsync
   summary: >-
     Ruft Initialisierungsdaten ab, die übergeben werden, wenn das Add-In durch eine Nachricht mit Aktionen aktiviert wird.
@@ -830,7 +859,7 @@ items:
     Entfernt eine Anlage aus einer Nachricht oder einem Termin.
 
 
-    Die removeAttachmentAsync-Methode entfernt den Anhang mit dem angegebenen Bezeichner aus dem Element. Als bewährte Vorgehensweise sollten Sie den Anhangsbezeichner nur dann zum Entfernen eines Anhangs verwenden, wenn die gleiche Mail-App den Anhang in der gleichen Sitzung hinzugefügt hat. In Outlook Web App und OWA for Devices ist der Anhangsbezeichner nur innerhalb der gleichen Sitzung gültig. Eine Sitzung ist abgeschlossen, wenn der Benutzer die App schließt, oder wenn der Benutzer in einem eingebetteten Formular mit dem Verfassen beginnt und den Vorgang dann in einem separaten Fenster fortsetzt.
+    Die RemoveAttachmentAsync-Methode wird das Attachment-Objekt mit dem angegebenen Bezeichner aus dem Element entfernt. Als bewährte Vorgehensweise sollten Sie den Anlagenbezeichner nur dann zum Entfernen einer Anlage verwenden, wenn die gleiche Mail-App die Anlage in der gleichen Sitzung hinzugefügt hat. In Outlook Web App und OWA für Geräte ist der Anlagenbezeichner nur innerhalb der gleichen Sitzung gültig. Eine Sitzung ist vorbei, wenn der Benutzer die Anwendung schließt, oder wenn der Benutzer startet Verfassen einer Inline-Formular dann später holt, die das Formular in einem separaten Fenster fortgesetzt werden.
 
 
     \[[API-Satz: Postfach 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -901,7 +930,7 @@ items:
     Entfernt einen Ereignishandler für ein Ereignis unterstützt.
 
 
-    Derzeit sind die unterstützten Ereignistypen `Office.EventType.AppointmentTimeChanged` <!-- -->, `Office.EventType.RecipientsChanged` <!-- -->, und `Office.EventType.RecurrenceChanged` <!-- -->.
+    Derzeit sind die unterstützten Ereignistypen `Office.EventType.AppointmentTimeChanged` <!-- -->, `Office.EventType.RecipientsChanged` <!-- -->, und `Office.EventType.RecurrenceChanged` <!-- -->. In der Vorschau `Office.EventType.AttachmentsChanged` wird ebenfalls unterstützt.
 
 
     \[[API-Satz: Postfach 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -929,7 +958,7 @@ items:
       description: ''
     parameters:
     - id: eventType
-      description: Das Ereignis, das den Handler aufrufen soll
+      description: Das Ereignis, das den Handler widerrufen werden soll.
       type:
       - EventType
     - id: handler
@@ -1026,7 +1055,7 @@ items:
     `saveAsync(options: Office.AsyncContextOptions): void;`
 
 
-    `saveAsync(callback: (result: AsyncResult<void>) => void): void;`
+    `saveAsync(callback: (result: AsyncResult<string>) => void): void;`
 
     #### <a name="examples"></a>Beispiele
 
@@ -1060,7 +1089,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'saveAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    content: 'saveAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
     return:
       type:
       - void
@@ -1073,7 +1102,7 @@ items:
     - id: callback
       description: Optional. Wenn die Methode abgeschlossen ist, wird die Funktion übergebenen Callback-Parameter mit einem einzelnen Parameter vom Typ Office.AsyncResult aufgerufen.
       type:
-      - '(result: AsyncResult<void>) => void'
+      - '(result: AsyncResult<string>) => void'
 - uid: outlook.Office.AppointmentCompose.seriesId
   summary: >-
     Ruft die Id der Datenreihe, zu der eine Instanz gehört.

@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 97c669e9f4fab0a2875518d5bde7bba9ea2126aa
-ms.sourcegitcommit: c1149d24b38f20daf9ce690cd0761ec1ceb7333d
+ms.openlocfilehash: 7da2872b7646eb50e46b53a63dae749b1087ef8a
+ms.sourcegitcommit: 4bbd18c863a4140ad456b859f9c0309e153e10b2
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/17/2018
-ms.locfileid: "25590854"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "25912571"
 items:
 - uid: outlook.Office.MessageRead
   summary: >-
@@ -39,6 +39,7 @@ items:
   - outlook.Office.MessageRead.getRegExMatchesByName
   - outlook.Office.MessageRead.getSelectedEntities
   - outlook.Office.MessageRead.getSelectedRegExMatches
+  - outlook.Office.MessageRead.internetHeaders
   - outlook.Office.MessageRead.internetMessageId
   - outlook.Office.MessageRead.itemClass
   - outlook.Office.MessageRead.itemId
@@ -57,7 +58,7 @@ items:
     Fügt einen Ereignishandler für ein unterstütztes Ereignis hinzu.
 
 
-    Derzeit sind die unterstützten Ereignistypen `Office.EventType.AppointmentTimeChanged` <!-- -->, `Office.EventType.RecipientsChanged` <!-- -->, und `Office.EventType.RecurrenceChanged` <!-- -->.
+    Derzeit sind die unterstützten Ereignistypen `Office.EventType.AppointmentTimeChanged` <!-- -->, `Office.EventType.RecipientsChanged` <!-- -->, und `Office.EventType.RecurrenceChanged` <!-- -->. In der Vorschau `Office.EventType.AttachmentsChanged` wird ebenfalls unterstützt.
 
 
     \[[API-Satz: Postfach 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -102,7 +103,7 @@ items:
       - '(result: AsyncResult<void>) => void'
 - uid: outlook.Office.MessageRead.attachments
   summary: >-
-    Ruft ein Array mit Anlagen für das Element ab.
+    Ruft das Element Anlagen als ein Array ab.
 
 
     \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -918,6 +919,31 @@ items:
       type:
       - any
       description: Ein Objekt mit Arrays aus Zeichenfolgen, die den in der XML-Manifestdatei definierten regulären Ausdrücken entsprechen. Der Name der einzelnen Arrays ist gleich dem entsprechenden Wert des RegExName-Attributs der entsprechenden ItemHasRegularExpressionMatch-Regel oder des FilterName-Attributs der entsprechenden ItemHasKnownEntity-Regel.
+- uid: outlook.Office.MessageRead.internetHeaders
+  summary: >-
+    Ruft die Internetkopfzeilen einer Nachricht ab.
+
+
+    Die InternetHeaders-Eigenschaft gibt ein InternetHeaders-Objekt, das Methoden zum Verwalten von Internetkopfzeilen für die Nachricht bereitstellt.
+
+
+    \[[API-Satz: Postfach Preview](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Minimale Berechtigung](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffend Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Nachricht lesen</td></tr></table>
+  isPreview: true
+  name: internetHeaders
+  fullName: outlook.Office.MessageRead.internetHeaders
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'internetHeaders: Office.InternetHeaders;'
+    return:
+      type:
+      - outlook.Office.InternetHeaders
 - uid: outlook.Office.MessageRead.internetMessageId
   summary: >-
     Ruft die Internetnachricht-ID einer E-Mail-Nachricht ab.
@@ -1160,7 +1186,7 @@ items:
     Entfernt einen Ereignishandler für ein Ereignis unterstützt.
 
 
-    Derzeit sind die unterstützten Ereignistypen `Office.EventType.AppointmentTimeChanged` <!-- -->, `Office.EventType.RecipientsChanged` <!-- -->, und `Office.EventType.RecurrenceChanged` <!-- -->.
+    Derzeit sind die unterstützten Ereignistypen `Office.EventType.AppointmentTimeChanged` <!-- -->, `Office.EventType.RecipientsChanged` <!-- -->, und `Office.EventType.RecurrenceChanged` <!-- -->. In der Vorschau `Office.EventType.AttachmentsChanged` wird ebenfalls unterstützt.
 
 
     \[[API-Satz: Postfach 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -1188,7 +1214,7 @@ items:
       description: ''
     parameters:
     - id: eventType
-      description: Das Ereignis, das den Handler aufrufen soll
+      description: Das Ereignis, das den Handler widerrufen werden soll.
       type:
       - EventType
     - id: handler
