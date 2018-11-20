@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: ffcceea68e299775507a066e425b361cc4535d70
-ms.sourcegitcommit: c1149d24b38f20daf9ce690cd0761ec1ceb7333d
+ms.openlocfilehash: a436f6d661324462cea370ae9d717e6300c08a6d
+ms.sourcegitcommit: 016e17422cf62dc9f1de1809666e9244e41cc1a9
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/17/2018
-ms.locfileid: "25584582"
+ms.lasthandoff: 11/09/2018
+ms.locfileid: "26227170"
 items:
 - uid: word.Word.SearchOptions
   summary: >-
@@ -13,7 +13,7 @@ items:
 
     \[[API-Satz: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   name: Word.SearchOptions
-  fullName: word.Word.SearchOptions
+  fullName: Word.SearchOptions
   langs:
   - typeScript
   type: class
@@ -39,7 +39,7 @@ items:
 
     \[[API-Satz: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   name: ignorePunct
-  fullName: word.Word.SearchOptions.ignorePunct
+  fullName: ignorePunct
   langs:
   - typeScript
   type: property
@@ -55,7 +55,7 @@ items:
 
     \[[API-Satz: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   name: ignoreSpace
-  fullName: word.Word.SearchOptions.ignoreSpace
+  fullName: ignoreSpace
   langs:
   - typeScript
   type: property
@@ -68,7 +68,7 @@ items:
   summary: Warteschlangen ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen "context.sync()" aufrufen, bevor Sie die Eigenschaften lesen.
   remarks: "Zusätzlich zu dieser Signatur hat diese Methode die folgenden Signaturen:\n\n`load(option?: { select?: string; expand?: string; }): Word.SearchOptions`-Option.select ist eine durch Trennzeichen getrennte Zeichenfolge, die die Eigenschaften zum Laden gibt an, wobei options.expand ist eine durch Kommas getrennte Zeichenfolge, die Navigationseigenschaften zum Laden angibt.\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Word.SearchOptions`-Nur auf Auflistungstypen verfügbar. Es ist ähnlich wie die jeweils vorhergehende Signatur. Option.Top gibt die maximale Anzahl der Auflistungselemente, die im Ergebnis enthalten sein können. Option.Skip gibt die Anzahl der Elemente, die übersprungen und nicht in das Ergebnis eingeschlossen werden sollen. Wenn option.top angegeben wird, wird das Resultset starten, nachdem die angegebene Anzahl von Elementen übersprungen wird.\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// Ignore punctuation search\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n    \n    // Queue a command to search the document and ignore punctuation.\n    var searchResults = context.document.body.search('video you', {ignorePunct: true});\n\n    // Queue a command to load the search results and get the font property values.\n    context.load(searchResults, 'font');\n    \n    // Synchronize the document state by executing the queued commands, \n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        console.log('Found count: ' + searchResults.items.length);\n\n        // Queue a set of commands to change the font for each found item.\n        for (var i = 0; i < searchResults.items.length; i++) {\n            searchResults.items[i].font.color = 'purple';\n            searchResults.items[i].font.highlightColor = '#FFFF00'; //Yellow\n            searchResults.items[i].font.bold = true;\n        }\n        \n        // Synchronize the document state by executing the queued commands, \n        // and return a promise to indicate task completion.\n        return context.sync();\n    });  \n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Search based on a prefix\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n    \n    // Queue a command to search the document based on a prefix.\n    var searchResults = context.document.body.search('vid', {matchPrefix: true});\n\n    // Queue a command to load the search results and get the font property values.\n    context.load(searchResults, 'font');\n    \n    // Synchronize the document state by executing the queued commands, \n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        console.log('Found count: ' + searchResults.items.length);\n\n        // Queue a set of commands to change the font for each found item.\n        for (var i = 0; i < searchResults.items.length; i++) {\n            searchResults.items[i].font.color = 'purple';\n            searchResults.items[i].font.highlightColor = '#FFFF00'; //Yellow\n            searchResults.items[i].font.bold = true;\n        }\n        \n        // Synchronize the document state by executing the queued commands, \n        // and return a promise to indicate task completion.\n        return context.sync();\n    });  \n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Search based on a suffix\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n\n    // Queue a command to search the document for any string of characters after 'ly'.\n    var searchResults = context.document.body.search('ly', {matchSuffix: true});\n\n    // Queue a command to load the search results and get the font property values.\n    context.load(searchResults, 'font');\n    \n    // Synchronize the document state by executing the queued commands, \n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        console.log('Found count: ' + searchResults.items.length);\n\n        // Queue a set of commands to change the font for each found item.\n        for (var i = 0; i < searchResults.items.length; i++) {\n            searchResults.items[i].font.color = 'orange';\n            searchResults.items[i].font.highlightColor = 'black';\n            searchResults.items[i].font.bold = true;\n        }\n        \n        // Synchronize the document state by executing the queued commands, \n        // and return a promise to indicate task completion.\n        return context.sync();\n    });  \n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Search using a wildcard\n// Run a batch operation against the Word object model.\nWord.run(function (context) {\n    \n    // Queue a command to search the document with a wildcard\n    // for any string of characters that starts with 'to' and ends with 'n'.\n    var searchResults = context.document.body.search('to*n', {matchWildCards: true});\n\n    // Queue a command to load the search results and get the font property values.\n    context.load(searchResults, 'font');\n    \n    // Synchronize the document state by executing the queued commands, \n    // and return a promise to indicate task completion.\n    return context.sync().then(function () {\n        console.log('Found count: ' + searchResults.items.length);\n\n        // Queue a set of commands to change the font for each found item.\n        for (var i = 0; i < searchResults.items.length; i++) {\n            searchResults.items[i].font.color = 'purple';\n            searchResults.items[i].font.highlightColor = 'pink';\n            searchResults.items[i].font.bold = true;\n        }\n        \n        // Synchronize the document state by executing the queued commands, \n        // and return a promise to indicate task completion.\n        return context.sync();\n    });  \n})\n.catch(function (error) {\n    console.log('Error: ' + JSON.stringify(error));\n    if (error instanceof OfficeExtension.Error) {\n        console.log('Debug info: ' + JSON.stringify(error.debugInfo));\n    }\n});\n```"
   name: load(option)
-  fullName: word.Word.SearchOptions.load
+  fullName: load
   langs:
   - typeScript
   type: method
@@ -90,7 +90,7 @@ items:
 
     \[[API-Satz: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   name: matchCase
-  fullName: word.Word.SearchOptions.matchCase
+  fullName: matchCase
   langs:
   - typeScript
   type: property
@@ -106,7 +106,7 @@ items:
 
     \[[API-Satz: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   name: matchPrefix
-  fullName: word.Word.SearchOptions.matchPrefix
+  fullName: matchPrefix
   langs:
   - typeScript
   type: property
@@ -122,7 +122,7 @@ items:
 
     \[[API-Satz: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   name: matchSuffix
-  fullName: word.Word.SearchOptions.matchSuffix
+  fullName: matchSuffix
   langs:
   - typeScript
   type: property
@@ -138,7 +138,7 @@ items:
 
     \[[API-Satz: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   name: matchWholeWord
-  fullName: word.Word.SearchOptions.matchWholeWord
+  fullName: matchWholeWord
   langs:
   - typeScript
   type: property
@@ -154,7 +154,7 @@ items:
 
     \[[API-Satz: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
   name: matchWildcards
-  fullName: word.Word.SearchOptions.matchWildcards
+  fullName: matchWildcards
   langs:
   - typeScript
   type: property
@@ -165,7 +165,7 @@ items:
       - boolean
 - uid: word.Word.SearchOptions.matchWildCards
   name: matchWildCards
-  fullName: word.Word.SearchOptions.matchWildCards
+  fullName: matchWildCards
   langs:
   - typeScript
   type: property
@@ -177,7 +177,7 @@ items:
 - uid: word.Word.SearchOptions.newObject
   summary: Erstellt eine neue Instanz des Word.SearchOptions-Objekts
   name: newObject(context)
-  fullName: word.Word.SearchOptions.newObject
+  fullName: newObject
   langs:
   - typeScript
   type: method
@@ -194,7 +194,7 @@ items:
       - office.OfficeExtension.ClientRequestContext
 - uid: word.Word.SearchOptions.toJSON
   name: toJSON()
-  fullName: word.Word.SearchOptions.toJSON
+  fullName: toJSON
   langs:
   - typeScript
   type: method
