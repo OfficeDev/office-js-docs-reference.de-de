@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 38f301ce9182fbc761b3e867b6d3988a48db3210
-ms.sourcegitcommit: 3771b97cffd6e0510fd4e9c6288db696cd0c0ca9
+ms.openlocfilehash: c1e79f8060a2a13892185357fe51cd29e3a2a692
+ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/30/2018
-ms.locfileid: "26994891"
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "28724745"
 items:
 - uid: excel.Excel.DataValidation
   summary: >-
@@ -22,6 +22,7 @@ items:
   package: excel
   children:
   - excel.Excel.DataValidation.clear
+  - excel.Excel.DataValidation.context
   - excel.Excel.DataValidation.errorAlert
   - excel.Excel.DataValidation.ignoreBlanks
   - excel.Excel.DataValidation.load
@@ -32,7 +33,7 @@ items:
   - excel.Excel.DataValidation.valid
 - uid: excel.Excel.DataValidation.clear
   summary: >-
-    Löscht die Überprüfung aus dem aktuellen Bereich.
+    Löscht die Datenüberprüfung aus dem aktuellen Bereich.
 
 
     \[[API-Satz: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -47,6 +48,18 @@ items:
       type:
       - void
       description: ''
+- uid: excel.Excel.DataValidation.context
+  summary: Der Anforderungskontext-zugeordnet. Dadurch wird das Add-in Prozess mit der Office-hostanwendung Prozess verbunden.
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: excel.Excel.DataValidation.errorAlert
   summary: >-
     Fehlermeldung, wenn Benutzer ungültige Daten eingibt.
@@ -66,7 +79,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Decision\");\n    const commentsRange = \n        sheet.tables.getItem(\"NameOptionsTable\").columns.getItem(\"Comments\").getDataBodyRange();\n\n    // When you are developing, it is a good practice to\n    // clear the dataValidation object with each run of your code.\n    commentsRange.dataValidation.clear();   \n\n    // If the value of A2 is contained in the value of C2, then \n    // SEARCH(A2,C2) returns the number where it begins. Otherwise,\n    // it does not return a number.\n    let redundantStringRule = {\n        custom: {\n            formula: \"=NOT(ISNUMBER(SEARCH(A2,C2)))\"\n        }\n    };\n    commentsRange.dataValidation.rule = redundantStringRule;\n    commentsRange.dataValidation.errorAlert = {\n        message: \"It is redundant to include the baby name in the comment.\",\n        showAlert: true,\n        style: \"Information\",\n        title: \"Baby Name in Comment\"\n    };\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.DataValidation.ignoreBlanks
   summary: >-
-    Leerzeichen ignorieren: keine datenüberprüfung auf leere Zellen erfolgt, wird standardmäßig auf "true".
+    Leere Zellen ignorieren: Es wird keine Datenüberprüfung für leere Zellen durchgeführt. Die Eigenschaft ist standardmäßig auf „true“ festgelegt.
 
 
     \[[API-Satz: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -139,6 +152,7 @@ items:
       type:
       - excel.Excel.DataValidationRule
 - uid: excel.Excel.DataValidation.toJSON
+  summary: Überschreibt das JavaScript `toJSON()` Methode, um nützliche Ausgabe zu gewährleisten, wenn ein API-Objekt zu übergeben ist `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, wiederum die `toJSON` -Methode des Objekts, das es übergeben wird.) Das ursprüngliche Excel.DataValidation-Objekt ist ein API-Objekt der `toJSON` -Methode gibt eine einfache JavaScript-Objekt zurück (als `Excel.Interfaces.DataValidationData` <!-- -->), die flache Kopien der geladene untergeordnete Eigenschaften aus dem ursprünglichen-Objekt enthält.
   name: toJSON()
   fullName: toJSON
   langs:
@@ -152,7 +166,7 @@ items:
       description: ''
 - uid: excel.Excel.DataValidation.type
   summary: >-
-    Geben Sie die Überprüfung, Excel.DataValidationType Einzelheiten finden Sie unter.
+    Informationen zum Typ der Datenüberprüfung finden Sie unter Excel.DataValidationType.
 
 
     \[[API-Satz: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -168,7 +182,7 @@ items:
       - Excel.DataValidationType | "None" | "WholeNumber" | "Decimal" | "List" | "Date" | "Time" | "TextLength" | "Custom" | "Inconsistent" | "MixedCriteria"
 - uid: excel.Excel.DataValidation.valid
   summary: >-
-    Stellt dar, wenn alle Zellwerte entsprechend der Regeln für die Validierung gültig sind. Gibt true zurück, wenn alle Zellwerte sind ungültig, oder false, wenn alle Zellwerte ungültig sind. Gibt null zurück, wenn beide Zellenwerte gültige und ungültige innerhalb des Bereichs vorhanden sind.
+    Gibt an, ob alle Zellwerte entsprechend den Datenüberprüfungsregeln gültig sind. Gibt true zurück, wenn alle Zellwerte sind ungültig, oder false, wenn alle Zellwerte ungültig sind. Gibt null zurück, wenn beide Zellenwerte gültige und ungültige innerhalb des Bereichs vorhanden sind.
 
 
     \[[API-Satz: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]

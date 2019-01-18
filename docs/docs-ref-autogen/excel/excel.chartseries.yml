@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: d80c2b5614e70b2f7bc3d2d5b76c5ef005934184
-ms.sourcegitcommit: 3771b97cffd6e0510fd4e9c6288db696cd0c0ca9
+ms.openlocfilehash: 89607844254d949746bb049f3571256a51318f54
+ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/30/2018
-ms.locfileid: "26996627"
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "28724948"
 items:
 - uid: excel.Excel.ChartSeries
   summary: >-
@@ -23,6 +23,7 @@ items:
   children:
   - excel.Excel.ChartSeries.axisGroup
   - excel.Excel.ChartSeries.chartType
+  - excel.Excel.ChartSeries.context
   - excel.Excel.ChartSeries.dataLabels
   - excel.Excel.ChartSeries.delete
   - excel.Excel.ChartSeries.doughnutHoleSize
@@ -54,7 +55,7 @@ items:
   - excel.Excel.ChartSeries.varyByCategories
 - uid: excel.Excel.ChartSeries.axisGroup
   summary: >-
-    Zurückgeben oder festlegen die Gruppe für die angegebene Datenreihe. Lesen/Schreiben
+    Gibt die Gruppe für die angegebene Datenreihe zurück, oder legt diese fest. Lesen/Schreiben
 
 
     \[[API-Satz: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -70,7 +71,7 @@ items:
       - Excel.ChartAxisGroup | "Primary" | "Secondary"
 - uid: excel.Excel.ChartSeries.chartType
   summary: >-
-    Stellt den Diagrammtyp einer Reihe an. Einzelheiten finden Sie unter Excel.ChartType.
+    Stellt den Diagrammtyp einer Reihe dar. Einzelheiten finden Sie unter Excel.ChartType.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -84,9 +85,21 @@ items:
     return:
       type:
       - Excel.ChartType | "Invalid" | "ColumnClustered" | "ColumnStacked" | "ColumnStacked100" | "3DColumnClustered" | "3DColumnStacked" | "3DColumnStacked100" | "BarClustered" | "BarStacked" | "BarStacked100" | "3DBarClustered" | "3DBarStacked" | "3DBarStacked100" | "LineStacked" | "LineStacked100" | "LineMarkers" | "LineMarkersStacked" | "LineMarkersStacked100" | "PieOfPie" | "PieExploded" | "3DPieExploded" | "BarOfPie" | "XYScatterSmooth" | "XYScatterSmoothNoMarkers" | "XYScatterLines" | "XYScatterLinesNoMarkers" | "AreaStacked" | "AreaStacked100" | "3DAreaStacked" | "3DAreaStacked100" | "DoughnutExploded" | "RadarMarkers" | "RadarFilled" | "Surface" | "SurfaceWireframe" | "SurfaceTopView" | "SurfaceTopViewWireframe" | "Bubble" | "Bubble3DEffect" | "StockHLC" | "StockOHLC" | "StockVHLC" | "StockVOHLC" | "CylinderColClustered" | "CylinderColStacked" | "CylinderColStacked100" | "CylinderBarClustered" | "CylinderBarStacked" | "CylinderBarStacked100" | "CylinderCol" | "ConeColClustered" | "ConeColStacked" | "ConeColStacked100" | "ConeBarClustered" | "ConeBarStacked" | "ConeBarStacked100" | "ConeCol" | "PyramidColClustered" | "PyramidColStacked" | "PyramidColStacked100" | "PyramidBarClustered" | "PyramidBarStacked" | "PyramidBarStacked100" | "PyramidCol" | "3DColumn" | "Line" | "3DLine" | "3DPie" | "Pie" | "XYScatter" | "3DArea" | "Area" | "Doughnut" | "Radar" | "Histogram" | "Boxwhisker" | "Pareto" | "RegionMap" | "Treemap" | "Waterfall" | "Sunburst" | "Funnel"
+- uid: excel.Excel.ChartSeries.context
+  summary: Der Anforderungskontext-zugeordnet. Dadurch wird das Add-in Prozess mit der Office-hostanwendung Prozess verbunden.
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: excel.Excel.ChartSeries.dataLabels
   summary: >-
-    Eine Auflistung aller DataLabel in der Datenreihe darstellt.
+    Eine Sammlung aller dataLabels-Objekte in der Datenreihe.
 
 
     \[[API-Satz: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -102,7 +115,7 @@ items:
       - excel.Excel.ChartDataLabels
 - uid: excel.Excel.ChartSeries.delete
   summary: >-
-    Löscht die Diagrammdatenreihe.
+    Löscht die Diagrammreihen.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -119,7 +132,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\nawait Excel.run(async (context) => {\n  const sheet = context.workbook.worksheets.getItem(\"Sample\");\n  const seriesCollection = sheet.charts.getItemAt(0).series;\n  seriesCollection.load(\"count\");\n  await context.sync();\n\n  if (seriesCollection.count > 0) {\n    const series = seriesCollection.getItemAt(0);\n\n    // Delete the first series.\n    series.delete();\n  }\n\n  await context.sync();\n});\n```"
 - uid: excel.Excel.ChartSeries.doughnutHoleSize
   summary: >-
-    Stellt die Innenringgröße von einer Diagrammdatenreihe dar. Gilt nur für Diagramme Ring und DoughnutExploded. Löst eine Ausnahme Ungültiges Argument auf ungültige Diagramme.
+    Stellt die Innenringgröße einer Diagrammreihe dar. Gilt nur für Ring- und DoughnutExploded-Diagramme. Löst eine Ausnahme Ungültiges Argument auf ungültige Diagramme.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -135,7 +148,7 @@ items:
       - number
 - uid: excel.Excel.ChartSeries.explosion
   summary: >-
-    Zurückgeben oder festlegen den Explosionswert für Kreis- oder Ringsegments Segments. Gibt 0 (null) zurück, wenn keine Explosion vorhanden ist (die Spitze des Segments ist in der Mitte des Diagramms). Lese-/Schreibzugriff.
+    Gibt den Explosionswert für ein Kreisdiagramm- oder Ringdiagrammsegment zurück, oder legt diesen fest. Gibt 0 (null) zurück, wenn keine Explosion vorliegt (die Spitze des Segments befindet sich in der Mitte des Kreisdiagramms). Lese-/Schreibzugriff.
 
 
     \[[API-Satz: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -151,7 +164,7 @@ items:
       - number
 - uid: excel.Excel.ChartSeries.filtered
   summary: >-
-    Boolescher Wert, wenn die Datenreihe oder nicht gefiltert wird. Nicht zutreffend für Fläche Diagramme.
+    Boolescher Wert, der angibt, ob die Reihe gefiltert ist oder nicht. Gilt nicht für Oberflächendiagramme.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -167,7 +180,7 @@ items:
       - boolean
 - uid: excel.Excel.ChartSeries.firstSliceAngle
   summary: >-
-    Zurückgeben oder festlegen den Winkel des ersten Kreis- oder Ringsegments Segments in Grad (vertikal im Uhrzeigersinn). Gilt nur für Kreis-, 3-d Kreis- und Ringdiagrammen. Ein Wert zwischen 0 und 360 kann sein. Lesen/Schreiben
+    Gibt den Winkel des ersten Kreisdiagramm- oder Ringdiagrammsegments in Grad (ab vertikal im Uhrzeigersinn) zurück, oder legt diesen fest. Gilt nur für Kreis-, 3D-Kreis- und Ringdiagramme. Dies kann ein Wert von 0 bis 360 sein. Lesen/Schreiben
 
 
     \[[API-Satz: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -199,7 +212,7 @@ items:
       - excel.Excel.ChartSeriesFormat
 - uid: excel.Excel.ChartSeries.gapWidth
   summary: >-
-    Stellt den Abstand von einer Diagrammdatenreihe dar. Gilt nur für häufig verwendete Hyperlinks und Spalte Diagramme als auch bestimmte Klassen von Linien- und Kreisdiagramme. Löst eine Ausnahme Ungültiges Argument auf ungültige Diagramme.
+    Stellt die Abstandsbreite einer Diagrammreihe dar. Gilt nur für häufig verwendete Hyperlinks und Spalte Diagramme als auch bestimmte Klassen von Linien- und Kreisdiagramme. Löst eine Ausnahme Ungültiges Argument auf ungültige Diagramme.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -215,7 +228,7 @@ items:
       - number
 - uid: excel.Excel.ChartSeries.hasDataLabels
   summary: >-
-    Boolescher Wert, wenn die Datenreihe datenbeschriftungen oder nicht aufweist.
+    Boolescher Wert, der angibt, ob die Reihe über Datenbeschriftungen verfügt oder nicht.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -231,7 +244,7 @@ items:
       - boolean
 - uid: excel.Excel.ChartSeries.invertIfNegative
   summary: >-
-    True, wenn Microsoft Excel das Muster im Element invertiert, wenn es eine negative Zahl entspricht. Lese-/Schreibzugriff.
+    True, wenn Microsoft Excel das Muster im Element umkehrt, wenn es einer negativen Zahl entspricht. Lese-/Schreibzugriff.
 
 
     \[[API-Satz: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -266,7 +279,7 @@ items:
       - string | string[]
 - uid: excel.Excel.ChartSeries.markerBackgroundColor
   summary: >-
-    Stellt Markierungen Hintergrundfarbe einer Diagrammdatenreihe dar.
+    Stellt die Hintergrundfarbe des Markers einer Diagrammreihe dar.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -283,7 +296,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\nawait Excel.run(async (context) => {\n    let sheet = context.workbook.worksheets.getItem(\"Sample\");\n    let salesTable = sheet.tables.getItem(\"SalesTable\");\n    let dataRange = sheet.getRange(\"A1:E7\");\n\n    // Create an XY scatter chart.\n    let chart = sheet.charts.add(\"XYScatterSmooth\", dataRange, \"Auto\");\n    chart.title.text = \"Bicycle Parts Quarterly Sales\"; \n  \n    let series = chart.series;\n    let series0 = series.getItemAt(0);\n    let series1 = series.getItemAt(1);\n    let series2 = series.getItemAt(2);\n    let series3 = series.getItemAt(3);\n\n    // Set markers.\n    series0.markerStyle = \"Dash\";\n    series0.markerForegroundColor = \"black\";\n    series1.markerStyle = \"Star\";\n    series1.markerForegroundColor = \"black\";\n    series2.markerStyle = \"X\";\n    series2.markerSize = 12;\n    series3.markerStyle = \"Triangle\";\n    series3.markerBackgroundColor = \"purple\";\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.ChartSeries.markerForegroundColor
   summary: >-
-    Markierungen Vordergrundfarbe einer diagrammserie darstellt.
+    Stellt die Vordergrundfarbe des Markers einer Diagrammreihe dar.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -300,7 +313,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\nawait Excel.run(async (context) => {\n    let sheet = context.workbook.worksheets.getItem(\"Sample\");\n    let salesTable = sheet.tables.getItem(\"SalesTable\");\n    let dataRange = sheet.getRange(\"A1:E7\");\n\n    // Create an XY scatter chart.\n    let chart = sheet.charts.add(\"XYScatterSmooth\", dataRange, \"Auto\");\n    chart.title.text = \"Bicycle Parts Quarterly Sales\"; \n  \n    let series = chart.series;\n    let series0 = series.getItemAt(0);\n    let series1 = series.getItemAt(1);\n    let series2 = series.getItemAt(2);\n    let series3 = series.getItemAt(3);\n\n    // Set markers.\n    series0.markerStyle = \"Dash\";\n    series0.markerForegroundColor = \"black\";\n    series1.markerStyle = \"Star\";\n    series1.markerForegroundColor = \"black\";\n    series2.markerStyle = \"X\";\n    series2.markerSize = 12;\n    series3.markerStyle = \"Triangle\";\n    series3.markerBackgroundColor = \"purple\";\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.ChartSeries.markerSize
   summary: >-
-    Stellt die Größe von einer Diagrammdatenreihe dar.
+    Stellt die Markergröße einer Diagrammreihe dar.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -317,7 +330,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\nawait Excel.run(async (context) => {\n    let sheet = context.workbook.worksheets.getItem(\"Sample\");\n    let salesTable = sheet.tables.getItem(\"SalesTable\");\n    let dataRange = sheet.getRange(\"A1:E7\");\n\n    // Create an XY scatter chart.\n    let chart = sheet.charts.add(\"XYScatterSmooth\", dataRange, \"Auto\");\n    chart.title.text = \"Bicycle Parts Quarterly Sales\"; \n  \n    let series = chart.series;\n    let series0 = series.getItemAt(0);\n    let series1 = series.getItemAt(1);\n    let series2 = series.getItemAt(2);\n    let series3 = series.getItemAt(3);\n\n    // Set markers.\n    series0.markerStyle = \"Dash\";\n    series0.markerForegroundColor = \"black\";\n    series1.markerStyle = \"Star\";\n    series1.markerForegroundColor = \"black\";\n    series2.markerStyle = \"X\";\n    series2.markerSize = 12;\n    series3.markerStyle = \"Triangle\";\n    series3.markerBackgroundColor = \"purple\";\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.ChartSeries.markerStyle
   summary: >-
-    Stellt die Art der Markierung von einer Diagrammdatenreihe dar. Einzelheiten finden Sie unter Excel.ChartMarkerStyle.
+    Stellt den Markerstil einer Diagrammreihe dar. Einzelheiten finden Sie unter Excel.ChartMarkerStyle.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -350,7 +363,7 @@ items:
       - string
 - uid: excel.Excel.ChartSeries.overlap
   summary: >-
-    Gibt an, wie Balken und Spalten angeordnet sind. Ein Wert zwischen – 100 und 100 kann sein. Gilt nur für 2D-Diagramme Balken und 2 2D-Säulendiagramme. Lese-/Schreibzugriff.
+    Gibt an, wie Balken und Spalten angeordnet sind. Ein Wert zwischen – 100 und 100 kann sein. Gilt nur für 2D-Balken- und 2D-Säulendiagramme. Lese-/Schreibzugriff.
 
 
     \[[API-Satz: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -366,7 +379,7 @@ items:
       - number
 - uid: excel.Excel.ChartSeries.plotOrder
   summary: >-
-    Die Reihenfolge der Zeichnungsflächen einer diagrammserie in der Diagrammgruppe darstellt.
+    Stellt die Darstellungsfolge einer Diagrammreihe in einer Diagrammgruppe dar.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -398,7 +411,7 @@ items:
       - excel.Excel.ChartPointsCollection
 - uid: excel.Excel.ChartSeries.secondPlotSize
   summary: >-
-    Zurückgeben oder Festlegen der Größe des sekundären Abschnitts entweder ein Kreis-aus-Kreis oder Balken-aus-Kreis-Diagramms als Prozentsatz der Größe des primären Kreises. Ein Wert zwischen 5 und 200 kann sein. Lese-/Schreibzugriff.
+    Gibt die Größe des sekundären Abschnitts eines Kreises aus einem Kreisdiagramm oder eines Balkens aus einem Kreisdiagramm als Prozentsatz der Größe des primären Kreises zurück, oder legt diese fest. Dies kann ein Wert von 5 bis 200 sein. Lese-/Schreibzugriff.
 
 
     \[[API-Satz: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -414,7 +427,7 @@ items:
       - number
 - uid: excel.Excel.ChartSeries.setBubbleSizes
   summary: >-
-    Legen Sie die Größe der Blasen für einer Diagrammdatenreihe dar. Funktioniert nur für Blasendiagramme.
+    Legt die Blasengrößen für eine Diagrammreihe fest. Funktioniert nur für Blasendiagramme.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -436,7 +449,7 @@ items:
       - Range
 - uid: excel.Excel.ChartSeries.setValues
   summary: >-
-    Legen Sie Werte für einer Diagrammdatenreihe dar. Für Punkt (XY)-Diagramm bedeutet dies Y-Achsen-Werten.
+    Legt die Werte für eine Diagrammreihe fest. Für Punktdiagramme sind dies die Y-Achsen-Werte.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -458,7 +471,7 @@ items:
       - Range
 - uid: excel.Excel.ChartSeries.setXAxisValues
   summary: >-
-    Legen Sie die Werte der X-Achse für einer Diagrammdatenreihe dar. Funktioniert nur für Punkt (XY)-Diagramme.
+    Legt die Werte für die X-Achse einer Diagrammreihe fest. Funktioniert nur bei Punktdiagrammen.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -496,7 +509,7 @@ items:
       - boolean
 - uid: excel.Excel.ChartSeries.smooth
   summary: >-
-    Boolescher Wert, wenn die Datenreihe reibungslose oder nicht ist. Gilt nur für Linien- und Punkt (XY).
+    Boolescher Wert, der angibt, ob die Reihe glatt ist oder nicht. Gilt nur für Linien- und Punkt (XY).
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -512,7 +525,7 @@ items:
       - boolean
 - uid: excel.Excel.ChartSeries.splitType
   summary: >-
-    Gibt zurück oder legt fest, die ein Kreis-aus-Kreis oder Balken-aus-Kreis-Diagramms geteilt werden wie. Lese-/Schreibzugriff.
+    Gibt die Aufteilung zweier Abschnitte eines Kreises aus einem Kreisdiagramm oder einer Balkens aus einem Kreisdiagramm zurück, oder legt diese fest. Lese-/Schreibzugriff.
 
 
     \[[API-Satz: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -522,11 +535,12 @@ items:
   - typeScript
   type: property
   syntax:
-    content: 'splitType: "SplitByPosition" | "SplitByValue" | "SplitByPercentValue" | "SplitByCustomSplit";'
+    content: 'splitType: Excel.ChartSplitType | "SplitByPosition" | "SplitByValue" | "SplitByPercentValue" | "SplitByCustomSplit";'
     return:
       type:
-      - "\"SplitByPosition\" | \"SplitByValue\" | \"SplitByPercentValue\" | \"SplitByCustomSplit\""
+      - Excel.ChartSplitType | "SplitByPosition" | "SplitByValue" | "SplitByPercentValue" | "SplitByCustomSplit"
 - uid: excel.Excel.ChartSeries.toJSON
+  summary: Überschreibt das JavaScript `toJSON()` Methode, um nützliche Ausgabe zu gewährleisten, wenn ein API-Objekt zu übergeben ist `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, wiederum die `toJSON` -Methode des Objekts, das es übergeben wird.) Das ursprüngliche Excel.ChartSeries-Objekt ist ein API-Objekt der `toJSON` -Methode gibt eine einfache JavaScript-Objekt zurück (als `Excel.Interfaces.ChartSeriesData` <!-- -->), die flache Kopien der geladene untergeordnete Eigenschaften aus dem ursprünglichen-Objekt enthält.
   name: toJSON()
   fullName: toJSON
   langs:
@@ -540,7 +554,7 @@ items:
       description: ''
 - uid: excel.Excel.ChartSeries.trendlines
   summary: >-
-    Stellt eine Auflistung von Trendlinien der Datenreihe. Schreibgeschützt.
+    Stellt eine Sammlung aller Trendlinien in der Reihe dar. Schreibgeschützt.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -556,7 +570,7 @@ items:
       - excel.Excel.ChartTrendlineCollection
 - uid: excel.Excel.ChartSeries.varyByCategories
   summary: >-
-    True, wenn Microsoft Excel jeden Datenpunkt eine andere Farbe oder ein Muster zuweist. Das Diagramm darf nur eine Datenreihe enthalten. Lese-/Schreibzugriff.
+    True, wenn Microsoft Excel jeder Datendarstellung eine Farbe oder ein Muster zuweist. Das Diagramm darf nur eine Datenreihe enthalten. Lese-/Schreibzugriff.
 
 
     \[[API-Satz: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]

@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 88b480928cb80e07541362126634363124f819fe
-ms.sourcegitcommit: 3771b97cffd6e0510fd4e9c6288db696cd0c0ca9
+ms.openlocfilehash: 92d8c7c86435564093bdf0c639aeead2e374089e
+ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/30/2018
-ms.locfileid: "26994577"
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "28725361"
 items:
 - uid: excel.Excel.RangeFormat
   summary: >-
@@ -25,6 +25,7 @@ items:
   - excel.Excel.RangeFormat.autofitRows
   - excel.Excel.RangeFormat.borders
   - excel.Excel.RangeFormat.columnWidth
+  - excel.Excel.RangeFormat.context
   - excel.Excel.RangeFormat.fill
   - excel.Excel.RangeFormat.font
   - excel.Excel.RangeFormat.horizontalAlignment
@@ -103,6 +104,18 @@ items:
     return:
       type:
       - number
+- uid: excel.Excel.RangeFormat.context
+  summary: Der Anforderungskontext-zugeordnet. Dadurch wird das Add-in Prozess mit der Office-hostanwendung Prozess verbunden.
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: excel.Excel.RangeFormat.fill
   summary: >-
     Gibt das Fill-Objekt an, das für den gesamten Bereich definiert ist. Schreibgeschützt.
@@ -204,7 +217,7 @@ items:
       - number
 - uid: excel.Excel.RangeFormat.textOrientation
   summary: >-
-    Ruft ab oder legt die Ausrichtung von Text aller Zellen innerhalb des Bereichs. Die Ausrichtung von Text sollte eine ganze Zahl von-90 bis 90 oder 180 für Text vertikal ausgerichtet. Wenn die Ausrichtung des innerhalb eines Bereichs nicht uniform sind, wird Null zurückgegeben.
+    Ruft die Ausrichtung von Text für alle Zellen innerhalb des Bereichs an oder legt diese fest. Die Ausrichtung von Text sollte eine ganze Zahl von-90 bis 90 oder 180 für Text vertikal ausgerichtet. Wenn die Ausrichtung des innerhalb eines Bereichs nicht uniform sind, wird Null zurückgegeben.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -220,6 +233,7 @@ items:
       - number
       description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B2:E2\");\n\n    // Set textOrientation to either an integer between -90 and 90\n    // or to 180 for vertically-oriented text.\n    range.format.textOrientation = 90;\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.RangeFormat.toJSON
+  summary: Überschreibt das JavaScript `toJSON()` Methode, um nützliche Ausgabe zu gewährleisten, wenn ein API-Objekt zu übergeben ist `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, wiederum die `toJSON` -Methode des Objekts, das es übergeben wird.) Das ursprüngliche Excel.RangeFormat-Objekt ist ein API-Objekt der `toJSON` -Methode gibt eine einfache JavaScript-Objekt zurück (als `Excel.Interfaces.RangeFormatData` <!-- -->), die flache Kopien der geladene untergeordnete Eigenschaften aus dem ursprünglichen-Objekt enthält.
   name: toJSON()
   fullName: toJSON
   langs:
@@ -233,7 +247,7 @@ items:
       description: ''
 - uid: excel.Excel.RangeFormat.useStandardHeight
   summary: >-
-    Bestimmt, ob die Zeilenhöhe des Range-Objekts die Standardhöhe für das Blatt übereinstimmt. Gibt True zurück, wenn die Zeilenhöhe des Range-Objekts die Standardhöhe für das Blatt übereinstimmt. Gibt Null zurück, wenn der Bereich mehr als eine Zeile enthält und die Zeilen werden nicht alle dieselbe Höhe. Andernfalls wird False zurückgegeben.
+    Legt fest, ob die Zeilenhöhe des Bereichsobjekts mit der Standardhöhe des Blatts übereinstimmt. Gibt True zurück, wenn die Zeilenhöhe des Range-Objekts die Standardhöhe für das Blatt übereinstimmt. Gibt Null zurück, wenn der Bereich mehr als eine Zeile enthält und die Zeilen werden nicht alle dieselbe Höhe. Andernfalls wird False zurückgegeben.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]

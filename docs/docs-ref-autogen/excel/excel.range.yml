@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 0113e19fe75f6a676740174afd9f8d42681f847a
-ms.sourcegitcommit: c12dfe8b909dec25d284f5254d97bd6478823b8f
+ms.openlocfilehash: 8538878d7c5ae5deb7dd090b3760f6eaf146efed
+ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "27243464"
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "28724962"
 items:
 - uid: excel.Excel.Range
   summary: >-
@@ -31,6 +31,7 @@ items:
   - excel.Excel.Range.columnHidden
   - excel.Excel.Range.columnIndex
   - excel.Excel.Range.conditionalFormats
+  - excel.Excel.Range.context
   - excel.Excel.Range.dataValidation
   - excel.Excel.Range.delete
   - excel.Excel.Range.format
@@ -235,9 +236,21 @@ items:
     return:
       type:
       - excel.Excel.ConditionalFormatCollection
+- uid: excel.Excel.Range.context
+  summary: Der Anforderungskontext-zugeordnet. Dadurch wird das Add-in Prozess mit der Office-hostanwendung Prozess verbunden.
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: excel.Excel.Range.dataValidation
   summary: >-
-    Gibt ein Data Validation-Objekt zurück.
+    Gibt ein Datenüberprüfungsobjekt zurück.
 
 
     \[[API-Satz: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -339,7 +352,7 @@ items:
       - any[][]
 - uid: excel.Excel.Range.getAbsoluteResizedRange
   summary: >-
-    Ruft ein Range-Objekt mit der gleichen linke obere Zelle als das aktuelle Range-Objekt, wobei jedoch die angegebene Anzahl von Zeilen und Spalten ab.
+    Ruft ein Bereichsobjekt ab, das die gleiche Zelle oben links aufweist wie das aktuelle Bereichsobjekt, jedoch über eine angegebene Anzahl von Reihen uns Spalten verfügt.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -743,7 +756,7 @@ items:
       - number
 - uid: excel.Excel.Range.getSurroundingRegion
   summary: >-
-    Gibt ein Range-Objekt, das die umgebende Region für die linke obere Zelle in diesem Bereich darstellt. Ein umgebenden Bereich ist ein Bereich, der durch eine beliebige Kombination leere Zeilen und leere Spalten relativ zu diesem Bereich begrenzt.
+    Gibt ein Bereichsobjekt zurück, das die umgebenden Region für die Zelle oben links in diesem Bereich darstellt. Eine umgebende Region ist ein Bereich, der von einer Kombination von leeren Zeilen und leeren Spalten relativ zu diesem Bereich begrenzt wird.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -876,7 +889,7 @@ items:
       - excel.Excel.InsertShiftDirection
 - uid: excel.Excel.Range.isEntireColumn
   summary: >-
-    Stellt dar, wenn der aktuelle Bereich eine ganze Spalte ist. Schreibgeschützt.
+    Gibt an, ob der angegebene Bereich eine ganze Spalte ist. Schreibgeschützt.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -892,7 +905,7 @@ items:
       - boolean
 - uid: excel.Excel.Range.isEntireRow
   summary: >-
-    Stellt dar, wenn der aktuelle Bereich eine ganze Zeile ist. Schreibgeschützt.
+    Gibt an, ob der angegebene Bereich eine ganze Zeile ist. Schreibgeschützt.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -965,7 +978,7 @@ items:
       - any[][]
 - uid: excel.Excel.Range.numberFormatLocal
   summary: >-
-    Excel Zahlenformat für den angegebenen Bereich als eine Zeichenfolge in der Sprache des Benutzers dargestellt wird. Beim Zahlenformat lokalen auf einen Bereich festlegen, kann das Argument Value entweder ein einzelner Wert (Zeichenfolge) oder ein zweidimensionales Array sein. Wenn das Argument einen single-Wert ist, wird diese auf alle Zellen im Bereich angewendet werden.
+    Stellt den Zahlenformatcode in Excel für einen bestimmten Bereich als Zeichenfolge in der Sprache des Benutzers dar. Beim Zahlenformat lokalen auf einen Bereich festlegen, kann das Argument Value entweder ein einzelner Wert (Zeichenfolge) oder ein zweidimensionales Array sein. Wenn das Argument einen single-Wert ist, wird diese auf alle Zellen im Bereich angewendet werden.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1046,7 +1059,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) {\n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"F5:F10\"; \n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);\n    range.select();\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
 - uid: excel.Excel.Range.showCard
   summary: >-
-    Zeigt die Visitenkarte für eine aktive Zelle rich Inhalt verfügt.
+    Zeigt die Karte für eine aktive Zelle an, wenn sie einen hohen Wertinhalt hat.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1079,7 +1092,7 @@ items:
       - excel.Excel.RangeSort
 - uid: excel.Excel.Range.style
   summary: >-
-    Das Format des aktuellen Bereichs darstellt. Wenn die Formate der Zellen inkonsistent sind, wird Null zurückgegeben. Für benutzerdefinierte Formatvorlagen wird der Name der Formatvorlage zurückgegeben werden soll. Bei integrierten Formatvorlagen wird eine Zeichenfolge zur Darstellung eines Werts in der BuiltInStyle-Enumeration zurückgegeben werden soll.
+    Stellt die Formatvorlage des aktuellen Bereichs dar. Wenn die Formate der Zellen inkonsistent sind, wird Null zurückgegeben. Für benutzerdefinierte Formatvorlagen wird der Name der Formatvorlage zurückgegeben werden soll. Bei integrierten Formatvorlagen wird eine Zeichenfolge zur Darstellung eines Werts in der BuiltInStyle-Enumeration zurückgegeben werden soll.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1111,6 +1124,7 @@ items:
       type:
       - string[][]
 - uid: excel.Excel.Range.toJSON
+  summary: Überschreibt das JavaScript `toJSON()` Methode, um nützliche Ausgabe zu gewährleisten, wenn ein API-Objekt zu übergeben ist `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, wiederum die `toJSON` -Methode des Objekts, das es übergeben wird.) Das ursprüngliche Excel.Range-Objekt ein API-Objekt ist die `toJSON` -Methode gibt eine einfache JavaScript-Objekt zurück (eine Typisierung als `Excel.Interfaces.RangeData` <!-- -->), die flache Kopien der geladene untergeordnete Eigenschaften aus dem ursprünglichen-Objekt enthält.
   name: toJSON()
   fullName: toJSON
   langs:

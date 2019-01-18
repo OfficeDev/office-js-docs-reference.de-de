@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: b343e503a3fa62d30beef4789b3ad81a209df463
-ms.sourcegitcommit: 3771b97cffd6e0510fd4e9c6288db696cd0c0ca9
+ms.openlocfilehash: 6ba3e82f178c68789eb1283a7a0b28a8ae4c3704
+ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/30/2018
-ms.locfileid: "26996165"
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "28725438"
 items:
 - uid: excel.Excel.Style
   summary: >-
@@ -24,6 +24,7 @@ items:
   - excel.Excel.Style.autoIndent
   - excel.Excel.Style.borders
   - excel.Excel.Style.builtIn
+  - excel.Excel.Style.context
   - excel.Excel.Style.delete
   - excel.Excel.Style.fill
   - excel.Excel.Style.font
@@ -49,7 +50,7 @@ items:
   - excel.Excel.Style.wrapText
 - uid: excel.Excel.Style.autoIndent
   summary: >-
-    Gibt an, ob Text automatisch eingezogen wird, wenn die Ausrichtung des Texts in einer Zelle auf gleiche Verteilung festgelegt ist.
+    Gibt an, ob der Text automatisch eingezogen wird, wenn die Textausrichtung in einer Zelle auf eine gleichmäßige Verteilung festgelegt ist.
 
 
     \[[API-Satz: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -65,7 +66,7 @@ items:
       - boolean
 - uid: excel.Excel.Style.borders
   summary: >-
-    Eine Auflistung der Rahmen von vier Border-Objekten, die das Format der vier Rahmen darstellen.
+    Eine Auflistung von vier Rahmenobjekten, die die vier Rahmenlinien eines Bereichs- oder Style-Objekts darstellen.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -81,7 +82,7 @@ items:
       - excel.Excel.RangeBorderCollection
 - uid: excel.Excel.Style.builtIn
   summary: >-
-    Gibt an, ob die Formatvorlage um eine integrierte Formatvorlage handelt.
+    Gibt an, ob die Formatvorlage integriert ist.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -95,6 +96,18 @@ items:
     return:
       type:
       - boolean
+- uid: excel.Excel.Style.context
+  summary: Der Anforderungskontext-zugeordnet. Dadurch wird das Add-in Prozess mit der Office-hostanwendung Prozess verbunden.
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
 - uid: excel.Excel.Style.delete
   summary: >-
     Löscht diese Formatvorlage.
@@ -114,7 +127,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\nawait Excel.run(async (context) => {\n    let style = context.workbook.styles.getItem(\"Diagonal Orientation Style\");\n\n    // Delete the diagonal orientation style from the style collection.\n    // Styles are in the Home tab ribbon.\n    style.delete();\n\n    await context.sync();\n\n    console.log(\"Successfully deleted the diagonal orientation style from the Home tab ribbon.\");\n});\n```"
 - uid: excel.Excel.Style.fill
   summary: >-
-    Die Füllung der Formatvorlage.
+    Der Inhalt der Formatvorlage.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -130,7 +143,7 @@ items:
       - excel.Excel.RangeFill
 - uid: excel.Excel.Style.font
   summary: >-
-    Ein Font-Objekt, das die Schriftart der Formatvorlage darstellt.
+    Gibt ein Schriftartobjekt zurück, das die Schriftart der Formatvorlage darstellt.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -163,7 +176,7 @@ items:
       - boolean
 - uid: excel.Excel.Style.horizontalAlignment
   summary: >-
-    Die horizontale Ausrichtung für die Formatvorlage repräsentiert. Einzelheiten finden Sie unter Excel.HorizontalAlignment.
+    Stellt die horizontale Ausrichtung für den Stil dar. Einzelheiten finden Sie unter Excel.HorizontalAlignment.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -180,7 +193,7 @@ items:
       description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\nawait Excel.run(async (context) => {\n    let worksheet = context.workbook.worksheets.getItem(\"Sample\");\n    let range = worksheet.getRange(\"A1:E1\");\n\n    // Apply built-in style. \n    // Styles are in the Home tab ribbon.\n    range.style = Excel.BuiltInStyle.neutral;\n    range.format.horizontalAlignment = \"Right\";\n\n    await context.sync();\n});\n```"
 - uid: excel.Excel.Style.includeAlignment
   summary: >-
-    Gibt an, ob die Formatvorlage die Eigenschaften AutoIndent, HorizontalAlignment, VerticalAlignment, WrapText, IndentLevel und TextOrientation enthält.
+    Zeigt an, ob die Formatvorlage die Eigenschaften AutoIndent, HorizontalAlignment, VerticalAlignment, WrapText, IndentLevel und TextOrientation enthält.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -196,7 +209,7 @@ items:
       - boolean
 - uid: excel.Excel.Style.includeBorder
   summary: >-
-    Gibt an, ob die Formatvorlage die Rahmeneigenschaften Color, ColorIndex, LineStyle und Weight enthält.
+    Gibt an, ob die Formatvorlage die Eigenschaften Color, ColorIndex, LineStyle und Weight Rahmen enthält.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -212,7 +225,7 @@ items:
       - boolean
 - uid: excel.Excel.Style.includeFont
   summary: >-
-    Gibt an, ob die Formatvorlage die Schriftarteigenschaften Hintergrund, fett, Farbe, ColorIndex, FontStyle, kursiv, Name, Größe, durchgestrichen, tiefgestellt, hochgestellt und Unterstreichung enthält.
+    Zeigt an, ob die Formatvorlage die Eigenschaften Hintergrund, Fett, Farbe, ColorIndex, FontStyle, Kursiv, Name, Größe, Durchgestrichen, Tiefgestellt, Hochgestellt und Unterstrichen enthält.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -244,7 +257,7 @@ items:
       - boolean
 - uid: excel.Excel.Style.includePatterns
   summary: >-
-    Gibt an, ob die Formatvorlage der Farbe, ColorIndex, InvertIfNegative, Pattern, PatternColor und PatternColorIndex einschließt.
+    Gibt an, ob die Formatvorlage die Eigenschaften Farbe, ColorIndex, InvertIfNegative, Muster, PatternColor und PatternColorIndex enthält.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -260,7 +273,7 @@ items:
       - boolean
 - uid: excel.Excel.Style.includeProtection
   summary: >-
-    Gibt an, ob die Formatvorlage die FormulaHidden und Locked Protection-Eigenschaften enthält.
+    Gibt an, ob die Formatvorlage die Eigenschaften FormulaHidden und Sperrschutz enthält.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -276,7 +289,7 @@ items:
       - boolean
 - uid: excel.Excel.Style.indentLevel
   summary: >-
-    Eine ganze Zahl von 0 bis zu 250, die die Einzugsebene für die Formatvorlage angibt.
+    Eine ganze Zahl zwischen 0 und 250, die die Einzugsebene für die Formatvorlage angibt.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -343,7 +356,7 @@ items:
       - string
 - uid: excel.Excel.Style.numberFormat
   summary: >-
-    Den Formatierungscode für das Zahlenformat für die Formatvorlage.
+    Der Formatcode des Zahlenformats für die Formatvorlage.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -359,7 +372,7 @@ items:
       - string
 - uid: excel.Excel.Style.numberFormatLocal
   summary: >-
-    Die lokalisierten Formatierungscode für das Zahlenformat für die Formatvorlage.
+    Der lokalisierte Formatcode des Zahlenformats für die Formatvorlage.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -375,7 +388,7 @@ items:
       - string
 - uid: excel.Excel.Style.readingOrder
   summary: >-
-    Die Lesereihenfolge für die Formatvorlage.
+    Die Leserichtung für die Formatvorlage.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -391,7 +404,7 @@ items:
       - Excel.ReadingOrder | "Context" | "LeftToRight" | "RightToLeft"
 - uid: excel.Excel.Style.shrinkToFit
   summary: >-
-    Gibt an, ob Text automatisch an die verfügbare Spaltenbreite angepasst wird.
+    Zeigt an, dass Text automatisch verkleinert wird, um in die verfügbare Spaltenbreite zu passen.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -407,7 +420,7 @@ items:
       - boolean
 - uid: excel.Excel.Style.textOrientation
   summary: >-
-    Die Ausrichtung von Text für die Formatvorlage.
+    Die Textausrichtung für die Formatvorlage.
 
 
     \[[API-Satz: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -422,6 +435,7 @@ items:
       type:
       - number
 - uid: excel.Excel.Style.toJSON
+  summary: Überschreibt das JavaScript `toJSON()` Methode, um nützliche Ausgabe zu gewährleisten, wenn ein API-Objekt zu übergeben ist `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, wiederum die `toJSON` -Methode des Objekts, das es übergeben wird.) Das ursprüngliche Excel.Style-Objekt ist ein API-Objekt der `toJSON` -Methode gibt eine einfache JavaScript-Objekt zurück (als `Excel.Interfaces.StyleData` <!-- -->), die flache Kopien der geladene untergeordnete Eigenschaften aus dem ursprünglichen-Objekt enthält.
   name: toJSON()
   fullName: toJSON
   langs:
@@ -435,7 +449,7 @@ items:
       description: ''
 - uid: excel.Excel.Style.verticalAlignment
   summary: >-
-    Die vertikale Ausrichtung für die Formatvorlage darstellt. Einzelheiten finden Sie unter Excel.VerticalAlignment.
+    Stellt die vertikale Ausrichtung für die Formatvorlage dar. Einzelheiten finden Sie unter Excel.VerticalAlignment.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -451,7 +465,7 @@ items:
       - Excel.VerticalAlignment | "Top" | "Center" | "Bottom" | "Justify" | "Distributed"
 - uid: excel.Excel.Style.wrapText
   summary: >-
-    Gibt an, ob den Text im Objekt Microsoft Excel umbrochen wird.
+    Gibt an, ob Microsoft Excel den Text im Objekt umbricht.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
