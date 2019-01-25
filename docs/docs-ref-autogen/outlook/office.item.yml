@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 368d3dfd2b73e0912861f501caaeb348e0de8340
-ms.sourcegitcommit: 2dcedf6deec4167dca476a42dad411e28cc92a97
+ms.openlocfilehash: aa3fbfaf901d784dd851958342482cd0ab96f82c
+ms.sourcegitcommit: 1d3a730f48caaabe5af4f1abb74802bc91b75f4e
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "29384958"
+ms.lasthandoff: 01/25/2019
+ms.locfileid: "29539905"
 items:
 - uid: outlook.Office.Item
   summary: >-
@@ -27,7 +27,7 @@ items:
   - outlook.Office.Item.addHandlerAsync
   - outlook.Office.Item.body
   - outlook.Office.Item.dateTimeCreated
-  - outlook.Office.Item.dateTimeModifed
+  - outlook.Office.Item.dateTimeModified
   - outlook.Office.Item.getAttachmentContentAsync
   - outlook.Office.Item.getInitializationContextAsync
   - outlook.Office.Item.getSharedPropertiesAsync
@@ -117,7 +117,7 @@ items:
     return:
       type:
       - Date
-- uid: outlook.Office.Item.dateTimeModifed
+- uid: outlook.Office.Item.dateTimeModified
   summary: >-
     Ruft das Datum und die Uhrzeit der letzten Änderung eines Elements ab. Nur Lesemodus.
 
@@ -131,13 +131,13 @@ items:
 
 
     Hinweis: Dieses Element wird in Outlook für iOS oder Outlook für Android nicht unterstützt.
-  name: dateTimeModifed
-  fullName: dateTimeModifed
+  name: dateTimeModified
+  fullName: dateTimeModified
   langs:
   - typeScript
   type: property
   syntax:
-    content: 'dateTimeModifed: Date;'
+    content: 'dateTimeModified: Date;'
     return:
       type:
       - Date
@@ -150,7 +150,7 @@ items:
 
 
     \[[API-Satz: Postfach Preview](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: "<table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>\n\n<tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr>\n\n<tr><td>Fehler</td><td>InvalidAttachmentId - Anlage-ID ist nicht vorhanden.</td></tr></table>\n####Beispiele für\n\n```javascript\nvar item = Office.context.mailbox.item;\nvar listOfAttachments = [];\nitem.getAttachmentsAsync(callback);\nfunction callback(result) {\n    if (result.value.length > 0) {\n        for (i = 0 ; i < result.value.length ; i++) {\n            var options = {asyncContext: {type: result.value[i].attachmentType}};\n            getAttachmentContentAsync(result.value[i].id, options, handleAttachmentsCallback);  \n        }\n    }\n}\n\nfunction handleAttachmentsCallback(result) {\n    // parse string to be a url, an .eml file, a base64-encoded string, or an .icalendar file\n    if (result.format == Office.MailboxEnums.AttachmentContentFormat.Base64) {\n        // handle file attachment\n    }\n    else if (result.format == Office.MailboxEnums.AttachmentContentFormat.Eml) {\n        // handle item attachment\n    }\n    else if (result.format == Office.MailboxEnums.AttachmentContentFormat.ICalendar) {\n        // handle .icalender attachment\n    }\n    else {\n        // handle cloud attachment  \n    }\n}\n```"
+  remarks: "<table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>\n\n<tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr>\n\n<tr><td>Fehler</td><td>InvalidAttachmentId - Anlage-ID ist nicht vorhanden.</td></tr></table>Beispiele\n\n```javascript\nvar item = Office.context.mailbox.item;\nvar listOfAttachments = [];\nitem.getAttachmentsAsync(callback);\nfunction callback(result) {\n    if (result.value.length > 0) {\n        for (i = 0 ; i < result.value.length ; i++) {\n            var options = {asyncContext: {type: result.value[i].attachmentType}};\n            getAttachmentContentAsync(result.value[i].id, options, handleAttachmentsCallback);  \n        }\n    }\n}\n\nfunction handleAttachmentsCallback(result) {\n    // parse string to be a url, an .eml file, a base64-encoded string, or an .icalendar file\n    if (result.format == Office.MailboxEnums.AttachmentContentFormat.Base64) {\n        // handle file attachment\n    }\n    else if (result.format == Office.MailboxEnums.AttachmentContentFormat.Eml) {\n        // handle item attachment\n    }\n    else if (result.format == Office.MailboxEnums.AttachmentContentFormat.ICalendar) {\n        // handle .icalender attachment\n    }\n    else {\n        // handle cloud attachment  \n    }\n}\n```"
   isPreview: true
   name: getAttachmentContentAsync(attachmentId, options, callback)
   fullName: getAttachmentContentAsync
@@ -178,7 +178,7 @@ items:
       - '(result: AsyncResult<Office.AttachmentContent>) => void'
 - uid: outlook.Office.Item.getInitializationContextAsync
   summary: >-
-    Ruft Initialisierungsdaten übergeben, wenn das Add-in [durch eine bearbeitungsfähige Nachricht aktiviert](https://docs.microsoft.com/outlook/actionable-messages/invoke-add-in-from-actionable-message)ist<!-- -->.
+    Ruft Initialisierungsdaten ab, die übergeben werden, wenn das Add-In [durch eine Nachricht mit Aktionen aktiviert](https://docs.microsoft.com/outlook/actionable-messages/invoke-add-in-from-actionable-message) wird.
 
 
     Hinweis: Diese Methode wird nur von Outlook 2016 für Windows (Klick-und-Los-Versionen größer als 16.0.8413.1000) und Outlook im Web für Office 365 unterstützt.
@@ -312,9 +312,7 @@ items:
     <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
 
 
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
-
-    ####Beispiele für
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>Beispiele
 
 
     ```javascript
@@ -350,9 +348,7 @@ items:
     <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
 
 
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
-
-    ####Beispiele für
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>Beispiele
 
 
     ```javascript
@@ -517,14 +513,14 @@ items:
     In OWA und Outlook gibt die SeriesId die Exchange-Webdienste (EWS)-ID des übergeordneten (Reihe)-Elements, das dieses Element gehört. Bei iOS und Android gibt die SeriesId jedoch die REST-ID des übergeordneten Elements.
 
 
-    Hinweis: Der von der SeriesId-Eigenschaft zurückgegebene Bezeichner ist identisch mit der Exchange-Webdienste Elementbezeichner. Die SeriesId-Eigenschaft ist nicht identisch mit den Outlook-IDs von der Outlook-REST-API verwendet. Bevor Sie REST-API-Aufrufe mit diesem Wert ausführen, sollte dieser mithilfe von Office.context.mailbox.convertToRestId konvertiert werden. Weitere Informationen finden Sie unter [Verwenden der Outlook-REST-APIs aus einem Outlook-add-in](https://docs.microsoft.com/outlook/add-ins/use-rest-api)<!-- -->.
+    Hinweis: Der von der SeriesId-Eigenschaft zurückgegebene Bezeichner ist identisch mit der Exchange-Webdienste Elementbezeichner. Die SeriesId-Eigenschaft ist nicht identisch mit den Outlook-IDs von der Outlook-REST-API verwendet. Bevor Sie REST-API-Aufrufe mit diesem Wert ausführen, sollte dieser mithilfe von Office.context.mailbox.convertToRestId konvertiert werden. Weitere Informationen finden Sie unter [Verwenden von Outlook-REST-APIs in Outlook-Add-Ins](https://docs.microsoft.com/outlook/add-ins/use-rest-api).
 
 
     Die SeriesId-Eigenschaft gibt null für Elemente, die nicht über das übergeordnete Elemente wie einzelne Termine, Serienelementen, verfügen oder Besprechungsanfragen und gibt für alle anderen Elemente, die keine Besprechungsanfragen sind nicht definiert.
 
 
     \[[API-Satz: Postfach 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: "<table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>\n\n<tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>\n####Beispiele für\n\n```javascript\nvar seriesId = Office.context.mailbox.item.seriesId; \nvar isSeries = (seriesId == null);\n```"
+  remarks: "<table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>\n\n<tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>Beispiele\n\n```javascript\nvar seriesId = Office.context.mailbox.item.seriesId; \nvar isSeries = (seriesId == null);\n```"
   name: seriesId
   fullName: seriesId
   langs:
