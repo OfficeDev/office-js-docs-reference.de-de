@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: e01370cf7c234bbc8f55e6b87b719c92c471cd2d
-ms.sourcegitcommit: c12dfe8b909dec25d284f5254d97bd6478823b8f
+ms.openlocfilehash: bcda4db442fb0e3c35362e6ef3ddba1ef6df7213
+ms.sourcegitcommit: a68606173477c7fb4069880eea941766c7d8c50d
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "27243450"
+ms.lasthandoff: 02/01/2019
+ms.locfileid: "29704702"
 items:
 - uid: outlook.Office.Recurrence
   summary: >-
@@ -45,14 +45,14 @@ items:
 
 
     \[[API-Satz: Postfach 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: "<table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>\n\n<tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>\n\nZusätzlich zu dieser Signatur hat diese Methode auch die folgende Signatur:\n\n`getAsync(callback?: (result: AsyncResult<Office.Recurrence>) => void): void;`\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// This example gets the recurrence object of an appointment or meeting request item.\nOffice.context.mailbox.item.recurrence.getAsync(callback);\nfunction callback(asyncResult){\n    var context = asyncResult.context;\n    var recurrence = asyncResult.value;\n    if (recurrence == null) {\n        console.log(\"Non-recurring meeting\");\n        return;\n    }\n\n    console.log(JSON.stringify(recurrence));\n}\n\n// The following example shows the results of the getAsync call that retrieves the recurrence for a series.\n// NOTE: In this example, seriesTimeObject is a placeholder for the JSON representing the \n// recurrence.seriesTime property. You should use the SeriesTime object's methods to get the \n// recurrence date and time properties.\nRecurrence = {\n    \"recurrenceType\": \"weekly\",\n    \"recurrenceProperties\": {\"interval\": 2, \"days\": [\"mon\",\"thu\",\"fri\"], \"firstDayOfWeek\": \"sun\"},\n    \"seriesTime\": {seriesTimeObject}, \n    \"recurrenceTimeZone\": {\"name\": \"Pacific Standard Time\", \"offset\": -480}}\n```"
+  remarks: "<table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>\n\n<tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>\n\nZusätzlich zu dieser Signatur hat diese Methode auch die folgende Signatur:\n\n`getAsync(callback?: (result: Office.AsyncResult<Recurrence>) => void): void;`\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// This example gets the recurrence object of an appointment or meeting request item.\nOffice.context.mailbox.item.recurrence.getAsync(callback);\nfunction callback(asyncResult){\n    var context = asyncResult.context;\n    var recurrence = asyncResult.value;\n    if (recurrence == null) {\n        console.log(\"Non-recurring meeting\");\n        return;\n    }\n\n    console.log(JSON.stringify(recurrence));\n}\n\n// The following example shows the results of the getAsync call that retrieves the recurrence for a series.\n// NOTE: In this example, seriesTimeObject is a placeholder for the JSON representing the \n// recurrence.seriesTime property. You should use the SeriesTime object's methods to get the \n// recurrence date and time properties.\nRecurrence = {\n    \"recurrenceType\": \"weekly\",\n    \"recurrenceProperties\": {\"interval\": 2, \"days\": [\"mon\",\"thu\",\"fri\"], \"firstDayOfWeek\": \"sun\"},\n    \"seriesTime\": {seriesTimeObject}, \n    \"recurrenceTimeZone\": {\"name\": \"Pacific Standard Time\", \"offset\": -480}}\n```"
   name: getAsync(options, callback)
   fullName: getAsync
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'getAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<Office.Recurrence>) => void): void;'
+    content: 'getAsync(options?: Office.AsyncContextOptions, callback?: (result: Office.AsyncResult<Recurrence>) => void): void;'
     return:
       type:
       - void
@@ -65,7 +65,7 @@ items:
     - id: callback
       description: Optional. Wenn die Methode abgeschlossen ist, wird die in der Callback-Parameter übergebene Funktion mit einem einzelnen Parameter, AsyncResult, aufgerufen, der ein Office.AsyncResult-Objekt ist. Die `value` -Eigenschaft des Ergebnisses ist ein Serie-Objekt.
       type:
-      - '(result: AsyncResult<Office.Recurrence>) => void'
+      - '(result: Office.AsyncResult<Recurrence>) => void'
 - uid: outlook.Office.Recurrence.recurrenceProperties
   summary: >-
     Ruft ab oder legt die Eigenschaften der Terminserie.
@@ -83,10 +83,10 @@ items:
   - typeScript
   type: property
   syntax:
-    content: 'recurrenceProperties: Office.RecurrenceProperties;'
+    content: 'recurrenceProperties: RecurrenceProperties;'
     return:
       type:
-      - outlook.Office.RecurrenceProperties
+      - RecurrenceProperties
 - uid: outlook.Office.Recurrence.recurrenceTimeZone
   summary: >-
     Ruft ab oder legt die Eigenschaften der Terminserie.
@@ -104,10 +104,10 @@ items:
   - typeScript
   type: property
   syntax:
-    content: 'recurrenceTimeZone: Office.RecurrenceTimeZone;'
+    content: 'recurrenceTimeZone: RecurrenceTimeZone;'
     return:
       type:
-      - Office.RecurrenceTimeZone
+      - RecurrenceTimeZone
 - uid: outlook.Office.Recurrence.recurrenceType
   summary: >-
     Ruft ab oder legt den Typ der Terminserie.
@@ -125,10 +125,10 @@ items:
   - typeScript
   type: property
   syntax:
-    content: 'recurrenceType: Office.MailboxEnums.RecurrenceType;'
+    content: 'recurrenceType: MailboxEnums.RecurrenceType;'
     return:
       type:
-      - outlook.Office.MailboxEnums.RecurrenceType
+      - MailboxEnums.RecurrenceType
 - uid: outlook.Office.Recurrence.seriesTime
   summary: >-
     Das [Office.SeriesTime](xref:outlook.Office.SeriesTime) -Objekt können Sie die Start- und Enddaten Terminserie und den üblichen Start und Endzeit der Instanzen verwalten. **Dieses Objekt ist nicht in UTC-Zeit.** Stattdessen wird sie in der Zeitzone angegeben durch den Wert RecurrenceTimeZone oder standardmäßig auf die Zeitzone des Elements festgelegt.
@@ -146,10 +146,10 @@ items:
   - typeScript
   type: property
   syntax:
-    content: 'seriesTime: Office.SeriesTime;'
+    content: 'seriesTime: SeriesTime;'
     return:
       type:
-      - outlook.Office.SeriesTime
+      - SeriesTime
 - uid: outlook.Office.Recurrence.setAsync
   summary: >-
     Das Serienmuster einer Terminserie festgelegt.
@@ -159,14 +159,14 @@ items:
 
 
     \[[API-Satz: Postfach 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: "<table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>\n\n<tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen</td></tr>\n\n<tr><td>Fehler</td><td>InvalidEndTime - ist die Endzeit des Termins vor der Startzeit.</td></tr></table>\n\nZusätzlich zu dieser Signatur hat diese Methode auch die folgende Signatur:\n\n`setAsync(recurrencePattern: Recurrence, callback?: (result: AsyncResult<void>) => void): void;`\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// The following example sets the recurrence pattern of an appointment series.\nvar seriesTimeObject = new Office.SeriesTime(); \nseriesTimeObject.setStartDate(2019,10,2);  \nseriesTimeObject.setEndDate(2019,11,2); \nseriesTimeObject.setStartTime(10,30); \nseriesTimeObject.setDuration(30);\n\nvar pattern = {\n    \"seriesTime\": seriesTimeObject,\n    \"recurrenceType\": \"weekly\",\n    \"recurrenceProperties\": {\"interval\": 1, \"days\": [\"tue\", \"thu\"], \"firstDayOfWeek\": \"sun\"},\n    \"recurrenceTimeZone\": {\"name\": \"Pacific Standard Time\"}};\n\nOffice.context.mailbox.item.recurrence.setAsync(pattern, callback);\n\nfunction callback(asyncResult)\n{\n    console.log(JSON.stringify(asyncResult)); \n}\n\n//Result: This created a recurring event from November 2, 2019 to December 2, 2019\n//        at 10:30 A.M. to 11 A.M. PST every Tuesday and Thursday.\n```"
+  remarks: "<table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteItem</td></tr>\n\n<tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen</td></tr>\n\n<tr><td>Fehler</td><td>InvalidEndTime - ist die Endzeit des Termins vor der Startzeit.</td></tr></table>\n\nZusätzlich zu dieser Signatur hat diese Methode auch die folgende Signatur:\n\n`setAsync(recurrencePattern: Recurrence, callback?: (result: Office.AsyncResult<void>) => void): void;`\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// The following example sets the recurrence pattern of an appointment series.\nvar seriesTimeObject = new Office.SeriesTime(); \nseriesTimeObject.setStartDate(2019,10,2);  \nseriesTimeObject.setEndDate(2019,11,2); \nseriesTimeObject.setStartTime(10,30); \nseriesTimeObject.setDuration(30);\n\nvar pattern = {\n    \"seriesTime\": seriesTimeObject,\n    \"recurrenceType\": \"weekly\",\n    \"recurrenceProperties\": {\"interval\": 1, \"days\": [\"tue\", \"thu\"], \"firstDayOfWeek\": \"sun\"},\n    \"recurrenceTimeZone\": {\"name\": \"Pacific Standard Time\"}};\n\nOffice.context.mailbox.item.recurrence.setAsync(pattern, callback);\n\nfunction callback(asyncResult)\n{\n    console.log(JSON.stringify(asyncResult)); \n}\n\n//Result: This created a recurring event from November 2, 2019 to December 2, 2019\n//        at 10:30 A.M. to 11 A.M. PST every Tuesday and Thursday.\n```"
   name: setAsync(recurrencePattern, options, callback)
   fullName: setAsync
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'setAsync(recurrencePattern: Recurrence, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+    content: 'setAsync(recurrencePattern: Recurrence, options?: Office.AsyncContextOptions, callback?: (result: Office.AsyncResult<void>) => void): void;'
     return:
       type:
       - void
@@ -183,4 +183,4 @@ items:
     - id: callback
       description: Optional. Wenn die Methode abgeschlossen ist, wird die in der Callback-Parameter übergebene Funktion mit einem einzelnen Parameter, AsyncResult, aufgerufen, der ein Office.AsyncResult-Objekt ist.
       type:
-      - '(result: AsyncResult<void>) => void'
+      - '(result: Office.AsyncResult<void>) => void'

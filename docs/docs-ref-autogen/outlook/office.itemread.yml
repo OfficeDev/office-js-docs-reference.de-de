@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 8781b58affa5f9bdbf56dc757a64fbeb8b5f0a44
-ms.sourcegitcommit: 31847d2ea6be78b8f473dfbfb0a575fdecd877be
+ms.openlocfilehash: d006a37fa5eb5e7917aab4e1e8bd7faa81c18772
+ms.sourcegitcommit: a68606173477c7fb4069880eea941766c7d8c50d
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "26298239"
+ms.lasthandoff: 02/01/2019
+ms.locfileid: "29705304"
 items:
 - uid: outlook.Office.ItemRead
   summary: >-
@@ -38,7 +38,7 @@ items:
   - outlook.Office.ItemRead.subject
 - uid: outlook.Office.ItemRead.attachments
   summary: >-
-    Ruft das Element Anlagen als ein Array ab.
+    Ruft die Anlagen des Elements in Form eines Arrays ab.
 
 
     \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -56,10 +56,10 @@ items:
   - typeScript
   type: property
   syntax:
-    content: 'attachments: Office.AttachmentDetails[];'
+    content: 'attachments: AttachmentDetails[];'
     return:
       type:
-      - Office.AttachmentDetails[]
+      - AttachmentDetails[]
 - uid: outlook.Office.ItemRead.displayReplyAllForm
   summary: >-
     Zeigt ein Antwortformular an, das den Absender und alle Empfänger der ausgewählten Nachricht oder des Organisators und alle Teilnehmer des ausgewählten Termins enthält.
@@ -140,7 +140,7 @@ items:
       - string | ReplyFormData
 - uid: outlook.Office.ItemRead.getEntities
   summary: >-
-    Ruft das ausgewählte Element Textkörper gefundenen Entitäten ab.
+    Ruft die Entitäten im Text des ausgewählten Elements ab.
 
 
     Hinweis: Diese Methode wird in Outlook für iOS oder Outlook für Android nicht unterstützt.
@@ -165,7 +165,7 @@ items:
       description: ''
 - uid: outlook.Office.ItemRead.getEntitiesByType
   summary: >-
-    Ruft ein Array aller Entitäten des angegebenen Entitätstyps im Hauptteil des ausgewählten Elements gefunden.
+    Ruft ein Array aller Entitäten des angegebenen Typs ab, die im Texts des ausgewählten Elements enthalten sind.
 
 
     Hinweis: Diese Methode wird in Outlook für iOS oder Outlook für Android nicht unterstützt.
@@ -189,16 +189,16 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'getEntitiesByType(entityType: Office.MailboxEnums.EntityType): (string | Contact | MeetingSuggestion | PhoneNumber | TaskSuggestion)[];'
+    content: 'getEntitiesByType(entityType: MailboxEnums.EntityType): (string | Contact | MeetingSuggestion | PhoneNumber | TaskSuggestion)[];'
     return:
       type:
       - (string | Contact | MeetingSuggestion | PhoneNumber | TaskSuggestion)[]
-      description: Ist der EntityType übergebene Wert nicht gültiger Member der Enumeration "EntityType", gibt die Methode null zurück. Wenn keine Entitäten des angegebenen Typs im Textkörper des Elements vorhanden sind, gibt die Methode ein leeres Array zurück. Anderenfalls hängt der Typ der Objekte in das zurückgegebene Array vom Typ der Entität, die im Parameter "EntityType" angefordert.
+      description: Ist der EntityType übergebene Wert nicht gültiger Member der Enumeration "EntityType", gibt die Methode null zurück. Wenn keine Entitäten des angegebenen Typs im Text des Elements vorhanden sind, gibt die Methode ein leeres Array zurück. Anderenfalls hängt der Typ der Objekte in das zurückgegebene Array vom Typ der Entität, die im Parameter "EntityType" angefordert.
     parameters:
     - id: entityType
       description: Einer der Werte der EntityType-Enumeration.
       type:
-      - outlook.Office.MailboxEnums.EntityType
+      - MailboxEnums.EntityType
 - uid: outlook.Office.ItemRead.getFilteredEntitiesByName
   summary: >-
     Gibt bekannte Entitäten im ausgewählten Element zurück, die den in der XML-Manifestdatei definierten benannten Filter übergeben.
@@ -251,7 +251,7 @@ items:
     Zusätzlich zu dieser Signatur hat die-Methode auch die folgende Signatur:
 
 
-    `getInitializationContextAsync(callback?: (result: AsyncResult<string>) => void): void;`
+    `getInitializationContextAsync(callback?: (result: Office.AsyncResult<string>) => void): void;`
   isPreview: true
   name: getInitializationContextAsync(options, callback)
   fullName: getInitializationContextAsync
@@ -259,7 +259,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'getInitializationContextAsync(options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<string>) => void): void;'
+    content: 'getInitializationContextAsync(options?: Office.AsyncContextOptions, callback?: (result: Office.AsyncResult<string>) => void): void;'
     return:
       type:
       - void
@@ -272,7 +272,7 @@ items:
     - id: callback
       description: Optional. Wenn die Methode abgeschlossen ist, wird die in der Callback-Parameter übergebene Funktion mit einem einzelnen Parameter, AsyncResult, aufgerufen, der ein Office.AsyncResult-Objekt ist. Bei Erfolg werden die Initialisierungsdaten als Zeichenfolge in der Eigenschaft "AsyncResult.Value" bereitgestellt. Ist kein Initialisierung Kontext, enthält das AsyncResult-Objekt ein Error-Objekt, mit dessen codeeigenschaft auf 9020 festgelegt und die Name-Eigenschaft auf GenericResponseError festgelegt.
       type:
-      - '(result: AsyncResult<string>) => void'
+      - '(result: Office.AsyncResult<string>) => void'
 - uid: outlook.Office.ItemRead.getRegExMatches
   summary: >-
     Gibt Zeichenfolgenwerte im ausgewählten Element zurück, die den in der XML-Manifestdatei definierten regulären Ausdrücken entsprechen.
@@ -415,7 +415,7 @@ items:
     Die itemClass-Eigenschaft gibt die Nachrichtenklasse des ausgewählten Elements an. Folgende Standardnachrichtenklassen für das Nachrichten- oder Terminelement sind vorhanden:
 
 
-    <table> <tr> <th>Typ</th> <th>Beschreibung</th> <th>Item-Klasse</th> </tr> <tr> <td>Terminelemente</td> <td>Hierbei handelt es sich um Kalenderelemente der Elementklasse „IPM.Appointment“ oder „IPM.Appointment.Occurence“.</td> <td>IPM. Termin, IPM. Appointment.Occurence</td> </tr> <tr> <td>Nachrichtenelemente</td> <td>Diese Elemente umfassen E-Mail-Nachrichten der Standardnachrichtenklasse "IPM.Note" sowie Besprechungsanfragen, -antworten und -absagen, die "IPM.Schedule.Meeting" als Basisnachrichtenklasse verwenden.</td> <td>IPM. Notiz, IPM. Schedule.Meeting.Request,IPM. Schedule.Meeting.Neg,IPM. Schedule.Meeting.Pos,IPM. Schedule.Meeting.Tent,IPM. Schedule.Meeting.Canceled</td> </tr> </table>
+    <table> <tr> <th>Typ</th> <th>Beschreibung</th> <th>Item-Klasse</th> </tr> <tr> <td>Terminelemente</td> <td>Hierbei handelt es sich um Kalenderelemente der Item-Klasse IPM. Termin- oder IPM. Appointment.Occurrence.</td> <td>IPM. Termin, IPM. Appointment.Occurrence</td> </tr> <tr> <td>Nachrichtenelemente</td> <td>Diese Elemente umfassen E-Mail-Nachrichten der Standardnachrichtenklasse "IPM.Note" sowie Besprechungsanfragen, -antworten und -absagen, die "IPM.Schedule.Meeting" als Basisnachrichtenklasse verwenden.</td> <td>IPM. Notiz, IPM. Schedule.Meeting.Request,IPM. Schedule.Meeting.Neg,IPM. Schedule.Meeting.Pos,IPM. Schedule.Meeting.Tent,IPM. Schedule.Meeting.Canceled</td> </tr> </table>
   name: itemClass
   fullName: itemClass
   langs:
@@ -434,7 +434,7 @@ items:
     Die Eigenschaft "ItemID" steht nicht in Entwurfsmodus verwendet. Wenn eine Element-ID erforderlich ist, kann die SaveAsync-Methode verwendet werden, Speichern des Elements im Speicher, der den Bezeichner des Elements im Parameter "AsyncResult.Value" in der Callback-Funktion zurückgegeben wird.
 
 
-    Hinweis: Der von der ItemId-Eigenschaft zurückgegebene Bezeichner ist identisch mit der Exchange-Webdienste Elementbezeichner. Die Eigenschaft "ItemID" ist nicht identisch mit der Outlook-Eintrags-ID oder die ID von der Outlook-REST-API verwendet. REST-API-Aufrufe dieser Wert verwenden, sollten sie konvertiert werden, bevor Office.context.mailbox.convertToRestId verwenden. Weitere Informationen finden Sie unter [Verwenden der Outlook-REST-APIs aus einem Outlook-add-in](https://docs.microsoft.com/outlook/add-ins/use-rest-api#get-the-item-id)<!-- -->.
+    Hinweis: Der von der ItemId-Eigenschaft zurückgegebene Bezeichner ist identisch mit der Exchange-Webdienste Elementbezeichner. Die Eigenschaft "ItemID" ist nicht identisch mit der Outlook-Eintrags-ID oder die ID von der Outlook-REST-API verwendet. Bevor Sie REST-API-Aufrufe mit diesem Wert ausführen, sollte dieser mithilfe von Office.context.mailbox.convertToRestId konvertiert werden. Weitere Informationen finden Sie unter [Verwenden der Outlook-REST-APIs aus einem Outlook-add-in](https://docs.microsoft.com/outlook/add-ins/use-rest-api#get-the-item-id)<!-- -->.
 
 
     \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
