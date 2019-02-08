@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: f4f916e815d07c180ea51cf80f2c481bfce96d25
-ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
+ms.openlocfilehash: 86c46a0227d1029e4b8d878d5badf331a8d437a5
+ms.sourcegitcommit: 3f4a320fa860d05d348c8bdec2295e046a45a34f
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "28724465"
+ms.lasthandoff: 02/07/2019
+ms.locfileid: "29770009"
 items:
 - uid: excel.Excel.CustomConditionalFormat
   summary: >-
@@ -25,6 +25,7 @@ items:
   - excel.Excel.CustomConditionalFormat.format
   - excel.Excel.CustomConditionalFormat.load
   - excel.Excel.CustomConditionalFormat.rule
+  - excel.Excel.CustomConditionalFormat.set
   - excel.Excel.CustomConditionalFormat.toJSON
 - uid: excel.Excel.CustomConditionalFormat.context
   summary: Der Anforderungskontext-zugeordnet. Dadurch wird das Add-in Prozess mit der Office-hostanwendung Prozess verbunden.
@@ -98,6 +99,33 @@ items:
       type:
       - excel.Excel.ConditionalFormatRule
       description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) {\n    var sheet = ctx.workbook.worksheets.getActiveWorksheet();\n    var range = sheet.getRange(\"A1:A5\");\n    range.values = [[1], [20], [\"\"], [5], [\"test\"]];\n    var cf = range.conditionalFormats.add(Excel.ConditionalFormatType.custom);\n    var cfCustom = cf.customOrNullObject;\n    cfCustom.rule.formula = \"=ISBLANK(A1)\";\n    cfCustom.format.fill.color = \"#00FF00\";\n    return ctx.sync().then(function () {\n        console.log(\"Added new custom conditional format highlighting all blank cells.\");\n    });\n}).catch(function (error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- uid: excel.Excel.CustomConditionalFormat.set
+  summary: Legt mehrere Eigenschaften eines Objekts zur selben Zeit fest. Sie können entweder eine einfache-Objekt mit den entsprechenden Eigenschaften oder ein anderes API-Objekt des gleichen Typs übergeben.
+  remarks: >-
+    Diese Methode hat die folgenden zusätzliche Signatur:
+
+
+    `set(properties: Excel.CustomConditionalFormat): void`
+  name: set(properties, options)
+  fullName: set
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Interfaces.CustomConditionalFormatUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: Ein JavaScript-Objekt mit Eigenschaften, die an die Eigenschaften des Objekts isomorphically strukturiert werden, auf denen die Methode aufgerufen wird.
+      type:
+      - Interfaces.CustomConditionalFormatUpdateData
+    - id: options
+      description: Bietet eine Option, um Fehler zu unterdrücken, wenn schreibgeschützte Eigenschaften festgelegt werden, versucht das Properties-Objekt.
+      type:
+      - office.OfficeExtension.UpdateOptions
 - uid: excel.Excel.CustomConditionalFormat.toJSON
   summary: Überschreibt das JavaScript `toJSON()` Methode, um nützliche Ausgabe zu gewährleisten, wenn ein API-Objekt zu übergeben ist `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, wiederum die `toJSON` -Methode des Objekts, das es übergeben wird.) Das ursprüngliche Excel.CustomConditionalFormat-Objekt ist ein API-Objekt der `toJSON` -Methode gibt eine einfache JavaScript-Objekt zurück (als `Excel.Interfaces.CustomConditionalFormatData` <!-- -->), die flache Kopien der geladene untergeordnete Eigenschaften aus dem ursprünglichen-Objekt enthält.
   name: toJSON()

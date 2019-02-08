@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: b263f2178c3a2b053f11b16b93eb694a2ff48b09
-ms.sourcegitcommit: 2dcedf6deec4167dca476a42dad411e28cc92a97
+ms.openlocfilehash: d9b768001e0e026c4a8ea3b0fad6f075042235ed
+ms.sourcegitcommit: 3f4a320fa860d05d348c8bdec2295e046a45a34f
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/23/2019
-ms.locfileid: "29385231"
+ms.lasthandoff: 02/07/2019
+ms.locfileid: "29769799"
 items:
 - uid: word.Word.Paragraph
   summary: >-
@@ -70,6 +70,7 @@ items:
   - word.Word.Paragraph.rightIndent
   - word.Word.Paragraph.search
   - word.Word.Paragraph.select
+  - word.Word.Paragraph.set
   - word.Word.Paragraph.spaceAfter
   - word.Word.Paragraph.spaceBefore
   - word.Word.Paragraph.split
@@ -1032,6 +1033,69 @@ items:
       description: Optional. Der Auswahlmodus kann „Select“, „Start“ oder „End“ sein. „Select“ ist die Standardeinstellung.
       type:
       - Word.SelectionMode
+- uid: word.Word.Paragraph.set
+  summary: Legt mehrere Eigenschaften eines Objekts zur selben Zeit fest. Sie können entweder eine einfache-Objekt mit den entsprechenden Eigenschaften oder ein anderes API-Objekt des gleichen Typs übergeben.
+  remarks: >-
+    Diese Methode hat die folgenden zusätzliche Signatur:
+
+
+    `set(properties: Word.Paragraph): void`
+
+    #### <a name="examples"></a>Beispiele
+
+
+    ```typescript
+
+    await Word.run(async (context) => {
+      const paragraph = context.document.body.paragraphs.getFirst();
+      paragraph.set({
+        leftIndent: 30,
+        font: {
+          bold: true,
+          color: "red"
+        }
+      });
+
+      await context.sync();
+    });
+
+    ```
+
+    ```typescript
+
+    await Word.run(async (context) => {
+      const firstParagraph = context.document.body.paragraphs.getFirst();
+      const secondParagraph = firstParagraph.getNext();
+      firstParagraph.load("text, font/color, font/bold, leftIndent");
+
+      await context.sync();
+
+      secondParagraph.set(firstParagraph);
+
+      await context.sync();
+    });
+
+    ```
+  name: set(properties, options)
+  fullName: set
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Interfaces.ParagraphUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: Ein JavaScript-Objekt mit Eigenschaften, die an die Eigenschaften des Objekts isomorphically strukturiert werden, auf denen die Methode aufgerufen wird.
+      type:
+      - Interfaces.ParagraphUpdateData
+    - id: options
+      description: Bietet eine Option, um Fehler zu unterdrücken, wenn schreibgeschützte Eigenschaften festgelegt werden, versucht das Properties-Objekt.
+      type:
+      - office.OfficeExtension.UpdateOptions
 - uid: word.Word.Paragraph.spaceAfter
   summary: >-
     Ruft den Abstand nach dem Absatz in Punkt ab oder legt ihn fest.
