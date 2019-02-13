@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 8179639bf91eb03769575799c9a3f71d1d65c8fa
-ms.sourcegitcommit: b05ee546d9dfbc914c8d1c594d9b206b04780bbc
+ms.openlocfilehash: 3d803c452211317817c7c0670cae3361ab8c3101
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/22/2018
-ms.locfileid: "26647476"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29979197"
 items:
 - uid: office.Office.UI
   summary: >-
@@ -21,6 +21,7 @@ items:
   children:
   - office.Office.UI.closeContainer
   - office.Office.UI.displayDialogAsync
+  - office.Office.UI.displayDialogAsync_1
   - office.Office.UI.messageParent
 - uid: office.Office.UI.closeContainer
   summary: Schließt den UI-Container, in dem der JavaScript-Code ausgeführt wird.
@@ -39,7 +40,7 @@ items:
 
     - Von einer Erweiterung Modul aufgerufen: keine Auswirkung.
   name: closeContainer()
-  fullName: closeContainer
+  fullName: closeContainer()
   langs:
   - typeScript
   type: method
@@ -114,7 +115,7 @@ items:
 
     <table> <tr> <th>Eigenschaft</th> <th>Verwendung</th> </tr> <tr> <td>AsyncResult.value</td> <td>Greift auf das DialogObjekt zu.</td> </tr> <tr> <td>AsyncResult.status</td> <td>Verwenden Sie diese Eigenschaft, um zu ermitteln, ob der Vorgang erfolgreich war.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Verwenden Sie diese Eigenschaft, um auf ein Error-Objekt zuzugreifen, das Informationen zu dem Fehler bereitstellt, wenn der Vorgang fehlgeschlagen ist.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Zugriff auf Ihr benutzerdefiniertes Object oder den Wert, wenn Sie eins als AsyncContext Parameter weitergegeben haben.</td> </tr> </table>
   name: displayDialogAsync(startAddress, options, callback)
-  fullName: displayDialogAsync
+  fullName: displayDialogAsync(startAddress, options, callback)
   langs:
   - typeScript
   type: method
@@ -137,10 +138,94 @@ items:
       description: Optional. Akzeptiert eine Rückrufmethode, die den Versuch der Dialogfelderstellung zu behandelt. Bei erfolgreicher ist die "AsyncResult.Value" ein Dialog-Objekt.
       type:
       - '(result: AsyncResult<Dialog>) => void'
+- uid: office.Office.UI.displayDialogAsync_1
+  summary: Zeigt ein Dialogfeld zum Anzeigen oder Abfragen von Informationen vom Benutzer oder zum Webnavigation zu ermöglichen.
+  remarks: >-
+    <table><tr><td>Hosts</td><td>Word, Excel, Outlook, PowerPoint</td></tr>
+
+
+    <tr><td>Anforderungssätze</td><td>DialogAPI Postfach 1.4</td></tr></table>
+
+
+    Diese Methode steht in der DialogApi Verpflichtung für Word, Excel oder PowerPoint-add-ins, und im Postfach Anforderung 1.4 für Outlook festgelegt. Weitere Informationen zum Angeben einer Anforderung, die im Manifest festlegen, finden Sie unter [Angeben von Office-API-Anforderungen für Hosts und](https://docs.microsoft.com/office/dev/add-ins/develop/specify-office-hosts-and-api-requirements)<!-- -->.
+
+
+    Die erste Seite muss sich in derselben Domäne wie die übergeordnete Seite (der Parameter StartAddress). Nachdem die Startseite geladen wurde, können Sie zu anderen Domänen wechseln.
+
+
+    Eine beliebige Seite aufrufen `office.context.ui.messageParent` muss auch auf der gleichen Domäne wie die übergeordnete Seite.
+
+
+    **Entwurfsaspekte**:
+
+
+    Die folgenden Entwurfsüberlegungen gelten für Dialogfelder:
+
+
+    - Aufgabenbereich Office-Add-in kann nur ein Dialogfeld gleichzeitig geöffnet haben. Mehrere Dialogfelder können von Add-In-Befehle (benutzerdefiniertes Menübandschaltflächen oder Menübefehle) gleichzeitig geöffnet sein.
+
+
+    - Jedes Dialogfeld kann vom Benutzer verschoben und in der Größe geändert werden.
+
+
+    - Jedes Dialogfeld wird beim Öffnen auf dem Bildschirm zentriert.
+
+
+    - Dialogfelder werden im Vordergrund der Hostanwendung und in der Reihenfolge angezeigt, in der sie erstellt wurden.
+
+
+    Verwenden Sie ein Dialogfelder zu folgenden Zwecken:
+
+
+    - Anzeigen von Authentifizierungsseiten zum Sammeln von Benutzeranmeldeinformationen
+
+
+    - Einen Bildschirm Fehler/Fortschritt/Eingabe eines Befehls ShowTaskpane oder ExecuteAction anzeigen.
+
+
+    - Vorübergehende Vergrößerung der Oberfläche, die einem Benutzer zum Durchführen einer Aufgabe zur Verfügung steht.
+
+
+    Verwenden Sie ein Dialogfeld nicht zur Interaktion mit einem Dokument. Verwenden Sie stattdessen einen Aufgabenbereich.
+
+
+    Ein Entwurfsmuster, nach dem Sie ein Dialogfeld erstellen können, finden Sie unter [Client-Dialogfeld](https://github.com/OfficeDev/Office-Add-in-UX-Design-Patterns/blob/master/Patterns/Client_Dialog.md) im Repository „Office-Add-in-UX-Design-Patterns“ auf GitHub.
+
+
+    **DisplayDialogAsync Fehler**:
+
+
+    <table> <tr> <th>Codenummer</th> <th>Bedeutung</th> </tr> <tr> <td>12004</td> <td>Die Domäne der URL übergeben DisplayDialogAsync ist nicht vertrauenswürdig. Die Domäne muss entweder derselben Domäne wie der Hostseite (einschließlich Protokoll-und Anschlussnummer) oder muss registriert werden die <AppDomains> Abschnitt des Manifests-Add-in.</td> </tr> <tr> <td>12005</td> <td>Die URL an DisplayDialogAsync übergeben wird das HTTP-Protokoll verwendet. HTTPS ist erforderlich. (In manchen Versionen von Office ist die Fehlermeldung, die für 12005 zurückgegeben wird, dieselbe wie für 12004.)</td> </tr> <tr> <td>12007</td> <td>Ein Dialogfeld ist bereits im Aufgabenbereich geöffnet. Für ein Aufgabenbereich-Add-In kann nur ein Dialogfeld geöffnet sein.</td> </tr> <tr> <td>12009</td> <td>Der Benutzer hat das Dialogfeld ignoriert. Dieser Fehler kann in Online-Versionen von Office auftreten, in denen Benutzer auswählen können, dass ein Add-In kein Dialogfeld präsentiert.</td> </tr> </table>
+
+
+    Die Eigenschaften des AsyncResult-Objekts können Sie in der an die DisplayDialogAsync-Methode übergebenen Rückruffunktion die folgenden Informationen zurückzugeben.
+
+
+    <table> <tr> <th>Eigenschaft</th> <th>Verwendung</th> </tr> <tr> <td>AsyncResult.value</td> <td>Greift auf das DialogObjekt zu.</td> </tr> <tr> <td>AsyncResult.status</td> <td>Verwenden Sie diese Eigenschaft, um zu ermitteln, ob der Vorgang erfolgreich war.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Verwenden Sie diese Eigenschaft, um auf ein Error-Objekt zuzugreifen, das Informationen zu dem Fehler bereitstellt, wenn der Vorgang fehlgeschlagen ist.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Zugriff auf Ihr benutzerdefiniertes Object oder den Wert, wenn Sie eins als AsyncContext Parameter weitergegeben haben.</td> </tr> </table>
+  name: displayDialogAsync(startAddress, callback)
+  fullName: displayDialogAsync(startAddress, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'displayDialogAsync(startAddress: string, callback?: (result: AsyncResult<Dialog>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: startAddress
+      description: Akzeptiert die anfänglichen HTTPS-URL, die im Dialogfeld wird geöffnet.
+      type:
+      - string
+    - id: callback
+      description: Optional. Akzeptiert eine Rückrufmethode, die den Versuch der Dialogfelderstellung zu behandelt. Bei erfolgreicher ist die "AsyncResult.Value" ein Dialog-Objekt.
+      type:
+      - '(result: AsyncResult<Dialog>) => void'
 - uid: office.Office.UI.messageParent
   summary: Übermittelt eine Nachricht vom Dialogfeld an die übergeordnete/öffnende Seite. Die Seite, die diese API aufruft, muss sich in derselben Domäne wie die übergeordnete Seite befinden.
   name: messageParent(message)
-  fullName: messageParent
+  fullName: messageParent(message)
   langs:
   - typeScript
   type: method

@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 65505e8299d177a83f554c86ebc2926401f4861a
-ms.sourcegitcommit: 3f4a320fa860d05d348c8bdec2295e046a45a34f
+ms.openlocfilehash: b1e9b5c038d95d276dd8bba24bec9bb871147043
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "29769764"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29976992"
 items:
 - uid: visio.Visio.Shape
   summary: >-
@@ -26,9 +26,12 @@ items:
   - visio.Visio.Shape.hyperlinks
   - visio.Visio.Shape.id
   - visio.Visio.Shape.load
+  - visio.Visio.Shape.load_1
+  - visio.Visio.Shape.load_2
   - visio.Visio.Shape.name
   - visio.Visio.Shape.select
   - visio.Visio.Shape.set
+  - visio.Visio.Shape.set_1
   - visio.Visio.Shape.shapeDataItems
   - visio.Visio.Shape.subShapes
   - visio.Visio.Shape.text
@@ -57,7 +60,7 @@ items:
 
     \[[API-Satz: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
   name: getBounds()
-  fullName: getBounds
+  fullName: getBounds()
   langs:
   - typeScript
   type: method
@@ -103,6 +106,9 @@ items:
   summary: Warteschlangen ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen "context.sync()" aufrufen, bevor Sie die Eigenschaften lesen.
   remarks: >-
     Zusätzlich zu dieser Signatur hat diese Methode die folgenden Signaturen:
+
+
+    `load(option?: string | string[]): Visio.Shape`-Wo Option ist eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die zum Laden die Eigenschaften angeben.
 
 
     `load(option?: { select?: string; expand?: string; }): Visio.Shape`-Option.select ist eine durch Trennzeichen getrennte Zeichenfolge, die die Eigenschaften zum Laden gibt an, wobei options.expand ist eine durch Kommas getrennte Zeichenfolge, die Navigationseigenschaften zum Laden angibt.
@@ -151,21 +157,57 @@ items:
 
     ```
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Visio.Shape;'
+    content: 'load(option?: Visio.Interfaces.ShapeLoadOptions): Visio.Shape;'
     return:
       type:
       - visio.Visio.Shape
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - visio.Visio.Interfaces.ShapeLoadOptions
+- uid: visio.Visio.Shape.load_1
+  summary: Warteschlangen ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen Aufrufen `context.sync()` vor dem Lesen der Eigenschaften.
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Visio.Shape;'
+    return:
+      type:
+      - visio.Visio.Shape
+      description: ''
+    parameters:
+    - id: propertyNames
       description: Eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die zum Laden die Eigenschaften angeben.
       type:
       - string | string[]
+- uid: visio.Visio.Shape.load_2
+  summary: Warteschlangen ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen Aufrufen `context.sync()` vor dem Lesen der Eigenschaften.
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Visio.Shape;'
+    return:
+      type:
+      - visio.Visio.Shape
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: Wobei propertyNamesAndPaths.select ist eine durch Kommas getrennte Zeichenfolge, die angibt, die Eigenschaften zum Laden und propertyNamesAndPaths.expand ist eine durch Kommas getrennte Zeichenfolge, die Navigationseigenschaften zum Laden angibt.
+      type:
+      - '{ select?: string; expand?: string; }'
 - uid: visio.Visio.Shape.name
   summary: >-
     Der Name des Shapes. Schreibgeschützt.
@@ -206,7 +248,7 @@ items:
 
     `set(properties: Visio.Shape): void`
   name: set(properties, options)
-  fullName: set
+  fullName: set(properties, options)
   langs:
   - typeScript
   type: method
@@ -225,6 +267,24 @@ items:
       description: Bietet eine Option, um Fehler zu unterdrücken, wenn schreibgeschützte Eigenschaften festgelegt werden, versucht das Properties-Objekt.
       type:
       - office.OfficeExtension.UpdateOptions
+- uid: visio.Visio.Shape.set_1
+  summary: Mehrere Eigenschaften festgelegt auf das Objekt zur selben Zeit, basierend auf einem vorhandenen geladen-Objekt.
+  name: set(properties)
+  fullName: set(properties)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Visio.Shape): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: ''
+      type:
+      - visio.Visio.Shape
 - uid: visio.Visio.Shape.shapeDataItems
   summary: >-
     Gibt den Datenabschnitt des Shapes zurück. Schreibgeschützt.
@@ -275,7 +335,7 @@ items:
       - string
 - uid: visio.Visio.Shape.toJSON
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method

@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 7b7205e1fd825971a66570b0916317cec4a663cd
-ms.sourcegitcommit: 3f4a320fa860d05d348c8bdec2295e046a45a34f
+ms.openlocfilehash: 7b6f2aa8821ff2e4bce9f7b87ae342363d62a680
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "29769953"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29974416"
 items:
 - uid: excel.Excel.ChartLineFormat
   summary: >-
@@ -26,7 +26,10 @@ items:
   - excel.Excel.ChartLineFormat.context
   - excel.Excel.ChartLineFormat.lineStyle
   - excel.Excel.ChartLineFormat.load
+  - excel.Excel.ChartLineFormat.load_1
+  - excel.Excel.ChartLineFormat.load_2
   - excel.Excel.ChartLineFormat.set
+  - excel.Excel.ChartLineFormat.set_1
   - excel.Excel.ChartLineFormat.toJSON
   - excel.Excel.ChartLineFormat.weight
 - uid: excel.Excel.ChartLineFormat.clear
@@ -36,7 +39,7 @@ items:
 
     \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: clear()
-  fullName: clear
+  fullName: clear()
   langs:
   - typeScript
   type: method
@@ -96,48 +99,65 @@ items:
     Zusätzlich zu dieser Signatur hat diese Methode die folgenden Signaturen:
 
 
+    `load(option?: string | string[]): Excel.ChartLineFormat`-Wo Option ist eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die zum Laden die Eigenschaften angeben.
+
+
     `load(option?: { select?: string; expand?: string; }): Excel.ChartLineFormat`-Option.select ist eine durch Trennzeichen getrennte Zeichenfolge, die die Eigenschaften zum Laden gibt an, wobei options.expand ist eine durch Kommas getrennte Zeichenfolge, die Navigationseigenschaften zum Laden angibt.
 
 
     `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.ChartLineFormat`-Nur auf Auflistungstypen verfügbar. Es ist ähnlich wie die jeweils vorhergehende Signatur. Option.Top gibt die maximale Anzahl der Auflistungselemente, die im Ergebnis enthalten sein können. Option.Skip gibt die Anzahl der Elemente, die übersprungen und nicht in das Ergebnis eingeschlossen werden sollen. Wenn option.top angegeben wird, wird das Resultset starten, nachdem die angegebene Anzahl von Elementen übersprungen wird.
-
-    #### <a name="examples"></a>Beispiele
-
-
-    ```javascript
-
-    // Set chart major gridlines on value axis to be red.
-
-    Excel.run(function (ctx) {
-        var gridlines = ctx.workbook.worksheets.getItem("Sheet1").charts.getItem("Chart1").axes.valueAxis.majorGridlines;
-        gridlines.format.line.color = "#FF0000";
-        return ctx.sync().then(function () {
-            console.log("Chart Gridlines Color Updated");
-        });
-    }).catch(function (error) {
-        console.log("Error: " + error);
-        if (error instanceof OfficeExtension.Error) {
-            console.log("Debug info: " + JSON.stringify(error.debugInfo));
-        }
-    });
-
-    ```
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Excel.ChartLineFormat;'
+    content: 'load(option?: Excel.Interfaces.ChartLineFormatLoadOptions): Excel.ChartLineFormat;'
     return:
       type:
       - excel.Excel.ChartLineFormat
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - excel.Excel.Interfaces.ChartLineFormatLoadOptions
+- uid: excel.Excel.ChartLineFormat.load_1
+  summary: Warteschlangen ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen Aufrufen `context.sync()` vor dem Lesen der Eigenschaften.
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.ChartLineFormat;'
+    return:
+      type:
+      - excel.Excel.ChartLineFormat
+      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// Set chart major gridlines on value axis to be red.\nExcel.run(function (ctx) {\n    var gridlines = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\").axes.valueAxis.majorGridlines;\n    gridlines.format.line.color = \"#FF0000\";\n    return ctx.sync().then(function () {\n        console.log(\"Chart Gridlines Color Updated\");\n    });\n}).catch(function (error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: propertyNames
       description: Eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die zum Laden die Eigenschaften angeben.
       type:
       - string | string[]
+- uid: excel.Excel.ChartLineFormat.load_2
+  summary: Warteschlangen ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen Aufrufen `context.sync()` vor dem Lesen der Eigenschaften.
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.ChartLineFormat;'
+    return:
+      type:
+      - excel.Excel.ChartLineFormat
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: Wobei propertyNamesAndPaths.select ist eine durch Kommas getrennte Zeichenfolge, die angibt, die Eigenschaften zum Laden und propertyNamesAndPaths.expand ist eine durch Kommas getrennte Zeichenfolge, die Navigationseigenschaften zum Laden angibt.
+      type:
+      - '{ select?: string; expand?: string; }'
 - uid: excel.Excel.ChartLineFormat.set
   summary: Legt mehrere Eigenschaften eines Objekts zur selben Zeit fest. Sie können entweder eine einfache-Objekt mit den entsprechenden Eigenschaften oder ein anderes API-Objekt des gleichen Typs übergeben.
   remarks: >-
@@ -146,7 +166,7 @@ items:
 
     `set(properties: Excel.ChartLineFormat): void`
   name: set(properties, options)
-  fullName: set
+  fullName: set(properties, options)
   langs:
   - typeScript
   type: method
@@ -165,10 +185,28 @@ items:
       description: Bietet eine Option, um Fehler zu unterdrücken, wenn schreibgeschützte Eigenschaften festgelegt werden, versucht das Properties-Objekt.
       type:
       - office.OfficeExtension.UpdateOptions
+- uid: excel.Excel.ChartLineFormat.set_1
+  summary: Mehrere Eigenschaften festgelegt auf das Objekt zur selben Zeit, basierend auf einem vorhandenen geladen-Objekt.
+  name: set(properties)
+  fullName: set(properties)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Excel.ChartLineFormat): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: ''
+      type:
+      - excel.Excel.ChartLineFormat
 - uid: excel.Excel.ChartLineFormat.toJSON
   summary: Überschreibt das JavaScript `toJSON()` Methode, um nützliche Ausgabe zu gewährleisten, wenn ein API-Objekt zu übergeben ist `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, wiederum die `toJSON` -Methode des Objekts, das es übergeben wird.) Das ursprüngliche Excel.ChartLineFormat-Objekt ist ein API-Objekt der `toJSON` -Methode gibt eine einfache JavaScript-Objekt zurück (als `Excel.Interfaces.ChartLineFormatData` <!-- -->), die flache Kopien der geladene untergeordnete Eigenschaften aus dem ursprünglichen-Objekt enthält.
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method

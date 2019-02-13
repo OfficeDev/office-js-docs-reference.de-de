@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: d4f4962fce18a2a00695431685000331cbdd830e
-ms.sourcegitcommit: 3f4a320fa860d05d348c8bdec2295e046a45a34f
+ms.openlocfilehash: 72e6f75e4d39905f369bee6fb5a3dd890682c552
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "29769596"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29978406"
 items:
 - uid: excel.Excel.DocumentProperties
   summary: >-
@@ -31,9 +31,12 @@ items:
   - excel.Excel.DocumentProperties.keywords
   - excel.Excel.DocumentProperties.lastAuthor
   - excel.Excel.DocumentProperties.load
+  - excel.Excel.DocumentProperties.load_1
+  - excel.Excel.DocumentProperties.load_2
   - excel.Excel.DocumentProperties.manager
   - excel.Excel.DocumentProperties.revisionNumber
   - excel.Excel.DocumentProperties.set
+  - excel.Excel.DocumentProperties.set_1
   - excel.Excel.DocumentProperties.subject
   - excel.Excel.DocumentProperties.title
   - excel.Excel.DocumentProperties.toJSON
@@ -183,26 +186,65 @@ items:
     Zusätzlich zu dieser Signatur hat diese Methode die folgenden Signaturen:
 
 
+    `load(option?: string | string[]): Excel.DocumentProperties`-Wo Option ist eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die zum Laden die Eigenschaften angeben.
+
+
     `load(option?: { select?: string; expand?: string; }): Excel.DocumentProperties`-Option.select ist eine durch Trennzeichen getrennte Zeichenfolge, die die Eigenschaften zum Laden gibt an, wobei options.expand ist eine durch Kommas getrennte Zeichenfolge, die Navigationseigenschaften zum Laden angibt.
 
 
     `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.DocumentProperties`-Nur auf Auflistungstypen verfügbar. Es ist ähnlich wie die jeweils vorhergehende Signatur. Option.Top gibt die maximale Anzahl der Auflistungselemente, die im Ergebnis enthalten sein können. Option.Skip gibt die Anzahl der Elemente, die übersprungen und nicht in das Ergebnis eingeschlossen werden sollen. Wenn option.top angegeben wird, wird das Resultset starten, nachdem die angegebene Anzahl von Elementen übersprungen wird.
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Excel.DocumentProperties;'
+    content: 'load(option?: Excel.Interfaces.DocumentPropertiesLoadOptions): Excel.DocumentProperties;'
     return:
       type:
       - excel.Excel.DocumentProperties
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - excel.Excel.Interfaces.DocumentPropertiesLoadOptions
+- uid: excel.Excel.DocumentProperties.load_1
+  summary: Warteschlangen ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen Aufrufen `context.sync()` vor dem Lesen der Eigenschaften.
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.DocumentProperties;'
+    return:
+      type:
+      - excel.Excel.DocumentProperties
+      description: ''
+    parameters:
+    - id: propertyNames
       description: Eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die zum Laden die Eigenschaften angeben.
       type:
       - string | string[]
+- uid: excel.Excel.DocumentProperties.load_2
+  summary: Warteschlangen ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen Aufrufen `context.sync()` vor dem Lesen der Eigenschaften.
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.DocumentProperties;'
+    return:
+      type:
+      - excel.Excel.DocumentProperties
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: Wobei propertyNamesAndPaths.select ist eine durch Kommas getrennte Zeichenfolge, die angibt, die Eigenschaften zum Laden und propertyNamesAndPaths.expand ist eine durch Kommas getrennte Zeichenfolge, die Navigationseigenschaften zum Laden angibt.
+      type:
+      - '{ select?: string; expand?: string; }'
 - uid: excel.Excel.DocumentProperties.manager
   summary: >-
     Ruft den Manager der Arbeitsmappe ab oder legt diesen fest.
@@ -243,7 +285,7 @@ items:
 
     `set(properties: Excel.DocumentProperties): void`
   name: set(properties, options)
-  fullName: set
+  fullName: set(properties, options)
   langs:
   - typeScript
   type: method
@@ -262,6 +304,24 @@ items:
       description: Bietet eine Option, um Fehler zu unterdrücken, wenn schreibgeschützte Eigenschaften festgelegt werden, versucht das Properties-Objekt.
       type:
       - office.OfficeExtension.UpdateOptions
+- uid: excel.Excel.DocumentProperties.set_1
+  summary: Mehrere Eigenschaften festgelegt auf das Objekt zur selben Zeit, basierend auf einem vorhandenen geladen-Objekt.
+  name: set(properties)
+  fullName: set(properties)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Excel.DocumentProperties): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: ''
+      type:
+      - excel.Excel.DocumentProperties
 - uid: excel.Excel.DocumentProperties.subject
   summary: >-
     Ruft den Betreff der Arbeitsmappe ab oder legt diesen fest.
@@ -297,7 +357,7 @@ items:
 - uid: excel.Excel.DocumentProperties.toJSON
   summary: Überschreibt das JavaScript `toJSON()` Methode, um nützliche Ausgabe zu gewährleisten, wenn ein API-Objekt zu übergeben ist `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, wiederum die `toJSON` -Methode des Objekts, das es übergeben wird.) Das ursprüngliche Excel.DocumentProperties-Objekt ist ein API-Objekt der `toJSON` -Methode gibt eine einfache JavaScript-Objekt zurück (als `Excel.Interfaces.DocumentPropertiesData` <!-- -->), die flache Kopien der geladene untergeordnete Eigenschaften aus dem ursprünglichen-Objekt enthält.
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method
