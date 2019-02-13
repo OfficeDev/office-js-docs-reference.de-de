@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: d2c6b2fe6326e88a662da28dc65222cee0fe0caf
-ms.sourcegitcommit: 3f4a320fa860d05d348c8bdec2295e046a45a34f
+ms.openlocfilehash: a65880612d7566db70a0e06a77dfd72488fc8e31
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "29769379"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29977230"
 items:
 - uid: excel.Excel.Application
   summary: >-
@@ -22,10 +22,14 @@ items:
   package: excel
   children:
   - excel.Excel.Application.calculate
+  - excel.Excel.Application.calculate_1
   - excel.Excel.Application.calculationMode
   - excel.Excel.Application.context
   - excel.Excel.Application.load
+  - excel.Excel.Application.load_1
+  - excel.Excel.Application.load_2
   - excel.Excel.Application.set
+  - excel.Excel.Application.set_1
   - excel.Excel.Application.suspendApiCalculationUntilNextSync
   - excel.Excel.Application.toJSON
 - uid: excel.Excel.Application.calculate
@@ -35,7 +39,7 @@ items:
 
     \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: calculate(calculationType)
-  fullName: calculate
+  fullName: calculate(calculationType)
   langs:
   - typeScript
   type: method
@@ -44,12 +48,34 @@ items:
     return:
       type:
       - void
-      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) {\n    ctx.workbook.application.calculate('Full');\n    return ctx.sync();\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+      description: ''
     parameters:
     - id: calculationType
       description: Gibt den Berechnungstyp verwendet. Einzelheiten finden Sie unter Excel.CalculationType.
       type:
       - excel.Excel.CalculationType
+- uid: excel.Excel.Application.calculate_1
+  summary: >-
+    Alle in Excel geöffnete Arbeitsmappen werden neu berechnet.
+
+
+    \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: calculate(calculationTypeString)
+  fullName: calculate(calculationTypeString)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'calculate(calculationTypeString: "Recalculate" | "Full" | "FullRebuild"): void;'
+    return:
+      type:
+      - void
+      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) {\n    ctx.workbook.application.calculate('Full');\n    return ctx.sync();\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: calculationTypeString
+      description: Gibt den Berechnungstyp verwendet. Einzelheiten finden Sie unter Excel.CalculationType.
+      type:
+      - "\"Recalculate\" | \"Full\" | \"FullRebuild\""
 - uid: excel.Excel.Application.calculationMode
   summary: >-
     Gibt den Berechnungsmodus in der Arbeitsmappe verwendeten durch die Konstanten im Excel.CalculationMode definiert. Mögliche Werte sind: `Automatic` <!-- -->, wobei neuberechnung; wird von Excel gesteuert `AutomaticExceptTables` <!-- -->, wobei Excel die neuberechnung steuert jedoch Änderungen in den Tabellen ignoriert; `Manual` <!-- -->, wobei Berechnung ausgeführt wird, wenn der Benutzer diese anfordert.
@@ -84,46 +110,65 @@ items:
     Zusätzlich zu dieser Signatur hat diese Methode die folgenden Signaturen:
 
 
+    `load(option?: string | string[]): Excel.Application`-Wo Option ist eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die zum Laden die Eigenschaften angeben.
+
+
     `load(option?: { select?: string; expand?: string; }): Excel.Application`-Option.select ist eine durch Trennzeichen getrennte Zeichenfolge, die die Eigenschaften zum Laden gibt an, wobei options.expand ist eine durch Kommas getrennte Zeichenfolge, die Navigationseigenschaften zum Laden angibt.
 
 
     `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Application`-Nur auf Auflistungstypen verfügbar. Es ist ähnlich wie die jeweils vorhergehende Signatur. Option.Top gibt die maximale Anzahl der Auflistungselemente, die im Ergebnis enthalten sein können. Option.Skip gibt die Anzahl der Elemente, die übersprungen und nicht in das Ergebnis eingeschlossen werden sollen. Wenn option.top angegeben wird, wird das Resultset starten, nachdem die angegebene Anzahl von Elementen übersprungen wird.
-
-    #### <a name="examples"></a>Beispiele
-
-
-    ```javascript
-
-    Excel.run(function (ctx) {
-        var application = ctx.workbook.application;
-        application.load('calculationMode');
-        return ctx.sync().then(function() {
-            console.log(application.calculationMode);
-        });
-    }).catch(function(error) {
-        console.log("Error: " + error);
-        if (error instanceof OfficeExtension.Error) {
-            console.log("Debug info: " + JSON.stringify(error.debugInfo));
-        }
-    });
-
-    ```
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Excel.Application;'
+    content: 'load(option?: Excel.Interfaces.ApplicationLoadOptions): Excel.Application;'
     return:
       type:
       - excel.Excel.Application
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - excel.Excel.Interfaces.ApplicationLoadOptions
+- uid: excel.Excel.Application.load_1
+  summary: Warteschlangen ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen Aufrufen `context.sync()` vor dem Lesen der Eigenschaften.
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.Application;'
+    return:
+      type:
+      - excel.Excel.Application
+      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) {\n    var application = ctx.workbook.application;\n    application.load('calculationMode');\n    return ctx.sync().then(function() {\n        console.log(application.calculationMode);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: propertyNames
       description: Eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die zum Laden die Eigenschaften angeben.
       type:
       - string | string[]
+- uid: excel.Excel.Application.load_2
+  summary: Warteschlangen ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen Aufrufen `context.sync()` vor dem Lesen der Eigenschaften.
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.Application;'
+    return:
+      type:
+      - excel.Excel.Application
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: Wobei propertyNamesAndPaths.select ist eine durch Kommas getrennte Zeichenfolge, die angibt, die Eigenschaften zum Laden und propertyNamesAndPaths.expand ist eine durch Kommas getrennte Zeichenfolge, die Navigationseigenschaften zum Laden angibt.
+      type:
+      - '{ select?: string; expand?: string; }'
 - uid: excel.Excel.Application.set
   summary: Legt mehrere Eigenschaften eines Objekts zur selben Zeit fest. Sie können entweder eine einfache-Objekt mit den entsprechenden Eigenschaften oder ein anderes API-Objekt des gleichen Typs übergeben.
   remarks: >-
@@ -132,7 +177,7 @@ items:
 
     `set(properties: Excel.Application): void`
   name: set(properties, options)
-  fullName: set
+  fullName: set(properties, options)
   langs:
   - typeScript
   type: method
@@ -151,6 +196,24 @@ items:
       description: Bietet eine Option, um Fehler zu unterdrücken, wenn schreibgeschützte Eigenschaften festgelegt werden, versucht das Properties-Objekt.
       type:
       - office.OfficeExtension.UpdateOptions
+- uid: excel.Excel.Application.set_1
+  summary: Mehrere Eigenschaften festgelegt auf das Objekt zur selben Zeit, basierend auf einem vorhandenen geladen-Objekt.
+  name: set(properties)
+  fullName: set(properties)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Excel.Application): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: ''
+      type:
+      - excel.Excel.Application
 - uid: excel.Excel.Application.suspendApiCalculationUntilNextSync
   summary: >-
     Hält die Berechnung an, bis die nächste „context.sync()“ aufgerufen wird. Nachdem dies festgelegt wurde, liegt es in der Verantwortung des Entwicklers, die Arbeitsmappe neu zu berechnen, um sicherzustellen, dass alle Abhängigkeiten verteilt werden.
@@ -158,7 +221,7 @@ items:
 
     \[[API-Satz: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: suspendApiCalculationUntilNextSync()
-  fullName: suspendApiCalculationUntilNextSync
+  fullName: suspendApiCalculationUntilNextSync()
   langs:
   - typeScript
   type: method
@@ -171,7 +234,7 @@ items:
 - uid: excel.Excel.Application.toJSON
   summary: Überschreibt das JavaScript `toJSON()` Methode, um nützliche Ausgabe zu gewährleisten, wenn ein API-Objekt zu übergeben ist `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, wiederum die `toJSON` -Methode des Objekts, das es übergeben wird.) Das ursprüngliche Excel.Application-Objekt ein API-Objekt ist die `toJSON` -Methode gibt eine einfache JavaScript-Objekt zurück (eine Typisierung als `Excel.Interfaces.ApplicationData` <!-- -->), die flache Kopien der geladene untergeordnete Eigenschaften aus dem ursprünglichen-Objekt enthält.
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method

@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: c4664ecf78ffa057cdc687bccde506e056bce76f
-ms.sourcegitcommit: a68606173477c7fb4069880eea941766c7d8c50d
+ms.openlocfilehash: 7c768da03e87068a6ea2190700d1d4bd5ab99736
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/01/2019
-ms.locfileid: "29703904"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29975249"
 items:
 - uid: Outlook_1_1.Office.Mailbox
   summary: >-
@@ -38,14 +38,14 @@ items:
   children:
   - Outlook_1_1.Office.Mailbox.convertToLocalClientTime
   - Outlook_1_1.Office.Mailbox.convertToUtcClientTime
-  - Outlook_1_1.Office.Mailbox.diagnostics
   - Outlook_1_1.Office.Mailbox.displayAppointmentForm
   - Outlook_1_1.Office.Mailbox.displayMessageForm
   - Outlook_1_1.Office.Mailbox.displayNewAppointmentForm
-  - Outlook_1_1.Office.Mailbox.ewsUrl
   - Outlook_1_1.Office.Mailbox.getUserIdentityTokenAsync
-  - Outlook_1_1.Office.Mailbox.item
   - Outlook_1_1.Office.Mailbox.makeEwsRequestAsync
+  - Outlook_1_1.Office.Mailbox.diagnostics
+  - Outlook_1_1.Office.Mailbox.ewsUrl
+  - Outlook_1_1.Office.Mailbox.item
   - Outlook_1_1.Office.Mailbox.userProfile
 - uid: Outlook_1_1.Office.Mailbox.convertToLocalClientTime
   summary: >-
@@ -65,7 +65,7 @@ items:
 
     <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
   name: convertToLocalClientTime(timeValue)
-  fullName: convertToLocalClientTime
+  fullName: convertToLocalClientTime(timeValue)
   langs:
   - typeScript
   type: method
@@ -95,7 +95,7 @@ items:
 
     <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
   name: convertToUtcClientTime(input)
-  fullName: convertToUtcClientTime
+  fullName: convertToUtcClientTime(input)
   langs:
   - typeScript
   type: method
@@ -110,6 +110,338 @@ items:
       description: Der zu konvertierende Wert für die lokale Uhrzeit.
       type:
       - LocalClientTime
+- uid: Outlook_1_1.Office.Mailbox.displayAppointmentForm
+  summary: >-
+    Zeigt einen bestehenden Kalendertermin an.
+
+
+    Mit der displayAppointmentForm-Methode wird ein vorhandener Kalendertermin auf dem Desktop in einem neuen Fenster oder auf Mobilgeräten in einem Dialogfeld geöffnet.
+
+
+    In Outlook for Mac können Sie diese Methode verwenden, um einen einzelnen Termin anzuzeigen, der nicht Teil einer Terminserie ist, oder den Mastertermin einer Terminserie, jedoch keine Instanz der Terminserie. Dies liegt daran, dass Sie in Outlook for Mac nicht auf die Eigenschaften (einschließlich der Element-ID) von Instanzen einer Terminserie zugreifen können.
+
+
+    In Outlook Web App öffnet diese Methode das angegebene Formular nur, wenn der Textkörper des Formulars nicht größer ist als 32 KB.
+
+
+    Wenn der angegebene Elementbezeichner keinen vorhandenen Termin identifiziert, wird auf dem Clientcomputer oder Gerät ein leerer Bereich geöffnet, und es wird keine Fehlermeldung zurückgegeben.
+
+
+    **Hinweis**: Diese Methode wird in Outlook für iOS oder Outlook für Android nicht unterstützt.
+
+
+    \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
+  name: displayAppointmentForm(itemId)
+  fullName: displayAppointmentForm(itemId)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'displayAppointmentForm(itemId: string): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: itemId
+      description: Der EWS-Bezeichner (Exchange Web Services, Exchange-Webdienste) für einen vorhandenen Kalendertermin.
+      type:
+      - string
+- uid: Outlook_1_1.Office.Mailbox.displayMessageForm
+  summary: >-
+    Zeigt eine vorhandene Nachricht an.
+
+
+    Die displayMessageForm-Methode öffnet eine vorhandene Nachricht in einem neuen Fenster auf dem Desktop bzw. in einem Dialogfeld auf Mobilgeräten.
+
+
+    In Outlook Web App wird mit dieser Methode das angegebene Formular nur dann geöffnet, wenn der Textkörper des Formular Zeichen im Umfang vom maximal 32 KB umfasst.
+
+
+    Wenn der angegebene Elementbezeichner keine vorhandenen Nachrichten erkennt, wird auf dem Client-Computer keine Nachricht angezeigt, und es werden keine Fehlermeldungen zurückgegeben.
+
+
+    Verwenden Sie displayMessageForm nicht mit einem itemId, das einen Termin darstellt. Verwenden Sie die displayAppointmentForm-Methode, um einen vorhandenen Termin anzuzeigen, und displayNewAppointmentForm, um ein Formular zum Erstellen eines neuen Termins anzuzeigen.
+
+
+    **Hinweis**: Diese Methode wird in Outlook für iOS oder Outlook für Android nicht unterstützt.
+
+
+    \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
+  name: displayMessageForm(itemId)
+  fullName: displayMessageForm(itemId)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'displayMessageForm(itemId: string): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: itemId
+      description: Der Exchange-Webdienste (EWS) für eine vorhandene Nachricht.
+      type:
+      - string
+- uid: Outlook_1_1.Office.Mailbox.displayNewAppointmentForm
+  summary: >-
+    Zeigt ein Formular zum Erstellen eines neuen Kalendertermins an.
+
+
+    Mit der displayNewAppointmentForm-Methode wird ein Formular geöffnet, mit dem der Benutzer einen neuen Termin oder ein Meeting erstellen kann. Wenn Parameter angegeben wurden, werden die Felder im Terminformular automatisch mit dem Inhalt der Parameter ausgefüllt.
+
+
+    In Outlook Web App und OWA for Devices zeigt diese Methode immer ein Formular mit einem Teilnehmerfeld an. Wenn Sie keine Teilnehmer als Eingabeargumente angeben, zeigt die Methode ein Formular mit einer Schaltfläche Speichern an. Wenn Sie Teilnehmer angegeben haben, enthält das Formular die Teilnehmer und eine Schaltfläche Senden.
+
+
+    Wenn Sie alle Teilnehmer oder Ressourcen in der RequiredAttendees, OptionalAttendees oder Ressourcen-Parameter angeben, zeigt diese Methode im Outlook-rich-Client und Outlook RT ein Formular Besprechung mit einer Sendeschaltfläche. Wenn Sie keine Empfänger angeben, zeigt diese Methode ein Terminformular ein &amp; Schaltfläche Schließen.
+
+
+    Wenn einer der Parameter die angegebenen Größenbeschränkungen überschreitet oder wenn ein unbekannter Parametername angegeben wird, wird eine Ausnahme ausgelöst.
+
+
+    **Hinweis**: Diese Methode wird in Outlook für iOS oder Outlook für Android nicht unterstützt.
+
+
+    \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr></table>
+
+    ####Beispiele für
+
+
+    ```javascript
+
+    var start = new Date();
+
+    var end = new Date();
+
+    end.setHours(start.getHours() + 1);
+
+
+    Office.context.mailbox.displayNewAppointmentForm(
+
+    {
+        requiredAttendees: ['bob@contoso.com'],
+        optionalAttendees: ['sam@contoso.com'],
+        start: start,
+        end: end,
+        location: 'Home',
+        resources: ['projector@contoso.com'],
+        subject: 'meeting',
+        body: 'Hello World!'
+    });
+
+    ```
+  name: displayNewAppointmentForm(parameters)
+  fullName: displayNewAppointmentForm(parameters)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'displayNewAppointmentForm(parameters: AppointmentForm): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: parameters
+      description: Ein AppointmentForm zur Beschreibung des neuen Termins. Alle Eigenschaften sind optional.
+      type:
+      - AppointmentForm
+- uid: Outlook_1_1.Office.Mailbox.getUserIdentityTokenAsync
+  summary: >-
+    Ruft ein Token ab, das den Benutzer und das Office-Add-In identifiziert.
+
+
+    Das Token wird als Zeichenfolge in der asyncResult.value-Eigenschaft bereitgestellt.
+
+
+    \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassenmodus und Lesemodus</td></tr></table>
+
+
+    Die GetUserIdentityTokenAsync-Methode gibt ein Token, das Sie verwenden können, um zu identifizieren und [authentifizieren-Add-in und Benutzer mit einem Drittanbieter System](https://docs.microsoft.com/outlook/add-ins/authentication)<!-- -->.
+
+    #### <a name="examples"></a>Beispiele
+
+
+    ```javascript
+
+    function getIdentityToken() {
+        Office.context.mailbox.getUserIdentityTokenAsync(cb);
+    }
+
+
+    function cb(asyncResult) {
+        var token = asyncResult.value;
+    }
+
+    ```
+  name: getUserIdentityTokenAsync(callback, userContext)
+  fullName: getUserIdentityTokenAsync(callback, userContext)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getUserIdentityTokenAsync(callback: (result: Office.AsyncResult<string>) => void, userContext?: any): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: callback
+      description: Wenn die Methode abgeschlossen ist, wird die Funktion übergebenen Callback-Parameter mit einem einzelnen Parameter vom Typ Office.AsyncResult aufgerufen. Das Token wird als Zeichenfolge in der `asyncResult.value`-Eigenschaft bereitgestellt. Wenn ein Fehler aufgetreten und dann die `asyncResult.error` und `asyncResult.diagnostics` Eigenschaften möglicherweise zusätzliche Informationen bereitstellen.
+      type:
+      - '(result: Office.AsyncResult<string>) => void'
+    - id: userContext
+      description: Optional. Jegliche Zustandsdaten, die an die asynchrone Methode übergeben werden.\|
+      type:
+      - any
+- uid: Outlook_1_1.Office.Mailbox.makeEwsRequestAsync
+  summary: >-
+    Richtet eine asynchrone Anforderung an einen Exchange-Webdienste (EWS)-Dienst auf dem Exchange-Server, der das Postfach des Benutzers hostet.
+
+
+    In diesen Fällen sollten Add-Ins REST APIs verwenden, um auf das Postfach des Benutzers zuzugreifen.
+
+
+    Die makeEwsRequestAsync-Methode sendet eine EWS-Anforderung für das Add-In zu Exchange.
+
+
+    Sie können keine Elemente, die Ordnern zugeordnet sind, mit der makeEwsRequestAsync-Methode anfordern.
+
+
+    Die XML-Anfrage muss UTF-8-Codierung angeben. &lt;<!-- -->?xml Version = "1.0" encoding = "Utf-8"?<!-- -->&gt;
+
+
+    Ihr Add-in benötigen die Berechtigung ReadWriteMailbox die MakeEwsRequestAsync-Methode verwendet. Informationen zur Verwendung der Berechtigung ReadWriteMailbox und die EWS-Vorgänge, die Sie anrufen können mit der MakeEwsRequestAsync-Methode finden Sie unter [Angeben von Berechtigungen für den e-Mail-add-in Zugriff auf das Postfach des Benutzers](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->.
+
+
+    Das XML-Ergebnis des EWS-Aufrufs wird als Zeichenfolge in der asyncResult.value-Eigenschaft bereitgestellt. Wenn das Ergebnis größer als 1 MB ist, wird stattdessen eine Fehlermeldung zurückgegeben.
+
+
+    **Hinweis**: Diese Methode wird in den folgenden Szenarien nicht unterstützt:
+
+
+    - In Outlook für iOS oder Outlook für Android.
+
+
+    - Wenn das Add-in in einem Postfach Gmail geladen wird.
+
+
+    **Hinweis**: der Serveradministrator muss OAuthAuthentication auf True festgelegt, für das Client Access Server EWS-Verzeichnis, um die MakeEwsRequestAsync-Methode EWS-Anforderungen zu aktivieren.
+
+
+    *Versionsunterschiede*
+
+
+    Wenn Sie die makeEwsRequestAsync-Methode in Mail-Apps verwenden, die in älteren Outlook-Versionen als Version 15.0.4535.1004 ausgeführt werden, sollten Sie den Codierungswert auf ISO-8859-1 festlegen.
+
+
+    `<?xml version="1.0" encoding="iso-8859-1"?>`
+
+
+    Sie müssen den Codierungswert nicht festlegen, wenn Ihre Mail-App in Outlook im Web ausgeführt wird. Sie können mithilfe der mailbox.diagnostics.hostName-Eigenschaft ermitteln, ob Ihre Mail-App in Outlook oder Outlook im Web ausgeführt wird. Sie können mithilfe der mailbox.diagnostics.hostVersion-Eigenschaft ermitteln, welche Version von Outlook ausgeführt wird.
+
+
+    \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteMailbox</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassenmodus und Lesemodus</td></tr></table>
+
+    ####Beispiele für
+
+
+    ```javascript
+
+    function getSubjectRequest(id) {
+        // Return a GetItem operation request for the subject of the specified item.
+        var request =
+            '<?xml version="1.0" encoding="utf-8"?>' +
+            '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"' +
+            '               xmlns:xsd="http://www.w3.org/2001/XMLSchema"' +
+            '               xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"' +
+            '               xmlns:t="http://schemas.microsoft.com/exchange/services/2006/types">' +
+            '  <soap:Header>' +
+            '    <RequestServerVersion Version="Exchange2013" xmlns="http://schemas.microsoft.com/exchange/services/2006/types" soap:mustUnderstand="0" />' +
+            '  </soap:Header>' +
+            '  <soap:Body>' +
+            '    <GetItem xmlns="http://schemas.microsoft.com/exchange/services/2006/messages">' +
+            '      <ItemShape>' +
+            '        <t:BaseShape>IdOnly</t:BaseShape>' +
+            '        <t:AdditionalProperties>' +
+            '            <t:FieldURI FieldURI="item:Subject"/>' +
+            '        </t:AdditionalProperties>' +
+            '      </ItemShape>' +
+            '      <ItemIds><t:ItemId Id="' + id + '"/></ItemIds>' +
+            '    </GetItem>' +
+            '  </soap:Body>' +
+            '</soap:Envelope>';
+
+        return request;
+    }
+
+
+    function sendRequest() {
+        // Create a local variable that contains the mailbox.
+        Office.context.mailbox.makeEwsRequestAsync(
+            getSubjectRequest(mailbox.item.itemId), callback);
+    }
+
+
+    function callback(asyncResult)  {
+        var result = asyncResult.value;
+        var context = asyncResult.asyncContext;
+
+        // Process the returned response here.
+    }
+
+    ```
+  name: makeEwsRequestAsync(data, callback, userContext)
+  fullName: makeEwsRequestAsync(data, callback, userContext)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'makeEwsRequestAsync(data: any, callback: (result: Office.AsyncResult<string>) => void, userContext?: any): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: data
+      description: Die EWS-Anforderung.
+      type:
+      - any
+    - id: callback
+      description: Wenn die Methode abgeschlossen ist, wird die Funktion übergebenen Callback-Parameter mit einem einzelnen Parameter vom Typ Office.AsyncResult aufgerufen. Die `value` -Eigenschaft des Ergebnisses ist der XML-Code der EWS-Anforderung als Zeichenfolge bereitgestellt. Wenn das Ergebnis größer als 1 MB ist, wird stattdessen eine Fehlermeldung zurückgegeben.
+      type:
+      - '(result: Office.AsyncResult<string>) => void'
+    - id: userContext
+      description: Optional. Jegliche Zustandsdaten, die an die asynchrone Methode übergeben werden.
+      type:
+      - any
 - uid: Outlook_1_1.Office.Mailbox.diagnostics
   summary: >-
     Stellt einem Outlook-Add-In Diagnoseinformationen bereit.
@@ -146,132 +478,6 @@ items:
     return:
       type:
       - Diagnostics
-- uid: Outlook_1_1.Office.Mailbox.displayAppointmentForm
-  summary: >-
-    Zeigt einen bestehenden Kalendertermin an.
-
-
-    Mit der displayAppointmentForm-Methode wird ein vorhandener Kalendertermin auf dem Desktop in einem neuen Fenster oder auf Mobilgeräten in einem Dialogfeld geöffnet.
-
-
-    In Outlook for Mac können Sie diese Methode verwenden, um einen einzelnen Termin anzuzeigen, der nicht Teil einer Terminserie ist, oder den Mastertermin einer Terminserie, jedoch keine Instanz der Terminserie. Dies liegt daran, dass Sie in Outlook for Mac nicht auf die Eigenschaften (einschließlich der Element-ID) von Instanzen einer Terminserie zugreifen können.
-
-
-    In Outlook Web App öffnet diese Methode das angegebene Formular nur, wenn der Textkörper des Formulars nicht größer ist als 32 KB.
-
-
-    Wenn der angegebene Elementbezeichner keinen vorhandenen Termin identifiziert, wird auf dem Clientcomputer oder Gerät ein leerer Bereich geöffnet, und es wird keine Fehlermeldung zurückgegeben.
-
-
-    Hinweis: Diese Methode wird in Outlook für iOS oder Outlook für Android nicht unterstützt.
-
-
-    \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
-  name: displayAppointmentForm(itemId)
-  fullName: displayAppointmentForm
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'displayAppointmentForm(itemId: string): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: itemId
-      description: Der EWS-Bezeichner (Exchange Web Services, Exchange-Webdienste) für einen vorhandenen Kalendertermin.
-      type:
-      - string
-- uid: Outlook_1_1.Office.Mailbox.displayMessageForm
-  summary: >-
-    Zeigt eine vorhandene Nachricht an.
-
-
-    Die displayMessageForm-Methode öffnet eine vorhandene Nachricht in einem neuen Fenster auf dem Desktop bzw. in einem Dialogfeld auf Mobilgeräten.
-
-
-    In Outlook Web App wird mit dieser Methode das angegebene Formular nur dann geöffnet, wenn der Textkörper des Formular Zeichen im Umfang vom maximal 32 KB umfasst.
-
-
-    Wenn der angegebene Elementbezeichner keine vorhandenen Nachrichten erkennt, wird auf dem Client-Computer keine Nachricht angezeigt, und es werden keine Fehlermeldungen zurückgegeben.
-
-
-    Verwenden Sie displayMessageForm nicht mit einem itemId, das einen Termin darstellt. Verwenden Sie die displayAppointmentForm-Methode, um einen vorhandenen Termin anzuzeigen, und displayNewAppointmentForm, um ein Formular zum Erstellen eines neuen Termins anzuzeigen.
-
-
-    Hinweis: Diese Methode wird in Outlook für iOS oder Outlook für Android nicht unterstützt.
-
-
-    \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
-  name: displayMessageForm(itemId)
-  fullName: displayMessageForm
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'displayMessageForm(itemId: string): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: itemId
-      description: Der Exchange-Webdienste (EWS) für eine vorhandene Nachricht.
-      type:
-      - string
-- uid: Outlook_1_1.Office.Mailbox.displayNewAppointmentForm
-  summary: >-
-    Zeigt ein Formular zum Erstellen eines neuen Kalendertermins an.
-
-
-    Mit der displayNewAppointmentForm-Methode wird ein Formular geöffnet, mit dem der Benutzer einen neuen Termin oder ein Meeting erstellen kann. Wenn Parameter angegeben wurden, werden die Felder im Terminformular automatisch mit dem Inhalt der Parameter ausgefüllt.
-
-
-    In Outlook Web App und OWA for Devices zeigt diese Methode immer ein Formular mit einem Teilnehmerfeld an. Wenn Sie keine Teilnehmer als Eingabeargumente angeben, zeigt die Methode ein Formular mit einer Schaltfläche Speichern an. Wenn Sie Teilnehmer angegeben haben, enthält das Formular die Teilnehmer und eine Schaltfläche Senden.
-
-
-    Wenn Sie alle Teilnehmer oder Ressourcen in der RequiredAttendees, OptionalAttendees oder Ressourcen-Parameter angeben, zeigt diese Methode im Outlook-rich-Client und Outlook RT ein Formular Besprechung mit einer Sendeschaltfläche. Wenn Sie keine Empfänger angeben, zeigt diese Methode ein Terminformular ein &amp; Schaltfläche Schließen.
-
-
-    Wenn einer der Parameter die angegebenen Größenbeschränkungen überschreitet oder wenn ein unbekannter Parametername angegeben wird, wird eine Ausnahme ausgelöst.
-
-
-    Hinweis: Diese Methode wird in Outlook für iOS oder Outlook für Android nicht unterstützt.
-
-
-    \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr></table>
-  name: displayNewAppointmentForm(parameters)
-  fullName: displayNewAppointmentForm
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'displayNewAppointmentForm(parameters: AppointmentForm): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: parameters
-      description: Ein AppointmentForm zur Beschreibung des neuen Termins. Alle Eigenschaften sind optional.
-      type:
-      - AppointmentForm
 - uid: Outlook_1_1.Office.Mailbox.ewsUrl
   summary: >-
     Ruft die URL des EWS-Endpunkts (Exchange Web Services) für dieses E-Mail-Konto ab. Nur Lesemodus.
@@ -294,7 +500,7 @@ items:
     Der Wert "ewsurl" kann von einem Remotedienst zu EWS Aufrufe an das Postfach des Benutzers verwendet werden. Sie können beispielsweise einen Remotedienst zum [Abrufen von Anlagen aus dem ausgewählten Element](https://docs.microsoft.com/outlook/add-ins/get-attachments-of-an-outlook-item)erstellen<!-- -->.
 
 
-    Hinweis: Dieses Element wird in Outlook für iOS oder Outlook für Android nicht unterstützt.
+    **Hinweis**: dieser Member wird in Outlook für iOS oder Outlook für Android nicht unterstützt.
   name: ewsUrl
   fullName: ewsUrl
   langs:
@@ -305,43 +511,6 @@ items:
     return:
       type:
       - string
-- uid: Outlook_1_1.Office.Mailbox.getUserIdentityTokenAsync
-  summary: >-
-    Ruft ein Token ab, das den Benutzer und das Office-Add-In identifiziert.
-
-
-    Das Token wird als Zeichenfolge in der asyncResult.value-Eigenschaft bereitgestellt.
-
-
-    \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassenmodus und Lesemodus</td></tr></table>
-
-
-    Die GetUserIdentityTokenAsync-Methode gibt ein Token, das Sie verwenden können, um zu identifizieren und [authentifizieren-Add-in und Benutzer mit einem Drittanbieter System](https://docs.microsoft.com/outlook/add-ins/authentication)<!-- -->.
-  name: getUserIdentityTokenAsync(callback, userContext)
-  fullName: getUserIdentityTokenAsync
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getUserIdentityTokenAsync(callback: (result: Office.AsyncResult<string>) => void, userContext?: any): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: callback
-      description: Wenn die Methode abgeschlossen ist, wird die Funktion übergebenen Callback-Parameter mit einem einzelnen Parameter vom Typ Office.AsyncResult aufgerufen. Das Token wird als Zeichenfolge in der `asyncResult.value`-Eigenschaft bereitgestellt. Wenn ein Fehler aufgetreten und dann die `asyncResult.error` und `asyncResult.diagnostics` Eigenschaften möglicherweise zusätzliche Informationen bereitstellen.
-      type:
-      - '(result: Office.AsyncResult<string>) => void'
-    - id: userContext
-      description: Optional. Jegliche Zustandsdaten, die an die asynchrone Methode übergeben werden.\|
-      type:
-      - any
 - uid: Outlook_1_1.Office.Mailbox.item
   summary: 'Das Postfach-Element. Je nach dem Kontext, in dem das Add-in geöffnet, kann das Element einer beliebigen Anzahl von Typen werden. Wenn Sie IntelliSense nur eines bestimmten Typs finden Sie unter möchten, sollten Sie dieses Element, um eine der folgenden umwandeln: `ItemCompose` <!-- -->, `ItemRead` <!-- -->, `MessageCompose` <!-- -->, `MessageRead` <!-- -->, `AppointmentCompose` <!-- -->,`AppointmentRead`'
   name: item
@@ -354,83 +523,6 @@ items:
     return:
       type:
       - Item & ItemCompose & ItemRead & MessageRead & MessageCompose & AppointmentRead & AppointmentCompose
-- uid: Outlook_1_1.Office.Mailbox.makeEwsRequestAsync
-  summary: >-
-    Richtet eine asynchrone Anforderung an einen Exchange-Webdienste (EWS)-Dienst auf dem Exchange-Server, der das Postfach des Benutzers hostet.
-
-
-    In diesen Fällen sollten Add-Ins REST APIs verwenden, um auf das Postfach des Benutzers zuzugreifen.
-
-
-    Die makeEwsRequestAsync-Methode sendet eine EWS-Anforderung für das Add-In zu Exchange.
-
-
-    Sie können keine Elemente, die Ordnern zugeordnet sind, mit der makeEwsRequestAsync-Methode anfordern.
-
-
-    Die XML-Anfrage muss UTF-8-Codierung angeben. &lt;?xml Version = "1.0" encoding = "Utf-8"?&gt;
-
-
-    Ihr Add-in benötigen die Berechtigung ReadWriteMailbox die MakeEwsRequestAsync-Methode verwendet. Informationen zur Verwendung der Berechtigung ReadWriteMailbox und die EWS-Vorgänge, die Sie anrufen können mit der MakeEwsRequestAsync-Methode finden Sie unter [Angeben von Berechtigungen für den e-Mail-add-in Zugriff auf das Postfach des Benutzers](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->.
-
-
-    Das XML-Ergebnis des EWS-Aufrufs wird als Zeichenfolge in der asyncResult.value-Eigenschaft bereitgestellt. Wenn das Ergebnis größer als 1 MB ist, wird stattdessen eine Fehlermeldung zurückgegeben.
-
-
-    Hinweis: Diese Methode wird in den folgenden Szenarien nicht unterstützt:
-
-
-    - In Outlook für iOS oder Outlook für Android.
-
-
-    - Wenn das Add-in in einem Postfach Gmail geladen wird.
-
-
-    Hinweis: Der Serveradministrator muss OAuthAuthentication auf "true" auf dem Client Access Server EWS-Verzeichnis so aktivieren Sie die MakeEwsRequestAsync-Methode EWS-Anforderungen festgelegt.
-
-
-    *Versionsunterschiede*
-
-
-    Wenn Sie die makeEwsRequestAsync-Methode in Mail-Apps verwenden, die in älteren Outlook-Versionen als Version 15.0.4535.1004 ausgeführt werden, sollten Sie den Codierungswert auf ISO-8859-1 festlegen.
-
-
-    `<?xml version="1.0" encoding="iso-8859-1"?>`
-
-
-    Sie müssen den Codierungswert nicht festlegen, wenn Ihre Mail-App in Outlook im Web ausgeführt wird. Sie können mithilfe der mailbox.diagnostics.hostName-Eigenschaft ermitteln, ob Ihre Mail-App in Outlook oder Outlook im Web ausgeführt wird. Sie können mithilfe der mailbox.diagnostics.hostVersion-Eigenschaft ermitteln, welche Version von Outlook ausgeführt wird.
-
-
-    \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteMailbox</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassenmodus und Lesemodus</td></tr></table>
-  name: makeEwsRequestAsync(data, callback, userContext)
-  fullName: makeEwsRequestAsync
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'makeEwsRequestAsync(data: any, callback: (result: Office.AsyncResult<string>) => void, userContext?: any): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: data
-      description: Die EWS-Anforderung.
-      type:
-      - any
-    - id: callback
-      description: Wenn die Methode abgeschlossen ist, wird die Funktion übergebenen Callback-Parameter mit einem einzelnen Parameter vom Typ Office.AsyncResult aufgerufen. Die `value` -Eigenschaft des Ergebnisses ist der XML-Code der EWS-Anforderung als Zeichenfolge bereitgestellt. Wenn das Ergebnis größer als 1 MB ist, wird stattdessen eine Fehlermeldung zurückgegeben.
-      type:
-      - '(result: Office.AsyncResult<string>) => void'
-    - id: userContext
-      description: Optional. Jegliche Zustandsdaten, die an die asynchrone Methode übergeben werden.
-      type:
-      - any
 - uid: Outlook_1_1.Office.Mailbox.userProfile
   summary: >-
     Informationen über den Benutzer, die dem Postfach zugeordnete. Dies umfasst ihre Kontotyp, Name, e-Mail-Adresse und zur Zeitzone angezeigt.

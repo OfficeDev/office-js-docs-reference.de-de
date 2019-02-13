@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 5d380aa253f22ed61c87976b7bbd7bf74b1deae7
-ms.sourcegitcommit: 3f4a320fa860d05d348c8bdec2295e046a45a34f
+ms.openlocfilehash: 2490a183666d64f510ab4556c9abc6ffd88815ac
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "29769862"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29976593"
 items:
 - uid: excel.Excel.Style
   summary: >-
@@ -38,12 +38,15 @@ items:
   - excel.Excel.Style.includeProtection
   - excel.Excel.Style.indentLevel
   - excel.Excel.Style.load
+  - excel.Excel.Style.load_1
+  - excel.Excel.Style.load_2
   - excel.Excel.Style.locked
   - excel.Excel.Style.name
   - excel.Excel.Style.numberFormat
   - excel.Excel.Style.numberFormatLocal
   - excel.Excel.Style.readingOrder
   - excel.Excel.Style.set
+  - excel.Excel.Style.set_1
   - excel.Excel.Style.shrinkToFit
   - excel.Excel.Style.textOrientation
   - excel.Excel.Style.toJSON
@@ -116,7 +119,7 @@ items:
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: delete()
-  fullName: delete
+  fullName: delete()
   langs:
   - typeScript
   type: method
@@ -306,23 +309,59 @@ items:
       - number
 - uid: excel.Excel.Style.load
   summary: Warteschlangen ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen "context.sync()" aufrufen, bevor Sie die Eigenschaften lesen.
-  remarks: "Zusätzlich zu dieser Signatur hat diese Methode die folgenden Signaturen:\n\n`load(option?: { select?: string; expand?: string; }): Excel.Style`-Option.select ist eine durch Trennzeichen getrennte Zeichenfolge, die die Eigenschaften zum Laden gibt an, wobei options.expand ist eine durch Kommas getrennte Zeichenfolge, die Navigationseigenschaften zum Laden angibt.\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Style`-Nur auf Auflistungstypen verfügbar. Es ist ähnlich wie die jeweils vorhergehende Signatur. Option.Top gibt die maximale Anzahl der Auflistungselemente, die im Ergebnis enthalten sein können. Option.Skip gibt die Anzahl der Elemente, die übersprungen und nicht in das Ergebnis eingeschlossen werden sollen. Wenn option.top angegeben wird, wird das Resultset starten, nachdem die angegebene Anzahl von Elementen übersprungen wird.\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\nawait Excel.run(async (context) => {\n    let style = context.workbook.styles.getItem(\"Diagonal Orientation Style\");            \n    style.load(\"textOrientation, horizontalAlignment, autoIndent, readingOrder, wrapText, includeProtection, shrinkToFit, locked\");\n\n    await context.sync();\n\n    console.log(\"Orientation: \" + style.textOrientation);\n    console.log(\"Horizontal alignment: \" + style.horizontalAlignment);\n    console.log(\"Add indent: \" + style.autoIndent);\n    console.log(\"Reading order: \" + style.readingOrder);\n    console.log(\"Wrap text: \" + style.wrapText);\n    console.log(\"Include protection: \" + style.includeProtection);\n    console.log(\"Shrink to fit: \" + style.shrinkToFit);\n    console.log(\"Style locked: \" + style.locked);\n});\n```"
+  remarks: "Zusätzlich zu dieser Signatur hat diese Methode die folgenden Signaturen:\n\n`load(option?: string | string[]): Excel.Style`-Wo Option ist eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die zum Laden die Eigenschaften angeben.\n\n`load(option?: { select?: string; expand?: string; }): Excel.Style`-Option.select ist eine durch Trennzeichen getrennte Zeichenfolge, die die Eigenschaften zum Laden gibt an, wobei options.expand ist eine durch Kommas getrennte Zeichenfolge, die Navigationseigenschaften zum Laden angibt.\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Style`-Nur auf Auflistungstypen verfügbar. Es ist ähnlich wie die jeweils vorhergehende Signatur. Option.Top gibt die maximale Anzahl der Auflistungselemente, die im Ergebnis enthalten sein können. Option.Skip gibt die Anzahl der Elemente, die übersprungen und nicht in das Ergebnis eingeschlossen werden sollen. Wenn option.top angegeben wird, wird das Resultset starten, nachdem die angegebene Anzahl von Elementen übersprungen wird.\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\nawait Excel.run(async (context) => {\n    let style = context.workbook.styles.getItem(\"Diagonal Orientation Style\");            \n    style.load(\"textOrientation, horizontalAlignment, autoIndent, readingOrder, wrapText, includeProtection, shrinkToFit, locked\");\n\n    await context.sync();\n\n    console.log(\"Orientation: \" + style.textOrientation);\n    console.log(\"Horizontal alignment: \" + style.horizontalAlignment);\n    console.log(\"Add indent: \" + style.autoIndent);\n    console.log(\"Reading order: \" + style.readingOrder);\n    console.log(\"Wrap text: \" + style.wrapText);\n    console.log(\"Include protection: \" + style.includeProtection);\n    console.log(\"Shrink to fit: \" + style.shrinkToFit);\n    console.log(\"Style locked: \" + style.locked);\n});\n```"
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Excel.Style;'
+    content: 'load(option?: Excel.Interfaces.StyleLoadOptions): Excel.Style;'
     return:
       type:
       - excel.Excel.Style
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - excel.Excel.Interfaces.StyleLoadOptions
+- uid: excel.Excel.Style.load_1
+  summary: Warteschlangen ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen Aufrufen `context.sync()` vor dem Lesen der Eigenschaften.
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.Style;'
+    return:
+      type:
+      - excel.Excel.Style
+      description: ''
+    parameters:
+    - id: propertyNames
       description: Eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die zum Laden die Eigenschaften angeben.
       type:
       - string | string[]
+- uid: excel.Excel.Style.load_2
+  summary: Warteschlangen ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen Aufrufen `context.sync()` vor dem Lesen der Eigenschaften.
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.Style;'
+    return:
+      type:
+      - excel.Excel.Style
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: Wobei propertyNamesAndPaths.select ist eine durch Kommas getrennte Zeichenfolge, die angibt, die Eigenschaften zum Laden und propertyNamesAndPaths.expand ist eine durch Kommas getrennte Zeichenfolge, die Navigationseigenschaften zum Laden angibt.
+      type:
+      - '{ select?: string; expand?: string; }'
 - uid: excel.Excel.Style.locked
   summary: >-
     Gibt an, ob das Objekt gesperrt ist, wenn das Arbeitsblatt geschützt ist.
@@ -411,7 +450,7 @@ items:
 
     `set(properties: Excel.Style): void`
   name: set(properties, options)
-  fullName: set
+  fullName: set(properties, options)
   langs:
   - typeScript
   type: method
@@ -430,6 +469,24 @@ items:
       description: Bietet eine Option, um Fehler zu unterdrücken, wenn schreibgeschützte Eigenschaften festgelegt werden, versucht das Properties-Objekt.
       type:
       - office.OfficeExtension.UpdateOptions
+- uid: excel.Excel.Style.set_1
+  summary: Mehrere Eigenschaften festgelegt auf das Objekt zur selben Zeit, basierend auf einem vorhandenen geladen-Objekt.
+  name: set(properties)
+  fullName: set(properties)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'set(properties: Excel.Style): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: properties
+      description: ''
+      type:
+      - excel.Excel.Style
 - uid: excel.Excel.Style.shrinkToFit
   summary: >-
     Zeigt an, dass Text automatisch verkleinert wird, um in die verfügbare Spaltenbreite zu passen.
@@ -465,7 +522,7 @@ items:
 - uid: excel.Excel.Style.toJSON
   summary: Überschreibt das JavaScript `toJSON()` Methode, um nützliche Ausgabe zu gewährleisten, wenn ein API-Objekt zu übergeben ist `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, wiederum die `toJSON` -Methode des Objekts, das es übergeben wird.) Das ursprüngliche Excel.Style-Objekt ist ein API-Objekt der `toJSON` -Methode gibt eine einfache JavaScript-Objekt zurück (als `Excel.Interfaces.StyleData` <!-- -->), die flache Kopien der geladene untergeordnete Eigenschaften aus dem ursprünglichen-Objekt enthält.
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method
