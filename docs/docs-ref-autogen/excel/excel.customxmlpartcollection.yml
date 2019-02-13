@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 98a010a342e422aa0938312a116338b0e402361a
-ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
+ms.openlocfilehash: ddb5e3ab5990ec33d169d01228b3b915d3438c3b
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "28724318"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29981164"
 items:
 - uid: excel.Excel.CustomXmlPartCollection
   summary: >-
@@ -29,6 +29,8 @@ items:
   - excel.Excel.CustomXmlPartCollection.getItemOrNullObject
   - excel.Excel.CustomXmlPartCollection.items
   - excel.Excel.CustomXmlPartCollection.load
+  - excel.Excel.CustomXmlPartCollection.load_1
+  - excel.Excel.CustomXmlPartCollection.load_2
   - excel.Excel.CustomXmlPartCollection.toJSON
 - uid: excel.Excel.CustomXmlPartCollection.add
   summary: >-
@@ -37,7 +39,7 @@ items:
 
     \[[API-Satz: 1,5 ExcelApi](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: add(xml)
-  fullName: add
+  fullName: add(xml)
   langs:
   - typeScript
   type: method
@@ -71,7 +73,7 @@ items:
 
     \[[API-Satz: 1,5 ExcelApi](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getByNamespace(namespaceUri)
-  fullName: getByNamespace
+  fullName: getByNamespace(namespaceUri)
   langs:
   - typeScript
   type: method
@@ -93,7 +95,7 @@ items:
 
     \[[API-Satz: 1,5 ExcelApi](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getCount()
-  fullName: getCount
+  fullName: getCount()
   langs:
   - typeScript
   type: method
@@ -110,7 +112,7 @@ items:
 
     \[[API-Satz: 1,5 ExcelApi](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getItem(id)
-  fullName: getItem
+  fullName: getItem(id)
   langs:
   - typeScript
   type: method
@@ -132,7 +134,7 @@ items:
 
     \[[API-Satz: 1,5 ExcelApi](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getItemOrNullObject(id)
-  fullName: getItemOrNullObject
+  fullName: getItemOrNullObject(id)
   langs:
   - typeScript
   type: method
@@ -165,30 +167,68 @@ items:
     Zusätzlich zu dieser Signatur hat diese Methode die folgenden Signaturen:
 
 
+    `load(option?: string | string[]): Excel.CustomXmlPartCollection`-Wo Option ist eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die zum Laden die Eigenschaften angeben.
+
+
     `load(option?: { select?: string; expand?: string; }): Excel.CustomXmlPartCollection`-Option.select ist eine durch Trennzeichen getrennte Zeichenfolge, die die Eigenschaften zum Laden gibt an, wobei options.expand ist eine durch Kommas getrennte Zeichenfolge, die Navigationseigenschaften zum Laden angibt.
 
 
     `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.CustomXmlPartCollection`-Nur auf Auflistungstypen verfügbar. Es ist ähnlich wie die jeweils vorhergehende Signatur. Option.Top gibt die maximale Anzahl der Auflistungselemente, die im Ergebnis enthalten sein können. Option.Skip gibt die Anzahl der Elemente, die übersprungen und nicht in das Ergebnis eingeschlossen werden sollen. Wenn option.top angegeben wird, wird das Resultset starten, nachdem die angegebene Anzahl von Elementen übersprungen wird.
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Excel.CustomXmlPartCollection;'
+    content: 'load(option?: Excel.Interfaces.CustomXmlPartCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.CustomXmlPartCollection;'
     return:
       type:
       - excel.Excel.CustomXmlPartCollection
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - Excel.Interfaces.CustomXmlPartCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
+- uid: excel.Excel.CustomXmlPartCollection.load_1
+  summary: Warteschlangen ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen Aufrufen `context.sync()` vor dem Lesen der Eigenschaften.
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.CustomXmlPartCollection;'
+    return:
+      type:
+      - excel.Excel.CustomXmlPartCollection
+      description: ''
+    parameters:
+    - id: propertyNames
       description: Eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die zum Laden die Eigenschaften angeben.
       type:
       - string | string[]
+- uid: excel.Excel.CustomXmlPartCollection.load_2
+  name: load(option)
+  fullName: load(option)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: OfficeExtension.LoadOption): Excel.CustomXmlPartCollection;'
+    return:
+      type:
+      - excel.Excel.CustomXmlPartCollection
+      description: ''
+    parameters:
+    - id: option
+      description: ''
+      type:
+      - office.OfficeExtension.LoadOption
 - uid: excel.Excel.CustomXmlPartCollection.toJSON
   summary: Überschreibt das JavaScript `toJSON()` Methode, um nützliche Ausgabe zu gewährleisten, wenn ein API-Objekt zu übergeben ist `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, wiederum die `toJSON` -Methode des Objekts, das es übergeben wird.) Während der ursprünglichen `Excel.CustomXmlPartCollection` Objekt ist ein API-Objekt der `toJSON` -Methode gibt eine einfache JavaScript-Objekt zurück (als `Excel.Interfaces.CustomXmlPartCollectionData` <!-- -->), die ein Array "Elemente" mit flache Kopien der geladenen Eigenschaften aus der Auflistung von Elementen enthält.
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method

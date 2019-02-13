@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 70b755afdeb112c503aaf83b1784b57cac015439
-ms.sourcegitcommit: a68606173477c7fb4069880eea941766c7d8c50d
+ms.openlocfilehash: 4773272b582a5136a33152012549c1cab4f54fa5
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/01/2019
-ms.locfileid: "29705122"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29980240"
 items:
 - uid: Outlook_1_5.Office.Item
   summary: >-
@@ -24,102 +24,10 @@ items:
   type: interface
   package: Outlook_1_5
   children:
-  - Outlook_1_5.Office.Item.body
-  - Outlook_1_5.Office.Item.dateTimeCreated
-  - Outlook_1_5.Office.Item.dateTimeModified
-  - Outlook_1_5.Office.Item.itemType
   - Outlook_1_5.Office.Item.loadCustomPropertiesAsync
+  - Outlook_1_5.Office.Item.body
+  - Outlook_1_5.Office.Item.itemType
   - Outlook_1_5.Office.Item.notificationMessages
-- uid: Outlook_1_5.Office.Item.body
-  summary: >-
-    Ruft ein Objekt ab, das Methoden zum Bearbeiten des Textkörpers eines Elements bereitstellt.
-
-
-    \[[API-Satz: Postfach 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
-  name: body
-  fullName: body
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'body: Body;'
-    return:
-      type:
-      - Body
-- uid: Outlook_1_5.Office.Item.dateTimeCreated
-  summary: >-
-    Ruft das Datum und die Uhrzeit der Erstellung eines Elements ab. Nur Lesemodus.
-
-
-    \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr></table>
-  name: dateTimeCreated
-  fullName: dateTimeCreated
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'dateTimeCreated: Date;'
-    return:
-      type:
-      - Date
-- uid: Outlook_1_5.Office.Item.dateTimeModified
-  summary: >-
-    Ruft das Datum und die Uhrzeit der letzten Änderung eines Elements ab. Nur Lesemodus.
-
-
-    \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr></table>
-
-
-    Hinweis: Dieses Element wird in Outlook für iOS oder Outlook für Android nicht unterstützt.
-  name: dateTimeModified
-  fullName: dateTimeModified
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'dateTimeModified: Date;'
-    return:
-      type:
-      - Date
-- uid: Outlook_1_5.Office.Item.itemType
-  summary: >-
-    Ruft den Typ des Elements ab, das eine Instanz darstellt.
-
-
-    Die itemType-Eigenschaft gibt einen der Werte der ItemType-Enumeration zurück, der angibt, ob es sich bei der item-Objektinstanz um eine Nachricht oder einen Termin handelt.
-
-
-    \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
-  name: itemType
-  fullName: itemType
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'itemType: MailboxEnums.ItemType;'
-    return:
-      type:
-      - MailboxEnums.ItemType
 - uid: Outlook_1_5.Office.Item.loadCustomPropertiesAsync
   summary: >-
     Lädt asynchron benutzerdefinierte Eigenschaften für dieses Add-In für das ausgewählte Element.
@@ -137,8 +45,52 @@ items:
 
 
     <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
+
+    ####Beispiele für
+
+
+    ```javascript
+
+    // The following example shows how to use the loadCustomPropertiesAsync method
+
+    // to asynchronously load custom properties that are specific to the current item.
+
+    // The example also shows how to use the saveAsync method to save these properties
+
+    // back to the server. After loading the custom properties, the example uses the
+
+    // get method to read the custom property myProp, the set method to write the
+
+    // custom property otherProp, and then finally calls the saveAsync method to save
+
+    // the custom properties.
+
+    Office.initialize = function () {
+        // Checks for the DOM to load using the jQuery ready function.
+        $(document).ready(function () {
+            // After the DOM is loaded, add-in-specific code can run.
+            var mailbox = Office.context.mailbox;
+            mailbox.item.loadCustomPropertiesAsync(customPropsCallback);
+        });
+    };
+
+
+    function customPropsCallback(asyncResult) {
+        var customProps = asyncResult.value;
+        var myProp = customProps.get("myProp");
+
+        customProps.set("otherProp", "value");
+        customProps.saveAsync(saveCallback);
+    }
+
+
+    function saveCallback(asyncResult) {
+
+    }
+
+    ```
   name: loadCustomPropertiesAsync(callback, userContext)
-  fullName: loadCustomPropertiesAsync
+  fullName: loadCustomPropertiesAsync(callback, userContext)
   langs:
   - typeScript
   type: method
@@ -157,6 +109,88 @@ items:
       description: Optional. Entwickler können ein beliebiges Objekt bereitstellen, auf das sie in der Callbackfunktion zugreifen möchten. Dieses Objekt kann von der asyncResult.asyncContext-Eigenschaft in der Callback-Funktion zugegriffen werden.
       type:
       - any
+- uid: Outlook_1_5.Office.Item.body
+  summary: >-
+    Ruft ein Objekt ab, das Methoden zum Bearbeiten des Textkörpers eines Elements bereitstellt.
+
+
+    \[[API-Satz: Postfach 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
+
+    ####Beispiele für
+
+
+    ```javascript
+
+    // This example gets the body of the message in plain text.
+
+    Office.context.mailbox.item.body.getAsync(
+        "text",
+        { asyncContext: "This is passed to the callback" },
+        function callback(result) {
+            // Do something with the result
+        });
+
+    // The following is an example of the result parameter passed to the callback function.
+
+    {
+        "value": "TEXT of whole body (including threads below)",
+        "status": "succeeded",
+        "asyncContext": "This is passed to the callback"
+    }
+
+    ```
+  name: body
+  fullName: body
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'body: Body;'
+    return:
+      type:
+      - Body
+- uid: Outlook_1_5.Office.Item.itemType
+  summary: >-
+    Ruft den Typ des Elements ab, das eine Instanz darstellt.
+
+
+    Die itemType-Eigenschaft gibt einen der Werte der ItemType-Enumeration zurück, der angibt, ob es sich bei der item-Objektinstanz um eine Nachricht oder einen Termin handelt.
+
+
+    \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+
+
+    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
+
+    ####Beispiele für
+
+
+    ```javascript
+
+    if (Office.context.mailbox.item.itemType === Office.MailboxEnums.ItemType.Message) {
+        // do something
+    } else {
+        // do something else
+    }
+
+    ```
+  name: itemType
+  fullName: itemType
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'itemType: MailboxEnums.ItemType;'
+    return:
+      type:
+      - MailboxEnums.ItemType
 - uid: Outlook_1_5.Office.Item.notificationMessages
   summary: >-
     Ruft die Benachrichtigungen für ein Element ab.
@@ -168,6 +202,21 @@ items:
 
 
     <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
+
+    ####Beispiele für
+
+
+    ```javascript
+
+    // Get all notifications
+
+    Office.context.mailbox.item.notificationMessages.getAllAsync(
+        function (asyncResult) {
+            console.log(JSON.stringify(asyncResult));
+        }
+    );
+
+    ```
   name: notificationMessages
   fullName: notificationMessages
   langs:

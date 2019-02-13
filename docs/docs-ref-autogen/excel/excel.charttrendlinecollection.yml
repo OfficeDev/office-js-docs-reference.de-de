@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 79df536bcda6297c19f268fa2d21ad86cc361d5f
-ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
+ms.openlocfilehash: b7d0942e54ef9ddbafba48a4ad4f60fdc8bea0f1
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "28725452"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29979911"
 items:
 - uid: excel.Excel.ChartTrendlineCollection
   summary: >-
@@ -22,11 +22,14 @@ items:
   package: excel
   children:
   - excel.Excel.ChartTrendlineCollection.add
+  - excel.Excel.ChartTrendlineCollection.add_1
   - excel.Excel.ChartTrendlineCollection.context
   - excel.Excel.ChartTrendlineCollection.getCount
   - excel.Excel.ChartTrendlineCollection.getItem
   - excel.Excel.ChartTrendlineCollection.items
   - excel.Excel.ChartTrendlineCollection.load
+  - excel.Excel.ChartTrendlineCollection.load_1
+  - excel.Excel.ChartTrendlineCollection.load_2
   - excel.Excel.ChartTrendlineCollection.toJSON
 - uid: excel.Excel.ChartTrendlineCollection.add
   summary: >-
@@ -35,7 +38,7 @@ items:
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: add(type)
-  fullName: add
+  fullName: add(type)
   langs:
   - typeScript
   type: method
@@ -50,6 +53,28 @@ items:
       description: Gibt den Typ der Trendlinie. Der Standardwert ist "Linear". Einzelheiten finden Sie unter Excel.ChartTrendline.
       type:
       - excel.Excel.ChartTrendlineType
+- uid: excel.Excel.ChartTrendlineCollection.add_1
+  summary: >-
+    Fügt der Trendliniensammlung eine neue Trendlinie hinzu.
+
+
+    \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: add(typeString)
+  fullName: add(typeString)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'add(typeString?: "Linear" | "Exponential" | "Logarithmic" | "MovingAverage" | "Polynomial" | "Power"): Excel.ChartTrendline;'
+    return:
+      type:
+      - excel.Excel.ChartTrendline
+      description: ''
+    parameters:
+    - id: typeString
+      description: Gibt den Typ der Trendlinie. Der Standardwert ist "Linear". Einzelheiten finden Sie unter Excel.ChartTrendline.
+      type:
+      - "\"Linear\" | \"Exponential\" | \"Logarithmic\" | \"MovingAverage\" | \"Polynomial\" | \"Power\""
 - uid: excel.Excel.ChartTrendlineCollection.context
   summary: Der Anforderungskontext-zugeordnet. Dadurch wird das Add-in Prozess mit der Office-hostanwendung Prozess verbunden.
   name: context
@@ -69,7 +94,7 @@ items:
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getCount()
-  fullName: getCount
+  fullName: getCount()
   langs:
   - typeScript
   type: method
@@ -86,7 +111,7 @@ items:
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getItem(index)
-  fullName: getItem
+  fullName: getItem(index)
   langs:
   - typeScript
   type: method
@@ -119,30 +144,68 @@ items:
     Zusätzlich zu dieser Signatur hat diese Methode die folgenden Signaturen:
 
 
+    `load(option?: string | string[]): Excel.ChartTrendlineCollection`-Wo Option ist eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die zum Laden die Eigenschaften angeben.
+
+
     `load(option?: { select?: string; expand?: string; }): Excel.ChartTrendlineCollection`-Option.select ist eine durch Trennzeichen getrennte Zeichenfolge, die die Eigenschaften zum Laden gibt an, wobei options.expand ist eine durch Kommas getrennte Zeichenfolge, die Navigationseigenschaften zum Laden angibt.
 
 
     `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.ChartTrendlineCollection`-Nur auf Auflistungstypen verfügbar. Es ist ähnlich wie die jeweils vorhergehende Signatur. Option.Top gibt die maximale Anzahl der Auflistungselemente, die im Ergebnis enthalten sein können. Option.Skip gibt die Anzahl der Elemente, die übersprungen und nicht in das Ergebnis eingeschlossen werden sollen. Wenn option.top angegeben wird, wird das Resultset starten, nachdem die angegebene Anzahl von Elementen übersprungen wird.
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Excel.ChartTrendlineCollection;'
+    content: 'load(option?: Excel.Interfaces.ChartTrendlineCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.ChartTrendlineCollection;'
     return:
       type:
       - excel.Excel.ChartTrendlineCollection
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - Excel.Interfaces.ChartTrendlineCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
+- uid: excel.Excel.ChartTrendlineCollection.load_1
+  summary: Warteschlangen ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen Aufrufen `context.sync()` vor dem Lesen der Eigenschaften.
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.ChartTrendlineCollection;'
+    return:
+      type:
+      - excel.Excel.ChartTrendlineCollection
+      description: ''
+    parameters:
+    - id: propertyNames
       description: Eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die zum Laden die Eigenschaften angeben.
       type:
       - string | string[]
+- uid: excel.Excel.ChartTrendlineCollection.load_2
+  name: load(option)
+  fullName: load(option)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: OfficeExtension.LoadOption): Excel.ChartTrendlineCollection;'
+    return:
+      type:
+      - excel.Excel.ChartTrendlineCollection
+      description: ''
+    parameters:
+    - id: option
+      description: ''
+      type:
+      - office.OfficeExtension.LoadOption
 - uid: excel.Excel.ChartTrendlineCollection.toJSON
   summary: Überschreibt das JavaScript `toJSON()` Methode, um nützliche Ausgabe zu gewährleisten, wenn ein API-Objekt zu übergeben ist `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, wiederum die `toJSON` -Methode des Objekts, das es übergeben wird.) Während der ursprünglichen `Excel.ChartTrendlineCollection` Objekt ist ein API-Objekt der `toJSON` -Methode gibt eine einfache JavaScript-Objekt zurück (als `Excel.Interfaces.ChartTrendlineCollectionData` <!-- -->), die ein Array "Elemente" mit flache Kopien der geladenen Eigenschaften aus der Auflistung von Elementen enthält.
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method
