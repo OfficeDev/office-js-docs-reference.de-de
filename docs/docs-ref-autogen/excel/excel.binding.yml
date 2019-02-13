@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 3094e3b2eab4a42ddb026d442197de9a12f356aa
-ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
+ms.openlocfilehash: 18ecfe56c9e0724f06a12ea1ad9de1671608d1fe
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "28724927"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29981619"
 items:
 - uid: excel.Excel.Binding
   summary: >-
@@ -28,6 +28,8 @@ items:
   - excel.Excel.Binding.getText
   - excel.Excel.Binding.id
   - excel.Excel.Binding.load
+  - excel.Excel.Binding.load_1
+  - excel.Excel.Binding.load_2
   - excel.Excel.Binding.onDataChanged
   - excel.Excel.Binding.onSelectionChanged
   - excel.Excel.Binding.toJSON
@@ -51,7 +53,7 @@ items:
 
     \[[API-Satz: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: delete()
-  fullName: delete
+  fullName: delete()
   langs:
   - typeScript
   type: method
@@ -68,7 +70,7 @@ items:
 
     \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getRange()
-  fullName: getRange
+  fullName: getRange()
   langs:
   - typeScript
   type: method
@@ -85,7 +87,7 @@ items:
 
     \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getTable()
-  fullName: getTable
+  fullName: getTable()
   langs:
   - typeScript
   type: method
@@ -102,7 +104,7 @@ items:
 
     \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getText()
-  fullName: getText
+  fullName: getText()
   langs:
   - typeScript
   type: method
@@ -130,23 +132,69 @@ items:
       - string
 - uid: excel.Excel.Binding.load
   summary: Warteschlangen ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen "context.sync()" aufrufen, bevor Sie die Eigenschaften lesen.
-  remarks: "Zusätzlich zu dieser Signatur hat diese Methode die folgenden Signaturen:\n\n`load(option?: { select?: string; expand?: string; }): Excel.Binding`-Option.select ist eine durch Trennzeichen getrennte Zeichenfolge, die die Eigenschaften zum Laden gibt an, wobei options.expand ist eine durch Kommas getrennte Zeichenfolge, die Navigationseigenschaften zum Laden angibt.\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Binding`-Nur auf Auflistungstypen verfügbar. Es ist ähnlich wie die jeweils vorhergehende Signatur. Option.Top gibt die maximale Anzahl der Auflistungselemente, die im Ergebnis enthalten sein können. Option.Skip gibt die Anzahl der Elemente, die übersprungen und nicht in das Ergebnis eingeschlossen werden sollen. Wenn option.top angegeben wird, wird das Resultset starten, nachdem die angegebene Anzahl von Elementen übersprungen wird.\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var binding = ctx.workbook.bindings.getItemAt(0);\n    binding.load('type');\n    return ctx.sync().then(function() {\n        console.log(binding.type);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  remarks: >-
+    Zusätzlich zu dieser Signatur hat diese Methode die folgenden Signaturen:
+
+
+    `load(option?: string | string[]): Excel.Binding`-Wo Option ist eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die zum Laden die Eigenschaften angeben.
+
+
+    `load(option?: { select?: string; expand?: string; }): Excel.Binding`-Option.select ist eine durch Trennzeichen getrennte Zeichenfolge, die die Eigenschaften zum Laden gibt an, wobei options.expand ist eine durch Kommas getrennte Zeichenfolge, die Navigationseigenschaften zum Laden angibt.
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Binding`-Nur auf Auflistungstypen verfügbar. Es ist ähnlich wie die jeweils vorhergehende Signatur. Option.Top gibt die maximale Anzahl der Auflistungselemente, die im Ergebnis enthalten sein können. Option.Skip gibt die Anzahl der Elemente, die übersprungen und nicht in das Ergebnis eingeschlossen werden sollen. Wenn option.top angegeben wird, wird das Resultset starten, nachdem die angegebene Anzahl von Elementen übersprungen wird.
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Excel.Binding;'
+    content: 'load(option?: Excel.Interfaces.BindingLoadOptions): Excel.Binding;'
     return:
       type:
       - excel.Excel.Binding
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - excel.Excel.Interfaces.BindingLoadOptions
+- uid: excel.Excel.Binding.load_1
+  summary: Warteschlangen ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen Aufrufen `context.sync()` vor dem Lesen der Eigenschaften.
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.Binding;'
+    return:
+      type:
+      - excel.Excel.Binding
+      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var binding = ctx.workbook.bindings.getItemAt(0);\n    binding.load('type');\n    return ctx.sync().then(function() {\n        console.log(binding.type);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: propertyNames
       description: Eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die zum Laden die Eigenschaften angeben.
       type:
       - string | string[]
+- uid: excel.Excel.Binding.load_2
+  summary: Warteschlangen ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen Aufrufen `context.sync()` vor dem Lesen der Eigenschaften.
+  name: load(propertyNamesAndPaths)
+  fullName: load(propertyNamesAndPaths)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.Binding;'
+    return:
+      type:
+      - excel.Excel.Binding
+      description: ''
+    parameters:
+    - id: propertyNamesAndPaths
+      description: Wobei propertyNamesAndPaths.select ist eine durch Kommas getrennte Zeichenfolge, die angibt, die Eigenschaften zum Laden und propertyNamesAndPaths.expand ist eine durch Kommas getrennte Zeichenfolge, die Navigationseigenschaften zum Laden angibt.
+      type:
+      - '{ select?: string; expand?: string; }'
 - uid: excel.Excel.Binding.onDataChanged
   summary: >-
     Tritt ein, wenn die Daten oder die Formatierung in der Datenbindung geändert werden.
@@ -183,7 +231,7 @@ items:
 - uid: excel.Excel.Binding.toJSON
   summary: Überschreibt das JavaScript `toJSON()` Methode, um nützliche Ausgabe zu gewährleisten, wenn ein API-Objekt zu übergeben ist `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, wiederum die `toJSON` -Methode des Objekts, das es übergeben wird.) Das ursprüngliche Excel.Binding-Objekt ist ein API-Objekt der `toJSON` -Methode gibt eine einfache JavaScript-Objekt zurück (als `Excel.Interfaces.BindingData` <!-- -->), die flache Kopien der geladene untergeordnete Eigenschaften aus dem ursprünglichen-Objekt enthält.
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method
