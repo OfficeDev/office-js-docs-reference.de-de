@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 82334b5a01b7b254342381e4f5e3f8b8c90554e5
-ms.sourcegitcommit: 06eebee5e68d349f78e6bc3bb0ef099fe063cf04
+ms.openlocfilehash: 09ae4be877fcadf8d226394758f6569dff40a618
+ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "28724913"
+ms.lasthandoff: 02/13/2019
+ms.locfileid: "29980289"
 items:
 - uid: excel.Excel.WorksheetCollection
   summary: >-
@@ -31,6 +31,8 @@ items:
   - excel.Excel.WorksheetCollection.getLast
   - excel.Excel.WorksheetCollection.items
   - excel.Excel.WorksheetCollection.load
+  - excel.Excel.WorksheetCollection.load_1
+  - excel.Excel.WorksheetCollection.load_2
   - excel.Excel.WorksheetCollection.onActivated
   - excel.Excel.WorksheetCollection.onAdded
   - excel.Excel.WorksheetCollection.onCalculated
@@ -44,7 +46,7 @@ items:
 
     \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: add(name)
-  fullName: add
+  fullName: add(name)
   langs:
   - typeScript
   type: method
@@ -78,7 +80,7 @@ items:
 
     \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getActiveWorksheet()
-  fullName: getActiveWorksheet
+  fullName: getActiveWorksheet()
   langs:
   - typeScript
   type: method
@@ -95,7 +97,7 @@ items:
 
     \[[API-Satz: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getCount(visibleOnly)
-  fullName: getCount
+  fullName: getCount(visibleOnly)
   langs:
   - typeScript
   type: method
@@ -117,7 +119,7 @@ items:
 
     \[[API-Satz: 1,5 ExcelApi](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getFirst(visibleOnly)
-  fullName: getFirst
+  fullName: getFirst(visibleOnly)
   langs:
   - typeScript
   type: method
@@ -139,7 +141,7 @@ items:
 
     \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getItem(key)
-  fullName: getItem
+  fullName: getItem(key)
   langs:
   - typeScript
   type: method
@@ -161,7 +163,7 @@ items:
 
     \[[API-Satz: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getItemOrNullObject(key)
-  fullName: getItemOrNullObject
+  fullName: getItemOrNullObject(key)
   langs:
   - typeScript
   type: method
@@ -183,7 +185,7 @@ items:
 
     \[[API-Satz: 1,5 ExcelApi](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   name: getLast(visibleOnly)
-  fullName: getLast
+  fullName: getLast(visibleOnly)
   langs:
   - typeScript
   type: method
@@ -212,23 +214,68 @@ items:
       - Excel.Worksheet[]
 - uid: excel.Excel.WorksheetCollection.load
   summary: Warteschlangen ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen "context.sync()" aufrufen, bevor Sie die Eigenschaften lesen.
-  remarks: "Zusätzlich zu dieser Signatur hat diese Methode die folgenden Signaturen:\n\n`load(option?: { select?: string; expand?: string; }): Excel.WorksheetCollection`-Option.select ist eine durch Trennzeichen getrennte Zeichenfolge, die die Eigenschaften zum Laden gibt an, wobei options.expand ist eine durch Kommas getrennte Zeichenfolge, die Navigationseigenschaften zum Laden angibt.\n\n`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.WorksheetCollection`-Nur auf Auflistungstypen verfügbar. Es ist ähnlich wie die jeweils vorhergehende Signatur. Option.Top gibt die maximale Anzahl der Auflistungselemente, die im Ergebnis enthalten sein können. Option.Skip gibt die Anzahl der Elemente, die übersprungen und nicht in das Ergebnis eingeschlossen werden sollen. Wenn option.top angegeben wird, wird das Resultset starten, nachdem die angegebene Anzahl von Elementen übersprungen wird.\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var worksheets = ctx.workbook.worksheets;\n    worksheets.load('items');\n    return ctx.sync().then(function() {\n        for (var i = 0; i < worksheets.items.length; i++)\n        {\n            console.log(worksheets.items[i].name);\n            console.log(worksheets.items[i].index);\n        }\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+  remarks: >-
+    Zusätzlich zu dieser Signatur hat diese Methode die folgenden Signaturen:
+
+
+    `load(option?: string | string[]): Excel.WorksheetCollection`-Wo Option ist eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die zum Laden die Eigenschaften angeben.
+
+
+    `load(option?: { select?: string; expand?: string; }): Excel.WorksheetCollection`-Option.select ist eine durch Trennzeichen getrennte Zeichenfolge, die die Eigenschaften zum Laden gibt an, wobei options.expand ist eine durch Kommas getrennte Zeichenfolge, die Navigationseigenschaften zum Laden angibt.
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.WorksheetCollection`-Nur auf Auflistungstypen verfügbar. Es ist ähnlich wie die jeweils vorhergehende Signatur. Option.Top gibt die maximale Anzahl der Auflistungselemente, die im Ergebnis enthalten sein können. Option.Skip gibt die Anzahl der Elemente, die übersprungen und nicht in das Ergebnis eingeschlossen werden sollen. Wenn option.top angegeben wird, wird das Resultset starten, nachdem die angegebene Anzahl von Elementen übersprungen wird.
   name: load(option)
-  fullName: load
+  fullName: load(option)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'load(option?: string | string[]): Excel.WorksheetCollection;'
+    content: 'load(option?: Excel.Interfaces.WorksheetCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.WorksheetCollection;'
     return:
       type:
       - excel.Excel.WorksheetCollection
       description: ''
     parameters:
     - id: option
+      description: ''
+      type:
+      - Excel.Interfaces.WorksheetCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
+- uid: excel.Excel.WorksheetCollection.load_1
+  summary: Warteschlangen ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen Aufrufen `context.sync()` vor dem Lesen der Eigenschaften.
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.WorksheetCollection;'
+    return:
+      type:
+      - excel.Excel.WorksheetCollection
+      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var worksheets = ctx.workbook.worksheets;\n    worksheets.load('items');\n    return ctx.sync().then(function() {\n        for (var i = 0; i < worksheets.items.length; i++)\n        {\n            console.log(worksheets.items[i].name);\n            console.log(worksheets.items[i].index);\n        }\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: propertyNames
       description: Eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die zum Laden die Eigenschaften angeben.
       type:
       - string | string[]
+- uid: excel.Excel.WorksheetCollection.load_2
+  name: load(option)
+  fullName: load(option)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: OfficeExtension.LoadOption): Excel.WorksheetCollection;'
+    return:
+      type:
+      - excel.Excel.WorksheetCollection
+      description: ''
+    parameters:
+    - id: option
+      description: ''
+      type:
+      - office.OfficeExtension.LoadOption
 - uid: excel.Excel.WorksheetCollection.onActivated
   summary: >-
     Tritt auf, wenn ein beliebiges Arbeitsblatt in der Arbeitsmappe aktiviert wird.
@@ -315,7 +362,7 @@ items:
 - uid: excel.Excel.WorksheetCollection.toJSON
   summary: Überschreibt das JavaScript `toJSON()` Methode, um nützliche Ausgabe zu gewährleisten, wenn ein API-Objekt zu übergeben ist `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, wiederum die `toJSON` -Methode des Objekts, das es übergeben wird.) Während der ursprünglichen `Excel.WorksheetCollection` Objekt ist ein API-Objekt der `toJSON` -Methode gibt eine einfache JavaScript-Objekt zurück (als `Excel.Interfaces.WorksheetCollectionData` <!-- -->), die ein Array "Elemente" mit flache Kopien der geladenen Eigenschaften aus der Auflistung von Elementen enthält.
   name: toJSON()
-  fullName: toJSON
+  fullName: toJSON()
   langs:
   - typeScript
   type: method
