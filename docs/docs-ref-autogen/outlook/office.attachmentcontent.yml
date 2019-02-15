@@ -1,22 +1,18 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 42fe97363078120d9715b3091764fcd5626d2c6e
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
+ms.openlocfilehash: b52c294c7c7b30390622fec52183f8d455e9060d
+ms.sourcegitcommit: b0b614f5315ab2e5c1e0ea51c687498f87684a07
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29980065"
+ms.lasthandoff: 02/15/2019
+ms.locfileid: "30054982"
 items:
 - uid: outlook.Office.AttachmentContent
   summary: >-
-    Stellt den Inhalt einer Anlage zu einem Element Nachricht oder eines Termins.
+    Stellt den Inhalt einer Anlage für eine Nachricht oder ein Terminelement dar.
 
 
-    \[[API-Satz: Postfach Preview](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
+    \[[API-Satz: Post fach Vorschau](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>VerFassen oder lesen</td></tr> </table>
   isPreview: true
   name: Office.AttachmentContent
   fullName: Office.AttachmentContent
@@ -42,19 +38,19 @@ items:
       - string
 - uid: outlook.Office.AttachmentContent.format
   summary: >-
-    Das Format der Zeichenfolge für eine Anlage Inhalt verwendet.
+    Das Zeichenfolgenformat, das für den Inhalt einer Anlage verwendet werden soll.
 
 
-    Für Dateianlagen ist die Formatierung eine base64-codierte Zeichenfolge.
+    Bei Dateianlagen ist die Formatierung eine Base64-codierte Zeichenfolge.
 
 
-    Für Anlagen, die Nachrichten darstellen, ist die Formatierung eine Zeichenfolge zur Darstellung von formatierten EML-Datei aus.
+    Bei Element Anlagen, die Nachrichten darstellen, ist die Formatierung eine Zeichenfolge, die eine mit EML formatierte Datei darstellt.
 
 
-    Für Anlagen, die Elemente im Kalender darstellen, ist die Formatierung eine Zeichenfolge zur Darstellung einer .icalendar-Datei aus.
+    Bei Element Anlagen, die Kalenderelemente darstellen, ist die Formatierung eine Zeichenfolge, die eine iCalendar-Datei darstellt.
 
 
-    Für die Cloud-Anlagen ist die Formatierung eine URL-Zeichenfolge.
+    Bei Cloud-Anlagen ist die Formatierung eine URL-Zeichenfolge.
   isPreview: true
   name: format
   fullName: format
@@ -66,4 +62,4 @@ items:
     return:
       type:
       - MailboxEnums.AttachmentContentFormat
-      description: "\n#### <a name=\"examples\"></a>Examples\n\n```javascript\nvar item = Office.context.mailbox.item;\nvar listOfAttachments = [];\nitem.getAttachmentsAsync(callback);\n\nfunction callback(result) {\n    if (result.value.length > 0) {\n        for (i = 0 ; i < result.value.length ; i++) {\n            var options = {asyncContext: {type: result.value[i].attachmentType}};\n            getAttachmentContentAsync(result.value[i].id, options, handleAttachmentsCallback);\n        }\n    }\n}\n\nfunction handleAttachmentsCallback(result) {\n    // parse string to be a url, an .eml file, a base64-encoded string, or an .icalendar file\n    if (result.format === Office.MailboxEnums.AttachmentContentFormat.Base64) {\n        // handle file attachment\n    } else if (result.format === Office.MailboxEnums.AttachmentContentFormat.Eml) {\n        // handle email item attachment\n    } else if (result.format === Office.MailboxEnums.AttachmentContentFormat.ICalendar) {\n        // handle .icalender attachment\n    } else if (result.format === Office.MailboxEnums.AttachmentContentFormat.Url) {\n        // handle cloud attachment\n    } else {\n        // handle attachment formats that are not supported\n    }\n}\n```"
+      description: "\n#### <a name=\"examples\"></a>Examples\n\n```javascript\nvar item = Office.context.mailbox.item;\nvar listOfAttachments = [];\nitem.getAttachmentsAsync(callback);\n\nfunction callback(result) {\n    if (result.value.length > 0) {\n        for (i = 0 ; i < result.value.length ; i++) {\n            var options = {asyncContext: {type: result.value[i].attachmentType}};\n            getAttachmentContentAsync(result.value[i].id, options, handleAttachmentsCallback);\n        }\n    }\n}\n\nfunction handleAttachmentsCallback(result) {\n    // Parse string to be a url, an .eml file, a base64-encoded string, or an .icalendar file.\n    if (result.format === Office.MailboxEnums.AttachmentContentFormat.Base64) {\n        // Handle file attachment.\n    } else if (result.format === Office.MailboxEnums.AttachmentContentFormat.Eml) {\n        // Handle email item attachment.\n    } else if (result.format === Office.MailboxEnums.AttachmentContentFormat.ICalendar) {\n        // Handle .icalender attachment.\n    } else if (result.format === Office.MailboxEnums.AttachmentContentFormat.Url) {\n        // Handle cloud attachment.\n    } else {\n        // Handle attachment formats that are not supported.\n    }\n}\n```"
