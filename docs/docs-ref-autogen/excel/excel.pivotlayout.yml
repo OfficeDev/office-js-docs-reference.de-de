@@ -1,14 +1,14 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: c62a352c3a8f6c5f0da6526defd0bf4137251184
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
+ms.openlocfilehash: f75ef1f55d423ee130694bf500e9b6c2127b6b44
+ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29981773"
+ms.lasthandoff: 02/20/2019
+ms.locfileid: "30095730"
 items:
 - uid: excel.Excel.PivotLayout
   summary: >-
-    Das visuelle Layout der PivotTable darstellt.
+    Stellt das visuelle Layout der PivotTable dar.
 
 
     \[[API-Satz: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -21,24 +21,50 @@ items:
   - office.OfficeExtension.ClientObject
   package: excel
   children:
+  - excel.Excel.PivotLayout.autoFormat
   - excel.Excel.PivotLayout.context
+  - excel.Excel.PivotLayout.enableFieldList
+  - excel.Excel.PivotLayout.getCell
   - excel.Excel.PivotLayout.getColumnLabelRange
   - excel.Excel.PivotLayout.getDataBodyRange
+  - excel.Excel.PivotLayout.getDataHierarchy
   - excel.Excel.PivotLayout.getFilterAxisRange
+  - excel.Excel.PivotLayout.getPivotItems
+  - excel.Excel.PivotLayout.getPivotItems_1
   - excel.Excel.PivotLayout.getRange
   - excel.Excel.PivotLayout.getRowLabelRange
   - excel.Excel.PivotLayout.layoutType
   - excel.Excel.PivotLayout.load
   - excel.Excel.PivotLayout.load_1
   - excel.Excel.PivotLayout.load_2
+  - excel.Excel.PivotLayout.preserveFormatting
   - excel.Excel.PivotLayout.set
   - excel.Excel.PivotLayout.set_1
+  - excel.Excel.PivotLayout.setAutosortOnCell
+  - excel.Excel.PivotLayout.setAutosortOnCell_1
   - excel.Excel.PivotLayout.showColumnGrandTotals
   - excel.Excel.PivotLayout.showRowGrandTotals
   - excel.Excel.PivotLayout.subtotalLocation
   - excel.Excel.PivotLayout.toJSON
+- uid: excel.Excel.PivotLayout.autoFormat
+  summary: >-
+    True, wenn die Formatierung automatisch formatiert wird, wenn Sie aktualisiert wird oder wenn Felder verschoben werden
+
+
+    \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: autoFormat
+  fullName: autoFormat
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'autoFormat: boolean;'
+    return:
+      type:
+      - boolean
 - uid: excel.Excel.PivotLayout.context
-  summary: Der Anforderungskontext-zugeordnet. Dadurch wird das Add-in Prozess mit der Office-hostanwendung Prozess verbunden.
+  summary: Der dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office-Hostanwendung verbunden.
   name: context
   fullName: context
   langs:
@@ -49,6 +75,54 @@ items:
     return:
       type:
       - RequestContext
+- uid: excel.Excel.PivotLayout.enableFieldList
+  summary: >-
+    True, wenn die Feldliste auf der Benutzeroberfläche angezeigt oder ausgeblendet werden soll.
+
+
+    \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: enableFieldList
+  fullName: enableFieldList
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'enableFieldList: boolean;'
+    return:
+      type:
+      - boolean
+- uid: excel.Excel.PivotLayout.getCell
+  summary: >-
+    Ruft die Zelle im Daten Text der PivotTable ab, die den Wert für den Schnittpunkt der angegebenen dataHierarchy, rowItems und columnItems enthält.
+
+
+    \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: getCell(dataHierarchy, rowItems, columnItems)
+  fullName: getCell(dataHierarchy, rowItems, columnItems)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getCell(dataHierarchy: DataPivotHierarchy | string, rowItems: Array<PivotItem | string>, columnItems: Array<PivotItem | string>): Excel.Range;'
+    return:
+      type:
+      - excel.Excel.Range
+      description: Ein Range, der eine einzelne Zelle angibt, die den angegebenen Wert enthält.
+    parameters:
+    - id: dataHierarchy
+      description: Die Datenhierarchie, die das zu findende Data-Element bereitstellt.
+      type:
+      - DataPivotHierarchy | string
+    - id: rowItems
+      description: Die PivotItems aus der Zeilenachse, die den zu findenden Wert bilden.
+      type:
+      - Array<PivotItem | string>
+    - id: columnItems
+      description: Die PivotItems aus der Spaltenachse, die den zu findenden Wert bilden.
+      type:
+      - Array<PivotItem | string>
 - uid: excel.Excel.PivotLayout.getColumnLabelRange
   summary: >-
     Gibt den Bereich zurück, in dem sich die Spaltenbeschriftungen in PivotTable befinden.
@@ -83,6 +157,29 @@ items:
       type:
       - excel.Excel.Range
       description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\nawait Excel.run(async (context) => {\n    const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\");\n\n    // the layout controls the ranges used by the PivotTable\n    const range = pivotTable.layout.getDataBodyRange();\n\n    // get all the data hierarchy totals\n    const grandTotalRange = range.getLastRow();\n    grandTotalRange.load(\"address\");\n    await context.sync();\n    \n    // use the wholesale and farm sale totals to make a final sum\n    const masterTotalRange = context.workbook.worksheets.getActiveWorksheet().getRange(\"B27:C27\");\n    masterTotalRange.formulas = [[\"All Crates\", \"=SUM(\" + grandTotalRange.address + \")\"]];\n    await context.sync();\n});\n```"
+- uid: excel.Excel.PivotLayout.getDataHierarchy
+  summary: >-
+    Ruft die datenHierarchie ab, die zum Berechnen des Werts in einem angegebenen Bereich innerhalb der PivotTable verwendet wird.
+
+
+    \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: getDataHierarchy(cell)
+  fullName: getDataHierarchy(cell)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getDataHierarchy(cell: Range | string): Excel.DataPivotHierarchy;'
+    return:
+      type:
+      - excel.Excel.DataPivotHierarchy
+      description: Das DataPivotHierarchy-Objekt, mit dem der Wert in der angegebenen Zelle berechnet wird.
+    parameters:
+    - id: cell
+      description: Eine einzelne Zelle innerhalb des PivotTable-Daten Texts, für die die Daten hieararchy abgerufen werden sollen.
+      type:
+      - Range | string
 - uid: excel.Excel.PivotLayout.getFilterAxisRange
   summary: >-
     Gibt den Bereich des Filterbereichs von PivotTable zurück.
@@ -100,6 +197,60 @@ items:
       type:
       - excel.Excel.Range
       description: ''
+- uid: excel.Excel.PivotLayout.getPivotItems
+  summary: >-
+    Ruft die PivotItems aus einer Achse ab, die den Wert in einem angegebenen Bereich innerhalb der PivotTable ausmacht.
+
+
+    \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: getPivotItems(axis, cell)
+  fullName: getPivotItems(axis, cell)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getPivotItems(axis: Excel.PivotAxis, cell: Range | string): OfficeExtension.ClientResult<Excel.PivotItem[]>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<Excel.PivotItem[]>
+      description: Eine Auflistung von PivotItems, die zum Berechnen der Werte in der angegebenen Zeile verwendet werden.
+    parameters:
+    - id: axis
+      description: Die Achse, von der die PivotItems abgerufen werden soll. Muss entweder "Row" oder "Column" lauten.
+      type:
+      - excel.Excel.PivotAxis
+    - id: cell
+      description: Eine einzelne Zelle innerhalb des Daten Texts der PivotTable, für die die PivotItems abgerufen werden soll.
+      type:
+      - Range | string
+- uid: excel.Excel.PivotLayout.getPivotItems_1
+  summary: >-
+    Ruft die PivotItems aus einer Achse ab, die den Wert in einem angegebenen Bereich innerhalb der PivotTable ausmacht.
+
+
+    \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: getPivotItems(axisString, cell)
+  fullName: getPivotItems(axisString, cell)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getPivotItems(axisString: "Unknown" | "Row" | "Column" | "Data" | "Filter", cell: Range | string): OfficeExtension.ClientResult<Excel.PivotItem[]>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<Excel.PivotItem[]>
+      description: Eine Auflistung von PivotItems, die zum Berechnen der Werte in der angegebenen Zeile verwendet werden.
+    parameters:
+    - id: axisString
+      description: Die Achse, von der die PivotItems abgerufen werden soll. Muss entweder "Row" oder "Column" lauten.
+      type:
+      - "\"Unknown\" | \"Row\" | \"Column\" | \"Data\" | \"Filter\""
+    - id: cell
+      description: Eine einzelne Zelle innerhalb des Daten Texts der PivotTable, für die die PivotItems abgerufen werden soll.
+      type:
+      - Range | string
 - uid: excel.Excel.PivotLayout.getRange
   summary: >-
     Gibt den Bereich an, in dem PivotTable vorhanden ist, mit Ausnahme des Filterbereichs.
@@ -151,18 +302,18 @@ items:
       type:
       - Excel.PivotLayoutType | "Compact" | "Tabular" | "Outline"
 - uid: excel.Excel.PivotLayout.load
-  summary: Warteschlangen ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen "context.sync()" aufrufen, bevor Sie die Eigenschaften lesen.
+  summary: Warteschlangen bis ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen "context. Sync ()" aufrufen, bevor Sie die Eigenschaften lesen.
   remarks: >-
-    Zusätzlich zu dieser Signatur hat diese Methode die folgenden Signaturen:
+    Zusätzlich zu dieser Signatur verfügt diese Methode über die folgenden Signaturen:
 
 
-    `load(option?: string | string[]): Excel.PivotLayout`-Wo Option ist eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die zum Laden die Eigenschaften angeben.
+    `load(option?: string | string[]): Excel.PivotLayout`-Wobei Option eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen ist, die die zu ladenden Eigenschaften angeben.
 
 
-    `load(option?: { select?: string; expand?: string; }): Excel.PivotLayout`-Option.select ist eine durch Trennzeichen getrennte Zeichenfolge, die die Eigenschaften zum Laden gibt an, wobei options.expand ist eine durch Kommas getrennte Zeichenfolge, die Navigationseigenschaften zum Laden angibt.
+    `load(option?: { select?: string; expand?: string; }): Excel.PivotLayout`-Wobei Option. Select eine durch Kommas getrennte Zeichenfolge ist, die die zu ladenden Eigenschaften angibt, und Options. Expand ist eine durch Kommas getrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.
 
 
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.PivotLayout`-Nur auf Auflistungstypen verfügbar. Es ist ähnlich wie die jeweils vorhergehende Signatur. Option.Top gibt die maximale Anzahl der Auflistungselemente, die im Ergebnis enthalten sein können. Option.Skip gibt die Anzahl der Elemente, die übersprungen und nicht in das Ergebnis eingeschlossen werden sollen. Wenn option.top angegeben wird, wird das Resultset starten, nachdem die angegebene Anzahl von Elementen übersprungen wird.
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.PivotLayout`-Nur verfügbar für Sammlungstypen. Sie ähnelt der vorherigen Signatur. Option. Top gibt die maximale Anzahl von Sammlungselementen an, die in das Ergebnis eingeschlossen werden können. Option. Skip gibt die Anzahl der Elemente an, die übersprungen werden sollen und nicht im Ergebnis enthalten sind. Wenn Option. Top angegeben wird, wird das Resultset nach dem Überspringen der angegebenen Anzahl von Elementen gestartet.
   name: load(option)
   fullName: load(option)
   langs:
@@ -180,7 +331,7 @@ items:
       type:
       - excel.Excel.Interfaces.PivotLayoutLoadOptions
 - uid: excel.Excel.PivotLayout.load_1
-  summary: Warteschlangen ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen Aufrufen `context.sync()` vor dem Lesen der Eigenschaften.
+  summary: Warteschlangen bis ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften anrufen.
   name: load(propertyNames)
   fullName: load(propertyNames)
   langs:
@@ -194,11 +345,11 @@ items:
       description: ''
     parameters:
     - id: propertyNames
-      description: Eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die zum Laden die Eigenschaften angeben.
+      description: Eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.
       type:
       - string | string[]
 - uid: excel.Excel.PivotLayout.load_2
-  summary: Warteschlangen ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen Aufrufen `context.sync()` vor dem Lesen der Eigenschaften.
+  summary: Warteschlangen bis ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften anrufen.
   name: load(propertyNamesAndPaths)
   fullName: load(propertyNamesAndPaths)
   langs:
@@ -212,13 +363,30 @@ items:
       description: ''
     parameters:
     - id: propertyNamesAndPaths
-      description: Wobei propertyNamesAndPaths.select ist eine durch Kommas getrennte Zeichenfolge, die angibt, die Eigenschaften zum Laden und propertyNamesAndPaths.expand ist eine durch Kommas getrennte Zeichenfolge, die Navigationseigenschaften zum Laden angibt.
+      description: Wobei propertyNamesAndPaths. Select eine durch Kommas getrennte Zeichenfolge ist, die die zu ladenden Eigenschaften angibt, und propertyNamesAndPaths. Expand eine durch Kommas getrennte Zeichenfolge ist, die die zu ladenden Navigationseigenschaften angibt.
       type:
       - '{ select?: string; expand?: string; }'
+- uid: excel.Excel.PivotLayout.preserveFormatting
+  summary: >-
+    True, wenn die Formatierung beibehalten wird, wenn der Bericht durch Vorgänge wie Pivotieren, Sortieren oder Ändern von Seitenfeldelementen aktualisiert oder neu berechnet wird.
+
+
+    \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: preserveFormatting
+  fullName: preserveFormatting
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'preserveFormatting: boolean;'
+    return:
+      type:
+      - boolean
 - uid: excel.Excel.PivotLayout.set
-  summary: Legt mehrere Eigenschaften eines Objekts zur selben Zeit fest. Sie können entweder eine einfache-Objekt mit den entsprechenden Eigenschaften oder ein anderes API-Objekt des gleichen Typs übergeben.
+  summary: Legt mehrere Eigenschaften eines Objekts gleichzeitig fest. Sie können entweder ein plain-Objekt mit den entsprechenden Eigenschaften oder ein anderes API-Objekt desselben Typs weitergeben.
   remarks: >-
-    Diese Methode hat die folgenden zusätzliche Signatur:
+    Diese Methode hat die folgende zusätzliche Signatur:
 
 
     `set(properties: Excel.PivotLayout): void`
@@ -235,15 +403,15 @@ items:
       description: ''
     parameters:
     - id: properties
-      description: Ein JavaScript-Objekt mit Eigenschaften, die an die Eigenschaften des Objekts isomorphically strukturiert werden, auf denen die Methode aufgerufen wird.
+      description: Ein JavaScript-Objekt mit Eigenschaften, die isomorphically strukturiert sind, um die Eigenschaften des Objekts, für das die Methode aufgerufen wird.
       type:
       - Interfaces.PivotLayoutUpdateData
     - id: options
-      description: Bietet eine Option, um Fehler zu unterdrücken, wenn schreibgeschützte Eigenschaften festgelegt werden, versucht das Properties-Objekt.
+      description: Bietet eine Option zum Unterdrücken von Fehlern, wenn das Properties-Objekt versucht, schreibgeschützte Eigenschaften festzulegen.
       type:
       - office.OfficeExtension.UpdateOptions
 - uid: excel.Excel.PivotLayout.set_1
-  summary: Mehrere Eigenschaften festgelegt auf das Objekt zur selben Zeit, basierend auf einem vorhandenen geladen-Objekt.
+  summary: Legt mehrere Eigenschaften für das Objekt auf der Grundlage eines vorhandenen geladenen Objekts zur gleichen Zeit fest.
   name: set(properties)
   fullName: set(properties)
   langs:
@@ -260,6 +428,60 @@ items:
       description: ''
       type:
       - excel.Excel.PivotLayout
+- uid: excel.Excel.PivotLayout.setAutosortOnCell
+  summary: >-
+    Legt eine automatische Sortierung mithilfe der angegebenen Zelle fest, um automatisch alle Kriterien und Kontext für die Sortierung auszuwählen.
+
+
+    \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: setAutosortOnCell(cell, sortby)
+  fullName: setAutosortOnCell(cell, sortby)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setAutosortOnCell(cell: Range | string, sortby: Excel.SortBy): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: cell
+      description: Eine einzelne zu verwendende Zelle Abrufen der Kriterien für die Anwendung der AutoSortieren.
+      type:
+      - Range | string
+    - id: sortby
+      description: Die Richtung der Sortierung.
+      type:
+      - excel.Excel.SortBy
+- uid: excel.Excel.PivotLayout.setAutosortOnCell_1
+  summary: >-
+    Legt eine automatische Sortierung mithilfe der angegebenen Zelle fest, um automatisch alle Kriterien und Kontext für die Sortierung auszuwählen.
+
+
+    \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: setAutosortOnCell(cell, sortbyString)
+  fullName: setAutosortOnCell(cell, sortbyString)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'setAutosortOnCell(cell: Range | string, sortbyString: "Ascending" | "Descending"): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: cell
+      description: Eine einzelne zu verwendende Zelle Abrufen der Kriterien für die Anwendung der AutoSortieren.
+      type:
+      - Range | string
+    - id: sortbyString
+      description: Die Richtung der Sortierung.
+      type:
+      - "\"Ascending\" | \"Descending\""
 - uid: excel.Excel.PivotLayout.showColumnGrandTotals
   summary: >-
     True, wenn der PivotTable-Bericht die Gesamtsumme für Spalten anzeigt.
@@ -309,7 +531,7 @@ items:
       type:
       - Excel.SubtotalLocationType | "AtTop" | "AtBottom" | "Off"
 - uid: excel.Excel.PivotLayout.toJSON
-  summary: Überschreibt das JavaScript `toJSON()` Methode, um nützliche Ausgabe zu gewährleisten, wenn ein API-Objekt zu übergeben ist `JSON.stringify()` <!-- -->. (`JSON.stringify`<!-- -->, wiederum die `toJSON` -Methode des Objekts, das es übergeben wird.) Das ursprüngliche Excel.PivotLayout-Objekt ist ein API-Objekt der `toJSON` -Methode gibt eine einfache JavaScript-Objekt zurück (als `Excel.Interfaces.PivotLayoutData` <!-- -->), die flache Kopien der geladene untergeordnete Eigenschaften aus dem ursprünglichen-Objekt enthält.
+  summary: ÜberSchreibt die `toJSON()` JavaScript-Methode, um eine nützlichere Ausgabe bereitzustellen, wenn ein API `JSON.stringify()` <!-- -->-Objekt an übergeben wird. (`JSON.stringify`<!-- -->ruft wiederum die `toJSON` Methode des Objekts auf, das übergeben wird.) Während das ursprüngliche Excel. PivotLayout-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt `Excel.Interfaces.PivotLayoutData` <!-- -->(typisiert als) zurück, das flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.
   name: toJSON()
   fullName: toJSON()
   langs:

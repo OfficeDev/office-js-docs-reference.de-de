@@ -1,25 +1,21 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: a50551d4c2ecea3adf8c8d701de22e49e7617b93
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
+ms.openlocfilehash: 7047a4ad22979f6e4ed50caf36b740176934df14
+ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29981360"
+ms.lasthandoff: 02/20/2019
+ms.locfileid: "30096570"
 items:
 - uid: Outlook_1_2.Office.CustomProperties
   summary: >-
     Das CustomProperties-Objekt stellt benutzerdefinierte Eigenschaften dar, die spezifisch für ein bestimmtes Element und spezifisch für ein Mail-Add-In für Outlook sind. So kann es z. B. für ein Mail-Add-In erforderlich sein, Daten zu speichern, die spezifisch für die aktuelle E-Mail-Nachricht sind, die das Add-In aktiviert hat. Wenn der Benutzer diese Nachricht später wieder öffnet und das Mail-Add-In erneut aktiviert, kann das Add-In die Daten abrufen, die als benutzerdefinierte Eigenschaften gespeichert wurden.
 
 
-    Da Outlook für Mac benutzerdefinierte Eigenschaften cache nicht, wenn das Netzwerk des Benutzers ausfällt, können nicht e-Mail-add-ins ihre benutzerdefinierten Eigenschaften zugreifen.
+    Da Outlook für Mac keine benutzerdefinierten Eigenschaften zwischenspeichert, können e-Mail-Add-Ins nicht auf Ihre benutzerdefinierten Eigenschaften zugreifen, wenn das Netzwerk des Benutzers ausfällt.
 
 
-    \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
+    \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr> </table>
   name: Office.CustomProperties
   fullName: Office.CustomProperties
   langs:
@@ -30,14 +26,12 @@ items:
   - Outlook_1_2.Office.CustomProperties.get
   - Outlook_1_2.Office.CustomProperties.remove
   - Outlook_1_2.Office.CustomProperties.saveAsync
+  - Outlook_1_2.Office.CustomProperties.saveAsync_1
+  - Outlook_1_2.Office.CustomProperties.saveAsync_2
   - Outlook_1_2.Office.CustomProperties.set
 - uid: Outlook_1_2.Office.CustomProperties.get
   summary: Gibt den Wert der angegebenen benutzerdefinierten Eigenschaft zurück.
-  remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
+  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr> </table>
   name: get(name)
   fullName: get(name)
   langs:
@@ -52,7 +46,7 @@ items:
         Der Wert der angegebenen benutzerdefinierten Eigenschaft.
 
 
-        \[API-Satz: Postfach 1.0\]
+        \[API-Satz: Mailbox 1,0\]
     parameters:
     - id: name
       description: Der Name der benutzerdefinierten Eigenschaft, die zurückgegeben werden soll.
@@ -64,11 +58,7 @@ items:
 
 
     Damit die Eigenschaft dauerhaft entfernt wird, müssen Sie die saveAsync-Methode des CustomProperties-Objekts aufrufen.
-  remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
+  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr> </table>
   name: remove(name)
   fullName: remove(name)
   langs:
@@ -86,7 +76,7 @@ items:
         Der Name der zu entfernenden Eigenschaft.
 
 
-        \[API-Satz: Postfach 1.0\]
+        \[API-Satz: Mailbox 1,0\]
       type:
       - string
 - uid: Outlook_1_2.Office.CustomProperties.saveAsync
@@ -97,14 +87,45 @@ items:
     Sie müssen die saveAsync-Methode aufrufen, um alle mit der set-Methode oder der remove-Methode des CustomProperties-Objekts vorgenommenen Änderungen beizubehalten. Die Speichernaktion ist asynchron.
 
 
-    Es ist ratsam, Ihre Callback-Funktion für überprüfen und Behandeln von Fehlern aus SaveAsync haben. Insbesondere ein Lese-Add-In kann aktiviert werden, während der Benutzer in einem Leseformular verbunden ist. Daraufhin wird die Verbindung des Benutzers getrennt. Wenn das Add-in "saveasync", klicken Sie auf den Status getrennt aufruft, würde SaveAsync einen Fehler zurück. Ihre Rückrufmethode sollte diesen Fehler entsprechend behandeln.
+    Es empfiehlt sich, dass Ihre Rückruffunktion auf Fehler von saveAsync überprüft und diese behandelt. Insbesondere ein Lese-Add-In kann aktiviert werden, während der Benutzer in einem Leseformular verbunden ist. Daraufhin wird die Verbindung des Benutzers getrennt. Wenn das Add-in saveAsync im getrennten Zustand aufruft, gibt saveAsync einen Fehler zurück. Ihre Rückrufmethode sollte diesen Fehler entsprechend behandeln.
+  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr> </table>
+  name: saveAsync(callback, asyncContext)
+  fullName: saveAsync(callback, asyncContext)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'saveAsync(callback?: (result: Office.AsyncResult<void>) => void, asyncContext?: any): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: callback
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzelnen Parameter vom Typ Office. AsyncResult aufgerufen.
+      type:
+      - '(result: Office.AsyncResult<void>) => void'
+    - id: asyncContext
+      description: >-
+        Optional. Jegliche Zustandsdaten, die an die Rückrufmethode übergeben werden.
+
+
+        \[API-Satz: Mailbox 1,0\]
+      type:
+      - any
+- uid: Outlook_1_2.Office.CustomProperties.saveAsync_1
+  summary: >-
+    Speichert elementspezifische benutzerdefinierte Eigenschaften auf dem Server.
+
+
+    Sie müssen die saveAsync-Methode aufrufen, um alle mit der set-Methode oder der remove-Methode des CustomProperties-Objekts vorgenommenen Änderungen beizubehalten. Die Speichernaktion ist asynchron.
+
+
+    Es empfiehlt sich, dass Ihre Rückruffunktion auf Fehler von saveAsync überprüft und diese behandelt. Insbesondere ein Lese-Add-In kann aktiviert werden, während der Benutzer in einem Leseformular verbunden ist. Daraufhin wird die Verbindung des Benutzers getrennt. Wenn das Add-in saveAsync im getrennten Zustand aufruft, gibt saveAsync einen Fehler zurück. Ihre Rückrufmethode sollte diesen Fehler entsprechend behandeln.
   remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+    <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr> </table>
 
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
-
-    ####Beispiele für
+    ####Beispiele
 
 
     ```javascript
@@ -163,30 +184,50 @@ items:
     }
 
     ```
-  name: saveAsync(callback, asyncContext)
-  fullName: saveAsync(callback, asyncContext)
+  name: saveAsync(callback)
+  fullName: saveAsync(callback)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'saveAsync(callback?: (result: Office.AsyncResult<void>) => void, asyncContext?: any): void;'
+    content: 'saveAsync(callback?: (result: Office.AsyncResult<void>) => void): void;'
     return:
       type:
       - void
       description: ''
     parameters:
     - id: callback
-      description: Optional. Wenn die Methode abgeschlossen ist, wird die Funktion übergebenen Callback-Parameter mit einem einzelnen Parameter vom Typ Office.AsyncResult aufgerufen.
+      description: >-
+        Optional. Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzelnen Parameter vom Typ Office. AsyncResult aufgerufen.
+
+
+        \[API-Satz: Mailbox 1,0\]
       type:
       - '(result: Office.AsyncResult<void>) => void'
-    - id: asyncContext
-      description: >-
-        Optional. Jegliche Zustandsdaten, die an die Rückrufmethode übergeben werden.
+- uid: Outlook_1_2.Office.CustomProperties.saveAsync_2
+  summary: >-
+    Speichert elementspezifische benutzerdefinierte Eigenschaften auf dem Server.
 
 
-        \[API-Satz: Postfach 1.0\]
+    Sie müssen die saveAsync-Methode aufrufen, um alle mit der set-Methode oder der remove-Methode des CustomProperties-Objekts vorgenommenen Änderungen beizubehalten. Die Speichernaktion ist asynchron.
+
+
+    Es empfiehlt sich, dass Ihre Rückruffunktion auf Fehler von saveAsync überprüft und diese behandelt. Insbesondere ein Lese-Add-In kann aktiviert werden, während der Benutzer in einem Leseformular verbunden ist. Daraufhin wird die Verbindung des Benutzers getrennt. Wenn das Add-in saveAsync im getrennten Zustand aufruft, gibt saveAsync einen Fehler zurück. Ihre Rückrufmethode sollte diesen Fehler entsprechend behandeln.
+
+
+    \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr> </table>
+  name: saveAsync()
+  fullName: saveAsync()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'saveAsync(): void;'
+    return:
       type:
-      - any
+      - void
+      description: ''
 - uid: Outlook_1_2.Office.CustomProperties.set
   summary: >-
     Legt die angegebene Eigenschaft auf den angegebenen Wert fest.
@@ -198,12 +239,8 @@ items:
     Die set-Methode erstellt eine neue Eigenschaft, wenn die angegebene Eigenschaft nicht bereits vorhanden ist. Andernfalls wird der vorhandene Wert durch den neuen Wert ersetzt. Der value-Parameter kann einen beliebigen Typ aufweisen, er wird jedoch immer als Zeichenfolge an den Server übergeben.
 
 
-    \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
+    \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr> </table>
   name: set(name, value)
   fullName: set(name, value)
   langs:

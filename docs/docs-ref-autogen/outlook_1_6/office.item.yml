@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 0531f62796f983650ca3e33d915dc3e8471b9e82
-ms.sourcegitcommit: b0b614f5315ab2e5c1e0ea51c687498f87684a07
+ms.openlocfilehash: 1a738bedccc06a4c60c2ce2692a8b4c3dbdc5735
+ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/15/2019
-ms.locfileid: "30055010"
+ms.lasthandoff: 02/20/2019
+ms.locfileid: "30094519"
 items:
 - uid: Outlook_1_6.Office.Item
   summary: >-
@@ -12,11 +12,7 @@ items:
 
 
     \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>Eingeschränkt</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
+  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>Eingeschränkt</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr> </table>
   name: Office.Item
   fullName: Office.Item
   langs:
@@ -25,6 +21,7 @@ items:
   package: Outlook_1_6
   children:
   - Outlook_1_6.Office.Item.loadCustomPropertiesAsync
+  - Outlook_1_6.Office.Item.loadCustomPropertiesAsync_1
   - Outlook_1_6.Office.Item.body
   - Outlook_1_6.Office.Item.itemType
   - Outlook_1_6.Office.Item.notificationMessages
@@ -40,11 +37,41 @@ items:
 
 
     \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr> </table>
+  name: loadCustomPropertiesAsync(callback, userContext)
+  fullName: loadCustomPropertiesAsync(callback, userContext)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'loadCustomPropertiesAsync(callback: (result: Office.AsyncResult<CustomProperties>) => void, userContext?: any): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: callback
+      description: Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzelnen Parameter vom Typ Office. AsyncResult aufgerufen.
+      type:
+      - '(result: Office.AsyncResult<CustomProperties>) => void'
+    - id: userContext
+      description: Optional. Entwickler können ein beliebiges Objekt bereitstellen, auf das sie in der Callbackfunktion zugreifen möchten. Auf dieses Objekt kann über die asyncResult. AsyncContext-Eigenschaft in der Rückruffunktion zugegriffen werden.
+      type:
+      - any
+- uid: Outlook_1_6.Office.Item.loadCustomPropertiesAsync_1
+  summary: >-
+    Lädt asynchron benutzerdefinierte Eigenschaften für dieses Add-In für das ausgewählte Element.
+
+
+    Benutzerdefinierte Eigenschaften werden als Schlüssel-/Wert-Paare pro App und pro Element gespeichert. Diese Methode gibt ein CustomProperties-Objekt im Callback zurück, das Methoden für den Zugriff auf die benutzerdefinierten Eigenschaften für das aktuelle Element und das aktuelle Add-In bietet. Benutzerdefinierte Eigenschaften sind für das Element nicht verschlüsselt und sollten darum nicht als sicherer Speicher verwendet werden.
+
+
+    Die benutzerdefinierten Eigenschaften werden als CustomProperties-Objekt in der asyncResult.value-Eigenschaft bereitgestellt. Dieses Objekt kann verwendet werden, um benutzerdefinierte Eigenschaften aus dem Element abzurufen, festzulegen und zu entfernen und um Änderungen am benutzerdefinierten Eigenschaftssatz wieder auf dem Server zu speichern.
+
+
+    \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
+    <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr> </table>
 
     ####Beispiele
 
@@ -89,13 +116,13 @@ items:
     }
 
     ```
-  name: loadCustomPropertiesAsync(callback, userContext)
-  fullName: loadCustomPropertiesAsync(callback, userContext)
+  name: loadCustomPropertiesAsync(callback)
+  fullName: loadCustomPropertiesAsync(callback)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'loadCustomPropertiesAsync(callback: (result: Office.AsyncResult<CustomProperties>) => void, userContext?: any): void;'
+    content: 'loadCustomPropertiesAsync(callback: (result: Office.AsyncResult<CustomProperties>) => void): void;'
     return:
       type:
       - void
@@ -105,10 +132,6 @@ items:
       description: Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzelnen Parameter vom Typ Office. AsyncResult aufgerufen.
       type:
       - '(result: Office.AsyncResult<CustomProperties>) => void'
-    - id: userContext
-      description: Optional. Entwickler können ein beliebiges Objekt bereitstellen, auf das sie in der Callbackfunktion zugreifen möchten. Auf dieses Objekt kann über die asyncResult. AsyncContext-Eigenschaft in der Rückruffunktion zugegriffen werden.
-      type:
-      - any
 - uid: Outlook_1_6.Office.Item.body
   summary: >-
     Ruft ein Objekt ab, das Methoden zum Bearbeiten des Textkörpers eines Elements bereitstellt.
@@ -116,10 +139,7 @@ items:
 
     \[[API-Satz: Mailbox 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
+    <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr> </table>
 
     ####Beispiele
 
@@ -164,10 +184,7 @@ items:
 
     \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
+    <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr> </table>
 
     ####Beispiele
 
@@ -198,10 +215,7 @@ items:
 
     \[[API-Satz: Mailbox 1,3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
+    <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr> </table>
 
     ####Beispiele
 

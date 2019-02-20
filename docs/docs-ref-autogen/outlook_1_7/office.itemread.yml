@@ -1,17 +1,17 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: f9b1e54efb17b0313805c94679d9eac0def8a39d
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
+ms.openlocfilehash: b43c218cba5a3f3181c2f096e7220271cf5c7d62
+ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29974269"
+ms.lasthandoff: 02/20/2019
+ms.locfileid: "30098068"
 items:
 - uid: Outlook_1_7.Office.ItemRead
   summary: >-
-    Der Lesemodus des [Office.context.mailbox.item](xref:Outlook_1_7.Office.Item)<!-- -->.
+    Der Lesemodus von [Office. Context. Mailbox. Item](xref:Outlook_1_7.Office.Item)<!-- -->.
 
 
-    **Wichtig**: Dies ist ein interner Outlook-Objekt, die nicht direkt über vorhandene Schnittstellen verfügbar gemacht. Sie sollten diese als ein Modus der Office.context.mailbox.item behandeln. Verweisen Sie auf die [-Objektmodell](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.7/office.context.mailbox.item) für Weitere Informationen.
+    **Wichtig**: Hierbei handelt es sich um ein internes Outlook-Objekt, das nicht direkt über vorhandene Schnittstellen verfügbar gemacht wird. Sie sollten dies als Modus von Office. Context. Mailbox. Item behandeln. Weitere Informationen finden Sie auf der Seite [Objektmodell](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.7/office.context.mailbox.item) .
   name: Office.ItemRead
   fullName: Office.ItemRead
   langs:
@@ -22,7 +22,9 @@ items:
   package: Outlook_1_7
   children:
   - Outlook_1_7.Office.ItemRead.displayReplyAllForm
+  - Outlook_1_7.Office.ItemRead.displayReplyAllForm_1
   - Outlook_1_7.Office.ItemRead.displayReplyForm
+  - Outlook_1_7.Office.ItemRead.displayReplyForm_1
   - Outlook_1_7.Office.ItemRead.getEntities
   - Outlook_1_7.Office.ItemRead.getEntitiesByType
   - Outlook_1_7.Office.ItemRead.getFilteredEntitiesByName
@@ -49,15 +51,50 @@ items:
     Wenn Anlagen im formData.attachments-Parameter angegeben werden, versuchen Outlook und Outlook Web App, alle Anlagen herunterzuladen und sie an das Antwortformular anzuhängen. Wenn Anlagen nicht hinzugefügt werden können, wird in der Formularbenutzeroberfläche ein Fehler angezeigt. Wenn dies nicht möglich ist, wird keine Fehlermeldung ausgegeben.
 
 
-    **Hinweis**: Diese Methode wird in Outlook für iOS oder Outlook für Android nicht unterstützt.
+    **Hinweis**: Diese Methode wird in Outlook für IOS oder Outlook für Android nicht unterstützt.
 
 
-    \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+    \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr> </table>
+  name: displayReplyAllForm(formData, callback)
+  fullName: displayReplyAllForm(formData, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'displayReplyAllForm(formData: string | ReplyFormData, callback?: (result: Office.AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: formData
+      description: Eine Zeichenfolge, die Text- und HTML-Code enthält, die den Hauptteil des Antwortformulars darstellen. Die Zeichenfolge ist auf 32 KB oder ein [Office. ReplyFormData](xref:Outlook_1_7.Office.ReplyFormData) -Objekt beschränkt, das Textkörper-oder Anlagendaten und eine Rückruffunktion enthält.
+      type:
+      - string | ReplyFormData
+    - id: callback
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzelnen Parameter, asyncResult, aufgerufen, bei dem es sich um ein Office. AsyncResult-Objekt handelt.
+      type:
+      - '(result: Office.AsyncResult<void>) => void'
+- uid: Outlook_1_7.Office.ItemRead.displayReplyAllForm_1
+  summary: >-
+    Zeigt ein Antwortformular an, das den Absender und alle Empfänger der ausgewählten Nachricht oder des Organisators und alle Teilnehmer des ausgewählten Termins enthält.
 
 
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr></table>
+    In Outlook Web App wird das Antwortformular als Popupformular in der Dreispaltenansicht und als Popupformular in der Zwei- oder Einspaltenansicht angezeigt.
+
+
+    Wenn einer der Zeichenfolgenparameter seinen Grenzwert überschreitet, löst displayReplyAllForm eine Ausnahme aus.
+
+
+    Wenn Anlagen im formData.attachments-Parameter angegeben werden, versuchen Outlook und Outlook Web App, alle Anlagen herunterzuladen und sie an das Antwortformular anzuhängen. Wenn Anlagen nicht hinzugefügt werden können, wird in der Formularbenutzeroberfläche ein Fehler angezeigt. Wenn dies nicht möglich ist, wird keine Fehlermeldung ausgegeben.
+
+
+    **Hinweis**: Diese Methode wird in Outlook für IOS oder Outlook für Android nicht unterstützt.
+
+
+    \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr> </table>
   name: displayReplyAllForm(formData)
   fullName: displayReplyAllForm(formData)
   langs:
@@ -71,7 +108,7 @@ items:
       description: ''
     parameters:
     - id: formData
-      description: Eine Zeichenfolge, die Text- und HTML-Code enthält, die den Hauptteil des Antwortformulars darstellen. Die Zeichenfolge ist auf 32 KB oder ein [Office.ReplyFormData](xref:Outlook_1_7.Office.ReplyFormData) -Objekt, enthält der Nachrichtentext oder die Anlage Daten und eine Callback-Funktion
+      description: Eine Zeichenfolge, die Text- und HTML-Code enthält, die den Hauptteil des Antwortformulars darstellen. Die Zeichenfolge ist auf 32 KB oder ein [Office. ReplyFormData](xref:Outlook_1_7.Office.ReplyFormData) -Objekt beschränkt, das Textkörper-oder Anlagendaten und eine Rückruffunktion enthält.
       type:
       - string | ReplyFormData
 - uid: Outlook_1_7.Office.ItemRead.displayReplyForm
@@ -88,15 +125,50 @@ items:
     Wenn Anlagen im formData.attachments-Parameter angegeben werden, versuchen Outlook und Outlook Web App, alle Anlagen herunterzuladen und sie an das Antwortformular anzuhängen. Wenn Anlagen nicht hinzugefügt werden können, wird in der Formularbenutzeroberfläche ein Fehler angezeigt. Wenn dies nicht möglich ist, wird keine Fehlermeldung ausgegeben.
 
 
-    **Hinweis**: Diese Methode wird in Outlook für iOS oder Outlook für Android nicht unterstützt.
+    **Hinweis**: Diese Methode wird in Outlook für IOS oder Outlook für Android nicht unterstützt.
 
 
-    \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+    \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Read/TD<!-- -->&gt;</tr> </table>
+  name: displayReplyForm(formData, callback)
+  fullName: displayReplyForm(formData, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'displayReplyForm(formData: string | ReplyFormData, callback?: (result: Office.AsyncResult<void>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: formData
+      description: Eine Zeichenfolge, die Text- und HTML-Code enthält, die den Hauptteil des Antwortformulars darstellen. Die Zeichenfolge ist auf 32 KB oder ein [Office. ReplyFormData](xref:Outlook_1_7.Office.ReplyFormData) -Objekt beschränkt, das Textkörper-oder Anlagendaten und eine Rückruffunktion enthält.
+      type:
+      - string | ReplyFormData
+    - id: callback
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzelnen Parameter, asyncResult, aufgerufen, bei dem es sich um ein Office. AsyncResult-Objekt handelt.
+      type:
+      - '(result: Office.AsyncResult<void>) => void'
+- uid: Outlook_1_7.Office.ItemRead.displayReplyForm_1
+  summary: >-
+    Zeigt ein Antwortformular an, das nur den Absender der ausgewählten Nachricht oder den Organisator des ausgewählten Termins enthält.
 
 
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr></table>
+    In Outlook Web App wird das Antwortformular als Popupformular in der Dreispaltenansicht und als Popupformular in der Zwei- oder Einspaltenansicht angezeigt.
+
+
+    Wenn einer der Zeichenfolgenparameter seinen Grenzwert überschreitet, löst displayReplyForm eine Ausnahme aus.
+
+
+    Wenn Anlagen im formData.attachments-Parameter angegeben werden, versuchen Outlook und Outlook Web App, alle Anlagen herunterzuladen und sie an das Antwortformular anzuhängen. Wenn Anlagen nicht hinzugefügt werden können, wird in der Formularbenutzeroberfläche ein Fehler angezeigt. Wenn dies nicht möglich ist, wird keine Fehlermeldung ausgegeben.
+
+
+    **Hinweis**: Diese Methode wird in Outlook für IOS oder Outlook für Android nicht unterstützt.
+
+
+    \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr> </table>
   name: displayReplyForm(formData)
   fullName: displayReplyForm(formData)
   langs:
@@ -110,7 +182,7 @@ items:
       description: ''
     parameters:
     - id: formData
-      description: Eine Zeichenfolge, die Text- und HTML-Code enthält, die den Hauptteil des Antwortformulars darstellen. Die Zeichenfolge ist auf 32 KB beschränkt. ODER ein [Office.ReplyFormData](xref:Outlook_1_7.Office.ReplyFormData) -Objekt, Nachrichtentext oder die Anlage Daten und eine Callback-Funktion enthält.
+      description: Eine Zeichenfolge, die Text- und HTML-Code enthält, die den Hauptteil des Antwortformulars darstellen. Die Zeichenfolge ist auf 32 KB oder ein [Office. ReplyFormData](xref:Outlook_1_7.Office.ReplyFormData) -Objekt beschränkt, das Textkörper-oder Anlagendaten und eine Rückruffunktion enthält.
       type:
       - string | ReplyFormData
 - uid: Outlook_1_7.Office.ItemRead.getEntities
@@ -118,15 +190,11 @@ items:
     Ruft die Entitäten im Text des ausgewählten Elements ab.
 
 
-    **Hinweis**: Diese Methode wird in Outlook für iOS oder Outlook für Android nicht unterstützt.
+    **Hinweis**: Diese Methode wird in Outlook für IOS oder Outlook für Android nicht unterstützt.
 
 
-    \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr></table>
+    \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr> </table>
   name: getEntities()
   fullName: getEntities()
   langs:
@@ -143,21 +211,18 @@ items:
     Ruft ein Array aller Entitäten des angegebenen Typs ab, die im Texts des ausgewählten Elements enthalten sind.
 
 
-    **Hinweis**: Diese Methode wird in Outlook für iOS oder Outlook für Android nicht unterstützt.
+    **Hinweis**: Diese Methode wird in Outlook für IOS oder Outlook für Android nicht unterstützt.
 
 
-    \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>Eingeschränkt</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr></table>
+    <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>Eingeschränkt</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr> </table>
 
 
     Während Sie die minimale Berechtigungsstufe für diese Methode Restricted ist, erfordern einige Entitätstypen ReadItem für den Zugriff, wie in der folgenden Tabelle angegeben wird.
 
 
-    <table> <tr> <th>Wert von entityType</th> <th>Typ der Objekte im zurückgegebenen Array</th> <th>Erforderliche Berechtigung Leve</th> </tr> <tr> <td>Adresse</td> <td>Zeichenfolge</td> <td>Restricted</td> </tr> <tr> <td>Kontakt</td> <td>Kontakt</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>Zeichenfolge</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>Restricted</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>Zeichenfolge</td> <td>Restricted</td> </tr> </table>
+    <table> <tr> <th>Wert von entityType</th> <th>Typ der Objekte im zurückgegebenen Array</th> <th>Erforderliche Berechtigungsstufe</th> </tr> <tr> <td>Adresse</td> <td>Zeichenfolge</td> <td>Eingeschränkt</td> </tr> <tr> <td>Kontakt</td> <td>Kontakt</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>Zeichenfolge</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>Eingeschränkt</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>Zeichenfolge</td> <td>Eingeschränkt</td> </tr> </table>
   name: getEntitiesByType(entityType)
   fullName: getEntitiesByType(entityType)
   langs:
@@ -168,7 +233,7 @@ items:
     return:
       type:
       - (string | Contact | MeetingSuggestion | PhoneNumber | TaskSuggestion)[]
-      description: Ist der EntityType übergebene Wert nicht gültiger Member der Enumeration "EntityType", gibt die Methode null zurück. Wenn keine Entitäten des angegebenen Typs im Text des Elements vorhanden sind, gibt die Methode ein leeres Array zurück. Anderenfalls hängt der Typ der Objekte in das zurückgegebene Array vom Typ der Entität, die im Parameter "EntityType" angefordert.
+      description: Wenn der in entityType übergebene Wert kein gültiges Element der EntityType-Enumeration ist, gibt die Methode NULL zurück. Wenn keine Entitäten des angegebenen Typs im Text des Elements vorhanden sind, gibt die Methode ein leeres Array zurück. Andernfalls hängt der Typ der Objekte im zurückgegebenen Array vom Typ der Entität ab, die im entityType-Parameter angefordert wird.
     parameters:
     - id: entityType
       description: Einer der Werte der EntityType-Enumeration.
@@ -182,15 +247,11 @@ items:
     Die getFilteredEntitiesByName-Methode gibt die Entitäten zurück, die dem im ItemHasKnownEntity-Regelelement der XML-Manifestdatei definierten regulären Ausdruck mit dem angegebenen FilterName-Elementwert entsprechen.
 
 
-    **Hinweis**: Diese Methode wird in Outlook für iOS oder Outlook für Android nicht unterstützt.
+    **Hinweis**: Diese Methode wird in Outlook für IOS oder Outlook für Android nicht unterstützt.
 
 
-    \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr></table>
+    \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr> </table>
   name: getFilteredEntitiesByName(name)
   fullName: getFilteredEntitiesByName(name)
   langs:
@@ -218,15 +279,11 @@ items:
     Wenn Sie eine ItemHasRegularExpressionMatch-Regel für die Textkörpereigenschaft eines Elements festlegen, sollte der reguläre Ausdruck den Textkörper weiter filtern und nicht versuchen, den gesamten Textkörper des Elements zurückzugeben. Wenn der gesamte Textkörper eines Elements mit einem regulären Ausdruck wie .* abgerufen wird, werden nicht immer die gewünschten Ergebnisse erzielt. Verwenden Sie stattdessen die Body.getAsync-Methode, um den gesamten Textkörper abzurufen.
 
 
-    **Hinweis**: Diese Methode wird in Outlook für iOS oder Outlook für Android nicht unterstützt.
+    **Hinweis**: Diese Methode wird in Outlook für IOS oder Outlook für Android nicht unterstützt.
 
 
-    \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr></table>
+    \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr> </table>
   name: getRegExMatches()
   fullName: getRegExMatches()
   langs:
@@ -249,15 +306,11 @@ items:
     Wenn Sie eine ItemHasRegularExpressionMatch-Regel für die Textkörpereigenschaft eines Elements festlegen, sollte der reguläre Ausdruck den Textkörper weiter filtern und nicht versuchen, den gesamten Textkörper des Elements zurückzugeben. Wenn der gesamte Textkörper eines Elements mit einem regulären Ausdruck wie .* abgerufen wird, werden nicht immer die gewünschten Ergebnisse erzielt.
 
 
-    **Hinweis**: Diese Methode wird in Outlook für iOS oder Outlook für Android nicht unterstützt.
+    **Hinweis**: Diese Methode wird in Outlook für IOS oder Outlook für Android nicht unterstützt.
 
 
-    \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr></table>
+    \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr> </table>
   name: getRegExMatchesByName(name)
   fullName: getRegExMatchesByName(name)
   langs:
@@ -279,15 +332,11 @@ items:
     Ruft die Entitäten ab, die in einer hervorgehobenen Übereinstimmung gefunden werden, die ein Benutzer ausgewählt hat. Hervorgehobene Übereinstimmungen gelten für Kontext-Add-Ins.
 
 
-    **Hinweis**: Diese Methode wird in Outlook für iOS oder Outlook für Android nicht unterstützt.
+    **Hinweis**: Diese Methode wird in Outlook für IOS oder Outlook für Android nicht unterstützt.
 
 
-    \[[API-Satz: Postfach 1.6](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr></table>
+    \[[API-Satz: Mailbox 1,6](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr> </table>
   name: getSelectedEntities()
   fullName: getSelectedEntities()
   langs:
@@ -304,21 +353,17 @@ items:
     Gibt Zeichenfolgenwerte in einer hervorgehobenen Übereinstimmung zurück, die den in der XML-Manifestdatei definierten regulären Ausdrücken entsprechen. Hervorgehobene Übereinstimmungen gelten für Kontext-Add-Ins.
 
 
-    Die GetSelectedRegExMatches-Methode gibt die Zeichenfolgen, die die in jeder ItemHasRegularExpressionMatch oder ItemHasKnownEntity-Regelelement der XML-Manifestdatei definierten regulären Ausdruck übereinstimmen. Für eine ItemHasRegularExpressionMatch-Regel muss eine entsprechende Zeichenfolge in der Eigenschaft des Elements auftreten, die durch diese Regel angegeben ist. Der einfache Typ PropertyName definiert die unterstützten Eigenschaften.
+    Die getSelectedRegExMatches-Methode gibt die Zeichenfolgen zurück, die mit dem regulären Ausdruck übereinstimmen, der in jedem ItemHasRegularExpressionMatch-oder ItemHasKnownEntity-Regelelement in der Manifest-XML-Datei definiert ist. Bei einer ItemHasRegularExpressionMatch-Regel muss eine übereinstimmende Zeichenfolge in der Eigenschaft des Elements auftreten, das von dieser Regel angegeben wird. Der einfache PropertyName-Typ definiert die unterstützten Eigenschaften.
 
 
     Wenn Sie eine ItemHasRegularExpressionMatch-Regel für die Textkörpereigenschaft eines Elements festlegen, sollte der reguläre Ausdruck den Textkörper weiter filtern und nicht versuchen, den gesamten Textkörper des Elements zurückzugeben. Wenn der gesamte Textkörper eines Elements mit einem regulären Ausdruck wie .* abgerufen wird, werden nicht immer die gewünschten Ergebnisse erzielt. Verwenden Sie stattdessen die Body.getAsync-Methode, um den gesamten Textkörper abzurufen.
 
 
-    **Hinweis**: Diese Methode wird in Outlook für iOS oder Outlook für Android nicht unterstützt.
+    **Hinweis**: Diese Methode wird in Outlook für IOS oder Outlook für Android nicht unterstützt.
 
 
-    \[[API-Satz: Postfach 1.6](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr></table>
+    \[[API-Satz: Mailbox 1,6](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr> </table>
   name: getSelectedRegExMatches()
   fullName: getSelectedRegExMatches()
   langs:
@@ -335,15 +380,12 @@ items:
     Ruft die Anlagen des Elements in Form eines Arrays ab.
 
 
-    \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
+    <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr> </table>
 
 
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr></table>
-
-
-    **Hinweis**: bestimmte Dateitypen werden aufgrund von Sicherheitsproblemen von Outlook blockiert und daher nicht zurückgegeben werden. Weitere Informationen finden Sie unter [Blockierte Anlagen in Outlook](https://support.office.com/article/Blocked-attachments-in-Outlook-434752E1-02D3-4E90-9124-8B81E49A8519)<!-- -->.
+    **Hinweis**: bestimmte Dateitypen werden aufgrund potenzieller Sicherheitsprobleme von Outlook blockiert und daher nicht zurückgegeben. Weitere Informationen finden Sie unter [Blockierte Anlagen in Outlook](https://support.office.com/article/Blocked-attachments-in-Outlook-434752E1-02D3-4E90-9124-8B81E49A8519)<!-- -->.
   name: attachments
   fullName: attachments
   langs:
@@ -362,18 +404,15 @@ items:
     Sie können benutzerdefinierte Nachrichtenklassen zum Erweitern einer Standardnachrichtenklasse erstellen, z. B. eine benutzerdefinierte Terminnachrichtenklasse wie "IPM.Appointment.Contoso".
 
 
-    \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr></table>
+    <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr> </table>
 
 
     Die itemClass-Eigenschaft gibt die Nachrichtenklasse des ausgewählten Elements an. Folgende Standardnachrichtenklassen für das Nachrichten- oder Terminelement sind vorhanden:
 
 
-    <table> <tr> <th>Typ</th> <th>Beschreibung</th> <th>Item-Klasse</th> </tr> <tr> <td>Terminelemente</td> <td>Hierbei handelt es sich um Kalenderelemente der Item-Klasse IPM. Termin- oder IPM. Appointment.Occurrence.</td> <td>IPM. Termin, IPM. Appointment.Occurrence</td> </tr> <tr> <td>Nachrichtenelemente</td> <td>Diese Elemente umfassen E-Mail-Nachrichten der Standardnachrichtenklasse "IPM.Note" sowie Besprechungsanfragen, -antworten und -absagen, die "IPM.Schedule.Meeting" als Basisnachrichtenklasse verwenden.</td> <td>IPM. Notiz, IPM. Schedule.Meeting.Request,IPM. Schedule.Meeting.Neg,IPM. Schedule.Meeting.Pos,IPM. Schedule.Meeting.Tent,IPM. Schedule.Meeting.Canceled</td> </tr> </table>
+    <table> <tr> <th>Typ</th> <th>Beschreibung</th> <th>Elementklasse</th> </tr> <tr> <td>Terminelemente</td> <td>Dies sind Kalenderelemente der Elementklasse IPM. Termin oder IPM. Termin. vorkommen.</td> <td>IPM. Termin, IPM. Termin. vorkommen</td> </tr> <tr> <td>Nachrichtenelemente</td> <td>Diese Elemente umfassen E-Mail-Nachrichten der Standardnachrichtenklasse "IPM.Note" sowie Besprechungsanfragen, -antworten und -absagen, die "IPM.Schedule.Meeting" als Basisnachrichtenklasse verwenden.</td> <td>IPM. Hinweis, IPM. Schedule. Meeting. Request, IPM. Schedule. Meeting. Reverse, IPM. Schedule. Meeting. POS, IPM. Schedule. Meeting. Tent, IPM. Schedule. Meeting. Canceled</td> </tr> </table>
   name: itemClass
   fullName: itemClass
   langs:
@@ -389,18 +428,14 @@ items:
     Ruft den Exchange-Webdienste-Elementbezeichner für das aktuelle Element ab.
 
 
-    Die Eigenschaft "ItemID" steht nicht in Entwurfsmodus verwendet. Wenn eine Element-ID erforderlich ist, kann die SaveAsync-Methode verwendet werden, Speichern des Elements im Speicher, der den Bezeichner des Elements im Parameter "AsyncResult.Value" in der Callback-Funktion zurückgegeben wird.
+    Die itemId-Eigenschaft ist im Verfassenmodus nicht verfügbar. Wenn ein Elementbezeichner erforderlich ist, kann die saveAsync-Methode zum Speichern des Elements im Speicher verwendet werden, wodurch der Elementbezeichner im asyncResult. value-Parameter in der Rückruffunktion zurückgegeben wird.
 
 
-    **Hinweis**: der von der ItemId-Eigenschaft zurückgegebene Bezeichner ist identisch mit der Exchange-Webdienste Elementbezeichner. Die Eigenschaft "ItemID" ist nicht identisch mit der Outlook-Eintrags-ID oder die ID von der Outlook-REST-API verwendet. Bevor Sie REST-API-Aufrufe mit diesem Wert ausführen, sollte dieser mithilfe von Office.context.mailbox.convertToRestId konvertiert werden. Weitere Informationen finden Sie unter [Verwenden der Outlook-REST-APIs aus einem Outlook-add-in](https://docs.microsoft.com/outlook/add-ins/use-rest-api#get-the-item-id)<!-- -->.
+    **Hinweis**: der von der ItemId-Eigenschaft zurückgegebene Bezeichner ist derselbe wie der Exchange-Webdienste-Elementbezeichner. Die itemId-Eigenschaft ist nicht identisch mit der Outlook-Eintrags-ID oder der ID, die von der Outlook-REST-API verwendet wird. Bevor Sie REST-API-Aufrufe mit diesem Wert ausführen, sollte dieser mithilfe von Office.context.mailbox.convertToRestId konvertiert werden. Weitere Informationen finden Sie unter [Verwenden der Outlook-Rest-APIs aus einem Outlook-Add-in](https://docs.microsoft.com/outlook/add-ins/use-rest-api#get-the-item-id)<!-- -->.
 
 
-    \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr></table>
+    \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr> </table>
   name: itemId
   fullName: itemId
   langs:
@@ -413,18 +448,14 @@ items:
       - string
 - uid: Outlook_1_7.Office.ItemRead.normalizedSubject
   summary: >-
-    Ruft den Betreff eines Elements mit allen Präfixen entfernt (einschließlich RE: und FWD:).
+    Ruft den Betreff eines Elements ab, wobei alle Präfixe entfernt wurden (einschließlich RE: und FWD:).
 
 
     Die normalizedSubject-Eigenschaft ruft den Betreff des Elements mit allen Standardpräfixen (z. B. RE: und FW:) ab, die von E-Mail-Programmen hinzugefügt werden. Wenn der Betreff des Elements mit vollständigen Präfixen abgerufen werden soll, verwenden Sie die subject-Eigenschaft.
 
 
-    \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr></table>
+    \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr> </table>
   name: normalizedSubject
   fullName: normalizedSubject
   langs:
@@ -437,7 +468,7 @@ items:
       - string
 - uid: Outlook_1_7.Office.ItemRead.subject
   summary: >-
-    Ruft die Beschreibung, die in das Betrefffeld eines Elements angezeigt wird.
+    Ruft die Beschreibung ab, die im Feld Betreff eines Elements angezeigt wird.
 
 
     Die subject-Eigenschaft ruft den gesamten Betreff des Elements ab oder legt ihn fest – so, wie er vom E-Mail-Server gesendet wird.
@@ -446,12 +477,8 @@ items:
     Die subject-Eigenschaft gibt eine Zeichenfolge zurück. Verwenden Sie die ormalizedSubject-Eigenschaft, um den Betreff ohne führende Präfixe wie RE: und FW: abzurufen.
 
 
-    \[[API-Satz: Postfach 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table><tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr>
-
-
-    <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr></table>
+    \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr> </table>
   name: subject
   fullName: subject
   langs:
