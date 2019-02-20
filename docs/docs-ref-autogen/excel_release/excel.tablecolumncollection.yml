@@ -1,0 +1,265 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: fba1f8bad39a41fcef6c4852701605bb4c86e20e
+ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 02/20/2019
+ms.locfileid: "30116731"
+items:
+- uid: excel_release.Excel.TableColumnCollection
+  summary: >-
+    Stellt eine Auflistung aller Spalten dar, die Teil der Tabelle sind.
+
+
+    \[[API-Satz: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: Excel.TableColumnCollection
+  fullName: Excel.TableColumnCollection
+  langs:
+  - typeScript
+  type: class
+  extends:
+  - office.OfficeExtension.ClientObject
+  package: excel_release
+  children:
+  - excel_release.Excel.TableColumnCollection.add
+  - excel_release.Excel.TableColumnCollection.context
+  - excel_release.Excel.TableColumnCollection.count
+  - excel_release.Excel.TableColumnCollection.getCount
+  - excel_release.Excel.TableColumnCollection.getItem
+  - excel_release.Excel.TableColumnCollection.getItemAt
+  - excel_release.Excel.TableColumnCollection.getItemOrNullObject
+  - excel_release.Excel.TableColumnCollection.items
+  - excel_release.Excel.TableColumnCollection.load
+  - excel_release.Excel.TableColumnCollection.load_1
+  - excel_release.Excel.TableColumnCollection.load_2
+  - excel_release.Excel.TableColumnCollection.toJSON
+- uid: excel_release.Excel.TableColumnCollection.add
+  summary: >-
+    Fügt der Tabelle eine neue Spalte hinzu.
+
+
+    \[[API-Satz: ExcelApi 1,1 erfordert einen Index, der kleiner als die Gesamtzahl der Spalten ist; 1,4 ermöglicht es dem Index, optional zu sein (null oder-1) und fügt eine Spalte am Ende an; 1,4 ermöglicht den Name-Parameter zum Zeitpunkt der Erstellung.](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
+  name: add(index, values, name)
+  fullName: add(index, values, name)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'add(index?: number, values?: Array<Array<boolean | string | number>> | boolean | string | number, name?: string): Excel.TableColumn;'
+    return:
+      type:
+      - excel.Excel.TableColumn
+      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var tables = ctx.workbook.tables;\n    var values = [[\"Sample\"], [\"Values\"], [\"For\"], [\"New\"], [\"Column\"]];\n    var column = tables.getItem(\"Table1\").columns.add(null, values);\n    column.load('name');\n    return ctx.sync().then(function() {\n        console.log(column.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: index
+      description: Optional. Gibt die relative Position der neuen Spalte an. Bei NULL oder -1 erfolgt die Erweiterung am Ende. Spalten mit einem höheren Index werden auf die Seite verschoben. Nullindiziert.
+      type:
+      - number
+    - id: values
+      description: Optional. Ein 2-dimensionales Array von unformatierten Werten der Tabellenspalte.
+      type:
+      - Array<Array<boolean | string | number>> | boolean | string | number
+    - id: name
+      description: Optional. Gibt den Namen der neuen Spalte an. Bei NULL wird der Standardname verwendet.
+      type:
+      - string
+- uid: excel_release.Excel.TableColumnCollection.context
+  summary: Der dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office-Hostanwendung verbunden.
+  name: context
+  fullName: context
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type:
+      - RequestContext
+- uid: excel_release.Excel.TableColumnCollection.count
+  summary: >-
+    Gibt die Anzahl der Spalten in der Tabelle an. Schreibgeschützt.
+
+
+    \[[API-Satz: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: count
+  fullName: count
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly count: number;'
+    return:
+      type:
+      - number
+- uid: excel_release.Excel.TableColumnCollection.getCount
+  summary: >-
+    Ruft die Anzahl der Spalten in der Tabelle ab.
+
+
+    \[[API-Satz: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: getCount()
+  fullName: getCount()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getCount(): OfficeExtension.ClientResult<number>;'
+    return:
+      type:
+      - OfficeExtension.ClientResult<number>
+      description: ''
+- uid: excel_release.Excel.TableColumnCollection.getItem
+  summary: >-
+    Ruft ein Spaltenobjekt nach Name oder ID ab.
+
+
+    \[[API-Satz: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: getItem(key)
+  fullName: getItem(key)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getItem(key: number | string): Excel.TableColumn;'
+    return:
+      type:
+      - excel.Excel.TableColumn
+      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var tablecolumn = ctx.workbook.tables.getItem('Table1').columns.getItem(0);\n    tablecolumn.load('name');\n    return ctx.sync().then(function() {\n            console.log(tablecolumn.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: key
+      description: Spaltenname oder -ID.
+      type:
+      - number | string
+- uid: excel_release.Excel.TableColumnCollection.getItemAt
+  summary: >-
+    Ruft eine Spalte anhand ihrer Position in der Auflistung ab.
+
+
+    \[[API-Satz: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: getItemAt(index)
+  fullName: getItemAt(index)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getItemAt(index: number): Excel.TableColumn;'
+    return:
+      type:
+      - excel.Excel.TableColumn
+      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var tablecolumn = ctx.workbook.tables.getItem['Table1'].columns.getItemAt(0);\n    tablecolumn.load('name');\n    return ctx.sync().then(function() {\n            console.log(tablecolumn.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: index
+      description: Index-Wert des abzurufenden Objekts. Nullindiziert.
+      type:
+      - number
+- uid: excel_release.Excel.TableColumnCollection.getItemOrNullObject
+  summary: >-
+    Ruft ein Spaltenobjekt nach Name oder ID ab. Wenn die Spalte nicht vorhanden ist, wird ein NULL-Objekt zurückgegeben.
+
+
+    \[[API-Satz: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  name: getItemOrNullObject(key)
+  fullName: getItemOrNullObject(key)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getItemOrNullObject(key: number | string): Excel.TableColumn;'
+    return:
+      type:
+      - excel.Excel.TableColumn
+      description: ''
+    parameters:
+    - id: key
+      description: Spaltenname oder -ID.
+      type:
+      - number | string
+- uid: excel_release.Excel.TableColumnCollection.items
+  summary: Ruft die geladenen untergeordneten Elemente in dieser Auflistung ab.
+  name: items
+  fullName: items
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'readonly items: Excel.TableColumn[];'
+    return:
+      type:
+      - Excel.TableColumn[]
+- uid: excel_release.Excel.TableColumnCollection.load
+  summary: Warteschlangen bis ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen "context. Sync ()" aufrufen, bevor Sie die Eigenschaften lesen.
+  remarks: >-
+    Zusätzlich zu dieser Signatur verfügt diese Methode über die folgenden Signaturen:
+
+
+    `load(option?: string | string[]): Excel.TableColumnCollection`-Wobei Option eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen ist, die die zu ladenden Eigenschaften angeben.
+
+
+    `load(option?: { select?: string; expand?: string; }): Excel.TableColumnCollection`-Wobei Option. Select eine durch Kommas getrennte Zeichenfolge ist, die die zu ladenden Eigenschaften angibt, und Options. Expand ist eine durch Kommas getrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.
+
+
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.TableColumnCollection`-Nur verfügbar für Sammlungstypen. Sie ähnelt der vorherigen Signatur. Option. Top gibt die maximale Anzahl von Sammlungselementen an, die in das Ergebnis eingeschlossen werden können. Option. Skip gibt die Anzahl der Elemente an, die übersprungen werden sollen und nicht im Ergebnis enthalten sind. Wenn Option. Top angegeben wird, wird das Resultset nach dem Überspringen der angegebenen Anzahl von Elementen gestartet.
+  name: load(option)
+  fullName: load(option)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: Excel.Interfaces.TableColumnCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.TableColumnCollection;'
+    return:
+      type:
+      - excel.Excel.TableColumnCollection
+      description: ''
+    parameters:
+    - id: option
+      description: ''
+      type:
+      - Excel.Interfaces.TableColumnCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
+- uid: excel_release.Excel.TableColumnCollection.load_1
+  summary: Warteschlangen bis ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften anrufen.
+  name: load(propertyNames)
+  fullName: load(propertyNames)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.TableColumnCollection;'
+    return:
+      type:
+      - excel.Excel.TableColumnCollection
+      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var tablecolumns = ctx.workbook.tables.getItem('Table1').columns;\n    tablecolumns.load('items');\n    return ctx.sync().then(function() {\n        console.log(\"tablecolumns Count: \" + tablecolumns.count);\n        for (var i = 0; i < tablecolumns.items.length; i++) {\n            console.log(tablecolumns.items[i].name);\n        }\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+    parameters:
+    - id: propertyNames
+      description: Eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.
+      type:
+      - string | string[]
+- uid: excel_release.Excel.TableColumnCollection.load_2
+  name: load(option)
+  fullName: load(option)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'load(option?: OfficeExtension.LoadOption): Excel.TableColumnCollection;'
+    return:
+      type:
+      - excel.Excel.TableColumnCollection
+      description: ''
+    parameters:
+    - id: option
+      description: ''
+      type:
+      - office.OfficeExtension.LoadOption
+- uid: excel_release.Excel.TableColumnCollection.toJSON
+  summary: ÜberSchreibt die `toJSON()` JavaScript-Methode, um eine nützlichere Ausgabe bereitzustellen, wenn ein API `JSON.stringify()` <!-- -->-Objekt an übergeben wird. (`JSON.stringify`<!-- -->ruft wiederum die `toJSON` Methode des Objekts auf, das übergeben wird.) Während das ursprüngliche `Excel.TableColumnCollection` Objekt ein API-Objekt ist, `toJSON` gibt die Methode ein einfaches JavaScript-Objekt ( `Excel.Interfaces.TableColumnCollectionData` <!-- -->typisiert als) zurück, das ein "Items"-Array mit flachen Kopien aller geladenen Eigenschaften aus den Elementen der Auflistung enthält.
+  name: toJSON()
+  fullName: toJSON()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.TableColumnCollectionData;'
+    return:
+      type:
+      - excel.Excel.Interfaces.TableColumnCollectionData
+      description: ''
