@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: bc6466edf4ab8bdc2ca0a5d7713bbdd0a882154e
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
+ms.openlocfilehash: 7cb23766526386d93e0f6cc356a53492751e8b21
+ms.sourcegitcommit: 6c48441b8be51d3a9d7dc836e386230a155feceb
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30094253"
+ms.lasthandoff: 02/22/2019
+ms.locfileid: "30199096"
 items:
 - uid: Outlook_1_1.Office.Mailbox
   summary: >-
@@ -38,9 +38,7 @@ items:
   - Outlook_1_1.Office.Mailbox.displayMessageForm
   - Outlook_1_1.Office.Mailbox.displayNewAppointmentForm
   - Outlook_1_1.Office.Mailbox.getUserIdentityTokenAsync
-  - Outlook_1_1.Office.Mailbox.getUserIdentityTokenAsync_1
   - Outlook_1_1.Office.Mailbox.makeEwsRequestAsync
-  - Outlook_1_1.Office.Mailbox.makeEwsRequestAsync_1
   - Outlook_1_1.Office.Mailbox.diagnostics
   - Outlook_1_1.Office.Mailbox.ewsUrl
   - Outlook_1_1.Office.Mailbox.item
@@ -276,40 +274,6 @@ items:
 
 
     Die getUserIdentityTokenAsync-Methode gibt ein Token zurück, das Sie verwenden können, um [das Add-in und den Benutzer mit einem Drittanbietersystem](https://docs.microsoft.com/outlook/add-ins/authentication)<!-- -->zu identifizieren und zu authentifizieren.
-  name: getUserIdentityTokenAsync(callback, userContext)
-  fullName: getUserIdentityTokenAsync(callback, userContext)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'getUserIdentityTokenAsync(callback: (result: Office.AsyncResult<string>) => void, userContext?: any): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: callback
-      description: Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzelnen Parameter vom Typ Office. AsyncResult aufgerufen. Das Token wird als Zeichenfolge in der `asyncResult.value`-Eigenschaft bereitgestellt. Wenn ein Fehler aufgetreten ist, können `asyncResult.error` die `asyncResult.diagnostics` -und-Eigenschaften zusätzliche Informationen bereitstellen.
-      type:
-      - '(result: Office.AsyncResult<string>) => void'
-    - id: userContext
-      description: Optional. Jegliche Zustandsdaten, die an die asynchrone Methode übergeben werden.\|
-      type:
-      - any
-- uid: Outlook_1_1.Office.Mailbox.getUserIdentityTokenAsync_1
-  summary: >-
-    Ruft ein Token ab, das den Benutzer und das Office-Add-In identifiziert.
-
-
-    Das Token wird als Zeichenfolge in der asyncResult.value-Eigenschaft bereitgestellt.
-
-
-    \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr> </table>
-
-
-    Die getUserIdentityTokenAsync-Methode gibt ein Token zurück, das Sie verwenden können, um [das Add-in und den Benutzer mit einem Drittanbietersystem](https://docs.microsoft.com/outlook/add-ins/authentication)<!-- -->zu identifizieren und zu authentifizieren.
 
     #### <a name="examples"></a>Beispiele
 
@@ -326,13 +290,13 @@ items:
     }
 
     ```
-  name: getUserIdentityTokenAsync(callback)
-  fullName: getUserIdentityTokenAsync(callback)
+  name: getUserIdentityTokenAsync(callback, userContext)
+  fullName: getUserIdentityTokenAsync(callback, userContext)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'getUserIdentityTokenAsync(callback: (result: Office.AsyncResult<string>) => void): void;'
+    content: 'getUserIdentityTokenAsync(callback: (asyncResult: Office.AsyncResult<string>) => void, userContext?: any): void;'
     return:
       type:
       - void
@@ -341,81 +305,12 @@ items:
     - id: callback
       description: Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzelnen Parameter vom Typ Office. AsyncResult aufgerufen. Das Token wird als Zeichenfolge in der `asyncResult.value`-Eigenschaft bereitgestellt. Wenn ein Fehler aufgetreten ist, können `asyncResult.error` die `asyncResult.diagnostics` -und-Eigenschaften zusätzliche Informationen bereitstellen.
       type:
-      - '(result: Office.AsyncResult<string>) => void'
-- uid: Outlook_1_1.Office.Mailbox.makeEwsRequestAsync
-  summary: >-
-    Stellt eine asynchrone Anforderung an einen EWS-Dienst (Exchange Web Services) auf dem Exchange-Server, auf dem das Postfach des Benutzers gehostet wird.
-
-
-    In diesen Fällen sollten Add-Ins REST APIs verwenden, um auf das Postfach des Benutzers zuzugreifen.
-
-
-    Die makeEwsRequestAsync-Methode sendet eine EWS-Anforderung für das Add-In zu Exchange.
-
-
-    Sie können keine Elemente, die Ordnern zugeordnet sind, mit der makeEwsRequestAsync-Methode anfordern.
-
-
-    Die XML-Anfrage muss UTF-8-Codierung angeben. &lt;<!-- -->?xml Version = "1.0" Encoding = "UTF-8"?<!-- -->&gt;
-
-
-    Ihr Add-in muss über die ReadWriteMailbox-Berechtigung verfügen, um die makeEwsRequestAsync-Methode verwenden zu können. Informationen zur Verwendung der ReadWriteMailbox-Berechtigung und der EWS-Vorgänge, die Sie mit der makeEwsRequestAsync-Methode aufrufen können, finden Sie unter<!-- --> [Angeben von Berechtigungen für e-Mail-Add-in-Zugriff auf das Postfach des Benutzers](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions).
-
-
-    Das XML-Ergebnis des EWS-Aufrufs wird als Zeichenfolge in der asyncResult.value-Eigenschaft bereitgestellt. Wenn das Ergebnis größer als 1 MB ist, wird stattdessen eine Fehlermeldung zurückgegeben.
-
-
-    **Hinweis**: Diese Methode wird in den folgenden Szenarien nicht unterstützt:
-
-
-    - In Outlook für iOS oder Outlook für Android.
-
-
-    - Wenn das Add-in in ein Gmail-Postfach geladen wird.
-
-
-    **Hinweis**: der Server Administrator muss im EWS-Verzeichnis des Client Zugriffsservers OAuthAuthentication auf true festlegen, damit die makeEwsRequestAsync-Methode EWS-Anforderungen ausführen kann.
-
-
-    *Versionsunterschiede*
-
-
-    Wenn Sie die makeEwsRequestAsync-Methode in Mail-Apps verwenden, die in älteren Outlook-Versionen als Version 15.0.4535.1004 ausgeführt werden, sollten Sie den Codierungswert auf ISO-8859-1 festlegen.
-
-
-    `<?xml version="1.0" encoding="iso-8859-1"?>`
-
-
-    Sie müssen den Codierungswert nicht festlegen, wenn Ihre Mail-App in Outlook im Web ausgeführt wird. Sie können mithilfe der mailbox.diagnostics.hostName-Eigenschaft ermitteln, ob Ihre Mail-App in Outlook oder Outlook im Web ausgeführt wird. Sie können mithilfe der mailbox.diagnostics.hostVersion-Eigenschaft ermitteln, welche Version von Outlook ausgeführt wird.
-
-
-    \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadWriteMailbox</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr> </table>
-  name: makeEwsRequestAsync(data, callback, userContext)
-  fullName: makeEwsRequestAsync(data, callback, userContext)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'makeEwsRequestAsync(data: any, callback: (result: Office.AsyncResult<string>) => void, userContext?: any): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: data
-      description: Die EWS-Anforderung.
-      type:
-      - any
-    - id: callback
-      description: Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzelnen Parameter vom Typ Office. AsyncResult aufgerufen. Die `value` Eigenschaft des Ergebnisses ist der XML-Code der EWS-Anforderung, die als Zeichenfolge bereitgestellt wird. Wenn das Ergebnis größer als 1 MB ist, wird stattdessen eine Fehlermeldung zurückgegeben.
-      type:
-      - '(result: Office.AsyncResult<string>) => void'
+      - '(asyncResult: Office.AsyncResult<string>) => void'
     - id: userContext
-      description: Optional. Jegliche Zustandsdaten, die an die asynchrone Methode übergeben werden.
+      description: Optional. Jegliche Zustandsdaten, die an die asynchrone Methode übergeben werden.\|
       type:
       - any
-- uid: Outlook_1_1.Office.Mailbox.makeEwsRequestAsync_1
+- uid: Outlook_1_1.Office.Mailbox.makeEwsRequestAsync
   summary: >-
     Stellt eine asynchrone Anforderung an einen EWS-Dienst (Exchange Web Services) auf dem Exchange-Server, auf dem das Postfach des Benutzers gehostet wird.
 
@@ -514,13 +409,13 @@ items:
     }
 
     ```
-  name: makeEwsRequestAsync(data, callback)
-  fullName: makeEwsRequestAsync(data, callback)
+  name: makeEwsRequestAsync(data, callback, userContext)
+  fullName: makeEwsRequestAsync(data, callback, userContext)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'makeEwsRequestAsync(data: any, callback: (result: Office.AsyncResult<string>) => void): void;'
+    content: 'makeEwsRequestAsync(data: any, callback: (asyncResult: Office.AsyncResult<string>) => void, userContext?: any): void;'
     return:
       type:
       - void
@@ -533,7 +428,11 @@ items:
     - id: callback
       description: Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzelnen Parameter vom Typ Office. AsyncResult aufgerufen. Die `value` Eigenschaft des Ergebnisses ist der XML-Code der EWS-Anforderung, die als Zeichenfolge bereitgestellt wird. Wenn das Ergebnis größer als 1 MB ist, wird stattdessen eine Fehlermeldung zurückgegeben.
       type:
-      - '(result: Office.AsyncResult<string>) => void'
+      - '(asyncResult: Office.AsyncResult<string>) => void'
+    - id: userContext
+      description: Optional. Jegliche Zustandsdaten, die an die asynchrone Methode übergeben werden.
+      type:
+      - any
 - uid: Outlook_1_1.Office.Mailbox.diagnostics
   summary: >-
     Stellt einem Outlook-Add-In Diagnoseinformationen bereit.
