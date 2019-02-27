@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: f6bded89e879a7d81ce6a638b6e7ddd606e91be4
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
+ms.openlocfilehash: 1936cfc035f5b7face1d797d176892a6ce3d449f
+ms.sourcegitcommit: fd03ef72d6a546b0e4dbe0cc9e75d2a7cf9341a1
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30096234"
+ms.lasthandoff: 02/27/2019
+ms.locfileid: "30303361"
 items:
 - uid: excel.Excel.Range
   summary: >-
@@ -43,6 +43,7 @@ items:
   - excel.Excel.Range.delete_1
   - excel.Excel.Range.find
   - excel.Excel.Range.findOrNullObject
+  - excel.Excel.Range.flashFill
   - excel.Excel.Range.format
   - excel.Excel.Range.formulas
   - excel.Excel.Range.formulasLocal
@@ -150,6 +151,12 @@ items:
       type:
       - string
 - uid: excel.Excel.Range.autoFill
+  summary: >-
+    Füllungen reichen vom aktuellen bis zum Ziel-Range. Der Zielbereichs muss die Quelle horizontal oder vertikal erweitern. Nicht zusammenhängende Bereiche werden nicht unterstützt.
+
+
+    \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
   name: autoFill(destinationRange, autoFillType)
   fullName: autoFill(destinationRange, autoFillType)
   langs:
@@ -163,14 +170,20 @@ items:
       description: ''
     parameters:
     - id: destinationRange
-      description: ''
+      description: Der Zielbereiche, in denen AutoFill werden soll.
       type:
       - Range | string
     - id: autoFillType
-      description: ''
+      description: Der Typ des AutoFill-Vorgangs. Gibt basierend auf den Inhalten des aktuellen Intervalls an, wie der Ziel-Range gefüllt werden soll. Der Standardwert ist "FillDefault".
       type:
       - excel.Excel.AutoFillType
 - uid: excel.Excel.Range.autoFill_1
+  summary: >-
+    Füllungen reichen vom aktuellen bis zum Ziel-Range. Der Zielbereichs muss die Quelle horizontal oder vertikal erweitern. Nicht zusammenhängende Bereiche werden nicht unterstützt.
+
+
+    \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
   name: autoFill(destinationRange, autoFillTypeString)
   fullName: autoFill(destinationRange, autoFillTypeString)
   langs:
@@ -184,11 +197,11 @@ items:
       description: ''
     parameters:
     - id: destinationRange
-      description: ''
+      description: Der Zielbereiche, in denen AutoFill werden soll.
       type:
       - Range | string
     - id: autoFillTypeString
-      description: ''
+      description: Der Typ des AutoFill-Vorgangs. Gibt basierend auf den Inhalten des aktuellen Intervalls an, wie der Ziel-Range gefüllt werden soll. Der Standardwert ist "FillDefault".
       type:
       - "\"FillDefault\" | \"FillCopy\" | \"FillSeries\" | \"FillFormats\" | \"FillValues\" | \"FillDays\" | \"FillWeekdays\" | \"FillMonths\" | \"FillYears\" | \"LinearTrend\" | \"GrowthTrend\" | \"FlashFill\""
 - uid: excel.Excel.Range.calculate
@@ -406,7 +419,7 @@ items:
     return:
       type:
       - void
-      description: ''
+      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    sheet.getRange(\"F2\").values = [[\"Copied Formula\"]];\n    sheet.getRange(\"F2\").format.autofitColumns();\n\n    // copy a range preserving the formulas\n    // note: non-formula values are copied over as is\n    sheet.getRange(\"G2\").copyFrom(\"A1:E1\", Excel.RangeCopyType.formulas);\n    await context.sync();\n});\n```"
     parameters:
     - id: sourceRange
       description: Der Quell-oder RangeAreas, aus dem kopiert werden soll. Wenn die Quell-RangeAreas über mehrere Bereiche verfügt, muss Sie im Gliederungsformular erstellt werden, indem vollständige Zeilen oder Spalten aus einem rechteckigen Bereich entfernt werden.
@@ -536,7 +549,7 @@ items:
     return:
       type:
       - excel.Excel.Range
-      description: Der Range, der den Suchkriterien entspricht.
+      description: "Der Range, der den Suchkriterien entspricht.\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const table = sheet.tables.getItem(\"ExpensesTable\");\n    const searchRange = table.getRange();\n\n    // NOTE: If no match is found, an ItemNotFound error\n    // is thrown when Range.find is evaluated.\n    const foundRange = searchRange.find($(\"#searchText\").text(), {\n        completeMatch: completeMatch,\n        matchCase: matchCase,\n        searchDirection: searchDirection\n    });\n    \n    foundRange.load(\"address\");\n    await context.sync();\n\n\n    console.log(foundRange.address);\n});\n```"
     parameters:
     - id: text
       description: Zeichenfolge, die gesucht werden soll.
@@ -563,7 +576,7 @@ items:
     return:
       type:
       - excel.Excel.Range
-      description: Der Range, der den Suchkriterien entspricht.
+      description: "Der Range, der den Suchkriterien entspricht.\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const table = sheet.tables.getItem(\"ExpensesTable\");\n    const searchRange = table.getRange();\n    const foundRange = searchRange.findOrNullObject($(\"#searchText\").text(), {\n        completeMatch: completeMatch,\n        matchCase: matchCase,\n        searchDirection: searchDirection\n    });\n    \n    foundRange.load(\"address\");\n    await context.sync();\n\n    if (foundRange.isNullObject) {\n        console.log(\"Text not found\");\n    } else {\n        console.log(foundRange.address);\n    }\n});\n```"
     parameters:
     - id: text
       description: Zeichenfolge, die gesucht werden soll.
@@ -573,6 +586,24 @@ items:
       description: Weitere Kriterien.
       type:
       - excel.Excel.SearchCriteria
+- uid: excel.Excel.Range.flashFill
+  summary: >-
+    Ist FlashFill. Flash Fill füllt Daten automatisch aus, wenn Sie ein Muster erkennt, daher muss es sich um einen einzelnen Spaltenbereich handeln, und es müssen Daten vorhanden sein, um Muster zu finden.
+
+
+    \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: flashFill()
+  fullName: flashFill()
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'flashFill(): void;'
+    return:
+      type:
+      - void
+      description: ''
 - uid: excel.Excel.Range.format
   summary: >-
     Gibt ein Formatobjekt zurück, das die Schriftart des Bereichs, Füllung, den Rahmen, die Ausrichtung und andere Eigenschaften verschachtelt. Schreibgeschützt.
@@ -1127,7 +1158,7 @@ items:
     return:
       type:
       - excel.Excel.RangeAreas
-      description: ''
+      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\nawait Excel.run(async (context) => {\n\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n    const usedRange = sheet.getUsedRange();\n\n    // Find the ranges with either text or logical (boolean)\n    // values\n    const formulaRanges = usedRange.getSpecialCells(\"Constants\", \"LogicalText\");\n    formulaRanges.format.fill.color = \"orange\";\n\n    return context.sync();\n});\n```"
     parameters:
     - id: cellType
       description: Der Typ der einzuschließenden Zellen.
@@ -1150,7 +1181,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'getSpecialCells(cellTypeString: "ConditionalFormats" | "DataValidations" | "Blanks" | "Comments" | "Constants" | "Formulas" | "SameConditionalFormat" | "SameDataValidation" | "Visible", cellValueType?: "All" | "Errors" | "ErrorsLogical" | "ErrorsNumbers" | "ErrorsText" | "ErrorsLogicalNumber" | "ErrorsLogicalText" | "ErrorsNumberText" | "Logical" | "LogicalNumbers" | "LogicalText" | "LogicalNumbersText" | "Numbers" | "NumbersText" | "Text"): Excel.RangeAreas;'
+    content: 'getSpecialCells(cellTypeString: "ConditionalFormats" | "DataValidations" | "Blanks" | "Constants" | "Formulas" | "SameConditionalFormat" | "SameDataValidation" | "Visible", cellValueType?: "All" | "Errors" | "ErrorsLogical" | "ErrorsNumbers" | "ErrorsText" | "ErrorsLogicalNumber" | "ErrorsLogicalText" | "ErrorsNumberText" | "Logical" | "LogicalNumbers" | "LogicalText" | "LogicalNumbersText" | "Numbers" | "NumbersText" | "Text"): Excel.RangeAreas;'
     return:
       type:
       - excel.Excel.RangeAreas
@@ -1159,7 +1190,7 @@ items:
     - id: cellTypeString
       description: Der Typ der einzuschließenden Zellen.
       type:
-      - "\"ConditionalFormats\" | \"DataValidations\" | \"Blanks\" | \"Comments\" | \"Constants\" | \"Formulas\" | \"SameConditionalFormat\" | \"SameDataValidation\" | \"Visible\""
+      - "\"ConditionalFormats\" | \"DataValidations\" | \"Blanks\" | \"Constants\" | \"Formulas\" | \"SameConditionalFormat\" | \"SameDataValidation\" | \"Visible\""
     - id: cellValueType
       description: Wenn CellType entweder Konstanten oder Formeln ist, wird dieses Argument verwendet, um zu bestimmen, welche Zelltypen in das Ergebnis eingeschlossen werden sollen. Diese Werte können kombiniert werden, um mehr als einen Typ zurückzugeben. Der Standard ist die Auswahl aller Konstanten oder Formeln unabhängig vom Typ.
       type:
@@ -1204,7 +1235,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'getSpecialCellsOrNullObject(cellTypeString: "ConditionalFormats" | "DataValidations" | "Blanks" | "Comments" | "Constants" | "Formulas" | "SameConditionalFormat" | "SameDataValidation" | "Visible", cellValueType?: "All" | "Errors" | "ErrorsLogical" | "ErrorsNumbers" | "ErrorsText" | "ErrorsLogicalNumber" | "ErrorsLogicalText" | "ErrorsNumberText" | "Logical" | "LogicalNumbers" | "LogicalText" | "LogicalNumbersText" | "Numbers" | "NumbersText" | "Text"): Excel.RangeAreas;'
+    content: 'getSpecialCellsOrNullObject(cellTypeString: "ConditionalFormats" | "DataValidations" | "Blanks" | "Constants" | "Formulas" | "SameConditionalFormat" | "SameDataValidation" | "Visible", cellValueType?: "All" | "Errors" | "ErrorsLogical" | "ErrorsNumbers" | "ErrorsText" | "ErrorsLogicalNumber" | "ErrorsLogicalText" | "ErrorsNumberText" | "Logical" | "LogicalNumbers" | "LogicalText" | "LogicalNumbersText" | "Numbers" | "NumbersText" | "Text"): Excel.RangeAreas;'
     return:
       type:
       - excel.Excel.RangeAreas
@@ -1213,7 +1244,7 @@ items:
     - id: cellTypeString
       description: Der Typ der einzuschließenden Zellen.
       type:
-      - "\"ConditionalFormats\" | \"DataValidations\" | \"Blanks\" | \"Comments\" | \"Constants\" | \"Formulas\" | \"SameConditionalFormat\" | \"SameDataValidation\" | \"Visible\""
+      - "\"ConditionalFormats\" | \"DataValidations\" | \"Blanks\" | \"Constants\" | \"Formulas\" | \"SameConditionalFormat\" | \"SameDataValidation\" | \"Visible\""
     - id: cellValueType
       description: Wenn CellType entweder Konstanten oder Formeln ist, wird dieses Argument verwendet, um zu bestimmen, welche Zelltypen in das Ergebnis eingeschlossen werden sollen. Diese Werte können kombiniert werden, um mehr als einen Typ zurückzugeben. Der Standard ist die Auswahl aller Konstanten oder Formeln unabhängig vom Typ.
       type:
@@ -1634,7 +1665,7 @@ items:
     return:
       type:
       - excel.Excel.RemoveDuplicatesResult
-      description: Das resultierende Objekt, das die Anzahl der entfernten Zeilen und die Anzahl der verbleibenden eindeutigen Zeilen enthält.
+      description: "Das resultierende Objekt, das die Anzahl der entfernten Zeilen und die Anzahl der verbleibenden eindeutigen Zeilen enthält.\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B2:D11\");\n\n    const deleteResult = range.removeDuplicates([0],true);    \n    deleteResult.load();    \n    await context.sync();\n\n    console.log(deleteResult.removed + \" entries with duplicate names removed.\");\n    console.log(deleteResult.uniqueRemaining + \" entries with unique names remain in the range.\");\n});\n```"
     parameters:
     - id: columns
       description: Die Spalten innerhalb des Bereiches, die Duplikate enthalten können. Mindestens eine Spalte muss angegeben werden. Null-indiziert.

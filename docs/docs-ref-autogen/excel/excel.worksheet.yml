@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: a3efae33e400954ea270e85c640f6f139cda2004
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
+ms.openlocfilehash: 8e825405e1f328ca931354e2d4138476887d2e8d
+ms.sourcegitcommit: fd03ef72d6a546b0e4dbe0cc9e75d2a7cf9341a1
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30095737"
+ms.lasthandoff: 02/27/2019
+ms.locfileid: "30303242"
 items:
 - uid: excel.Excel.Worksheet
   summary: >-
@@ -307,7 +307,31 @@ items:
     return:
       type:
       - excel.Excel.RangeAreas
-      description: Ein RangeArea-Objekt mit einem oder mehreren rechteckigen Bereichen, das den Suchkriterien entspricht. Wenn keine Übereinstimmungen vorhanden sind, gibt diese Funktion ein NULL-Objekt zurück.
+      description: >-
+        Ein RangeArea-Objekt mit einem oder mehreren rechteckigen Bereichen, das den Suchkriterien entspricht. Wenn keine Übereinstimmungen vorhanden sind, gibt diese Funktion ein NULL-Objekt zurück.
+
+        #### <a name="examples"></a>Beispiele
+
+
+        ```typescript
+
+        await Excel.run(async (context) => {
+            const sheet = context.workbook.worksheets.getItem("Sample");
+            const foundRanges = sheet.findAllOrNullObject("Complete", {
+                completeMatch: true,
+                matchCase: false
+            });
+
+            await context.sync();
+
+            if (foundRanges.isNullObject) {
+                console.log("No complete projects");
+            } else {
+                foundRanges.format.fill.color = "green"
+            }
+        });
+
+        ```
     parameters:
     - id: text
       description: Zeichenfolge, die gesucht werden soll.
@@ -520,7 +544,7 @@ items:
     return:
       type:
       - excel.Excel.RangeAreas
-      description: ''
+      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\nawait Excel.run(async (context) => {\n\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n    const specifiedRanges = sheet.getRanges(\"D3:D5, G3:G5\");\n    specifiedRanges.format.fill.color = \"pink\";\n\n    await context.sync();\n})\n```"
     parameters:
     - id: address
       description: 'Optional. Eine Zeichenfolge mit den durch Trennzeichen getrennten Adressen oder Namen der einzelnen Bereiche. Beispielsweise "a1: B2, A5: B5". Wenn kein Wert angegeben wird, wird ein RangeArea-Objekt für das gesamte Arbeitsblatt zurückgegeben.'
