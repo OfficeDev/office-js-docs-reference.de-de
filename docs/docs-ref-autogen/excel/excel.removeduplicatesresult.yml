@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: cf53d2f1b4be020686b4df6de8468a6c9bda276a
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
+ms.openlocfilehash: 5f9aebbab6f3c0ec1756cf2a6c5419d6db6ca08a
+ms.sourcegitcommit: 788ab9c595c9143f8b8f4822a170e8b90d72ee1d
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30107680"
+ms.lasthandoff: 03/06/2019
+ms.locfileid: "30413847"
 items:
 - uid: excel.Excel.RemoveDuplicatesResult
   summary: >-
@@ -43,7 +43,7 @@ items:
       type:
       - RequestContext
 - uid: excel.Excel.RemoveDuplicatesResult.load
-  summary: Warteschlangen bis ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen "context. Sync ()" aufrufen, bevor Sie die Eigenschaften lesen.
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "context.sync()" aufrufen.
   remarks: >-
     Zusätzlich zu dieser Signatur verfügt diese Methode über die folgenden Signaturen:
 
@@ -73,7 +73,7 @@ items:
       type:
       - excel.Excel.Interfaces.RemoveDuplicatesResultLoadOptions
 - uid: excel.Excel.RemoveDuplicatesResult.load_1
-  summary: Warteschlangen bis ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften anrufen.
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften anrufen.
   isPreview: true
   name: load(propertyNames)
   fullName: load(propertyNames)
@@ -92,7 +92,7 @@ items:
       type:
       - string | string[]
 - uid: excel.Excel.RemoveDuplicatesResult.load_2
-  summary: Warteschlangen bis ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften anrufen.
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften anrufen.
   isPreview: true
   name: load(propertyNamesAndPaths)
   fullName: load(propertyNamesAndPaths)
@@ -112,7 +112,7 @@ items:
       - '{ select?: string; expand?: string; }'
 - uid: excel.Excel.RemoveDuplicatesResult.removed
   summary: >-
-    Anzahl der duplizierten Zeilen, die durch den Vorgang entfernt wurden.
+    Die Anzahl der vom Vorgang entfernten doppelten Zeilen.
 
 
     \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -143,7 +143,7 @@ items:
       description: ''
 - uid: excel.Excel.RemoveDuplicatesResult.uniqueRemaining
   summary: >-
-    Die Anzahl der verbleibenden eindeutigen Zeilen, die im resultierenden Ergebnis enthalten sind.
+    Die Anzahl der verbleibenden eindeutigen Zeilen im Ergebnisbereich.
 
 
     \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -158,3 +158,4 @@ items:
     return:
       type:
       - number
+      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const range = sheet.getRange(\"B2:D11\");\n\n    const deleteResult = range.removeDuplicates([0],true);    \n    deleteResult.load();    \n    await context.sync();\n\n    console.log(deleteResult.removed + \" entries with duplicate names removed.\");\n    console.log(deleteResult.uniqueRemaining + \" entries with unique names remain in the range.\");\n});\n```"
