@@ -1,14 +1,14 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: bb1e6bca95427061f06015898acdead07fd36560
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
+ms.openlocfilehash: 58bf311507d7a8d59e6835c18f9a110eaf494505
+ms.sourcegitcommit: 6c48441b8be51d3a9d7dc836e386230a155feceb
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30096864"
+ms.lasthandoff: 02/22/2019
+ms.locfileid: "30198424"
 items:
 - uid: Outlook_1_3.Office.RoamingSettings
   summary: >-
-    Die mit den Methoden des RoamingSettings-Objekts erstellten Einstellungen werden pro Add-In und pro Benutzer gespeichert. Dies bedeutet, dass sie nur für das Add-In verfügbar sind, mit der sie erstellt wurden, sowie nur über das Postfach des Benutzers, in dem sie gespeichert sind.
+    Die mit den Methoden des RoamingSettings-Objekts erstellten Einstellungen werden pro Add-in und pro Benutzer gespeichert. Das heißt, sie sind nur für das Add-In verfügbar, von dem sie erstellt wurden, und nur im Postfach des Benutzers, in dem sie gespeichert sind.
 
 
     Während die Outlook-Add-In-API den Zugriff auf diese Einstellungen nur auf das Add-In beschränkt, das sie erstellt hat, sollten diese Einstellungen nicht als sicherer Speicher betrachtet werden. Der Zugriff ist über Exchange-Webdienste oder Extended MAPI möglich. Sie sollten nicht verwendet werden, um vertrauliche Informationen zu speichern, wie z. B. Benutzeranmeldeinformationen oder Sicherheitstokens.
@@ -17,7 +17,7 @@ items:
     Der Name einer Einstellung ist eine Zeichenfolge, während der Wert vom Typ „string“, „number“, „boolean“, „null“, „object“ oder „array“ sein kann.
 
 
-    Der Zugriff auf das RoamingSettings-Objekt erfolgt über die roamingSettings-Eigenschaft im Office.context-Namespace.
+    Auf das RoamingSettings-Objekt kann über die roamingSettings-Eigenschaft im Office. Context-Namespace zugegriffen werden.
 
 
     **Wichtig**: das RoamingSettings-Objekt wird nur dann vom beibehaltenen Speicher initialisiert, wenn das Add-in zuerst geladen wird. Bei Aufgabenbereichen bedeutet dies, dass es nur beim Öffnen des Aufgabenbereichs initialisiert wird. Wenn der Aufgabenbereich zu einer anderen Seite navigiert oder die aktuelle Seite neu lädt, wird das Objekt im Arbeitsspeicher auf die anfänglichen Werte zurückgesetzt, auch wenn das Add-in Änderungen beibehalten hat. Die permanenten Änderungen sind erst verfügbar, wenn der Aufgabenbereich geschlossen und erneut geöffnet wurde.
@@ -55,7 +55,6 @@ items:
   - Outlook_1_3.Office.RoamingSettings.get
   - Outlook_1_3.Office.RoamingSettings.remove
   - Outlook_1_3.Office.RoamingSettings.saveAsync
-  - Outlook_1_3.Office.RoamingSettings.saveAsync_1
   - Outlook_1_3.Office.RoamingSettings.set
 - uid: Outlook_1_3.Office.RoamingSettings.get
   summary: >-
@@ -119,7 +118,7 @@ items:
   - typeScript
   type: method
   syntax:
-    content: 'saveAsync(callback?: (result: Office.AsyncResult<void>) => void): void;'
+    content: 'saveAsync(callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     return:
       type:
       - void
@@ -128,28 +127,7 @@ items:
     - id: callback
       description: Optional. Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzelnen Parameter vom Typ Office. AsyncResult aufgerufen.
       type:
-      - '(result: Office.AsyncResult<void>) => void'
-- uid: Outlook_1_3.Office.RoamingSettings.saveAsync_1
-  summary: >-
-    Speichert die Einstellungen.
-
-
-    Alle von einem Add-In bereits gespeicherten Einstellungen werden bei der Initialisierung geladen, daher können Sie während der Gültigkeitszeit der Sitzung einfach die Methoden set und get verwenden, um mit der speicherinternen Kopie des Einstellungseigenschaftenbehälters zu arbeiten. Wenn Sie die Einstellungen speichern möchten, damit sie bei der nächsten Verwendung des Add-Ins verfügbar sind, verwenden Sie die saveAsync-Methode.
-
-
-    \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>Eingeschränkt</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr> </table>
-  name: saveAsync()
-  fullName: saveAsync()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'saveAsync(): void;'
-    return:
-      type:
-      - void
-      description: ''
+      - '(asyncResult: Office.AsyncResult<void>) => void'
 - uid: Outlook_1_3.Office.RoamingSettings.set
   summary: >-
     Legt die angegebene Einstellung fest oder erstellt sie.
@@ -161,7 +139,7 @@ items:
     Für die Einstellungen der einzelnen Add-Ins stehen maximal 32KB zur Verfügung.
 
 
-    Jede Änderung an den Einstellungen mithilfe der set-Funktion werden erst auf dem Server gespeichert, wenn die saveAsync-Funktion aufgerufen wird.
+    Änderungen an Einstellungen mithilfe der Set-Funktion werden erst auf dem Server gespeichert, wenn die saveAsync-Funktion aufgerufen wird.
 
 
     \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
