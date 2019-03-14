@@ -1,10 +1,10 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 5ab8351bbca643b04d52fe69555af6d164be1f98
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
+ms.openlocfilehash: ec75f13d0fd303b3ae1c90b6a9ea4aa661d4df97
+ms.sourcegitcommit: 5e31602ed9cbddfcff2768b7ed69dd4821440b90
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30094967"
+ms.lasthandoff: 03/14/2019
+ms.locfileid: "30575920"
 items:
 - uid: excel.Excel.Interfaces.WorkbookData
   summary: Eine Schnittstelle, die die durch Aufrufen von "Workbook. toJSON ()" zurückgegebenen Daten beschreibt.
@@ -25,20 +25,24 @@ items:
   - excel.Excel.Interfaces.WorkbookData.name
   - excel.Excel.Interfaces.WorkbookData.names
   - excel.Excel.Interfaces.WorkbookData.pivotTables
+  - excel.Excel.Interfaces.WorkbookData.pivotTableStyles
   - excel.Excel.Interfaces.WorkbookData.previouslySaved
   - excel.Excel.Interfaces.WorkbookData.properties
   - excel.Excel.Interfaces.WorkbookData.protection
   - excel.Excel.Interfaces.WorkbookData.readOnly
   - excel.Excel.Interfaces.WorkbookData.settings
   - excel.Excel.Interfaces.WorkbookData.slicers
+  - excel.Excel.Interfaces.WorkbookData.slicerStyles
   - excel.Excel.Interfaces.WorkbookData.styles
   - excel.Excel.Interfaces.WorkbookData.tables
+  - excel.Excel.Interfaces.WorkbookData.tableStyles
+  - excel.Excel.Interfaces.WorkbookData.timelineStyles
   - excel.Excel.Interfaces.WorkbookData.use1904DateSystem
   - excel.Excel.Interfaces.WorkbookData.usePrecisionAsDisplayed
   - excel.Excel.Interfaces.WorkbookData.worksheets
 - uid: excel.Excel.Interfaces.WorkbookData.autoSave
   summary: >-
-    True, wenn sich die Arbeitsmappe im automatischen Speichermodus befindet.
+    Gibt an, ob sich die Arbeitsmappe im Autosave-Modus befindet. Schreibgeschützt.
 
 
     \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -71,7 +75,7 @@ items:
       - Excel.Interfaces.BindingData[]
 - uid: excel.Excel.Interfaces.WorkbookData.calculationEngineVersion
   summary: >-
-    Gibt eine Zahl zur Version des Excel-Berechnungsmoduls zurück. Schreibgeschützt.
+    Gibt eine Nummer zur Version des Excel-Berechnungsmoduls zurück. Schreibgeschützt.
 
 
     \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -88,7 +92,7 @@ items:
       - number
 - uid: excel.Excel.Interfaces.WorkbookData.chartDataPointTrack
   summary: >-
-    True, wenn alle Diagramme in der Arbeitsmappe die tatsächlichen Datenpunkte nachverfolgen, an die Sie angefügt sind. False, wenn die Diagramme den Index der Datenpunkte nachverfolgen.
+    True, wenn alle Diagramme in der Arbeitsmappe die tatsächlichen Datenpunkte nachverfolgen, mit denen sie verbunden sind. False, wenn die Diagramme den Index der Datenpunkte nachverfolgen.
 
 
     \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -105,7 +109,7 @@ items:
       - boolean
 - uid: excel.Excel.Interfaces.WorkbookData.comments
   summary: >-
-    Stellt eine Auflistung von Kommentaren dar, die der Arbeitsmappe zugeordnet sind. Schreibgeschützt.
+    Stellt eine Sammlung der mit der Arbeitsmappe verknüpften Kommentare dar. Schreibgeschützt.
 
 
     \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -122,7 +126,7 @@ items:
       - Excel.Interfaces.CommentData[]
 - uid: excel.Excel.Interfaces.WorkbookData.customXmlParts
   summary: >-
-    Stellt die Sammlung von benutzerdefinierten XML-Komponenten dar, die in dieser Arbeitsmappe enthalten sind. Schreibgeschützt.
+    Stellt die Auflistung von benutzerdefinierten XML-Komponenten dar, die in dieser Arbeitsmappe enthalten sind. Schreibgeschützt.
 
 
     \[[API-Satz: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -138,7 +142,7 @@ items:
       - Excel.Interfaces.CustomXmlPartData[]
 - uid: excel.Excel.Interfaces.WorkbookData.isDirty
   summary: >-
-    True, wenn die angegebene Arbeitsmappe seit dem letzten Speichern nicht geändert wurde. Sie können diese Eigenschaft auf true festlegen, wenn Sie eine geänderte Arbeitsmappe beenden möchten, ohne Sie zu speichern oder aufgefordert, Sie zu speichern.
+    Gibt an, ob seit dem letzten Speichern der Arbeitsmappe Änderungen vorgenommen wurden. Sie können diese Eigenschaft auf true festlegen, wenn Sie eine geänderte Arbeitsmappe beenden möchten, ohne Sie zu speichern oder aufgefordert, Sie zu speichern.
 
 
     \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -201,9 +205,26 @@ items:
     return:
       type:
       - Excel.Interfaces.PivotTableData[]
+- uid: excel.Excel.Interfaces.WorkbookData.pivotTableStyles
+  summary: >-
+    Stellt eine Auflistung von PivotTableStyles dar, die der Arbeitsmappe zugeordnet sind. Schreibgeschützt.
+
+
+    \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: pivotTableStyles
+  fullName: pivotTableStyles
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'pivotTableStyles?: Excel.Interfaces.PivotTableStyleData[];'
+    return:
+      type:
+      - Excel.Interfaces.PivotTableStyleData[]
 - uid: excel.Excel.Interfaces.WorkbookData.previouslySaved
   summary: >-
-    True, wenn die Arbeitsmappe jemals lokal oder online gespeichert wurde.
+    Gibt an, ob die Arbeitsmappe jemals lokal oder online gespeichert wurde. Schreibgeschützt.
 
 
     \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -284,7 +305,7 @@ items:
       - Excel.Interfaces.SettingData[]
 - uid: excel.Excel.Interfaces.WorkbookData.slicers
   summary: >-
-    Stellt eine Auflistung von datenSchnitten dar, die der Arbeitsmappe zugeordnet sind. Schreibgeschützt.
+    Stellt eine Sammlung der mit der Arbeitsmappe verknüpften Datenschnitte dar. Schreibgeschützt.
 
 
     \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -299,6 +320,23 @@ items:
     return:
       type:
       - Excel.Interfaces.SlicerData[]
+- uid: excel.Excel.Interfaces.WorkbookData.slicerStyles
+  summary: >-
+    Stellt eine Auflistung von SlicerStyles dar, die der Arbeitsmappe zugeordnet sind. Schreibgeschützt.
+
+
+    \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: slicerStyles
+  fullName: slicerStyles
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'slicerStyles?: Excel.Interfaces.SlicerStyleData[];'
+    return:
+      type:
+      - Excel.Interfaces.SlicerStyleData[]
 - uid: excel.Excel.Interfaces.WorkbookData.styles
   summary: >-
     Stellt eine Auflistung der mit der Arbeitsmappe verknüpften Formatvorlagen dar. Schreibgeschützt.
@@ -331,9 +369,43 @@ items:
     return:
       type:
       - Excel.Interfaces.TableData[]
+- uid: excel.Excel.Interfaces.WorkbookData.tableStyles
+  summary: >-
+    Stellt eine Auflistung von TableStyles dar, die der Arbeitsmappe zugeordnet sind. Schreibgeschützt.
+
+
+    \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: tableStyles
+  fullName: tableStyles
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'tableStyles?: Excel.Interfaces.TableStyleData[];'
+    return:
+      type:
+      - Excel.Interfaces.TableStyleData[]
+- uid: excel.Excel.Interfaces.WorkbookData.timelineStyles
+  summary: >-
+    Stellt eine Auflistung von TimelineStyles dar, die der Arbeitsmappe zugeordnet sind. Schreibgeschützt.
+
+
+    \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  isPreview: true
+  name: timelineStyles
+  fullName: timelineStyles
+  langs:
+  - typeScript
+  type: property
+  syntax:
+    content: 'timelineStyles?: Excel.Interfaces.TimelineStyleData[];'
+    return:
+      type:
+      - Excel.Interfaces.TimelineStyleData[]
 - uid: excel.Excel.Interfaces.WorkbookData.use1904DateSystem
   summary: >-
-    True, wenn die Arbeitsmappe das 1904-Datumssystem verwendet.
+    True, falls die Arbeitsmappe das 1904-Datumssystem verwendet.
 
 
     \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -350,7 +422,7 @@ items:
       - boolean
 - uid: excel.Excel.Interfaces.WorkbookData.usePrecisionAsDisplayed
   summary: >-
-    True, wenn Berechnungen in dieser Arbeitsmappe nur die Genauigkeit der Zahlen verwendet werden, wie Sie angezeigt werden. Daten verlieren dauerhaft die Genauigkeit beim Umschalten dieser Eigenschaft von false auf true.
+    True, wenn die Berechnungen in dieser Arbeitsmappe nur mit der Genauigkeit durchgeführt werden, mit der die Zahlen angezeigt werden. Daten verlieren dauerhaft die Genauigkeit beim Umschalten dieser Eigenschaft von false auf true.
 
 
     \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]

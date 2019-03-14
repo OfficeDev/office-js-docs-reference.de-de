@@ -1,13 +1,17 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 8a4669fc1d872fd67cced0c9423ab0abf6c4ae66
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
+ms.openlocfilehash: f8cf30790ef3a9d2a990843eb8425fc8bdd2a60a
+ms.sourcegitcommit: 5e31602ed9cbddfcff2768b7ed69dd4821440b90
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30108303"
+ms.lasthandoff: 03/14/2019
+ms.locfileid: "30575655"
 items:
 - uid: excel.Excel.TextRange
-  summary: '\[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]'
+  summary: >-
+    Enthält den Text, der mit einer Form verknüpft ist, sowie Eigenschaften und Methoden für das Bearbeiten des Texts.
+
+
+    \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   isPreview: true
   name: Excel.TextRange
   fullName: Excel.TextRange
@@ -20,7 +24,7 @@ items:
   children:
   - excel.Excel.TextRange.context
   - excel.Excel.TextRange.font
-  - excel.Excel.TextRange.getCharacters
+  - excel.Excel.TextRange.getSubstring
   - excel.Excel.TextRange.load
   - excel.Excel.TextRange.load_1
   - excel.Excel.TextRange.load_2
@@ -43,7 +47,7 @@ items:
       - RequestContext
 - uid: excel.Excel.TextRange.font
   summary: >-
-    Gibt ein ShapeFont-Objekt zurück, das die Schriftartattribute für den Textbereiche darstellt. Schreibgeschützt.
+    Gibt ein ShapeFont-Objekt zurück, das die Schriftartattribute für den Textbereich darstellt. Schreibgeschützt.
 
 
     \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -58,35 +62,35 @@ items:
     return:
       type:
       - excel.Excel.ShapeFont
-- uid: excel.Excel.TextRange.getCharacters
+- uid: excel.Excel.TextRange.getSubstring
   summary: >-
-    Gibt ein textRange-Objekt für Zeichen im angegebenen Range zurück.
+    Gibt ein textRange-Objekt für die Teilzeichenfolge im angegebenen Range zurück.
 
 
     \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   isPreview: true
-  name: getCharacters(start, length)
-  fullName: getCharacters(start, length)
+  name: getSubstring(start, length)
+  fullName: getSubstring(start, length)
   langs:
   - typeScript
   type: method
   syntax:
-    content: 'getCharacters(start: number, length?: number): Excel.TextRange;'
+    content: 'getSubstring(start: number, length?: number): Excel.TextRange;'
     return:
       type:
       - excel.Excel.TextRange
       description: ''
     parameters:
     - id: start
-      description: Position des ersten Zeichens im zurückgegebenen Range-Objekt.
+      description: Der nullbasierte Index des ersten Zeichens, das aus dem Textbereichen abgerufen werden soll.
       type:
       - number
     - id: length
-      description: Optional. Die Anzahl der zurückzugebenden Zeichen. Wenn dieser Wert nicht angegeben ist, wird die Anzahl der Zeichen von "Start" bis zum Ende des letzten Absatzes in textRange.
+      description: Optional. Die Anzahl der Zeichen, die in den neuen Textbereichen zurückgegeben werden sollen. Wenn length nicht angegeben wird, werden alle Zeichen von Anfang bis zum Ende des letzten Absatzes des Textabschnitts zurückgegeben.
       type:
       - number
 - uid: excel.Excel.TextRange.load
-  summary: Warteschlangen bis ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen "context. Sync ()" aufrufen, bevor Sie die Eigenschaften lesen.
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "context.sync()" aufrufen.
   remarks: >-
     Zusätzlich zu dieser Signatur verfügt diese Methode über die folgenden Signaturen:
 
@@ -116,7 +120,7 @@ items:
       type:
       - excel.Excel.Interfaces.TextRangeLoadOptions
 - uid: excel.Excel.TextRange.load_1
-  summary: Warteschlangen bis ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften anrufen.
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften anrufen.
   isPreview: true
   name: load(propertyNames)
   fullName: load(propertyNames)
@@ -135,7 +139,7 @@ items:
       type:
       - string | string[]
 - uid: excel.Excel.TextRange.load_2
-  summary: Warteschlangen bis ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften anrufen.
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften anrufen.
   isPreview: true
   name: load(propertyNamesAndPaths)
   fullName: load(propertyNamesAndPaths)
@@ -202,7 +206,7 @@ items:
       - excel.Excel.TextRange
 - uid: excel.Excel.TextRange.text
   summary: >-
-    Stellt den nur-Text-Inhalt des Textbereichs dar.
+    Stellt den unformatierten Textinhalt des Textbereichs dar.
 
 
     \[[API-Satz: EXCELAPI Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -218,7 +222,7 @@ items:
       type:
       - string
 - uid: excel.Excel.TextRange.toJSON
-  summary: ÜberSchreibt die `toJSON()` JavaScript-Methode, um eine nützlichere Ausgabe bereitzustellen, wenn ein API `JSON.stringify()` <!-- -->-Objekt an übergeben wird. (`JSON.stringify`<!-- -->ruft wiederum die `toJSON` Methode des Objekts auf, das übergeben wird.) Während das ursprüngliche Excel. TextRange-Objekt ein API-Objekt `toJSON` ist, gibt die Methode ein einfaches JavaScript- `Excel.Interfaces.TextRangeData` <!-- -->Objekt (typisiert als) zurück, das flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.
+  summary: ÜberSchreibt die `toJSON()` JavaScript-Methode, um eine nützlichere Ausgabe bereitzustellen, wenn ein API-Objekt an`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->Ruft wiederum die `toJSON` Methode des Objekts auf, das übergeben wird.) Während das ursprüngliche Excel. textRange-Objekt ein API-Objekt `toJSON` ist, gibt die Methode ein einfaches JavaScript-Objekt zurück (typisiert als`Excel.Interfaces.TextRangeData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.
   isPreview: true
   name: toJSON()
   fullName: toJSON()
