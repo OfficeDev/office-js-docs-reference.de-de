@@ -1,0 +1,102 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 3de618d8e5fc94960295ea196b58e2151b5e101c
+ms.sourcegitcommit: a422a2c3b9ada79477a9f873276b3c00765f7072
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 03/27/2019
+ms.locfileid: "30927700"
+items:
+- uid: office.Office.Auth
+  summary: <span data-ttu-id="b9eeb-101">Der Office auth-Namespace, Office. Context. auth, stellt eine Methode bereit, die es dem Office-Host ermöglicht, ein Zugriffstoken für die Webanwendung des Add-Ins abzurufen.</span><span class="sxs-lookup"><span data-stu-id="b9eeb-101">The Office Auth namespace, Office.context.auth, provides a method that allows the Office host to obtain an access token to the add-in's web application.</span></span> <span data-ttu-id="b9eeb-102">Dadurch kann das Add-In indirekt auch auf die Microsoft Graph-Daten des angemeldeten Benutzers zugreifen, ohne dass sich der Benutzer ein zweites Mal anmelden muss.</span><span class="sxs-lookup"><span data-stu-id="b9eeb-102">Indirectly, this also enables the add-in to access the signed-in user's Microsoft Graph data without requiring the user to sign in a second time.</span></span>
+  isPreview: true
+  name: Office.Auth
+  fullName: Office.Auth
+  langs:
+  - typeScript
+  type: interface
+  package: office
+  children:
+  - office.Office.Auth.getAccessTokenAsync
+  - office.Office.Auth.getAccessTokenAsync_1
+- uid: office.Office.Auth.getAccessTokenAsync
+  summary: >-
+    <span data-ttu-id="b9eeb-103">Ruft den Azure Active Directory V 2.0-Endpunkt auf, um ein Zugriffstoken für das Add-In Ihrer Web-Anwendung zu erhalten.</span><span class="sxs-lookup"><span data-stu-id="b9eeb-103">Calls the Azure Active Directory V 2.0 endpoint to get an access token to your add-in's web application.</span></span> <span data-ttu-id="b9eeb-104">Ermöglicht es Add-Ins, Benutzer zu identifizieren.</span><span class="sxs-lookup"><span data-stu-id="b9eeb-104">Enables add-ins to identify users.</span></span> <span data-ttu-id="b9eeb-105">Server seitiger Code kann dieses Token für den Zugriff auf Microsoft Graph für die Webanwendung des Add-Ins verwenden, indem Sie den ["im Auftrag von" OAuth-Fluss](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-protocols-oauth-on-behalf-of) verwenden.</span><span class="sxs-lookup"><span data-stu-id="b9eeb-105">Server side code can use this token to access Microsoft Graph for the add-in's web application by using the ["on behalf of" OAuth flow](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-protocols-oauth-on-behalf-of)</span></span><!-- --><span data-ttu-id="b9eeb-106">.</span><span class="sxs-lookup"><span data-stu-id="b9eeb-106"></span></span>
+
+
+    <span data-ttu-id="b9eeb-107">Wichtig: Diese API wird in Outlook nicht unterstützt, wenn das Add-in in ein Outlook.com-oder Gmail-Postfach geladen wird.</span><span class="sxs-lookup"><span data-stu-id="b9eeb-107">Important: In Outlook, this API is not supported if the add-in is loaded in an Outlook.com or Gmail mailbox.</span></span>
+  remarks: >-
+    <table><tr><td><span data-ttu-id="b9eeb-108">Hosts</span><span class="sxs-lookup"><span data-stu-id="b9eeb-108">Hosts</span></span></td><td><span data-ttu-id="b9eeb-109">Excel, OneNote, Outlook, PowerPoint, Word</span><span class="sxs-lookup"><span data-stu-id="b9eeb-109">Excel, OneNote, Outlook, PowerPoint, Word</span></span></td></tr>
+
+
+    <tr><td><span data-ttu-id="b9eeb-110">Anforderungssätze</span><span class="sxs-lookup"><span data-stu-id="b9eeb-110">Requirement sets</span></span></td><td>[<span data-ttu-id="b9eeb-111">IdentityAPI</span><span class="sxs-lookup"><span data-stu-id="b9eeb-111">IdentityAPI</span></span>](https://docs.microsoft.com/office/dev/add-ins/develop/specify-office-hosts-and-api-requirements)</td></tr></table>
+
+
+    <span data-ttu-id="b9eeb-112">Diese API erfordert eine Single Sign-On-Konfiguration, die das Add-In mit einer Azure-Anwendung verbindet.</span><span class="sxs-lookup"><span data-stu-id="b9eeb-112">This API requires a single sign-on configuration that bridges the add-in to an Azure application.</span></span> <span data-ttu-id="b9eeb-113">Office-Benutzer melden sich mit Organisationskonten und Microsoft-Konten an.</span><span class="sxs-lookup"><span data-stu-id="b9eeb-113">Office users sign-in with Organizational Accounts and Microsoft Accounts.</span></span> <span data-ttu-id="b9eeb-114">Microsoft Azure gibt Token für den Zugriff auf Ressourcen von Microsoft Graph für beide Kontotypen zurück.</span><span class="sxs-lookup"><span data-stu-id="b9eeb-114">Microsoft Azure returns tokens intended for both user account types to access resources in the Microsoft Graph.</span></span>
+
+    #### <a name="examples"></a><span data-ttu-id="b9eeb-115">Beispiele</span><span class="sxs-lookup"><span data-stu-id="b9eeb-115">Examples</span></span>
+
+
+    ```javascript
+
+    Office.context.auth.getAccessTokenAsync(function(result) {
+        if (result.status === "succeeded") {
+            var token = result.value;
+            // ...
+        } else {
+            console.log("Error obtaining token", result.error);
+        }
+    });
+
+    ```
+  isPreview: true
+  name: getAccessTokenAsync(options, callback)
+  fullName: getAccessTokenAsync(options, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getAccessTokenAsync(options?: AuthOptions, callback?: (result: AsyncResult<string>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: options
+      description: <span data-ttu-id="b9eeb-116">Optional.</span><span class="sxs-lookup"><span data-stu-id="b9eeb-116">Optional.</span></span> <span data-ttu-id="b9eeb-117">Akzeptiert ein Authoptions-Objekt, um das Anmeldeverhalten zu definieren.</span><span class="sxs-lookup"><span data-stu-id="b9eeb-117">Accepts an AuthOptions object to define sign-on behaviors.</span></span>
+      type:
+      - office.Office.AuthOptions
+    - id: callback
+      description: <span data-ttu-id="b9eeb-118">Optional.</span><span class="sxs-lookup"><span data-stu-id="b9eeb-118">Optional.</span></span> <span data-ttu-id="b9eeb-119">Akzeptiert eine Rückrufmethode, die das Token für die Benutzer-ID analysieren oder das Token im Flow "im Auftrag von" verwenden kann, um Zugriff auf Microsoft Graph zu erhalten.</span><span class="sxs-lookup"><span data-stu-id="b9eeb-119">Accepts a callback method that can use parse the token for the user's ID or use the token in the "on behalf of" flow to get access to Microsoft Graph.</span></span> <span data-ttu-id="b9eeb-120">Wenn AsyncResult. Status "succeeded" lautet, ist AsyncResult. Value der RAW-AAD v.</span><span class="sxs-lookup"><span data-stu-id="b9eeb-120">If AsyncResult.status is "succeeded", then AsyncResult.value is the raw AAD v.</span></span> <span data-ttu-id="b9eeb-121">2.0 formatierte Zugriffstoken.</span><span class="sxs-lookup"><span data-stu-id="b9eeb-121">2.0-formatted access token.</span></span>
+      type:
+      - '(result: AsyncResult<string>) => void'
+- uid: office.Office.Auth.getAccessTokenAsync_1
+  summary: >-
+    <span data-ttu-id="b9eeb-122">Ruft den Azure Active Directory V 2.0-Endpunkt auf, um ein Zugriffstoken für das Add-In Ihrer Web-Anwendung zu erhalten.</span><span class="sxs-lookup"><span data-stu-id="b9eeb-122">Calls the Azure Active Directory V 2.0 endpoint to get an access token to your add-in's web application.</span></span> <span data-ttu-id="b9eeb-123">Ermöglicht es Add-Ins, Benutzer zu identifizieren.</span><span class="sxs-lookup"><span data-stu-id="b9eeb-123">Enables add-ins to identify users.</span></span> <span data-ttu-id="b9eeb-124">Server seitiger Code kann dieses Token für den Zugriff auf Microsoft Graph für die Webanwendung des Add-Ins verwenden, indem Sie den ["im Auftrag von" OAuth-Fluss](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-protocols-oauth-on-behalf-of) verwenden.</span><span class="sxs-lookup"><span data-stu-id="b9eeb-124">Server side code can use this token to access Microsoft Graph for the add-in's web application by using the ["on behalf of" OAuth flow](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-protocols-oauth-on-behalf-of)</span></span><!-- --><span data-ttu-id="b9eeb-125">.</span><span class="sxs-lookup"><span data-stu-id="b9eeb-125"></span></span>
+
+
+    <span data-ttu-id="b9eeb-126">Wichtig: Diese API wird in Outlook nicht unterstützt, wenn das Add-in in ein Outlook.com-oder Gmail-Postfach geladen wird.</span><span class="sxs-lookup"><span data-stu-id="b9eeb-126">Important: In Outlook, this API is not supported if the add-in is loaded in an Outlook.com or Gmail mailbox.</span></span>
+  remarks: >-
+    <table><tr><td><span data-ttu-id="b9eeb-127">Hosts</span><span class="sxs-lookup"><span data-stu-id="b9eeb-127">Hosts</span></span></td><td><span data-ttu-id="b9eeb-128">Excel, OneNote, Outlook, PowerPoint, Word</span><span class="sxs-lookup"><span data-stu-id="b9eeb-128">Excel, OneNote, Outlook, PowerPoint, Word</span></span></td></tr>
+
+
+    <tr><td><span data-ttu-id="b9eeb-129">Anforderungssätze</span><span class="sxs-lookup"><span data-stu-id="b9eeb-129">Requirement sets</span></span></td><td>[<span data-ttu-id="b9eeb-130">IdentityAPI</span><span class="sxs-lookup"><span data-stu-id="b9eeb-130">IdentityAPI</span></span>](https://docs.microsoft.com/office/dev/add-ins/develop/specify-office-hosts-and-api-requirements)</td></tr></table>
+
+
+    <span data-ttu-id="b9eeb-131">Diese API erfordert eine Single Sign-On-Konfiguration, die das Add-In mit einer Azure-Anwendung verbindet.</span><span class="sxs-lookup"><span data-stu-id="b9eeb-131">This API requires a single sign-on configuration that bridges the add-in to an Azure application.</span></span> <span data-ttu-id="b9eeb-132">Office-Benutzer melden sich mit Organisationskonten und Microsoft-Konten an.</span><span class="sxs-lookup"><span data-stu-id="b9eeb-132">Office users sign-in with Organizational Accounts and Microsoft Accounts.</span></span> <span data-ttu-id="b9eeb-133">Microsoft Azure gibt Token für den Zugriff auf Ressourcen von Microsoft Graph für beide Kontotypen zurück.</span><span class="sxs-lookup"><span data-stu-id="b9eeb-133">Microsoft Azure returns tokens intended for both user account types to access resources in the Microsoft Graph.</span></span>
+  isPreview: true
+  name: getAccessTokenAsync(callback)
+  fullName: getAccessTokenAsync(callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getAccessTokenAsync(callback?: (result: AsyncResult<string>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: callback
+      description: <span data-ttu-id="b9eeb-134">Optional.</span><span class="sxs-lookup"><span data-stu-id="b9eeb-134">Optional.</span></span> <span data-ttu-id="b9eeb-135">Akzeptiert eine Rückrufmethode, die das Token für die Benutzer-ID analysieren oder das Token im Flow "im Auftrag von" verwenden kann, um Zugriff auf Microsoft Graph zu erhalten.</span><span class="sxs-lookup"><span data-stu-id="b9eeb-135">Accepts a callback method that can use parse the token for the user's ID or use the token in the "on behalf of" flow to get access to Microsoft Graph.</span></span> <span data-ttu-id="b9eeb-136">Wenn AsyncResult. Status "succeeded" lautet, ist AsyncResult. Value der RAW-AAD v.</span><span class="sxs-lookup"><span data-stu-id="b9eeb-136">If AsyncResult.status is "succeeded", then AsyncResult.value is the raw AAD v.</span></span> <span data-ttu-id="b9eeb-137">2.0 formatierte Zugriffstoken.</span><span class="sxs-lookup"><span data-stu-id="b9eeb-137">2.0-formatted access token.</span></span>
+      type:
+      - '(result: AsyncResult<string>) => void'
