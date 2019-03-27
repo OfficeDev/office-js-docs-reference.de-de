@@ -1,0 +1,102 @@
+### YamlMime:UniversalReference
+ms.openlocfilehash: 3de618d8e5fc94960295ea196b58e2151b5e101c
+ms.sourcegitcommit: a422a2c3b9ada79477a9f873276b3c00765f7072
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 03/27/2019
+ms.locfileid: "30927700"
+items:
+- uid: office.Office.Auth
+  summary: Der Office auth-Namespace, Office. Context. auth, stellt eine Methode bereit, die es dem Office-Host ermöglicht, ein Zugriffstoken für die Webanwendung des Add-Ins abzurufen. Dadurch kann das Add-In indirekt auch auf die Microsoft Graph-Daten des angemeldeten Benutzers zugreifen, ohne dass sich der Benutzer ein zweites Mal anmelden muss.
+  isPreview: true
+  name: Office.Auth
+  fullName: Office.Auth
+  langs:
+  - typeScript
+  type: interface
+  package: office
+  children:
+  - office.Office.Auth.getAccessTokenAsync
+  - office.Office.Auth.getAccessTokenAsync_1
+- uid: office.Office.Auth.getAccessTokenAsync
+  summary: >-
+    Ruft den Azure Active Directory V 2.0-Endpunkt auf, um ein Zugriffstoken für das Add-In Ihrer Web-Anwendung zu erhalten. Ermöglicht es Add-Ins, Benutzer zu identifizieren. Server seitiger Code kann dieses Token für den Zugriff auf Microsoft Graph für die Webanwendung des Add-Ins verwenden, indem Sie den ["im Auftrag von" OAuth-Fluss](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-protocols-oauth-on-behalf-of) verwenden.<!-- -->.
+
+
+    Wichtig: Diese API wird in Outlook nicht unterstützt, wenn das Add-in in ein Outlook.com-oder Gmail-Postfach geladen wird.
+  remarks: >-
+    <table><tr><td>Hosts</td><td>Excel, OneNote, Outlook, PowerPoint, Word</td></tr>
+
+
+    <tr><td>Anforderungssätze</td><td>[IdentityAPI](https://docs.microsoft.com/office/dev/add-ins/develop/specify-office-hosts-and-api-requirements)</td></tr></table>
+
+
+    Diese API erfordert eine Single Sign-On-Konfiguration, die das Add-In mit einer Azure-Anwendung verbindet. Office-Benutzer melden sich mit Organisationskonten und Microsoft-Konten an. Microsoft Azure gibt Token für den Zugriff auf Ressourcen von Microsoft Graph für beide Kontotypen zurück.
+
+    #### <a name="examples"></a>Beispiele
+
+
+    ```javascript
+
+    Office.context.auth.getAccessTokenAsync(function(result) {
+        if (result.status === "succeeded") {
+            var token = result.value;
+            // ...
+        } else {
+            console.log("Error obtaining token", result.error);
+        }
+    });
+
+    ```
+  isPreview: true
+  name: getAccessTokenAsync(options, callback)
+  fullName: getAccessTokenAsync(options, callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getAccessTokenAsync(options?: AuthOptions, callback?: (result: AsyncResult<string>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: options
+      description: Optional. Akzeptiert ein Authoptions-Objekt, um das Anmeldeverhalten zu definieren.
+      type:
+      - office.Office.AuthOptions
+    - id: callback
+      description: Optional. Akzeptiert eine Rückrufmethode, die das Token für die Benutzer-ID analysieren oder das Token im Flow "im Auftrag von" verwenden kann, um Zugriff auf Microsoft Graph zu erhalten. Wenn AsyncResult. Status "succeeded" lautet, ist AsyncResult. Value der RAW-AAD v. 2.0 formatierte Zugriffstoken.
+      type:
+      - '(result: AsyncResult<string>) => void'
+- uid: office.Office.Auth.getAccessTokenAsync_1
+  summary: >-
+    Ruft den Azure Active Directory V 2.0-Endpunkt auf, um ein Zugriffstoken für das Add-In Ihrer Web-Anwendung zu erhalten. Ermöglicht es Add-Ins, Benutzer zu identifizieren. Server seitiger Code kann dieses Token für den Zugriff auf Microsoft Graph für die Webanwendung des Add-Ins verwenden, indem Sie den ["im Auftrag von" OAuth-Fluss](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-protocols-oauth-on-behalf-of) verwenden.<!-- -->.
+
+
+    Wichtig: Diese API wird in Outlook nicht unterstützt, wenn das Add-in in ein Outlook.com-oder Gmail-Postfach geladen wird.
+  remarks: >-
+    <table><tr><td>Hosts</td><td>Excel, OneNote, Outlook, PowerPoint, Word</td></tr>
+
+
+    <tr><td>Anforderungssätze</td><td>[IdentityAPI](https://docs.microsoft.com/office/dev/add-ins/develop/specify-office-hosts-and-api-requirements)</td></tr></table>
+
+
+    Diese API erfordert eine Single Sign-On-Konfiguration, die das Add-In mit einer Azure-Anwendung verbindet. Office-Benutzer melden sich mit Organisationskonten und Microsoft-Konten an. Microsoft Azure gibt Token für den Zugriff auf Ressourcen von Microsoft Graph für beide Kontotypen zurück.
+  isPreview: true
+  name: getAccessTokenAsync(callback)
+  fullName: getAccessTokenAsync(callback)
+  langs:
+  - typeScript
+  type: method
+  syntax:
+    content: 'getAccessTokenAsync(callback?: (result: AsyncResult<string>) => void): void;'
+    return:
+      type:
+      - void
+      description: ''
+    parameters:
+    - id: callback
+      description: Optional. Akzeptiert eine Rückrufmethode, die das Token für die Benutzer-ID analysieren oder das Token im Flow "im Auftrag von" verwenden kann, um Zugriff auf Microsoft Graph zu erhalten. Wenn AsyncResult. Status "succeeded" lautet, ist AsyncResult. Value der RAW-AAD v. 2.0 formatierte Zugriffstoken.
+      type:
+      - '(result: AsyncResult<string>) => void'
