@@ -1,418 +1,419 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: ba8bb19feca95da10060b7bf35ac6063913360e9
-ms.sourcegitcommit: b0b614f5315ab2e5c1e0ea51c687498f87684a07
-ms.translationtype: MT
-ms.contentlocale: de-DE
-ms.lasthandoff: 02/15/2019
-ms.locfileid: "30054961"
 items:
-- uid: office.Office.Settings
-  summary: Stellt benutzerdefinierte Einstellungen für ein Aufgabenbereich- oder Inhalts-Add-In dar, die im Hostdokument als Name/Wert-Paare gespeichert werden.
-  remarks: >-
-    <table> <tr><td>Hosts</td><td>Access, Excel, PowerPoint, Word</td></tr> <tr><td>Anforderungs Sätze</td><td>Einstellungen</td></tr> </table>
-
-
-    Die mit den Methoden des Settings-Objekts erstellten Einstellungen werden pro Add-in und pro Dokument gespeichert. Das heißt, Sie stehen nur für das Add-in zur Verfügung, das Sie erstellt hat, und nur für das Dokument, in dem Sie gespeichert sind.
-
-
-    Der Name einer Einstellung ist eine Zeichenfolge, während der Wert eine Zeichenfolge, Zahl, Boolean, NULL, Object oder Array sein kann.
-
-
-    Das Settings-Objekt wird automatisch als Teil des Document-Objekts geladen und ist verfügbar, indem die Settings-Eigenschaft dieses Objekts aufgerufen wird, wenn das Add-in aktiviert wird.
-
-
-    Der Entwickler ist dafür verantwortlich, die saveAsync-Methode aufzurufen, nachdem Einstellungen hinzugefügt oder gelöscht wurden, um die Einstellungen im Dokument zu speichern.
-  name: Office.Settings
-  fullName: Office.Settings
-  langs:
-  - typeScript
-  type: interface
-  package: office
-  children:
-  - office.Office.Settings.addHandlerAsync
-  - office.Office.Settings.addHandlerAsync_1
-  - office.Office.Settings.get
-  - office.Office.Settings.refreshAsync
-  - office.Office.Settings.remove
-  - office.Office.Settings.removeHandlerAsync
-  - office.Office.Settings.removeHandlerAsync_1
-  - office.Office.Settings.saveAsync
-  - office.Office.Settings.saveAsync_1
-  - office.Office.Settings.set
-- uid: office.Office.Settings.addHandlerAsync
-  summary: >-
-    Fügt einen Ereignishandler für das Ereignis "Settings" hinzu.
-
-
-    **Wichtig**: der Code des Add-Ins kann einen Handler für das Ereignis "Settings" registrieren, wenn das Add-in mit einem beliebigen Excel-Client läuft, aber das Ereignis wird nur ausgelöst, wenn das Add-in mit einer Arbeitsmappe geladen wird, die in Excel Online geöffnet wird, und mehr als ein Benutzer bearbeitet das Arbeitsblatt (gemeinsame Dokumenterstellung). Daher wird das settingsChanged-Ereignis ausschließlich in Szenarien der gemeinsamen Dokumenterstellung in Excel Online unterstützt.
-  remarks: >-
-    <table><tr><td>Anforderungs Sätze</td><td>Einstellungen</td></tr></table>
-
-
-    Sie können mehrere Ereignishandler für den angegebenen EventType hinzufügen, solange der Name jeder Ereignishandlerfunktion eindeutig ist.
-  name: addHandlerAsync(eventType, handler, options, callback)
-  fullName: addHandlerAsync(eventType, handler, options, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'addHandlerAsync(eventType: Office.EventType, handler: any, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: eventType
-      description: Gibt den Ereignistyp an, der hinzugefügt werden soll. Erforderlich.
-      type:
-      - Office.EventType
-    - id: handler
-      description: Die hinzuzufügende Ereignishandlerfunktion, deren einziger Parameter vom Typ [Office. SettingsChangedEventArgs](xref:office.Office.SettingsChangedEventArgs)<!-- -->ist. Erforderlich.
-      type:
-      - any
-    - id: options
-      description: Stellt eine Option zum Beibehalten von Kontextdaten eines beliebigen Typs unverändert zur Verwendung in einem Rückruf bereit.
-      type:
-      - office.Office.AsyncContextOptions
-    - id: callback
-      description: >-
-        Optional. Eine Funktion, die aufgerufen wird, wenn der Rückruf zurückgegeben wird, deren einziger Parameter vom Typ [Office. AsyncResult](xref:office.Office.AsyncResult)<!-- -->ist.
-
-
-        <table> <tr> <th>Eigenschaft</th> <th>Verwendung</th> </tr> <tr> <td>AsyncResult.value</td> <td>Gibt immer undefined zurück, da es beim Hinzufügen eines Ereignishandlers keine Daten oder Objekte gibt, die abgerufen werden können.</td> </tr> <tr> <td>AsyncResult.status</td> <td>Verwenden Sie diese Eigenschaft, um zu ermitteln, ob der Vorgang erfolgreich war.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Verwenden Sie diese Eigenschaft, um auf ein Error-Objekt zuzugreifen, das Informationen zu dem Fehler bereitstellt, wenn der Vorgang fehlgeschlagen ist.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Ein benutzerdefiniertes Element beliebigen Typs, das im AsyncResult-Objekt ohne Änderung zurückgegeben wird.</td> </tr> </table>
-
-
-        **Supportdetails**
-
-
-        Ein Häkchen (v) in der folgenden Matrix weist darauf hin, dass diese Methode in der entsprechenden Office-Hostanwendung unterstützt wird. Eine leere Zelle weist darauf hin, dass die Office-Hostanwendung diese Methode nicht unterstützt.
-
-
-        Weitere Informationen zu den Anforderungen der Office-Hostanwendung und des Servers finden Sie unter [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
-
-
-        *Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office für Windows Desktop </th><th> Office Online (im Browser) </th><th> Office für iPad </th></tr> <tr><td><strong>Access</strong></td><td> </td><td> v </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> </td><td> v </td><td> </td></tr> </table>
-      type:
-      - '(result: AsyncResult<void>) => void'
-- uid: office.Office.Settings.addHandlerAsync_1
-  summary: >-
-    Fügt einen Ereignishandler für das Ereignis "Settings" hinzu.
-
-
-    **Wichtig**: der Code des Add-Ins kann einen Handler für das Ereignis "Settings" registrieren, wenn das Add-in mit einem beliebigen Excel-Client läuft, aber das Ereignis wird nur ausgelöst, wenn das Add-in mit einer Arbeitsmappe geladen wird, die in Excel Online geöffnet wird, und mehr als ein Benutzer bearbeitet das Arbeitsblatt (gemeinsame Dokumenterstellung). Daher wird das settingsChanged-Ereignis ausschließlich in Szenarien der gemeinsamen Dokumenterstellung in Excel Online unterstützt.
-  remarks: "<table><tr><td>Anforderungs Sätze</td><td>Einstellungen</td></tr></table>\n\nSie können mehrere Ereignishandler für den angegebenen EventType hinzufügen, solange der Name jeder Ereignishandlerfunktion eindeutig ist.\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nfunction addSelectionChangedEventHandler() {\n    Office.context.document.settings.addHandlerAsync(Office.EventType.SettingsChanged, MyHandler);\n}\n\nfunction MyHandler(eventArgs) {\n    write('Event raised: ' + eventArgs.type);\n    doSomethingWithSettings(eventArgs.settings);\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-  name: addHandlerAsync(eventType, handler, callback)
-  fullName: addHandlerAsync(eventType, handler, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'addHandlerAsync(eventType: Office.EventType, handler: any, callback?: (result: AsyncResult<void>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: eventType
-      description: Gibt den Ereignistyp an, der hinzugefügt werden soll. Erforderlich.
-      type:
-      - Office.EventType
-    - id: handler
-      description: Die hinzuzufügende Ereignishandlerfunktion, deren einziger Parameter vom Typ [Office. SettingsChangedEventArgs](xref:office.Office.SettingsChangedEventArgs)<!-- -->ist. Erforderlich.
-      type:
-      - any
-    - id: callback
-      description: >-
-        Optional. Eine Funktion, die aufgerufen wird, wenn der Rückruf zurückgegeben wird, deren einziger Parameter vom Typ [Office. AsyncResult](xref:office.Office.AsyncResult)<!-- -->ist.
-
-
-        <table> <tr> <th>Eigenschaft</th> <th>Verwendung</th> </tr> <tr> <td>AsyncResult.value</td> <td>Gibt immer undefined zurück, da es beim Hinzufügen eines Ereignishandlers keine Daten oder Objekte gibt, die abgerufen werden können.</td> </tr> <tr> <td>AsyncResult.status</td> <td>Verwenden Sie diese Eigenschaft, um zu ermitteln, ob der Vorgang erfolgreich war.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Verwenden Sie diese Eigenschaft, um auf ein Error-Objekt zuzugreifen, das Informationen zu dem Fehler bereitstellt, wenn der Vorgang fehlgeschlagen ist.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Ein benutzerdefiniertes Element beliebigen Typs, das im AsyncResult-Objekt ohne Änderung zurückgegeben wird.</td> </tr> </table>
-
-
-        **Supportdetails**
-
-
-        Ein Häkchen (v) in der folgenden Matrix weist darauf hin, dass diese Methode in der entsprechenden Office-Hostanwendung unterstützt wird. Eine leere Zelle weist darauf hin, dass die Office-Hostanwendung diese Methode nicht unterstützt.
-
-
-        Weitere Informationen zu den Anforderungen der Office-Hostanwendung und des Servers finden Sie unter [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
-
-
-        *Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office für Windows Desktop </th><th> Office Online (im Browser) </th><th> Office für iPad </th></tr> <tr><td><strong>Access</strong></td><td> </td><td> v </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> </td><td> v </td><td> </td></tr> </table>
-      type:
-      - '(result: AsyncResult<void>) => void'
-- uid: office.Office.Settings.get
-  summary: Ruft die angegebene Einstellung ab.
-  remarks: "<table><tr><td>Anforderungs Sätze</td><td>Einstellungen</td></tr></table>\n\n**Supportdetails**\n\nEin Häkchen (v) in der folgenden Matrix weist darauf hin, dass diese Methode in der entsprechenden Office-Hostanwendung unterstützt wird. Eine leere Zelle weist darauf hin, dass die Office-Hostanwendung diese Methode nicht unterstützt.\n\nWeitere Informationen zu den Anforderungen der Office-Hostanwendung und des Servers finden Sie unter [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.\n\n*Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office für Windows Desktop </th><th> Office Online (im Browser) </th><th> Office für iPad </th><th> Office for Mac </th></tr> <tr><td><strong>Access</strong></td><td> </td><td> v </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> v </td><td> v </td><td> v </td><td> v </td></tr> <tr><td><strong>Kulissen</strong></td><td> v </td><td> v </td><td> v </td><td> v </td></tr> <tr><td><strong>Wort</strong></td><td> v </td><td> v </td><td> v </td><td> v </td></tr> </table>\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nfunction displayMySetting() {\n    write('Current value for mySetting: ' + Office.context.document.settings.get('mySetting'));\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-  name: get(name)
-  fullName: get(name)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'get(name: string): any;'
-    return:
-      type:
-      - any
-      description: Ein Objekt mit Eigenschaftennamen, die JSON-serialisierten Werten zugeordnet sind.
-    parameters:
-    - id: name
-      description: ''
-      type:
-      - string
-- uid: office.Office.Settings.refreshAsync
-  summary: Liest alle im Dokument beibehaltenen Einstellungen und aktualisiert die Kopie dieser Einstellungen im Speicher des Inhalts- oder Aufgabenbereich-Add-In.
-  remarks: "<table><tr><td>Anforderungs Sätze</td><td>Einstellungen</td></tr></table>\n\nDiese Methode ist hilfreich in Szenarien für die gemeinsame Erstellung von Excel, Word und PowerPoint, wenn mehrere Instanzen desselben Add-Ins mit demselben Dokument arbeiten. Da jedes Add-in mit einer im Arbeitsspeicher befindlichen Kopie der Einstellungen arbeitet, die beim Öffnen des Dokuments aus dem Dokument geladen wurden, können die von jedem Benutzer verwendeten Einstellungswerte nicht mehr synchronisiert werden. Dies kann vorkommen, wenn eine Instanz des Add-Ins die Settings. saveAsync-Methode aufruft, um alle Benutzereinstellungen für das Dokument beizubehalten. Durch Aufrufen der refreshAsync-Methode aus dem Ereignishandler für das Ereignis \"Settings\" des Add-Ins werden die Einstellungswerte für alle Benutzer aktualisiert.\n\nIn der an die refreshAsync-Methode übergebenen Rückruffunktion können Sie die Eigenschaften des AsyncResult-Objekts verwenden, um die folgenden Informationen zurückzugeben.\n\n<table> <tr> <th>Eigenschaft</th> <th>Verwendung</th> </tr> <tr> <td>AsyncResult.value</td> <td>Zugriff auf ein Einstellungen-Objekt mit den aktualisierten Werten.</td> </tr> <tr> <td>AsyncResult.status</td> <td>Verwenden Sie diese Eigenschaft, um zu ermitteln, ob der Vorgang erfolgreich war.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Verwenden Sie diese Eigenschaft, um auf ein Error-Objekt zuzugreifen, das Informationen zu dem Fehler bereitstellt, wenn der Vorgang fehlgeschlagen ist.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Ein benutzerdefiniertes Element beliebigen Typs, das im AsyncResult-Objekt ohne Änderung zurückgegeben wird.</td> </tr> </table>\n\n**Supportdetails**\n\nEin Häkchen (v) in der folgenden Matrix weist darauf hin, dass diese Methode in der entsprechenden Office-Hostanwendung unterstützt wird. Eine leere Zelle weist darauf hin, dass die Office-Hostanwendung diese Methode nicht unterstützt.\n\nWeitere Informationen zu den Anforderungen der Office-Hostanwendung und des Servers finden Sie unter [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.\n\n*Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office für Windows Desktop </th><th> Office Online (im Browser) </th><th> Office für iPad </th></tr> <tr><td><strong>Access</strong></td><td> </td><td> v </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> v </td><td> v </td><td> </td></tr> <tr><td><strong>Kulissen</strong></td><td> v </td><td> v </td><td> </td></tr> <tr><td><strong>Wort</strong></td><td> v </td><td> v </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nfunction refreshSettings() {\n    Office.context.document.settings.refreshAsync(function (asyncResult) {\n        write('Settings refreshed with status: ' + asyncResult.status);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-  name: refreshAsync(callback)
-  fullName: refreshAsync(callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'refreshAsync(callback?: (result: AsyncResult<Office.Settings>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: callback
-      description: Optional. Eine Funktion, die aufgerufen wird, wenn der Rückruf zurückgegeben wird, deren einziger Parameter vom Typ [Office. AsyncResult](xref:office.Office.AsyncResult)<!-- -->ist. Die `value` Eigenschaft des Ergebnisses ist ein [Office. Settings](xref:office.Office.Settings) -Objekt mit den aktualisierten Werten.
-      type:
-      - '(result: AsyncResult<Office.Settings>) => void'
-- uid: office.Office.Settings.remove
-  summary: >-
-    Entfernt die angegebene Einstellung.
-
-
-    **Wichtig**: Beachten Sie, dass die Settings. Remove-Methode nur die speicherinterne Kopie des Eigenschaftenbehälters für Einstellungen betrifft. Wenn Sie das Entfernen der angegebenen Einstellung im Dokument beibehalten möchten, müssen Sie nach dem Aufrufen der Settings. Remove-Methode und vor dem Schließen des Add-Ins die Settings. saveAsync-Methode aufrufen.
-  remarks: >-
-    <table><tr><td>Anforderungs Sätze</td><td>Einstellungen</td></tr></table>
-
-
-    null ist ein gültiger Wert für eine Einstellung. Daher wird durch Zuweisen von null zu der Einstellung diese nicht aus dem Eigenschaftenbehälter für Einstellungen entfernt.
-
-
-    **Supportdetails**
-
-
-    Ein Häkchen (v) in der folgenden Matrix weist darauf hin, dass diese Methode in der entsprechenden Office-Hostanwendung unterstützt wird. Eine leere Zelle weist darauf hin, dass die Office-Hostanwendung diese Methode nicht unterstützt.
-
-
-    Weitere Informationen zu den Anforderungen der Office-Hostanwendung und des Servers finden Sie unter [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
-
-
-    *Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office für Windows Desktop </th><th> Office Online (im Browser) </th><th> Office für iPad </th><th> Office for Mac </th></tr> <tr><td><strong>Access</strong></td><td> </td><td> v </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> v </td><td> v </td><td> v </td><td> v </td></tr> <tr><td><strong>Kulissen</strong></td><td> v </td><td> v </td><td> v </td><td> v </td></tr> <tr><td><strong>Wort</strong></td><td> v </td><td> v </td><td> v </td><td> v </td></tr> </table>
-
-    #### <a name="examples"></a>Beispiele
-
-
-    ```javascript
-
-    function removeMySetting() {
-        Office.context.document.settings.remove('mySetting');
-    }
-
-    ```
-  name: remove(name)
-  fullName: remove(name)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'remove(name: string): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: name
-      description: ''
-      type:
-      - string
-- uid: office.Office.Settings.removeHandlerAsync
-  summary: Entfernt einen Ereignishandler für das Ereignis "Settings".
-  remarks: >-
-    <table><tr><td>Anforderungs Sätze</td><td>Einstellungen</td></tr></table>
-
-
-    Wenn der optionale Handler-Parameter beim Aufrufen der removeHandlerAsync-Methode ausgelassen wird, werden alle Ereignishandler für den angegebenen EventType entfernt.
-
-
-    Wenn die Funktion, die Sie an den callback-Parameter übergeben haben, ausgeführt wird, erhält sie ein AsyncResult-Objekt, auf das Sie vom einzigen Parameter der callback-Funktion aus zugreifen können.
-
-
-    In der an die removeHandlerAsync-Methode übergebenen Rückruffunktion können Sie die Eigenschaften des AsyncResult-Objekts verwenden, um die folgenden Informationen zurückzugeben.
-
-
-    **Supportdetails**
-
-
-    Ein Häkchen (v) in der folgenden Matrix weist darauf hin, dass diese Methode in der entsprechenden Office-Hostanwendung unterstützt wird. Eine leere Zelle weist darauf hin, dass die Office-Hostanwendung diese Methode nicht unterstützt.
-
-
-    Weitere Informationen zu den Anforderungen der Office-Hostanwendung und des Servers finden Sie unter [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
-
-
-    *Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office für Windows Desktop </th><th> Office Online (im Browser) </th><th> Office für iPad </th></tr> <tr><td><strong>Access</strong></td><td> </td><td> v </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> </td><td> v </td><td> </td></tr> </table>
-  name: removeHandlerAsync(eventType, options, callback)
-  fullName: removeHandlerAsync(eventType, options, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'removeHandlerAsync(eventType: Office.EventType, options?: RemoveHandlerOptions, callback?: (result: AsyncResult<void>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: eventType
-      description: Gibt den Typ des zu entfernenden Ereignisses an. Erforderlich.
-      type:
-      - Office.EventType
-    - id: options
-      description: Stellt Optionen bereit, um zu bestimmen, welcher Ereignishandler oder welche Handler entfernt werden.
-      type:
-      - office.Office.RemoveHandlerOptions
-    - id: callback
-      description: Optional. Eine Funktion, die aufgerufen wird, wenn der Rückruf zurückgegeben wird, deren einziger Parameter vom Typ [Office. AsyncResult](xref:office.Office.AsyncResult)<!-- -->ist.
-      type:
-      - '(result: AsyncResult<void>) => void'
-- uid: office.Office.Settings.removeHandlerAsync_1
-  summary: Entfernt einen Ereignishandler für das Ereignis "Settings".
-  remarks: "<table><tr><td>Anforderungs Sätze</td><td>Einstellungen</td></tr></table>\n\nWenn der optionale Handler-Parameter beim Aufrufen der removeHandlerAsync-Methode ausgelassen wird, werden alle Ereignishandler für den angegebenen EventType entfernt.\n\nWenn die Funktion, die Sie an den callback-Parameter übergeben haben, ausgeführt wird, erhält sie ein AsyncResult-Objekt, auf das Sie vom einzigen Parameter der callback-Funktion aus zugreifen können.\n\nIn der an die removeHandlerAsync-Methode übergebenen Rückruffunktion können Sie die Eigenschaften des AsyncResult-Objekts verwenden, um die folgenden Informationen zurückzugeben.\n\n**Supportdetails**\n\nEin Häkchen (v) in der folgenden Matrix weist darauf hin, dass diese Methode in der entsprechenden Office-Hostanwendung unterstützt wird. Eine leere Zelle weist darauf hin, dass die Office-Hostanwendung diese Methode nicht unterstützt.\n\nWeitere Informationen zu den Anforderungen der Office-Hostanwendung und des Servers finden Sie unter [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.\n\n*Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office für Windows Desktop </th><th> Office Online (im Browser) </th><th> Office für iPad </th></tr> <tr><td><strong>Access</strong></td><td> </td><td> v </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> </td><td> v </td><td> </td></tr> </table>\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nfunction removeSettingsChangedEventHandler() {\n    Office.context.document.settings.removeHandlerAsync(Office.EventType.SettingsChanged, MyHandler);\n}\n\nfunction MyHandler(eventArgs) {\n    write('Event raised: ' + eventArgs.type);\n    doSomethingWithSettings(eventArgs.settings);\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-  name: removeHandlerAsync(eventType, callback)
-  fullName: removeHandlerAsync(eventType, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'removeHandlerAsync(eventType: Office.EventType, callback?: (result: AsyncResult<void>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: eventType
-      description: Gibt den Typ des zu entfernenden Ereignisses an. Erforderlich.
-      type:
-      - Office.EventType
-    - id: callback
-      description: Optional. Eine Funktion, die aufgerufen wird, wenn der Rückruf zurückgegeben wird, deren einziger Parameter vom Typ [Office. AsyncResult](xref:office.Office.AsyncResult)<!-- -->ist.
-      type:
-      - '(result: AsyncResult<void>) => void'
-- uid: office.Office.Settings.saveAsync
-  summary: Speichert die speicherinterne Kopie des Eigenschaftenbehälters für Einstellungen dauerhaft im Dokument.
-  remarks: >-
-    Alle von einem Add-In bereits gespeicherten Einstellungen werden bei der Initialisierung geladen, daher können Sie während der Gültigkeitszeit der Sitzung einfach die Methoden set und get verwenden, um mit der speicherinternen Kopie des Einstellungseigenschaftenbehälters zu arbeiten. Wenn Sie die Einstellungen speichern möchten, damit sie bei der nächsten Verwendung des Add-Ins verfügbar sind, verwenden Sie die saveAsync-Methode.
-
-
-    **Hinweis**: die saveAsync-Methode speichert den Eigenschaftenbehälter im Arbeitsspeichereinstellungen in der Dokumentdatei. Die Änderungen an der Dokumentdatei selbst werden jedoch nur dann gespeichert, wenn die Einstellung Benutzer (oder autoWiederherstellen) das Dokument im Dateisystem speichert. Die refreshAsync-Methode ist nur in Zusammenarbeitsszenarien hilfreich, wenn andere Instanzen desselben Add-Ins die Einstellungen ändern und diese Änderungen für alle Instanzen zur Verfügung stehen sollen.
-
-
-    <table> <tr> <th>Eigenschaft</th> <th>Verwendung</th> </tr> <tr> <td>AsyncResult.value</td> <td>Gibt immer undefined zurück, weil kein Objekt oder keine abzurufenden Daten vorhanden sind.</td> </tr> <tr> <td>AsyncResult.status</td> <td>Verwenden Sie diese Eigenschaft, um zu ermitteln, ob der Vorgang erfolgreich war.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Verwenden Sie diese Eigenschaft, um auf ein Error-Objekt zuzugreifen, das Informationen zu dem Fehler bereitstellt, wenn der Vorgang fehlgeschlagen ist.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Ein benutzerdefiniertes Element beliebigen Typs, das im AsyncResult-Objekt ohne Änderung zurückgegeben wird.</td> </tr> </table>
-
-
-    **Supportdetails**
-
-
-    Ein Häkchen (v) in der folgenden Matrix weist darauf hin, dass diese Methode in der entsprechenden Office-Hostanwendung unterstützt wird. Eine leere Zelle weist darauf hin, dass die Office-Hostanwendung diese Methode nicht unterstützt.
-
-
-    Weitere Informationen zu den Anforderungen der Office-Hostanwendung und des Servers finden Sie unter [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
-
-
-    *Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office für Windows Desktop </th><th> Office Online (im Browser) </th><th> Office für iPad </th><th> Office for Mac </th></tr> <tr><td><strong>Access</strong></td><td> </td><td> v </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> v </td><td> v </td><td> v </td><td> v </td></tr> <tr><td><strong>Kulissen</strong></td><td> v </td><td> v </td><td> v </td><td> v </td></tr> <tr><td><strong>Wort</strong></td><td> v </td><td> v </td><td> v </td><td> v </td></tr> </table>
-  name: saveAsync(options, callback)
-  fullName: saveAsync(options, callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'saveAsync(options?: SaveSettingsOptions, callback?: (result: AsyncResult<void>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: options
-      description: Stellt Optionen zum Speichern von Einstellungen bereit.
-      type:
-      - office.Office.SaveSettingsOptions
-    - id: callback
-      description: Optional. Eine Funktion, die aufgerufen wird, wenn der Rückruf zurückgegeben wird, deren einziger Parameter vom Typ [Office. AsyncResult](xref:office.Office.AsyncResult)<!-- -->ist.
-      type:
-      - '(result: AsyncResult<void>) => void'
-- uid: office.Office.Settings.saveAsync_1
-  summary: Speichert die speicherinterne Kopie des Eigenschaftenbehälters für Einstellungen dauerhaft im Dokument.
-  remarks: "Alle von einem Add-In bereits gespeicherten Einstellungen werden bei der Initialisierung geladen, daher können Sie während der Gültigkeitszeit der Sitzung einfach die Methoden set und get verwenden, um mit der speicherinternen Kopie des Einstellungseigenschaftenbehälters zu arbeiten. Wenn Sie die Einstellungen speichern möchten, damit sie bei der nächsten Verwendung des Add-Ins verfügbar sind, verwenden Sie die saveAsync-Methode.\n\n**Hinweis**: die saveAsync-Methode speichert den Eigenschaftenbehälter im Arbeitsspeichereinstellungen in der Dokumentdatei. Die Änderungen an der Dokumentdatei selbst werden jedoch nur dann gespeichert, wenn die Einstellung Benutzer (oder autoWiederherstellen) das Dokument im Dateisystem speichert. Die refreshAsync-Methode ist nur in Zusammenarbeitsszenarien hilfreich, wenn andere Instanzen desselben Add-Ins die Einstellungen ändern und diese Änderungen für alle Instanzen zur Verfügung stehen sollen.\n\n<table> <tr> <th>Eigenschaft</th> <th>Verwendung</th> </tr> <tr> <td>AsyncResult.value</td> <td>Gibt immer undefined zurück, weil kein Objekt oder keine abzurufenden Daten vorhanden sind.</td> </tr> <tr> <td>AsyncResult.status</td> <td>Verwenden Sie diese Eigenschaft, um zu ermitteln, ob der Vorgang erfolgreich war.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Verwenden Sie diese Eigenschaft, um auf ein Error-Objekt zuzugreifen, das Informationen zu dem Fehler bereitstellt, wenn der Vorgang fehlgeschlagen ist.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Ein benutzerdefiniertes Element beliebigen Typs, das im AsyncResult-Objekt ohne Änderung zurückgegeben wird.</td> </tr> </table>\n\n**Supportdetails**\n\nEin Häkchen (v) in der folgenden Matrix weist darauf hin, dass diese Methode in der entsprechenden Office-Hostanwendung unterstützt wird. Eine leere Zelle weist darauf hin, dass die Office-Hostanwendung diese Methode nicht unterstützt.\n\nWeitere Informationen zu den Anforderungen der Office-Hostanwendung und des Servers finden Sie unter [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.\n\n*Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office für Windows Desktop </th><th> Office Online (im Browser) </th><th> Office für iPad </th><th> Office for Mac </th></tr> <tr><td><strong>Access</strong></td><td> </td><td> v </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> v </td><td> v </td><td> v </td><td> v </td></tr> <tr><td><strong>Kulissen</strong></td><td> v </td><td> v </td><td> v </td><td> v </td></tr> <tr><td><strong>Wort</strong></td><td> v </td><td> v </td><td> v </td><td> v </td></tr> </table>\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nfunction persistSettings() {\n    Office.context.document.settings.saveAsync(function (asyncResult) {\n        write('Settings saved with status: ' + asyncResult.status);\n    });\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-  name: saveAsync(callback)
-  fullName: saveAsync(callback)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'saveAsync(callback?: (result: AsyncResult<void>) => void): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: callback
-      description: Optional. Eine Funktion, die aufgerufen wird, wenn der Rückruf zurückgegeben wird, deren einziger Parameter vom Typ [Office. AsyncResult](xref:office.Office.AsyncResult)<!-- -->ist.
-      type:
-      - '(result: AsyncResult<void>) => void'
-- uid: office.Office.Settings.set
-  summary: >-
-    Legt die angegebene Einstellung fest oder erstellt sie.
-
-
-    **Wichtig**: Beachten Sie, dass die Settings. Set-Methode nur die speicherinterne Kopie des Eigenschaftenbehälters für Einstellungen betrifft. Wenn Sie sicherstellen möchten, dass dem Add-in beim nächsten Öffnen des Dokuments Ergänzungen oder Änderungen an den Einstellungen zur Verfügung stehen, müssen Sie zu einem bestimmten Zeitpunkt nach dem Aufrufen der Settings. Set-Methode und vor dem Schließen des Add-Ins die Settings. saveAsync-Methode aufrufen, um beizubehalten Einstellungen im Dokument.
-  remarks: >-
-    <table><tr><td>Anforderungs Sätze</td><td>Einstellungen</td></tr></table>
-
-
-    Die Set-Methode erstellt eine neue Einstellung des angegebenen Namens, wenn Sie noch nicht vorhanden ist, oder legt eine vorhandene Einstellung des angegebenen Namens in der speicherresidenten Kopie des Eigenschaftenbehälters fest. Nachdem Sie die Settings. saveAsync-Methode aufgerufen haben, wird der Wert im Dokument als serialisierte JSON-Darstellung des Datentyps gespeichert. Für die Einstellungen der einzelnen Add-Ins stehen maximal 2MB zur Verfügung.
-
-
-    **Supportdetails**
-
-
-    Ein Häkchen (v) in der folgenden Matrix weist darauf hin, dass diese Methode in der entsprechenden Office-Hostanwendung unterstützt wird. Eine leere Zelle weist darauf hin, dass die Office-Hostanwendung diese Methode nicht unterstützt.
-
-
-    Weitere Informationen zu den Anforderungen der Office-Hostanwendung und des Servers finden Sie unter [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
-
-
-    *Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office für Windows Desktop </th><th> Office Online (im Browser) </th><th> Office für iPad </th><th> Office for Mac </th></tr> <tr><td><strong>Access</strong></td><td> </td><td> v </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> v </td><td> v </td><td> v </td><td> v </td></tr> <tr><td><strong>Kulissen</strong></td><td> v </td><td> v </td><td> v </td><td> v </td></tr> <tr><td><strong>Wort</strong></td><td> v </td><td> v </td><td> v </td><td> v </td></tr> </table>
-
-    #### <a name="examples"></a>Beispiele
-
-
-    ```javascript
-
-    function setMySetting() {
-        Office.context.document.settings.set('mySetting', 'mySetting value');
-    }
-
-    ```
-  name: set(name, value)
-  fullName: set(name, value)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'set(name: string, value: any): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: name
-      description: ''
-      type:
-      - string
-    - id: value
-      description: Gibt den zu speichernden Wert an.
-      type:
-      - any
+  - uid: office.Office.Settings
+    summary: 'Stellt benutzerdefinierte Einstellungen für ein Aufgabenbereich- oder Inhalts-Add-In dar, die im Hostdokument als Name/Wert-Paare gespeichert werden.'
+    remarks: |-
+      **Hosts**: Access, Excel, PowerPoint, Word
+
+      Die mit den Methoden des Settings-Objekts erstellten Einstellungen werden pro Add-in und pro Dokument gespeichert. Das bedeutet, dass sie nur für das Add-In verfügbar sind, die sie erstellt hat, und nur aus dem Dokument, in dem sie gespeichert wurden.
+
+      Der Name einer Einstellung ist eine Zeichenfolge, während der Wert eine Zeichenfolge, Zahl, Boolean, NULL, Object oder Array sein kann.
+
+      Das Settings-Objekt wird automatisch als Teil des Document-Objekts geladen und ist verfügbar, indem die Settings-Eigenschaft dieses Objekts aufgerufen wird, wenn das Add-in aktiviert wird.
+
+      Der Entwickler ist dafür verantwortlich, die saveAsync-Methode nach dem Hinzufügen oder Entfernen von Einstellungen aufzurufen, um die Einstellungen im Dokument zu speichern.
+    name: Office.Settings
+    fullName: Office.Settings
+    langs:
+      - typeScript
+    type: interface
+    package: office
+    children:
+      - office.Office.Settings.addHandlerAsync
+      - office.Office.Settings.addHandlerAsync_1
+      - office.Office.Settings.get
+      - office.Office.Settings.refreshAsync
+      - office.Office.Settings.remove
+      - office.Office.Settings.removeHandlerAsync
+      - office.Office.Settings.removeHandlerAsync_1
+      - office.Office.Settings.saveAsync
+      - office.Office.Settings.saveAsync_1
+      - office.Office.Settings.set
+  - uid: office.Office.Settings.addHandlerAsync
+    summary: |-
+      Fügt einen Ereignishandler für das Ereignis "Settings" hinzu.
+
+      **Wichtig**: der Code des Add-Ins kann einen Handler für das Ereignis "Settings" registrieren, wenn das Add-in mit einem beliebigen Excel-Client läuft, aber das Ereignis wird nur ausgelöst, wenn das Add-in mit einer Arbeitsmappe geladen wird, die in Excel Online geöffnet wird, und mehr als ein Benutzer bearbeitet das Arbeitsblatt (gemeinsame Dokumenterstellung). Therefore, effectively the settingsChanged event is supported only in Excel Online in co-authoring scenarios.
+    remarks: |-
+      **Anforderungssatz**: [nicht in einer Gruppe](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)
+
+      Sie können mehrere Ereignishandler für den angegebenen EventType hinzufügen, solange der Name jeder Ereignishandlerfunktion eindeutig ist.
+    name: 'addHandlerAsync(eventType, handler, options, callback)'
+    fullName: 'addHandlerAsync(eventType, handler, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'addHandlerAsync(eventType: Office.EventType, handler: any, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: eventType
+          description: 'Gibt den Ereignistyp an, der hinzugefügt werden soll. Erforderlich.'
+          type:
+            - Office.EventType
+        - id: handler
+          description: 'Die hinzuzufügende Ereignishandlerfunktion, deren einziger Parameter vom Typ [Office. SettingsChangedEventArgs](xref:office.Office.SettingsChangedEventArgs)<!-- -->. Erforderlich.'
+          type:
+            - any
+        - id: options
+          description: Stellt eine Option zum Beibehalten von Kontextdaten eines beliebigen Typs unverändert zur Verwendung in einem Rückruf bereit.
+          type:
+            - office.Office.AsyncContextOptions
+        - id: callback
+          description: |-
+            Optional. Eine Funktion, die aufgerufen wird, wenn der Rückruf zurückgegeben wird, deren einziger Parameter vom Typ [Office. AsyncResult ist.](xref:office.Office.AsyncResult)<!-- -->.
+
+            <table> <tr> <th>Eigenschaft</th> <th>Verwendung</th> </tr> <tr> <td>AsyncResult.value</td> <td>Gibt immer undefined zurück, da es beim Hinzufügen eines Ereignishandlers keine Daten oder Objekte gibt, die abgerufen werden können.</td> </tr> <tr> <td>AsyncResult.status</td> <td>Bestimmen Sie, ob der Vorgang erfolgreich war oder ein Fehler aufgetreten ist.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Greifen Sie auf ein Error-Objekt zu, das nach einem fehlgeschlagenen Vorgang Fehlerinformationen bereitstellt.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Ein benutzerdefiniertes Element beliebigen Typs, das im AsyncResult-Objekt ohne Änderung zurückgegeben wird.</td> </tr> </table>
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.Settings.addHandlerAsync_1
+    summary: |-
+      Fügt einen Ereignishandler für das Ereignis "Settings" hinzu.
+
+      **Wichtig**: der Code des Add-Ins kann einen Handler für das Ereignis "Settings" registrieren, wenn das Add-in mit einem beliebigen Excel-Client läuft, aber das Ereignis wird nur ausgelöst, wenn das Add-in mit einer Arbeitsmappe geladen wird, die in Excel Online geöffnet wird, und mehr als ein Benutzer bearbeitet das Arbeitsblatt (gemeinsame Dokumenterstellung). Therefore, effectively the settingsChanged event is supported only in Excel Online in co-authoring scenarios.
+    remarks: |-
+      **Anforderungssatz**: [nicht in einer Gruppe](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)
+
+      Sie können mehrere Ereignishandler für den angegebenen EventType hinzufügen, solange der Name jeder Ereignishandlerfunktion eindeutig ist.
+
+      #### <a name="examples"></a>Beispiele
+
+      ```javascript
+      function addSelectionChangedEventHandler() {
+          Office.context.document.settings.addHandlerAsync(Office.EventType.SettingsChanged, MyHandler);
+      }
+
+      function MyHandler(eventArgs) {
+          write('Event raised: ' + eventArgs.type);
+          doSomethingWithSettings(eventArgs.settings);
+      }
+
+      // Function that writes to a div with id='message' on the page.
+      function write(message){
+          document.getElementById('message').innerText += message; 
+      }
+      ```
+    name: 'addHandlerAsync(eventType, handler, callback)'
+    fullName: 'addHandlerAsync(eventType, handler, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'addHandlerAsync(eventType: Office.EventType, handler: any, callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: eventType
+          description: 'Gibt den Ereignistyp an, der hinzugefügt werden soll. Erforderlich.'
+          type:
+            - Office.EventType
+        - id: handler
+          description: 'Die hinzuzufügende Ereignishandlerfunktion, deren einziger Parameter vom Typ [Office. SettingsChangedEventArgs](xref:office.Office.SettingsChangedEventArgs)<!-- -->. Erforderlich.'
+          type:
+            - any
+        - id: callback
+          description: |-
+            Optional. Eine Funktion, die aufgerufen wird, wenn der Rückruf zurückgegeben wird, deren einziger Parameter vom Typ [Office. AsyncResult ist.](xref:office.Office.AsyncResult)<!-- -->.
+
+            <table> <tr> <th>Eigenschaft</th> <th>Verwendung</th> </tr> <tr> <td>AsyncResult.value</td> <td>Gibt immer undefined zurück, da es beim Hinzufügen eines Ereignishandlers keine Daten oder Objekte gibt, die abgerufen werden können.</td> </tr> <tr> <td>AsyncResult.status</td> <td>Bestimmen Sie, ob der Vorgang erfolgreich war oder ein Fehler aufgetreten ist.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Greifen Sie auf ein Error-Objekt zu, das nach einem fehlgeschlagenen Vorgang Fehlerinformationen bereitstellt.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Ein benutzerdefiniertes Element beliebigen Typs, das im AsyncResult-Objekt ohne Änderung zurückgegeben wird.</td> </tr> </table>
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.Settings.get
+    summary: Ruft die angegebene Einstellung ab.
+    remarks: |-
+      **Anforderungssatz**: [Einstellungen](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#settings)
+
+      #### <a name="examples"></a>Beispiele
+
+      ```javascript
+      function displayMySetting() {
+          write('Current value for mySetting: ' + Office.context.document.settings.get('mySetting'));
+      }
+      // Function that writes to a div with id='message' on the page.
+      function write(message){
+          document.getElementById('message').innerText += message; 
+      }
+      ```
+    name: get(name)
+    fullName: get(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'get(name: string): any;'
+      return:
+        type:
+          - any
+        description: 'Ein Objekt mit Eigenschaftennamen, die JSON-serialisierten Werten zugeordnet sind.'
+      parameters:
+        - id: name
+          description: ''
+          type:
+            - string
+  - uid: office.Office.Settings.refreshAsync
+    summary: Liest alle im Dokument beibehaltenen Einstellungen und aktualisiert die Kopie dieser Einstellungen im Speicher des Inhalts- oder Aufgabenbereich-Add-In.
+    remarks: |-
+      **Anforderungssatz**: [nicht in einer Gruppe](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)
+
+      Diese Methode ist hilfreich in Szenarien für die gemeinsame Erstellung von Excel, Word und PowerPoint, wenn mehrere Instanzen desselben Add-Ins mit demselben Dokument arbeiten. Da jedes Add-in mit einer im Arbeitsspeicher befindlichen Kopie der Einstellungen arbeitet, die beim Öffnen des Dokuments aus dem Dokument geladen wurden, können die von jedem Benutzer verwendeten Einstellungswerte nicht mehr synchronisiert werden. Dies kann vorkommen, wenn eine Instanz des Add-Ins die Settings. saveAsync-Methode aufruft, um alle Benutzereinstellungen für das Dokument beizubehalten. Durch Aufrufen der refreshAsync-Methode aus dem Ereignishandler für das Ereignis "Settings" des Add-Ins werden die Einstellungswerte für alle Benutzer aktualisiert.
+
+      In der callback-Funktion, die an die refreshAsync-Methode weitergegeben wird, können Sie die Eigenschaften des AsyncResult-Objekts verwenden, um die folgenden Informationen zurückzugeben.
+
+      <table> <tr> <th>Eigenschaft</th> <th>Verwendung</th> </tr> <tr> <td>AsyncResult.value</td> <td>Zugriff auf ein Einstellungen-Objekt mit den aktualisierten Werten.</td> </tr> <tr> <td>AsyncResult.status</td> <td>Bestimmen Sie, ob der Vorgang erfolgreich war oder ein Fehler aufgetreten ist.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Greifen Sie auf ein Error-Objekt zu, das nach einem fehlgeschlagenen Vorgang Fehlerinformationen bereitstellt.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Ein benutzerdefiniertes Element beliebigen Typs, das im AsyncResult-Objekt ohne Änderung zurückgegeben wird.</td> </tr> </table>
+
+      #### <a name="examples"></a>Beispiele
+
+      ```javascript
+      function refreshSettings() {
+          Office.context.document.settings.refreshAsync(function (asyncResult) {
+              write('Settings refreshed with status: ' + asyncResult.status);
+          });
+      }
+      // Function that writes to a div with id='message' on the page.
+      function write(message){
+          document.getElementById('message').innerText += message; 
+      }
+      ```
+    name: refreshAsync(callback)
+    fullName: refreshAsync(callback)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'refreshAsync(callback?: (result: AsyncResult<Office.Settings>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: callback
+          description: 'Optional. Eine Funktion, die aufgerufen wird, wenn der Rückruf zurückgegeben wird, deren einziger Parameter vom Typ [Office. AsyncResult ist.](xref:office.Office.AsyncResult)<!-- -->. Die `value` Eigenschaft des Ergebnisses ist ein [Office. Settings](xref:office.Office.Settings) -Objekt mit den aktualisierten Werten.'
+          type:
+            - '(result: AsyncResult<Office.Settings>) => void'
+  - uid: office.Office.Settings.remove
+    summary: |-
+      Entfernt die angegebene Einstellung.
+
+      **Wichtig**: Beachten Sie, dass die Settings. Remove-Methode nur die speicherinterne Kopie des Eigenschaftenbehälters für Einstellungen betrifft. To persist the removal of the specified setting in the document, at some point after calling the Settings.remove method and before the add-in is closed, you must call the Settings.saveAsync method.
+    remarks: |-
+      **Anforderungssatz**: [Einstellungen](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#settings)
+
+      null ist ein gültiger Wert für eine Einstellung. Daher wird durch Zuweisen von null zu der Einstellung diese nicht aus dem Eigenschaftenbehälter für Einstellungen entfernt.
+
+      #### <a name="examples"></a>Beispiele
+
+      ```javascript
+      function removeMySetting() {
+          Office.context.document.settings.remove('mySetting');
+      }
+      ```
+    name: remove(name)
+    fullName: remove(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'remove(name: string): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: name
+          description: ''
+          type:
+            - string
+  - uid: office.Office.Settings.removeHandlerAsync
+    summary: Entfernt einen Ereignishandler für das settingsChanged-Ereignis.
+    remarks: |-
+      **Anforderungssatz**: [nicht in einer Gruppe](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)
+
+      Wenn der optionale handler-Parameter beim Aufrufen der removeHandlerAsync-Methode nicht angegeben wird, werden alle Ereignishandler für den angegebenen eventType entfernt.
+
+      Wenn die Funktion, die Sie an den callback-Parameter übergeben haben, ausgeführt wird, empfängt sie ein AsyncResult-Objekt, auf das Sie vom einzigen Parameter der Rückruffunktion aus zugreifen können.
+
+      In der Rückruffunktion, die Sie an die removeHandlerAsync-Methode übergeben haben, können Sie die Eigenschaften des AsyncResult-Objekts verwenden, um die folgenden Informationen zurückzugeben.
+    name: 'removeHandlerAsync(eventType, options, callback)'
+    fullName: 'removeHandlerAsync(eventType, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'removeHandlerAsync(eventType: Office.EventType, options?: RemoveHandlerOptions, callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: eventType
+          description: Gibt den Typ des zu entfernenden Ereignisses an. Erforderlich.
+          type:
+            - Office.EventType
+        - id: options
+          description: 'Stellt Optionen bereit, um zu bestimmen, welcher Ereignishandler oder welche Handler entfernt werden.'
+          type:
+            - office.Office.RemoveHandlerOptions
+        - id: callback
+          description: 'Optional. Eine Funktion, die aufgerufen wird, wenn der Rückruf zurückgegeben wird, deren einziger Parameter vom Typ [Office. AsyncResult ist.](xref:office.Office.AsyncResult)<!-- -->.'
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.Settings.removeHandlerAsync_1
+    summary: Entfernt einen Ereignishandler für das settingsChanged-Ereignis.
+    remarks: |-
+      **Anforderungssatz**: [nicht in einer Gruppe](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#methods-that-arent-part-of-a-requirement-set)
+
+      Wenn der optionale handler-Parameter beim Aufrufen der removeHandlerAsync-Methode nicht angegeben wird, werden alle Ereignishandler für den angegebenen eventType entfernt.
+
+      Wenn die Funktion, die Sie an den callback-Parameter übergeben haben, ausgeführt wird, empfängt sie ein AsyncResult-Objekt, auf das Sie vom einzigen Parameter der Rückruffunktion aus zugreifen können.
+
+      In der Rückruffunktion, die Sie an die removeHandlerAsync-Methode übergeben haben, können Sie die Eigenschaften des AsyncResult-Objekts verwenden, um die folgenden Informationen zurückzugeben.
+
+      #### <a name="examples"></a>Beispiele
+
+      ```javascript
+      function removeSettingsChangedEventHandler() {
+          Office.context.document.settings.removeHandlerAsync(Office.EventType.SettingsChanged, MyHandler);
+      }
+
+      function MyHandler(eventArgs) {
+          write('Event raised: ' + eventArgs.type);
+          doSomethingWithSettings(eventArgs.settings);
+      }
+
+      // Function that writes to a div with id='message' on the page.
+      function write(message){
+          document.getElementById('message').innerText += message; 
+      }
+      ```
+    name: 'removeHandlerAsync(eventType, callback)'
+    fullName: 'removeHandlerAsync(eventType, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'removeHandlerAsync(eventType: Office.EventType, callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: eventType
+          description: Gibt den Typ des zu entfernenden Ereignisses an. Erforderlich.
+          type:
+            - Office.EventType
+        - id: callback
+          description: 'Optional. Eine Funktion, die aufgerufen wird, wenn der Rückruf zurückgegeben wird, deren einziger Parameter vom Typ [Office. AsyncResult ist.](xref:office.Office.AsyncResult)<!-- -->.'
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.Settings.saveAsync
+    summary: Speichert die speicherinterne Kopie des Eigenschaftenbehälters für Einstellungen dauerhaft im Dokument.
+    remarks: |-
+      **Anforderungssatz**: [Einstellungen](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#settings)
+
+      Alle von einem Add-In bereits gespeicherten Einstellungen werden bei der Initialisierung geladen, daher können Sie während der Gültigkeitszeit der Sitzung einfach die Methoden set und get verwenden, um mit der speicherinternen Kopie des Einstellungseigenschaftenbehälters zu arbeiten. Wenn Sie die Einstellungen speichern möchten, damit sie bei der nächsten Verwendung des Add-Ins verfügbar sind, verwenden Sie die saveAsync-Methode.
+
+      **Hinweis**: die saveAsync-Methode speichert den Eigenschaftenbehälter im Arbeitsspeichereinstellungen in der Dokumentdatei. Die Änderungen an der Dokumentdatei selbst werden jedoch nur dann gespeichert, wenn die Einstellung Benutzer (oder autoWiederherstellen) das Dokument im Dateisystem speichert. Die refreshAsync-Methode ist nur in Zusammenarbeitsszenarien hilfreich, wenn andere Instanzen desselben Add-Ins die Einstellungen ändern und diese Änderungen für alle Instanzen zur Verfügung stehen sollen.
+
+      <table> <tr> <th>Eigenschaft</th> <th>Verwendung</th> </tr> <tr> <td>AsyncResult.value</td> <td>Gibt immer undefined zurück, weil kein Objekt oder Daten zum Abruf existieren.</td> </tr> <tr> <td>AsyncResult.status</td> <td>Bestimmen Sie, ob der Vorgang erfolgreich war oder ein Fehler aufgetreten ist.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Greifen Sie auf ein Error-Objekt zu, das nach einem fehlgeschlagenen Vorgang Fehlerinformationen bereitstellt.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Ein benutzerdefiniertes Element beliebigen Typs, das im AsyncResult-Objekt ohne Änderung zurückgegeben wird.</td> </tr> </table>
+    name: 'saveAsync(options, callback)'
+    fullName: 'saveAsync(options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'saveAsync(options?: SaveSettingsOptions, callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: options
+          description: Stellt Optionen zum Speichern von Einstellungen bereit.
+          type:
+            - office.Office.SaveSettingsOptions
+        - id: callback
+          description: 'Optional. Eine Funktion, die aufgerufen wird, wenn der Rückruf zurückgegeben wird, deren einziger Parameter vom Typ [Office. AsyncResult ist.](xref:office.Office.AsyncResult)<!-- -->.'
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.Settings.saveAsync_1
+    summary: Speichert die speicherinterne Kopie des Eigenschaftenbehälters für Einstellungen dauerhaft im Dokument.
+    remarks: |-
+      **Anforderungssatz**: [Einstellungen](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#settings)
+
+      Alle von einem Add-In bereits gespeicherten Einstellungen werden bei der Initialisierung geladen, daher können Sie während der Gültigkeitszeit der Sitzung einfach die Methoden set und get verwenden, um mit der speicherinternen Kopie des Einstellungseigenschaftenbehälters zu arbeiten. Wenn Sie die Einstellungen speichern möchten, damit sie bei der nächsten Verwendung des Add-Ins verfügbar sind, verwenden Sie die saveAsync-Methode.
+
+      **Hinweis**: die saveAsync-Methode speichert den Eigenschaftenbehälter im Arbeitsspeichereinstellungen in der Dokumentdatei. Die Änderungen an der Dokumentdatei selbst werden jedoch nur dann gespeichert, wenn die Einstellung Benutzer (oder autoWiederherstellen) das Dokument im Dateisystem speichert. Die refreshAsync-Methode ist nur in Zusammenarbeitsszenarien hilfreich, wenn andere Instanzen desselben Add-Ins die Einstellungen ändern und diese Änderungen für alle Instanzen zur Verfügung stehen sollen.
+
+      <table> <tr> <th>Eigenschaft</th> <th>Verwendung</th> </tr> <tr> <td>AsyncResult.value</td> <td>Gibt immer undefined zurück, weil kein Objekt oder Daten zum Abruf existieren.</td> </tr> <tr> <td>AsyncResult.status</td> <td>Bestimmen Sie, ob der Vorgang erfolgreich war oder ein Fehler aufgetreten ist.</td> </tr> <tr> <td>AsyncResult.error</td> <td>Greifen Sie auf ein Error-Objekt zu, das nach einem fehlgeschlagenen Vorgang Fehlerinformationen bereitstellt.</td> </tr> <tr> <td>AsyncResult.asyncContext</td> <td>Ein benutzerdefiniertes Element beliebigen Typs, das im AsyncResult-Objekt ohne Änderung zurückgegeben wird.</td> </tr> </table>
+
+      #### <a name="examples"></a>Beispiele
+
+      ```javascript
+      function persistSettings() {
+          Office.context.document.settings.saveAsync(function (asyncResult) {
+              write('Settings saved with status: ' + asyncResult.status);
+          });
+      }
+      // Function that writes to a div with id='message' on the page.
+      function write(message){
+          document.getElementById('message').innerText += message; 
+      }
+      ```
+    name: saveAsync(callback)
+    fullName: saveAsync(callback)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'saveAsync(callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: callback
+          description: 'Optional. Eine Funktion, die aufgerufen wird, wenn der Rückruf zurückgegeben wird, deren einziger Parameter vom Typ [Office. AsyncResult ist.](xref:office.Office.AsyncResult)<!-- -->.'
+          type:
+            - '(result: AsyncResult<void>) => void'
+  - uid: office.Office.Settings.set
+    summary: |-
+      Legt die angegebene Einstellung fest oder erstellt sie.
+
+      **Wichtig**: Beachten Sie, dass die Settings. Set-Methode nur die speicherinterne Kopie des Eigenschaftenbehälters für Einstellungen betrifft. To make sure that additions or changes to settings will be available to your add-in the next time the document is opened, at some point after calling the Settings.set method and before the add-in is closed, you must call the Settings.saveAsync method to persist settings in the document.
+    remarks: |-
+      **Anforderungssatz**: [Einstellungen](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/office-add-in-requirement-sets#settings)
+
+      Die Set-Methode erstellt eine neue Einstellung des angegebenen Namens, wenn Sie noch nicht vorhanden ist, oder legt eine vorhandene Einstellung des angegebenen Namens in der speicherresidenten Kopie des Eigenschaftenbehälters fest. Nach dem Aufrufen der Settings.saveAsync-Methode wird der Wert im Dokument als serialisierte JSON-Darstellung des Datentyps gespeichert. Für die Einstellungen der einzelnen Add-Ins sind jeweils 2 MB verfügbar.
+
+      #### <a name="examples"></a>Beispiele
+
+      ```javascript
+      function setMySetting() {
+          Office.context.document.settings.set('mySetting', 'mySetting value');
+      }
+      ```
+    name: 'set(name, value)'
+    fullName: 'set(name, value)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(name: string, value: any): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: name
+          description: ''
+          type:
+            - string
+        - id: value
+          description: Gibt den zu speichernden Wert an.
+          type:
+            - any

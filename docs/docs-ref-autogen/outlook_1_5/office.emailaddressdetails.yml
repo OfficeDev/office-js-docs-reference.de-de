@@ -1,78 +1,111 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: a148aab04c0bda13596df3c6afa0d0db67549c0c
-ms.sourcegitcommit: 788ab9c595c9143f8b8f4822a170e8b90d72ee1d
-ms.translationtype: MT
-ms.contentlocale: de-DE
-ms.lasthandoff: 03/06/2019
-ms.locfileid: "30413777"
 items:
-- uid: Outlook_1_5.Office.EmailAddressDetails
-  summary: >-
-    Stellt die E-Mail-Eigenschaften des Absenders oder angegebener Empfänger einer E-Mail-Nachricht oder eines Termins bereit.
+  - uid: Outlook_1_5.Office.EmailAddressDetails
+    summary: |-
+      Stellt die E-Mail-Eigenschaften des Absenders oder angegebener Empfänger einer E-Mail-Nachricht oder eines Termins bereit.
+
+      \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: '<table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr> </table>'
+    name: Office.EmailAddressDetails
+    fullName: Office.EmailAddressDetails
+    langs:
+      - typeScript
+    type: interface
+    package: Outlook_1_5
+    children:
+      - Outlook_1_5.Office.EmailAddressDetails.appointmentResponse
+      - Outlook_1_5.Office.EmailAddressDetails.displayName
+      - Outlook_1_5.Office.EmailAddressDetails.emailAddress
+      - Outlook_1_5.Office.EmailAddressDetails.recipientType
+  - uid: Outlook_1_5.Office.EmailAddressDetails.appointmentResponse
+    summary: 'Ruft die Antwort ab, die ein Teilnehmer für einen Termin abgegeben hat. Diese Eigenschaft gilt nur für einen Teilnehmer eines Termins, der von der optionalAttendees-oder requiredAttendees-Eigenschaft dargestellt wird. Diese Eigenschaft gibt undefined in anderen Szenarios zurück.'
+    name: appointmentResponse
+    fullName: appointmentResponse
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'appointmentResponse: MailboxEnums.ResponseType;'
+      return:
+        type:
+          - MailboxEnums.ResponseType
+        description: |-
 
 
-    \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr> </table>
-  name: Office.EmailAddressDetails
-  fullName: Office.EmailAddressDetails
-  langs:
-  - typeScript
-  type: interface
-  package: Outlook_1_5
-  children:
-  - Outlook_1_5.Office.EmailAddressDetails.appointmentResponse
-  - Outlook_1_5.Office.EmailAddressDetails.displayName
-  - Outlook_1_5.Office.EmailAddressDetails.emailAddress
-  - Outlook_1_5.Office.EmailAddressDetails.recipientType
-- uid: Outlook_1_5.Office.EmailAddressDetails.appointmentResponse
-  summary: Ruft die Antwort ab, die ein Teilnehmer für einen Termin abgegeben hat. Diese Eigenschaft gilt nur für einen Teilnehmer eines Termins, der von der optionalAttendees-oder requiredAttendees-Eigenschaft dargestellt wird. Diese Eigenschaft gibt undefined in anderen Szenarios zurück.
-  name: appointmentResponse
-  fullName: appointmentResponse
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'appointmentResponse: MailboxEnums.ResponseType;'
-    return:
-      type:
-      - MailboxEnums.ResponseType
-      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// The following sample provides the responses from required attendees.\n// Note that this sample needs the add-in to be in Appointment Read (Attendee) mode.\nvar requiredAttendees = Office.context.mailbox.item.requiredAttendees;\nconsole.log(\"There are \" + requiredAttendees.length + \" required attendees.\")\nrequiredAttendees.forEach(function (requiredAttendee) {\n    console.log(\"Attendee \" + requiredAttendee.displayName + \": \" + requiredAttendee.appointmentResponse);\n});\n```"
-- uid: Outlook_1_5.Office.EmailAddressDetails.displayName
-  summary: Ruft den einer E-Mail-Adresse zugeordneten Anzeigenamen ab.
-  name: displayName
-  fullName: displayName
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'displayName: string;'
-    return:
-      type:
-      - string
-      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nvar organizerName = Office.context.mailbox.item.organizer.displayName;\nconsole.log(\"Organizer: \" + organizerName);\n```"
-- uid: Outlook_1_5.Office.EmailAddressDetails.emailAddress
-  summary: Ruft die SMTP-E-Mail-Adresse ab.
-  name: emailAddress
-  fullName: emailAddress
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'emailAddress: string;'
-    return:
-      type:
-      - string
-      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nvar organizerAddress = Office.context.mailbox.item.organizer.emailAddress;\nconsole.log(\"Organizer's email address: \" + organizerAddress);\n```"
-- uid: Outlook_1_5.Office.EmailAddressDetails.recipientType
-  summary: Ruft den Typ der E-Mail-Adresse eines Empfängers ab.
-  name: recipientType
-  fullName: recipientType
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'recipientType: MailboxEnums.RecipientType;'
-    return:
-      type:
-      - MailboxEnums.RecipientType
-      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nvar requiredAttendees = Office.context.mailbox.item.requiredAttendees;\nconsole.log(\"There are \" + requiredAttendees.length + \" required attendees.\")\nrequiredAttendees.forEach(function (requiredAttendee) {\n    console.log(\"Attendee \" + requiredAttendee.displayName + \": \" + requiredAttendee.recipientType);\n});\n```"
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          // The following sample provides the responses from required attendees.
+          // Note that this sample needs the add-in to be in Appointment Read (Attendee) mode.
+          var requiredAttendees = Office.context.mailbox.item.requiredAttendees;
+          console.log("There are " + requiredAttendees.length + " required attendees.")
+          requiredAttendees.forEach(function (requiredAttendee) {
+              console.log("Attendee " + requiredAttendee.displayName + ": " + requiredAttendee.appointmentResponse);
+          });
+          ```
+  - uid: Outlook_1_5.Office.EmailAddressDetails.displayName
+    summary: Ruft den einer E-Mail-Adresse zugeordneten Anzeigenamen ab.
+    name: displayName
+    fullName: displayName
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'displayName: string;'
+      return:
+        type:
+          - string
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          var organizerName = Office.context.mailbox.item.organizer.displayName;
+          console.log("Organizer: " + organizerName);
+          ```
+  - uid: Outlook_1_5.Office.EmailAddressDetails.emailAddress
+    summary: Ruft die SMTP-E-Mail-Adresse ab.
+    name: emailAddress
+    fullName: emailAddress
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'emailAddress: string;'
+      return:
+        type:
+          - string
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          var organizerAddress = Office.context.mailbox.item.organizer.emailAddress;
+          console.log("Organizer's email address: " + organizerAddress);
+          ```
+  - uid: Outlook_1_5.Office.EmailAddressDetails.recipientType
+    summary: Ruft den Typ der E-Mail-Adresse eines Empfängers ab.
+    name: recipientType
+    fullName: recipientType
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'recipientType: MailboxEnums.RecipientType;'
+      return:
+        type:
+          - MailboxEnums.RecipientType
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          var requiredAttendees = Office.context.mailbox.item.requiredAttendees;
+          console.log("There are " + requiredAttendees.length + " required attendees.")
+          requiredAttendees.forEach(function (requiredAttendee) {
+              console.log("Attendee " + requiredAttendee.displayName + ": " + requiredAttendee.recipientType);
+          });
+          ```

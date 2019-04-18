@@ -1,128 +1,203 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 3aab01849dd521cba119e1580f8a180d58ac575e
-ms.sourcegitcommit: 016e17422cf62dc9f1de1809666e9244e41cc1a9
-ms.translationtype: MT
-ms.contentlocale: de-DE
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "26236522"
 items:
-- uid: office.Office.BindingSelectionChangedEventArgs
-  summary: Stellt Informationen zu der Bindung bereit, die das SelectionChanged-Ereignis ausgelöst hat.
-  remarks: <table><tr><td>Hosts</td><td>Access, Excel, Word</td></tr></table>
-  name: Office.BindingSelectionChangedEventArgs
-  fullName: Office.BindingSelectionChangedEventArgs
-  langs:
-  - typeScript
-  type: interface
-  package: office
-  children:
-  - office.Office.BindingSelectionChangedEventArgs.binding
-  - office.Office.BindingSelectionChangedEventArgs.columnCount
-  - office.Office.BindingSelectionChangedEventArgs.rowCount
-  - office.Office.BindingSelectionChangedEventArgs.startColumn
-  - office.Office.BindingSelectionChangedEventArgs.startRow
-  - office.Office.BindingSelectionChangedEventArgs.type
-- uid: office.Office.BindingSelectionChangedEventArgs.binding
-  summary: Ruft ein [Office.Binding](xref:office.Office.Binding) -Objekt, das die Bindung darstellt, die das SelectionChanged-Ereignis ausgelöst hat.
-  name: binding
-  fullName: binding
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'binding: Binding;'
-    return:
-      type:
-      - Binding
-- uid: office.Office.BindingSelectionChangedEventArgs.columnCount
-  summary: >-
-    Ruft die Anzahl der ausgewählten Spalten ab. Gibt 1 zurück, wenn eine einzelne Zelle ausgewählt ist.
+  - uid: office.Office.BindingSelectionChangedEventArgs
+    summary: 'Stellt Informationen zu der Bindung bereit, die das SelectionChanged-Ereignis ausgelöst hat.'
+    name: Office.BindingSelectionChangedEventArgs
+    fullName: Office.BindingSelectionChangedEventArgs
+    langs:
+      - typeScript
+    type: interface
+    package: office
+    children:
+      - office.Office.BindingSelectionChangedEventArgs.binding
+      - office.Office.BindingSelectionChangedEventArgs.columnCount
+      - office.Office.BindingSelectionChangedEventArgs.rowCount
+      - office.Office.BindingSelectionChangedEventArgs.startColumn
+      - office.Office.BindingSelectionChangedEventArgs.startRow
+      - office.Office.BindingSelectionChangedEventArgs.type
+  - uid: office.Office.BindingSelectionChangedEventArgs.binding
+    summary: 'Ruft ein [Office. Binding-](xref:office.Office.Binding) Objekt ab, das die Bindung darstellt, die das SelectionChanged-Ereignis ausgelöst hat.'
+    name: binding
+    fullName: binding
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'binding: Binding;'
+      return:
+        type:
+          - Binding
+  - uid: office.Office.BindingSelectionChangedEventArgs.columnCount
+    summary: "Ruft die Anzahl der ausgewählten Spalten ab. Wenn eine einzelne Zelle ausgewählt wird, wird\_1 zurückgegeben.\n\nWenn Benutzer eine nicht zusammenhängende Auswahl treffen, wird die Anzahl der letzten zusammenhängenden Auswahl innerhalb der Bindung zurückgegeben.\n\nFür Word funktioniert diese Eigenschaft nur für Bindungen von [Office. BindingType](xref:office.Office.BindingType) \"Table\". Lautet der Typ der Bindung \"matrix\", wird null zurückgegeben. Für den Aufruf tritt auch ein Fehler auf, wenn die Tabelle zusammengeführte Zellen enthält, da die Struktur der Tabelle einheitlich sein muss, damit diese Eigenschaft richtig funktioniert."
+    name: columnCount
+    fullName: columnCount
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'columnCount: number;'
+      return:
+        type:
+          - number
+        description: |-
 
 
-    Wenn Benutzer eine nicht zusammenhängende Auswahl treffen, wird die Anzahl der letzten zusammenhängenden Auswahl innerhalb der Bindung zurückgegeben.
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          // The following example adds an event handler for the SelectionChanged event to the binding with an id of myTable.
+          // When the user changes the selection, the handler displays the coordinates of the first cell in the selection,
+          // and the number of row and columns selected.
+          function addSelectionHandler() {
+              Office.context.document.bindings.getByIdAsync("myTable", function (result) {
+                  result.value.addHandlerAsync("bindingSelectionChanged", myHandler);
+              });
+          }
+
+          // Display selection start coordinates and row/column count.
+          function myHandler(bArgs) {
+              write("Selection start row/col: " + bArgs.startRow + "," + bArgs.startColumn);
+              write("Selection row count: " + bArgs.rowCount);
+              write("Selection col count: " + bArgs.columnCount);
+          }
+          // Function that writes to a div with id='message' on the page.
+          function write(message){
+              document.getElementById('message').innerText += message; 
+          }
+          ```
+  - uid: office.Office.BindingSelectionChangedEventArgs.rowCount
+    summary: "Ruft die Anzahl der ausgewählten Zeilen ab. Wenn eine einzelne Zelle ausgewählt wird, wird\_1 zurückgegeben.\n\nWenn Benutzer eine nicht zusammenhängende Auswahl treffen, wird die Anzahl der letzten zusammenhängenden Auswahl innerhalb der Bindung zurückgegeben.\n\nFür Word funktioniert diese Eigenschaft nur für Bindungen von [Office. BindingType](xref:office.Office.BindingType) \"Table\". Lautet der Typ der Bindung \"matrix\", wird null zurückgegeben. Für den Aufruf tritt auch ein Fehler auf, wenn die Tabelle zusammengeführte Zellen enthält, da die Struktur der Tabelle einheitlich sein muss, damit diese Eigenschaft richtig funktioniert."
+    name: rowCount
+    fullName: rowCount
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'rowCount: number;'
+      return:
+        type:
+          - number
+        description: |-
 
 
-    Für Word wird diese Eigenschaft nur für [Office.BindingType](xref:office.Office.BindingType) "Table"-Bindungen verwendet werden. Wenn die Bindung vom Typ "Matrix" ist, wird Null zurückgegeben. Darüber hinaus wird der Anruf fehl, wenn die Tabelle verbundene Zellen enthält, da die Struktur der Tabelle uniform für diese Eigenschaft ordnungsgemäß ausgeführt werden muss.
-  name: columnCount
-  fullName: columnCount
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'columnCount: number;'
-    return:
-      type:
-      - number
-      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// The following example adds an event handler for the SelectionChanged event to the binding with an id of myTable.\n// When the user changes the selection, the handler displays the coordinates of the first cell in the selection,\n// and the number of row and columns selected.\nfunction addSelectionHandler() {\n    Office.context.document.bindings.getByIdAsync(\"myTable\", function (result) {\n        result.value.addHandlerAsync(\"bindingSelectionChanged\", myHandler);\n    });\n}\n\n// Display selection start coordinates and row/column count.\nfunction myHandler(bArgs) {\n    write(\"Selection start row/col: \" + bArgs.startRow + \",\" + bArgs.startColumn);\n    write(\"Selection row count: \" + bArgs.rowCount);\n    write(\"Selection col count: \" + bArgs.columnCount);\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-- uid: office.Office.BindingSelectionChangedEventArgs.rowCount
-  summary: >-
-    Ruft die Anzahl der ausgewählten Zeilen ab. Gibt 1 zurück, wenn eine einzelne Zelle ausgewählt ist.
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          // The following example adds an event handler for the SelectionChanged event to the binding with an id of myTable.
+          // When the user changes the selection, the handler displays the coordinates of the first cell in the selection,
+          // and the number of row and columns selected.
+          function addSelectionHandler() {
+              Office.context.document.bindings.getByIdAsync("myTable", function (result) {
+                  result.value.addHandlerAsync("bindingSelectionChanged", myHandler);
+              });
+          }
+
+          // Display selection start coordinates and row/column count.
+          function myHandler(bArgs) {
+              write("Selection start row/col: " + bArgs.startRow + "," + bArgs.startColumn);
+              write("Selection row count: " + bArgs.rowCount);
+              write("Selection col count: " + bArgs.columnCount);
+          }
+          // Function that writes to a div with id='message' on the page.
+          function write(message){
+              document.getElementById('message').innerText += message; 
+          }
+          ```
+  - uid: office.Office.BindingSelectionChangedEventArgs.startColumn
+    summary: |-
+      Der nullbasierte Index der ersten Spalte der Auswahl ab der äußersten linken Spalte der Bindung.
+
+      Wenn Benutzer eine nicht zusammenhängende Auswahl treffen, werden die Koordinaten der letzten zusammenhängenden Auswahl innerhalb der Bindung zurückgegeben.
+
+      Für Word funktioniert diese Eigenschaft nur für Bindungen von [Office. BindingType](xref:office.Office.BindingType) "Table". Lautet der Typ der Bindung "matrix", wird null zurückgegeben. Für den Aufruf tritt auch ein Fehler auf, wenn die Tabelle zusammengeführte Zellen enthält, da die Struktur der Tabelle einheitlich sein muss, damit diese Eigenschaft richtig funktioniert.
+    name: startColumn
+    fullName: startColumn
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'startColumn: number;'
+      return:
+        type:
+          - number
+        description: |-
 
 
-    Wenn Benutzer eine nicht zusammenhängende Auswahl treffen, wird die Anzahl der letzten zusammenhängenden Auswahl innerhalb der Bindung zurückgegeben.
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          // The following example adds an event handler for the SelectionChanged event to the binding with an id of myTable.
+          // When the user changes the selection, the handler displays the coordinates of the first cell in the selection,
+          // and the number of row and columns selected.
+          function addSelectionHandler() {
+              Office.context.document.bindings.getByIdAsync("myTable", function (result) {
+                  result.value.addHandlerAsync("bindingSelectionChanged", myHandler);
+              });
+          }
+
+          // Display selection start coordinates and row/column count.
+          function myHandler(bArgs) {
+              write("Selection start row/col: " + bArgs.startRow + "," + bArgs.startColumn);
+              write("Selection row count: " + bArgs.rowCount);
+              write("Selection col count: " + bArgs.columnCount);
+          }
+          // Function that writes to a div with id='message' on the page.
+          function write(message){
+              document.getElementById('message').innerText += message; 
+          }
+          ```
+  - uid: office.Office.BindingSelectionChangedEventArgs.startRow
+    summary: |-
+      Der nullbasierte Index der ersten Zeile der Auswahl ab der ersten Zeile der Bindung.
+
+      Wenn Benutzer eine nicht zusammenhängende Auswahl treffen, werden die Koordinaten der letzten zusammenhängenden Auswahl innerhalb der Bindung zurückgegeben.
+
+      Für Word funktioniert diese Eigenschaft nur für Bindungen von [Office. BindingType](xref:office.Office.BindingType) "Table". Lautet der Typ der Bindung "matrix", wird null zurückgegeben. Für den Aufruf tritt auch ein Fehler auf, wenn die Tabelle zusammengeführte Zellen enthält, da die Struktur der Tabelle einheitlich sein muss, damit diese Eigenschaft richtig funktioniert.
+    name: startRow
+    fullName: startRow
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'startRow: number;'
+      return:
+        type:
+          - number
+        description: |-
 
 
-    Für Word wird diese Eigenschaft nur für [Office.BindingType](xref:office.Office.BindingType) "Table"-Bindungen verwendet werden. Wenn die Bindung vom Typ "Matrix" ist, wird Null zurückgegeben. Darüber hinaus wird der Anruf fehl, wenn die Tabelle verbundene Zellen enthält, da die Struktur der Tabelle uniform für diese Eigenschaft ordnungsgemäß ausgeführt werden muss.
-  name: rowCount
-  fullName: rowCount
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'rowCount: number;'
-    return:
-      type:
-      - number
-      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// The following example adds an event handler for the SelectionChanged event to the binding with an id of myTable.\n// When the user changes the selection, the handler displays the coordinates of the first cell in the selection,\n// and the number of row and columns selected.\nfunction addSelectionHandler() {\n    Office.context.document.bindings.getByIdAsync(\"myTable\", function (result) {\n        result.value.addHandlerAsync(\"bindingSelectionChanged\", myHandler);\n    });\n}\n\n// Display selection start coordinates and row/column count.\nfunction myHandler(bArgs) {\n    write(\"Selection start row/col: \" + bArgs.startRow + \",\" + bArgs.startColumn);\n    write(\"Selection row count: \" + bArgs.rowCount);\n    write(\"Selection col count: \" + bArgs.columnCount);\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-- uid: office.Office.BindingSelectionChangedEventArgs.startColumn
-  summary: >-
-    Der nullbasierte Index der ersten Spalte der Auswahl ab der äußersten linken Spalte der Bindung.
+          #### <a name="examples"></a>Beispiele
 
+          ```javascript
+          // The following example adds an event handler for the SelectionChanged event to the binding with an id of myTable.
+          // When the user changes the selection, the handler displays the coordinates of the first cell in the selection,
+          // and the number of row and columns selected.
+          function addSelectionHandler() {
+              Office.context.document.bindings.getByIdAsync("myTable", function (result) {
+                  result.value.addHandlerAsync("bindingSelectionChanged", myHandler);
+              });
+          }
 
-    Wenn Benutzer eine nicht zusammenhängende Auswahl treffen, werden die Koordinaten der letzten zusammenhängenden Auswahl innerhalb der Bindung zurückgegeben.
-
-
-    Für Word wird diese Eigenschaft nur für [Office.BindingType](xref:office.Office.BindingType) "Table"-Bindungen verwendet werden. Wenn die Bindung vom Typ "Matrix" ist, wird Null zurückgegeben. Darüber hinaus wird der Anruf fehl, wenn die Tabelle verbundene Zellen enthält, da die Struktur der Tabelle uniform für diese Eigenschaft ordnungsgemäß ausgeführt werden muss.
-  name: startColumn
-  fullName: startColumn
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'startColumn: number;'
-    return:
-      type:
-      - number
-      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// The following example adds an event handler for the SelectionChanged event to the binding with an id of myTable.\n// When the user changes the selection, the handler displays the coordinates of the first cell in the selection,\n// and the number of row and columns selected.\nfunction addSelectionHandler() {\n    Office.context.document.bindings.getByIdAsync(\"myTable\", function (result) {\n        result.value.addHandlerAsync(\"bindingSelectionChanged\", myHandler);\n    });\n}\n\n// Display selection start coordinates and row/column count.\nfunction myHandler(bArgs) {\n    write(\"Selection start row/col: \" + bArgs.startRow + \",\" + bArgs.startColumn);\n    write(\"Selection row count: \" + bArgs.rowCount);\n    write(\"Selection col count: \" + bArgs.columnCount);\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-- uid: office.Office.BindingSelectionChangedEventArgs.startRow
-  summary: >-
-    Der nullbasierte Index der ersten Zeile der Auswahl ab der ersten Zeile der Bindung.
-
-
-    Wenn Benutzer eine nicht zusammenhängende Auswahl treffen, werden die Koordinaten der letzten zusammenhängenden Auswahl innerhalb der Bindung zurückgegeben.
-
-
-    Für Word wird diese Eigenschaft nur für [Office.BindingType](xref:office.Office.BindingType) "Table"-Bindungen verwendet werden. Wenn die Bindung vom Typ "Matrix" ist, wird Null zurückgegeben. Darüber hinaus wird der Anruf fehl, wenn die Tabelle verbundene Zellen enthält, da die Struktur der Tabelle uniform für diese Eigenschaft ordnungsgemäß ausgeführt werden muss.
-  name: startRow
-  fullName: startRow
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'startRow: number;'
-    return:
-      type:
-      - number
-      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// The following example adds an event handler for the SelectionChanged event to the binding with an id of myTable.\n// When the user changes the selection, the handler displays the coordinates of the first cell in the selection,\n// and the number of row and columns selected.\nfunction addSelectionHandler() {\n    Office.context.document.bindings.getByIdAsync(\"myTable\", function (result) {\n        result.value.addHandlerAsync(\"bindingSelectionChanged\", myHandler);\n    });\n}\n\n// Display selection start coordinates and row/column count.\nfunction myHandler(bArgs) {\n    write(\"Selection start row/col: \" + bArgs.startRow + \",\" + bArgs.startColumn);\n    write(\"Selection row count: \" + bArgs.rowCount);\n    write(\"Selection col count: \" + bArgs.columnCount);\n}\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-- uid: office.Office.BindingSelectionChangedEventArgs.type
-  summary: Ruft einen [Office.EventType](xref:office.Office.EventType) -Enumerationswert ab, der die Art des Ereignisses identifiziert, die ausgelöst wurde.
-  name: type
-  fullName: type
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'type: EventType;'
-    return:
-      type:
-      - EventType
+          // Display selection start coordinates and row/column count.
+          function myHandler(bArgs) {
+              write("Selection start row/col: " + bArgs.startRow + "," + bArgs.startColumn);
+              write("Selection row count: " + bArgs.rowCount);
+              write("Selection col count: " + bArgs.columnCount);
+          }
+          // Function that writes to a div with id='message' on the page.
+          function write(message){
+              document.getElementById('message').innerText += message; 
+          }
+          ```
+  - uid: office.Office.BindingSelectionChangedEventArgs.type
+    summary: 'Ruft einen [Office. EventType](xref:office.Office.EventType) -Enumerationswert ab, der die Art des ausgelösten Ereignisses identifiziert.'
+    name: type
+    fullName: type
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'type: EventType;'
+      return:
+        type:
+          - EventType

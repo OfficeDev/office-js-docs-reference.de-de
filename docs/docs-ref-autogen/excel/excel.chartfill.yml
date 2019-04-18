@@ -1,116 +1,159 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 3d69325801545906c9b7935094684f4902bd6999
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
-ms.translationtype: MT
-ms.contentlocale: de-DE
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30096479"
 items:
-- uid: excel.Excel.ChartFill
-  summary: >-
-    Die Füllung für ein Diagrammelement.
+  - uid: excel.Excel.ChartFill
+    summary: |-
+      Die Füllung für ein Diagrammelement.
+
+      \[[API-Satz: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: Excel.ChartFill
+    fullName: Excel.ChartFill
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - office.OfficeExtension.ClientObject
+    package: excel
+    children:
+      - excel.Excel.ChartFill.clear
+      - excel.Excel.ChartFill.context
+      - excel.Excel.ChartFill.load
+      - excel.Excel.ChartFill.setSolidColor
+      - excel.Excel.ChartFill.toJSON
+  - uid: excel.Excel.ChartFill.clear
+    summary: |-
+      Entfernen der Füllfarbe eines Diagrammelements
+
+      \[[API-Satz: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: clear()
+    fullName: clear()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'clear(): void;'
+      return:
+        type:
+          - void
+        description: |-
 
 
-    \[[API-Satz: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: Excel.ChartFill
-  fullName: Excel.ChartFill
-  langs:
-  - typeScript
-  type: class
-  extends:
-  - office.OfficeExtension.ClientObject
-  package: excel
-  children:
-  - excel.Excel.ChartFill.clear
-  - excel.Excel.ChartFill.context
-  - excel.Excel.ChartFill.load
-  - excel.Excel.ChartFill.setSolidColor
-  - excel.Excel.ChartFill.toJSON
-- uid: excel.Excel.ChartFill.clear
-  summary: >-
-    Dient zum Löschen der Füllfarbe eines Diagrammelements.
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          // Clear the line format of the major Gridlines on value axis of the Chart named "Chart1"
+          Excel.run(function (ctx) { 
+              var gridlines = ctx.workbook.worksheets.getItem("Sheet1").charts.getItem("Chart1").axes.valueAxis.majorGridlines;
+              gridlines.format.line.clear();
+              return ctx.sync().then(function() {
+                      console.log("Chart Major Gridlines Format Cleared");
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: excel.Excel.ChartFill.context
+    summary: Der dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office-Hostanwendung verbunden.
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - RequestContext
+  - uid: excel.Excel.ChartFill.load
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "context.sync()" aufrufen.
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: string | string[] | OfficeExtension.LoadOption): Excel.ChartFill;'
+      return:
+        type:
+          - excel.Excel.ChartFill
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - 'string | string[] | OfficeExtension.LoadOption'
+  - uid: excel.Excel.ChartFill.setSolidColor
+    summary: |-
+      Legt die Füllung eines Diagrammelements auf einfarbige Füllung fest.
+
+      \[[API-Satz: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: setSolidColor(color)
+    fullName: setSolidColor(color)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setSolidColor(color: string): void;'
+      return:
+        type:
+          - void
+        description: |-
 
 
-    \[[API-Satz: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: clear()
-  fullName: clear()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'clear(): void;'
-    return:
-      type:
-      - void
-      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// Clear the line format of the major Gridlines on value axis of the Chart named \"Chart1\"\nExcel.run(function (ctx) { \n    var gridlines = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\").axes.valueAxis.majorGridlines;\n    gridlines.format.line.clear();\n    return ctx.sync().then(function() {\n            console.log(\"Chart Major Gridlines Format Cleared\");\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-- uid: excel.Excel.ChartFill.context
-  summary: Der dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office-Hostanwendung verbunden.
-  name: context
-  fullName: context
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'context: RequestContext;'
-    return:
-      type:
-      - RequestContext
-- uid: excel.Excel.ChartFill.load
-  summary: Warteschlangen bis ein Befehl zum Laden der angegebenen Eigenschaften des Objekts. Sie müssen "context. Sync ()" aufrufen, bevor Sie die Eigenschaften lesen.
-  name: load(option)
-  fullName: load(option)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(option?: string | string[] | OfficeExtension.LoadOption): Excel.ChartFill;'
-    return:
-      type:
-      - excel.Excel.ChartFill
-      description: ''
-    parameters:
-    - id: option
-      description: ''
-      type:
-      - string | string[] | OfficeExtension.LoadOption
-- uid: excel.Excel.ChartFill.setSolidColor
-  summary: >-
-    Legt die Füllung eines Diagrammelements auf einfarbige Füllung fest.
+          #### <a name="examples"></a>Beispiele
 
+          ```javascript
+          Excel.run(function (ctx) { 
+              var chart = ctx.workbook.worksheets.getItem("Sheet1").charts.getItem("Chart1");    
 
-    \[[API-Satz: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  name: setSolidColor(color)
-  fullName: setSolidColor(color)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'setSolidColor(color: string): void;'
-    return:
-      type:
-      - void
-      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\");    \n\n    chart.format.fill.setSolidColor(\"#FF0000\");\n\n    return ctx.sync().then(function() {\n            console.log(\"Chart1 Background Color Changed.\");\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```typescript\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n    let pointsCollection = sheet.charts.getItemAt(0).series.getItemAt(0).points;\n    let point = pointsCollection.getItemAt(2);\n\n    // Set color for chart point.\n    point.format.fill.setSolidColor('red');\n\n    await context.sync();        \n});\n```"
-    parameters:
-    - id: color
-      description: HTML-Farbcode, der die Farbe der Rahmenlinie der Form \#RRGGBB (beispielsweise "FFA500") oder als benannte HTML-Farbe (z. b. "Orange") darstellt.
-      type:
-      - string
-- uid: excel.Excel.ChartFill.toJSON
-  summary: ÜberSchreibt die `toJSON()` JavaScript-Methode, um eine nützlichere Ausgabe bereitzustellen, wenn ein API `JSON.stringify()` <!-- -->-Objekt an übergeben wird. (`JSON.stringify`<!-- -->ruft wiederum die `toJSON` Methode des Objekts auf, das übergeben wird.) Während das ursprüngliche Excel. ChartFill-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt `Excel.Interfaces.ChartFillData` <!-- -->(typisiert als) zurück, das flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.
-  name: toJSON()
-  fullName: toJSON()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: >-
-      toJSON(): {
-                  [key: string]: string;
-              };
-    return:
-      type:
-      - >-
-        {
+              chart.format.fill.setSolidColor("#FF0000");
+
+              return ctx.sync().then(function() {
+                      console.log("Chart1 Background Color Changed.");
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+
+              let pointsCollection = sheet.charts.getItemAt(0).series.getItemAt(0).points;
+              let point = pointsCollection.getItemAt(2);
+
+              // Set color for chart point.
+              point.format.fill.setSolidColor('red');
+
+              await context.sync();        
+          });
+          ```
+      parameters:
+        - id: color
+          description: 'HTML-Farbcode, der die Farbe der Rahmenlinie der Form \#RRGGBB (beispielsweise "FFA500") oder als benannte HTML-Farbe (z. b. "Orange") darstellt.'
+          type:
+            - string
+  - uid: excel.Excel.ChartFill.toJSON
+    summary: 'ÜberSchreibt die `toJSON()` JavaScript-Methode, um eine nützlichere Ausgabe bereitzustellen, wenn ein API-Objekt an`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->Ruft wiederum die `toJSON` Methode des Objekts auf, das übergeben wird.) Während das ursprüngliche Excel. ChartFill-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt zurück (typisiert als`Excel.Interfaces.ChartFillData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: |-
+        toJSON(): {
                     [key: string]: string;
-                }
-      description: ''
+                };
+      return:
+        type:
+          - |-
+            {
+                        [key: string]: string;
+                    }
+        description: ''

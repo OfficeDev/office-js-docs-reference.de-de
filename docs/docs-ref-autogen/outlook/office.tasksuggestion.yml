@@ -1,72 +1,59 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: bf36b5fc45b43ef363d7170c348e8b330f0c2539
-ms.sourcegitcommit: b0b614f5315ab2e5c1e0ea51c687498f87684a07
-ms.translationtype: MT
-ms.contentlocale: de-DE
-ms.lasthandoff: 02/15/2019
-ms.locfileid: "30055941"
 items:
-- uid: outlook.Office.TaskSuggestion
-  summary: >-
-    Stellt einen in einem Element identifizierten vorgeschlagenen Vorgang dar. Nur Lesemodus.
+  - uid: outlook.Office.TaskSuggestion
+    summary: |-
+      Stellt einen in einem Element identifizierten vorgeschlagenen Vorgang dar. Nur Lesemodus.
 
+      Die Liste der in einer e-Mail-Nachricht vorgeschlagenen Aufgaben wird in der taskSuggestions-Eigenschaft des [Entities](xref:outlook.Office.Entities) -Objekts zurückgegeben, das zurückgegeben wird, wenn die getentities-oder die getEntitiesByType-Methode für das aktive Element aufgerufen wird.
 
-    Die Liste der in einer e-Mail-Nachricht vorgeschlagenen Aufgaben wird in der taskSuggestions-Eigenschaft des [Entities](xref:outlook.Office.Entities) -Objekts zurückgegeben, das zurückgegeben wird, wenn die getentities-oder die getEntitiesByType-Methode für das aktive Element aufgerufen wird.
+      \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
 
+      ** [Anwendbarer Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Lesen
 
-    \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: >-
-    <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Lesen</td></tr> </table>
+      #### <a name="examples"></a>Beispiele
 
-    ####Beispiele
-
-
-    ```javascript
-
-    var item = Office.context.mailbox.item;
-
-    // Get an array of strings that represent task suggestions in the current item's body.
-
-    var taskSuggestions = item.getEntitiesByType(Office.MailboxEnums.EntityType.TaskSuggestion);
-
-    console.log("There are " + taskSuggestions.length + " task suggestions.")
-
-    taskSuggestions.forEach(function (taskSuggestion) {
-        console.log("Assignees: " + JSON.stringify(taskSuggestion.assignees));
-        console.log("Task: " + JSON.stringify(taskSuggestion.taskString));
-    });
-
-    ```
-  name: Office.TaskSuggestion
-  fullName: Office.TaskSuggestion
-  langs:
-  - typeScript
-  type: interface
-  package: outlook
-  children:
-  - outlook.Office.TaskSuggestion.assignees
-  - outlook.Office.TaskSuggestion.taskString
-- uid: outlook.Office.TaskSuggestion.assignees
-  summary: Ruft die Benutzer ab, denen ein vorgeschlagener Vorgang zugewiesen werden soll.
-  name: assignees
-  fullName: assignees
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'assignees: EmailUser[];'
-    return:
-      type:
-      - EmailUser[]
-- uid: outlook.Office.TaskSuggestion.taskString
-  summary: Ruft den Text eines Elements ab, das als Vorgangsvorschlag identifiziert wurde.
-  name: taskString
-  fullName: taskString
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'taskString: string;'
-    return:
-      type:
-      - string
+      ```javascript
+      var item = Office.context.mailbox.item;
+      // Get an array of strings that represent task suggestions in the current item's body.
+      var taskSuggestions = item.getEntitiesByType(Office.MailboxEnums.EntityType.TaskSuggestion);
+      console.log("There are " + taskSuggestions.length + " task suggestions.")
+      taskSuggestions.forEach(function (taskSuggestion) {
+          console.log("Assignees: " + JSON.stringify(taskSuggestion.assignees));
+          console.log("Task: " + JSON.stringify(taskSuggestion.taskString));
+      });
+      ```
+    name: Office.TaskSuggestion
+    fullName: Office.TaskSuggestion
+    langs:
+      - typeScript
+    type: interface
+    package: outlook
+    children:
+      - outlook.Office.TaskSuggestion.assignees
+      - outlook.Office.TaskSuggestion.taskString
+  - uid: outlook.Office.TaskSuggestion.assignees
+    summary: 'Ruft die Benutzer ab, denen ein vorgeschlagener Vorgang zugewiesen werden soll.'
+    name: assignees
+    fullName: assignees
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'assignees: EmailUser[];'
+      return:
+        type:
+          - 'EmailUser[]'
+  - uid: outlook.Office.TaskSuggestion.taskString
+    summary: 'Ruft den Text eines Elements ab, das als Vorgangsvorschlag identifiziert wurde.'
+    name: taskString
+    fullName: taskString
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'taskString: string;'
+      return:
+        type:
+          - string
