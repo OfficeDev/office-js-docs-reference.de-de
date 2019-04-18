@@ -1,38 +1,50 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: e991f9f629cce48dccb4587d83e43eed37143808
-ms.sourcegitcommit: d356f1545c328d4b59ce814fcab8191e4231f1dc
-ms.translationtype: MT
-ms.contentlocale: de-DE
-ms.lasthandoff: 02/13/2019
-ms.locfileid: "29981003"
 items:
-- uid: powerpoint
-  name: powerpoint
-  fullName: powerpoint
-  langs:
-  - typeScript
-  type: package
-  children:
-  - powerpoint.PowerPoint.createPresentation
-- uid: powerpoint.PowerPoint.createPresentation
-  summary: >-
-    Erstellt und öffnet eine neue Präsentation. Optional kann die Präsentation mit einer base64-codierten PPTX-Format-Datei bereits ausgefüllte sein.
+  - uid: powerpoint
+    name: powerpoint
+    fullName: powerpoint
+    langs:
+      - typeScript
+    type: package
+    children:
+      - powerpoint.PowerPoint.createPresentation
+  - uid: powerpoint.PowerPoint.createPresentation
+    summary: |-
+      Erstellt eine neue Präsentation und öffnet sie. Optional kann die Präsentation mit einer Base64-codierten pptx-Datei vorab aufgefüllt werden.
+
+      \[[API-Satz: PowerPointApi 1,1](/office/dev/add-ins/reference/javascript-api-for-office)\]
+    name: PowerPoint.createPresentation
+    fullName: PowerPoint.createPresentation
+    langs:
+      - typeScript
+    type: function
+    syntax:
+      content: 'export function createPresentation(base64File?: string): Promise<void>;'
+      return:
+        type:
+          - Promise<void>
+        description: |-
 
 
-    \[[API-Satz: PowerPointApi 1.1](/office/dev/add-ins/reference/javascript-api-for-office)\]
-  name: PowerPoint.createPresentation
-  fullName: PowerPoint.createPresentation
-  langs:
-  - typeScript
-  type: function
-  syntax:
-    content: 'export function createPresentation(base64File?: string): Promise<void>;'
-    return:
-      type:
-      - Promise<void>
-      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nvar myFile = document.getElementById(\"file\");\nvar reader = new FileReader();\n\nreader.onload = function (event) {\n    // strip off the metadata before the base64-encoded string\n    var startIndex = event.target.result.indexOf(\"base64,\");\n    var copyBase64 = event.target.result.substr(startIndex + 7);\n\n    PowerPoint.createPresentation(copyBase64);        \n};\n\n// read in the file as a data URL so we can parse the base64-encoded string\nreader.readAsDataURL(myFile.files[0]);\n```"
-    parameters:
-    - id: base64File
-      description: Optional. Die base64-codierten PPTX-Format-Datei. Der Standardwert ist null.
-      type:
-      - string
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          var myFile = document.getElementById("file");
+          var reader = new FileReader();
+
+          reader.onload = function (event) {
+              // strip off the metadata before the base64-encoded string
+              var startIndex = event.target.result.indexOf("base64,");
+              var copyBase64 = event.target.result.substr(startIndex + 7);
+
+              PowerPoint.createPresentation(copyBase64);        
+          };
+
+          // read in the file as a data URL so we can parse the base64-encoded string
+          reader.readAsDataURL(myFile.files[0]);
+          ```
+      parameters:
+        - id: base64File
+          description: Optional. Die Base64-codierte pptx-Datei. Der Standardwert ist null.
+          type:
+            - string
