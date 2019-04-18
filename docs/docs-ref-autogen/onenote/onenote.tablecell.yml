@@ -1,421 +1,556 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 7c706a6e846284aa4231c3941f7a6c833eb8b125
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
-ms.translationtype: MT
-ms.contentlocale: de-DE
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30093560"
 items:
-- uid: onenote.OneNote.TableCell
-  summary: >-
-    <span data-ttu-id="9fa8a-101">Stellt eine Zelle in einer OneNote-Tabelle dar.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-101">Represents a cell in a OneNote table.</span></span>
+  - uid: onenote.OneNote.TableCell
+    summary: |-
+      <span data-ttu-id="9271a-101">Stellt eine Zelle in einer OneNote-Tabelle dar.</span><span class="sxs-lookup"><span data-stu-id="9271a-101">Represents a cell in a OneNote table.</span></span>
+
+      <span data-ttu-id="9271a-102">\[[API-Satz: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9271a-102">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: OneNote.TableCell
+    fullName: OneNote.TableCell
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - office.OfficeExtension.ClientObject
+    package: onenote
+    children:
+      - onenote.OneNote.TableCell.appendHtml
+      - onenote.OneNote.TableCell.appendImage
+      - onenote.OneNote.TableCell.appendRichText
+      - onenote.OneNote.TableCell.appendTable
+      - onenote.OneNote.TableCell.cellIndex
+      - onenote.OneNote.TableCell.clear
+      - onenote.OneNote.TableCell.context
+      - onenote.OneNote.TableCell.id
+      - onenote.OneNote.TableCell.load
+      - onenote.OneNote.TableCell.load_1
+      - onenote.OneNote.TableCell.load_2
+      - onenote.OneNote.TableCell.paragraphs
+      - onenote.OneNote.TableCell.parentRow
+      - onenote.OneNote.TableCell.rowIndex
+      - onenote.OneNote.TableCell.set
+      - onenote.OneNote.TableCell.set_1
+      - onenote.OneNote.TableCell.shadingColor
+      - onenote.OneNote.TableCell.toJSON
+      - onenote.OneNote.TableCell.track
+      - onenote.OneNote.TableCell.untrack
+  - uid: onenote.OneNote.TableCell.appendHtml
+    summary: |-
+      <span data-ttu-id="9271a-103">Fügt den angegebenen HTML-Code am Ende der TableCell hinzu.</span><span class="sxs-lookup"><span data-stu-id="9271a-103">Adds the specified HTML to the bottom of the TableCell.</span></span>
+
+      <span data-ttu-id="9271a-104">\[[API-Satz: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9271a-104">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: appendHtml(html)
+    fullName: appendHtml(html)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'appendHtml(html: string): void;'
+      return:
+        type:
+          - void
+        description: |-
 
 
-    <span data-ttu-id="9fa8a-102">\[[API-Satz: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9fa8a-102">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
-  name: OneNote.TableCell
-  fullName: OneNote.TableCell
-  langs:
-  - typeScript
-  type: class
-  extends:
-  - office.OfficeExtension.ClientObject
-  package: onenote
-  children:
-  - onenote.OneNote.TableCell.appendHtml
-  - onenote.OneNote.TableCell.appendImage
-  - onenote.OneNote.TableCell.appendRichText
-  - onenote.OneNote.TableCell.appendTable
-  - onenote.OneNote.TableCell.cellIndex
-  - onenote.OneNote.TableCell.clear
-  - onenote.OneNote.TableCell.context
-  - onenote.OneNote.TableCell.id
-  - onenote.OneNote.TableCell.load
-  - onenote.OneNote.TableCell.load_1
-  - onenote.OneNote.TableCell.load_2
-  - onenote.OneNote.TableCell.paragraphs
-  - onenote.OneNote.TableCell.parentRow
-  - onenote.OneNote.TableCell.rowIndex
-  - onenote.OneNote.TableCell.set
-  - onenote.OneNote.TableCell.set_1
-  - onenote.OneNote.TableCell.shadingColor
-  - onenote.OneNote.TableCell.toJSON
-  - onenote.OneNote.TableCell.track
-  - onenote.OneNote.TableCell.untrack
-- uid: onenote.OneNote.TableCell.appendHtml
-  summary: >-
-    <span data-ttu-id="9fa8a-103">Fügt den angegebenen HTML-Code am Ende der TableCell hinzu.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-103">Adds the specified HTML to the bottom of the TableCell.</span></span>
+          #### <a name="examples"></a><span data-ttu-id="9271a-105">Beispiele</span><span class="sxs-lookup"><span data-stu-id="9271a-105">Examples</span></span>
+
+          ```javascript
+          OneNote.run(function(ctx) {
+              var app = ctx.application;
+              var outline = app.getActiveOutline();
+              
+              // Queue a command to load outline.paragraphs and their types.
+              ctx.load(outline, "paragraphs, paragraphs/type");
+              
+              // Run the queued commands, and return a promise to indicate task completion.
+              return ctx.sync().then(function () {
+                  var paragraphs = outline.paragraphs;
+                  
+                  // for each table, get a table cell at row one and column two and add "Hello".
+                  for (var i = 0; i < paragraphs.items.length; i++) {
+                      var paragraph = paragraphs.items[i];
+                      if (paragraph.type == "Table") {
+                          var table = paragraph.table;
+                          var cell = table.getCell(1 /*Row Index*/, 2 /*Column Index*/);
+                          cell.appendHtml("<p>Hello</p>");
+                      }
+                  }
+                  return ctx.sync();
+              })
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: html
+          description: '<span data-ttu-id="9271a-106">Die HTML-Zeichenfolge, die angefügt werden soll.</span><span class="sxs-lookup"><span data-stu-id="9271a-106">The HTML string to append.</span></span> <span data-ttu-id="9271a-107">Siehe [unterstützte HTML](https://docs.microsoft.com/office/dev/add-ins/onenote/onenote-add-ins-page-content#supported-html) für die JavaScript-API für OneNote-Add-Ins.</span><span class="sxs-lookup"><span data-stu-id="9271a-107">See [Supported HTML](https://docs.microsoft.com/office/dev/add-ins/onenote/onenote-add-ins-page-content#supported-html) for the OneNote add-ins JavaScript API.</span></span>'
+          type:
+            - string
+  - uid: onenote.OneNote.TableCell.appendImage
+    summary: |-
+      <span data-ttu-id="9271a-108">Fügt das angegebene Bild der Tabellenzelle hinzu.</span><span class="sxs-lookup"><span data-stu-id="9271a-108">Adds the specified image to table cell.</span></span>
+
+      <span data-ttu-id="9271a-109">\[[API-Satz: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9271a-109">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: 'appendImage(base64EncodedImage, width, height)'
+    fullName: 'appendImage(base64EncodedImage, width, height)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'appendImage(base64EncodedImage: string, width: number, height: number): OneNote.Image;'
+      return:
+        type:
+          - OneNote.Image
+        description: ''
+      parameters:
+        - id: base64EncodedImage
+          description: '<span data-ttu-id="9271a-110">HTML-Zeichenfolge, die angefügt werden soll.</span><span class="sxs-lookup"><span data-stu-id="9271a-110">HTML string to append.</span></span>'
+          type:
+            - string
+        - id: width
+          description: '<span data-ttu-id="9271a-111">Optional.</span><span class="sxs-lookup"><span data-stu-id="9271a-111">Optional.</span></span> <span data-ttu-id="9271a-112">Breite in der Maßeinheit Punkt.</span><span class="sxs-lookup"><span data-stu-id="9271a-112">Width in the unit of Points.</span></span> <span data-ttu-id="9271a-113">Der Standardwert ist null, und die Bildbreite wird beachtet.</span><span class="sxs-lookup"><span data-stu-id="9271a-113">The default value is null and image width will be respected.</span></span>'
+          type:
+            - number
+        - id: height
+          description: '<span data-ttu-id="9271a-114">Optional.</span><span class="sxs-lookup"><span data-stu-id="9271a-114">Optional.</span></span> <span data-ttu-id="9271a-115">Höhe in der Maßeinheit Punkt.</span><span class="sxs-lookup"><span data-stu-id="9271a-115">Height in the unit of Points.</span></span> <span data-ttu-id="9271a-116">Der Standardwert ist null, und die Bildhöhe wird beachtet.</span><span class="sxs-lookup"><span data-stu-id="9271a-116">The default value is null and image height will be respected.</span></span>'
+          type:
+            - number
+  - uid: onenote.OneNote.TableCell.appendRichText
+    summary: |-
+      <span data-ttu-id="9271a-117">Fügt den angegebenen Text der Tabellenzelle hinzu.</span><span class="sxs-lookup"><span data-stu-id="9271a-117">Adds the specified text to table cell.</span></span>
+
+      <span data-ttu-id="9271a-118">\[[API-Satz: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9271a-118">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: appendRichText(paragraphText)
+    fullName: appendRichText(paragraphText)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'appendRichText(paragraphText: string): OneNote.RichText;'
+      return:
+        type:
+          - onenote.OneNote.RichText
+        description: |-
 
 
-    <span data-ttu-id="9fa8a-104">\[[API-Satz: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9fa8a-104">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
-  name: appendHtml(html)
-  fullName: appendHtml(html)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'appendHtml(html: string): void;'
-    return:
-      type:
-      - void
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"9fa8a-105\">Beispiele</span><span class=\"sxs-lookup\"><span data-stu-id=\"9fa8a-105\">Examples</span></span>\n\n```javascript\nOneNote.run(function(ctx) {\n    var app = ctx.application;\n    var outline = app.getActiveOutline();\n    \n    // Queue a command to load outline.paragraphs and their types.\n    ctx.load(outline, \"paragraphs, paragraphs/type\");\n    \n    // Run the queued commands, and return a promise to indicate task completion.\n    return ctx.sync().then(function () {\n        var paragraphs = outline.paragraphs;\n        \n        // for each table, get a table cell at row one and column two and add \"Hello\".\n        for (var i = 0; i < paragraphs.items.length; i++) {\n            var paragraph = paragraphs.items[i];\n            if (paragraph.type == \"Table\") {\n                var table = paragraph.table;\n                var cell = table.getCell(1 /*Row Index*/, 2 /*Column Index*/);\n                cell.appendHtml(\"<p>Hello</p>\");\n            }\n        }\n        return ctx.sync();\n    })\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-    parameters:
-    - id: html
-      description: <span data-ttu-id="9fa8a-106">Die HTML-Zeichenfolge, die angefügt werden soll.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-106">The HTML string to append.</span></span> <span data-ttu-id="9fa8a-107">Siehe [unterstützte HTML](https://docs.microsoft.com/office/dev/add-ins/onenote/onenote-add-ins-page-content#supported-html) für die JavaScript-API für OneNote-Add-Ins.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-107">See [Supported HTML](https://docs.microsoft.com/office/dev/add-ins/onenote/onenote-add-ins-page-content#supported-html) for the OneNote add-ins JavaScript API.</span></span>
-      type:
-      - string
-- uid: onenote.OneNote.TableCell.appendImage
-  summary: >-
-    <span data-ttu-id="9fa8a-108">Fügt das angegebene Bild der Tabellenzelle hinzu.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-108">Adds the specified image to table cell.</span></span>
+          #### <a name="examples"></a><span data-ttu-id="9271a-119">Beispiele</span><span class="sxs-lookup"><span data-stu-id="9271a-119">Examples</span></span>
+
+          ```javascript
+          OneNote.run(function(ctx) {
+              var app = ctx.application;
+              var outline = app.getActiveOutline();
+              var appendedRichText = null;
+              
+              // Queue a command to load outline.paragraphs and their types.
+              ctx.load(outline, "paragraphs, paragraphs/type");
+              
+              // Run the queued commands, and return a promise to indicate task completion.
+              return ctx.sync().then(function () {
+                  var paragraphs = outline.paragraphs;
+                  
+                  // for each table, get a table cell at row one and column two and add "Hello".
+                  for (var i = 0; i < paragraphs.items.length; i++) {
+                      var paragraph = paragraphs.items[i];
+                      if (paragraph.type == "Table") {
+                          var table = paragraph.table;
+                          var cell = table.getCell(1 /*Row Index*/, 2 /*Column Index*/);
+                          appendedRichText = cell.appendRichText("Hello");
+                      }
+                  }
+                  return ctx.sync();
+              })
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: paragraphText
+          description: '<span data-ttu-id="9271a-120">HTML-Zeichenfolge, die angefügt werden soll.</span><span class="sxs-lookup"><span data-stu-id="9271a-120">HTML string to append.</span></span>'
+          type:
+            - string
+  - uid: onenote.OneNote.TableCell.appendTable
+    summary: |-
+      <span data-ttu-id="9271a-121">Fügt eine Tabelle mit der angegebenen Anzahl von Zeilen und Spalten zur Tabellenzelle hinzu.</span><span class="sxs-lookup"><span data-stu-id="9271a-121">Adds a table with the specified number of rows and columns to table cell.</span></span>
+
+      <span data-ttu-id="9271a-122">\[[API-Satz: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9271a-122">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: 'appendTable(rowCount, columnCount, values)'
+    fullName: 'appendTable(rowCount, columnCount, values)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'appendTable(rowCount: number, columnCount: number, values?: string[][]): OneNote.Table;'
+      return:
+        type:
+          - OneNote.Table
+        description: ''
+      parameters:
+        - id: rowCount
+          description: <span data-ttu-id="9271a-123">Erforderlich.</span><span class="sxs-lookup"><span data-stu-id="9271a-123">Required.</span></span> <span data-ttu-id="9271a-124">Die Anzahl der Zeilen in der Tabelle.</span><span class="sxs-lookup"><span data-stu-id="9271a-124">The number of rows in the table.</span></span>
+          type:
+            - number
+        - id: columnCount
+          description: <span data-ttu-id="9271a-125">Erforderlich.</span><span class="sxs-lookup"><span data-stu-id="9271a-125">Required.</span></span> <span data-ttu-id="9271a-126">Die Anzahl der Spalten in der Tabelle.</span><span class="sxs-lookup"><span data-stu-id="9271a-126">The number of columns in the table.</span></span>
+          type:
+            - number
+        - id: values
+          description: '<span data-ttu-id="9271a-127">Optionales 2D-Array.</span><span class="sxs-lookup"><span data-stu-id="9271a-127">Optional 2D array.</span></span> <span data-ttu-id="9271a-128">Wenn die entsprechenden Zeichenfolgen im Array angegeben sind, werden die Zellen gefüllt.</span><span class="sxs-lookup"><span data-stu-id="9271a-128">Cells are filled if the corresponding strings are specified in the array.</span></span>'
+          type:
+            - 'string[][]'
+  - uid: onenote.OneNote.TableCell.cellIndex
+    summary: |-
+      <span data-ttu-id="9271a-129">Ruft den Index der Zelle in der Zeile ab.</span><span class="sxs-lookup"><span data-stu-id="9271a-129">Gets the index of the cell in its row.</span></span> <span data-ttu-id="9271a-130">Schreibgeschützt.</span><span class="sxs-lookup"><span data-stu-id="9271a-130">Read-only.</span></span>
+
+      <span data-ttu-id="9271a-131">\[[API-Satz: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9271a-131">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: cellIndex
+    fullName: cellIndex
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly cellIndex: number;'
+      return:
+        type:
+          - number
+  - uid: onenote.OneNote.TableCell.clear
+    summary: |-
+      <span data-ttu-id="9271a-132">Löscht den Inhalt der Zelle.</span><span class="sxs-lookup"><span data-stu-id="9271a-132">Clears the contents of the cell.</span></span>
+
+      <span data-ttu-id="9271a-133">\[[API-Satz: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9271a-133">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: clear()
+    fullName: clear()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'clear(): void;'
+      return:
+        type:
+          - void
+        description: ''
+  - uid: onenote.OneNote.TableCell.context
+    summary: <span data-ttu-id="9271a-134">Der dem Objekt zugeordnete Anforderungskontext.</span><span class="sxs-lookup"><span data-stu-id="9271a-134">The request context associated with the object.</span></span> <span data-ttu-id="9271a-135">Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office-Hostanwendung verbunden.</span><span class="sxs-lookup"><span data-stu-id="9271a-135">This connects the add-in's process to the Office host application's process.</span></span>
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - RequestContext
+  - uid: onenote.OneNote.TableCell.id
+    summary: |-
+      <span data-ttu-id="9271a-136">Ruft die ID der Zelle ab.</span><span class="sxs-lookup"><span data-stu-id="9271a-136">Gets the ID of the cell.</span></span> <span data-ttu-id="9271a-137">Schreibgeschützt.</span><span class="sxs-lookup"><span data-stu-id="9271a-137">Read-only.</span></span>
+
+      <span data-ttu-id="9271a-138">\[[API-Satz: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9271a-138">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: id
+    fullName: id
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly id: string;'
+      return:
+        type:
+          - string
+  - uid: onenote.OneNote.TableCell.load
+    summary: <span data-ttu-id="9271a-139">Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein.</span><span class="sxs-lookup"><span data-stu-id="9271a-139">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="9271a-140">Vor dem Lesen der Eigenschaften müssen Sie "context.sync()" aufrufen.</span><span class="sxs-lookup"><span data-stu-id="9271a-140">You must call "context.sync()" before reading the properties.</span></span>
+    remarks: |-
+      <span data-ttu-id="9271a-141">Zusätzlich zu dieser Signatur verfügt diese Methode über die folgenden Signaturen:</span><span class="sxs-lookup"><span data-stu-id="9271a-141">In addition to this signature, this method has the following signatures:</span></span>
+
+      <span data-ttu-id="9271a-142">`load(option?: string | string[]): OneNote.TableCell`-Wobei Option eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen ist, die die zu ladenden Eigenschaften angeben.</span><span class="sxs-lookup"><span data-stu-id="9271a-142">`load(option?: string | string[]): OneNote.TableCell` - Where option is a comma-delimited string or an array of strings that specify the properties to load.</span></span>
+
+      <span data-ttu-id="9271a-143">`load(option?: { select?: string; expand?: string; }): OneNote.TableCell`-Wobei Option. Select eine durch Kommas getrennte Zeichenfolge ist, die die zu ladenden Eigenschaften angibt, und Options. Expand ist eine durch Kommas getrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.</span><span class="sxs-lookup"><span data-stu-id="9271a-143">`load(option?: { select?: string; expand?: string; }): OneNote.TableCell` - Where option.select is a comma-delimited string that specifies the properties to load, and options.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>
+
+      <span data-ttu-id="9271a-144">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.TableCell`-Nur verfügbar für Sammlungstypen.</span><span class="sxs-lookup"><span data-stu-id="9271a-144">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.TableCell` - Only available on collection types.</span></span> <span data-ttu-id="9271a-145">Sie ähnelt der vorherigen Signatur.</span><span class="sxs-lookup"><span data-stu-id="9271a-145">It is similar to the preceding signature.</span></span> <span data-ttu-id="9271a-146">Option. Top gibt die maximale Anzahl von Sammlungselementen an, die in das Ergebnis eingeschlossen werden können.</span><span class="sxs-lookup"><span data-stu-id="9271a-146">Option.top specifies the maximum number of collection items that can be included in the result.</span></span> <span data-ttu-id="9271a-147">Option. Skip gibt die Anzahl der Elemente an, die übersprungen werden sollen und nicht im Ergebnis enthalten sind.</span><span class="sxs-lookup"><span data-stu-id="9271a-147">Option.skip specifies the number of items that are to be skipped and not included in the result.</span></span> <span data-ttu-id="9271a-148">Wenn Option. Top angegeben wird, wird das Resultset nach dem Überspringen der angegebenen Anzahl von Elementen gestartet.</span><span class="sxs-lookup"><span data-stu-id="9271a-148">If option.top is specified, the result set will start after skipping the specified number of items.</span></span>
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: OneNote.Interfaces.TableCellLoadOptions): OneNote.TableCell;'
+      return:
+        type:
+          - onenote.OneNote.TableCell
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - onenote.OneNote.Interfaces.TableCellLoadOptions
+  - uid: onenote.OneNote.TableCell.load_1
+    summary: <span data-ttu-id="9271a-149">Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein.</span><span class="sxs-lookup"><span data-stu-id="9271a-149">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="9271a-150">Sie müssen vor `context.sync()` dem Lesen der Eigenschaften anrufen.</span><span class="sxs-lookup"><span data-stu-id="9271a-150">You must call `context.sync()` before reading the properties.</span></span>
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): OneNote.TableCell;'
+      return:
+        type:
+          - onenote.OneNote.TableCell
+        description: |-
 
 
-    <span data-ttu-id="9fa8a-109">\[[API-Satz: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9fa8a-109">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
-  name: appendImage(base64EncodedImage, width, height)
-  fullName: appendImage(base64EncodedImage, width, height)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'appendImage(base64EncodedImage: string, width: number, height: number): OneNote.Image;'
-    return:
-      type:
-      - OneNote.Image
-      description: ''
-    parameters:
-    - id: base64EncodedImage
-      description: <span data-ttu-id="9fa8a-110">HTML-Zeichenfolge, die angefügt werden soll.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-110">HTML string to append.</span></span>
-      type:
-      - string
-    - id: width
-      description: <span data-ttu-id="9fa8a-p102">Optional. Breite in der Maßeinheit Punkt. Der Standardwert ist null, und die Bildbreite wird beachtet.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-p102">Optional. Width in the unit of Points. The default value is null and image width will be respected.</span></span>
-      type:
-      - number
-    - id: height
-      description: <span data-ttu-id="9fa8a-p103">Optional. Höhe in der Maßeinheit Punkt. Der Standardwert ist null, und die Bildhöhe wird beachtet.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-p103">Optional. Height in the unit of Points. The default value is null and image height will be respected.</span></span>
-      type:
-      - number
-- uid: onenote.OneNote.TableCell.appendRichText
-  summary: >-
-    <span data-ttu-id="9fa8a-117">Fügt den angegebenen Text der Tabellenzelle hinzu.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-117">Adds the specified text to table cell.</span></span>
+          #### <a name="examples"></a><span data-ttu-id="9271a-151">Beispiele</span><span class="sxs-lookup"><span data-stu-id="9271a-151">Examples</span></span>
 
+          ```javascript
+          OneNote.run(function(ctx) {
+              var app = ctx.application;
+              var outline = app.getActiveOutline();
+              
+              // Queue a command to load outline.paragraphs and their types.
+              ctx.load(outline, "paragraphs, paragraphs/type");
+              
+              // Run the queued commands, and return a promise to indicate task completion.
+              return ctx.sync().then(function () {
+                  var paragraphs = outline.paragraphs;
+                  
+                  // for each table, get a table cell at row one and column two.
+                  for (var i = 0; i < paragraphs.items.length; i++) {
+                      var paragraph = paragraphs.items[i];
+                      if (paragraph.type == "Table") {
+                          var table = paragraph.table;
+                          var cell = table.getCell(1 /*Row Index*/, 2 /*Column Index*/);
+                          
+                          // Queue a command to load the table cell.
+                          ctx.load(cell);
+                          ctx.sync().then(function() {
+                              console.log("Cell Id: " + cell.id);
+                              console.log("Cell Index: " + cell.cellIndex);
+                              console.log("Cell's Row Index: " + cell.rowIndex);
+                          });
+                      }
+                  }
+                  return ctx.sync();
+              })
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```javascript
+          ParentTable, ParentRow, Paragraphs
+          OneNote.run(function(ctx) {
+              var app = ctx.application;
+              var outline = app.getActiveOutline();
+              
+              // Queue a command to load outline.paragraphs and their types.
+              ctx.load(outline, "paragraphs, paragraphs/type");
+              
+              // Run the queued commands, and return a promise to indicate task completion.
+              return ctx.sync().then(function () {
+                  var paragraphs = outline.paragraphs;
+                  
+                  // for each table, get a table cell at row one and column two.
+                  for (var i = 0; i < paragraphs.items.length; i++) {
+                      var paragraph = paragraphs.items[i];
+                      if (paragraph.type == "Table") {
+                          var table = paragraph.table;
+                          var cell = table.getCell(1 /*Row Index*/, 2 /*Column Index*/);
+                          
+                          // Queue a command to load parentTable, parentRow and paragraphs of the table cell.
+                          ctx.load(cell, "parentTable, parentRow, paragraphs");
+                          
+                          ctx.sync().then(function() {
+                              console.log("Parent Table Id: " + cell.parentTable.id);
+                              console.log("Parent Row Id: " + cell.parentRow.id);
+                              var paragraphs = cell.paragraphs;
+                              
+                              for (var i = 0; i < paragraphs.items.length; i++) {
+                                  console.log("Paragraph Id: " + paragraphs.items[i].id);
+                              }
+                          });
+                      }
+                  }
+                  return ctx.sync();
+              })
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: propertyNames
+          description: '<span data-ttu-id="9271a-152">Eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.</span><span class="sxs-lookup"><span data-stu-id="9271a-152">A comma-delimited string or an array of strings that specify the properties to load.</span></span>'
+          type:
+            - 'string | string[]'
+  - uid: onenote.OneNote.TableCell.load_2
+    summary: <span data-ttu-id="9271a-153">Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein.</span><span class="sxs-lookup"><span data-stu-id="9271a-153">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="9271a-154">Sie müssen vor `context.sync()` dem Lesen der Eigenschaften anrufen.</span><span class="sxs-lookup"><span data-stu-id="9271a-154">You must call `context.sync()` before reading the properties.</span></span>
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): OneNote.TableCell;'
+      return:
+        type:
+          - onenote.OneNote.TableCell
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: '<span data-ttu-id="9271a-155">Wobei propertyNamesAndPaths. Select eine durch Kommas getrennte Zeichenfolge ist, die die zu ladenden Eigenschaften angibt, und propertyNamesAndPaths. Expand eine durch Kommas getrennte Zeichenfolge ist, die die zu ladenden Navigationseigenschaften angibt.</span><span class="sxs-lookup"><span data-stu-id="9271a-155">Where propertyNamesAndPaths.select is a comma-delimited string that specifies the properties to load, and propertyNamesAndPaths.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>'
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: onenote.OneNote.TableCell.paragraphs
+    summary: |-
+      <span data-ttu-id="9271a-156">Ruft die Auflistung von Paragraph-Objekten in der TableCell ab.</span><span class="sxs-lookup"><span data-stu-id="9271a-156">Gets the collection of Paragraph objects in the TableCell.</span></span> <span data-ttu-id="9271a-157">Schreibgeschützt.</span><span class="sxs-lookup"><span data-stu-id="9271a-157">Read-only.</span></span>
 
-    <span data-ttu-id="9fa8a-118">\[[API-Satz: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9fa8a-118">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
-  name: appendRichText(paragraphText)
-  fullName: appendRichText(paragraphText)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'appendRichText(paragraphText: string): OneNote.RichText;'
-    return:
-      type:
-      - onenote.OneNote.RichText
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"9fa8a-119\">Beispiele</span><span class=\"sxs-lookup\"><span data-stu-id=\"9fa8a-119\">Examples</span></span>\n\n```javascript\nOneNote.run(function(ctx) {\n    var app = ctx.application;\n    var outline = app.getActiveOutline();\n    var appendedRichText = null;\n    \n    // Queue a command to load outline.paragraphs and their types.\n    ctx.load(outline, \"paragraphs, paragraphs/type\");\n    \n    // Run the queued commands, and return a promise to indicate task completion.\n    return ctx.sync().then(function () {\n        var paragraphs = outline.paragraphs;\n        \n        // for each table, get a table cell at row one and column two and add \"Hello\".\n        for (var i = 0; i < paragraphs.items.length; i++) {\n            var paragraph = paragraphs.items[i];\n            if (paragraph.type == \"Table\") {\n                var table = paragraph.table;\n                var cell = table.getCell(1 /*Row Index*/, 2 /*Column Index*/);\n                appendedRichText = cell.appendRichText(\"Hello\");\n            }\n        }\n        return ctx.sync();\n    })\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-    parameters:
-    - id: paragraphText
-      description: <span data-ttu-id="9fa8a-120">HTML-Zeichenfolge, die angefügt werden soll.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-120">HTML string to append.</span></span>
-      type:
-      - string
-- uid: onenote.OneNote.TableCell.appendTable
-  summary: >-
-    <span data-ttu-id="9fa8a-121">Fügt eine Tabelle mit der angegebenen Anzahl von Zeilen und Spalten zur Tabellenzelle hinzu.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-121">Adds a table with the specified number of rows and columns to table cell.</span></span>
+      <span data-ttu-id="9271a-158">\[[API-Satz: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9271a-158">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: paragraphs
+    fullName: paragraphs
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly paragraphs: OneNote.ParagraphCollection;'
+      return:
+        type:
+          - onenote.OneNote.ParagraphCollection
+  - uid: onenote.OneNote.TableCell.parentRow
+    summary: |-
+      <span data-ttu-id="9271a-159">Ruft die übergeordnete Zeile der Zelle ab.</span><span class="sxs-lookup"><span data-stu-id="9271a-159">Gets the parent row of the cell.</span></span> <span data-ttu-id="9271a-160">Schreibgeschützt.</span><span class="sxs-lookup"><span data-stu-id="9271a-160">Read-only.</span></span>
 
+      <span data-ttu-id="9271a-161">\[[API-Satz: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9271a-161">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: parentRow
+    fullName: parentRow
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly parentRow: OneNote.TableRow;'
+      return:
+        type:
+          - OneNote.TableRow
+  - uid: onenote.OneNote.TableCell.rowIndex
+    summary: |-
+      <span data-ttu-id="9271a-162">Ruft den Index der Zeile mit der Zelle in der Tabelle ab.</span><span class="sxs-lookup"><span data-stu-id="9271a-162">Gets the index of the cell's row in the table.</span></span> <span data-ttu-id="9271a-163">Schreibgeschützt.</span><span class="sxs-lookup"><span data-stu-id="9271a-163">Read-only.</span></span>
 
-    <span data-ttu-id="9fa8a-122">\[[API-Satz: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9fa8a-122">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
-  name: appendTable(rowCount, columnCount, values)
-  fullName: appendTable(rowCount, columnCount, values)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'appendTable(rowCount: number, columnCount: number, values?: string[][]): OneNote.Table;'
-    return:
-      type:
-      - OneNote.Table
-      description: ''
-    parameters:
-    - id: rowCount
-      description: <span data-ttu-id="9fa8a-p104">Erforderlich. Die Anzahl der Zeilen in der Tabelle.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-p104">Required. The number of rows in the table.</span></span>
-      type:
-      - number
-    - id: columnCount
-      description: <span data-ttu-id="9fa8a-p105">Erforderlich. Die Anzahl der Spalten in der Tabelle.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-p105">Required. The number of columns in the table.</span></span>
-      type:
-      - number
-    - id: values
-      description: <span data-ttu-id="9fa8a-127">Optionales 2D-Array.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-127">Optional 2D array.</span></span> <span data-ttu-id="9fa8a-128">Wenn die entsprechenden Zeichenfolgen im Array angegeben sind, werden die Zellen gefüllt.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-128">Cells are filled if the corresponding strings are specified in the array.</span></span>
-      type:
-      - string[][]
-- uid: onenote.OneNote.TableCell.cellIndex
-  summary: >-
-    <span data-ttu-id="9fa8a-p107">Ruft den Index der Zelle in der Zeile ab. Schreibgeschützt.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-p107">Gets the index of the cell in its row. Read-only.</span></span>
+      <span data-ttu-id="9271a-164">\[[API-Satz: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9271a-164">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: rowIndex
+    fullName: rowIndex
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly rowIndex: number;'
+      return:
+        type:
+          - number
+  - uid: onenote.OneNote.TableCell.set
+    summary: '<span data-ttu-id="9271a-165">Legt mehrere Eigenschaften eines Objekts gleichzeitig fest.</span><span class="sxs-lookup"><span data-stu-id="9271a-165">Sets multiple properties of an object at the same time.</span></span> <span data-ttu-id="9271a-166">Sie können entweder ein plain-Objekt mit den entsprechenden Eigenschaften oder ein anderes API-Objekt desselben Typs weitergeben.</span><span class="sxs-lookup"><span data-stu-id="9271a-166">You can pass either a plain object with the appropriate properties, or another API object of the same type.</span></span>'
+    remarks: |-
+      <span data-ttu-id="9271a-167">Diese Methode hat die folgende zusätzliche Signatur:</span><span class="sxs-lookup"><span data-stu-id="9271a-167">This method has the following additional signature:</span></span>
 
+      `set(properties: OneNote.TableCell): void`
+    name: 'set(properties, options)'
+    fullName: 'set(properties, options)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Interfaces.TableCellUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: '<span data-ttu-id="9271a-168">Ein JavaScript-Objekt mit Eigenschaften, die isomorphically strukturiert sind, um die Eigenschaften des Objekts, für das die Methode aufgerufen wird.</span><span class="sxs-lookup"><span data-stu-id="9271a-168">A JavaScript object with properties that are structured isomorphically to the properties of the object on which the method is called.</span></span>'
+          type:
+            - Interfaces.TableCellUpdateData
+        - id: options
+          description: '<span data-ttu-id="9271a-169">Bietet eine Option zum Unterdrücken von Fehlern, wenn das Properties-Objekt versucht, schreibgeschützte Eigenschaften festzulegen.</span><span class="sxs-lookup"><span data-stu-id="9271a-169">Provides an option to suppress errors if the properties object tries to set any read-only properties.</span></span>'
+          type:
+            - office.OfficeExtension.UpdateOptions
+  - uid: onenote.OneNote.TableCell.set_1
+    summary: '<span data-ttu-id="9271a-170">Legt mehrere Eigenschaften für das Objekt auf der Grundlage eines vorhandenen geladenen Objekts zur gleichen Zeit fest.</span><span class="sxs-lookup"><span data-stu-id="9271a-170">Sets multiple properties on the object at the same time, based on an existing loaded object.</span></span>'
+    name: set(properties)
+    fullName: set(properties)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: OneNote.TableCell): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: ''
+          type:
+            - onenote.OneNote.TableCell
+  - uid: onenote.OneNote.TableCell.shadingColor
+    summary: |-
+      <span data-ttu-id="9271a-171">Ruft die Schattierungsfarbe der Zelle ab und legt diese fest.</span><span class="sxs-lookup"><span data-stu-id="9271a-171">Gets and sets the shading color of the cell</span></span>
 
-    <span data-ttu-id="9fa8a-131">\[[API-Satz: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9fa8a-131">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
-  name: cellIndex
-  fullName: cellIndex
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly cellIndex: number;'
-    return:
-      type:
-      - number
-- uid: onenote.OneNote.TableCell.clear
-  summary: >-
-    <span data-ttu-id="9fa8a-132">Löscht den Inhalt der Zelle.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-132">Clears the contents of the cell.</span></span>
-
-
-    <span data-ttu-id="9fa8a-133">\[[API-Satz: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9fa8a-133">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
-  name: clear()
-  fullName: clear()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'clear(): void;'
-    return:
-      type:
-      - void
-      description: ''
-- uid: onenote.OneNote.TableCell.context
-  summary: <span data-ttu-id="9fa8a-134">Der dem Objekt zugeordnete Anforderungskontext.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-134">The request context associated with the object.</span></span> <span data-ttu-id="9fa8a-135">Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office-Hostanwendung verbunden.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-135">This connects the add-in's process to the Office host application's process.</span></span>
-  name: context
-  fullName: context
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'context: RequestContext;'
-    return:
-      type:
-      - RequestContext
-- uid: onenote.OneNote.TableCell.id
-  summary: >-
-    <span data-ttu-id="9fa8a-p109">Ruft die ID der Zelle ab. Schreibgeschützt.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-p109">Gets the ID of the cell. Read-only.</span></span>
-
-
-    <span data-ttu-id="9fa8a-138">\[[API-Satz: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9fa8a-138">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
-  name: id
-  fullName: id
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly id: string;'
-    return:
-      type:
-      - string
-- uid: onenote.OneNote.TableCell.load
-  summary: <span data-ttu-id="9fa8a-139">Warteschlangen bis ein Befehl zum Laden der angegebenen Eigenschaften des Objekts.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-139">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="9fa8a-140">Sie müssen "context. Sync ()" aufrufen, bevor Sie die Eigenschaften lesen.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-140">You must call "context.sync()" before reading the properties.</span></span>
-  remarks: >-
-    <span data-ttu-id="9fa8a-141">Zusätzlich zu dieser Signatur verfügt diese Methode über die folgenden Signaturen:</span><span class="sxs-lookup"><span data-stu-id="9fa8a-141">In addition to this signature, this method has the following signatures:</span></span>
-
-
-    <span data-ttu-id="9fa8a-142">`load(option?: string | string[]): OneNote.TableCell`-Wobei Option eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen ist, die die zu ladenden Eigenschaften angeben.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-142">`load(option?: string | string[]): OneNote.TableCell` - Where option is a comma-delimited string or an array of strings that specify the properties to load.</span></span>
-
-
-    <span data-ttu-id="9fa8a-143">`load(option?: { select?: string; expand?: string; }): OneNote.TableCell`-Wobei Option. Select eine durch Kommas getrennte Zeichenfolge ist, die die zu ladenden Eigenschaften angibt, und Options. Expand ist eine durch Kommas getrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-143">`load(option?: { select?: string; expand?: string; }): OneNote.TableCell` - Where option.select is a comma-delimited string that specifies the properties to load, and options.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>
-
-
-    <span data-ttu-id="9fa8a-144">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.TableCell`-Nur verfügbar für Sammlungstypen.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-144">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.TableCell` - Only available on collection types.</span></span> <span data-ttu-id="9fa8a-145">Sie ähnelt der vorherigen Signatur.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-145">It is similar to the preceding signature.</span></span> <span data-ttu-id="9fa8a-146">Option. Top gibt die maximale Anzahl von Sammlungselementen an, die in das Ergebnis eingeschlossen werden können.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-146">Option.top specifies the maximum number of collection items that can be included in the result.</span></span> <span data-ttu-id="9fa8a-147">Option. Skip gibt die Anzahl der Elemente an, die übersprungen werden sollen und nicht im Ergebnis enthalten sind.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-147">Option.skip specifies the number of items that are to be skipped and not included in the result.</span></span> <span data-ttu-id="9fa8a-148">Wenn Option. Top angegeben wird, wird das Resultset nach dem Überspringen der angegebenen Anzahl von Elementen gestartet.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-148">If option.top is specified, the result set will start after skipping the specified number of items.</span></span>
-  name: load(option)
-  fullName: load(option)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(option?: OneNote.Interfaces.TableCellLoadOptions): OneNote.TableCell;'
-    return:
-      type:
-      - onenote.OneNote.TableCell
-      description: ''
-    parameters:
-    - id: option
-      description: ''
-      type:
-      - onenote.OneNote.Interfaces.TableCellLoadOptions
-- uid: onenote.OneNote.TableCell.load_1
-  summary: <span data-ttu-id="9fa8a-149">Warteschlangen bis ein Befehl zum Laden der angegebenen Eigenschaften des Objekts.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-149">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="9fa8a-150">Sie müssen vor `context.sync()` dem Lesen der Eigenschaften anrufen.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-150">You must call `context.sync()` before reading the properties.</span></span>
-  name: load(propertyNames)
-  fullName: load(propertyNames)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(propertyNames?: string | string[]): OneNote.TableCell;'
-    return:
-      type:
-      - onenote.OneNote.TableCell
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"9fa8a-151\">Beispiele</span><span class=\"sxs-lookup\"><span data-stu-id=\"9fa8a-151\">Examples</span></span>\n\n```javascript\nOneNote.run(function(ctx) {\n    var app = ctx.application;\n    var outline = app.getActiveOutline();\n    \n    // Queue a command to load outline.paragraphs and their types.\n    ctx.load(outline, \"paragraphs, paragraphs/type\");\n    \n    // Run the queued commands, and return a promise to indicate task completion.\n    return ctx.sync().then(function () {\n        var paragraphs = outline.paragraphs;\n        \n        // for each table, get a table cell at row one and column two.\n        for (var i = 0; i < paragraphs.items.length; i++) {\n            var paragraph = paragraphs.items[i];\n            if (paragraph.type == \"Table\") {\n                var table = paragraph.table;\n                var cell = table.getCell(1 /*Row Index*/, 2 /*Column Index*/);\n                \n                // Queue a command to load the table cell.\n                ctx.load(cell);\n                ctx.sync().then(function() {\n                    console.log(\"Cell Id: \" + cell.id);\n                    console.log(\"Cell Index: \" + cell.cellIndex);\n                    console.log(\"Cell's Row Index: \" + cell.rowIndex);\n                });\n            }\n        }\n        return ctx.sync();\n    })\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nParentTable, ParentRow, Paragraphs\nOneNote.run(function(ctx) {\n    var app = ctx.application;\n    var outline = app.getActiveOutline();\n    \n    // Queue a command to load outline.paragraphs and their types.\n    ctx.load(outline, \"paragraphs, paragraphs/type\");\n    \n    // Run the queued commands, and return a promise to indicate task completion.\n    return ctx.sync().then(function () {\n        var paragraphs = outline.paragraphs;\n        \n        // for each table, get a table cell at row one and column two.\n        for (var i = 0; i < paragraphs.items.length; i++) {\n            var paragraph = paragraphs.items[i];\n            if (paragraph.type == \"Table\") {\n                var table = paragraph.table;\n                var cell = table.getCell(1 /*Row Index*/, 2 /*Column Index*/);\n                \n                // Queue a command to load parentTable, parentRow and paragraphs of the table cell.\n                ctx.load(cell, \"parentTable, parentRow, paragraphs\");\n                \n                ctx.sync().then(function() {\n                    console.log(\"Parent Table Id: \" + cell.parentTable.id);\n                    console.log(\"Parent Row Id: \" + cell.parentRow.id);\n                    var paragraphs = cell.paragraphs;\n                    \n                    for (var i = 0; i < paragraphs.items.length; i++) {\n                        console.log(\"Paragraph Id: \" + paragraphs.items[i].id);\n                    }\n                });\n            }\n        }\n        return ctx.sync();\n    })\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-    parameters:
-    - id: propertyNames
-      description: <span data-ttu-id="9fa8a-152">Eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-152">A comma-delimited string or an array of strings that specify the properties to load.</span></span>
-      type:
-      - string | string[]
-- uid: onenote.OneNote.TableCell.load_2
-  summary: <span data-ttu-id="9fa8a-153">Warteschlangen bis ein Befehl zum Laden der angegebenen Eigenschaften des Objekts.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-153">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="9fa8a-154">Sie müssen vor `context.sync()` dem Lesen der Eigenschaften anrufen.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-154">You must call `context.sync()` before reading the properties.</span></span>
-  name: load(propertyNamesAndPaths)
-  fullName: load(propertyNamesAndPaths)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): OneNote.TableCell;'
-    return:
-      type:
-      - onenote.OneNote.TableCell
-      description: ''
-    parameters:
-    - id: propertyNamesAndPaths
-      description: <span data-ttu-id="9fa8a-155">Wobei propertyNamesAndPaths. Select eine durch Kommas getrennte Zeichenfolge ist, die die zu ladenden Eigenschaften angibt, und propertyNamesAndPaths. Expand eine durch Kommas getrennte Zeichenfolge ist, die die zu ladenden Navigationseigenschaften angibt.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-155">Where propertyNamesAndPaths.select is a comma-delimited string that specifies the properties to load, and propertyNamesAndPaths.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>
-      type:
-      - '{ select?: string; expand?: string; }'
-- uid: onenote.OneNote.TableCell.paragraphs
-  summary: >-
-    <span data-ttu-id="9fa8a-p114">Ruft die Auflistung von Paragraph-Objekten in der TableCell ab. Schreibgeschützt.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-p114">Gets the collection of Paragraph objects in the TableCell. Read-only.</span></span>
-
-
-    <span data-ttu-id="9fa8a-158">\[[API-Satz: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9fa8a-158">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
-  name: paragraphs
-  fullName: paragraphs
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly paragraphs: OneNote.ParagraphCollection;'
-    return:
-      type:
-      - onenote.OneNote.ParagraphCollection
-- uid: onenote.OneNote.TableCell.parentRow
-  summary: >-
-    <span data-ttu-id="9fa8a-p115">Ruft die übergeordnete Zeile der Zelle ab. Schreibgeschützt.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-p115">Gets the parent row of the cell. Read-only.</span></span>
-
-
-    <span data-ttu-id="9fa8a-161">\[[API-Satz: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9fa8a-161">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
-  name: parentRow
-  fullName: parentRow
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly parentRow: OneNote.TableRow;'
-    return:
-      type:
-      - OneNote.TableRow
-- uid: onenote.OneNote.TableCell.rowIndex
-  summary: >-
-    <span data-ttu-id="9fa8a-p116">Ruft den Index der Zeile mit der Zelle in der Tabelle ab. Schreibgeschützt.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-p116">Gets the index of the cell's row in the table. Read-only.</span></span>
-
-
-    <span data-ttu-id="9fa8a-164">\[[API-Satz: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9fa8a-164">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
-  name: rowIndex
-  fullName: rowIndex
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'readonly rowIndex: number;'
-    return:
-      type:
-      - number
-- uid: onenote.OneNote.TableCell.set
-  summary: <span data-ttu-id="9fa8a-165">Legt mehrere Eigenschaften eines Objekts gleichzeitig fest.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-165">Sets multiple properties of an object at the same time.</span></span> <span data-ttu-id="9fa8a-166">Sie können entweder ein plain-Objekt mit den entsprechenden Eigenschaften oder ein anderes API-Objekt desselben Typs weitergeben.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-166">You can pass either a plain object with the appropriate properties, or another API object of the same type.</span></span>
-  remarks: >-
-    <span data-ttu-id="9fa8a-167">Diese Methode hat die folgende zusätzliche Signatur:</span><span class="sxs-lookup"><span data-stu-id="9fa8a-167">This method has the following additional signature:</span></span>
-
-
-    `set(properties: OneNote.TableCell): void`
-  name: set(properties, options)
-  fullName: set(properties, options)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'set(properties: Interfaces.TableCellUpdateData, options?: OfficeExtension.UpdateOptions): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: properties
-      description: <span data-ttu-id="9fa8a-168">Ein JavaScript-Objekt mit Eigenschaften, die isomorphically strukturiert sind, um die Eigenschaften des Objekts, für das die Methode aufgerufen wird.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-168">A JavaScript object with properties that are structured isomorphically to the properties of the object on which the method is called.</span></span>
-      type:
-      - Interfaces.TableCellUpdateData
-    - id: options
-      description: <span data-ttu-id="9fa8a-169">Bietet eine Option zum Unterdrücken von Fehlern, wenn das Properties-Objekt versucht, schreibgeschützte Eigenschaften festzulegen.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-169">Provides an option to suppress errors if the properties object tries to set any read-only properties.</span></span>
-      type:
-      - office.OfficeExtension.UpdateOptions
-- uid: onenote.OneNote.TableCell.set_1
-  summary: <span data-ttu-id="9fa8a-170">Legt mehrere Eigenschaften für das Objekt auf der Grundlage eines vorhandenen geladenen Objekts zur gleichen Zeit fest.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-170">Sets multiple properties on the object at the same time, based on an existing loaded object.</span></span>
-  name: set(properties)
-  fullName: set(properties)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'set(properties: OneNote.TableCell): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: properties
-      description: ''
-      type:
-      - onenote.OneNote.TableCell
-- uid: onenote.OneNote.TableCell.shadingColor
-  summary: >-
-    <span data-ttu-id="9fa8a-171">Ruft die Schattierungsfarbe der Zelle ab und legt diese fest.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-171">Gets and sets the shading color of the cell</span></span>
-
-
-    <span data-ttu-id="9fa8a-172">\[[API-Satz: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9fa8a-172">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
-  name: shadingColor
-  fullName: shadingColor
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'shadingColor: string;'
-    return:
-      type:
-      - string
-- uid: onenote.OneNote.TableCell.toJSON
-  summary: <span data-ttu-id="9fa8a-173">ÜberSchreibt die `toJSON()` JavaScript-Methode, um eine nützlichere Ausgabe bereitzustellen, wenn ein API `JSON.stringify()` <!-- -->-Objekt an übergeben wird.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-173">Overrides the JavaScript `toJSON()` method in order to provide more useful output when an API object is passed to `JSON.stringify()`<!-- -->.</span></span> <span data-ttu-id="9fa8a-174">(`JSON.stringify`<!-- -->ruft wiederum die `toJSON` Methode des Objekts auf, das übergeben wird.) Während das ursprüngliche OneNote. TableCell-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt `OneNote.Interfaces.TableCellData` <!-- -->(typisiert als) zurück, das flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-174">(`JSON.stringify`<!-- -->, in turn, calls the `toJSON` method of the object that is passed to it.) Whereas the original OneNote.TableCell object is an API object, the `toJSON` method returns a plain JavaScript object (typed as `OneNote.Interfaces.TableCellData`<!-- -->) that contains shallow copies of any loaded child properties from the original object.</span></span>
-  name: toJSON()
-  fullName: toJSON()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'toJSON(): OneNote.Interfaces.TableCellData;'
-    return:
-      type:
-      - onenote.OneNote.Interfaces.TableCellData
-      description: ''
-- uid: onenote.OneNote.TableCell.track
-  summary: <span data-ttu-id="9fa8a-175">Verfolgen Sie das Objekt für die automatische Anpassung basierend auf den umgebenden Änderungen im Dokument.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-175">Track the object for automatic adjustment based on surrounding changes in the document.</span></span> <span data-ttu-id="9fa8a-176">Dieser Aufruf ist eine Kurzform für Context. trackedObjects. Add (ThisObject).</span><span class="sxs-lookup"><span data-stu-id="9fa8a-176">This call is a shorthand for context.trackedObjects.add(thisObject).</span></span> <span data-ttu-id="9fa8a-177">Wenn Sie dieses Objekt in ". Sync"-aufrufen und außerhalb der sequenziellen Ausführung eines Batches ". Run" verwenden und beim Festlegen einer Eigenschaft oder beim Aufrufen einer Methode für das Objekt einen "InvalidObjectPath"-Fehler erhalten, muss das Objekt dem nachverfolgten Objekt hinzugefügt worden sein. -Auflistung beim ersten Erstellen des Objekts.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-177">If you are using this object across ".sync" calls and outside the sequential execution of a ".run" batch, and get an "InvalidObjectPath" error when setting a property or invoking a method on the object, you needed to have added the object to the tracked object collection when the object was first created.</span></span>
-  name: track()
-  fullName: track()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'track(): OneNote.TableCell;'
-    return:
-      type:
-      - onenote.OneNote.TableCell
-      description: ''
-- uid: onenote.OneNote.TableCell.untrack
-  summary: <span data-ttu-id="9fa8a-178">Freigeben des Speichers, der diesem Objekt zugeordnet ist, sofern es zuvor nachverfolgt wurde.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-178">Release the memory associated with this object, if it has previously been tracked.</span></span> <span data-ttu-id="9fa8a-179">Dieser Aufruf ist eine Kurzform für Context. trackedObjects. Remove (ThisObject).</span><span class="sxs-lookup"><span data-stu-id="9fa8a-179">This call is shorthand for context.trackedObjects.remove(thisObject).</span></span> <span data-ttu-id="9fa8a-180">Wenn viele nachverfolgte Objekte die Hostanwendung verlangsamen, denken Sie daran, alle von Ihnen hinzugefügten Objekte freizugeben, nachdem Sie Sie fertig verwendet haben.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-180">Having many tracked objects slows down the host application, so please remember to free any objects you add, once you're done using them.</span></span> <span data-ttu-id="9fa8a-181">Sie müssen "context. Sync ()" aufrufen, bevor die Speicherfreigabe wirksam wird.</span><span class="sxs-lookup"><span data-stu-id="9fa8a-181">You will need to call "context.sync()" before the memory release takes effect.</span></span>
-  name: untrack()
-  fullName: untrack()
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'untrack(): OneNote.TableCell;'
-    return:
-      type:
-      - onenote.OneNote.TableCell
-      description: ''
+      <span data-ttu-id="9271a-172">\[[API-Satz: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9271a-172">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: shadingColor
+    fullName: shadingColor
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'shadingColor: string;'
+      return:
+        type:
+          - string
+  - uid: onenote.OneNote.TableCell.toJSON
+    summary: '<span data-ttu-id="9271a-173">ÜberSchreibt die `toJSON()` JavaScript-Methode, um eine nützlichere Ausgabe bereitzustellen, wenn ein API-Objekt an`JSON.stringify()`</span><span class="sxs-lookup"><span data-stu-id="9271a-173">Overrides the JavaScript `toJSON()` method in order to provide more useful output when an API object is passed to `JSON.stringify()`</span></span><!-- --><span data-ttu-id="9271a-174">.</span><span class="sxs-lookup"><span data-stu-id="9271a-174"></span></span> <span data-ttu-id="9271a-175">(`JSON.stringify`</span><span class="sxs-lookup"><span data-stu-id="9271a-175"></span></span><!-- --><span data-ttu-id="9271a-176">Ruft wiederum die `toJSON` Methode des Objekts auf, das übergeben wird.) Während das ursprüngliche OneNote. TableCell-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt zurück (typisiert als`OneNote.Interfaces.TableCellData`</span><span class="sxs-lookup"><span data-stu-id="9271a-176">, in turn, calls the `toJSON` method of the object that is passed to it.) Whereas the original OneNote.TableCell object is an API object, the `toJSON` method returns a plain JavaScript object (typed as `OneNote.Interfaces.TableCellData`</span></span><!-- --><span data-ttu-id="9271a-177">), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.</span><span class="sxs-lookup"><span data-stu-id="9271a-177">) that contains shallow copies of any loaded child properties from the original object.</span></span>'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): OneNote.Interfaces.TableCellData;'
+      return:
+        type:
+          - onenote.OneNote.Interfaces.TableCellData
+        description: ''
+  - uid: onenote.OneNote.TableCell.track
+    summary: '<span data-ttu-id="9271a-178">Nachverfolgung des Objekts zwecks automatischer Anpassung auf der Grundlage der umgebenden Änderungen im Dokument.</span><span class="sxs-lookup"><span data-stu-id="9271a-178">Track the object for automatic adjustment based on surrounding changes in the document.</span></span> <span data-ttu-id="9271a-179">Dieser Aufruf ist eine Kurzschreibweise für context.trackedObjects.add(thisObject).</span><span class="sxs-lookup"><span data-stu-id="9271a-179">This call is a shorthand for context.trackedObjects.add(thisObject).</span></span> <span data-ttu-id="9271a-180">Wenn Sie dieses Objekt übergreifend für ".sync"-Aufrufe und außerhalb der sequenziellen Ausführung eines ".run"-Stapels verwenden und beim Festlegen einer Eigenschaft oder Aufrufen einer Methode für das Objekt ein "InvalidObjectPath"-Fehler zurückgegeben wird, hätte das Objekt der nachverfolgten Objektsammlung hinzugefügt werden müssen, in der das Objekt ursprünglich erstellt wurde.</span><span class="sxs-lookup"><span data-stu-id="9271a-180">If you are using this object across ".sync" calls and outside the sequential execution of a ".run" batch, and get an "InvalidObjectPath" error when setting a property or invoking a method on the object, you needed to have added the object to the tracked object collection when the object was first created.</span></span>'
+    name: track()
+    fullName: track()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'track(): OneNote.TableCell;'
+      return:
+        type:
+          - onenote.OneNote.TableCell
+        description: ''
+  - uid: onenote.OneNote.TableCell.untrack
+    summary: '<span data-ttu-id="9271a-181">Gibt den diesem Objekt zugewiesenen Arbeitsspeicher frei, wenn das Objekt zuvor nachverfolgt wurde.</span><span class="sxs-lookup"><span data-stu-id="9271a-181">Release the memory associated with this object, if it has previously been tracked.</span></span> <span data-ttu-id="9271a-182">Dieser Aufruf stellt eine Kurzschreibweise für context.trackedObjects.remove(thisObject) dar.</span><span class="sxs-lookup"><span data-stu-id="9271a-182">This call is shorthand for context.trackedObjects.remove(thisObject).</span></span> <span data-ttu-id="9271a-183">Viele nachverfolgte Objekte verlangsamen die Ausführung der Hostanwendung, also achten Sie darauf, alle hinzugefügten Objekte nach abgeschlossener Verwendung freizugeben.</span><span class="sxs-lookup"><span data-stu-id="9271a-183">Having many tracked objects slows down the host application, so please remember to free any objects you add, once you''re done using them.</span></span> <span data-ttu-id="9271a-184">Sie müssen "context.sync()" aufrufen, damit die Freigabe des Arbeitsspeichers wirksam wird.</span><span class="sxs-lookup"><span data-stu-id="9271a-184">You will need to call "context.sync()" before the memory release takes effect.</span></span>'
+    name: untrack()
+    fullName: untrack()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'untrack(): OneNote.TableCell;'
+      return:
+        type:
+          - onenote.OneNote.TableCell
+        description: ''

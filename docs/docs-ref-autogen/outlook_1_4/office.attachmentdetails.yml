@@ -1,138 +1,120 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: 8c71265240d161ae96057e613f463d687c684fff
-ms.sourcegitcommit: e9bfba6ec767e9d34fd1cf7b38c30f689617900a
-ms.translationtype: MT
-ms.contentlocale: de-DE
-ms.lasthandoff: 02/20/2019
-ms.locfileid: "30095380"
 items:
-- uid: Outlook_1_4.Office.AttachmentDetails
-  summary: >-
-    <span data-ttu-id="a0410-p101">Stellt eine Anlage zu einem Element vom Server dar. Nur Lesemodus.</span><span class="sxs-lookup"><span data-stu-id="a0410-p101">Represents an attachment on an item from the server. Read mode only.</span></span>
+  - uid: Outlook_1_4.Office.AttachmentDetails
+    summary: |-
+      <span data-ttu-id="6f635-101">Stellt eine Anlage zu einem Element vom Server dar.</span><span class="sxs-lookup"><span data-stu-id="6f635-101">Represents an attachment on an item from the server.</span></span> <span data-ttu-id="6f635-102">Nur Lesemodus.</span><span class="sxs-lookup"><span data-stu-id="6f635-102">Read mode only.</span></span>
 
+      <span data-ttu-id="6f635-103">Ein Array von **AttachmentDetails** -Objekten wird als Attachments-Eigenschaft eines Termin-oder Nachrichtenelements zurückgegeben.</span><span class="sxs-lookup"><span data-stu-id="6f635-103">An array of **AttachmentDetails** objects is returned as the attachments property of an appointment or message item.</span></span>
 
-    <span data-ttu-id="a0410-103">Ein Array von **AttachmentDetails** -Objekten wird als Attachments-Eigenschaft eines Termin-oder Nachrichtenelements zurückgegeben.</span><span class="sxs-lookup"><span data-stu-id="a0410-103">An array of **AttachmentDetails** objects is returned as the attachments property of an appointment or message item.</span></span>
+      <span data-ttu-id="6f635-104">\[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="6f635-104">\[ [API set: Mailbox 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+    remarks: |-
+      <table> <tr><td>[<span data-ttu-id="6f635-105">Mindestberechtigungsstufe</span><span class="sxs-lookup"><span data-stu-id="6f635-105">Minimum permission level</span></span>](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td><span data-ttu-id="6f635-106">ReadItem</span><span class="sxs-lookup"><span data-stu-id="6f635-106">ReadItem</span></span></td></tr> <tr><td>[<span data-ttu-id="6f635-107">Zutreffender Outlook-Modus</span><span class="sxs-lookup"><span data-stu-id="6f635-107">Applicable Outlook mode</span></span>](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td><span data-ttu-id="6f635-108">Lesen</span><span class="sxs-lookup"><span data-stu-id="6f635-108">Read</span></span></td></tr> </table>
 
+      #### <a name="examples"></a><span data-ttu-id="6f635-109">Beispiele</span><span class="sxs-lookup"><span data-stu-id="6f635-109">Examples</span></span>
 
-    <span data-ttu-id="a0410-104">\[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="a0410-104">\[ [API set: Mailbox 1.0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \]</span></span>
-  remarks: >-
-    <table> <tr><td>[<span data-ttu-id="a0410-105">Mindestberechtigungsstufe</span><span class="sxs-lookup"><span data-stu-id="a0410-105">Minimum permission level</span></span>](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td><span data-ttu-id="a0410-106">ReadItem</span><span class="sxs-lookup"><span data-stu-id="a0410-106">ReadItem</span></span></td></tr> <tr><td>[<span data-ttu-id="a0410-107">Zutreffender Outlook-Modus</span><span class="sxs-lookup"><span data-stu-id="a0410-107">Applicable Outlook mode</span></span>](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td><span data-ttu-id="a0410-108">Lesen</span><span class="sxs-lookup"><span data-stu-id="a0410-108">Read</span></span></td></tr> </table><span data-ttu-id="a0410-109">
+      ```javascript
+      // The following code builds an HTML string with details
+      // of all attachments on the current item.
+      var item = Office.context.mailbox.item;
+      var outputString = "";
 
-    ####Beispiele</span><span class="sxs-lookup"><span data-stu-id="a0410-109">
+      if (item.attachments.length > 0) {
+          for (i = 0 ; i < item.attachments.length ; i++) {
+              var attachment = item.attachments[i];
+              outputString += "<BR>" + i + ". Name: ";
+              outputString += attachment.name;
+              outputString += "<BR>ID: " + attachment.id;
+              outputString += "<BR>contentType: " + attachment.contentType;
+              outputString += "<BR>size: " + attachment.size;
+              outputString += "<BR>attachmentType: " + attachment.attachmentType;
+              outputString += "<BR>isInline: " + attachment.isInline;
+          }
+      }
 
-    #### Examples</span></span>
-
-
-    ```javascript
-
-    // The following code builds an HTML string with details
-
-    // of all attachments on the current item.
-
-    var item = Office.context.mailbox.item;
-
-    var outputString = "";
-
-
-    if (item.attachments.length > 0) {
-        for (i = 0 ; i < item.attachments.length ; i++) {
-            var attachment = item.attachments[i];
-            outputString += "<BR>" + i + ". Name: ";
-            outputString += attachment.name;
-            outputString += "<BR>ID: " + attachment.id;
-            outputString += "<BR>contentType: " + attachment.contentType;
-            outputString += "<BR>size: " + attachment.size;
-            outputString += "<BR>attachmentType: " + attachment.attachmentType;
-            outputString += "<BR>isInline: " + attachment.isInline;
-        }
-    }
-
-
-    console.log(outputString);
-
-    ```
-  name: Office.AttachmentDetails
-  fullName: Office.AttachmentDetails
-  langs:
-  - typeScript
-  type: interface
-  package: Outlook_1_4
-  children:
-  - Outlook_1_4.Office.AttachmentDetails.attachmentType
-  - Outlook_1_4.Office.AttachmentDetails.contentType
-  - Outlook_1_4.Office.AttachmentDetails.id
-  - Outlook_1_4.Office.AttachmentDetails.isInline
-  - Outlook_1_4.Office.AttachmentDetails.name
-  - Outlook_1_4.Office.AttachmentDetails.size
-- uid: Outlook_1_4.Office.AttachmentDetails.attachmentType
-  summary: <span data-ttu-id="a0410-110">Ruft einen Wert ab, der den Typ einer Anlage angibt.</span><span class="sxs-lookup"><span data-stu-id="a0410-110">Gets a value that indicates the type of an attachment.</span></span>
-  name: attachmentType
-  fullName: attachmentType
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'attachmentType: MailboxEnums.AttachmentType;'
-    return:
-      type:
-      - MailboxEnums.AttachmentType
-- uid: Outlook_1_4.Office.AttachmentDetails.contentType
-  summary: <span data-ttu-id="a0410-111">Ruft den MIME-Inhaltstyp der Anlage ab.</span><span class="sxs-lookup"><span data-stu-id="a0410-111">Gets the MIME content type of the attachment.</span></span>
-  name: contentType
-  fullName: contentType
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'contentType: string;'
-    return:
-      type:
-      - string
-- uid: Outlook_1_4.Office.AttachmentDetails.id
-  summary: <span data-ttu-id="a0410-112">Ruft die Exchange-Anlagen-ID der Anlage ab.</span><span class="sxs-lookup"><span data-stu-id="a0410-112">Gets the Exchange attachment ID of the attachment.</span></span>
-  name: id
-  fullName: id
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'id: string;'
-    return:
-      type:
-      - string
-- uid: Outlook_1_4.Office.AttachmentDetails.isInline
-  summary: <span data-ttu-id="a0410-113">Ruft einen Wert ab, der angibt, ob die Anlage im Textkörper des Elements angezeigt werden soll.</span><span class="sxs-lookup"><span data-stu-id="a0410-113">Gets a value that indicates whether the attachment should be displayed in the body of the item.</span></span>
-  name: isInline
-  fullName: isInline
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'isInline: boolean;'
-    return:
-      type:
-      - boolean
-- uid: Outlook_1_4.Office.AttachmentDetails.name
-  summary: <span data-ttu-id="a0410-114">Ruft den Namen der Anlage ab.</span><span class="sxs-lookup"><span data-stu-id="a0410-114">Gets the name of the attachment.</span></span>
-  name: name
-  fullName: name
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'name: string;'
-    return:
-      type:
-      - string
-- uid: Outlook_1_4.Office.AttachmentDetails.size
-  summary: <span data-ttu-id="a0410-115">Ruft die Größe der Anlage in Byte ab.</span><span class="sxs-lookup"><span data-stu-id="a0410-115">Gets the size of the attachment in bytes.</span></span>
-  name: size
-  fullName: size
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'size: number;'
-    return:
-      type:
-      - number
+      console.log(outputString);
+      ```
+    name: Office.AttachmentDetails
+    fullName: Office.AttachmentDetails
+    langs:
+      - typeScript
+    type: interface
+    package: Outlook_1_4
+    children:
+      - Outlook_1_4.Office.AttachmentDetails.attachmentType
+      - Outlook_1_4.Office.AttachmentDetails.contentType
+      - Outlook_1_4.Office.AttachmentDetails.id
+      - Outlook_1_4.Office.AttachmentDetails.isInline
+      - Outlook_1_4.Office.AttachmentDetails.name
+      - Outlook_1_4.Office.AttachmentDetails.size
+  - uid: Outlook_1_4.Office.AttachmentDetails.attachmentType
+    summary: '<span data-ttu-id="6f635-110">Ruft einen Wert ab, der den Typ einer Anlage angibt.</span><span class="sxs-lookup"><span data-stu-id="6f635-110">Gets a value that indicates the type of an attachment.</span></span>'
+    name: attachmentType
+    fullName: attachmentType
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'attachmentType: MailboxEnums.AttachmentType;'
+      return:
+        type:
+          - MailboxEnums.AttachmentType
+  - uid: Outlook_1_4.Office.AttachmentDetails.contentType
+    summary: <span data-ttu-id="6f635-111">Ruft den MIME-Inhaltstyp der Anlage ab.</span><span class="sxs-lookup"><span data-stu-id="6f635-111">Gets the MIME content type of the attachment.</span></span>
+    name: contentType
+    fullName: contentType
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'contentType: string;'
+      return:
+        type:
+          - string
+  - uid: Outlook_1_4.Office.AttachmentDetails.id
+    summary: <span data-ttu-id="6f635-112">Ruft die Exchange-Anlagen-ID der Anlage ab.</span><span class="sxs-lookup"><span data-stu-id="6f635-112">Gets the Exchange attachment ID of the attachment.</span></span>
+    name: id
+    fullName: id
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'id: string;'
+      return:
+        type:
+          - string
+  - uid: Outlook_1_4.Office.AttachmentDetails.isInline
+    summary: '<span data-ttu-id="6f635-113">Ruft einen Wert ab, der angibt, ob die Anlage im Textkörper des Elements angezeigt werden soll.</span><span class="sxs-lookup"><span data-stu-id="6f635-113">Gets a value that indicates whether the attachment should be displayed in the body of the item.</span></span>'
+    name: isInline
+    fullName: isInline
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'isInline: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: Outlook_1_4.Office.AttachmentDetails.name
+    summary: <span data-ttu-id="6f635-114">Ruft den Namen der Anlage ab.</span><span class="sxs-lookup"><span data-stu-id="6f635-114">Gets the name of the attachment.</span></span>
+    name: name
+    fullName: name
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'name: string;'
+      return:
+        type:
+          - string
+  - uid: Outlook_1_4.Office.AttachmentDetails.size
+    summary: <span data-ttu-id="6f635-115">Ruft die Größe der Anlage in Byte ab.</span><span class="sxs-lookup"><span data-stu-id="6f635-115">Gets the size of the attachment in bytes.</span></span>
+    name: size
+    fullName: size
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'size: number;'
+      return:
+        type:
+          - number
