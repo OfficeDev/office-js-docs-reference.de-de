@@ -1,73 +1,114 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: c31cff1894344de99110a36d8399d06e2bcaa894
-ms.sourcegitcommit: 31847d2ea6be78b8f473dfbfb0a575fdecd877be
-ms.translationtype: MT
-ms.contentlocale: de-DE
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "26297700"
 items:
-- uid: office.Office.Error
-  summary: <span data-ttu-id="538fe-101">Stellt spezifische Informationen zu einem Fehler bereit, der bei einem asynchronen Datenvorgang aufgetreten ist.</span><span class="sxs-lookup"><span data-stu-id="538fe-101">Provides specific information about an error that occurred during an asynchronous data operation.</span></span>
-  remarks: >-
-    <span data-ttu-id="538fe-102">Das Error-Objekt wird aus dem AsyncResult-Objekt zugegriffen, die in der als Callback-Argument eines asynchronen Datenvorgangs, wie der SetSelectedDataAsync-Methode des Document-Objekts übergebenen Funktion zurückgegeben wird.</span><span class="sxs-lookup"><span data-stu-id="538fe-102">The Error object is accessed from the AsyncResult object that is returned in the function passed as the callback argument of an asynchronous data operation, such as the setSelectedDataAsync method of the Document object.</span></span>
+  - uid: office.Office.Error
+    summary: '<span data-ttu-id="aff35-101">Stellt spezifische Informationen zu einem Fehler bereit, der bei einem asynchronen Datenvorgang aufgetreten ist.</span><span class="sxs-lookup"><span data-stu-id="aff35-101">Provides specific information about an error that occurred during an asynchronous data operation.</span></span>'
+    remarks: '<span data-ttu-id="aff35-102">Der Zugriff auf das Error-Objekt erfolgt über das AsyncResult-Objekt, das in der Funktion zurückgegeben wird, die als Callback-Argument eines asynchronen Datenvorgangs übergeben wird, beispielsweise die `setSelectedDataAsync` -Methode des Document-Objekts.</span><span class="sxs-lookup"><span data-stu-id="aff35-102">The Error object is accessed from the AsyncResult object that is returned in the function passed as the callback argument of an asynchronous data operation, such as the `setSelectedDataAsync` method of the Document object.</span></span>'
+    name: Office.Error
+    fullName: Office.Error
+    langs:
+      - typeScript
+    type: interface
+    package: office
+    children:
+      - office.Office.Error.code
+      - office.Office.Error.message
+      - office.Office.Error.name
+  - uid: office.Office.Error.code
+    summary: <span data-ttu-id="aff35-103">Ruft den numerischen Code des Fehlers ab.</span><span class="sxs-lookup"><span data-stu-id="aff35-103">Gets the numeric code of the error.</span></span>
+    name: code
+    fullName: code
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'code: number;'
+      return:
+        type:
+          - number
+        description: |-
 
 
-    <span data-ttu-id="538fe-103">**Supportdetails**</span><span class="sxs-lookup"><span data-stu-id="538fe-103">**Support details**</span></span>
+          #### <a name="examples"></a><span data-ttu-id="aff35-104">Beispiele</span><span class="sxs-lookup"><span data-stu-id="aff35-104">Examples</span></span>
+
+          ```javascript
+          // To cause an error to be thrown, select a table or a matrix, and then call the setText function.
+          function setText() {
+              Office.context.document.setSelectedDataAsync("Hello World!",
+                  function (asyncResult) {
+                      if (asyncResult.status === "failed")
+                          var error = asyncResult.error;
+                      write(error.name + ": " + error.code + " - " + error.message);
+                  });
+          }
+
+          // Function that writes to a div with id='message' on the page.
+          function write(message){
+              document.getElementById('message').innerText += message; 
+          }
+          ```
+  - uid: office.Office.Error.message
+    summary: <span data-ttu-id="aff35-105">Ruft den Namen des Fehlers ab.</span><span class="sxs-lookup"><span data-stu-id="aff35-105">Gets the name of the error.</span></span>
+    name: message
+    fullName: message
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'message: string;'
+      return:
+        type:
+          - string
+        description: |-
 
 
-    <span data-ttu-id="538fe-104">In der folgenden Matrix ein großes Y gibt an, dass diese Schnittstelle in der entsprechenden Office-hostanwendung unterstützt wird.</span><span class="sxs-lookup"><span data-stu-id="538fe-104">A capital Y in the following matrix indicates that this interface is supported in the corresponding Office host application.</span></span> <span data-ttu-id="538fe-105">Eine leere Zelle gibt an, dass die Office-hostanwendung diese Schnittstelle nicht unterstützt.</span><span class="sxs-lookup"><span data-stu-id="538fe-105">An empty cell indicates that the Office host application doesn't support this interface.</span></span>
+          #### <a name="examples"></a><span data-ttu-id="aff35-106">Beispiele</span><span class="sxs-lookup"><span data-stu-id="aff35-106">Examples</span></span>
+
+          ```javascript
+          // To cause an error to be thrown, select a table or a matrix, and then call the setText function.
+          function setText() {
+              Office.context.document.setSelectedDataAsync("Hello World!",
+                  function (asyncResult) {
+                      if (asyncResult.status === "failed")
+                          var error = asyncResult.error;
+                      write(error.name + ": " + error.message);
+                  });
+          }
+
+          // Function that writes to a div with id='message' on the page.
+          function write(message){
+              document.getElementById('message').innerText += message; 
+          }
+          ```
+  - uid: office.Office.Error.name
+    summary: <span data-ttu-id="aff35-107">Ruft eine ausführliche Beschreibung des Fehlers ab.</span><span class="sxs-lookup"><span data-stu-id="aff35-107">Gets a detailed description of the error.</span></span>
+    name: name
+    fullName: name
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'name: string;'
+      return:
+        type:
+          - string
+        description: |-
 
 
-    <span data-ttu-id="538fe-106">Weitere Informationen zu Office-Host-Anwendung und Server-Anforderungen, finden Sie unter [Anforderungen für die Ausführung von Office-Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.</span><span class="sxs-lookup"><span data-stu-id="538fe-106">For more information about Office host application and server requirements, see [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.</span></span>
+          #### <a name="examples"></a><span data-ttu-id="aff35-108">Beispiele</span><span class="sxs-lookup"><span data-stu-id="aff35-108">Examples</span></span>
 
+          ```javascript
+          // To cause an error to be thrown, select a table or a matrix, and then call the setText function.
+          function setText() {
+              Office.context.document.setSelectedDataAsync("Hello World!",
+                  function (asyncResult) {
+                      if (asyncResult.status === "failed")
+                          var error = asyncResult.error;
+                      write(error.name + ": " + error.message);
+                  });
+          }
 
-    <span data-ttu-id="538fe-107">*Unterstützte Hosts nach Plattform*</span><span class="sxs-lookup"><span data-stu-id="538fe-107">*Supported hosts, by platform*</span></span> <table> <tr><th> </th><th> <span data-ttu-id="538fe-108">Office für Windows Desktop</span><span class="sxs-lookup"><span data-stu-id="538fe-108">Office for Windows desktop</span></span> </th><th> <span data-ttu-id="538fe-109">Office Online (im Browser)</span><span class="sxs-lookup"><span data-stu-id="538fe-109">Office Online (in browser)</span></span> </th><th> <span data-ttu-id="538fe-110">Office für iPad</span><span class="sxs-lookup"><span data-stu-id="538fe-110">Office for iPad</span></span> </th><th> <span data-ttu-id="538fe-111">OWA für mobile Geräte</span><span class="sxs-lookup"><span data-stu-id="538fe-111">OWA for Devices</span></span> </th><th> <span data-ttu-id="538fe-112">Office für Mac</span><span class="sxs-lookup"><span data-stu-id="538fe-112">Office for Mac</span></span> </th></tr> <tr><td><span data-ttu-id="538fe-113"><strong>Zugriff</strong></span><span class="sxs-lookup"><span data-stu-id="538fe-113"><strong> Access </strong></span></span></td><td> </td><td> <span data-ttu-id="538fe-114">v</span><span class="sxs-lookup"><span data-stu-id="538fe-114">Y</span></span> </td><td> </td><td> </td><td> </td></tr> <tr><td><span data-ttu-id="538fe-115"><strong>Excel</strong></span><span class="sxs-lookup"><span data-stu-id="538fe-115"><strong> Excel </strong></span></span></td><td> <span data-ttu-id="538fe-116">v</span><span class="sxs-lookup"><span data-stu-id="538fe-116">Y</span></span> </td><td> <span data-ttu-id="538fe-117">v</span><span class="sxs-lookup"><span data-stu-id="538fe-117">Y</span></span> </td><td> <span data-ttu-id="538fe-118">v</span><span class="sxs-lookup"><span data-stu-id="538fe-118">Y</span></span> </td><td> </td><td> </td></tr> <tr><td><span data-ttu-id="538fe-119"><strong>Outlook</strong></span><span class="sxs-lookup"><span data-stu-id="538fe-119"><strong> Outlook </strong></span></span></td><td> <span data-ttu-id="538fe-120">v</span><span class="sxs-lookup"><span data-stu-id="538fe-120">Y</span></span> </td><td> <span data-ttu-id="538fe-121">v</span><span class="sxs-lookup"><span data-stu-id="538fe-121">Y</span></span> </td><td> </td><td> <span data-ttu-id="538fe-122">v</span><span class="sxs-lookup"><span data-stu-id="538fe-122">Y</span></span> </td><td> <span data-ttu-id="538fe-123">v</span><span class="sxs-lookup"><span data-stu-id="538fe-123">Y</span></span> </td></tr> <tr><td><span data-ttu-id="538fe-124"><strong>PowerPoint</strong></span><span class="sxs-lookup"><span data-stu-id="538fe-124"><strong> PowerPoint </strong></span></span></td><td> <span data-ttu-id="538fe-125">v</span><span class="sxs-lookup"><span data-stu-id="538fe-125">Y</span></span> </td><td> <span data-ttu-id="538fe-126">v</span><span class="sxs-lookup"><span data-stu-id="538fe-126">Y</span></span> </td><td> <span data-ttu-id="538fe-127">v</span><span class="sxs-lookup"><span data-stu-id="538fe-127">Y</span></span> </td><td> </td><td> </td></tr> <tr><td><span data-ttu-id="538fe-128"><strong>Projekt</strong></span><span class="sxs-lookup"><span data-stu-id="538fe-128"><strong> Project </strong></span></span></td><td> <span data-ttu-id="538fe-129">v</span><span class="sxs-lookup"><span data-stu-id="538fe-129">Y</span></span> </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><span data-ttu-id="538fe-130"><strong>Word</strong></span><span class="sxs-lookup"><span data-stu-id="538fe-130"><strong> Word </strong></span></span></td><td> <span data-ttu-id="538fe-131">v</span><span class="sxs-lookup"><span data-stu-id="538fe-131">Y</span></span> </td><td> <span data-ttu-id="538fe-132">v</span><span class="sxs-lookup"><span data-stu-id="538fe-132">Y</span></span> </td><td> <span data-ttu-id="538fe-133">v</span><span class="sxs-lookup"><span data-stu-id="538fe-133">Y</span></span> </td><td> </td><td> </td></tr> </table>
-  name: Office.Error
-  fullName: Office.Error
-  langs:
-  - typeScript
-  type: interface
-  package: office
-  children:
-  - office.Office.Error.code
-  - office.Office.Error.message
-  - office.Office.Error.name
-- uid: office.Office.Error.code
-  summary: <span data-ttu-id="538fe-134">Ruft den numerischen Code des Fehlers ab.</span><span class="sxs-lookup"><span data-stu-id="538fe-134">Gets the numeric code of the error.</span></span>
-  name: code
-  fullName: code
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'code: number;'
-    return:
-      type:
-      - number
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"538fe-135\">Beispiele</span><span class=\"sxs-lookup\"><span data-stu-id=\"538fe-135\">Examples</span></span>\n\n```javascript\n// To cause an error to be thrown, select a table or a matrix, and then call the setText function.\nfunction setText() {\n    Office.context.document.setSelectedDataAsync(\"Hello World!\",\n        function (asyncResult) {\n            if (asyncResult.status === \"failed\")\n                var error = asyncResult.error;\n            write(error.name + \": \" + error.code + \" - \" + error.message);\n        });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-- uid: office.Office.Error.message
-  summary: <span data-ttu-id="538fe-136">Ruft den Namen des Fehlers ab.</span><span class="sxs-lookup"><span data-stu-id="538fe-136">Gets the name of the error.</span></span>
-  name: message
-  fullName: message
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'message: string;'
-    return:
-      type:
-      - string
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"538fe-137\">Beispiele</span><span class=\"sxs-lookup\"><span data-stu-id=\"538fe-137\">Examples</span></span>\n\n```javascript\n// To cause an error to be thrown, select a table or a matrix, and then call the setText function.\nfunction setText() {\n    Office.context.document.setSelectedDataAsync(\"Hello World!\",\n        function (asyncResult) {\n            if (asyncResult.status === \"failed\")\n                var error = asyncResult.error;\n            write(error.name + \": \" + error.message);\n        });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-- uid: office.Office.Error.name
-  summary: <span data-ttu-id="538fe-138">Ruft eine ausführliche Beschreibung des Fehlers ab.</span><span class="sxs-lookup"><span data-stu-id="538fe-138">Gets a detailed description of the error.</span></span>
-  name: name
-  fullName: name
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'name: string;'
-    return:
-      type:
-      - string
-      description: "\n#### <a name=\"examples\"></a><span data-ttu-id=\"538fe-139\">Examples</span><span class=\"sxs-lookup\"><span data-stu-id=\"538fe-139\">Examples</span></span>\n\n```javascript\n// To cause an error to be thrown, select a table or a matrix, and then call the setText function.\nfunction setText() {\n    Office.context.document.setSelectedDataAsync(\"Hello World!\",\n        function (asyncResult) {\n            if (asyncResult.status === \"failed\")\n                var error = asyncResult.error;\n            write(error.name + \": \" + error.message);\n        });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+          // Function that writes to a div with id='message' on the page.
+          function write(message){
+              document.getElementById('message').innerText += message; 
+          }
+          ```
