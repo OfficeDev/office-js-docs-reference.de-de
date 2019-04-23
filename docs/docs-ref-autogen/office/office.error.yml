@@ -1,73 +1,114 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: c31cff1894344de99110a36d8399d06e2bcaa894
-ms.sourcegitcommit: 31847d2ea6be78b8f473dfbfb0a575fdecd877be
-ms.translationtype: MT
-ms.contentlocale: de-DE
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "26297700"
 items:
-- uid: office.Office.Error
-  summary: Stellt spezifische Informationen zu einem Fehler bereit, der bei einem asynchronen Datenvorgang aufgetreten ist.
-  remarks: >-
-    Das Error-Objekt wird aus dem AsyncResult-Objekt zugegriffen, die in der als Callback-Argument eines asynchronen Datenvorgangs, wie der SetSelectedDataAsync-Methode des Document-Objekts übergebenen Funktion zurückgegeben wird.
+  - uid: office.Office.Error
+    summary: 'Stellt spezifische Informationen zu einem Fehler bereit, der bei einem asynchronen Datenvorgang aufgetreten ist.'
+    remarks: 'Der Zugriff auf das Error-Objekt erfolgt über das AsyncResult-Objekt, das in der Funktion zurückgegeben wird, die als Callback-Argument eines asynchronen Datenvorgangs übergeben wird, beispielsweise die `setSelectedDataAsync` -Methode des Document-Objekts.'
+    name: Office.Error
+    fullName: Office.Error
+    langs:
+      - typeScript
+    type: interface
+    package: office
+    children:
+      - office.Office.Error.code
+      - office.Office.Error.message
+      - office.Office.Error.name
+  - uid: office.Office.Error.code
+    summary: Ruft den numerischen Code des Fehlers ab.
+    name: code
+    fullName: code
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'code: number;'
+      return:
+        type:
+          - number
+        description: |-
 
 
-    **Supportdetails**
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          // To cause an error to be thrown, select a table or a matrix, and then call the setText function.
+          function setText() {
+              Office.context.document.setSelectedDataAsync("Hello World!",
+                  function (asyncResult) {
+                      if (asyncResult.status === "failed")
+                          var error = asyncResult.error;
+                      write(error.name + ": " + error.code + " - " + error.message);
+                  });
+          }
+
+          // Function that writes to a div with id='message' on the page.
+          function write(message){
+              document.getElementById('message').innerText += message; 
+          }
+          ```
+  - uid: office.Office.Error.message
+    summary: Ruft den Namen des Fehlers ab.
+    name: message
+    fullName: message
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'message: string;'
+      return:
+        type:
+          - string
+        description: |-
 
 
-    In der folgenden Matrix ein großes Y gibt an, dass diese Schnittstelle in der entsprechenden Office-hostanwendung unterstützt wird. Eine leere Zelle gibt an, dass die Office-hostanwendung diese Schnittstelle nicht unterstützt.
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          // To cause an error to be thrown, select a table or a matrix, and then call the setText function.
+          function setText() {
+              Office.context.document.setSelectedDataAsync("Hello World!",
+                  function (asyncResult) {
+                      if (asyncResult.status === "failed")
+                          var error = asyncResult.error;
+                      write(error.name + ": " + error.message);
+                  });
+          }
+
+          // Function that writes to a div with id='message' on the page.
+          function write(message){
+              document.getElementById('message').innerText += message; 
+          }
+          ```
+  - uid: office.Office.Error.name
+    summary: Ruft eine ausführliche Beschreibung des Fehlers ab.
+    name: name
+    fullName: name
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'name: string;'
+      return:
+        type:
+          - string
+        description: |-
 
 
-    Weitere Informationen zu Office-Host-Anwendung und Server-Anforderungen, finden Sie unter [Anforderungen für die Ausführung von Office-Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
+          #### <a name="examples"></a>Beispiele
 
+          ```javascript
+          // To cause an error to be thrown, select a table or a matrix, and then call the setText function.
+          function setText() {
+              Office.context.document.setSelectedDataAsync("Hello World!",
+                  function (asyncResult) {
+                      if (asyncResult.status === "failed")
+                          var error = asyncResult.error;
+                      write(error.name + ": " + error.message);
+                  });
+          }
 
-    *Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office für Windows Desktop </th><th> Office Online (im Browser) </th><th> Office für iPad </th><th> OWA für mobile Geräte </th><th> Office für Mac </th></tr> <tr><td><strong>Zugriff</strong></td><td> </td><td> v </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> <tr><td><strong>Outlook</strong></td><td> v </td><td> v </td><td> </td><td> v </td><td> v </td></tr> <tr><td><strong>PowerPoint</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> <tr><td><strong>Projekt</strong></td><td> v </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Word</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> </table>
-  name: Office.Error
-  fullName: Office.Error
-  langs:
-  - typeScript
-  type: interface
-  package: office
-  children:
-  - office.Office.Error.code
-  - office.Office.Error.message
-  - office.Office.Error.name
-- uid: office.Office.Error.code
-  summary: Ruft den numerischen Code des Fehlers ab.
-  name: code
-  fullName: code
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'code: number;'
-    return:
-      type:
-      - number
-      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// To cause an error to be thrown, select a table or a matrix, and then call the setText function.\nfunction setText() {\n    Office.context.document.setSelectedDataAsync(\"Hello World!\",\n        function (asyncResult) {\n            if (asyncResult.status === \"failed\")\n                var error = asyncResult.error;\n            write(error.name + \": \" + error.code + \" - \" + error.message);\n        });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-- uid: office.Office.Error.message
-  summary: Ruft den Namen des Fehlers ab.
-  name: message
-  fullName: message
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'message: string;'
-    return:
-      type:
-      - string
-      description: "\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// To cause an error to be thrown, select a table or a matrix, and then call the setText function.\nfunction setText() {\n    Office.context.document.setSelectedDataAsync(\"Hello World!\",\n        function (asyncResult) {\n            if (asyncResult.status === \"failed\")\n                var error = asyncResult.error;\n            write(error.name + \": \" + error.message);\n        });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
-- uid: office.Office.Error.name
-  summary: Ruft eine ausführliche Beschreibung des Fehlers ab.
-  name: name
-  fullName: name
-  langs:
-  - typeScript
-  type: property
-  syntax:
-    content: 'name: string;'
-    return:
-      type:
-      - string
-      description: "\n#### <a name=\"examples\"></a>Examples\n\n```javascript\n// To cause an error to be thrown, select a table or a matrix, and then call the setText function.\nfunction setText() {\n    Office.context.document.setSelectedDataAsync(\"Hello World!\",\n        function (asyncResult) {\n            if (asyncResult.status === \"failed\")\n                var error = asyncResult.error;\n            write(error.name + \": \" + error.message);\n        });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+          // Function that writes to a div with id='message' on the page.
+          function write(message){
+              document.getElementById('message').innerText += message; 
+          }
+          ```

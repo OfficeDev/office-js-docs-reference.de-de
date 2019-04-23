@@ -1,207 +1,175 @@
 ### YamlMime:UniversalReference
-ms.openlocfilehash: dc86867bcc5c23a3bba9e55454be2d5ed6c9a104
-ms.sourcegitcommit: 6c48441b8be51d3a9d7dc836e386230a155feceb
-ms.translationtype: MT
-ms.contentlocale: de-DE
-ms.lasthandoff: 02/22/2019
-ms.locfileid: "30198620"
 items:
-- uid: Outlook_1_4.Office.CustomProperties
-  summary: >-
-    Das CustomProperties-Objekt stellt benutzerdefinierte Eigenschaften dar, die spezifisch für ein bestimmtes Element und spezifisch für ein Mail-Add-in für Outlook sind. Beispielsweise kann es erforderlich sein, dass ein e-Mail-Add-in einige Daten speichert, die spezifisch für die aktuelle e-Mail-Nachricht sind, die das Add-in aktiviert hat. Wenn der Benutzer die gleiche Nachricht in der Zukunft erneut besucht und das Mail-Add-in erneut aktiviert, kann das Add-in die Daten abrufen, die als benutzerdefinierte Eigenschaften gespeichert wurden.
+  - uid: Outlook_1_4.Office.CustomProperties
+    summary: |-
+      Das CustomProperties-Objekt stellt benutzerdefinierte Eigenschaften dar, die spezifisch für ein bestimmtes Element und spezifisch für ein Mail-Add-in für Outlook sind. Beispielsweise kann es erforderlich sein, dass ein e-Mail-Add-in einige Daten speichert, die spezifisch für die aktuelle e-Mail-Nachricht sind, die das Add-in aktiviert hat. Wenn der Benutzer die gleiche Nachricht in der Zukunft erneut besucht und das Mail-Add-in erneut aktiviert, kann das Add-in die Daten abrufen, die als benutzerdefinierte Eigenschaften gespeichert wurden.
 
+      Da Outlook für Mac keine benutzerdefinierten Eigenschaften zwischenspeichert, können e-Mail-Add-Ins nicht auf Ihre benutzerdefinierten Eigenschaften zugreifen, wenn das Netzwerk des Benutzers ausfällt.
 
-    Da Outlook für Mac keine benutzerdefinierten Eigenschaften zwischenspeichert, können e-Mail-Add-Ins nicht auf Ihre benutzerdefinierten Eigenschaften zugreifen, wenn das Netzwerk des Benutzers ausfällt.
+      \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: '<table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr> </table>'
+    name: Office.CustomProperties
+    fullName: Office.CustomProperties
+    langs:
+      - typeScript
+    type: interface
+    package: Outlook_1_4
+    children:
+      - Outlook_1_4.Office.CustomProperties.get
+      - Outlook_1_4.Office.CustomProperties.remove
+      - Outlook_1_4.Office.CustomProperties.saveAsync
+      - Outlook_1_4.Office.CustomProperties.set
+  - uid: Outlook_1_4.Office.CustomProperties.get
+    summary: Gibt den Wert der angegebenen benutzerdefinierten Eigenschaft zurück.
+    remarks: '<table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr> </table>'
+    name: get(name)
+    fullName: get(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'get(name: string): any;'
+      return:
+        type:
+          - any
+        description: |-
+          Der Wert der angegebenen benutzerdefinierten Eigenschaft.
 
+          \[API-Satz: Mailbox 1,0\]
+      parameters:
+        - id: name
+          description: 'Der Name der benutzerdefinierten Eigenschaft, die zurückgegeben werden soll.'
+          type:
+            - string
+  - uid: Outlook_1_4.Office.CustomProperties.remove
+    summary: |-
+      Entfernt die angegebene Eigenschaft aus der Auflistung benutzerdefinierter Eigenschaften.
 
-    \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr> </table>
-  name: Office.CustomProperties
-  fullName: Office.CustomProperties
-  langs:
-  - typeScript
-  type: interface
-  package: Outlook_1_4
-  children:
-  - Outlook_1_4.Office.CustomProperties.get
-  - Outlook_1_4.Office.CustomProperties.remove
-  - Outlook_1_4.Office.CustomProperties.saveAsync
-  - Outlook_1_4.Office.CustomProperties.set
-- uid: Outlook_1_4.Office.CustomProperties.get
-  summary: Gibt den Wert der angegebenen benutzerdefinierten Eigenschaft zurück.
-  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr> </table>
-  name: get(name)
-  fullName: get(name)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'get(name: string): any;'
-    return:
-      type:
-      - any
-      description: >-
-        Der Wert der angegebenen benutzerdefinierten Eigenschaft.
+      Damit die Eigenschaft dauerhaft entfernt wird, müssen Sie die saveAsync-Methode des CustomProperties-Objekts aufrufen.
+    remarks: '<table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr> </table>'
+    name: remove(name)
+    fullName: remove(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'remove(name: string): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: name
+          description: |-
+            Der Name der zu entfernenden Eigenschaft.
 
+            \[API-Satz: Mailbox 1,0\]
+          type:
+            - string
+  - uid: Outlook_1_4.Office.CustomProperties.saveAsync
+    summary: |-
+      Speichert elementspezifische benutzerdefinierte Eigenschaften auf dem Server.
 
-        \[API-Satz: Mailbox 1,0\]
-    parameters:
-    - id: name
-      description: Der Name der benutzerdefinierten Eigenschaft, die zurückgegeben werden soll.
-      type:
-      - string
-- uid: Outlook_1_4.Office.CustomProperties.remove
-  summary: >-
-    Entfernt die angegebene Eigenschaft aus der Auflistung benutzerdefinierter Eigenschaften.
+      Sie müssen die saveAsync-Methode aufrufen, um mit der set-Methode oder der remove-Methode vorgenommene Änderungen des CustomProperties-Objekts beizubehalten. Die Speichernaktion ist asynchron.
 
+      Es empfiehlt sich, dass Ihre Rückruffunktion auf Fehler von saveAsync überprüft und diese behandelt. Insbesondere kann ein Lese-Add-in aktiviert werden, während sich der Benutzer in einem gelesenen Formular in einem verbundenen Zustand befindet, und anschließend wird der Benutzer getrennt. Wenn das Add-in saveAsync im getrennten Zustand aufruft, gibt saveAsync einen Fehler zurück. Ihre Rückrufmethode sollte diesen Fehler entsprechend behandeln.
+    remarks: |-
+      <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr> </table>
 
-    Damit die Eigenschaft dauerhaft entfernt wird, müssen Sie die saveAsync-Methode des CustomProperties-Objekts aufrufen.
-  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr> </table>
-  name: remove(name)
-  fullName: remove(name)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'remove(name: string): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: name
-      description: >-
-        Der Name der zu entfernenden Eigenschaft.
+      #### <a name="examples"></a>Beispiele
 
+      ```javascript
+      // The following JavaScript code sample shows how to asynchronously use
+      // the loadCustomPropertiesAsync method to load custom properties that
+      // are specific to the current item, and the saveAsync method to save
+      // these properties back to the server. After loading the custom properties,
+      // the code sample uses the get method to read the custom property myProp,
+      // the set method to write the custom property otherProp, and then finally
+      // calls the saveAsync method to save the custom properties.
 
-        \[API-Satz: Mailbox 1,0\]
-      type:
-      - string
-- uid: Outlook_1_4.Office.CustomProperties.saveAsync
-  summary: >-
-    Speichert elementspezifische benutzerdefinierte Eigenschaften auf dem Server.
+      // The initialize function is required for all add-ins.
+      Office.initialize = function () {
+          // Checks for the DOM to load using the jQuery ready function.
+          $(document).ready(function () {
+              // After the DOM is loaded, add-in-specific code can run.
+              var item = Office.context.mailbox.item;
+              item.loadCustomPropertiesAsync(customPropsCallback);
+          });
+      };
 
+      function customPropsCallback(asyncResult) {
+          var customProps = asyncResult.value;
+          var myProp = customProps.get("myProp");
 
-    Sie müssen die saveAsync-Methode aufrufen, um mit der set-Methode oder der remove-Methode vorgenommene Änderungen des CustomProperties-Objekts beizubehalten. Die Speichernaktion ist asynchron.
+          customProps.set("otherProp", "value");
+          customProps.saveAsync(saveCallback);
+      }
 
+      function saveCallback(asyncResult) {
+          if (asyncResult.status === Office.AsyncResultStatus.Failed) {
+              write(asyncResult.error.message);
+          }
+          else {
+              // Async call to save custom properties completed.
+              // Proceed to do the appropriate for your add-in.
+          }
+      }
 
-    Es empfiehlt sich, dass Ihre Rückruffunktion auf Fehler von saveAsync überprüft und diese behandelt. Insbesondere kann ein Lese-Add-in aktiviert werden, während sich der Benutzer in einem gelesenen Formular in einem verbundenen Zustand befindet, und anschließend wird der Benutzer getrennt. Wenn das Add-in saveAsync im getrennten Zustand aufruft, gibt saveAsync einen Fehler zurück. Ihre Rückrufmethode sollte diesen Fehler entsprechend behandeln.
-  remarks: >-
-    <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr> </table>
+      // Writes to a div with id='message' on the page.
+      function write(message) {
+          document.getElementById('message').innerText += message;
+      }
+      ```
+    name: 'saveAsync(callback, asyncContext)'
+    fullName: 'saveAsync(callback, asyncContext)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'saveAsync(callback?: (asyncResult: Office.AsyncResult<void>) => void, asyncContext?: any): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: callback
+          description: 'Optional. Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzelnen Parameter vom Typ Office. AsyncResult aufgerufen.'
+          type:
+            - '(asyncResult: Office.AsyncResult<void>) => void'
+        - id: asyncContext
+          description: |-
+            Optional. Jegliche Zustandsdaten, die an die Rückrufmethode übergeben werden.
 
-    ####Beispiele
+            \[API-Satz: Mailbox 1,0\]
+          type:
+            - any
+  - uid: Outlook_1_4.Office.CustomProperties.set
+    summary: |-
+      Legt die angegebene Eigenschaft auf den angegebenen Wert fest.
 
+      Die Set-Methode legt die angegebene Eigenschaft auf den angegebenen Wert fest. Sie müssen die saveAsync-Methode verwenden, um die Eigenschaft auf dem Server zu speichern.
 
-    ```javascript
+      Die Set-Methode erstellt eine neue Eigenschaft, wenn die angegebene Eigenschaft noch nicht vorhanden ist; Andernfalls wird der vorhandene Wert durch den neuen Wert ersetzt. Der value-Parameter kann einen beliebigen Typ haben; Sie wird jedoch immer als Zeichenfolge an den Server übergeben.
 
-    // The following JavaScript code sample shows how to asynchronously use
-
-    // the loadCustomPropertiesAsync method to load custom properties that
-
-    // are specific to the current item, and the saveAsync method to save
-
-    // these properties back to the server. After loading the custom properties,
-
-    // the code sample uses the get method to read the custom property myProp,
-
-    // the set method to write the custom property otherProp, and then finally
-
-    // calls the saveAsync method to save the custom properties.
-
-
-    // The initialize function is required for all add-ins.
-
-    Office.initialize = function () {
-        // Checks for the DOM to load using the jQuery ready function.
-        $(document).ready(function () {
-            // After the DOM is loaded, add-in-specific code can run.
-            var item = Office.context.mailbox.item;
-            item.loadCustomPropertiesAsync(customPropsCallback);
-        });
-    };
-
-
-    function customPropsCallback(asyncResult) {
-        var customProps = asyncResult.value;
-        var myProp = customProps.get("myProp");
-
-        customProps.set("otherProp", "value");
-        customProps.saveAsync(saveCallback);
-    }
-
-
-    function saveCallback(asyncResult) {
-        if (asyncResult.status === Office.AsyncResultStatus.Failed) {
-            write(asyncResult.error.message);
-        }
-        else {
-            // Async call to save custom properties completed.
-            // Proceed to do the appropriate for your add-in.
-        }
-    }
-
-
-    // Writes to a div with id='message' on the page.
-
-    function write(message) {
-        document.getElementById('message').innerText += message;
-    }
-
-    ```
-  name: saveAsync(callback, asyncContext)
-  fullName: saveAsync(callback, asyncContext)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'saveAsync(callback?: (asyncResult: Office.AsyncResult<void>) => void, asyncContext?: any): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: callback
-      description: Optional. Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzelnen Parameter vom Typ Office. AsyncResult aufgerufen.
-      type:
-      - '(asyncResult: Office.AsyncResult<void>) => void'
-    - id: asyncContext
-      description: >-
-        Optional. Jegliche Zustandsdaten, die an die Rückrufmethode übergeben werden.
-
-
-        \[API-Satz: Mailbox 1,0\]
-      type:
-      - any
-- uid: Outlook_1_4.Office.CustomProperties.set
-  summary: >-
-    Legt die angegebene Eigenschaft auf den angegebenen Wert fest.
-
-
-    Die Set-Methode legt die angegebene Eigenschaft auf den angegebenen Wert fest. Sie müssen die saveAsync-Methode verwenden, um die Eigenschaft auf dem Server zu speichern.
-
-
-    Die Set-Methode erstellt eine neue Eigenschaft, wenn die angegebene Eigenschaft noch nicht vorhanden ist; Andernfalls wird der vorhandene Wert durch den neuen Wert ersetzt. Der value-Parameter kann einen beliebigen Typ haben; Sie wird jedoch immer als Zeichenfolge an den Server übergeben.
-
-
-    \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: <table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr> </table>
-  name: set(name, value)
-  fullName: set(name, value)
-  langs:
-  - typeScript
-  type: method
-  syntax:
-    content: 'set(name: string, value: string): void;'
-    return:
-      type:
-      - void
-      description: ''
-    parameters:
-    - id: name
-      description: Der Name der festzulegenden Eigenschaft.
-      type:
-      - string
-    - id: value
-      description: Der Wert der festzulegenden Eigenschaft.
-      type:
-      - string
+      \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: '<table> <tr><td>[Mindestberechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)</td><td>ReadItem</td></tr> <tr><td>[Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)</td><td>Verfassen oder Lesen</td></tr> </table>'
+    name: 'set(name, value)'
+    fullName: 'set(name, value)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(name: string, value: string): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: name
+          description: Der Name der festzulegenden Eigenschaft.
+          type:
+            - string
+        - id: value
+          description: Der Wert der festzulegenden Eigenschaft.
+          type:
+            - string
