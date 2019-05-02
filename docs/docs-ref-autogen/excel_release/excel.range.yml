@@ -2,7 +2,7 @@
 items:
   - uid: excel_release.Excel.Range
     summary: |-
-      Ein Bereich stellt einen Satz einer oder mehrerer zusammenhängender Zellen wie z. B. eine Zelle, eine Zeile oder eine Spalte, ein Block von Zellen usw. dar.
+      Ein Bereich stellt einen Satz von einer oder mehrerer zusammenhängender Zellen wie z. B. eine Zelle, eine Zeile oder eine Spalte, ein Block von Zellen usw. dar.
 
       \[[API-Satz: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: Excel.Range
@@ -16,6 +16,8 @@ items:
     children:
       - excel_release.Excel.Range.address
       - excel_release.Excel.Range.addressLocal
+      - excel_release.Excel.Range.autoFill
+      - excel_release.Excel.Range.autoFill_1
       - excel_release.Excel.Range.calculate
       - excel_release.Excel.Range.cellCount
       - excel_release.Excel.Range.clear
@@ -25,9 +27,16 @@ items:
       - excel_release.Excel.Range.columnIndex
       - excel_release.Excel.Range.conditionalFormats
       - excel_release.Excel.Range.context
+      - excel_release.Excel.Range.convertDataTypeToText
+      - excel_release.Excel.Range.convertToLinkedDataType
+      - excel_release.Excel.Range.copyFrom
+      - excel_release.Excel.Range.copyFrom_1
       - excel_release.Excel.Range.dataValidation
       - excel_release.Excel.Range.delete
       - excel_release.Excel.Range.delete_1
+      - excel_release.Excel.Range.find
+      - excel_release.Excel.Range.findOrNullObject
+      - excel_release.Excel.Range.flashFill
       - excel_release.Excel.Range.format
       - excel_release.Excel.Range.formulas
       - excel_release.Excel.Range.formulasLocal
@@ -35,7 +44,9 @@ items:
       - excel_release.Excel.Range.getAbsoluteResizedRange
       - excel_release.Excel.Range.getBoundingRect
       - excel_release.Excel.Range.getCell
+      - excel_release.Excel.Range.getCellProperties
       - excel_release.Excel.Range.getColumn
+      - excel_release.Excel.Range.getColumnProperties
       - excel_release.Excel.Range.getColumnsAfter
       - excel_release.Excel.Range.getColumnsBefore
       - excel_release.Excel.Range.getEntireColumn
@@ -49,9 +60,15 @@ items:
       - excel_release.Excel.Range.getOffsetRange
       - excel_release.Excel.Range.getResizedRange
       - excel_release.Excel.Range.getRow
+      - excel_release.Excel.Range.getRowProperties
       - excel_release.Excel.Range.getRowsAbove
       - excel_release.Excel.Range.getRowsBelow
+      - excel_release.Excel.Range.getSpecialCells
+      - excel_release.Excel.Range.getSpecialCells_1
+      - excel_release.Excel.Range.getSpecialCellsOrNullObject
+      - excel_release.Excel.Range.getSpecialCellsOrNullObject_1
       - excel_release.Excel.Range.getSurroundingRegion
+      - excel_release.Excel.Range.getTables
       - excel_release.Excel.Range.getUsedRange
       - excel_release.Excel.Range.getUsedRangeOrNullObject
       - excel_release.Excel.Range.getVisibleView
@@ -61,18 +78,25 @@ items:
       - excel_release.Excel.Range.insert_1
       - excel_release.Excel.Range.isEntireColumn
       - excel_release.Excel.Range.isEntireRow
+      - excel_release.Excel.Range.linkedDataTypeState
       - excel_release.Excel.Range.load
       - excel_release.Excel.Range.load_1
       - excel_release.Excel.Range.load_2
       - excel_release.Excel.Range.merge
       - excel_release.Excel.Range.numberFormat
       - excel_release.Excel.Range.numberFormatLocal
+      - excel_release.Excel.Range.removeDuplicates
+      - excel_release.Excel.Range.replaceAll
       - excel_release.Excel.Range.rowCount
       - excel_release.Excel.Range.rowHidden
       - excel_release.Excel.Range.rowIndex
       - excel_release.Excel.Range.select
       - excel_release.Excel.Range.set
       - excel_release.Excel.Range.set_1
+      - excel_release.Excel.Range.setCellProperties
+      - excel_release.Excel.Range.setColumnProperties
+      - excel_release.Excel.Range.setDirty
+      - excel_release.Excel.Range.setRowProperties
       - excel_release.Excel.Range.showCard
       - excel_release.Excel.Range.sort
       - excel_release.Excel.Range.style
@@ -114,6 +138,56 @@ items:
       return:
         type:
           - string
+  - uid: excel_release.Excel.Range.autoFill
+    summary: |-
+      Füllt den Bereich aus dem aktuellen Bereich zum Zielbereich. Der Zielbereichs muss die Quelle horizontal oder vertikal erweitern. Nicht zusammenhängende Bereiche werden nicht unterstützt.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'autoFill(destinationRange, autoFillType)'
+    fullName: 'autoFill(destinationRange, autoFillType)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'autoFill(destinationRange: Range | string, autoFillType?: Excel.AutoFillType): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: destinationRange
+          description: 'Der Zielbereiche, in denen AutoFill werden soll.'
+          type:
+            - Range | string
+        - id: autoFillType
+          description: 'Der Typ des AutoFill-Vorgangs. Gibt basierend auf den Inhalten des aktuellen Intervalls an, wie der Ziel-Range gefüllt werden soll. Der Standardwert ist "FillDefault".'
+          type:
+            - excel.Excel.AutoFillType
+  - uid: excel_release.Excel.Range.autoFill_1
+    summary: |-
+      Füllt den Bereich aus dem aktuellen Bereich zum Zielbereich. Der Zielbereichs muss die Quelle horizontal oder vertikal erweitern. Nicht zusammenhängende Bereiche werden nicht unterstützt.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'autoFill(destinationRange, autoFillTypeString)'
+    fullName: 'autoFill(destinationRange, autoFillTypeString)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'autoFill(destinationRange: Range | string, autoFillTypeString?: "FillDefault" | "FillCopy" | "FillSeries" | "FillFormats" | "FillValues" | "FillDays" | "FillWeekdays" | "FillMonths" | "FillYears" | "LinearTrend" | "GrowthTrend" | "FlashFill"): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: destinationRange
+          description: 'Der Zielbereiche, in denen AutoFill werden soll.'
+          type:
+            - Range | string
+        - id: autoFillTypeString
+          description: 'Der Typ des AutoFill-Vorgangs. Gibt basierend auf den Inhalten des aktuellen Intervalls an, wie der Ziel-Range gefüllt werden soll. Der Standardwert ist "FillDefault".'
+          type:
+            - '"FillDefault" | "FillCopy" | "FillSeries" | "FillFormats" | "FillValues" | "FillDays" | "FillWeekdays" | "FillMonths" | "FillYears" | "LinearTrend" | "GrowthTrend" | "FlashFill"'
   - uid: excel_release.Excel.Range.calculate
     summary: |-
       Berechnet einen Zellbereich auf einem Arbeitsblatt.
@@ -147,7 +221,7 @@ items:
           - number
   - uid: excel_release.Excel.Range.clear
     summary: |-
-      Löschen von Bereichswerten, Format, Füllung, Rahmen usw.
+      Löscht Bereichswerte, Format, Füllung, Rahmen usw.
 
       \[[API-Satz: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: clear(applyTo)
@@ -187,7 +261,7 @@ items:
             - excel.Excel.ClearApplyTo
   - uid: excel_release.Excel.Range.clear_1
     summary: |-
-      Löschen von Bereichswerten, Format, Füllung, Rahmen usw.
+      Löscht Bereichswerte, Format, Füllung, Rahmen usw.
 
       \[[API-Satz: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: clear(applyToString)
@@ -278,6 +352,129 @@ items:
       return:
         type:
           - RequestContext
+  - uid: excel_release.Excel.Range.convertDataTypeToText
+    summary: |-
+      Konvertiert die Zellen mit Datentypen im Bereich in Text.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: convertDataTypeToText()
+    fullName: convertDataTypeToText()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'convertDataTypeToText(): void;'
+      return:
+        type:
+          - void
+        description: ''
+  - uid: excel_release.Excel.Range.convertToLinkedDataType
+    summary: |-
+      Konvertiert die Zellen eines Bereichs auf dem Arbeitsblatt in den verknüpften Datentyp.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'convertToLinkedDataType(serviceID, languageCulture)'
+    fullName: 'convertToLinkedDataType(serviceID, languageCulture)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'convertToLinkedDataType(serviceID: number, languageCulture: string): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: serviceID
+          description: 'Die Dienst-ID, die zum Abfragen der Daten verwendet wird.'
+          type:
+            - number
+        - id: languageCulture
+          description: 'Sprach Kultur, für die der Dienst abgefragt werden soll.'
+          type:
+            - string
+  - uid: excel_release.Excel.Range.copyFrom
+    summary: |-
+      Kopiert Daten oder Formatierung von Zellen aus dem Quellbereich oder RangeAreas in den aktuellen Bereich. Der Ziel-Range kann unterschiedlich groß sein als der Quell-oder RangeAreas. Das Ziel wird automatisch erweitert, wenn es kleiner als die Quelle ist.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'copyFrom(sourceRange, copyType, skipBlanks, transpose)'
+    fullName: 'copyFrom(sourceRange, copyType, skipBlanks, transpose)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'copyFrom(sourceRange: Range | RangeAreas | string, copyType?: Excel.RangeCopyType, skipBlanks?: boolean, transpose?: boolean): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+              sheet.getRange("F2").values = [["Copied Formula"]];
+              sheet.getRange("F2").format.autofitColumns();
+
+              // copy a range preserving the formulas
+              // note: non-formula values are copied over as is
+              sheet.getRange("G2").copyFrom("A1:E1", Excel.RangeCopyType.formulas);
+              await context.sync();
+          });
+          ```
+      parameters:
+        - id: sourceRange
+          description: 'Der Quell-oder RangeAreas, aus dem kopiert werden soll. Wenn die Quell-RangeAreas über mehrere Bereiche verfügt, muss Sie im Gliederungsformular erstellt werden, indem vollständige Zeilen oder Spalten aus einem rechteckigen Bereich entfernt werden.'
+          type:
+            - Range | RangeAreas | string
+        - id: copyType
+          description: 'Der Typ der Zellendaten oder-Formatierungen, die kopiert werden sollen. Der Standardwert ist "All".'
+          type:
+            - excel.Excel.RangeCopyType
+        - id: skipBlanks
+          description: 'True, wenn leere Zellen im Quellbereich übersprungen werden sollen. Default is „false“.'
+          type:
+            - boolean
+        - id: transpose
+          description: 'True, wenn die Zellen im Zielbereich Transpose. Default is „false“.'
+          type:
+            - boolean
+  - uid: excel_release.Excel.Range.copyFrom_1
+    summary: |-
+      Kopiert Daten oder Formatierung von Zellen aus dem Quellbereich oder RangeAreas in den aktuellen Bereich. Der Ziel-Range kann unterschiedlich groß sein als der Quell-oder RangeAreas. Das Ziel wird automatisch erweitert, wenn es kleiner als die Quelle ist.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'copyFrom(sourceRange, copyTypeString, skipBlanks, transpose)'
+    fullName: 'copyFrom(sourceRange, copyTypeString, skipBlanks, transpose)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'copyFrom(sourceRange: Range | RangeAreas | string, copyTypeString?: "All" | "Formulas" | "Values" | "Formats", skipBlanks?: boolean, transpose?: boolean): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: sourceRange
+          description: 'Der Quell-oder RangeAreas, aus dem kopiert werden soll. Wenn die Quell-RangeAreas über mehrere Bereiche verfügt, muss Sie im Gliederungsformular erstellt werden, indem vollständige Zeilen oder Spalten aus einem rechteckigen Bereich entfernt werden.'
+          type:
+            - Range | RangeAreas | string
+        - id: copyTypeString
+          description: 'Der Typ der Zellendaten oder-Formatierungen, die kopiert werden sollen. Der Standardwert ist "All".'
+          type:
+            - '"All" | "Formulas" | "Values" | "Formats"'
+        - id: skipBlanks
+          description: 'True, wenn leere Zellen im Quellbereich übersprungen werden sollen. Default is „false“.'
+          type:
+            - boolean
+        - id: transpose
+          description: 'True, wenn die Zellen im Zielbereich Transpose. Default is „false“.'
+          type:
+            - boolean
   - uid: excel_release.Excel.Range.dataValidation
     summary: |-
       Gibt ein Datenüberprüfungsobjekt zurück.
@@ -295,7 +492,7 @@ items:
           - excel.Excel.DataValidation
   - uid: excel_release.Excel.Range.delete
     summary: |-
-      Löscht die einem Bereich zugeordneten Zellen.
+      Löscht die dem Bereich zugeordneten Zellen.
 
       \[[API-Satz: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: delete(shift)
@@ -316,7 +513,7 @@ items:
             - excel.Excel.DeleteShiftDirection
   - uid: excel_release.Excel.Range.delete_1
     summary: |-
-      Löscht die einem Bereich zugeordneten Zellen.
+      Löscht die dem Bereich zugeordneten Zellen.
 
       \[[API-Satz: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: delete(shiftString)
@@ -353,6 +550,122 @@ items:
           description: 'Gibt an, wohin die Zellen verschoben werden. Weitere Informationen finden Sie unter Excel. DeleteShiftDirection.'
           type:
             - '"Up" | "Left"'
+  - uid: excel_release.Excel.Range.find
+    summary: |-
+      Sucht die angegebene Zeichenfolge anhand der angegebenen Kriterien. Wenn der aktuelle Range größer als eine einzelne Zelle ist, wird die Suche auf diesen Wert begrenzt, sonst wird die Suche das gesamte Blatt abdecken, das nach dieser Zelle beginnt.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'find(text, criteria)'
+    fullName: 'find(text, criteria)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'find(text: string, criteria: Excel.SearchCriteria): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: |-
+          Der Range, der den Suchkriterien entspricht.
+
+          #### <a name="examples"></a>Beispiele
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+              const table = sheet.tables.getItem("ExpensesTable");
+              const searchRange = table.getRange();
+
+              // NOTE: If no match is found, an ItemNotFound error
+              // is thrown when Range.find is evaluated.
+              const foundRange = searchRange.find($("#searchText").text(), {
+                  completeMatch: completeMatch,
+                  matchCase: matchCase,
+                  searchDirection: searchDirection
+              });
+              
+              foundRange.load("address");
+              await context.sync();
+
+
+              console.log(foundRange.address);
+          });
+          ```
+      parameters:
+        - id: text
+          description: 'Zeichenfolge, die gesucht werden soll.'
+          type:
+            - string
+        - id: criteria
+          description: Weitere Kriterien.
+          type:
+            - excel.Excel.SearchCriteria
+  - uid: excel_release.Excel.Range.findOrNullObject
+    summary: |-
+      Sucht die angegebene Zeichenfolge anhand der angegebenen Kriterien. Wenn der aktuelle Range größer als eine einzelne Zelle ist, wird die Suche auf diesen Wert begrenzt, sonst wird die Suche das gesamte Blatt abdecken, das nach dieser Zelle beginnt. Wenn keine Übereinstimmungen vorhanden sind, gibt diese Funktion ein NULL-Objekt zurück.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'findOrNullObject(text, criteria)'
+    fullName: 'findOrNullObject(text, criteria)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'findOrNullObject(text: string, criteria: Excel.SearchCriteria): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: |-
+          Der Range, der den Suchkriterien entspricht.
+
+          #### <a name="examples"></a>Beispiele
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+              const table = sheet.tables.getItem("ExpensesTable");
+              const searchRange = table.getRange();
+              const foundRange = searchRange.findOrNullObject($("#searchText").text(), {
+                  completeMatch: completeMatch,
+                  matchCase: matchCase,
+                  searchDirection: searchDirection
+              });
+              
+              foundRange.load("address");
+              await context.sync();
+
+              if (foundRange.isNullObject) {
+                  console.log("Text not found");
+              } else {
+                  console.log(foundRange.address);
+              }
+          });
+          ```
+      parameters:
+        - id: text
+          description: 'Zeichenfolge, die gesucht werden soll.'
+          type:
+            - string
+        - id: criteria
+          description: Weitere Kriterien.
+          type:
+            - excel.Excel.SearchCriteria
+  - uid: excel_release.Excel.Range.flashFill
+    summary: |-
+      Führt die Blitzvorschau für den aktuellen Bereich aus. Die Blitzvorschau füllt Daten automatisch auf, wenn sie ein Muster erkennt, daher muss der Bereich einspaltig sein und Daten enthalten, um ein Muster erkennen zu können.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: flashFill()
+    fullName: flashFill()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'flashFill(): void;'
+      return:
+        type:
+          - void
+        description: ''
   - uid: excel_release.Excel.Range.format
     summary: |-
       Gibt ein Formatobjekt zurück, das die Schriftart des Bereichs, Füllung, den Rahmen, die Ausrichtung und andere Eigenschaften verschachtelt. Schreibgeschützt.
@@ -527,6 +840,27 @@ items:
           description: Spaltenanzahl der abzurufenden Zelle. Nullindiziert.
           type:
             - number
+  - uid: excel_release.Excel.Range.getCellProperties
+    summary: |-
+      Gibt ein 2D-Array zurück, das die Daten für die Schriftart, die Füllung, den Rahmen, die Ausrichtung und andere Eigenschaften jeder Zelle kapselt.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getCellProperties(cellPropertiesLoadOptions)
+    fullName: getCellProperties(cellPropertiesLoadOptions)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getCellProperties(cellPropertiesLoadOptions: CellPropertiesLoadOptions): OfficeExtension.ClientResult<CellProperties[][]>;'
+      return:
+        type:
+          - 'OfficeExtension.ClientResult<CellProperties[][]>'
+        description: 'Ein 2D-Array, in dem jedes Element die angeforderten Eigenschaften der entsprechenden Zelle darstellt.'
+      parameters:
+        - id: cellPropertiesLoadOptions
+          description: 'Ein Objekt, das die zu ladenden Zelleneigenschaften darstellt.'
+          type:
+            - CellPropertiesLoadOptions
   - uid: excel_release.Excel.Range.getColumn
     summary: |-
       Ruft eine Spalte ab, die im Bereich enthalten ist.
@@ -568,6 +902,27 @@ items:
           description: Spaltenanzahl des abzurufenden Bereichs. Nullindiziert.
           type:
             - number
+  - uid: excel_release.Excel.Range.getColumnProperties
+    summary: |-
+      Gibt ein eindimensionales Array zurück, das die Daten für die Schriftart, die Füllung, den Rahmen, die Ausrichtung und andere Eigenschaften jeder Spalte kapselt. Für Eigenschaften, die innerhalb einer bestimmten Spalte nicht für alle Zellen konsistent sind, wird NULL zurückgegeben.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getColumnProperties(columnPropertiesLoadOptions)
+    fullName: getColumnProperties(columnPropertiesLoadOptions)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getColumnProperties(columnPropertiesLoadOptions: ColumnPropertiesLoadOptions): OfficeExtension.ClientResult<ColumnProperties[]>;'
+      return:
+        type:
+          - 'OfficeExtension.ClientResult<ColumnProperties[]>'
+        description: 'Ein Array, in dem jedes Element die angeforderten Eigenschaften der entsprechenden Spalte darstellt.'
+      parameters:
+        - id: columnPropertiesLoadOptions
+          description: 'Ein Objekt, das die zu ladenden Spalteneigenschaften darstellt.'
+          type:
+            - ColumnPropertiesLoadOptions
   - uid: excel_release.Excel.Range.getColumnsAfter
     summary: |-
       Ruft eine bestimmte Anzahl von Spalten rechts vom aktuellen Bereichsobjekt ab.
@@ -651,7 +1006,7 @@ items:
           ```
   - uid: excel_release.Excel.Range.getEntireRow
     summary: |-
-      Ruft ein Objekt ab, das die gesamte Zeile des Bereiches darstellt (Wenn beispielsweise der aktuelle Bereich die Zellen "B4: e11" darstellt `GetEntireRow` , ist its ein Bereich, der die zeilen "4:11" darstellt).
+      Ruft ein Objekt ab, das die gesamte Zeile des Bereiches darstellt (Wenn beispielsweise der aktuelle Bereich die Zellen "B4: e11" darstellt `GetEntireRow` , ist its ein Bereich, der die Zeilen "4:11" darstellt).
 
       \[[API-Satz: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: getEntireRow()
@@ -1048,6 +1403,27 @@ items:
           description: Zeilenanzahl des abzurufenden Bereichs. Nullindiziert.
           type:
             - number
+  - uid: excel_release.Excel.Range.getRowProperties
+    summary: |-
+      Gibt ein eindimensionales Array zurück, das die Daten für die Schriftart, die Füllung, den Rahmen, die Ausrichtung und andere Eigenschaften jeder Zeile kapselt. Für Eigenschaften, die innerhalb einer bestimmten Zeile nicht für alle Zellen konsistent sind, wird NULL zurückgegeben.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getRowProperties(rowPropertiesLoadOptions)
+    fullName: getRowProperties(rowPropertiesLoadOptions)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getRowProperties(rowPropertiesLoadOptions: RowPropertiesLoadOptions): OfficeExtension.ClientResult<RowProperties[]>;'
+      return:
+        type:
+          - 'OfficeExtension.ClientResult<RowProperties[]>'
+        description: 'Ein Array, in dem jedes Element die angeforderten Eigenschaften der entsprechenden Zeile darstellt.'
+      parameters:
+        - id: rowPropertiesLoadOptions
+          description: 'Ein Objekt, das die zu ladenden Zeileneigenschaften darstellt.'
+          type:
+            - RowPropertiesLoadOptions
   - uid: excel_release.Excel.Range.getRowsAbove
     summary: |-
       Ruft eine bestimmte Anzahl von Zeilen oberhalb vom aktuellen Bereichsobjekt ab.
@@ -1090,6 +1466,124 @@ items:
           description: 'Optional. Die Anzahl von Zeilen, die in den Ergebnisbereich aufgenommen werden soll. Grundsätzlich verwenden Sie eine positive Zahl, um einen Bereich außerhalb des aktuellen Bereichs zu erstellen. Sie können auch eine negative Zahl verwenden, um einen Bereich innerhalb des aktuellen Bereichs zu erstellen. Der Standardwert ist 1.'
           type:
             - number
+  - uid: excel_release.Excel.Range.getSpecialCells
+    summary: |-
+      Ruft das RangeAreas-Objekt ab, das aus einem oder mehreren rechteckigen Bereichen besteht und alle Zellen darstellt, die mit dem angegebenen Typ und Wert übereinstimmen. Wenn keine speziellen Zellen gefunden werden, wird ein ItemNotFound-Fehler ausgelöst.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'getSpecialCells(cellType, cellValueType)'
+    fullName: 'getSpecialCells(cellType, cellValueType)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getSpecialCells(cellType: Excel.SpecialCellType, cellValueType?: Excel.SpecialCellValueType): Excel.RangeAreas;'
+      return:
+        type:
+          - excel.Excel.RangeAreas
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```typescript
+          await Excel.run(async (context) => {
+
+              const sheet = context.workbook.worksheets.getActiveWorksheet();
+              const usedRange = sheet.getUsedRange();
+
+              // Find the ranges with either text or logical (boolean)
+              // values
+              const formulaRanges = usedRange.getSpecialCells("Constants", "LogicalText");
+              formulaRanges.format.fill.color = "orange";
+
+              return context.sync();
+          });
+          ```
+      parameters:
+        - id: cellType
+          description: Der Typ der einzuschließenden Zellen.
+          type:
+            - excel.Excel.SpecialCellType
+        - id: cellValueType
+          description: 'Wenn CellType entweder Konstanten oder Formeln ist, wird dieses Argument verwendet, um zu bestimmen, welche Zelltypen in das Ergebnis eingeschlossen werden sollen. Diese Werte können kombiniert werden, um mehr als einen Typ zurückzugeben. Standardmäßig werden alle Konstanten oder Formeln unabhängig vom Typ ausgewählt.'
+          type:
+            - excel.Excel.SpecialCellValueType
+  - uid: excel_release.Excel.Range.getSpecialCells_1
+    summary: |-
+      Ruft das RangeAreas-Objekt ab, das aus einem oder mehreren rechteckigen Bereichen besteht und alle Zellen darstellt, die mit dem angegebenen Typ und Wert übereinstimmen. Wenn keine speziellen Zellen gefunden werden, wird ein ItemNotFound-Fehler ausgelöst.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'getSpecialCells(cellTypeString, cellValueType)'
+    fullName: 'getSpecialCells(cellTypeString, cellValueType)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getSpecialCells(cellTypeString: "ConditionalFormats" | "DataValidations" | "Blanks" | "Constants" | "Formulas" | "SameConditionalFormat" | "SameDataValidation" | "Visible", cellValueType?: "All" | "Errors" | "ErrorsLogical" | "ErrorsNumbers" | "ErrorsText" | "ErrorsLogicalNumber" | "ErrorsLogicalText" | "ErrorsNumberText" | "Logical" | "LogicalNumbers" | "LogicalText" | "LogicalNumbersText" | "Numbers" | "NumbersText" | "Text"): Excel.RangeAreas;'
+      return:
+        type:
+          - excel.Excel.RangeAreas
+        description: ''
+      parameters:
+        - id: cellTypeString
+          description: Der Typ der einzuschließenden Zellen.
+          type:
+            - '"ConditionalFormats" | "DataValidations" | "Blanks" | "Constants" | "Formulas" | "SameConditionalFormat" | "SameDataValidation" | "Visible"'
+        - id: cellValueType
+          description: 'Wenn CellType entweder Konstanten oder Formeln ist, wird dieses Argument verwendet, um zu bestimmen, welche Zelltypen in das Ergebnis eingeschlossen werden sollen. Diese Werte können kombiniert werden, um mehr als einen Typ zurückzugeben. Standardmäßig werden alle Konstanten oder Formeln unabhängig vom Typ ausgewählt.'
+          type:
+            - '"All" | "Errors" | "ErrorsLogical" | "ErrorsNumbers" | "ErrorsText" | "ErrorsLogicalNumber" | "ErrorsLogicalText" | "ErrorsNumberText" | "Logical" | "LogicalNumbers" | "LogicalText" | "LogicalNumbersText" | "Numbers" | "NumbersText" | "Text"'
+  - uid: excel_release.Excel.Range.getSpecialCellsOrNullObject
+    summary: |-
+      Ruft das RangeAreas-Objekt ab, das aus einem oder mehreren Bereichen besteht, die alle Zellen darstellen, die mit dem angegebenen Typ und Wert übereinstimmen. Wenn keine speziellen Zellen gefunden werden, wird ein NULL-Objekt zurückgegeben.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'getSpecialCellsOrNullObject(cellType, cellValueType)'
+    fullName: 'getSpecialCellsOrNullObject(cellType, cellValueType)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getSpecialCellsOrNullObject(cellType: Excel.SpecialCellType, cellValueType?: Excel.SpecialCellValueType): Excel.RangeAreas;'
+      return:
+        type:
+          - excel.Excel.RangeAreas
+        description: ''
+      parameters:
+        - id: cellType
+          description: Der Typ der einzuschließenden Zellen.
+          type:
+            - excel.Excel.SpecialCellType
+        - id: cellValueType
+          description: 'Wenn CellType entweder Konstanten oder Formeln ist, wird dieses Argument verwendet, um zu bestimmen, welche Zelltypen in das Ergebnis eingeschlossen werden sollen. Diese Werte können kombiniert werden, um mehr als einen Typ zurückzugeben. Standardmäßig werden alle Konstanten oder Formeln unabhängig vom Typ ausgewählt.'
+          type:
+            - excel.Excel.SpecialCellValueType
+  - uid: excel_release.Excel.Range.getSpecialCellsOrNullObject_1
+    summary: |-
+      Ruft das RangeAreas-Objekt ab, das aus einem oder mehreren Bereichen besteht, die alle Zellen darstellen, die mit dem angegebenen Typ und Wert übereinstimmen. Wenn keine speziellen Zellen gefunden werden, wird ein NULL-Objekt zurückgegeben.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'getSpecialCellsOrNullObject(cellTypeString, cellValueType)'
+    fullName: 'getSpecialCellsOrNullObject(cellTypeString, cellValueType)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getSpecialCellsOrNullObject(cellTypeString: "ConditionalFormats" | "DataValidations" | "Blanks" | "Constants" | "Formulas" | "SameConditionalFormat" | "SameDataValidation" | "Visible", cellValueType?: "All" | "Errors" | "ErrorsLogical" | "ErrorsNumbers" | "ErrorsText" | "ErrorsLogicalNumber" | "ErrorsLogicalText" | "ErrorsNumberText" | "Logical" | "LogicalNumbers" | "LogicalText" | "LogicalNumbersText" | "Numbers" | "NumbersText" | "Text"): Excel.RangeAreas;'
+      return:
+        type:
+          - excel.Excel.RangeAreas
+        description: ''
+      parameters:
+        - id: cellTypeString
+          description: Der Typ der einzuschließenden Zellen.
+          type:
+            - '"ConditionalFormats" | "DataValidations" | "Blanks" | "Constants" | "Formulas" | "SameConditionalFormat" | "SameDataValidation" | "Visible"'
+        - id: cellValueType
+          description: 'Wenn CellType entweder Konstanten oder Formeln ist, wird dieses Argument verwendet, um zu bestimmen, welche Zelltypen in das Ergebnis eingeschlossen werden sollen. Diese Werte können kombiniert werden, um mehr als einen Typ zurückzugeben. Standardmäßig werden alle Konstanten oder Formeln unabhängig vom Typ ausgewählt.'
+          type:
+            - '"All" | "Errors" | "ErrorsLogical" | "ErrorsNumbers" | "ErrorsText" | "ErrorsLogicalNumber" | "ErrorsLogicalText" | "ErrorsNumberText" | "Logical" | "LogicalNumbers" | "LogicalText" | "LogicalNumbersText" | "Numbers" | "NumbersText" | "Text"'
   - uid: excel_release.Excel.Range.getSurroundingRegion
     summary: |-
       Gibt ein Bereichsobjekt zurück, das die umgebenden Region für die Zelle oben links in diesem Bereich darstellt. Eine umgebende Region ist ein Bereich, der von einer Kombination von leeren Zeilen und leeren Spalten relativ zu diesem Bereich begrenzt wird.
@@ -1106,6 +1600,27 @@ items:
         type:
           - excel.Excel.Range
         description: ''
+  - uid: excel_release.Excel.Range.getTables
+    summary: |-
+      Ruft eine bereichsbezogene Sammlung von Tabellen ab, die sich mit dem Bereich überschneidet.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getTables(fullyContained)
+    fullName: getTables(fullyContained)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getTables(fullyContained?: boolean): Excel.TableScopedCollection;'
+      return:
+        type:
+          - excel.Excel.TableScopedCollection
+        description: ''
+      parameters:
+        - id: fullyContained
+          description: 'Wenn true, werden nur Tabellen zurückgegeben, die vollständig innerhalb der Bereichsgrenzen enthalten sind. Der Standardwert ist false.'
+          type:
+            - boolean
   - uid: excel_release.Excel.Range.getUsedRange
     summary: |-
       Gibt den verwendeten Bereich des angegebenen Bereichsobjekts zurück. Wenn keine verwendeten Zellen innerhalb des Bereichs vorhanden sind, löst diese Funktion einen „ItemNotFound“-Fehler aus.
@@ -1431,6 +1946,21 @@ items:
       return:
         type:
           - boolean
+  - uid: excel_release.Excel.Range.linkedDataTypeState
+    summary: |-
+      Stellt den Datentypstatus der einzelnen Zellen dar. Schreibgeschützt.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: linkedDataTypeState
+    fullName: linkedDataTypeState
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly linkedDataTypeState: Excel.LinkedDataTypeState[][];'
+      return:
+        type:
+          - 'Excel.LinkedDataTypeState[][]'
   - uid: excel_release.Excel.Range.load
     summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "context.sync()" aufrufen.
     remarks: |-
@@ -1556,7 +2086,7 @@ items:
             - '{ select?: string; expand?: string; }'
   - uid: excel_release.Excel.Range.merge
     summary: |-
-      Führt die Zellen des Bereichs in einen Bereich im Arbeitsblatt zusammen.
+      Führt die Zellen des Bereichs in eine Region im Arbeitsblatt zusammen.
 
       \[[API-Satz: ExcelApi 1,2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: merge(across)
@@ -1637,6 +2167,77 @@ items:
       return:
         type:
           - 'any[][]'
+  - uid: excel_release.Excel.Range.removeDuplicates
+    summary: |-
+      Entfernt doppelte Werte aus dem durch die Spalten angegebenen Bereich.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'removeDuplicates(columns, includesHeader)'
+    fullName: 'removeDuplicates(columns, includesHeader)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'removeDuplicates(columns: number[], includesHeader: boolean): Excel.RemoveDuplicatesResult;'
+      return:
+        type:
+          - excel.Excel.RemoveDuplicatesResult
+        description: |-
+          Das resultierende Objekt, das die Anzahl der entfernten Zeilen und die Anzahl der verbleibenden eindeutigen Zeilen enthält.
+
+          #### <a name="examples"></a>Beispiele
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+              const range = sheet.getRange("B2:D11");
+
+              const deleteResult = range.removeDuplicates([0],true);    
+              deleteResult.load();    
+              await context.sync();
+
+              console.log(deleteResult.removed + " entries with duplicate names removed.");
+              console.log(deleteResult.uniqueRemaining + " entries with unique names remain in the range.");
+          });
+          ```
+      parameters:
+        - id: columns
+          description: 'Die Spalten innerhalb des Bereiches, die Duplikate enthalten können. Mindestens eine Spalte muss angegeben werden. Nullindiziert.'
+          type:
+            - 'number[]'
+        - id: includesHeader
+          description: 'True, wenn die Eingabedaten den Header enthalten. Default is „false“.'
+          type:
+            - boolean
+  - uid: excel_release.Excel.Range.replaceAll
+    summary: |-
+      Sucht und ersetzt die angegebene Zeichenfolge auf der Grundlage der im aktuellen Bereich angegebenen Kriterien.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'replaceAll(text, replacement, criteria)'
+    fullName: 'replaceAll(text, replacement, criteria)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'replaceAll(text: string, replacement: string, criteria: Excel.ReplaceCriteria): OfficeExtension.ClientResult<number>;'
+      return:
+        type:
+          - OfficeExtension.ClientResult<number>
+        description: Die Anzahl der ausgeführten Ersetzungen.
+      parameters:
+        - id: text
+          description: 'Zeichenfolge, die gesucht werden soll.'
+          type:
+            - string
+        - id: replacement
+          description: 'Die Zeichenfolge, durch die das Original ersetzt werden soll.'
+          type:
+            - string
+        - id: criteria
+          description: Weitere Kriterien zum ersetzen.
+          type:
+            - excel.Excel.ReplaceCriteria
   - uid: excel_release.Excel.Range.rowCount
     summary: |-
       Gibt die Anzahl der Zeilen im Bereich zurück. Schreibgeschützt.
@@ -1799,6 +2400,85 @@ items:
           description: ''
           type:
             - excel.Excel.Range
+  - uid: excel_release.Excel.Range.setCellProperties
+    summary: |-
+      Aktualisiert den Bereich auf der Grundlage eines 2D-Arrays von Zelleigenschaften, das Dinge wie die Schriftart, die Füllung, Rahmen, die Ausrichtung usw. enthält.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: setCellProperties(cellPropertiesData)
+    fullName: setCellProperties(cellPropertiesData)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setCellProperties(cellPropertiesData: SettableCellProperties[][]): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: cellPropertiesData
+          description: 'Ein 2D-Array, das angibt, welche Eigenschaften in den einzelnen Zellen festgelegt werden sollen.'
+          type:
+            - 'SettableCellProperties[][]'
+  - uid: excel_release.Excel.Range.setColumnProperties
+    summary: |-
+      Aktualisiert den Bereich auf der Grundlage eines eindimensionalen Arrays von Spalteneigenschaften, das Dinge wie die Schriftart, die Füllung, Rahmen, die Ausrichtung usw. enthält.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: setColumnProperties(columnPropertiesData)
+    fullName: setColumnProperties(columnPropertiesData)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setColumnProperties(columnPropertiesData: SettableColumnProperties[]): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: columnPropertiesData
+          description: 'Ein Array, das angibt, welche Eigenschaften in den einzelnen Spalten festgelegt werden sollen.'
+          type:
+            - 'SettableColumnProperties[]'
+  - uid: excel_release.Excel.Range.setDirty
+    summary: |-
+      Legt für einen Bereich Neuberechnung bei der nächsten auszuführenden Neuberechnung fest.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: setDirty()
+    fullName: setDirty()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setDirty(): void;'
+      return:
+        type:
+          - void
+        description: ''
+  - uid: excel_release.Excel.Range.setRowProperties
+    summary: |-
+      Aktualisiert den Bereich auf der Grundlage eines eindimensionalen Arrays von Zeileneigenschaften, das Dinge wie die Schriftart, die Füllung, Rahmen, die Ausrichtung usw. enthält.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: setRowProperties(rowPropertiesData)
+    fullName: setRowProperties(rowPropertiesData)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setRowProperties(rowPropertiesData: SettableRowProperties[]): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: rowPropertiesData
+          description: 'Ein Array, das angibt, welche Eigenschaften in jeder Zeile festgelegt werden sollen.'
+          type:
+            - 'SettableRowProperties[]'
   - uid: excel_release.Excel.Range.showCard
     summary: |-
       Zeigt die Karte für eine aktive Zelle an, wenn sie einen hohen Wertinhalt hat.
@@ -1832,7 +2512,7 @@ items:
           - excel.Excel.RangeSort
   - uid: excel_release.Excel.Range.style
     summary: |-
-      Stellt die Formatvorlage des aktuellen Bereichs dar. Wenn die Formatvorlagen der Zellen inkonsistent sind, wird NULL zurückgegeben. Für benutzerdefinierte Formatvorlagen wird der Formatvorlagenname zurückgegeben. Bei integrierten Formatvorlagen wird eine Zeichenfolge zurückgegeben, die einen Wert in der Builtstyle-Enumeration darstellt.
+      Stellt die Formatvorlage des aktuellen Bereichs dar. Wenn die Formatvorlagen der Zellen inkonsistent sind, wird NULL zurückgegeben. Für benutzerdefinierte Formatvorlagen wird der Formatvorlagenname zurückgegeben. Bei integrierten Formatvorlagen wird eine Zeichenfolge zurückgegeben, die einen Wert in der builtstyle-Enumeration darstellt.
 
       \[[API-Satz: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: style
@@ -1879,7 +2559,7 @@ items:
         type:
           - 'string[][]'
   - uid: excel_release.Excel.Range.toJSON
-    summary: 'ÜberSchreibt die `toJSON()` JavaScript-Methode, um eine nützlichere Ausgabe bereitzustellen, wenn ein API-Objekt an`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->Ruft wiederum die `toJSON` Methode des Objekts auf, das übergeben wird.) Während das ursprüngliche Excel. Range-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt zurück (typisiert als`Excel.Interfaces.RangeData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
+    summary: 'Überschreibt die `toJSON()` JavaScript-Methode, um eine nützlichere Ausgabe bereitzustellen, wenn ein API-Objekt an`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->Ruft wiederum die `toJSON` Methode des Objekts auf, das übergeben wird.) Während das ursprüngliche Excel. Range-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt zurück (typisiert als`Excel.Interfaces.RangeData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
     name: toJSON()
     fullName: toJSON()
     langs:

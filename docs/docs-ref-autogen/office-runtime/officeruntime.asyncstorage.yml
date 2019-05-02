@@ -1,14 +1,8 @@
 ### YamlMime:UniversalReference
 items:
   - uid: office-runtime.OfficeRuntime.AsyncStorage
-    summary: 'Asynchroner, globaler und dauerhafter Schlüssel-Wert-Speicher, der von benutzerdefinierten Excel-Funktionen verwendet werden kann.'
-    remarks: |-
-      Jede Add-in-Instanz verfügt über eine eigene Speicherpartition, die für einen Benutzer und dessen Gerät eindeutig ist.
-
-      Der standardmäßige Speicherplatz, der pro Add-in zulässig ist, ist 5MB.
-
-      Jede unten aufgeführte Methode gibt ein Promise-Objekt zurück.
-    isPreview: true
+    summary: 'Asynchroner, globaler und dauerhafter Schlüssel-Wert-Speicher. Der Speichergrenzwert beträgt 10 MB pro Domäne, die von mehreren Add-Ins gemeinsam genutzt werden können.'
+    remarks: 'In Zukunft veraltet, verwenden Sie stattdessen Office. Storage.'
     name: OfficeRuntime.AsyncStorage
     fullName: OfficeRuntime.AsyncStorage
     langs:
@@ -24,8 +18,7 @@ items:
       - office-runtime.OfficeRuntime.AsyncStorage.removeItem
       - office-runtime.OfficeRuntime.AsyncStorage.setItem
   - uid: office-runtime.OfficeRuntime.AsyncStorage.getAllKeys
-    summary: Gibt eine zuSage mit allen Schlüsseln zurück.
-    isPreview: true
+    summary: Ruft alle Schlüssel ab und ruft nach Abschluss einen Rückruf auf. Gibt eine Zusage zurück.
     name: getAllKeys(callback)
     fullName: getAllKeys(callback)
     langs:
@@ -43,8 +36,7 @@ items:
           type:
             - '(error?: Error, keys?: string[]) => void'
   - uid: office-runtime.OfficeRuntime.AsyncStorage.getItem
-    summary: Ruft ein Objekt basierend auf einem Schlüssel ab und ruft nach Abschluss einen Rückruf auf. Gibt eine zuSage zurück.
-    isPreview: true
+    summary: Ruft ein Element nach Schlüssel ab und gibt dann einen Rückruf aus. Gibt eine Zusage zurück.
     name: 'getItem(key, callback)'
     fullName: 'getItem(key, callback)'
     langs:
@@ -58,16 +50,15 @@ items:
         description: ''
       parameters:
         - id: key
-          description: ''
+          description: Der Name des abzurufenden Schlüssels. Muss eine Zeichenfolge sein.
           type:
             - string
         - id: callback
-          description: ''
+          description: Zurückgegebenes Ergebnis ist eine Zeichenfolge.
           type:
             - '(error?: Error, result?: string) => void'
   - uid: office-runtime.OfficeRuntime.AsyncStorage.multiGet
-    summary: 'Ruft einen Batch von Schlüsseln ab, die `keys` im Array angegeben sind. Wenn ein Schlüssel nicht vorhanden ist, wird NULL zurückgegeben.'
-    isPreview: true
+    summary: Ruft mehrere Elemente aus dem Speicher ab und ruft nach Abschluss einen Rückruf auf. Gibt eine Zusage zurück.
     name: 'multiGet(keys, callback)'
     fullName: 'multiGet(keys, callback)'
     langs:
@@ -81,7 +72,7 @@ items:
         description: ''
       parameters:
         - id: keys
-          description: ''
+          description: Schlüssel der abzurufenden Elemente. Muss ein Array von Zeichenfolgen sein.
           type:
             - 'string[]'
         - id: callback
@@ -89,8 +80,7 @@ items:
           type:
             - '(errors?: Error[], result?: string[][]) => void'
   - uid: office-runtime.OfficeRuntime.AsyncStorage.multiRemove
-    summary: Löscht einen im `keys` Array angegebenen Batch von Schlüsseln.
-    isPreview: true
+    summary: Entfernt mehrere Elemente aus dem Speicher und ruft nach Abschluss einen Rückruf auf. Gibt eine Zusage zurück.
     name: 'multiRemove(keys, callback)'
     fullName: 'multiRemove(keys, callback)'
     langs:
@@ -104,7 +94,7 @@ items:
         description: ''
       parameters:
         - id: keys
-          description: ''
+          description: Schlüssel der zu entfernenden Elemente. Muss ein Array von Zeichenfolgen sein.
           type:
             - 'string[]'
         - id: callback
@@ -112,8 +102,7 @@ items:
           type:
             - '(errors?: Error[]) => void'
   - uid: office-runtime.OfficeRuntime.AsyncStorage.multiSet
-    summary: 'Speichert mehrere Schlüssel-Wert-Paare in einem Batch. Gibt eine zuSage zurück. Wenn ein Schlüssel nicht vorhanden ist, wird NULL zurückgegeben.'
-    isPreview: true
+    summary: Legt mehrere Schlüssel-Wert-Paare fest und ruft nach Abschluss einen Rückruf auf. Gibt eine Zusage zurück.
     name: 'multiSet(keyValuePairs, callback)'
     fullName: 'multiSet(keyValuePairs, callback)'
     langs:
@@ -127,7 +116,7 @@ items:
         description: ''
       parameters:
         - id: keyValuePairs
-          description: ''
+          description: Muss Zeichenfolgenarrays sein.
           type:
             - 'string[][]'
         - id: callback
@@ -135,8 +124,7 @@ items:
           type:
             - '(errors?: Error[]) => void'
   - uid: office-runtime.OfficeRuntime.AsyncStorage.removeItem
-    summary: Entfernt ein Element für den angegebenen Schlüssel und ruft nach Abschluss einen Rückruf auf. Gibt eine zuSage zurück.
-    isPreview: true
+    summary: 'Entfernt Elemente nach Schlüssel und ruft nach Abschluss einen Rückruf auf. Sie gibt eine Zusage zurück, die in ein Objekt aufgelöst wird, das die angeforderten Schlüssel und Werte enthält.'
     name: 'removeItem(key, callback)'
     fullName: 'removeItem(key, callback)'
     langs:
@@ -150,7 +138,7 @@ items:
         description: ''
       parameters:
         - id: key
-          description: ''
+          description: Der Schlüssel des zu entfernenden Elements. Muss eine Zeichenfolge sein.
           type:
             - string
         - id: callback
@@ -158,8 +146,7 @@ items:
           type:
             - '(error?: Error) => void'
   - uid: office-runtime.OfficeRuntime.AsyncStorage.setItem
-    summary: Weist den Wert für ein Schlüssel-Wert-Paar zu und ruft nach Abschluss einen Rückruf auf. Gibt eine zuSage zurück.
-    isPreview: true
+    summary: Erstellt ein neues Schlüssel-Wert-Paar im Speicher oder aktualisiert einen vorhandenen Schlüssel mit einem neuen Wert. Gibt eine Zusage zurück.
     name: 'setItem(key, value, callback)'
     fullName: 'setItem(key, value, callback)'
     langs:
@@ -173,11 +160,11 @@ items:
         description: ''
       parameters:
         - id: key
-          description: ''
+          description: Der Name des Schlüssels für das Schlüssel-Wert-Paar. Muss eine Zeichenfolge sein.
           type:
             - string
         - id: value
-          description: ''
+          description: Der Name des Werts. Muss eine Zeichenfolge sein.
           type:
             - string
         - id: callback

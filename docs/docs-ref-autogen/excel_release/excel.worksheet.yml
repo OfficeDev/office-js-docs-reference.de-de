@@ -2,7 +2,7 @@
 items:
   - uid: excel_release.Excel.Worksheet
     summary: |-
-      Ein Excel-Arbeitsblatt ist ein Raster von Zellen. Sie kann Daten, Tabellen, Diagramme usw. enthalten.
+      Ein Excel-Arbeitsblatt ist ein Raster von Zellen. Es kann Daten, Tabellen, Diagramme usw. enthalten.
 
       \[[API-Satz: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: Excel.Worksheet
@@ -15,12 +15,16 @@ items:
     package: excel_release
     children:
       - excel_release.Excel.Worksheet.activate
+      - excel_release.Excel.Worksheet.autoFilter
       - excel_release.Excel.Worksheet.calculate
       - excel_release.Excel.Worksheet.charts
       - excel_release.Excel.Worksheet.context
       - excel_release.Excel.Worksheet.copy
       - excel_release.Excel.Worksheet.copy_1
       - excel_release.Excel.Worksheet.delete
+      - excel_release.Excel.Worksheet.enableCalculation
+      - excel_release.Excel.Worksheet.findAll
+      - excel_release.Excel.Worksheet.findAllOrNullObject
       - excel_release.Excel.Worksheet.freezePanes
       - excel_release.Excel.Worksheet.getCell
       - excel_release.Excel.Worksheet.getNext
@@ -29,8 +33,10 @@ items:
       - excel_release.Excel.Worksheet.getPreviousOrNullObject
       - excel_release.Excel.Worksheet.getRange
       - excel_release.Excel.Worksheet.getRangeByIndexes
+      - excel_release.Excel.Worksheet.getRanges
       - excel_release.Excel.Worksheet.getUsedRange
       - excel_release.Excel.Worksheet.getUsedRangeOrNullObject
+      - excel_release.Excel.Worksheet.horizontalPageBreaks
       - excel_release.Excel.Worksheet.id
       - excel_release.Excel.Worksheet.load
       - excel_release.Excel.Worksheet.load_1
@@ -41,12 +47,16 @@ items:
       - excel_release.Excel.Worksheet.onCalculated
       - excel_release.Excel.Worksheet.onChanged
       - excel_release.Excel.Worksheet.onDeactivated
+      - excel_release.Excel.Worksheet.onFormatChanged
       - excel_release.Excel.Worksheet.onSelectionChanged
+      - excel_release.Excel.Worksheet.pageLayout
       - excel_release.Excel.Worksheet.pivotTables
       - excel_release.Excel.Worksheet.position
       - excel_release.Excel.Worksheet.protection
+      - excel_release.Excel.Worksheet.replaceAll
       - excel_release.Excel.Worksheet.set
       - excel_release.Excel.Worksheet.set_1
+      - excel_release.Excel.Worksheet.shapes
       - excel_release.Excel.Worksheet.showGridlines
       - excel_release.Excel.Worksheet.showHeadings
       - excel_release.Excel.Worksheet.standardHeight
@@ -54,6 +64,7 @@ items:
       - excel_release.Excel.Worksheet.tabColor
       - excel_release.Excel.Worksheet.tables
       - excel_release.Excel.Worksheet.toJSON
+      - excel_release.Excel.Worksheet.verticalPageBreaks
       - excel_release.Excel.Worksheet.visibility
   - uid: excel_release.Excel.Worksheet.activate
     summary: |-
@@ -86,6 +97,36 @@ items:
               if (error instanceof OfficeExtension.Error) {
                   console.log("Debug info: " + JSON.stringify(error.debugInfo));
               }
+          });
+          ```
+  - uid: excel_release.Excel.Worksheet.autoFilter
+    summary: |-
+      Stellt das AutoFilter-Objekt des Arbeitsblatts dar. Schreibgeschützt.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: autoFilter
+    fullName: autoFilter
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly autoFilter: Excel.AutoFilter;'
+      return:
+        type:
+          - excel.Excel.AutoFilter
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getActiveWorksheet();
+              const farmData = sheet.getUsedRange();
+
+              // This filter will only show the rows with the top 25% of values in column 3.
+              sheet.autoFilter.apply(farmData, 3, { criterion1: "25", filterOn: Excel.FilterOn.topPercent });
+              await context.sync();
           });
           ```
   - uid: excel_release.Excel.Worksheet.calculate
@@ -207,7 +248,7 @@ items:
             - excel.Excel.Worksheet
   - uid: excel_release.Excel.Worksheet.delete
     summary: |-
-      Löscht das Arbeitsblatt aus der Arbeitsmappe.
+      Löscht das Arbeitsblatt aus der Arbeitsmappe. Beachten Sie Folgendes: Wenn die Sichtbarkeit des Arbeitsblatts auf "VeryHidden" festgelegt ist, schlägt der Löschvorgang mit einer allgemeinenexception fehl.
 
       \[[API-Satz: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: delete()
@@ -238,6 +279,92 @@ items:
               }
           });
           ```
+  - uid: excel_release.Excel.Worksheet.enableCalculation
+    summary: |-
+      Ruft die enableCalculation-Eigenschaft des Arbeitsblatts ab oder legt sie fest. True, wenn Excel das Arbeitsblatt bei Bedarf neu berechnet. False, falls Excel das Arbeitsblatt nicht neu berechnet.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: enableCalculation
+    fullName: enableCalculation
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'enableCalculation: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: excel_release.Excel.Worksheet.findAll
+    summary: |-
+      Findet alle Vorkommen der angegebenen Zeichenfolge auf der Grundlage der angegebenen Kriterien und gibt sie als RangeAreas-Objekt zurück, das einen oder mehrere rechteckige Bereiche umfasst.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'findAll(text, criteria)'
+    fullName: 'findAll(text, criteria)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'findAll(text: string, criteria: Excel.WorksheetSearchCriteria): Excel.RangeAreas;'
+      return:
+        type:
+          - excel.Excel.RangeAreas
+        description: 'Ein RangeArea-Objekt mit einem oder mehreren rechteckigen Bereichen, das den Suchkriterien entspricht. Wenn keine Zellen diese Kriterien erfüllen, wird ein ItemNotFound-Fehler ausgelöst.'
+      parameters:
+        - id: text
+          description: 'Zeichenfolge, die gesucht werden soll.'
+          type:
+            - string
+        - id: criteria
+          description: Weitere Kriterien.
+          type:
+            - excel.Excel.WorksheetSearchCriteria
+  - uid: excel_release.Excel.Worksheet.findAllOrNullObject
+    summary: |-
+      Findet alle Vorkommen der angegebenen Zeichenfolge auf der Grundlage der angegebenen Kriterien und gibt sie als RangeAreas-Objekt zurück, das einen oder mehrere rechteckige Bereiche umfasst.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'findAllOrNullObject(text, criteria)'
+    fullName: 'findAllOrNullObject(text, criteria)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'findAllOrNullObject(text: string, criteria: Excel.WorksheetSearchCriteria): Excel.RangeAreas;'
+      return:
+        type:
+          - excel.Excel.RangeAreas
+        description: |-
+          Ein RangeArea-Objekt mit einem oder mehreren rechteckigen Bereichen, das den Suchkriterien entspricht. Wenn keine Übereinstimmungen vorhanden sind, gibt diese Funktion ein NULL-Objekt zurück.
+
+          #### <a name="examples"></a>Beispiele
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+              const foundRanges = sheet.findAllOrNullObject("Complete", {
+                  completeMatch: true,
+                  matchCase: false
+              });
+
+              await context.sync();
+
+              if (foundRanges.isNullObject) {
+                  console.log("No complete projects");
+              } else {
+                  foundRanges.format.fill.color = "green"
+              }
+          });
+          ```
+      parameters:
+        - id: text
+          description: 'Zeichenfolge, die gesucht werden soll.'
+          type:
+            - string
+        - id: criteria
+          description: Weitere Kriterien.
+          type:
+            - excel.Excel.WorksheetSearchCriteria
   - uid: excel_release.Excel.Worksheet.freezePanes
     summary: |-
       Ruft ein Objekt ab, mit dem eingefrorene Bereiche im Arbeitsblatt bearbeitet werden können. Schreibgeschützt.
@@ -531,6 +658,41 @@ items:
           description: 'Die Anzahl der Spalten, die in den Range eingeschlossen werden sollen.'
           type:
             - number
+  - uid: excel_release.Excel.Worksheet.getRanges
+    summary: |-
+      Ruft das RangeAreas-Objekt ab, das einen Block oder mehrere Blöcke rechteckiger Bereiche darstellt, die anhand von Adresse oder Name angegeben sind.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getRanges(address)
+    fullName: getRanges(address)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getRanges(address?: string): Excel.RangeAreas;'
+      return:
+        type:
+          - excel.Excel.RangeAreas
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```typescript
+          await Excel.run(async (context) => {
+
+              const sheet = context.workbook.worksheets.getActiveWorksheet();
+              const specifiedRanges = sheet.getRanges("D3:D5, G3:G5");
+              specifiedRanges.format.fill.color = "pink";
+
+              await context.sync();
+          })
+          ```
+      parameters:
+        - id: address
+          description: 'Optional. Eine Zeichenfolge mit den durch Trennzeichen getrennten Adressen oder Namen der einzelnen Bereiche. Beispielsweise "a1: B2, A5: B5". Wenn kein Wert angegeben wird, wird ein RangeArea-Objekt für das gesamte Arbeitsblatt zurückgegeben.'
+          type:
+            - string
   - uid: excel_release.Excel.Worksheet.getUsedRange
     summary: |-
       Der verwendete Bereich ist der kleinste Bereich, der mindestens eine der Zellen umfasst, die einen Wert enthalten oder denen eine Formatierung zugewiesen wurde. Wenn das gesamte Arbeitsblatt leer ist, gibt diese Funktion die obere linke Zelle zurück (d. h., es wird *kein* Fehler ausgelöst).
@@ -593,6 +755,21 @@ items:
           description: Optional. Betrachtet nur Zellen mit Werten als verwendet.
           type:
             - boolean
+  - uid: excel_release.Excel.Worksheet.horizontalPageBreaks
+    summary: |-
+      Ruft die Sammlung der horizontalen Seitenumbrüche für das Arbeitsblatt ab. Diese Sammlung enthält nur manuelle Seitenumbrüche.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: horizontalPageBreaks
+    fullName: horizontalPageBreaks
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly horizontalPageBreaks: Excel.PageBreakCollection;'
+      return:
+        type:
+          - excel.Excel.PageBreakCollection
   - uid: excel_release.Excel.Worksheet.id
     summary: |-
       Gibt einen Wert zurück, der das Arbeitsblatt in einer bestimmten Arbeitsmappe eindeutig identifiziert. Der Wert des Bezeichners bleibt unverändert, auch wenn das Arbeitsblatt umbenannt oder verschoben wird. Schreibgeschützt.
@@ -859,6 +1036,21 @@ items:
               return context.sync();
           });
           ```
+  - uid: excel_release.Excel.Worksheet.onFormatChanged
+    summary: |-
+      Tritt ein, wenn das Format für ein bestimmtes Arbeitsblatt geändert wird.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: onFormatChanged
+    fullName: onFormatChanged
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onFormatChanged: OfficeExtension.EventHandlers<Excel.WorksheetFormatChangedEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Excel.WorksheetFormatChangedEventArgs>
   - uid: excel_release.Excel.Worksheet.onSelectionChanged
     summary: |-
       Tritt ein, wenn die Auswahl in einem bestimmten Arbeitsblatt geändert wird.
@@ -891,6 +1083,21 @@ items:
               return context.sync();
           });
           ```
+  - uid: excel_release.Excel.Worksheet.pageLayout
+    summary: |-
+      Ruft das PageLayout-Objekt des Arbeitsblatts ab.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: pageLayout
+    fullName: pageLayout
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly pageLayout: Excel.PageLayout;'
+      return:
+        type:
+          - excel.Excel.PageLayout
   - uid: excel_release.Excel.Worksheet.pivotTables
     summary: |-
       Die Sammlung von PivotTables, die Teil des Arbeitsblatts sind. Schreibgeschützt.
@@ -936,6 +1143,35 @@ items:
       return:
         type:
           - excel.Excel.WorksheetProtection
+  - uid: excel_release.Excel.Worksheet.replaceAll
+    summary: |-
+      Sucht und ersetzt die angegebene Zeichenfolge auf der Grundlage der auf dem aktuellen Arbeitsblatt angegebenen Kriterien.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'replaceAll(text, replacement, criteria)'
+    fullName: 'replaceAll(text, replacement, criteria)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'replaceAll(text: string, replacement: string, criteria: Excel.ReplaceCriteria): OfficeExtension.ClientResult<number>;'
+      return:
+        type:
+          - OfficeExtension.ClientResult<number>
+        description: Die Anzahl der ausgeführten Ersetzungen.
+      parameters:
+        - id: text
+          description: 'Zeichenfolge, die gesucht werden soll.'
+          type:
+            - string
+        - id: replacement
+          description: 'Die Zeichenfolge, durch die das Original ersetzt werden soll.'
+          type:
+            - string
+        - id: criteria
+          description: Weitere Kriterien zum ersetzen.
+          type:
+            - excel.Excel.ReplaceCriteria
   - uid: excel_release.Excel.Worksheet.set
     summary: Legt mehrere Eigenschaften eines Objekts gleichzeitig fest. Sie können entweder ein plain-Objekt mit den entsprechenden Eigenschaften oder ein anderes API-Objekt desselben Typs weitergeben.
     remarks: |-
@@ -980,6 +1216,21 @@ items:
           description: ''
           type:
             - excel.Excel.Worksheet
+  - uid: excel_release.Excel.Worksheet.shapes
+    summary: |-
+      Gibt die Sammlung aller Formobjekte auf dem Arbeitsblatt zurück. Schreibgeschützt.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: shapes
+    fullName: shapes
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly shapes: Excel.ShapeCollection;'
+      return:
+        type:
+          - excel.Excel.ShapeCollection
   - uid: excel_release.Excel.Worksheet.showGridlines
     summary: |-
       Ruft die Gitternetzlinien-Kennzeichnung des Arbeitsblatts ab, oder legt diese fest. Dieses Flag bestimmt, ob Gitternetzlinien für den Benutzer sichtbar sind.
@@ -1052,7 +1303,7 @@ items:
           - number
   - uid: excel_release.Excel.Worksheet.tabColor
     summary: |-
-      Ruft die Farbe der Registerkarte in der Arbeitsmappe ab oder legt diese fest. Wenn das Arbeitsblatt nicht sichtbar ist, ist der Wert beim Abrufen der Registerkarten Farbe NULL. Wenn das Arbeitsblatt sichtbar ist, die Registerkarten Farbe jedoch auf Auto festgelegt ist, wird eine leere Zeichenfolge zurückgegeben. Andernfalls wird die Eigenschaft auf eine Farbe in der Form "\#123456" festGelegt, wenn die Farbe festgelegt wird, verwenden Sie eine leere Zeichenfolge, um eine automatische Farbe oder eine echte Farbe anders festzulegen.
+      Ruft die Farbe der Registerkarte in der Arbeitsmappe ab oder legt diese fest. Wenn das Arbeitsblatt nicht sichtbar ist, ist der Wert beim Abrufen der Registerkarten Farbe NULL. Wenn das Arbeitsblatt sichtbar ist, die Registerkarten Farbe jedoch auf Auto festgelegt ist, wird eine leere Zeichenfolge zurückgegeben. Andernfalls wird die Eigenschaft auf eine Farbe in der Form "\#123456" festgelegt, wenn die Farbe festgelegt wird, verwenden Sie eine leere Zeichenfolge, um eine automatische Farbe oder eine echte Farbe anders festzulegen.
 
       \[[API-Satz: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: tabColor
@@ -1094,7 +1345,7 @@ items:
         type:
           - excel.Excel.TableCollection
   - uid: excel_release.Excel.Worksheet.toJSON
-    summary: 'ÜberSchreibt die `toJSON()` JavaScript-Methode, um eine nützlichere Ausgabe bereitzustellen, wenn ein API-Objekt an`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->Ruft wiederum die `toJSON` Methode des Objekts auf, das übergeben wird.) Während das ursprüngliche Excel. Worksheet-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt zurück (typisiert als`Excel.Interfaces.WorksheetData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
+    summary: 'Überschreibt die `toJSON()` JavaScript-Methode, um eine nützlichere Ausgabe bereitzustellen, wenn ein API-Objekt an`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->Ruft wiederum die `toJSON` Methode des Objekts auf, das übergeben wird.) Während das ursprüngliche Excel. Worksheet-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt zurück (typisiert als`Excel.Interfaces.WorksheetData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
     name: toJSON()
     fullName: toJSON()
     langs:
@@ -1106,6 +1357,21 @@ items:
         type:
           - excel.Excel.Interfaces.WorksheetData
         description: ''
+  - uid: excel_release.Excel.Worksheet.verticalPageBreaks
+    summary: |-
+      Ruft die Sammlung der vertikalen Seitenumbrüche für das Arbeitsblatt ab. Diese Sammlung enthält nur manuelle Seitenumbrüche.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: verticalPageBreaks
+    fullName: verticalPageBreaks
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly verticalPageBreaks: Excel.PageBreakCollection;'
+      return:
+        type:
+          - excel.Excel.PageBreakCollection
   - uid: excel_release.Excel.Worksheet.visibility
     summary: |-
       Die Sichtbarkeit des Arbeitsblatts.

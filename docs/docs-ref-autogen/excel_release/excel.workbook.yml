@@ -2,7 +2,7 @@
 items:
   - uid: excel_release.Excel.Workbook
     summary: |-
-      Die Arbeitsmappe ist das Objekt auf oberster Ebene, das dazugehörige Arbeitsmappenobjekte wie z. B. Arbeitsblätter, Tabellen, Bereiche usw. enthält.
+      Die Arbeitsmappe ist das Objekt auf oberster Ebene , das dazugehörige Arbeitsmappenobjekte wie z. B. Arbeitsblätter, Tabellen, Bereiche usw. enthält.
 
       \[[API-Satz: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: Excel.Workbook
@@ -15,20 +15,30 @@ items:
     package: excel_release
     children:
       - excel_release.Excel.Workbook.application
+      - excel_release.Excel.Workbook.autoSave
       - excel_release.Excel.Workbook.bindings
+      - excel_release.Excel.Workbook.calculationEngineVersion
+      - excel_release.Excel.Workbook.chartDataPointTrack
       - excel_release.Excel.Workbook.context
       - excel_release.Excel.Workbook.customXmlParts
       - excel_release.Excel.Workbook.dataConnections
       - excel_release.Excel.Workbook.functions
       - excel_release.Excel.Workbook.getActiveCell
+      - excel_release.Excel.Workbook.getActiveChart
+      - excel_release.Excel.Workbook.getActiveChartOrNullObject
+      - excel_release.Excel.Workbook.getIsActiveCollabSession
       - excel_release.Excel.Workbook.getSelectedRange
+      - excel_release.Excel.Workbook.getSelectedRanges
+      - excel_release.Excel.Workbook.isDirty
       - excel_release.Excel.Workbook.load
       - excel_release.Excel.Workbook.load_1
       - excel_release.Excel.Workbook.load_2
       - excel_release.Excel.Workbook.name
       - excel_release.Excel.Workbook.names
+      - excel_release.Excel.Workbook.onAutoSaveSettingChanged
       - excel_release.Excel.Workbook.onSelectionChanged
       - excel_release.Excel.Workbook.pivotTables
+      - excel_release.Excel.Workbook.previouslySaved
       - excel_release.Excel.Workbook.properties
       - excel_release.Excel.Workbook.protection
       - excel_release.Excel.Workbook.readOnly
@@ -38,6 +48,7 @@ items:
       - excel_release.Excel.Workbook.styles
       - excel_release.Excel.Workbook.tables
       - excel_release.Excel.Workbook.toJSON
+      - excel_release.Excel.Workbook.usePrecisionAsDisplayed
       - excel_release.Excel.Workbook.worksheets
   - uid: excel_release.Excel.Workbook.application
     summary: |-
@@ -54,6 +65,21 @@ items:
       return:
         type:
           - excel.Excel.Application
+  - uid: excel_release.Excel.Workbook.autoSave
+    summary: |-
+      Gibt an, ob die Arbeitsmappe sich im AutoSpeichern Modus befindet. Schreibgeschützt.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: autoSave
+    fullName: autoSave
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly autoSave: boolean;'
+      return:
+        type:
+          - boolean
   - uid: excel_release.Excel.Workbook.bindings
     summary: |-
       Stellt eine Auflistung aller Bindungen dar, die Teil der Arbeitsmappe sind. Schreibgeschützt.
@@ -69,6 +95,36 @@ items:
       return:
         type:
           - excel.Excel.BindingCollection
+  - uid: excel_release.Excel.Workbook.calculationEngineVersion
+    summary: |-
+      Gibt eine Nummer zur Version des Excel-Berechnungsmoduls zurück. Schreibgeschützt.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: calculationEngineVersion
+    fullName: calculationEngineVersion
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly calculationEngineVersion: number;'
+      return:
+        type:
+          - number
+  - uid: excel_release.Excel.Workbook.chartDataPointTrack
+    summary: |-
+      True, wenn alle Diagramme in der Arbeitsmappe die tatsächlichen Datenpunkte nachverfolgen, mit denen sie verbunden sind. False, wenn die Diagramme den Index der Datenpunkte nachverfolgen.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: chartDataPointTrack
+    fullName: chartDataPointTrack
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'chartDataPointTrack: boolean;'
+      return:
+        type:
+          - boolean
   - uid: excel_release.Excel.Workbook.context
     summary: Der dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office-Hostanwendung verbunden.
     name: context
@@ -158,6 +214,54 @@ items:
               console.log("The active cell is " + activeCell.address);
           });
           ```
+  - uid: excel_release.Excel.Workbook.getActiveChart
+    summary: |-
+      Ruft das derzeit aktive Diagramm in der Arbeitsmappe ab. Wenn kein aktives Diagramm vorhanden ist, wird beim Aufrufen dieser Anweisung eine Ausnahme ausgelöst.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getActiveChart()
+    fullName: getActiveChart()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getActiveChart(): Excel.Chart;'
+      return:
+        type:
+          - excel.Excel.Chart
+        description: ''
+  - uid: excel_release.Excel.Workbook.getActiveChartOrNullObject
+    summary: |-
+      Ruft das derzeit aktive Diagramm in der Arbeitsmappe ab. Wenn kein aktives Diagramm vorhanden ist, wird ein NULL-Objekt zurückgegeben.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getActiveChartOrNullObject()
+    fullName: getActiveChartOrNullObject()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getActiveChartOrNullObject(): Excel.Chart;'
+      return:
+        type:
+          - excel.Excel.Chart
+        description: ''
+  - uid: excel_release.Excel.Workbook.getIsActiveCollabSession
+    summary: |-
+      True, wenn die Arbeitsmappe von mehreren Benutzern bearbeitet wird (gemeinsame Dokumenterstellung). Beachten Sie, dass es möglicherweise eine Verzögerung zwischen dem Ändern des Arbeitsblatt Status und der Änderung der Änderungen am Ergebnis der Methode gibt.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getIsActiveCollabSession()
+    fullName: getIsActiveCollabSession()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getIsActiveCollabSession(): OfficeExtension.ClientResult<boolean>;'
+      return:
+        type:
+          - OfficeExtension.ClientResult<boolean>
+        description: ''
   - uid: excel_release.Excel.Workbook.getSelectedRange
     summary: |-
       Ruft den aktuell ausgewählten einzelnen Bereichen aus der Arbeitsmappe ab. Wenn mehrere Bereiche ausgewählt sind, löst diese Methode einen Fehler aus.
@@ -192,6 +296,50 @@ items:
               }
           });
           ```
+  - uid: excel_release.Excel.Workbook.getSelectedRanges
+    summary: |-
+      Ruft die aktuell ausgewählten Bereiche (einen oder mehrere) aus der Arbeitsmappe ab. Gibt im Gegensatz zu getSelectedRange() ein RangeAreas-Objekt zurück, das alle ausgewählten Bereiche darstellt.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getSelectedRanges()
+    fullName: getSelectedRanges()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getSelectedRanges(): Excel.RangeAreas;'
+      return:
+        type:
+          - excel.Excel.RangeAreas
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```typescript
+          await Excel.run(async (context) => {
+
+              const selectedRanges = context.workbook.getSelectedRanges();
+              selectedRanges.format.fill.color = "lightblue";
+
+              await context.sync();
+          })
+          ```
+  - uid: excel_release.Excel.Workbook.isDirty
+    summary: |-
+      Gibt an, ob seit dem letzten Speichern Änderungen an der Arbeitsmappe vorgenommen wurden. Sie können diese Eigenschaft auf true festlegen, wenn Sie eine geänderte Arbeitsmappe beenden möchten, ohne Sie zu speichern oder aufgefordert, Sie zu speichern.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: isDirty
+    fullName: isDirty
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'isDirty: boolean;'
+      return:
+        type:
+          - boolean
   - uid: excel_release.Excel.Workbook.load
     summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "context.sync()" aufrufen.
     remarks: |-
@@ -284,6 +432,21 @@ items:
       return:
         type:
           - excel.Excel.NamedItemCollection
+  - uid: excel_release.Excel.Workbook.onAutoSaveSettingChanged
+    summary: |-
+      Tritt ein, wenn die AutoSpeichern-Einstellung für die Arbeitsmappe geändert wird.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: onAutoSaveSettingChanged
+    fullName: onAutoSaveSettingChanged
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onAutoSaveSettingChanged: OfficeExtension.EventHandlers<Excel.WorkbookAutoSaveSettingChangedEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Excel.WorkbookAutoSaveSettingChangedEventArgs>
   - uid: excel_release.Excel.Workbook.onSelectionChanged
     summary: |-
       Tritt ein, wenn die Auswahl im Dokument geändert wird.
@@ -314,6 +477,21 @@ items:
       return:
         type:
           - excel.Excel.PivotTableCollection
+  - uid: excel_release.Excel.Workbook.previouslySaved
+    summary: |-
+      Gibt an, ob die Arbeitsmappe jemals lokal oder online gespeichert wurde. Schreibgeschützt.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: previouslySaved
+    fullName: previouslySaved
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly previouslySaved: boolean;'
+      return:
+        type:
+          - boolean
   - uid: excel_release.Excel.Workbook.properties
     summary: |-
       Ruft die Arbeitsmappeneigenschaften ab. Schreibgeschützt.
@@ -480,7 +658,7 @@ items:
         type:
           - excel.Excel.TableCollection
   - uid: excel_release.Excel.Workbook.toJSON
-    summary: 'ÜberSchreibt die `toJSON()` JavaScript-Methode, um eine nützlichere Ausgabe bereitzustellen, wenn ein API-Objekt an`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->Ruft wiederum die `toJSON` Methode des Objekts auf, das übergeben wird.) Während das ursprüngliche Excel. Workbook-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt zurück (typisiert als`Excel.Interfaces.WorkbookData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
+    summary: 'Überschreibt die `toJSON()` JavaScript-Methode, um eine nützlichere Ausgabe bereitzustellen, wenn ein API-Objekt an`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->Ruft wiederum die `toJSON` Methode des Objekts auf, das übergeben wird.) Während das ursprüngliche Excel. Workbook-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt zurück (typisiert als`Excel.Interfaces.WorkbookData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
     name: toJSON()
     fullName: toJSON()
     langs:
@@ -492,6 +670,21 @@ items:
         type:
           - excel.Excel.Interfaces.WorkbookData
         description: ''
+  - uid: excel_release.Excel.Workbook.usePrecisionAsDisplayed
+    summary: |-
+      True, wenn die Berechnungen in dieser Arbeitsmappe nur mit der Genauigkeit durchgeführt werden, mit der die Zahlen angezeigt werden. Daten verlieren dauerhaft die Genauigkeit beim Umschalten dieser Eigenschaft von false auf true.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: usePrecisionAsDisplayed
+    fullName: usePrecisionAsDisplayed
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'usePrecisionAsDisplayed: boolean;'
+      return:
+        type:
+          - boolean
   - uid: excel_release.Excel.Workbook.worksheets
     summary: |-
       Stellt eine Auflistung der mit der Arbeitsmappe verknüpften Arbeitsblätter dar. Schreibgeschützt.

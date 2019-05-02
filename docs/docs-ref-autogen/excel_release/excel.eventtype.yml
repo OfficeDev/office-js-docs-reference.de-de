@@ -14,6 +14,7 @@ items:
       - excel_release.Excel.EventType.chartAdded
       - excel_release.Excel.EventType.chartDeactivated
       - excel_release.Excel.EventType.chartDeleted
+      - excel_release.Excel.EventType.ribbonCommandExecuted
       - excel_release.Excel.EventType.shapeActivated
       - excel_release.Excel.EventType.shapeDeactivated
       - excel_release.Excel.EventType.tableAdded
@@ -29,11 +30,14 @@ items:
       - excel_release.Excel.EventType.worksheetAdded
       - excel_release.Excel.EventType.worksheetCalculated
       - excel_release.Excel.EventType.worksheetChanged
+      - excel_release.Excel.EventType.worksheetColumnSorted
       - excel_release.Excel.EventType.worksheetDeactivated
       - excel_release.Excel.EventType.worksheetDeleted
       - excel_release.Excel.EventType.worksheetFiltered
       - excel_release.Excel.EventType.worksheetFormatChanged
+      - excel_release.Excel.EventType.worksheetRowSorted
       - excel_release.Excel.EventType.worksheetSelectionChanged
+      - excel_release.Excel.EventType.worksheetSingleClicked
   - uid: excel_release.Excel.EventType.agaveVisualUpdate
     summary: 'AgaveVisualUpdate stellt den Typ eines Ereignisses dar, das einem Agave-visuellen Element zugeordnet ist, und führt eine neue Datenansicht nach einer Datenänderung.'
     name: agaveVisualUpdate
@@ -51,7 +55,7 @@ items:
     type: field
     numericValue: '"ChartActivated"'
   - uid: excel_release.Excel.EventType.chartAdded
-    summary: 'ChartAdded stellt den Typ des in Chartcollection registrierten Ereignisses dar und tritt ein, wenn dem Arbeitsblatt ein neues Diagramm hinzugefügt wird.'
+    summary: 'ChartAdded stellt den Typ des in chartcollection registrierten Ereignisses dar und tritt ein, wenn dem Arbeitsblatt ein neues Diagramm hinzugefügt wird.'
     name: chartAdded
     fullName: chartAdded
     langs:
@@ -67,13 +71,21 @@ items:
     type: field
     numericValue: '"ChartDeactivated"'
   - uid: excel_release.Excel.EventType.chartDeleted
-    summary: 'ChartDeleted stellt den Typ des in Chartcollection registrierten Ereignisses dar und tritt ein, wenn ein Diagramm aus dem Arbeitsblatt gelöscht wird.'
+    summary: 'ChartDeleted stellt den Typ des in chartcollection registrierten Ereignisses dar und tritt ein, wenn ein Diagramm aus dem Arbeitsblatt gelöscht wird.'
     name: chartDeleted
     fullName: chartDeleted
     langs:
       - typeScript
     type: field
     numericValue: '"ChartDeleted"'
+  - uid: excel_release.Excel.EventType.ribbonCommandExecuted
+    summary: 'RibbonCommandExecuted stellt den Typ des auf dem Menüband registrierten Ereignisses dar und tritt ein, wenn der Benutzer auf das Menüband klickt.'
+    name: ribbonCommandExecuted
+    fullName: ribbonCommandExecuted
+    langs:
+      - typeScript
+    type: field
+    numericValue: '"RibbonCommandExecuted"'
   - uid: excel_release.Excel.EventType.shapeActivated
     summary: 'ShapeActivated stellt den Typ des Ereignisses dar, das in Shape registriert ist, und tritt ein, wenn Shape aktiviert wird.'
     name: shapeActivated
@@ -107,7 +119,7 @@ items:
     type: field
     numericValue: '"TableChanged"'
   - uid: excel_release.Excel.EventType.tableDeleted
-    summary: 'Tabellen Löschung stellt den Typ des Ereignisses dar, das in Tablecollection registriert ist, und tritt ein, wenn eine Tabelle gelöscht wird.'
+    summary: 'Tabellen Löschung stellt den Typ des Ereignisses dar, das in tablecollection registriert ist, und tritt ein, wenn eine Tabelle gelöscht wird.'
     name: tableDeleted
     fullName: tableDeleted
     langs:
@@ -115,7 +127,7 @@ items:
     type: field
     numericValue: '"TableDeleted"'
   - uid: excel_release.Excel.EventType.tableFiltered
-    summary: 'Tabellen Filterung stellt den Ereignistyp dar, der in Table oder Tablecollection registriert ist, und tritt auf, wenn Tabellendaten gefiltert werden.'
+    summary: 'Tabellen Filterung stellt den Ereignistyp dar, der in Table oder tablecollection registriert ist, und tritt auf, wenn Tabellendaten gefiltert werden.'
     name: tableFiltered
     fullName: tableFiltered
     langs:
@@ -162,7 +174,7 @@ items:
     type: field
     numericValue: '"WorkbookAutoSaveSettingChanged"'
   - uid: excel_release.Excel.EventType.worksheetActivated
-    summary: 'WorksheetActivated stellt den Typ des Ereignisses dar, das auf Worksheet oder Worksheetcollection registriert ist, und tritt ein, wenn das Arbeitsblatt aktiviert wird.'
+    summary: 'WorksheetActivated stellt den Typ des Ereignisses dar, das auf Worksheet oder worksheetcollection registriert ist, und tritt ein, wenn das Arbeitsblatt aktiviert wird.'
     name: worksheetActivated
     fullName: worksheetActivated
     langs:
@@ -170,7 +182,7 @@ items:
     type: field
     numericValue: '"WorksheetActivated"'
   - uid: excel_release.Excel.EventType.worksheetAdded
-    summary: 'WorksheetAdded stellt den Typ des in Worksheetcollection registrierten Ereignisses dar und tritt ein, wenn der Arbeitsmappe ein neues Arbeitsblatt hinzugefügt wird.'
+    summary: 'WorksheetAdded stellt den Typ des in worksheetcollection registrierten Ereignisses dar und tritt ein, wenn der Arbeitsmappe ein neues Arbeitsblatt hinzugefügt wird.'
     name: worksheetAdded
     fullName: worksheetAdded
     langs:
@@ -178,7 +190,7 @@ items:
     type: field
     numericValue: '"WorksheetAdded"'
   - uid: excel_release.Excel.EventType.worksheetCalculated
-    summary: 'WorksheetCalculated stellt den Typ des Ereignisses dar, das auf Worksheet oder Worksheetcollection registriert ist, und tritt ein, wenn ein Arbeitsblatt berechnet wird.'
+    summary: 'WorksheetCalculated stellt den Typ des Ereignisses dar, das auf Worksheet oder worksheetcollection registriert ist, und tritt ein, wenn ein Arbeitsblatt berechnet wird.'
     name: worksheetCalculated
     fullName: worksheetCalculated
     langs:
@@ -186,15 +198,23 @@ items:
     type: field
     numericValue: '"WorksheetCalculated"'
   - uid: excel_release.Excel.EventType.worksheetChanged
-    summary: 'Worksheet-Changed stellt den Typ des auf Worksheet-oder Worksheetcollection registrierten Ereignisses dar und tritt auf, wenn Daten geändert werden.'
+    summary: 'Worksheet-Changed stellt den Typ des auf Worksheet-oder worksheetcollection registrierten Ereignisses dar und tritt auf, wenn Daten geändert werden.'
     name: worksheetChanged
     fullName: worksheetChanged
     langs:
       - typeScript
     type: field
     numericValue: '"WorksheetChanged"'
+  - uid: excel_release.Excel.EventType.worksheetColumnSorted
+    summary: 'WorksheetColumnSorted stellt den Ereignistyp dar, der im Arbeitsblatt registriert ist, und tritt ein, wenn nach Spalten sortiert wird.'
+    name: worksheetColumnSorted
+    fullName: worksheetColumnSorted
+    langs:
+      - typeScript
+    type: field
+    numericValue: '"WorksheetColumnSorted"'
   - uid: excel_release.Excel.EventType.worksheetDeactivated
-    summary: 'WorksheetDeactivated stellt den Typ des Ereignisses dar, das auf Worksheet oder Worksheetcollection registriert ist, und tritt ein, wenn das Arbeitsblatt deaktiviert wird.'
+    summary: 'WorksheetDeactivated stellt den Typ des Ereignisses dar, das auf Worksheet oder worksheetcollection registriert ist, und tritt ein, wenn das Arbeitsblatt deaktiviert wird.'
     name: worksheetDeactivated
     fullName: worksheetDeactivated
     langs:
@@ -202,7 +222,7 @@ items:
     type: field
     numericValue: '"WorksheetDeactivated"'
   - uid: excel_release.Excel.EventType.worksheetDeleted
-    summary: 'WorksheetDeleted stellt den Typ des in Worksheetcollection registrierten Ereignisses dar und tritt ein, wenn ein Arbeitsblatt aus der Arbeitsmappe gelöscht wird.'
+    summary: 'WorksheetDeleted stellt den Typ des in worksheetcollection registrierten Ereignisses dar und tritt ein, wenn ein Arbeitsblatt aus der Arbeitsmappe gelöscht wird.'
     name: worksheetDeleted
     fullName: worksheetDeleted
     langs:
@@ -210,7 +230,7 @@ items:
     type: field
     numericValue: '"WorksheetDeleted"'
   - uid: excel_release.Excel.EventType.worksheetFiltered
-    summary: 'WorksheetFiltered stellt den Typ des Ereignisses dar, das auf Worksheet oder Worksheetcollection registriert ist, und tritt ein, wenn Daten des AutoFilters im Arbeitsblatt gefiltert werden.'
+    summary: 'WorksheetFiltered stellt den Typ des Ereignisses dar, das auf Worksheet oder worksheetcollection registriert ist, und tritt ein, wenn Daten des AutoFilters im Arbeitsblatt gefiltert werden.'
     name: worksheetFiltered
     fullName: worksheetFiltered
     langs:
@@ -225,6 +245,14 @@ items:
       - typeScript
     type: field
     numericValue: '"WorksheetFormatChanged"'
+  - uid: excel_release.Excel.EventType.worksheetRowSorted
+    summary: 'WorksheetRowSorted stellt den Ereignistyp dar, der im Arbeitsblatt registriert ist, und tritt ein, wenn in Zeilen eine Sortierung erfolgt ist.'
+    name: worksheetRowSorted
+    fullName: worksheetRowSorted
+    langs:
+      - typeScript
+    type: field
+    numericValue: '"WorksheetRowSorted"'
   - uid: excel_release.Excel.EventType.worksheetSelectionChanged
     summary: 'WorksheetSelectionChanged stellt den Typ des im Arbeitsblatt registrierten Ereignisses dar und tritt ein, wenn die Auswahl geändert wird.'
     name: worksheetSelectionChanged
@@ -233,3 +261,11 @@ items:
       - typeScript
     type: field
     numericValue: '"WorksheetSelectionChanged"'
+  - uid: excel_release.Excel.EventType.worksheetSingleClicked
+    summary: 'WorksheetSingleClicked stellt den Ereignistyp dar, der im Arbeitsblatt registriert ist, und tritt ein, wenn die Zelle Links geklickt/getappt wird.'
+    name: worksheetSingleClicked
+    fullName: worksheetSingleClicked
+    langs:
+      - typeScript
+    type: field
+    numericValue: '"WorksheetSingleClicked"'

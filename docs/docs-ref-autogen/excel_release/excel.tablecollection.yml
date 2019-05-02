@@ -25,7 +25,9 @@ items:
       - excel_release.Excel.TableCollection.load
       - excel_release.Excel.TableCollection.load_1
       - excel_release.Excel.TableCollection.load_2
+      - excel_release.Excel.TableCollection.onAdded
       - excel_release.Excel.TableCollection.onChanged
+      - excel_release.Excel.TableCollection.onDeleted
       - excel_release.Excel.TableCollection.toJSON
   - uid: excel_release.Excel.TableCollection.add
     summary: "Erstellt eine neue Tabelle. Das Bereichsobjekt oder die Quelladresse bestimmt das Arbeitsblatt, unter dem die Tabelle hinzugefügt wird. Wenn die Tabelle nicht hinzugefügt werden kann (z.\_B. weil die Adresse ungültig ist oder sich die Tabelle mit einer anderen Tabelle überlappen würde), wird ein Fehler ausgelöst.\n\n\\[[API-Satz: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\\]"
@@ -320,6 +322,21 @@ items:
           description: ''
           type:
             - office.OfficeExtension.LoadOption
+  - uid: excel_release.Excel.TableCollection.onAdded
+    summary: |-
+      Tritt ein, wenn in einer Arbeitsmappe eine neue Tabelle hinzugefügt wird.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: onAdded
+    fullName: onAdded
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onAdded: OfficeExtension.EventHandlers<Excel.TableAddedEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Excel.TableAddedEventArgs>
   - uid: excel_release.Excel.TableCollection.onChanged
     summary: |-
       Tritt auf, wenn Daten in einer Tabelle in einer Arbeitsmappe oder in einem Arbeitsblatt geändert werden.
@@ -349,8 +366,23 @@ items:
               console.log("A handler has been registered for the table collection onChanged event");
           });
           ```
+  - uid: excel_release.Excel.TableCollection.onDeleted
+    summary: |-
+      Tritt ein, wenn in einer Arbeitsmappe die angegebene Tabelle gelöscht wird.
+
+      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: onDeleted
+    fullName: onDeleted
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onDeleted: OfficeExtension.EventHandlers<Excel.TableDeletedEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Excel.TableDeletedEventArgs>
   - uid: excel_release.Excel.TableCollection.toJSON
-    summary: 'ÜberSchreibt die `toJSON()` JavaScript-Methode, um eine nützlichere Ausgabe bereitzustellen, wenn ein API-Objekt an`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->Ruft wiederum die `toJSON` Methode des Objekts auf, das übergeben wird.) Während das ursprüngliche `Excel.TableCollection` Objekt ein API-Objekt ist, `toJSON` gibt die Methode ein einfaches JavaScript-Objekt (typisiert als`Excel.Interfaces.TableCollectionData`<!-- -->), die ein Array "Items" mit flachen Kopien aller geladenen Eigenschaften aus den Elementen der Auflistung enthält.'
+    summary: 'Überschreibt die `toJSON()` JavaScript-Methode, um eine nützlichere Ausgabe bereitzustellen, wenn ein API-Objekt an`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->Ruft wiederum die `toJSON` Methode des Objekts auf, das übergeben wird.) Während das ursprüngliche `Excel.TableCollection` Objekt ein API-Objekt ist, `toJSON` gibt die Methode ein einfaches JavaScript-Objekt (typisiert als`Excel.Interfaces.TableCollectionData`<!-- -->), die ein Array "Items" mit flachen Kopien aller geladenen Eigenschaften aus den Elementen der Auflistung enthält.'
     name: toJSON()
     fullName: toJSON()
     langs:
