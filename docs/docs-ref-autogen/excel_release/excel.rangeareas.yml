@@ -352,6 +352,24 @@ items:
       return:
         type:
           - excel.Excel.RangeFormat
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```typescript
+          await Excel.run(async (context) => {
+
+              const sheet = context.workbook.worksheets.getActiveWorksheet();
+              const usedRange = sheet.getUsedRange();
+
+              // Find the ranges with formulas
+              const formulaRanges = usedRange.getSpecialCells("Formulas");
+              formulaRanges.format.fill.color = "lightgreen";
+
+              await context.sync();
+          });
+          ```
   - uid: excel_release.Excel.RangeAreas.getEntireColumn
     summary: |-
       Gibt ein RangeAreas-Objekt zurück, das die gesamten Spalten von RangeAreas darstellt (wenn beispielsweise das aktuelle RangeAreas die Zellen "B4:E11, H2" darstellt, wird ein RangeAreas-Objekt zurückgegeben, das die Spalten "B:E, H:H" darstellt).
