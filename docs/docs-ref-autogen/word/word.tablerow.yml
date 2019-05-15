@@ -27,12 +27,14 @@ items:
       - word.Word.TableRow.getNext
       - word.Word.TableRow.getNextOrNullObject
       - word.Word.TableRow.horizontalAlignment
+      - word.Word.TableRow.insertContentControl
       - word.Word.TableRow.insertRows
       - word.Word.TableRow.insertRows_1
       - word.Word.TableRow.isHeader
       - word.Word.TableRow.load
       - word.Word.TableRow.load_1
       - word.Word.TableRow.load_2
+      - word.Word.TableRow.merge
       - word.Word.TableRow.parentTable
       - word.Word.TableRow.preferredHeight
       - word.Word.TableRow.rowIndex
@@ -156,7 +158,7 @@ items:
         description: ''
       parameters:
         - id: borderLocation
-          description: Erforderlich.  Die Rahmenposition.
+          description: Erforderlich. Die Rahmenposition.
           type:
             - word.Word.BorderLocation
   - uid: word.Word.TableRow.getBorder_1
@@ -177,7 +179,7 @@ items:
         description: ''
       parameters:
         - id: borderLocationString
-          description: Erforderlich.  Die Rahmenposition.
+          description: Erforderlich. Die Rahmenposition.
           type:
             - '"Top" | "Left" | "Bottom" | "Right" | "InsideHorizontal" | "InsideVertical" | "Inside" | "Outside" | "All"'
   - uid: word.Word.TableRow.getCellPadding
@@ -198,7 +200,7 @@ items:
         description: ''
       parameters:
         - id: cellPaddingLocation
-          description: 'Erforderlich.  Der Platz für die Auffüllung der Zelle kann "Top", "Left", "Bottom" oder "Right" lauten.'
+          description: 'Erforderlich. Der Platz für die Auffüllung der Zelle kann "Top", "Left", "Bottom" oder "Right" lauten.'
           type:
             - word.Word.CellPaddingLocation
   - uid: word.Word.TableRow.getCellPadding_1
@@ -219,7 +221,7 @@ items:
         description: ''
       parameters:
         - id: cellPaddingLocationString
-          description: 'Erforderlich.  Der Platz für die Auffüllung der Zelle kann "Top", "Left", "Bottom" oder "Right" lauten.'
+          description: 'Erforderlich. Der Platz für die Auffüllung der Zelle kann "Top", "Left", "Bottom" oder "Right" lauten.'
           type:
             - '"Top" | "Left" | "Bottom" | "Right"'
   - uid: word.Word.TableRow.getNext
@@ -269,6 +271,23 @@ items:
       return:
         type:
           - Word.Alignment | "Mixed" | "Unknown" | "Left" | "Centered" | "Right" | "Justified"
+  - uid: word.Word.TableRow.insertContentControl
+    summary: |-
+      Fügt ein Inhaltssteuerelement in die Zeile ein.
+
+      \[[API-Satz: WordApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: insertContentControl()
+    fullName: insertContentControl()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertContentControl(): Word.ContentControl;'
+      return:
+        type:
+          - word.Word.ContentControl
+        description: ''
   - uid: word.Word.TableRow.insertRows
     summary: |-
       Fügt Zeilen mit dieser Zeile als Vorlage ein. Wenn Werte angegeben sind, werden die Werte in die neuen Zeilen eingefügt.
@@ -287,11 +306,11 @@ items:
         description: ''
       parameters:
         - id: insertLocation
-          description: 'Erforderlich.  Wo die neuen Zeilen eingefügt werden sollen, relativ zur aktuellen Zeile. Es kann "Before" oder "After" sein.'
+          description: 'Erforderlich. Wo die neuen Zeilen eingefügt werden sollen, relativ zur aktuellen Zeile. Es kann "Before" oder "After" sein.'
           type:
             - Word.InsertLocation
         - id: rowCount
-          description: Erforderlich.  Anzahl der hinzuzufügenden Zeilen
+          description: Erforderlich. Anzahl der hinzuzufügenden Zeilen
           type:
             - number
         - id: values
@@ -316,11 +335,11 @@ items:
         description: ''
       parameters:
         - id: insertLocationString
-          description: 'Erforderlich.  Wo die neuen Zeilen eingefügt werden sollen, relativ zur aktuellen Zeile. Es kann "Before" oder "After" sein.'
+          description: 'Erforderlich. Wo die neuen Zeilen eingefügt werden sollen, relativ zur aktuellen Zeile. Es kann "Before" oder "After" sein.'
           type:
             - '"Before" | "After" | "Start" | "End" | "Replace"'
         - id: rowCount
-          description: Erforderlich.  Anzahl der hinzuzufügenden Zeilen
+          description: Erforderlich. Anzahl der hinzuzufügenden Zeilen
           type:
             - number
         - id: values
@@ -404,6 +423,23 @@ items:
           description: 'Wobei propertyNamesAndPaths. Select eine durch Kommas getrennte Zeichenfolge ist, die die zu ladenden Eigenschaften angibt, und propertyNamesAndPaths. Expand eine durch Kommas getrennte Zeichenfolge ist, die die zu ladenden Navigationseigenschaften angibt.'
           type:
             - '{ select?: string; expand?: string; }'
+  - uid: word.Word.TableRow.merge
+    summary: |-
+      Führt die Zeile in einer Zelle zusammen.
+
+      \[[API-Satz: WordApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: merge()
+    fullName: merge()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'merge(): Word.TableCell;'
+      return:
+        type:
+          - Word.TableCell
+        description: ''
   - uid: word.Word.TableRow.parentTable
     summary: |-
       Ruft die übergeordnete Tabelle ab. Schreibgeschützt.
@@ -596,11 +632,11 @@ items:
         description: ''
       parameters:
         - id: cellPaddingLocation
-          description: 'Erforderlich.  Der Platz für die Auffüllung der Zelle kann "Top", "Left", "Bottom" oder "Right" lauten.'
+          description: 'Erforderlich. Der Platz für die Auffüllung der Zelle kann "Top", "Left", "Bottom" oder "Right" lauten.'
           type:
             - word.Word.CellPaddingLocation
         - id: cellPadding
-          description: Erforderlich.  Der Zellenabstand.
+          description: Erforderlich. Der Zellenabstand.
           type:
             - number
   - uid: word.Word.TableRow.setCellPadding_1
@@ -621,11 +657,11 @@ items:
         description: ''
       parameters:
         - id: cellPaddingLocationString
-          description: 'Erforderlich.  Der Platz für die Auffüllung der Zelle kann "Top", "Left", "Bottom" oder "Right" lauten.'
+          description: 'Erforderlich. Der Platz für die Auffüllung der Zelle kann "Top", "Left", "Bottom" oder "Right" lauten.'
           type:
             - '"Top" | "Left" | "Bottom" | "Right"'
         - id: cellPadding
-          description: Erforderlich.  Der Zellenabstand.
+          description: Erforderlich. Der Zellenabstand.
           type:
             - number
   - uid: word.Word.TableRow.shadingColor
@@ -644,7 +680,7 @@ items:
         type:
           - string
   - uid: word.Word.TableRow.toJSON
-    summary: 'ÜberSchreibt die `toJSON()` JavaScript-Methode, um eine nützlichere Ausgabe bereitzustellen, wenn ein API-Objekt an`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->Ruft wiederum die `toJSON` Methode des Objekts auf, das übergeben wird.) Während das ursprüngliche Wort. TableRow-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt zurück (typisiert als`Word.Interfaces.TableRowData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
+    summary: 'Überschreibt die `toJSON()` JavaScript-Methode, um eine nützlichere Ausgabe bereitzustellen, wenn ein API-Objekt an`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->Ruft wiederum die `toJSON` Methode des Objekts auf, das übergeben wird.) Während das ursprüngliche Wort. TableRow-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt zurück (typisiert als`Word.Interfaces.TableRowData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
     name: toJSON()
     fullName: toJSON()
     langs:

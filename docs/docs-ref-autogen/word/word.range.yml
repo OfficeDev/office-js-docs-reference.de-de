@@ -22,6 +22,7 @@ items:
       - word.Word.Range.expandTo
       - word.Word.Range.expandToOrNullObject
       - word.Word.Range.font
+      - word.Word.Range.getBookmarks
       - word.Word.Range.getHtml
       - word.Word.Range.getHyperlinkRanges
       - word.Word.Range.getNextTextRange
@@ -32,6 +33,7 @@ items:
       - word.Word.Range.getTextRanges
       - word.Word.Range.hyperlink
       - word.Word.Range.inlinePictures
+      - word.Word.Range.insertBookmark
       - word.Word.Range.insertBreak
       - word.Word.Range.insertBreak_1
       - word.Word.Range.insertContentControl
@@ -270,6 +272,32 @@ items:
       return:
         type:
           - word.Word.Font
+  - uid: word.Word.Range.getBookmarks
+    summary: |-
+      Ruft die Namen aller Lesezeichen in oder überlappende den Bereichen ab. Eine Textmarke wird ausgeblendet, wenn der Name mit dem Unterstrich beginnt.
+
+      \[[API-Satz: WordApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: 'getBookmarks(includeHidden, includeAdjacent)'
+    fullName: 'getBookmarks(includeHidden, includeAdjacent)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getBookmarks(includeHidden?: boolean, includeAdjacent?: boolean): OfficeExtension.ClientResult<string[]>;'
+      return:
+        type:
+          - 'OfficeExtension.ClientResult<string[]>'
+        description: ''
+      parameters:
+        - id: includeHidden
+          description: 'Optional. Gibt an, ob ausgeblendete Textmarken eingeschlossen werden sollen. Der Standardwert ist false, was bedeutet, dass die ausgeblendeten Lesezeichen ausgeschlossen werden.'
+          type:
+            - boolean
+        - id: includeAdjacent
+          description: 'Optional. Gibt an, ob Textmarken, die an den Range angrenzen, hinzugefügt werden sollen. Der Standardwert ist false, was bedeutet, dass die benachbarten Lesezeichen ausgeschlossen werden.'
+          type:
+            - boolean
   - uid: word.Word.Range.getHtml
     summary: |-
       Ruft eine HTML-Darstellung des Range-Objekts ab. Wenn Sie in einer Webseite oder in einem HTML-Viewer gerendert werden, ist die Formatierung für die Formatierung des Dokuments eng, aber nicht genau. Bei dieser Methode wird nicht genau derselbe HTML-Code für dasselbe Dokument auf verschiedenen Plattformen (Windows, Mac, Word Online usw.) zurückgegeben. Wenn Sie exakte Genauigkeit oder Konsistenz über Plattformen hinweg benötigen, `Range.getOoxml()` verwenden Sie die zurückgegebene XML in HTML, und konvertieren Sie Sie.
@@ -552,6 +580,28 @@ items:
       return:
         type:
           - word.Word.InlinePictureCollection
+  - uid: word.Word.Range.insertBookmark
+    summary: |-
+      Fügt eine Textmarke in den Range ein. Wenn eine Textmarke mit demselben Namen irgendwo vorhanden ist, wird Sie zuerst gelöscht.
+
+      \[[API-Satz: WordApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: insertBookmark(name)
+    fullName: insertBookmark(name)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertBookmark(name: string): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: name
+          description: 'Erforderlich. Der Name der Textmarke, bei der die Groß-/Kleinschreibung nicht beachtet wird. Wenn der Name mit einem Unterstrich beginnt, ist die Textmarke ausgeblendet.'
+          type:
+            - string
   - uid: word.Word.Range.insertBreak
     summary: |-
       Fügt an der angegebenen Position im Hauptdokument einen Umbruch ein. Der insertLocation-Wert kann "Before" oder "After" lauten.
@@ -1103,7 +1153,7 @@ items:
             - 'string[][]'
   - uid: word.Word.Range.insertTable_1
     summary: |-
-      Fügt eine Tabelle mit der angegebenen Anzahl von Zeilen und Spalten ein. Der insertLocation-Wert kann 'Before' oder 'After' lauten.
+      Fügt eine Tabelle mit der angegebenen Anzahl von Zeilen und Spalten ein. Der insertLocation-Wert kann "Before" oder "After" lauten.
 
       \[[API-Satz: WordApi 1,3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: 'insertTable(rowCount, columnCount, insertLocationString, values)'

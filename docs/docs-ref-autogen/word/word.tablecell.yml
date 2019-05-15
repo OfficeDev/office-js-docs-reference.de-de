@@ -42,6 +42,7 @@ items:
       - word.Word.TableCell.setCellPadding
       - word.Word.TableCell.setCellPadding_1
       - word.Word.TableCell.shadingColor
+      - word.Word.TableCell.split
       - word.Word.TableCell.toJSON
       - word.Word.TableCell.track
       - word.Word.TableCell.untrack
@@ -155,7 +156,7 @@ items:
         description: ''
       parameters:
         - id: borderLocation
-          description: Erforderlich.  Die Rahmenposition.
+          description: Erforderlich. Die Rahmenposition.
           type:
             - word.Word.BorderLocation
   - uid: word.Word.TableCell.getBorder_1
@@ -176,7 +177,7 @@ items:
         description: ''
       parameters:
         - id: borderLocationString
-          description: Erforderlich.  Die Rahmenposition.
+          description: Erforderlich. Die Rahmenposition.
           type:
             - '"Top" | "Left" | "Bottom" | "Right" | "InsideHorizontal" | "InsideVertical" | "Inside" | "Outside" | "All"'
   - uid: word.Word.TableCell.getCellPadding
@@ -197,7 +198,7 @@ items:
         description: ''
       parameters:
         - id: cellPaddingLocation
-          description: 'Erforderlich.  Der Platz für die Auffüllung der Zelle kann "Top", "Left", "Bottom" oder "Right" lauten.'
+          description: 'Erforderlich. Der Platz für die Auffüllung der Zelle kann "Top", "Left", "Bottom" oder "Right" lauten.'
           type:
             - word.Word.CellPaddingLocation
   - uid: word.Word.TableCell.getCellPadding_1
@@ -218,7 +219,7 @@ items:
         description: ''
       parameters:
         - id: cellPaddingLocationString
-          description: 'Erforderlich.  Der Platz für die Auffüllung der Zelle kann "Top", "Left", "Bottom" oder "Right" lauten.'
+          description: 'Erforderlich. Der Platz für die Auffüllung der Zelle kann "Top", "Left", "Bottom" oder "Right" lauten.'
           type:
             - '"Top" | "Left" | "Bottom" | "Right"'
   - uid: word.Word.TableCell.getNext
@@ -286,11 +287,11 @@ items:
         description: ''
       parameters:
         - id: insertLocation
-          description: Erforderlich.  Es kann "Before" oder "After" sein.
+          description: Erforderlich. Es kann "Before" oder "After" sein.
           type:
             - Word.InsertLocation
         - id: columnCount
-          description: Erforderlich.  Die Anzahl der hinzuzufügenden Spalten.
+          description: Erforderlich. Die Anzahl der hinzuzufügenden Spalten.
           type:
             - number
         - id: values
@@ -315,11 +316,11 @@ items:
         description: ''
       parameters:
         - id: insertLocationString
-          description: Erforderlich.  Es kann "Before" oder "After" sein.
+          description: Erforderlich. Es kann "Before" oder "After" sein.
           type:
             - '"Before" | "After" | "Start" | "End" | "Replace"'
         - id: columnCount
-          description: Erforderlich.  Die Anzahl der hinzuzufügenden Spalten.
+          description: Erforderlich. Die Anzahl der hinzuzufügenden Spalten.
           type:
             - number
         - id: values
@@ -344,11 +345,11 @@ items:
         description: ''
       parameters:
         - id: insertLocation
-          description: Erforderlich.  Es kann "Before" oder "After" sein.
+          description: Erforderlich. Es kann "Before" oder "After" sein.
           type:
             - Word.InsertLocation
         - id: rowCount
-          description: Erforderlich.  Die Anzahl der hinzuzufügenden Zeilen.
+          description: Erforderlich. Die Anzahl der hinzuzufügenden Zeilen.
           type:
             - number
         - id: values
@@ -373,11 +374,11 @@ items:
         description: ''
       parameters:
         - id: insertLocationString
-          description: Erforderlich.  Es kann "Before" oder "After" sein.
+          description: Erforderlich. Es kann "Before" oder "After" sein.
           type:
             - '"Before" | "After" | "Start" | "End" | "Replace"'
         - id: rowCount
-          description: Erforderlich.  Die Anzahl der hinzuzufügenden Zeilen.
+          description: Erforderlich. Die Anzahl der hinzuzufügenden Zeilen.
           type:
             - number
         - id: values
@@ -553,11 +554,11 @@ items:
         description: ''
       parameters:
         - id: cellPaddingLocation
-          description: 'Erforderlich.  Der Platz für die Auffüllung der Zelle kann "Top", "Left", "Bottom" oder "Right" lauten.'
+          description: 'Erforderlich. Der Platz für die Auffüllung der Zelle kann "Top", "Left", "Bottom" oder "Right" lauten.'
           type:
             - word.Word.CellPaddingLocation
         - id: cellPadding
-          description: Erforderlich.  Der Zellenabstand.
+          description: Erforderlich. Der Zellenabstand.
           type:
             - number
   - uid: word.Word.TableCell.setCellPadding_1
@@ -578,11 +579,11 @@ items:
         description: ''
       parameters:
         - id: cellPaddingLocationString
-          description: 'Erforderlich.  Der Platz für die Auffüllung der Zelle kann "Top", "Left", "Bottom" oder "Right" lauten.'
+          description: 'Erforderlich. Der Platz für die Auffüllung der Zelle kann "Top", "Left", "Bottom" oder "Right" lauten.'
           type:
             - '"Top" | "Left" | "Bottom" | "Right"'
         - id: cellPadding
-          description: Erforderlich.  Der Zellenabstand.
+          description: Erforderlich. Der Zellenabstand.
           type:
             - number
   - uid: word.Word.TableCell.shadingColor
@@ -600,8 +601,34 @@ items:
       return:
         type:
           - string
+  - uid: word.Word.TableCell.split
+    summary: |-
+      Teilt die Zelle in die angegebene Anzahl von Zeilen und Spalten auf.
+
+      \[[API-Satz: WordApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: 'split(rowCount, columnCount)'
+    fullName: 'split(rowCount, columnCount)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'split(rowCount: number, columnCount: number): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: rowCount
+          description: 'Erforderlich. Die Anzahl der Zeilen, in die aufgeteilt werden soll. Muss ein Divisor-Wert der Anzahl zugrunde liegender Zeilen sein.'
+          type:
+            - number
+        - id: columnCount
+          description: 'Erforderlich. Die Anzahl der Spalten, in die aufgeteilt werden soll.'
+          type:
+            - number
   - uid: word.Word.TableCell.toJSON
-    summary: 'ÜberSchreibt die `toJSON()` JavaScript-Methode, um eine nützlichere Ausgabe bereitzustellen, wenn ein API-Objekt an`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->Ruft wiederum die `toJSON` Methode des Objekts auf, das übergeben wird.) Während das ursprüngliche Wort. TableCell-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt zurück (typisiert als`Word.Interfaces.TableCellData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
+    summary: 'Überschreibt die `toJSON()` JavaScript-Methode, um eine nützlichere Ausgabe bereitzustellen, wenn ein API-Objekt an`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->Ruft wiederum die `toJSON` Methode des Objekts auf, das übergeben wird.) Während das ursprüngliche Wort. TableCell-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt zurück (typisiert als`Word.Interfaces.TableCellData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
     name: toJSON()
     fullName: toJSON()
     langs:

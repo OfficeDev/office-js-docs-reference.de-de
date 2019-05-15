@@ -15,7 +15,9 @@ items:
     package: word
     children:
       - word.Word.List.context
+      - word.Word.List.getLevelFont
       - word.Word.List.getLevelParagraphs
+      - word.Word.List.getLevelPicture
       - word.Word.List.getLevelString
       - word.Word.List.id
       - word.Word.List.insertParagraph
@@ -26,6 +28,7 @@ items:
       - word.Word.List.load_1
       - word.Word.List.load_2
       - word.Word.List.paragraphs
+      - word.Word.List.resetLevelFont
       - word.Word.List.setLevelAlignment
       - word.Word.List.setLevelAlignment_1
       - word.Word.List.setLevelBullet
@@ -33,6 +36,7 @@ items:
       - word.Word.List.setLevelIndents
       - word.Word.List.setLevelNumbering
       - word.Word.List.setLevelNumbering_1
+      - word.Word.List.setLevelPicture
       - word.Word.List.setLevelStartingNumber
       - word.Word.List.toJSON
       - word.Word.List.track
@@ -49,6 +53,28 @@ items:
       return:
         type:
           - RequestContext
+  - uid: word.Word.List.getLevelFont
+    summary: |-
+      Ruft die Schriftart für das Aufzählungszeichen, die Zahl oder das Bild auf der angegebenen Ebene in der Liste ab.
+
+      \[[API-Satz: WordApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: getLevelFont(level)
+    fullName: getLevelFont(level)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getLevelFont(level: number): Word.Font;'
+      return:
+        type:
+          - word.Word.Font
+        description: ''
+      parameters:
+        - id: level
+          description: Erforderlich. Die Ebene in der Liste.
+          type:
+            - number
   - uid: word.Word.List.getLevelParagraphs
     summary: |-
       Ruft die Absätze auf der angegebenen Ebene in der Liste ab.
@@ -67,7 +93,29 @@ items:
         description: ''
       parameters:
         - id: level
-          description: Erforderlich.  Die Ebene in der Liste.
+          description: Erforderlich. Die Ebene in der Liste.
+          type:
+            - number
+  - uid: word.Word.List.getLevelPicture
+    summary: |-
+      Ruft die Base64-codierte Zeichenfolgendarstellung des Bilds auf der angegebenen Ebene in der Liste ab.
+
+      \[[API-Satz: WordApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: getLevelPicture(level)
+    fullName: getLevelPicture(level)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getLevelPicture(level: number): OfficeExtension.ClientResult<string>;'
+      return:
+        type:
+          - OfficeExtension.ClientResult<string>
+        description: ''
+      parameters:
+        - id: level
+          description: Erforderlich. Die Ebene in der Liste.
           type:
             - number
   - uid: word.Word.List.getLevelString
@@ -88,7 +136,7 @@ items:
         description: ''
       parameters:
         - id: level
-          description: Erforderlich.  Die Ebene in der Liste.
+          description: Erforderlich. Die Ebene in der Liste.
           type:
             - number
   - uid: word.Word.List.id
@@ -128,7 +176,7 @@ items:
           type:
             - string
         - id: insertLocation
-          description: 'Erforderlich.  Der Wert kann "Start", "End", "Before" oder "After" sein.'
+          description: 'Erforderlich. Der Wert kann "Start", "End", "Before" oder "After" sein.'
           type:
             - Word.InsertLocation
   - uid: word.Word.List.insertParagraph_1
@@ -153,7 +201,7 @@ items:
           type:
             - string
         - id: insertLocationString
-          description: 'Erforderlich.  Der Wert kann "Start", "End", "Before" oder "After" sein.'
+          description: 'Erforderlich. Der Wert kann "Start", "End", "Before" oder "After" sein.'
           type:
             - '"Before" | "After" | "Start" | "End" | "Replace"'
   - uid: word.Word.List.levelExistences
@@ -263,6 +311,32 @@ items:
       return:
         type:
           - Word.ParagraphCollection
+  - uid: word.Word.List.resetLevelFont
+    summary: |-
+      Setzt die Schriftart für das Aufzählungszeichen, die Zahl oder das Bild auf der angegebenen Ebene in der Liste zurück.
+
+      \[[API-Satz: WordApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: 'resetLevelFont(level, resetFontName)'
+    fullName: 'resetLevelFont(level, resetFontName)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'resetLevelFont(level: number, resetFontName?: boolean): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: level
+          description: Erforderlich. Die Ebene in der Liste.
+          type:
+            - number
+        - id: resetFontName
+          description: 'Optional. Gibt an, ob der Schriftartname zurückgesetzt werden soll. Der Standardwert ist false, der angibt, dass der Schriftartname unverändert bleibt.'
+          type:
+            - boolean
   - uid: word.Word.List.setLevelAlignment
     summary: |-
       Legt die Ausrichtung des Aufzählungszeichens, der Zahl oder des Bilds auf der angegebenen Ebene fest.
@@ -281,11 +355,11 @@ items:
         description: ''
       parameters:
         - id: level
-          description: Erforderlich.  Die Ebene in der Liste.
+          description: Erforderlich. Die Ebene in der Liste.
           type:
             - number
         - id: alignment
-          description: 'Erforderlich.  Die Ausrichtungs Stufe, die "Links", "zentriert" oder "rechts" sein kann.'
+          description: 'Erforderlich. Die Ausrichtungs Stufe, die "Links", "zentriert" oder "rechts" sein kann.'
           type:
             - word.Word.Alignment
   - uid: word.Word.List.setLevelAlignment_1
@@ -306,11 +380,11 @@ items:
         description: ''
       parameters:
         - id: level
-          description: Erforderlich.  Die Ebene in der Liste.
+          description: Erforderlich. Die Ebene in der Liste.
           type:
             - number
         - id: alignmentString
-          description: 'Erforderlich.  Die Ausrichtungs Stufe, die "Links", "zentriert" oder "rechts" sein kann.'
+          description: 'Erforderlich. Die Ausrichtungs Stufe, die "Links", "zentriert" oder "rechts" sein kann.'
           type:
             - '"Mixed" | "Unknown" | "Left" | "Centered" | "Right" | "Justified"'
   - uid: word.Word.List.setLevelBullet
@@ -331,11 +405,11 @@ items:
         description: ''
       parameters:
         - id: level
-          description: Erforderlich.  Die Ebene in der Liste.
+          description: Erforderlich. Die Ebene in der Liste.
           type:
             - number
         - id: listBullet
-          description: Erforderlich.  Das Aufzählungszeichen.
+          description: Erforderlich. Das Aufzählungszeichen.
           type:
             - word.Word.ListBullet
         - id: charCode
@@ -364,11 +438,11 @@ items:
         description: ''
       parameters:
         - id: level
-          description: Erforderlich.  Die Ebene in der Liste.
+          description: Erforderlich. Die Ebene in der Liste.
           type:
             - number
         - id: listBulletString
-          description: Erforderlich.  Das Aufzählungszeichen.
+          description: Erforderlich. Das Aufzählungszeichen.
           type:
             - '"Custom" | "Solid" | "Hollow" | "Square" | "Diamonds" | "Arrow" | "Checkmark"'
         - id: charCode
@@ -397,15 +471,15 @@ items:
         description: ''
       parameters:
         - id: level
-          description: Erforderlich.  Die Ebene in der Liste.
+          description: Erforderlich. Die Ebene in der Liste.
           type:
             - number
         - id: textIndent
-          description: Erforderlich.  Der Texteinzug in Punkt. Es ist identisch mit Absatz links Einzug.
+          description: Erforderlich. Der Texteinzug in Punkt. Es ist identisch mit Absatz links Einzug.
           type:
             - number
         - id: bulletNumberPictureIndent
-          description: 'Erforderlich.  Der relative Einzug (in Punkt) des Aufzählungszeichens, der Zahl oder des Bilds. Es ist identisch mit dem Absatz Erstzeileneinzug.'
+          description: 'Erforderlich. Der relative Einzug (in Punkt) des Aufzählungszeichens, der Zahl oder des Bilds. Es ist identisch mit dem Absatz Erstzeileneinzug.'
           type:
             - number
   - uid: word.Word.List.setLevelNumbering
@@ -426,11 +500,11 @@ items:
         description: ''
       parameters:
         - id: level
-          description: Erforderlich.  Die Ebene in der Liste.
+          description: Erforderlich. Die Ebene in der Liste.
           type:
             - number
         - id: listNumbering
-          description: Erforderlich.  Das Ordnungszahlen Format.
+          description: Erforderlich. Das Ordnungszahlen Format.
           type:
             - word.Word.ListNumbering
         - id: formatString
@@ -455,17 +529,43 @@ items:
         description: ''
       parameters:
         - id: level
-          description: Erforderlich.  Die Ebene in der Liste.
+          description: Erforderlich. Die Ebene in der Liste.
           type:
             - number
         - id: listNumberingString
-          description: Erforderlich.  Das Ordnungszahlen Format.
+          description: Erforderlich. Das Ordnungszahlen Format.
           type:
             - '"None" | "Arabic" | "UpperRoman" | "LowerRoman" | "UpperLetter" | "LowerLetter"'
         - id: formatString
           description: 'Optional. Das Format der Nummerierung als ein Array von Zeichenfolgen und/oder ganzen Zahlen. Jede ganze Zahl ist eine Ebene des Zahlen Typs, die größer als oder gleich dieser Ebene ist. Ein Array von \["(", Level-1, ".", ".", ")"\] kann beispielsweise das Format von "(2. c)" definieren, wobei 2 die Elementnummer des übergeordneten Elements und c die Elementnummer dieser Ebene ist.'
           type:
             - Array<string | number>
+  - uid: word.Word.List.setLevelPicture
+    summary: |-
+      Legt das Bild auf der angegebenen Ebene in der Liste fest.
+
+      \[[API-Satz: WordApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    isPreview: true
+    name: 'setLevelPicture(level, base64EncodedImage)'
+    fullName: 'setLevelPicture(level, base64EncodedImage)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setLevelPicture(level: number, base64EncodedImage?: string): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: level
+          description: Erforderlich. Die Ebene in der Liste.
+          type:
+            - number
+        - id: base64EncodedImage
+          description: 'Optional. Das Base64-codierte Bild, das festgelegt werden soll. Wenn nicht angegeben, wird das Standardbild festgelegt.'
+          type:
+            - string
   - uid: word.Word.List.setLevelStartingNumber
     summary: |-
       Legt die Anfangsnummer auf der angegebenen Ebene in der Liste fest. Der Standardwert ist 1.
@@ -484,15 +584,15 @@ items:
         description: ''
       parameters:
         - id: level
-          description: Erforderlich.  Die Ebene in der Liste.
+          description: Erforderlich. Die Ebene in der Liste.
           type:
             - number
         - id: startingNumber
-          description: 'Erforderlich.  Die Zahl, mit der begonnen werden soll.'
+          description: 'Erforderlich. Die Zahl, mit der begonnen werden soll.'
           type:
             - number
   - uid: word.Word.List.toJSON
-    summary: 'ÜberSchreibt die `toJSON()` JavaScript-Methode, um eine nützlichere Ausgabe bereitzustellen, wenn ein API-Objekt an`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->Ruft wiederum die `toJSON` Methode des Objekts auf, das übergeben wird.) Während das ursprüngliche Word. List-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt zurück (typisiert als`Word.Interfaces.ListData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
+    summary: 'Überschreibt die `toJSON()` JavaScript-Methode, um eine nützlichere Ausgabe bereitzustellen, wenn ein API-Objekt an`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->Ruft wiederum die `toJSON` Methode des Objekts auf, das übergeben wird.) Während das ursprüngliche Word. List-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt zurück (typisiert als`Word.Interfaces.ListData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
     name: toJSON()
     fullName: toJSON()
     langs:
