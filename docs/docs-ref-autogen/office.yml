@@ -12,6 +12,7 @@ items:
       - office.Office.AddBindingFromPromptOptions
       - office.Office.AddBindingFromSelectionOptions
       - office.Office.AddinCommands.Event
+      - office.Office.AddinCommands.EventCompletedOptions
       - office.Office.AddinCommands.Source
       - office.Office.AsyncContextOptions
       - office.Office.AsyncResult
@@ -103,21 +104,21 @@ items:
     summary: |-
       Tritt ein, wenn die Laufzeitumgebung geladen wird und das Add-In bereit für die Interaktion mit der Anwendung und dem gehosteten Dokument ist.
 
-      Der Reason-Parameter der Initialize-Ereignislistener- `InitializationReason` Funktion gibt einen Enumerationswert zurück, der angibt, wie die Initialisierung stattgefunden hat. Es gibt zwei Möglichkeiten zum Initialisieren einer Aufgabenbereich- oder eines Inhalts-Add-Ins:
+      Der Reason-Parameter der Initialize-Ereignislistener- `InitializationReason` Funktion gibt einen Aufzählungswert zurück, der angibt, wie die Initialisierung aufgetreten ist. Es gibt zwei Möglichkeiten zum Initialisieren einer Aufgabenbereich- oder eines Inhalts-Add-Ins:
 
-      - Der Benutzer hat ihn soeben aus dem Abschnitt "zuletzt verwendete Add-Ins" der Add-in-Dropdownliste auf der Registerkarte "Einfügen" des Menübands in der Office-Hostanwendung oder aus dem Dialogfeld "Add-in einfügen" eingefügt.
+      - Der Benutzer hat ihn soeben aus dem Abschnitt zuletzt verwendete Add-Ins der Add-in-Dropdownliste auf der Registerkarte Einfügen des Menübands in der Office-Hostanwendung oder über das Dialogfeld Add-in Einfügen eingefügt.
 
       - Der Benutzer hat ein Dokument geöffnet, das das Add-In bereits enthält.
 
-      *Hinweis*: der Reason-Parameter der Initialize-Ereignislistener-Funktion `InitializationReason` gibt nur einen Enumerationswert für Aufgabenbereich-und Inhalts-Add-Ins zurück. Für Outlook-Add-Ins wird kein Wert zurückgegeben.
+      *Hinweis*: der Reason-Parameter der Initialize-Ereignislistener-Funktion `InitializationReason` gibt nur einen Aufzählungswert für Aufgabenbereich-und Inhalts-Add-Ins zurück. Für Outlook-Add-Ins wird kein Wert zurückgegeben.
     remarks: |-
       **Supportdetails**
 
       Ein Häkchen (v) in der folgenden Matrix weist darauf hin, dass diese Methode in der entsprechenden Office-Hostanwendung unterstützt wird. Eine leere Zelle weist darauf hin, dass die Office-Hostanwendung diese Methode nicht unterstützt.
 
-      Weitere Informationen zu den Anforderungen der Office-Hostanwendung und des Servers finden Sie unter [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
+      Weitere Informationen zu den Anforderungen für Office-Hostanwendungen und-Server finden Sie unter [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
 
-      *Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office für Windows Desktop </th><th> Office Online (im Browser) </th><th> Office für iPad </th><th> OWA für Geräte </th><th> Office für Mac </th></tr> <tr><td><strong>Access</strong></td><td> </td><td> v </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> <tr><td><strong>Outlook</strong></td><td> v </td><td> v </td><td> </td><td> v </td><td> v </td></tr> <tr><td><strong>Kulissen</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> <tr><td><strong>Projekt</strong></td><td> v </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Wort</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> </table>
+      *Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office für Windows Desktop </th><th> Office Online (im Browser) </th><th> Office für iPad </th><th> OWA für Geräte </th><th> Office für Mac </th></tr> <tr><td><strong>Access</strong></td><td> </td><td> v </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> <tr><td><strong>Outlook</strong></td><td> v </td><td> v </td><td> </td><td> v </td><td> v </td></tr> <tr><td><strong>PowerPoint</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> <tr><td><strong>Project</strong></td><td> v </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Wort</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> </table>
 
       #### <a name="examples"></a>Beispiele
 
@@ -161,7 +162,7 @@ items:
           type:
             - office.Office.InitializationReason
   - uid: office.Office.onReady
-    summary: 'Stellt sicher, dass die Office-JavaScript-APIs bereit sind, vom Add-in aufgerufen zu werden. Wenn das Framework noch nicht initialisiert wurde, wartet der Rückruf oder die Zusage, bis der Office-Host bereit ist, API-Aufrufe zu akzeptieren. Beachten Sie, dass diese API zwar in einem Office-Add-in verwendet werden soll, aber auch außerhalb des Add-Ins verwendet werden kann. Wenn Office. js in diesem Fall feststellt, dass es außerhalb einer Office-Hostanwendung läuft, wird der Rückruf aufgerufen und die Zusage mit "Null" für Host und Plattform aufgelöst.'
+    summary: 'Stellt sicher, dass die Office-JavaScript-APIs bereit sind, vom Add-in aufgerufen zu werden. Wenn das Framework noch nicht initialisiert wurde, wird der Rückruf oder die Zusage warten, bis der Office-Host bereit ist, API-Aufrufe zu akzeptieren. Beachten Sie, dass diese API zwar für die Verwendung in einem Office-Add-in vorgesehen ist, aber auch außerhalb des Add-Ins verwendet werden kann. In diesem Fall ruft Office. js nach der Festlegung, dass es außerhalb einer Office-Hostanwendung läuft, den Rückruf auf und löst das Promise mit "Null" sowohl für den Host als auch für die Plattform auf.'
     name: Office.onReady
     fullName: Office.onReady
     langs:
@@ -172,20 +173,20 @@ items:
       return:
         type:
           - 'Promise<{ host: HostType, platform: PlatformType }>'
-        description: 'Eine zuSage, die die Host-und Plattforminformationen enthält, nachdem die Initialisierung abgeschlossen wurde.'
+        description: 'Eine Zusage, die die Host-und Plattforminformationen enthält, sobald die Initialisierung abgeschlossen ist.'
       parameters:
         - id: callback
-          description: 'Eine optionale Rückrufmethode, die die Host-und Plattforminformationen empfängt. Alternativ dazu kann ein Add-in nur warten, bis die von der Funktion zurückgegebene zuSage aufgelöst wird.'
+          description: 'Eine optionale Rückrufmethode, die die Host-und Plattforminformationen empfangen wird. Alternativ kann ein Add-in, anstatt einen Rückruf zu verwenden, einfach auf die von der Funktion zurückgegebene Zusage warten, um Sie aufzulösen.'
           type:
             - '(info: { host: HostType, platform: PlatformType }) => any'
   - uid: office.Office.select
-    summary: 'Gibt eine Zusage eines im Ausdruck beschriebenen Objekts zurück. Callback wird nur aufgerufen, wenn die Methode fehlschlägt.'
+    summary: 'Gibt eine Zusage eines im Ausdruck beschriebenen Objekts zurück. Rückruf wird nur aufgerufen, wenn Method fehlschlägt.'
     remarks: |-
       **Supportdetails**
 
       Ein Häkchen (v) in der folgenden Matrix weist darauf hin, dass diese Methode in der entsprechenden Office-Hostanwendung unterstützt wird. Eine leere Zelle weist darauf hin, dass die Office-Hostanwendung diese Methode nicht unterstützt.
 
-      Weitere Informationen zu den Anforderungen der Office-Hostanwendung und des Servers finden Sie unter [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
+      Weitere Informationen zu den Anforderungen für Office-Hostanwendungen und-Server finden Sie unter [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
 
       *Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office für Windows Desktop </th><th> Office Online (im Browser) </th><th> Office für iPad </th></tr> <tr><td><strong>Access</strong></td><td> </td><td> v </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> v </td><td> v </td><td> v </td></tr> <tr><td><strong>Wort</strong></td><td> v </td><td> </td><td> v </td></tr> </table>
 
@@ -215,11 +216,11 @@ items:
         description: ''
       parameters:
         - id: expression
-          description: 'Das Objekt, das abgerufen werden soll. Beispiel "Bindings\#bindingName", ruft eine Bindungs Zusage für eine Bindung mit dem Namen "bindingName" ab.'
+          description: 'Das Objekt, das abgerufen werden soll. Beispiel "Bindings-\#Bindungsname": Ruft ein Bindungs Versprechen für eine Bindung mit dem Namen "bindingName" ab.'
           type:
             - string
         - id: callback
-          description: 'Optional. Eine Funktion, die aufgerufen wird, wenn der Rückruf zurückgegeben wird, deren einziger Parameter vom Typ [Office. AsyncResult ist.](xref:office.Office.AsyncResult)<!-- -->.'
+          description: 'Optional. Eine Funktion, die aufgerufen wird, wenn der Rückruf zurückgegeben wird, deren einziger Parameter vom Typ [Office. AsyncResult](xref:office.Office.AsyncResult) ist<!-- -->.'
           type:
             - '(result: AsyncResult<any>) => void'
   - uid: office.Office.useShortNamespace
@@ -229,9 +230,9 @@ items:
 
       Ein Häkchen (v) in der folgenden Matrix weist darauf hin, dass diese Methode in der entsprechenden Office-Hostanwendung unterstützt wird. Eine leere Zelle weist darauf hin, dass die Office-Hostanwendung diese Methode nicht unterstützt.
 
-      Weitere Informationen zu den Anforderungen der Office-Hostanwendung und des Servers finden Sie unter [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
+      Weitere Informationen zu den Anforderungen für Office-Hostanwendungen und-Server finden Sie unter [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
 
-      *Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office für Windows Desktop </th><th> Office Online (im Browser) </th><th> Office für iPad </th><th> OWA für Geräte </th><th> Office für Mac </th></tr> <tr><td><strong>Access</strong></td><td> </td><td> v </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> <tr><td><strong>Outlook</strong></td><td> v </td><td> v </td><td> </td><td> v </td><td> v </td></tr> <tr><td><strong>Kulissen</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> <tr><td><strong>Projekt</strong></td><td> v </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Wort</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> </table>
+      *Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office für Windows Desktop </th><th> Office Online (im Browser) </th><th> Office für iPad </th><th> OWA für Geräte </th><th> Office für Mac </th></tr> <tr><td><strong>Access</strong></td><td> </td><td> v </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Excel</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> <tr><td><strong>Outlook</strong></td><td> v </td><td> v </td><td> </td><td> v </td><td> v </td></tr> <tr><td><strong>PowerPoint</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> <tr><td><strong>Project</strong></td><td> v </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Wort</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> </table>
 
       #### <a name="examples"></a>Beispiele
 
@@ -274,7 +275,7 @@ items:
         description: ''
       parameters:
         - id: useShortNamespace
-          description: 'True, wenn der Verknüpfungs Alias verwendet werden soll; andernfalls false, um Sie zu deaktivieren. Der Standardwert ist „true“.'
+          description: 'True, wenn der Verknüpfungs Alias verwendet werden soll; andernfalls false, um es zu deaktivieren. Der Standardwert ist „true“.'
           type:
             - boolean
 references:
@@ -288,6 +289,8 @@ references:
     name: Office.AddBindingFromSelectionOptions
   - uid: office.Office.AddinCommands.Event
     name: Office.AddinCommands.Event
+  - uid: office.Office.AddinCommands.EventCompletedOptions
+    name: Office.AddinCommands.EventCompletedOptions
   - uid: office.Office.AddinCommands.Source
     name: Office.AddinCommands.Source
   - uid: office.Office.AsyncContextOptions
