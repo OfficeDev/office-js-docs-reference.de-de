@@ -2,9 +2,9 @@
 items:
   - uid: excel.Excel.Shape
     summary: |-
-      Stellt ein generisches Shape-Objekt im Arbeitsblatt dar. Ein Shape kann eine geometrische Form, eine Reihe, eine Gruppe von Formen usw. sein.
+      Stellt ein generisches Shape-Objekt im Arbeitsblatt dar. Eine Form kann eine geometrische Form, eine Linien, eine Gruppe von Formen usw. sein.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: Excel.Shape
     fullName: Excel.Shape
     langs:
@@ -65,7 +65,7 @@ items:
     summary: |-
       Gibt den alternativen Beschreibungstext für ein Formobjekt zurück oder legt ihn fest.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: altTextDescription
     fullName: altTextDescription
     langs:
@@ -80,7 +80,7 @@ items:
     summary: |-
       Gibt den alternativen Titeltext für ein Formobjekt zurück oder legt ihn fest.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: altTextTitle
     fullName: altTextTitle
     langs:
@@ -95,7 +95,7 @@ items:
     summary: |-
       Gibt die Anzahl der Verbindungsseiten für diese Form zurück. Schreibgeschützt.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: connectionSiteCount
     fullName: connectionSiteCount
     langs:
@@ -107,7 +107,7 @@ items:
         type:
           - number
   - uid: excel.Excel.Shape.context
-    summary: Der dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office-Hostanwendung verbunden.
+    summary: 'Der Anforderungskontext, der mit dem Objekt verknüpft ist. Dadurch wird das Add-in-Verfahren mit dem Prozess der Office-Hostanwendung verbunden.'
     name: context
     fullName: context
     langs:
@@ -120,9 +120,9 @@ items:
           - RequestContext
   - uid: excel.Excel.Shape.copyTo
     summary: |-
-      Kopiert ein Shape-Objekt und fügt es ein. Das eingefügte Shape wird an dieselbe Pixelposition wie dieses Shape kopiert.
+      Kopiert ein Shape-Objekt und fügt es ein. Die eingefügte Form wird an dieselbe Pixelposition wie diese Form kopiert.
 
-      \[[API-Satz: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
     name: copyTo(destinationSheet)
     fullName: copyTo(destinationSheet)
@@ -144,7 +144,7 @@ items:
     summary: |-
       Entfernt die Form aus dem Arbeitsblatt.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: delete()
     fullName: delete()
     langs:
@@ -162,7 +162,9 @@ items:
 
           ```typescript
           await Excel.run(async (context) => {
-              const sheet = context.workbook.worksheets.getItem("Shapes");
+              context.workbook.worksheets.getItemOrNullObject("Shapes").delete();
+              const sheet = context.workbook.worksheets.add("Shapes");
+
               const shapes = sheet.shapes;
 
               // load all the shapes in the collection without loading their properties
@@ -177,7 +179,7 @@ items:
     summary: |-
       Gibt die Füllungsformatierung dieser Form zurück. Schreibgeschützt.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: fill
     fullName: fill
     langs:
@@ -209,7 +211,7 @@ items:
     summary: |-
       Gibt die der Form zugeordnete geometrische Form zurück. Es wird ein Fehler ausgelöst, wenn der Formtyp nicht "GeometricShape" ist.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: geometricShape
     fullName: geometricShape
     langs:
@@ -224,7 +226,7 @@ items:
     summary: |-
       Stellt den geometrischen Formtyp der geometrischen Form dar. Details finden Sie unter Excel.GeometricShapeType. Gibt NULL zurück, wenn der Formtyp nicht "GeometricShape" ist.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: geometricShapeType
     fullName: geometricShapeType
     langs:
@@ -239,7 +241,7 @@ items:
     summary: |-
       Konvertiert die Form in ein Bild und gibt das Bild als base64-codierte Zeichenfolge zurück. Der DPI-Wert ist 96. Die einzigen unterstützten Formate sind`Excel.PictureFormat.BMP`<!-- -->, `Excel.PictureFormat.PNG`<!-- -->, `Excel.PictureFormat.JPEG`<!-- -->, und`Excel.PictureFormat.GIF`<!-- -->.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: getAsImage(format)
     fullName: getAsImage(format)
     langs:
@@ -276,7 +278,7 @@ items:
     summary: |-
       Konvertiert die Form in ein Bild und gibt das Bild als base64-codierte Zeichenfolge zurück. Der DPI-Wert ist 96. Die einzigen unterstützten Formate sind`Excel.PictureFormat.BMP`<!-- -->, `Excel.PictureFormat.PNG`<!-- -->, `Excel.PictureFormat.JPEG`<!-- -->, und`Excel.PictureFormat.GIF`<!-- -->.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: getAsImage(formatString)
     fullName: getAsImage(formatString)
     langs:
@@ -297,7 +299,7 @@ items:
     summary: |-
       Gibt die der Form zugeordnete Formgruppe zurück. Es wird ein Fehler ausgelöst, wenn der Formtyp nicht "GroupShape" ist.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: group
     fullName: group
     langs:
@@ -326,9 +328,9 @@ items:
           ```
   - uid: excel.Excel.Shape.height
     summary: |-
-      Stellt die Höhe der Form in typografischen Punkten dar. Löst eine ungültige Argumentausnahme aus, wenn Sie mit einem negativen Wert oder NULL als Eingabe festgelegt wird.
+      Stellt die Höhe der Form in typografischen Punkten dar. Löst eine ungültige Argumentausnahme aus, wenn mit einem negativen Wert oder 0 als Eingabe festgelegt wird.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: height
     fullName: height
     langs:
@@ -343,7 +345,7 @@ items:
     summary: |-
       Stellt die ID der Form dar. Schreibgeschützt.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: id
     fullName: id
     langs:
@@ -358,7 +360,7 @@ items:
     summary: |-
       Gibt das Bild zurück, das der Form zugeordnet ist. Es wird ein Fehler ausgelöst, wenn der Formtyp nicht "Image" ist.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: image
     fullName: image
     langs:
@@ -373,7 +375,7 @@ items:
     summary: |-
       Verschiebt die Form horizontal um die angegebene Punktanzahl.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: incrementLeft(increment)
     fullName: incrementLeft(increment)
     langs:
@@ -399,14 +401,14 @@ items:
           ```
       parameters:
         - id: increment
-          description: 'Die Schrittweite (in Punkt) wird horizontal verschoben. Ein positiver Wert verschiebt die Form nach rechts, und ein negativer Wert verschiebt Sie nach links. Wenn das Blatt rechts-nach-links-orientiert ist, wird dies umgekehrt: positive Werte verschieben die Form nach links, und negative Werte verschieben Sie nach rechts.'
+          description: 'Das Inkrement (in Punkt), das die Form horizontal verschoben wird. Ein positiver Wert verschiebt die Form nach rechts, und ein negativer Wert verschiebt Sie nach links. Wenn das Blatt von rechts nach links ausgerichtet ist, wird es umgekehrt: positive Werte werden das Shape nach links verschoben, und negative Werte werden nach rechts verschoben.'
           type:
             - number
   - uid: excel.Excel.Shape.incrementRotation
     summary: |-
       Dreht die Form um die angegebene Gradzahl um die Z-Achse. Verwenden Sie `rotation` die-Eigenschaft, um die absolute Drehung der Form festzulegen.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: incrementRotation(increment)
     fullName: incrementRotation(increment)
     langs:
@@ -432,14 +434,14 @@ items:
           ```
       parameters:
         - id: increment
-          description: 'Die Anzahl der Grad, die das Shape gedreht wird. Ein positiver Wert dreht die Form im Uhrzeigersinn; ein negativer Wert gegen den Uhrzeigersinn gedreht.'
+          description: Wie viele Grade das Shape gedreht wird. Ein positiver Wert dreht die Form im Uhrzeigersinn; ein negativer Wert gegen den Uhrzeigersinn gedreht.
           type:
             - number
   - uid: excel.Excel.Shape.incrementTop
     summary: |-
       Verschiebt die Form vertikal um die angegebene Anzahl von Punkten.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: incrementTop(increment)
     fullName: incrementTop(increment)
     langs:
@@ -465,14 +467,14 @@ items:
           ```
       parameters:
         - id: increment
-          description: 'Die Schrittweite (in Punkt) wird vertikal verschoben. in Punkten. Ein positiver Wert verschiebt die Form nach unten, und ein negativer Wert verschiebt Sie nach oben.'
+          description: 'Das Inkrement (in Punkt), das die Form vertikal verschoben wird. in Punkt. Ein positiver Wert verschiebt die Form nach unten, und ein negativer Wert verschiebt Sie nach oben.'
           type:
             - number
   - uid: excel.Excel.Shape.left
     summary: |-
-      Der Abstand in Punkten von der linken Seite der Form zur linken Seite des Arbeitsblatts. Löst eine ungültige Argumentausnahme aus, wenn Sie mit einem negativen Wert als Eingabe festgelegt wird.
+      Der Abstand in Punkten von der linken Seite der Form zur linken Seite des Arbeitsblatts. Löst eine ungültige Argumentausnahme aus, wenn mit einem negativen Wert als Eingabe festgelegt wird.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: left
     fullName: left
     langs:
@@ -487,7 +489,7 @@ items:
     summary: |-
       Stellt die Ebene der angegebenen Form dar. Beispielsweise bedeutet die Ebene 0, dass die Form nicht Teil von Gruppen ist, die Ebene 1 bedeutet, die Form ist Teil einer Gruppe der obersten Ebene, und die Ebene 2 bedeutet, dass die Form Teil einer Untergruppe der obersten Ebene ist.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: level
     fullName: level
     langs:
@@ -502,7 +504,7 @@ items:
     summary: |-
       Gibt die Linie zurück, die der Form zugeordnet ist. Es wird ein Fehler ausgelöst, wenn der Formtyp nicht "Line" ist.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: line
     fullName: line
     langs:
@@ -537,7 +539,7 @@ items:
     summary: |-
       Gibt die Linienformatierung dieser Form zurück. Schreibgeschützt.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: lineFormat
     fullName: lineFormat
     langs:
@@ -553,11 +555,11 @@ items:
     remarks: |-
       Zusätzlich zu dieser Signatur verfügt diese Methode über die folgenden Signaturen:
 
-      `load(option?: string | string[]): Excel.Shape`-Wobei Option eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen ist, die die zu ladenden Eigenschaften angeben.
+      `load(option?: string | string[]): Excel.Shape`-Wobei Option eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen ist, die die zu ladenden Eigenschaften angeben.
 
-      `load(option?: { select?: string; expand?: string; }): Excel.Shape`-Wobei Option. Select eine durch Kommas getrennte Zeichenfolge ist, die die zu ladenden Eigenschaften angibt, und Options. Expand ist eine durch Kommas getrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.
+      `load(option?: { select?: string; expand?: string; }): Excel.Shape`-Bei Option. Select handelt es sich um eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und Options. Expand ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.
 
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Shape`-Nur verfügbar für Sammlungstypen. Sie ähnelt der vorherigen Signatur. Option. Top gibt die maximale Anzahl von Sammlungselementen an, die in das Ergebnis eingeschlossen werden können. Option. Skip gibt die Anzahl der Elemente an, die übersprungen werden sollen und nicht im Ergebnis enthalten sind. Wenn Option. Top angegeben wird, wird das Resultset nach dem Überspringen der angegebenen Anzahl von Elementen gestartet.
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Shape`Nur verfügbar für Sammlungstypen. Sie ähnelt der vorherigen Signatur. Option. Top gibt die maximale Anzahl von Sammlungselementen an, die in das Ergebnis einbezogen werden können. Option. Skip gibt die Anzahl der Elemente an, die übersprungen werden sollen und nicht im Ergebnis enthalten sind. Wenn Option. Top angegeben ist, wird das Resultset gestartet, nachdem die angegebene Anzahl von Elementen übersprungen wurde.
     name: load(option)
     fullName: load(option)
     langs:
@@ -575,7 +577,7 @@ items:
           type:
             - excel.Excel.Interfaces.ShapeLoadOptions
   - uid: excel.Excel.Shape.load_1
-    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften anrufen.
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.
     name: load(propertyNames)
     fullName: load(propertyNames)
     langs:
@@ -589,11 +591,11 @@ items:
         description: ''
       parameters:
         - id: propertyNames
-          description: 'Eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.'
+          description: 'Eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.'
           type:
             - 'string | string[]'
   - uid: excel.Excel.Shape.load_2
-    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften anrufen.
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.
     name: load(propertyNamesAndPaths)
     fullName: load(propertyNamesAndPaths)
     langs:
@@ -607,14 +609,14 @@ items:
         description: ''
       parameters:
         - id: propertyNamesAndPaths
-          description: 'Wobei propertyNamesAndPaths. Select eine durch Kommas getrennte Zeichenfolge ist, die die zu ladenden Eigenschaften angibt, und propertyNamesAndPaths. Expand eine durch Kommas getrennte Zeichenfolge ist, die die zu ladenden Navigationseigenschaften angibt.'
+          description: 'Dabei ist propertyNamesAndPaths. Select eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und propertyNamesAndPaths. Expand ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
           type:
             - '{ select?: string; expand?: string; }'
   - uid: excel.Excel.Shape.lockAspectRatio
     summary: |-
       Gibt an, ob das Seitenverhältnis dieser Form gesperrt ist.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: lockAspectRatio
     fullName: lockAspectRatio
     langs:
@@ -643,7 +645,7 @@ items:
     summary: |-
       Stellt den Namen der Form dar.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: name
     fullName: name
     langs:
@@ -656,9 +658,9 @@ items:
           - string
   - uid: excel.Excel.Shape.onActivated
     summary: |-
-      Tritt ein, wenn die Shape aktiviert wird.
+      Tritt ein, wenn die Form aktiviert wird.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: onActivated
     fullName: onActivated
     langs:
@@ -671,9 +673,9 @@ items:
           - OfficeExtension.EventHandlers<Excel.ShapeActivatedEventArgs>
   - uid: excel.Excel.Shape.onDeactivated
     summary: |-
-      Tritt ein, wenn die Shape deaktiviert wird.
+      Tritt ein, wenn die Form deaktiviert wird.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: onDeactivated
     fullName: onDeactivated
     langs:
@@ -688,7 +690,7 @@ items:
     summary: |-
       Stellt die übergeordnete Gruppe dieser Form dar.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: parentGroup
     fullName: parentGroup
     langs:
@@ -703,7 +705,7 @@ items:
     summary: |-
       Stellt dar, wie das Objekt an die Zellen darunter angefügt ist.
 
-      \[[API-Satz: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
     name: placement
     fullName: placement
@@ -719,7 +721,7 @@ items:
     summary: |-
       Stellt die Drehung der Form in Grad dar.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: rotation
     fullName: rotation
     langs:
@@ -752,7 +754,7 @@ items:
     summary: |-
       Skaliert die Höhe der Form anhand eines angegebenen Faktors. Für Bilder können Sie angeben, ob Sie die Form relativ zum Original oder zur aktuellen Größe skalieren möchten. Andere Formen als Bilder werden immer relativ zu ihrer aktuellen Höhe skaliert.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: 'scaleHeight(scaleFactor, scaleType, scaleFrom)'
     fullName: 'scaleHeight(scaleFactor, scaleType, scaleFrom)'
     langs:
@@ -783,18 +785,18 @@ items:
           type:
             - number
         - id: scaleType
-          description: 'Gibt an, ob die Form relativ zu ihrer ursprünglichen oder aktuellen Größe skaliert wird. Die ursprüngliche Größen Skalierungsoption funktioniert nur für Bilder.'
+          description: 'Gibt an, ob die Form relativ zu ihrer ursprünglichen oder aktuellen Größe skaliert wird. Die Option ursprüngliche Größenskalierung kann nur für Bilder verwendet werden.'
           type:
             - excel.Excel.ShapeScaleType
         - id: scaleFrom
-          description: 'Optional. Gibt an, welcher Teil der Form beim Skalieren die Position beibehält. Wenn dieser Wert nicht angegeben ist, stellt er die linke obere Ecke der Form dar.'
+          description: 'Optional. Gibt an, welcher Teil der Form beim Skalieren die Position beibehält. Wenn dieser Wert nicht angegeben ist, wird die obere linke Ecke des Shapes beibehalten seiner Position.'
           type:
             - excel.Excel.ShapeScaleFrom
   - uid: excel.Excel.Shape.scaleHeight_1
     summary: |-
       Skaliert die Höhe der Form anhand eines angegebenen Faktors. Für Bilder können Sie angeben, ob Sie die Form relativ zum Original oder zur aktuellen Größe skalieren möchten. Andere Formen als Bilder werden immer relativ zu ihrer aktuellen Höhe skaliert.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: 'scaleHeight(scaleFactor, scaleTypeString, scaleFrom)'
     fullName: 'scaleHeight(scaleFactor, scaleTypeString, scaleFrom)'
     langs:
@@ -812,18 +814,18 @@ items:
           type:
             - number
         - id: scaleTypeString
-          description: 'Gibt an, ob die Form relativ zu ihrer ursprünglichen oder aktuellen Größe skaliert wird. Die ursprüngliche Größen Skalierungsoption funktioniert nur für Bilder.'
+          description: 'Gibt an, ob die Form relativ zu ihrer ursprünglichen oder aktuellen Größe skaliert wird. Die Option ursprüngliche Größenskalierung kann nur für Bilder verwendet werden.'
           type:
             - '"CurrentSize" | "OriginalSize"'
         - id: scaleFrom
-          description: 'Optional. Gibt an, welcher Teil der Form beim Skalieren die Position beibehält. Wenn dieser Wert nicht angegeben ist, stellt er die linke obere Ecke der Form dar.'
+          description: 'Optional. Gibt an, welcher Teil der Form beim Skalieren die Position beibehält. Wenn dieser Wert nicht angegeben ist, wird die obere linke Ecke des Shapes beibehalten seiner Position.'
           type:
             - '"ScaleFromTopLeft" | "ScaleFromMiddle" | "ScaleFromBottomRight"'
   - uid: excel.Excel.Shape.scaleWidth
     summary: |-
       Skaliert die Breite der Form anhand eines angegebenen Faktors. Für Bilder können Sie angeben, ob Sie die Form relativ zum Original oder zur aktuellen Größe skalieren möchten. Andere Formen als Bilder werden immer relativ zu ihrer aktuellen Breite skaliert.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: 'scaleWidth(scaleFactor, scaleType, scaleFrom)'
     fullName: 'scaleWidth(scaleFactor, scaleType, scaleFrom)'
     langs:
@@ -841,18 +843,18 @@ items:
           type:
             - number
         - id: scaleType
-          description: 'Gibt an, ob die Form relativ zu ihrer ursprünglichen oder aktuellen Größe skaliert wird. Die ursprüngliche Größen Skalierungsoption funktioniert nur für Bilder.'
+          description: 'Gibt an, ob die Form relativ zu ihrer ursprünglichen oder aktuellen Größe skaliert wird. Die Option ursprüngliche Größenskalierung kann nur für Bilder verwendet werden.'
           type:
             - excel.Excel.ShapeScaleType
         - id: scaleFrom
-          description: 'Optional. Gibt an, welcher Teil der Form beim Skalieren die Position beibehält. Wenn dieser Wert nicht angegeben ist, stellt er die linke obere Ecke der Form dar.'
+          description: 'Optional. Gibt an, welcher Teil der Form beim Skalieren die Position beibehält. Wenn dieser Wert nicht angegeben ist, wird die obere linke Ecke des Shapes beibehalten seiner Position.'
           type:
             - excel.Excel.ShapeScaleFrom
   - uid: excel.Excel.Shape.scaleWidth_1
     summary: |-
       Skaliert die Breite der Form anhand eines angegebenen Faktors. Für Bilder können Sie angeben, ob Sie die Form relativ zum Original oder zur aktuellen Größe skalieren möchten. Andere Formen als Bilder werden immer relativ zu ihrer aktuellen Breite skaliert.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: 'scaleWidth(scaleFactor, scaleTypeString, scaleFrom)'
     fullName: 'scaleWidth(scaleFactor, scaleTypeString, scaleFrom)'
     langs:
@@ -870,15 +872,15 @@ items:
           type:
             - number
         - id: scaleTypeString
-          description: 'Gibt an, ob die Form relativ zu ihrer ursprünglichen oder aktuellen Größe skaliert wird. Die ursprüngliche Größen Skalierungsoption funktioniert nur für Bilder.'
+          description: 'Gibt an, ob die Form relativ zu ihrer ursprünglichen oder aktuellen Größe skaliert wird. Die Option ursprüngliche Größenskalierung kann nur für Bilder verwendet werden.'
           type:
             - '"CurrentSize" | "OriginalSize"'
         - id: scaleFrom
-          description: 'Optional. Gibt an, welcher Teil der Form beim Skalieren die Position beibehält. Wenn dieser Wert nicht angegeben ist, stellt er die linke obere Ecke der Form dar.'
+          description: 'Optional. Gibt an, welcher Teil der Form beim Skalieren die Position beibehält. Wenn dieser Wert nicht angegeben ist, wird die obere linke Ecke des Shapes beibehalten seiner Position.'
           type:
             - '"ScaleFromTopLeft" | "ScaleFromMiddle" | "ScaleFromBottomRight"'
   - uid: excel.Excel.Shape.set
-    summary: Legt mehrere Eigenschaften eines Objekts gleichzeitig fest. Sie können entweder ein plain-Objekt mit den entsprechenden Eigenschaften oder ein anderes API-Objekt desselben Typs weitergeben.
+    summary: Legt mehrere Eigenschaften eines Objekts gleichzeitig fest. Sie können entweder ein einfaches Objekt mit den entsprechenden Eigenschaften oder ein anderes API-Objekt desselben Typs übergeben.
     remarks: |-
       Diese Methode hat die folgende zusätzliche Signatur:
 
@@ -896,7 +898,7 @@ items:
         description: ''
       parameters:
         - id: properties
-          description: 'Ein JavaScript-Objekt mit Eigenschaften, die isomorphically strukturiert sind, um die Eigenschaften des Objekts, für das die Methode aufgerufen wird.'
+          description: 'Ein JavaScript-Objekt mit Eigenschaften, die isomorphically für die Eigenschaften des Objekts strukturiert sind, für das die Methode aufgerufen wird.'
           type:
             - Interfaces.ShapeUpdateData
         - id: options
@@ -904,7 +906,7 @@ items:
           type:
             - office.OfficeExtension.UpdateOptions
   - uid: excel.Excel.Shape.set_1
-    summary: Legt mehrere Eigenschaften für das Objekt auf der Grundlage eines vorhandenen geladenen Objekts zur gleichen Zeit fest.
+    summary: Legt mehrere Eigenschaften für das Objekt gleichzeitig basierend auf einem vorhandenen geladenen Objekt fest.
     name: set(properties)
     fullName: set(properties)
     langs:
@@ -925,7 +927,7 @@ items:
     summary: |-
       Verschiebt de angegebene Form in der Z-Reihenfolge der Sammlung nach oben oder unten, wodurch sie vor oder hinter anderen Formen zu liegen kommt.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: setZOrder(position)
     fullName: setZOrder(position)
     langs:
@@ -951,14 +953,14 @@ items:
           ```
       parameters:
         - id: position
-          description: Wo das Shape im z-Reihenfolge Stapel relativ zu den anderen Formen verschoben werden soll. Weitere Informationen finden Sie unter Excel. ShapeZOrder.
+          description: Verschiebt die Form im Stapel der z-Reihenfolge relativ zu den anderen Formen. Weitere Informationen finden Sie unter Excel. ShapeZOrder.
           type:
             - excel.Excel.ShapeZOrder
   - uid: excel.Excel.Shape.setZOrder_1
     summary: |-
       Verschiebt de angegebene Form in der Z-Reihenfolge der Sammlung nach oben oder unten, wodurch sie vor oder hinter anderen Formen zu liegen kommt.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: setZOrder(positionString)
     fullName: setZOrder(positionString)
     langs:
@@ -972,14 +974,14 @@ items:
         description: ''
       parameters:
         - id: positionString
-          description: Wo das Shape im z-Reihenfolge Stapel relativ zu den anderen Formen verschoben werden soll. Weitere Informationen finden Sie unter Excel. ShapeZOrder.
+          description: Verschiebt die Form im Stapel der z-Reihenfolge relativ zu den anderen Formen. Weitere Informationen finden Sie unter Excel. ShapeZOrder.
           type:
             - '"BringToFront" | "BringForward" | "SendToBack" | "SendBackward"'
   - uid: excel.Excel.Shape.textFrame
     summary: |-
       Gibt das textFrame-Objekt dieser Form zurück. Schreibgeschützt.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: textFrame
     fullName: textFrame
     langs:
@@ -991,7 +993,7 @@ items:
         type:
           - excel.Excel.TextFrame
   - uid: excel.Excel.Shape.toJSON
-    summary: 'Überschreibt die `toJSON()` JavaScript-Methode, um eine nützlichere Ausgabe bereitzustellen, wenn ein API-Objekt an`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->Ruft wiederum die `toJSON` Methode des Objekts auf, das übergeben wird.) Während das ursprüngliche Excel. Shape-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt zurück (typisiert als`Excel.Interfaces.ShapeData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
+    summary: 'Überschreibt die `toJSON()` JavaScript-Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird.`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche Excel. Shape-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt (typisiert als`Excel.Interfaces.ShapeData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
     name: toJSON()
     fullName: toJSON()
     langs:
@@ -1005,9 +1007,9 @@ items:
         description: ''
   - uid: excel.Excel.Shape.top
     summary: |-
-      Der Abstand in Punkten zwischen der oberen Kante der Form und der oberen Kante der Arbeitsmappe. Löst eine ungültige Argumentausnahme aus, wenn Sie mit einem negativen Wert als Eingabe festgelegt wird.
+      Der Abstand in Punkten zwischen der oberen Kante der Form und der oberen Kante der Arbeitsmappe. Löst eine ungültige Argumentausnahme aus, wenn mit einem negativen Wert als Eingabe festgelegt wird.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: top
     fullName: top
     langs:
@@ -1022,7 +1024,7 @@ items:
     summary: |-
       Gibt den Typ dieser Form zurück. Details finden Sie unter Excel.ShapeType. Schreibgeschützt.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: type
     fullName: type
     langs:
@@ -1037,7 +1039,7 @@ items:
     summary: |-
       Stellt die Sichtbarkeit dieser Form dar.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: visible
     fullName: visible
     langs:
@@ -1050,9 +1052,9 @@ items:
           - boolean
   - uid: excel.Excel.Shape.width
     summary: |-
-      Die Breite der Form in Punkten. Löst eine ungültige Argumentausnahme aus, wenn Sie mit einem negativen Wert oder NULL als Eingabe festgelegt wird.
+      Die Breite der Form in Punkten. Löst eine ungültige Argumentausnahme aus, wenn mit einem negativen Wert oder 0 als Eingabe festgelegt wird.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: width
     fullName: width
     langs:
@@ -1067,7 +1069,7 @@ items:
     summary: |-
       Gibt die Position der angegebenen Form in der Z-Reihenfolge an, wobei 0 den Boden des Reihenfolgestapels darstellt. Schreibgeschützt.
 
-      \[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: zOrderPosition
     fullName: zOrderPosition
     langs:

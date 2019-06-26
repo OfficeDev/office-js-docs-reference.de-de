@@ -4,7 +4,7 @@ items:
     summary: |-
       Stellt die CommentCollection für ein bestimmtes Shape dar.
 
-      \[[API-Satz: 1,1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+      \[[API-Menge: 1,1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
     name: Visio.CommentCollection
     fullName: Visio.CommentCollection
     langs:
@@ -23,7 +23,7 @@ items:
       - visio.Visio.CommentCollection.load_2
       - visio.Visio.CommentCollection.toJSON
   - uid: visio.Visio.CommentCollection.context
-    summary: Der dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office-Hostanwendung verbunden.
+    summary: 'Der Anforderungskontext, der mit dem Objekt verknüpft ist. Dadurch wird das Add-in-Verfahren mit dem Prozess der Office-Hostanwendung verbunden.'
     name: context
     fullName: context
     langs:
@@ -38,7 +38,7 @@ items:
     summary: |-
       Ruft die Anzahl von Kommentaren ab.
 
-      \[[API-Satz: 1,1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+      \[[API-Menge: 1,1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
     name: getCount()
     fullName: getCount()
     langs:
@@ -54,7 +54,7 @@ items:
     summary: |-
       Ruft den Kommentar über seinen Namen ab.
 
-      \[[API-Satz: 1,1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+      \[[API-Menge: 1,1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
     name: getItem(key)
     fullName: getItem(key)
     langs:
@@ -88,11 +88,11 @@ items:
     remarks: |-
       Zusätzlich zu dieser Signatur verfügt diese Methode über die folgenden Signaturen:
 
-      `load(option?: string | string[]): Visio.CommentCollection`-Wobei Option eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen ist, die die zu ladenden Eigenschaften angeben.
+      `load(option?: string | string[]): Visio.CommentCollection`-Wobei Option eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen ist, die die zu ladenden Eigenschaften angeben.
 
-      `load(option?: { select?: string; expand?: string; }): Visio.CommentCollection`-Wobei Option. Select eine durch Kommas getrennte Zeichenfolge ist, die die zu ladenden Eigenschaften angibt, und Options. Expand ist eine durch Kommas getrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.
+      `load(option?: { select?: string; expand?: string; }): Visio.CommentCollection`-Bei Option. Select handelt es sich um eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und Options. Expand ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.
 
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Visio.CommentCollection`-Nur verfügbar für Sammlungstypen. Sie ähnelt der vorherigen Signatur. Option. Top gibt die maximale Anzahl von Sammlungselementen an, die in das Ergebnis eingeschlossen werden können. Option. Skip gibt die Anzahl der Elemente an, die übersprungen werden sollen und nicht im Ergebnis enthalten sind. Wenn Option. Top angegeben wird, wird das Resultset nach dem Überspringen der angegebenen Anzahl von Elementen gestartet.
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Visio.CommentCollection`Nur verfügbar für Sammlungstypen. Sie ähnelt der vorherigen Signatur. Option. Top gibt die maximale Anzahl von Sammlungselementen an, die in das Ergebnis einbezogen werden können. Option. Skip gibt die Anzahl der Elemente an, die übersprungen werden sollen und nicht im Ergebnis enthalten sind. Wenn Option. Top angegeben ist, wird das Resultset gestartet, nachdem die angegebene Anzahl von Elementen übersprungen wurde.
 
       #### <a name="examples"></a>Beispiele
 
@@ -101,12 +101,12 @@ items:
           var activePage = ctx.document.getActivePage();
           var shapeName = "Position Belt.41";
           var shape = activePage.shapes.getItem(shapeName);
-          var shapecomments= shape.comments;
-          shapecomments.load();
+          var shapeComments= shape.comments;
+          shapeComments.load(["author", "text"]);
           return ctx.sync().then(function () {
-              for(var i=0; i<shapecomments.items.length;i++)
+              for(var i = 0; i < shapeComments.items.length; i++)
               {
-                  var comment= shapecomments.items[i];
+                  var comment = shapeComments.items[i];
                   console.log("comment Author: " + comment.author);
                   console.log("Comment Text: " + comment.text);
                   console.log("Date " + comment.date);
@@ -136,7 +136,7 @@ items:
           type:
             - Visio.Interfaces.CommentCollectionLoadOptions & Visio.Interfaces.CollectionLoadOptions
   - uid: visio.Visio.CommentCollection.load_1
-    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften anrufen.
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.
     name: load(propertyNames)
     fullName: load(propertyNames)
     langs:
@@ -150,7 +150,7 @@ items:
         description: ''
       parameters:
         - id: propertyNames
-          description: 'Eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.'
+          description: 'Eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.'
           type:
             - 'string | string[]'
   - uid: visio.Visio.CommentCollection.load_2
@@ -171,7 +171,7 @@ items:
           type:
             - office.OfficeExtension.LoadOption
   - uid: visio.Visio.CommentCollection.toJSON
-    summary: 'ÜberSchreibt die `toJSON()` JavaScript-Methode, um eine nützlichere Ausgabe bereitzustellen, wenn ein API-Objekt an`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->Ruft wiederum die `toJSON` Methode des Objekts auf, das übergeben wird.) Während das ursprüngliche `Visio.CommentCollection` Objekt ein API-Objekt ist, `toJSON` gibt die Methode ein einfaches JavaScript-Objekt (typisiert als`Visio.Interfaces.CommentCollectionData`<!-- -->), die ein Array "Items" mit flachen Kopien aller geladenen Eigenschaften aus den Elementen der Auflistung enthält.'
+    summary: 'Überschreibt die `toJSON()` JavaScript-Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird.`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche `Visio.CommentCollection` Objekt ein API-Objekt ist, `toJSON` gibt die Methode ein einfaches JavaScript-Objekt (typisiert als`Visio.Interfaces.CommentCollectionData`<!-- -->), die ein "Items"-Array mit flachen Kopien aller geladenen Eigenschaften aus den Elementen der Auflistung enthält.'
     name: toJSON()
     fullName: toJSON()
     langs:
