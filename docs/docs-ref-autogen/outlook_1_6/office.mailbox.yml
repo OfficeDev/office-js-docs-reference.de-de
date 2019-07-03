@@ -144,7 +144,7 @@ items:
 
       Element-IDs, die über eine Rest-API (wie die Outlook-Mail-API oder das Microsoft Graph) abgerufen werden, verwenden ein anderes Format als das Format, das von Exchange Webdienste (EWS) verwendet wird. Die converttoewsid hinzugefügt-Methode konvertiert eine Rest-formatierte ID in das richtige Format für EWS.
 
-      **Hinweis**: Diese Methode wird in Outlook für IOS oder Outlook für Android nicht unterstützt.
+      **Hinweis**: Diese Methode wird in Outlook auf IOS oder Android nicht unterstützt.
 
       \[[API-Gruppe: Mailbox 1,3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -182,7 +182,14 @@ items:
           type:
             - MailboxEnums.RestVersion | string
   - uid: Outlook_1_6.Office.Mailbox.convertToLocalClientTime
-    summary: "Ruft ein Wörterbuch mit Uhrzeitinformationen basierend auf der Zeiteinstellung des lokalen Clients ab.\n\nDie in einer Mail-App für Outlook oder Outlook Web App verwendeten Daten und Uhrzeiten stammen u.\_U. aus verschiedenen Zeitzonen. Outlook verwendet die Zeitzone des Client-Computers; Outlook Web App verwendet die im Exchange Admin Center (EAC) festgelegte Zeitzone. Sie sollten Datums- und Uhrzeitwerte bearbeiten, damit die auf der Benutzeroberfläche angezeigten Werte immer den von Benutzer erwarteten Zeitzonen entsprechen.\n\nWird die Mail-App in Outlook ausgeführt, wird mit der convertToLocalClientTime-Methode ein Wörrterbuchobjekt zurückgegeben, dessen Werte auf die Zeitzone des Client-Computer festgelegt sind. Wenn die Mail-app in Outlook Web App läuft, gibt die convertToLocalClientTime-Methode ein Dictionary-Objekt zurück, dessen Werte auf die in der Exchange-Verwaltungskonsole angegebene Zeitzone festgelegt sind.\n\n\\[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\\]"
+    summary: |-
+      Ruft ein Wörterbuch mit Uhrzeitinformationen basierend auf der Zeiteinstellung des lokalen Clients ab.
+
+      Die Daten und Uhrzeiten, die von einer Mail-App für Outlook im Internet oder Desktop Clients verwendet werden, können unterschiedliche Zeitzonen verwenden. Outlook verwendet die Zeitzone des Clientcomputers; Outlook im Internet verwendet die im Exchange Admin Center (EAC) festgelegte Zeitzone. Sie sollten Datums- und Uhrzeitwerte bearbeiten, damit die auf der Benutzeroberfläche angezeigten Werte immer den von Benutzer erwarteten Zeitzonen entsprechen.
+
+      Wenn die Mail-app in Outlook auf Desktop Clients läuft, gibt die convertToLocalClientTime-Methode ein Dictionary-Objekt zurück, dessen Werte auf die Zeitzone des Clientcomputers festgelegt sind. Wenn die Mail-app in Outlook im Internet läuft, gibt die convertToLocalClientTime-Methode ein Dictionary-Objekt zurück, dessen Werte auf die in der Exchange-Verwaltungskonsole angegebene Zeitzone festgelegt sind.
+
+      \[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
 
@@ -207,7 +214,7 @@ items:
     summary: |-
       Wandelt eine EWS-formatierte Element-ID ins REST-Format um.
 
-      **Hinweis**: Diese Methode wird in Outlook für IOS oder Outlook für Android nicht unterstützt.
+      **Hinweis**: Diese Methode wird in Outlook auf IOS oder Android nicht unterstützt.
 
       \[[API-Gruppe: Mailbox 1,3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -274,7 +281,20 @@ items:
           type:
             - LocalClientTime
   - uid: Outlook_1_6.Office.Mailbox.displayAppointmentForm
-    summary: "Zeigt einen bestehenden Kalendertermin an.\n\nMit der displayAppointmentForm-Methode wird ein vorhandener Kalendertermin auf dem Desktop in einem neuen Fenster oder auf Mobilgeräten in einem Dialogfeld geöffnet.\n\nIn Outlook for Mac können Sie diese Methode verwenden, um einen einzelnen Termin anzuzeigen, der nicht Teil einer Terminserie ist, oder den Mastertermin einer Terminserie, jedoch keine Instanz der Terminserie. Dies liegt daran, dass Sie in Outlook for Mac nicht auf die Eigenschaften (einschließlich der Element-ID) von Instanzen einer Terminserie zugreifen können.\n\nIn Outlook Web App öffnet diese Methode das angegebene Formular nur, wenn der Textkörper des Formulars nicht größer ist als 32\_KB.\n\nWenn der angegebene Elementbezeichner keinen vorhandenen Termin identifiziert, wird auf dem Clientcomputer oder Gerät ein leerer Bereich geöffnet, und es wird keine Fehlermeldung zurückgegeben.\n\n**Hinweis**: Diese Methode wird in Outlook für IOS oder Outlook für Android nicht unterstützt.\n\n\\[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\\]"
+    summary: |-
+      Zeigt einen bestehenden Kalendertermin an.
+
+      Mit der displayAppointmentForm-Methode wird ein vorhandener Kalendertermin auf dem Desktop in einem neuen Fenster oder auf Mobilgeräten in einem Dialogfeld geöffnet.
+
+      In Outlook auf Mac können Sie diese Methode verwenden, um einen einzelnen Termin anzuzeigen, der nicht Teil einer Terminserie ist, oder den Mastertermin einer Serie, aber Sie können keine Instanz der Datenreihe anzeigen. Dies liegt daran, dass Sie in Outlook auf dem Mac nicht auf die Eigenschaften (einschließlich der Element-ID) von Instanzen einer wiederkehrenden Datenreihe zugreifen können.
+
+      In Outlook im Internet öffnet diese Methode das angegebene Formular nur, wenn der Textkörper des Formulars kleiner als oder gleich 32 KB beschränkt Anzahl von Zeichen ist.
+
+      Wenn der angegebene Elementbezeichner keinen vorhandenen Termin identifiziert, wird auf dem Clientcomputer oder Gerät ein leerer Bereich geöffnet, und es wird keine Fehlermeldung zurückgegeben.
+
+      **Hinweis**: Diese Methode wird in Outlook auf IOS oder Android nicht unterstützt.
+
+      \[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
 
@@ -302,7 +322,20 @@ items:
           type:
             - string
   - uid: Outlook_1_6.Office.Mailbox.displayMessageForm
-    summary: "Zeigt eine vorhandene Nachricht an.\n\nDie Methode displayMessageForm öffnet eine vorhandene Nachricht in einem neuen Fenster auf dem Desktop bzw. in einem Dialogfeld auf Mobilgeräten.\n\nIn Outlook Web App wird mit dieser Methode das angegebene Formular nur dann geöffnet, wenn der Textkörper des Formular Zeichen im Umfang vom maximal 32\_KB umfasst.\n\nWenn der angegebene Elementbezeichner keine vorhandenen Nachrichten erkennt, wird auf dem Client-Computer keine Nachricht angezeigt, und es werden keine Fehlermeldungen zurückgegeben.\n\nVerwenden Sie die displayMessageForm-Methode nicht mit einer itemId-Eigenschaft, die einen Termin darstellt. Verwenden Sie die displayAppointmentForm-Methode, um einen vorhandenen Termin anzuzeigen, und displayNewAppointmentForm, um ein Formular anzuzeigen, um einen neuen Termin zu erstellen.\n\n**Hinweis**: Diese Methode wird in Outlook für IOS oder Outlook für Android nicht unterstützt.\n\n\\[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\\]"
+    summary: |-
+      Zeigt eine vorhandene Nachricht an.
+
+      Die Methode displayMessageForm öffnet eine vorhandene Nachricht in einem neuen Fenster auf dem Desktop bzw. in einem Dialogfeld auf Mobilgeräten.
+
+      In Outlook im Internet öffnet diese Methode das angegebene Formular nur, wenn der Textkörper des Formulars kleiner als oder gleich 32 KB Anzahl von Zeichen ist.
+
+      Wenn der angegebene Elementbezeichner keine vorhandenen Nachrichten erkennt, wird auf dem Client-Computer keine Nachricht angezeigt, und es werden keine Fehlermeldungen zurückgegeben.
+
+      Verwenden Sie die displayMessageForm-Methode nicht mit einer itemId-Eigenschaft, die einen Termin darstellt. Verwenden Sie die displayAppointmentForm-Methode, um einen vorhandenen Termin anzuzeigen, und displayNewAppointmentForm, um ein Formular anzuzeigen, um einen neuen Termin zu erstellen.
+
+      **Hinweis**: Diese Methode wird in Outlook auf IOS oder Android nicht unterstützt.
+
+      \[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
 
@@ -335,13 +368,13 @@ items:
 
       Mit der displayNewAppointmentForm-Methode wird ein Formular geöffnet, mit dem der Benutzer einen neuen Termin oder ein Meeting erstellen kann. Wenn Parameter angegeben wurden, werden die Felder im Terminformular automatisch mit dem Inhalt der Parameter ausgefüllt.
 
-      In Outlook Web App und OWA for Devices zeigt diese Methode immer ein Formular mit einem Teilnehmerfeld an. Wenn Sie keine Teilnehmer als Eingabeargumente angeben, zeigt die Methode ein Formular mit einer Schaltfläche Speichern an. Wenn Sie Teilnehmer angegeben haben, enthält das Formular die Teilnehmer und eine Schaltfläche Senden.
+      In Outlook im Internet zeigt diese Methode immer ein Formular mit einem Teilnehmerfeld an. Wenn Sie keine Teilnehmer als Eingabeargumente angeben, zeigt die Methode ein Formular mit einer Schaltfläche Speichern an. Wenn Sie Teilnehmer angegeben haben, enthält das Formular die Teilnehmer und eine Schaltfläche Senden.
 
       Wenn Sie im Outlook-Rich-Client und Outlook RT im Parameter requiredAttendees, optionalAttendees oder Resources Teilnehmer oder Ressourcen angeben, zeigt diese Methode ein Besprechungsformular mit der Schaltfläche Senden an. Wenn Sie keine Empfänger angeben, zeigt diese Methode ein Terminformular mit der Schaltfläche &amp; Save Close an.
 
       Wenn einer der Parameter die angegebenen Größenbeschränkungen überschreitet oder wenn ein unbekannter Parametername angegeben wird, wird eine Ausnahme ausgelöst.
 
-      **Hinweis**: Diese Methode wird in Outlook für IOS oder Outlook für Android nicht unterstützt.
+      **Hinweis**: Diese Methode wird in Outlook auf IOS oder Android nicht unterstützt.
 
       \[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -631,7 +664,7 @@ items:
 
       **Hinweis**: Diese Methode wird in den folgenden Szenarien nicht unterstützt:
 
-      - In Outlook für IOS oder Outlook für Android.
+      - In Outlook unter IOS oder Android.
 
       - Wenn das Add-in in ein Gmail-Postfach geladen wird.
 
@@ -792,9 +825,9 @@ items:
 
       - Hostname (String): eine Zeichenfolge, die den Namen der Hostanwendung darstellt. Es handelt sich um einen der folgenden Werte: Outlook, Mac Outlook, OutlookIOS oder OutlookWebApp.
 
-      - Host (String): eine Zeichenfolge, die die Version der Hostanwendung oder der Exchange Server darstellt. Wenn das e-Mail-Add-in auf dem Outlook-Desktop Client oder Outlook für IOS läuft, gibt die Host-Eigenschaft die Version der Hostanwendung, Outlook, zurück. In Outlook Web App gibt die Eigenschaft die Version von Exchange Server zurück. Ein Beispiel ist die Zeichenfolge 15.0.468.0.
+      - Host (String): eine Zeichenfolge, die die Version der Hostanwendung oder der Exchange Server darstellt. Wenn das e-Mail-Add-in in Outlook auf Desktop Clients oder IOS läuft, gibt die Host-Eigenschaft die Version der Hostanwendung, Outlook, zurück. In Outlook im Internet gibt die Eigenschaft die Version der Exchange Server zurück. Ein Beispiel ist die Zeichenfolge 15.0.468.0.
 
-      - OWAView (MailboxEnums. OWAView oder String): eine Enum (oder ein Zeichenfolgenliteral), die die aktuelle Ansicht von Outlook Web App darstellt. Wenn die Hostanwendung nicht Outlook Web App ist, führt der Zugriff auf diese Eigenschaft zu undefined. Outlook Web App verfügt über drei Ansichten (OneColumn angezeigt, wenn der Bildschirm schmal, TwoColumns angezeigt wird, wenn der Bildschirm breiter ist, und ThreeColumns angezeigt wird, wenn der Bildschirm breit ist), die der Breite des Bildschirms und des Fensters entsprechen, und der Anzahl der Spalten , die angezeigt werden können.
+      - OWAView (MailboxEnums. OWAView oder String): eine Enum (oder ein Zeichenfolgenliteral), die die aktuelle Ansicht von Outlook im Internet darstellt. Wenn es sich bei der Hostanwendung nicht um Outlook im Internet handelt, führt der Zugriff auf diese Eigenschaft zu undefined. Outlook im Internet verfügt über drei Ansichten (OneColumn angezeigt, wenn der Bildschirm schmal, TwoColumns angezeigt wird, wenn der Bildschirm breiter ist, und ThreeColumns angezeigt wird, wenn der Bildschirm breit ist), die der Breite des Bildschirms und des Fensters entsprechen, und der Anzahl der Spalten , die angezeigt werden können.
 
       Weitere Informationen finden Sie unter [Office. Diagnostics](xref:Outlook_1_6.Office.Diagnostics)<!-- -->.
 
@@ -829,7 +862,7 @@ items:
 
       Der Wert ewsUrl kann von einem Remotedienst verwendet werden, um EWS-Aufrufe an das Postfach des Benutzers vorzunehmen. Sie können beispielsweise einen Remotedienst zum [Abrufen von Anlagen aus dem ausgewählten Element](https://docs.microsoft.com/outlook/add-ins/get-attachments-of-an-outlook-item) erstellen.<!-- -->.
 
-      **Hinweis**: dieses Element wird in Outlook für IOS oder Outlook für Android nicht unterstützt.
+      **Hinweis**: dieses Element wird in Outlook auf IOS oder Android nicht unterstützt.
     name: ewsUrl
     fullName: ewsUrl
     langs:

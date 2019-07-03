@@ -2,11 +2,11 @@
 items:
   - uid: Outlook_1_4.Office.CustomProperties
     summary: |-
-      Das CustomProperties-Objekt stellt benutzerdefinierte Eigenschaften dar, die spezifisch für ein bestimmtes Element und spezifisch für ein Mail-Add-in für Outlook sind. Beispielsweise kann es erforderlich sein, dass ein e-Mail-Add-in einige Daten speichert, die spezifisch für die aktuelle e-Mail-Nachricht sind, die das Add-in aktiviert hat. Wenn der Benutzer die gleiche Nachricht in der Zukunft erneut besucht und das Mail-Add-in erneut aktiviert, kann das Add-in die Daten abrufen, die als benutzerdefinierte Eigenschaften gespeichert wurden.
+      Das CustomProperties-Objekt stellt benutzerdefinierte Eigenschaften dar, die für ein bestimmtes Element spezifisch und spezifisch für ein Mail-Add-in für Outlook sind. Beispielsweise kann es erforderlich sein, dass ein e-Mail-Add-in einige Daten speichert, die für die aktuelle e-Mail-Nachricht spezifisch sind, die das Add-in aktiviert hat. Wenn der Benutzer die gleiche Nachricht zukünftig erneut besucht und das e-Mail-Add-in erneut aktiviert, kann das Add-in die Daten abrufen, die als benutzerdefinierte Eigenschaften gespeichert wurden.
 
-      Da Outlook für Mac keine benutzerdefinierten Eigenschaften zwischenspeichert, können e-Mail-Add-Ins nicht auf Ihre benutzerdefinierten Eigenschaften zugreifen, wenn das Netzwerk des Benutzers ausfällt.
+      Da Outlook auf dem Mac keine benutzerdefinierten Eigenschaften zwischenspeichert, können e-Mail-Add-Ins nicht auf Ihre benutzerdefinierten Eigenschaften zugreifen, wenn das Netzwerk des Benutzers ausfällt.
 
-      \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+      \[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
 
@@ -41,7 +41,7 @@ items:
         description: |-
           Der Wert der angegebenen benutzerdefinierten Eigenschaft.
 
-          \[API-Satz: Mailbox 1,0\]
+          \[API-Gruppe: Mailbox 1,0\]
       parameters:
         - id: name
           description: 'Der Name der benutzerdefinierten Eigenschaft, die zurückgegeben werden soll.'
@@ -72,7 +72,7 @@ items:
           description: |-
             Der Name der zu entfernenden Eigenschaft.
 
-            \[API-Satz: Mailbox 1,0\]
+            \[API-Gruppe: Mailbox 1,0\]
           type:
             - string
   - uid: Outlook_1_4.Office.CustomProperties.saveAsync
@@ -81,7 +81,7 @@ items:
 
       Sie müssen die saveAsync-Methode aufrufen, um mit der set-Methode oder der remove-Methode vorgenommene Änderungen des CustomProperties-Objekts beizubehalten. Die Speichernaktion ist asynchron.
 
-      Es empfiehlt sich, dass Ihre Rückruffunktion auf Fehler von saveAsync überprüft und diese behandelt. Insbesondere kann ein Lese-Add-in aktiviert werden, während sich der Benutzer in einem gelesenen Formular in einem verbundenen Zustand befindet, und anschließend wird der Benutzer getrennt. Wenn das Add-in saveAsync im getrennten Zustand aufruft, gibt saveAsync einen Fehler zurück. Ihre Rückrufmethode sollte diesen Fehler entsprechend behandeln.
+      Es empfiehlt sich, die Callback-Funktion zu überprüfen und Fehler von saveAsync zu behandeln. Insbesondere kann ein Read-Add-in aktiviert werden, während sich der Benutzer in einem gelesenen Zustand in einem verbundenen Status befindet und der Benutzer anschließend getrennt wird. Wenn das Add-in saveAsync im getrennten Zustand aufruft, würde saveAsync einen Fehler zurückgeben. Ihre Rückrufmethode sollte diesen Fehler entsprechend behandeln.
     remarks: |-
       ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
 
@@ -144,14 +144,14 @@ items:
         description: ''
       parameters:
         - id: callback
-          description: 'Optional. Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzelnen Parameter vom Typ Office. AsyncResult aufgerufen.'
+          description: 'Optional. Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzigen Parameter vom Typ Office. AsyncResult aufgerufen.'
           type:
             - '(asyncResult: Office.AsyncResult<void>) => void'
         - id: asyncContext
           description: |-
             Optional. Jegliche Zustandsdaten, die an die Rückrufmethode übergeben werden.
 
-            \[API-Satz: Mailbox 1,0\]
+            \[API-Gruppe: Mailbox 1,0\]
           type:
             - any
   - uid: Outlook_1_4.Office.CustomProperties.set
@@ -160,9 +160,9 @@ items:
 
       Die Set-Methode legt die angegebene Eigenschaft auf den angegebenen Wert fest. Sie müssen die saveAsync-Methode verwenden, um die Eigenschaft auf dem Server zu speichern.
 
-      Die Set-Methode erstellt eine neue Eigenschaft, wenn die angegebene Eigenschaft noch nicht vorhanden ist; Andernfalls wird der vorhandene Wert durch den neuen Wert ersetzt. Der value-Parameter kann einen beliebigen Typ haben; Sie wird jedoch immer als Zeichenfolge an den Server übergeben.
+      Die festgelegte Methode erstellt eine neue Eigenschaft, wenn die angegebene Eigenschaft noch nicht vorhanden ist; andernfalls false. Andernfalls wird der vorhandene Wert durch den neuen Wert ersetzt. Der value-Parameter kann einen beliebigen Typ aufweisen. Sie wird jedoch immer als Zeichenfolge an den Server übergeben.
 
-      \[[API-Satz: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+      \[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
 
