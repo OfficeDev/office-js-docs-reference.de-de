@@ -2,9 +2,9 @@
 items:
   - uid: excel_release.Excel.CellPropertiesLoadOptions
     summary: |-
-      <span data-ttu-id="8be51-101">Stellt dar, welche Zelleneigenschaften geladen werden, wenn Sie als Teil einer "Range. getCellProperties"-Methode verwendet werden.</span><span class="sxs-lookup"><span data-stu-id="8be51-101">Represents which cell properties to load, when used as part of a "range.getCellProperties" method.</span></span>
+      <span data-ttu-id="3b226-101">Stellt die zu ladenden Zelleneigenschaften dar, wenn Sie als Teil einer "Range. getCellProperties"-Methode verwendet werden.</span><span class="sxs-lookup"><span data-stu-id="3b226-101">Represents which cell properties to load, when used as part of a "range.getCellProperties" method.</span></span>
 
-      <span data-ttu-id="8be51-102">\[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="8be51-102">\[ [API set: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+      <span data-ttu-id="3b226-102">\[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="3b226-102">\[ [API set: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
     name: Excel.CellPropertiesLoadOptions
     fullName: Excel.CellPropertiesLoadOptions
     langs:
@@ -20,9 +20,9 @@ items:
       - excel_release.Excel.CellPropertiesLoadOptions.style
   - uid: excel_release.Excel.CellPropertiesLoadOptions.address
     summary: |-
-      <span data-ttu-id="8be51-103">Gibt an, ob die `address` Eigenschaft geladen werden soll.</span><span class="sxs-lookup"><span data-stu-id="8be51-103">Specifies whether to load on the `address` property.</span></span>
+      <span data-ttu-id="3b226-103">Gibt an, ob für die `address` Eigenschaft laden.</span><span class="sxs-lookup"><span data-stu-id="3b226-103">Specifies whether to load on the `address` property.</span></span>
 
-      <span data-ttu-id="8be51-104">\[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="8be51-104">\[ [API set: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+      <span data-ttu-id="3b226-104">\[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="3b226-104">\[ [API set: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
     name: address
     fullName: address
     langs:
@@ -33,11 +33,41 @@ items:
       return:
         type:
           - boolean
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="3b226-105">Beispiele</span><span class="sxs-lookup"><span data-stu-id="3b226-105">Examples</span></span>
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const cell = context.workbook.getActiveCell();
+
+              // Define the cell properties to get by setting the matching LoadOptions to true.
+              const propertiesToGet = cell.getCellProperties({
+                  address: true,
+                  format: {
+                      fill: {
+                          color: true
+                      },
+                      font: {
+                          color: true
+                      }
+                  },
+                  style: true
+              });
+
+              // Sync to get the data from the workbook.
+              await context.sync();
+              const cellProperties = propertiesToGet.value[0][0];
+              console.log(
+                  `Address: ${cellProperties.address}\nStyle: ${cellProperties.style}\nFill Color: ${cellProperties.format.fill.color}\nFont Color: ${cellProperties.format.font.color}`);
+          });
+          ```
   - uid: excel_release.Excel.CellPropertiesLoadOptions.addressLocal
     summary: |-
-      <span data-ttu-id="8be51-105">Gibt an, ob die `addressLocal` Eigenschaft geladen werden soll.</span><span class="sxs-lookup"><span data-stu-id="8be51-105">Specifies whether to load on the `addressLocal` property.</span></span>
+      <span data-ttu-id="3b226-106">Gibt an, ob für die `addressLocal` Eigenschaft laden.</span><span class="sxs-lookup"><span data-stu-id="3b226-106">Specifies whether to load on the `addressLocal` property.</span></span>
 
-      <span data-ttu-id="8be51-106">\[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="8be51-106">\[ [API set: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+      <span data-ttu-id="3b226-107">\[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="3b226-107">\[ [API set: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
     name: addressLocal
     fullName: addressLocal
     langs:
@@ -50,9 +80,9 @@ items:
           - boolean
   - uid: excel_release.Excel.CellPropertiesLoadOptions.format
     summary: |-
-      <span data-ttu-id="8be51-107">Gibt an, ob die `format` Eigenschaft geladen werden soll.</span><span class="sxs-lookup"><span data-stu-id="8be51-107">Specifies whether to load on the `format` property.</span></span>
+      <span data-ttu-id="3b226-108">Gibt an, ob für die `format` Eigenschaft laden.</span><span class="sxs-lookup"><span data-stu-id="3b226-108">Specifies whether to load on the `format` property.</span></span>
 
-      <span data-ttu-id="8be51-108">\[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="8be51-108">\[ [API set: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+      <span data-ttu-id="3b226-109">\[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="3b226-109">\[ [API set: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
     name: format
     fullName: format
     langs:
@@ -65,9 +95,9 @@ items:
           - excel.Excel.CellPropertiesFormatLoadOptions
   - uid: excel_release.Excel.CellPropertiesLoadOptions.hidden
     summary: |-
-      <span data-ttu-id="8be51-109">Gibt an, ob die `hidden` Eigenschaft geladen werden soll.</span><span class="sxs-lookup"><span data-stu-id="8be51-109">Specifies whether to load on the `hidden` property.</span></span>
+      <span data-ttu-id="3b226-110">Gibt an, ob für die `hidden` Eigenschaft laden.</span><span class="sxs-lookup"><span data-stu-id="3b226-110">Specifies whether to load on the `hidden` property.</span></span>
 
-      <span data-ttu-id="8be51-110">\[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="8be51-110">\[ [API set: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+      <span data-ttu-id="3b226-111">\[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="3b226-111">\[ [API set: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
     name: hidden
     fullName: hidden
     langs:
@@ -80,9 +110,9 @@ items:
           - boolean
   - uid: excel_release.Excel.CellPropertiesLoadOptions.hyperlink
     summary: |-
-      <span data-ttu-id="8be51-111">Gibt an, ob die `hyperlink` Eigenschaft geladen werden soll.</span><span class="sxs-lookup"><span data-stu-id="8be51-111">Specifies whether to load on the `hyperlink` property.</span></span>
+      <span data-ttu-id="3b226-112">Gibt an, ob für die `hyperlink` Eigenschaft laden.</span><span class="sxs-lookup"><span data-stu-id="3b226-112">Specifies whether to load on the `hyperlink` property.</span></span>
 
-      <span data-ttu-id="8be51-112">\[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="8be51-112">\[ [API set: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+      <span data-ttu-id="3b226-113">\[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="3b226-113">\[ [API set: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
     name: hyperlink
     fullName: hyperlink
     langs:
@@ -95,9 +125,9 @@ items:
           - boolean
   - uid: excel_release.Excel.CellPropertiesLoadOptions.style
     summary: |-
-      <span data-ttu-id="8be51-113">Gibt an, ob die `style` Eigenschaft geladen werden soll.</span><span class="sxs-lookup"><span data-stu-id="8be51-113">Specifies whether to load on the `style` property.</span></span>
+      <span data-ttu-id="3b226-114">Gibt an, ob für die `style` Eigenschaft laden.</span><span class="sxs-lookup"><span data-stu-id="3b226-114">Specifies whether to load on the `style` property.</span></span>
 
-      <span data-ttu-id="8be51-114">\[[API-Satz: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="8be51-114">\[ [API set: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+      <span data-ttu-id="3b226-115">\[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="3b226-115">\[ [API set: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
     name: style
     fullName: style
     langs:

@@ -171,7 +171,6 @@ items:
       - excel.Excel.createWorkbook
       - excel.Excel.CustomConditionalFormat
       - excel.Excel.CustomDataValidation
-      - excel.Excel.CustomFunctionEventArgs
       - excel.Excel.CustomFunctionMetadataFormat
       - excel.Excel.CustomFunctionType
       - excel.Excel.CustomProperty
@@ -752,6 +751,7 @@ items:
       - excel.Excel.RibbonTab
       - excel.Excel.RowColumnPivotHierarchy
       - excel.Excel.RowColumnPivotHierarchyCollection
+      - excel.Excel.RowHiddenChangeType
       - excel.Excel.RowProperties
       - excel.Excel.RowPropertiesLoadOptions
       - excel.Excel.run
@@ -868,15 +868,16 @@ items:
       - excel.Excel.WorksheetPositionType
       - excel.Excel.WorksheetProtection
       - excel.Excel.WorksheetProtectionOptions
+      - excel.Excel.WorksheetRowHiddenChangedEventArgs
       - excel.Excel.WorksheetRowSortedEventArgs
       - excel.Excel.WorksheetSearchCriteria
       - excel.Excel.WorksheetSelectionChangedEventArgs
       - excel.Excel.WorksheetSingleClickedEventArgs
   - uid: excel.Excel.createWorkbook
     summary: |-
-      <span data-ttu-id="47eae-101">Erstellt und öffnet eine neue Arbeitsmappe.</span><span class="sxs-lookup"><span data-stu-id="47eae-101">Creates and opens a new workbook.</span></span> <span data-ttu-id="47eae-102">Optional kann die Arbeitsmappe mit einer base64-codierten XLSX-Datei voraufgefüllt werden.</span><span class="sxs-lookup"><span data-stu-id="47eae-102">Optionally, the workbook can be pre-populated with a base64-encoded .xlsx file.</span></span>
+      <span data-ttu-id="78eda-101">Erstellt und öffnet eine neue Arbeitsmappe.</span><span class="sxs-lookup"><span data-stu-id="78eda-101">Creates and opens a new workbook.</span></span> <span data-ttu-id="78eda-102">Optional kann die Arbeitsmappe mit einer base64-codierten XLSX-Datei voraufgefüllt werden.</span><span class="sxs-lookup"><span data-stu-id="78eda-102">Optionally, the workbook can be pre-populated with a base64-encoded .xlsx file.</span></span>
 
-      <span data-ttu-id="47eae-103">\[[API-Satz: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="47eae-103">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+      <span data-ttu-id="78eda-103">\[[API-Gruppe: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="78eda-103">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
     name: Excel.createWorkbook
     fullName: Excel.createWorkbook
     langs:
@@ -890,7 +891,7 @@ items:
         description: |-
 
 
-          #### <a name="examples"></a><span data-ttu-id="47eae-104">Beispiele</span><span class="sxs-lookup"><span data-stu-id="47eae-104">Examples</span></span>
+          #### <a name="examples"></a><span data-ttu-id="78eda-104">Beispiele</span><span class="sxs-lookup"><span data-stu-id="78eda-104">Examples</span></span>
 
           ```javascript
           var myFile = document.getElementById("file");
@@ -951,7 +952,7 @@ items:
           type:
             - any
   - uid: excel.Excel.run
-    summary: '<span data-ttu-id="47eae-105">Führt ein Batchskript aus, das Aktionen im Excel-Objektmodell unter Verwendung eines neuen RequestContext ausführt.</span><span class="sxs-lookup"><span data-stu-id="47eae-105">Executes a batch script that performs actions on the Excel object model, using a new RequestContext.</span></span> <span data-ttu-id="47eae-106">Wenn die Zusage aufgelöst wurde, werden alle nachverfolgten Objekte freigegeben, die während der Ausführung automatisch reserviert wurden.</span><span class="sxs-lookup"><span data-stu-id="47eae-106">When the promise is resolved, any tracked objects that were automatically allocated during execution will be released.</span></span>'
+    summary: '<span data-ttu-id="78eda-105">Führt ein Batchskript aus, das Aktionen für das Excel-Objektmodell mithilfe eines neuen RequestContext ausführt.</span><span class="sxs-lookup"><span data-stu-id="78eda-105">Executes a batch script that performs actions on the Excel object model, using a new RequestContext.</span></span> <span data-ttu-id="78eda-106">Wenn das Promise-Objekt aufgelöst wird, werden alle nachverfolgten Objekte freigegeben, die während der Ausführung automatisch zugewiesen wurden.</span><span class="sxs-lookup"><span data-stu-id="78eda-106">When the promise is resolved, any tracked objects that were automatically allocated during execution will be released.</span></span>'
     name: Excel.run
     fullName: Excel.run
     langs:
@@ -965,11 +966,11 @@ items:
         description: ''
       parameters:
         - id: batch
-          description: '<span data-ttu-id="47eae-107">Eine Funktion, die ein RequestContext akzeptiert und eine Zusage zurückgibt (in der Regel nur das Ergebnis von "context. Sync ()").</span><span class="sxs-lookup"><span data-stu-id="47eae-107">A function that takes in a RequestContext and returns a promise (typically, just the result of "context.sync()").</span></span> <span data-ttu-id="47eae-108">Der context-Parameter vereinfacht Anforderungen an die Excel-Anwendung.</span><span class="sxs-lookup"><span data-stu-id="47eae-108">The context parameter facilitates requests to the Excel application.</span></span> <span data-ttu-id="47eae-109">Da das Office-Add-in und die Excel-Anwendung in zwei verschiedenen Prozessen ausgeführt werden, ist das RequestContext erforderlich, um Zugriff auf das Excel-Objektmodell aus dem Add-in zu erhalten.</span><span class="sxs-lookup"><span data-stu-id="47eae-109">Since the Office add-in and the Excel application run in two different processes, the RequestContext is required to get access to the Excel object model from the add-in.</span></span>'
+          description: '<span data-ttu-id="78eda-107">Eine Funktion, die ein RequestContext-Element einnimmt und eine Zusage zurückgibt (in der Regel nur das Ergebnis von "context. Sync ()").</span><span class="sxs-lookup"><span data-stu-id="78eda-107">A function that takes in a RequestContext and returns a promise (typically, just the result of "context.sync()").</span></span> <span data-ttu-id="78eda-108">Der context-Parameter vereinfacht Anforderungen an die Excel-Anwendung.</span><span class="sxs-lookup"><span data-stu-id="78eda-108">The context parameter facilitates requests to the Excel application.</span></span> <span data-ttu-id="78eda-109">Da das Office-Add-in und die Excel-Anwendung in zwei verschiedenen Prozessen ausgeführt werden, ist das RequestContext erforderlich, um Zugriff auf das Excel-Objektmodell aus dem Add-in zu erhalten.</span><span class="sxs-lookup"><span data-stu-id="78eda-109">Since the Office add-in and the Excel application run in two different processes, the RequestContext is required to get access to the Excel object model from the add-in.</span></span>'
           type:
             - '(context: Excel.RequestContext) => Promise<T>'
   - uid: excel.Excel.run_1
-    summary: '<span data-ttu-id="47eae-110">Führt ein Batchskript aus, das Aktionen für das Excel-Objektmodell ausführt, wobei der RequestContext eines zuvor erstellten API-Objekts verwendet wird.</span><span class="sxs-lookup"><span data-stu-id="47eae-110">Executes a batch script that performs actions on the Excel object model, using the RequestContext of a previously-created API object.</span></span> <span data-ttu-id="47eae-111">Wenn die Zusage aufgelöst wurde, werden alle nachverfolgten Objekte freigegeben, die während der Ausführung automatisch reserviert wurden.</span><span class="sxs-lookup"><span data-stu-id="47eae-111">When the promise is resolved, any tracked objects that were automatically allocated during execution will be released.</span></span>'
+    summary: '<span data-ttu-id="78eda-110">Führt ein Batchskript aus, das Aktionen für das Excel-Objektmodell ausführt, wobei das RequestContext-Objekt eines zuvor erstellten API-Objekts verwendet wird.</span><span class="sxs-lookup"><span data-stu-id="78eda-110">Executes a batch script that performs actions on the Excel object model, using the RequestContext of a previously-created API object.</span></span> <span data-ttu-id="78eda-111">Wenn das Promise-Objekt aufgelöst wird, werden alle nachverfolgten Objekte freigegeben, die während der Ausführung automatisch zugewiesen wurden.</span><span class="sxs-lookup"><span data-stu-id="78eda-111">When the promise is resolved, any tracked objects that were automatically allocated during execution will be released.</span></span>'
     name: Excel.run_1
     fullName: Excel.run_1
     langs:
@@ -983,15 +984,15 @@ items:
         description: ''
       parameters:
         - id: object
-          description: '<span data-ttu-id="47eae-112">Ein zuvor erstelltes API-Objekt.</span><span class="sxs-lookup"><span data-stu-id="47eae-112">A previously-created API object.</span></span> <span data-ttu-id="47eae-113">Der Batch verwendet denselben RequestContext wie das übergebene Objekt, was dazu führt, dass alle Änderungen, die auf das Objekt angewendet werden, von "context. Sync ()" übernommen werden.</span><span class="sxs-lookup"><span data-stu-id="47eae-113">The batch will use the same RequestContext as the passed-in object, which means that any changes applied to the object will be picked up by "context.sync()".</span></span>'
+          description: '<span data-ttu-id="78eda-112">Ein zuvor erstelltes API-Objekt.</span><span class="sxs-lookup"><span data-stu-id="78eda-112">A previously-created API object.</span></span> <span data-ttu-id="78eda-113">Der Batch verwendet dasselbe RequestContext wie das übergebene Objekt, was bedeutet, dass alle Änderungen, die auf das Objekt angewendet werden, von "context. Sync ()" übernommen werden.</span><span class="sxs-lookup"><span data-stu-id="78eda-113">The batch will use the same RequestContext as the passed-in object, which means that any changes applied to the object will be picked up by "context.sync()".</span></span>'
           type:
             - office.OfficeExtension.ClientObject
         - id: batch
-          description: '<span data-ttu-id="47eae-114">Eine Funktion, die ein RequestContext akzeptiert und eine Zusage zurückgibt (in der Regel nur das Ergebnis von "context. Sync ()").</span><span class="sxs-lookup"><span data-stu-id="47eae-114">A function that takes in a RequestContext and returns a promise (typically, just the result of "context.sync()").</span></span> <span data-ttu-id="47eae-115">Der context-Parameter vereinfacht Anforderungen an die Excel-Anwendung.</span><span class="sxs-lookup"><span data-stu-id="47eae-115">The context parameter facilitates requests to the Excel application.</span></span> <span data-ttu-id="47eae-116">Da das Office-Add-in und die Excel-Anwendung in zwei verschiedenen Prozessen ausgeführt werden, ist das RequestContext erforderlich, um Zugriff auf das Excel-Objektmodell aus dem Add-in zu erhalten.</span><span class="sxs-lookup"><span data-stu-id="47eae-116">Since the Office add-in and the Excel application run in two different processes, the RequestContext is required to get access to the Excel object model from the add-in.</span></span>'
+          description: '<span data-ttu-id="78eda-114">Eine Funktion, die ein RequestContext-Element einnimmt und eine Zusage zurückgibt (in der Regel nur das Ergebnis von "context. Sync ()").</span><span class="sxs-lookup"><span data-stu-id="78eda-114">A function that takes in a RequestContext and returns a promise (typically, just the result of "context.sync()").</span></span> <span data-ttu-id="78eda-115">Der context-Parameter vereinfacht Anforderungen an die Excel-Anwendung.</span><span class="sxs-lookup"><span data-stu-id="78eda-115">The context parameter facilitates requests to the Excel application.</span></span> <span data-ttu-id="78eda-116">Da das Office-Add-in und die Excel-Anwendung in zwei verschiedenen Prozessen ausgeführt werden, ist das RequestContext erforderlich, um Zugriff auf das Excel-Objektmodell aus dem Add-in zu erhalten.</span><span class="sxs-lookup"><span data-stu-id="78eda-116">Since the Office add-in and the Excel application run in two different processes, the RequestContext is required to get access to the Excel object model from the add-in.</span></span>'
           type:
             - '(context: Excel.RequestContext) => Promise<T>'
   - uid: excel.Excel.run_2
-    summary: '<span data-ttu-id="47eae-117">Führt ein Batchskript aus, das Aktionen im Excel-Objektmodell mit dem RequestContext der zuvor erstellten API-Objekte ausführt.</span><span class="sxs-lookup"><span data-stu-id="47eae-117">Executes a batch script that performs actions on the Excel object model, using the RequestContext of previously-created API objects.</span></span>'
+    summary: '<span data-ttu-id="78eda-117">Führt ein Batchskript aus, das Aktionen für das Excel-Objektmodell ausführt und das RequestContext von zuvor erstellten API-Objekten verwendet.</span><span class="sxs-lookup"><span data-stu-id="78eda-117">Executes a batch script that performs actions on the Excel object model, using the RequestContext of previously-created API objects.</span></span>'
     name: Excel.run_2
     fullName: Excel.run_2
     langs:
@@ -1005,15 +1006,15 @@ items:
         description: ''
       parameters:
         - id: objects
-          description: '<span data-ttu-id="47eae-118">Ein Array von zuvor erstellten API-Objekten.</span><span class="sxs-lookup"><span data-stu-id="47eae-118">An array of previously-created API objects.</span></span> <span data-ttu-id="47eae-119">Das Array wird überprüft, um sicherzustellen, dass alle Objekte denselben Kontext aufweisen.</span><span class="sxs-lookup"><span data-stu-id="47eae-119">The array will be validated to make sure that all of the objects share the same context.</span></span> <span data-ttu-id="47eae-120">Der Batch verwendet diesen freigegebenen RequestContext, was dazu führt, dass alle Änderungen, die auf diese Objekte angewendet werden, von "context. Sync ()" übernommen werden.</span><span class="sxs-lookup"><span data-stu-id="47eae-120">The batch will use this shared RequestContext, which means that any changes applied to these objects will be picked up by "context.sync()".</span></span>'
+          description: '<span data-ttu-id="78eda-118">Ein Array von zuvor erstellten API-Objekten.</span><span class="sxs-lookup"><span data-stu-id="78eda-118">An array of previously-created API objects.</span></span> <span data-ttu-id="78eda-119">Das Array wird überprüft, um sicherzustellen, dass alle Objekte denselben Kontext aufweisen.</span><span class="sxs-lookup"><span data-stu-id="78eda-119">The array will be validated to make sure that all of the objects share the same context.</span></span> <span data-ttu-id="78eda-120">Der Batch verwendet dieses freigegebene RequestContext, was bedeutet, dass alle Änderungen, die auf diese Objekte angewendet werden, von "context. Sync ()" übernommen werden.</span><span class="sxs-lookup"><span data-stu-id="78eda-120">The batch will use this shared RequestContext, which means that any changes applied to these objects will be picked up by "context.sync()".</span></span>'
           type:
             - 'OfficeExtension.ClientObject[]'
         - id: batch
-          description: '<span data-ttu-id="47eae-121">Eine Funktion, die ein RequestContext akzeptiert und eine Zusage zurückgibt (in der Regel nur das Ergebnis von "context. Sync ()").</span><span class="sxs-lookup"><span data-stu-id="47eae-121">A function that takes in a RequestContext and returns a promise (typically, just the result of "context.sync()").</span></span> <span data-ttu-id="47eae-122">Der context-Parameter vereinfacht Anforderungen an die Excel-Anwendung.</span><span class="sxs-lookup"><span data-stu-id="47eae-122">The context parameter facilitates requests to the Excel application.</span></span> <span data-ttu-id="47eae-123">Da das Office-Add-in und die Excel-Anwendung in zwei verschiedenen Prozessen ausgeführt werden, ist das RequestContext erforderlich, um Zugriff auf das Excel-Objektmodell aus dem Add-in zu erhalten.</span><span class="sxs-lookup"><span data-stu-id="47eae-123">Since the Office add-in and the Excel application run in two different processes, the RequestContext is required to get access to the Excel object model from the add-in.</span></span>'
+          description: '<span data-ttu-id="78eda-121">Eine Funktion, die ein RequestContext-Element einnimmt und eine Zusage zurückgibt (in der Regel nur das Ergebnis von "context. Sync ()").</span><span class="sxs-lookup"><span data-stu-id="78eda-121">A function that takes in a RequestContext and returns a promise (typically, just the result of "context.sync()").</span></span> <span data-ttu-id="78eda-122">Der context-Parameter vereinfacht Anforderungen an die Excel-Anwendung.</span><span class="sxs-lookup"><span data-stu-id="78eda-122">The context parameter facilitates requests to the Excel application.</span></span> <span data-ttu-id="78eda-123">Da das Office-Add-in und die Excel-Anwendung in zwei verschiedenen Prozessen ausgeführt werden, ist das RequestContext erforderlich, um Zugriff auf das Excel-Objektmodell aus dem Add-in zu erhalten.</span><span class="sxs-lookup"><span data-stu-id="78eda-123">Since the Office add-in and the Excel application run in two different processes, the RequestContext is required to get access to the Excel object model from the add-in.</span></span>'
           type:
             - '(context: Excel.RequestContext) => Promise<T>'
   - uid: excel.Excel.run_3
-    summary: '<span data-ttu-id="47eae-124">Führt ein Batchskript aus, das Aktionen für das Excel-Objektmodell ausführt, wobei der RequestContext eines zuvor erstellten API-Objekts verwendet wird.</span><span class="sxs-lookup"><span data-stu-id="47eae-124">Executes a batch script that performs actions on the Excel object model, using the RequestContext of a previously-created API object.</span></span> <span data-ttu-id="47eae-125">Wenn die Zusage aufgelöst wurde, werden alle nachverfolgten Objekte freigegeben, die während der Ausführung automatisch reserviert wurden.</span><span class="sxs-lookup"><span data-stu-id="47eae-125">When the promise is resolved, any tracked objects that were automatically allocated during execution will be released.</span></span>'
+    summary: '<span data-ttu-id="78eda-124">Führt ein Batchskript aus, das Aktionen für das Excel-Objektmodell ausführt, wobei das RequestContext-Objekt eines zuvor erstellten API-Objekts verwendet wird.</span><span class="sxs-lookup"><span data-stu-id="78eda-124">Executes a batch script that performs actions on the Excel object model, using the RequestContext of a previously-created API object.</span></span> <span data-ttu-id="78eda-125">Wenn das Promise-Objekt aufgelöst wird, werden alle nachverfolgten Objekte freigegeben, die während der Ausführung automatisch zugewiesen wurden.</span><span class="sxs-lookup"><span data-stu-id="78eda-125">When the promise is resolved, any tracked objects that were automatically allocated during execution will be released.</span></span>'
     name: Excel.run_3
     fullName: Excel.run_3
     langs:
@@ -1027,17 +1028,17 @@ items:
         description: ''
       parameters:
         - id: options
-          description: '<span data-ttu-id="47eae-126">Die zusätzlichen Optionen für diese Excel. Run, die frühere Objekte angeben, unabhängig davon, ob die Anforderung für die Zellenbearbeitung, die Sitzungsinformationen usw. verzögert wird.</span><span class="sxs-lookup"><span data-stu-id="47eae-126">The additional options for this Excel.run which specify previous objects, whether to delay the request for cell edit, session info, etc.</span></span>'
+          description: '<span data-ttu-id="78eda-126">Die zusätzlichen Optionen für diese Excel. Run, die frühere Objekte angeben, ob die Anforderung für Zelle bearbeiten, Sitzungsinformationen usw. verzögert werden soll.</span><span class="sxs-lookup"><span data-stu-id="78eda-126">The additional options for this Excel.run which specify previous objects, whether to delay the request for cell edit, session info, etc.</span></span>'
           type:
             - excel.Excel.RunOptions
         - id: batch
-          description: '<span data-ttu-id="47eae-127">Eine Funktion, die ein RequestContext akzeptiert und eine Zusage zurückgibt (in der Regel nur das Ergebnis von "context. Sync ()").</span><span class="sxs-lookup"><span data-stu-id="47eae-127">A function that takes in a RequestContext and returns a promise (typically, just the result of "context.sync()").</span></span> <span data-ttu-id="47eae-128">Der context-Parameter vereinfacht Anforderungen an die Excel-Anwendung.</span><span class="sxs-lookup"><span data-stu-id="47eae-128">The context parameter facilitates requests to the Excel application.</span></span> <span data-ttu-id="47eae-129">Da das Office-Add-in und die Excel-Anwendung in zwei verschiedenen Prozessen ausgeführt werden, ist das RequestContext erforderlich, um Zugriff auf das Excel-Objektmodell aus dem Add-in zu erhalten.</span><span class="sxs-lookup"><span data-stu-id="47eae-129">Since the Office add-in and the Excel application run in two different processes, the RequestContext is required to get access to the Excel object model from the add-in.</span></span>'
+          description: '<span data-ttu-id="78eda-127">Eine Funktion, die ein RequestContext-Element einnimmt und eine Zusage zurückgibt (in der Regel nur das Ergebnis von "context. Sync ()").</span><span class="sxs-lookup"><span data-stu-id="78eda-127">A function that takes in a RequestContext and returns a promise (typically, just the result of "context.sync()").</span></span> <span data-ttu-id="78eda-128">Der context-Parameter vereinfacht Anforderungen an die Excel-Anwendung.</span><span class="sxs-lookup"><span data-stu-id="78eda-128">The context parameter facilitates requests to the Excel application.</span></span> <span data-ttu-id="78eda-129">Da das Office-Add-in und die Excel-Anwendung in zwei verschiedenen Prozessen ausgeführt werden, ist das RequestContext erforderlich, um Zugriff auf das Excel-Objektmodell aus dem Add-in zu erhalten.</span><span class="sxs-lookup"><span data-stu-id="78eda-129">Since the Office add-in and the Excel application run in two different processes, the RequestContext is required to get access to the Excel object model from the add-in.</span></span>'
           type:
             - '(context: Excel.RequestContext) => Promise<T>'
   - uid: excel.Excel.run_4
-    summary: '<span data-ttu-id="47eae-130">Führt ein Batchskript aus, das Aktionen für das Excel-Objektmodell ausführt, wobei der RequestContext eines zuvor erstellten Objekts verwendet wird.</span><span class="sxs-lookup"><span data-stu-id="47eae-130">Executes a batch script that performs actions on the Excel object model, using the RequestContext of a previously-created object.</span></span> <span data-ttu-id="47eae-131">Wenn die Zusage aufgelöst wurde, werden alle nachverfolgten Objekte freigegeben, die während der Ausführung automatisch reserviert wurden.</span><span class="sxs-lookup"><span data-stu-id="47eae-131">When the promise is resolved, any tracked objects that were automatically allocated during execution will be released.</span></span>'
+    summary: '<span data-ttu-id="78eda-130">Führt ein Batchskript aus, das Aktionen für das Excel-Objektmodell ausführt, wobei das RequestContext-Objekt eines zuvor erstellten Objekts verwendet wird.</span><span class="sxs-lookup"><span data-stu-id="78eda-130">Executes a batch script that performs actions on the Excel object model, using the RequestContext of a previously-created object.</span></span> <span data-ttu-id="78eda-131">Wenn das Promise-Objekt aufgelöst wird, werden alle nachverfolgten Objekte freigegeben, die während der Ausführung automatisch zugewiesen wurden.</span><span class="sxs-lookup"><span data-stu-id="78eda-131">When the promise is resolved, any tracked objects that were automatically allocated during execution will be released.</span></span>'
     remarks: |-
-      <span data-ttu-id="47eae-132">Zusätzlich zu dieser Signatur verfügt die Methode auch über die folgenden Signaturen:</span><span class="sxs-lookup"><span data-stu-id="47eae-132">In addition to this signature, the method also has the following signatures:</span></span>
+      <span data-ttu-id="78eda-132">Zusätzlich zu dieser Signatur verfügt die Methode auch über die folgenden Signaturen:</span><span class="sxs-lookup"><span data-stu-id="78eda-132">In addition to this signature, the method also has the following signatures:</span></span>
 
       `run<T>(object: OfficeExtension.ClientObject, batch: (context: Excel.RequestContext) => Promise<T>): Promise<T>;`
 
@@ -1059,11 +1060,11 @@ items:
         description: ''
       parameters:
         - id: context
-          description: '<span data-ttu-id="47eae-133">Ein zuvor erstelltes Objekt.</span><span class="sxs-lookup"><span data-stu-id="47eae-133">A previously-created object.</span></span> <span data-ttu-id="47eae-134">Der Batch verwendet denselben RequestContext wie das übergebene Objekt, was dazu führt, dass alle Änderungen, die auf das Objekt angewendet werden, von "context. Sync ()" übernommen werden.</span><span class="sxs-lookup"><span data-stu-id="47eae-134">The batch will use the same RequestContext as the passed-in object, which means that any changes applied to the object will be picked up by "context.sync()".</span></span>'
+          description: '<span data-ttu-id="78eda-133">Ein zuvor erstelltes Objekt.</span><span class="sxs-lookup"><span data-stu-id="78eda-133">A previously-created object.</span></span> <span data-ttu-id="78eda-134">Der Batch verwendet dasselbe RequestContext wie das übergebene Objekt, was bedeutet, dass alle Änderungen, die auf das Objekt angewendet werden, von "context. Sync ()" übernommen werden.</span><span class="sxs-lookup"><span data-stu-id="78eda-134">The batch will use the same RequestContext as the passed-in object, which means that any changes applied to the object will be picked up by "context.sync()".</span></span>'
           type:
             - office.OfficeExtension.ClientRequestContext
         - id: batch
-          description: '<span data-ttu-id="47eae-135">Eine Funktion, die ein RequestContext akzeptiert und eine Zusage zurückgibt (in der Regel nur das Ergebnis von "context. Sync ()").</span><span class="sxs-lookup"><span data-stu-id="47eae-135">A function that takes in a RequestContext and returns a promise (typically, just the result of "context.sync()").</span></span> <span data-ttu-id="47eae-136">Der context-Parameter vereinfacht Anforderungen an die Excel-Anwendung.</span><span class="sxs-lookup"><span data-stu-id="47eae-136">The context parameter facilitates requests to the Excel application.</span></span> <span data-ttu-id="47eae-137">Da das Office-Add-in und die Excel-Anwendung in zwei verschiedenen Prozessen ausgeführt werden, ist das RequestContext erforderlich, um Zugriff auf das Excel-Objektmodell aus dem Add-in zu erhalten.</span><span class="sxs-lookup"><span data-stu-id="47eae-137">Since the Office add-in and the Excel application run in two different processes, the RequestContext is required to get access to the Excel object model from the add-in.</span></span>'
+          description: '<span data-ttu-id="78eda-135">Eine Funktion, die ein RequestContext-Element einnimmt und eine Zusage zurückgibt (in der Regel nur das Ergebnis von "context. Sync ()").</span><span class="sxs-lookup"><span data-stu-id="78eda-135">A function that takes in a RequestContext and returns a promise (typically, just the result of "context.sync()").</span></span> <span data-ttu-id="78eda-136">Der context-Parameter vereinfacht Anforderungen an die Excel-Anwendung.</span><span class="sxs-lookup"><span data-stu-id="78eda-136">The context parameter facilitates requests to the Excel application.</span></span> <span data-ttu-id="78eda-137">Da das Office-Add-in und die Excel-Anwendung in zwei verschiedenen Prozessen ausgeführt werden, ist das RequestContext erforderlich, um Zugriff auf das Excel-Objektmodell aus dem Add-in zu erhalten.</span><span class="sxs-lookup"><span data-stu-id="78eda-137">Since the Office add-in and the Excel application run in two different processes, the RequestContext is required to get access to the Excel object model from the add-in.</span></span>'
           type:
             - '(context: Excel.RequestContext) => Promise<T>'
 references:
@@ -1393,8 +1394,6 @@ references:
     name: Excel.CustomConditionalFormat
   - uid: excel.Excel.CustomDataValidation
     name: Excel.CustomDataValidation
-  - uid: excel.Excel.CustomFunctionEventArgs
-    name: Excel.CustomFunctionEventArgs
   - uid: excel.Excel.CustomFunctionMetadataFormat
     name: Excel.CustomFunctionMetadataFormat
   - uid: excel.Excel.CustomFunctionType
@@ -2551,6 +2550,8 @@ references:
     name: Excel.RowColumnPivotHierarchy
   - uid: excel.Excel.RowColumnPivotHierarchyCollection
     name: Excel.RowColumnPivotHierarchyCollection
+  - uid: excel.Excel.RowHiddenChangeType
+    name: Excel.RowHiddenChangeType
   - uid: excel.Excel.RowProperties
     name: Excel.RowProperties
   - uid: excel.Excel.RowPropertiesLoadOptions
@@ -2773,6 +2774,8 @@ references:
     name: Excel.WorksheetProtection
   - uid: excel.Excel.WorksheetProtectionOptions
     name: Excel.WorksheetProtectionOptions
+  - uid: excel.Excel.WorksheetRowHiddenChangedEventArgs
+    name: Excel.WorksheetRowHiddenChangedEventArgs
   - uid: excel.Excel.WorksheetRowSortedEventArgs
     name: Excel.WorksheetRowSortedEventArgs
   - uid: excel.Excel.WorksheetSearchCriteria
