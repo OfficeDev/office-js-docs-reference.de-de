@@ -51,6 +51,7 @@ items:
       - excel.Excel.Worksheet.onDeactivated
       - excel.Excel.Worksheet.onFiltered
       - excel.Excel.Worksheet.onFormatChanged
+      - excel.Excel.Worksheet.onRowHiddenChanged
       - excel.Excel.Worksheet.onRowSorted
       - excel.Excel.Worksheet.onSelectionChanged
       - excel.Excel.Worksheet.onSingleClicked
@@ -270,7 +271,7 @@ items:
             - excel.Excel.Worksheet
   - uid: excel.Excel.Worksheet.delete
     summary: |-
-      Löscht das Arbeitsblatt aus der Arbeitsmappe. Beachten Sie Folgendes: Wenn die Sichtbarkeit des Arbeitsblatts auf "VeryHidden" festgelegt ist, kann der Löschvorgang mit einer GeneralException fehlschlagen.
+      Löscht das Arbeitsblatt aus der Arbeitsmappe. Beachten Sie Folgendes: Wenn die Sichtbarkeit des Arbeitsblatts auf "VeryHidden" festgelegt ist, schlägt `InvalidOperation` der Löschvorgang mit einer Ausnahme fehl. Sie sollten zunächst seine Sichtbarkeit in "ausgeblendet" oder "sichtbar" ändern, bevor Sie ihn löschen.
 
       \[[API-Gruppe: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: delete()
@@ -1105,6 +1106,22 @@ items:
       return:
         type:
           - OfficeExtension.EventHandlers<Excel.WorksheetFormatChangedEventArgs>
+  - uid: excel.Excel.Worksheet.onRowHiddenChanged
+    summary: |-
+      Tritt auf, wenn der Zeilen ausgeblendete Status für ein bestimmtes Arbeitsblatt geändert wird.
+
+      \[[API-Gruppe: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: onRowHiddenChanged
+    fullName: onRowHiddenChanged
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onRowHiddenChanged: OfficeExtension.EventHandlers<Excel.WorksheetRowHiddenChangedEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Excel.WorksheetRowHiddenChangedEventArgs>
   - uid: excel.Excel.Worksheet.onRowSorted
     summary: |-
       Tritt ein, wenn nach Zeilen sortiert wird.
