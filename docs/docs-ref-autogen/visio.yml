@@ -89,7 +89,7 @@ items:
       - visio.Visio.ShapeView
       - visio.Visio.ToolBarType
   - uid: visio.Visio.run
-    summary: 'Führt ein Batchskript aus, das Aktionen im Visio-Objektmodell unter Verwendung eines neuen anforderungskontexts ausführt. Wenn die Zusage aufgelöst wurde, werden alle nachverfolgten Objekte freigegeben, die während der Ausführung automatisch reserviert wurden.'
+    summary: 'Führt ein Batchskript aus, das Aktionen für das Visio-Objektmodell mithilfe eines neuen anforderungskontexts ausführt. Wenn das Promise-Objekt aufgelöst wird, werden alle nachverfolgten Objekte freigegeben, die während der Ausführung automatisch zugewiesen wurden.'
     name: Visio.run
     fullName: Visio.run
     langs:
@@ -103,11 +103,13 @@ items:
         description: ''
       parameters:
         - id: batch
-          description: 'Eine Funktion, die in einem Visio. reQuestcontext verwendet und eine Zusage zurückgibt (in der Regel nur das Ergebnis von "context. Sync ()"). Der context-Parameter vereinfacht Anforderungen an die Visio-Anwendung. Da das Office-Add-in und die Visio-Anwendung in zwei verschiedenen Prozessen ausgeführt werden, ist der Anforderungskontext erforderlich, um über das Add-in Zugriff auf das Visio-Objektmodell zu erhalten.'
+          description: 'Eine Funktion, die ein Visio. RequestContext-Element einnimmt und eine Zusage zurückgibt (in der Regel nur das Ergebnis von "context. Sync ()"). Der context-Parameter vereinfacht Anforderungen an die Visio-Anwendung. Da das Office-Add-in und die Visio-Anwendung in zwei unterschiedlichen Prozessen ausgeführt werden, ist der Anforderungskontext erforderlich, um Zugriff auf das Visio-Objektmodell aus dem Add-in zu erhalten.'
           type:
             - '(context: Visio.RequestContext) => Promise<T>'
+      typeParameters:
+        - id: T
   - uid: visio.Visio.run_1
-    summary: 'Führt ein Batchskript aus, das Aktionen im Visio-Objektmodell unter Verwendung des anforderungskontexts eines zuvor erstellten API-Objekts ausführt.'
+    summary: 'Führt ein Batchskript aus, das Aktionen für das Visio-Objektmodell ausführt und dabei den Anforderungskontext eines zuvor erstellten API-Objekts verwendet.'
     name: Visio.run_1
     fullName: Visio.run_1
     langs:
@@ -121,15 +123,17 @@ items:
         description: ''
       parameters:
         - id: object
-          description: 'Ein zuvor erstelltes API-Objekt. Der Batch verwendet den gleichen Anforderungskontext wie das übergebene Objekt, was dazu führt, dass alle Änderungen, die auf das Objekt angewendet werden, von "context. Sync ()" übernommen werden.'
+          description: 'Ein zuvor erstelltes API-Objekt. Der Batch verwendet denselben Anforderungskontext wie das übergebene Objekt, was bedeutet, dass alle Änderungen, die auf das Objekt angewendet werden, von "context. Sync ()" übernommen werden.'
           type:
             - OfficeExtension.ClientObject | OfficeExtension.EmbeddedSession
         - id: batch
-          description: 'Eine Funktion, die in einem Visio. reQuestcontext verwendet und eine Zusage zurückgibt (in der Regel nur das Ergebnis von "context. Sync ()"). Wenn die Zusage aufgelöst wurde, werden alle nachverfolgten Objekte freigegeben, die während der Ausführung automatisch reserviert wurden.'
+          description: 'Eine Funktion, die ein Visio. RequestContext-Element einnimmt und eine Zusage zurückgibt (in der Regel nur das Ergebnis von "context. Sync ()"). Wenn das Promise-Objekt aufgelöst wird, werden alle nachverfolgten Objekte freigegeben, die während der Ausführung automatisch zugewiesen wurden.'
           type:
             - '(context: Visio.RequestContext) => Promise<T>'
+      typeParameters:
+        - id: T
   - uid: visio.Visio.run_2
-    summary: 'Führt ein Batchskript aus, das Aktionen für das Visio-Objektmodell ausführt, wobei der Anforderungskontext zuvor erstellter API-Objekte verwendet wird.'
+    summary: 'Führt ein Batchskript aus, das Aktionen für das Visio-Objektmodell ausführt und dabei den Anforderungskontext von zuvor erstellten API-Objekten verwendet.'
     name: Visio.run_2
     fullName: Visio.run_2
     langs:
@@ -143,15 +147,17 @@ items:
         description: ''
       parameters:
         - id: objects
-          description: 'Ein Array von zuvor erstellten API-Objekten. Das Array wird überprüft, um sicherzustellen, dass alle Objekte denselben Kontext aufweisen. Der Batch verwendet diesen freigegebenen Anforderungskontext, was dazu führt, dass alle Änderungen, die auf diese Objekte angewendet werden, von "context. Sync ()" übernommen werden.'
+          description: 'Ein Array von zuvor erstellten API-Objekten. Das Array wird überprüft, um sicherzustellen, dass alle Objekte denselben Kontext aufweisen. Für den Batch wird dieser freigegebene Anforderungskontext verwendet, was bedeutet, dass alle Änderungen, die auf diese Objekte angewendet werden, von "context. Sync ()" übernommen werden.'
           type:
             - 'OfficeExtension.ClientObject[]'
         - id: batch
-          description: 'Eine Funktion, die in einem Visio. reQuestcontext verwendet und eine Zusage zurückgibt (in der Regel nur das Ergebnis von "context. Sync ()"). Wenn die Zusage aufgelöst wurde, werden alle nachverfolgten Objekte freigegeben, die während der Ausführung automatisch reserviert wurden.'
+          description: 'Eine Funktion, die ein Visio. RequestContext-Element einnimmt und eine Zusage zurückgibt (in der Regel nur das Ergebnis von "context. Sync ()"). Wenn das Promise-Objekt aufgelöst wird, werden alle nachverfolgten Objekte freigegeben, die während der Ausführung automatisch zugewiesen wurden.'
           type:
             - '(context: Visio.RequestContext) => Promise<T>'
+      typeParameters:
+        - id: T
   - uid: visio.Visio.run_3
-    summary: 'Führt ein Batchskript aus, das Aktionen für das Visio-Objektmodell ausführt, wobei der reQuestcontext eines zuvor erstellten Objekts verwendet wird. Wenn die Zusage aufgelöst wurde, werden alle nachverfolgten Objekte freigegeben, die während der Ausführung automatisch reserviert wurden.'
+    summary: 'Führt ein Batchskript aus, das Aktionen für das Visio-Objektmodell ausführt, wobei das RequestContext-Objekt eines zuvor erstellten Objekts verwendet wird. Wenn das Promise-Objekt aufgelöst wird, werden alle nachverfolgten Objekte freigegeben, die während der Ausführung automatisch zugewiesen wurden.'
     remarks: |-
       Zusätzlich zu dieser Signatur verfügt die Methode auch über die folgenden Signaturen:
 
@@ -173,13 +179,15 @@ items:
         description: ''
       parameters:
         - id: contextObject
-          description: 'Ein zuvor erstelltes Visio. reQuestcontext. Dieser Kontext wird von der Batchfunktion wieder verwendet (anstatt einen neuen Kontext zu erstellen). Dies führt dazu, dass der Batch Änderungen an vorhandenen API-Objekten übernehmen kann, wenn diese Objekte aus demselben Kontext abgeleitet wurden.'
+          description: 'Eine zuvor erstellte Visio. RequestContext-Datei. Dieser Kontext wird von der Batchfunktion wieder verwendet (anstelle eines neuen Kontexts erstellt). Dies bedeutet, dass der Batch Änderungen an vorhandenen API-Objekten annehmen kann, wenn diese Objekte aus diesem Kontext abgeleitet wurden.'
           type:
             - office.OfficeExtension.ClientRequestContext
         - id: batch
-          description: 'Eine Funktion, die ein reQuestcontext akzeptiert und eine Zusage zurückgibt (in der Regel nur das Ergebnis von "context. Sync ()"). Der context-Parameter vereinfacht Anforderungen an die Visio-Anwendung. Da das Office-Add-in und die Visio-Anwendung in zwei verschiedenen Prozessen ausgeführt werden, ist das reQuestcontext erforderlich, um über das Add-in Zugriff auf das Visio-Objektmodell zu erhalten.'
+          description: 'Eine Funktion, die ein RequestContext-Element einnimmt und eine Zusage zurückgibt (in der Regel nur das Ergebnis von "context. Sync ()"). Der context-Parameter vereinfacht Anforderungen an die Visio-Anwendung. Da das Office-Add-in und die Visio-Anwendung in zwei verschiedenen Prozessen ausgeführt werden, ist das RequestContext erforderlich, um Zugriff auf das Visio-Objektmodell aus dem Add-in zu erhalten.'
           type:
             - '(context: Visio.RequestContext) => Promise<T>'
+      typeParameters:
+        - id: T
 references:
   - uid: visio.Visio.Application
     name: Visio.Application

@@ -1,7 +1,7 @@
 ### YamlMime:UniversalReference
 items:
   - uid: office.OfficeExtension.ClientRequestContext
-    summary: 'Ein abstraktes reQuestcontext-Objekt, das Anforderungen an die Host-Office-Anwendung erleichtert. Die `Excel.run` and `Word.run` -Methoden stellen einen Anforderungskontext bereit.'
+    summary: 'Ein abstraktes RequestContext-Objekt, das Anforderungen an die Host-Office-Anwendung erleichtert. Die `Excel.run` Methoden `Word.run` und stellen einen Anforderungskontext bereit.'
     name: OfficeExtension.ClientRequestContext
     fullName: OfficeExtension.ClientRequestContext
     langs:
@@ -44,7 +44,7 @@ items:
         type:
           - office.OfficeExtension.RequestContextDebugInfo
   - uid: office.OfficeExtension.ClientRequestContext.load
-    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften anrufen.
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.
     name: 'load(object, option)'
     fullName: 'load(object, option)'
     langs:
@@ -62,14 +62,14 @@ items:
           type:
             - office.OfficeExtension.ClientObject
         - id: option
-          description: 'Eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften oder ein [OfficeExtension. LoadOption](xref:office.OfficeExtension.LoadOption) -Objekt angibt.'
+          description: 'Eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften oder ein [OfficeExtension. LoadOption](xref:office.OfficeExtension.LoadOption) -Objekt angibt.'
           type:
             - 'string | string[] | LoadOption'
   - uid: office.OfficeExtension.ClientRequestContext.loadRecursive
     summary: |-
-      Warteschlangen bis ein Befehl, um die angegebenen Eigenschaften des Objekts und dessen Navigationseigenschaften rekursiv zu laden.
+      Warteschlangen für einen Befehl zum rekursiven Laden der angegebenen Eigenschaften des Objekts und seiner Navigationseigenschaften.
 
-      Sie müssen vor `context.sync()` dem Lesen der Eigenschaften anrufen.
+      Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.
     name: 'loadRecursive(object, options, maxDepth)'
     fullName: 'loadRecursive(object, options, maxDepth)'
     langs:
@@ -87,7 +87,7 @@ items:
           type:
             - office.OfficeExtension.ClientObject
         - id: options
-          description: 'Die Schlüssel-Wert-Kopplung der Ladeoptionen für die Typen, wie`{ "Workbook": "worksheets,tables",  "Worksheet": "tables",  "Tables": "name" }`'
+          description: 'Die Schlüssel-Wert-Kopplung von Ladeoptionen für die Typen, wie`{ "Workbook": "worksheets,tables",  "Worksheet": "tables",  "Tables": "name" }`'
           type:
             - '{ [typeName: string]: string | string[] | LoadOption }'
         - id: maxDepth
@@ -107,7 +107,7 @@ items:
         type:
           - '{ [name: string]: string }'
   - uid: office.OfficeExtension.ClientRequestContext.sync
-    summary: 'Synchronisiert den Status zwischen JavaScript-Proxyobjekten und dem Office-Dokument durch Ausführen von Anweisungen in der Warteschlange im Anforderungskontext und Abrufen von Eigenschaften von geladenen Office-Objekten zur Verwendung in Ihrem Code. Diese Methode gibt eine Zusage zurück, die aufgelöst wird, wenn die Synchronisierung abgeschlossen ist.'
+    summary: 'Synchronisiert den Zustand zwischen JavaScript-Proxyobjekten und dem Office-Dokument, indem Anweisungen in der Warteschlange im Anforderungskontext ausgeführt werden und Eigenschaften von geladenen Office-Objekten für die Verwendung in Ihrem Code abgerufen werden. Diese Methode gibt eine Zusage zurück, die aufgelöst wird, wenn die Synchronisierung abgeschlossen ist.'
     name: sync(passThroughValue)
     fullName: sync(passThroughValue)
     langs:
@@ -124,8 +124,10 @@ items:
           description: ''
           type:
             - T
+      typeParameters:
+        - id: T
   - uid: office.OfficeExtension.ClientRequestContext.trace
-    summary: 'Fügt der Warteschlange eine Ablaufverfolgungsmeldung hinzu. Wenn die von `context.sync()` zurückgegebene Zusage aufgrund eines Fehlers zurückgewiesen wird, wird dem OfficeExtension. Error-Objekt ein ". traceMessages"-Array hinzugefügt, das alle ausgeführten Ablaufverfolgungsmeldungen enthält. Diese Nachrichten können Ihnen dabei helfen, die Programm Ausführungssequenz zu überwachen und die Ursache des Fehlers zu ermitteln.'
+    summary: 'Fügt der Warteschlange eine Ablaufverfolgungsmeldung hinzu. Wenn das von `context.sync()` zurückgegebene Versprechen aufgrund eines Fehlers zurückgewiesen wird, wird dem OfficeExtension. Error-Objekt ein ". traceMessages"-Array hinzugefügt, das alle Ablaufverfolgungsmeldungen enthält, die ausgeführt wurden. Diese Nachrichten können Ihnen dabei helfen, die Programm Ausführungssequenz zu überwachen und die Ursache des Fehlers zu ermitteln.'
     name: trace(message)
     fullName: trace(message)
     langs:
@@ -143,7 +145,7 @@ items:
           type:
             - string
   - uid: office.OfficeExtension.ClientRequestContext.trackedObjects
-    summary: 'Sammlung von Objekten, die basierend auf den umgebenden Änderungen im Dokument für automatische Anpassungen nachverfolgt werden.'
+    summary: 'Sammlung von Objekten, die für automatische Anpassungen basierend auf umgebenden Änderungen im Dokument nachverfolgt werden.'
     name: trackedObjects
     fullName: trackedObjects
     langs:

@@ -2,9 +2,9 @@
 items:
   - uid: excel.Excel.WorksheetSingleClickedEventArgs
     summary: |-
-      Stellt Informationen zu dem Arbeitsblatt bereit, das das Linked/tapped-Ereignis ausgelöst hat.
+      Enthält Informationen zu dem Arbeitsblatt, das das Linksklick-/getappt-Ereignis ausgelöst hat.
 
-      \[[API-Satz: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
     name: Excel.WorksheetSingleClickedEventArgs
     fullName: Excel.WorksheetSingleClickedEventArgs
@@ -22,7 +22,7 @@ items:
     summary: |-
       Ruft die Adresse ab, welche die Zelle repräsentiert, die für ein bestimmtes Arbeitsblatt mit der linken Maustaste angeklickt/getippt wurde.
 
-      \[[API-Satz: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
     name: address
     fullName: address
@@ -34,11 +34,31 @@ items:
       return:
         type:
           - string
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getActiveWorksheet();
+              sheet.onSingleClicked.add((event) => {
+                  return Excel.run((context) => {
+                      console.log(`Click detected at ${event.address} (pixel offset from upper-left cell corner: ${event.offsetX}, ${event.offsetY})`);
+                      return context.sync();
+                  });
+              });
+
+              console.log("The worksheet click handler is registered.");
+
+              await context.sync();
+          });
+          ```
   - uid: excel.Excel.WorksheetSingleClickedEventArgs.offsetX
     summary: |-
       Der Abstand, in Punkten, vom links angeklickten/getippten Punkt zum linken (bei RTL rechts) Gitterlinienrand der links angeklickten/getippten Zelle.
 
-      \[[API-Satz: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
     name: offsetX
     fullName: offsetX
@@ -54,7 +74,7 @@ items:
     summary: |-
       Der Abstand, in Punkten, vom linksgeklickten/getippten Punkt bis zum oberen Rand der Gitterlinie der linksgeklickten/getippten Zelle.
 
-      \[[API-Satz: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
     name: offsetY
     fullName: offsetY
@@ -70,7 +90,7 @@ items:
     summary: |-
       Ruft den Typ des Ereignisses ab.
 
-      \[[API-Satz: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
     name: type
     fullName: type
@@ -86,7 +106,7 @@ items:
     summary: |-
       Ruft die ID des Arbeitsblatts ab, in dem die Zelle mit der linken Maustaste angeklickt/getippt wurde.
 
-      \[[API-Satz: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
     name: worksheetId
     fullName: worksheetId

@@ -4,12 +4,15 @@ items:
     summary: |-
       Ein Objekt, das das Ergebnis einer asynchronen Anforderung kapselt, einschließlich Status- und Fehlerinformationen, falls bei der Anforderung ein Fehler aufgetreten ist.
 
-      Wenn die an den `callback` Parameter einer "Async"-Methode übergebene Funktion ausgeführt wird, empfängt Sie ein AsyncResult-Objekt, auf das Sie über `callback` den einzigen Parameter der Funktion zugreifen können.
+      Wenn die Funktion, die Sie an `callback` den Parameter einer "Async"-Methode übergeben, ausgeführt wird, empfängt Sie ein AsyncResult-Objekt, `callback` auf das Sie über den einzigen Parameter der Funktion zugreifen können.
     name: Office.AsyncResult
     fullName: Office.AsyncResult
     langs:
       - typeScript
     type: interface
+    syntax:
+      typeParameters:
+        - id: T
     package: office
     remarks: |-
 
@@ -48,7 +51,7 @@ items:
       - office.Office.AsyncResult.status
       - office.Office.AsyncResult.value
   - uid: office.Office.AsyncResult.asyncContext
-    summary: 'Ruft das an den optionalen `asyncContext` Parameter der aufgerufenen Methode übergebene benutzerdefinierte Element in dem Zustand ab, in dem es übergeben wurde. Dadurch wird das benutzerdefinierte Element zurückgegeben (Dies kann ein beliebiger JavaScript-Typ sein: String, Number, Boolean, Object, Array, NULL oder undefined), der `asyncContext` an den optionalen Parameter der aufgerufenen Methode übergeben wird. Gibt Undefined zurück, wenn kein Wert an den asyncContext-Parameter übergeben wurde.'
+    summary: 'Ruft das an den optionalen `asyncContext` Parameter der aufgerufenen Methode übergebene benutzerdefinierte Element in demselben Zustand ab, in dem es übergeben wurde. Dadurch wird das benutzerdefinierte Element zurückgegeben (das einen beliebigen JavaScript-Typ aufweisen kann: String, Number, Boolean, Object, Array, NULL oder undefined), der `asyncContext` an den optionalen Parameter der aufgerufenen Methode übergeben wird. Gibt Undefined zurück, wenn kein Wert an den asyncContext-Parameter übergeben wurde.'
     name: asyncContext
     fullName: asyncContext
     langs:
@@ -82,13 +85,13 @@ items:
           }
           ```
   - uid: office.Office.AsyncResult.diagnostics
-    summary: 'Ruft ein Objekt ab, das zusätzliche Informationen bereitstellen kann, wenn ein Fehler aufgetreten ist.'
+    summary: 'Ruft ein Objekt ab, das möglicherweise zusätzliche Informationen bereitstellt, wenn ein Fehler aufgetreten ist.'
     remarks: |-
       *Unterstützte APIs*
 
       `Office.context.mailbox.item.getCallbackTokenAsync`<!-- -->, `Office.context.mailbox.item.getUserIdentityTokenAsync`
 
-      *Unterstützte Fehler* <table> <tr><th>`AsyncResult.error.name` </th><th>`AsyncResult.error.message` </th><th>Beschreibung des zurückgegebenen Diagnose Objekts </th></tr> <tr><td><strong>HTTPRequestFailure</strong> </td><td>Die Anforderung ist fehlgeschlagen. Sehen Sie sich das Diagnostics-Objekt für den HTTP-Fehlercode an. </td><td>Der HTTP-Fehlercode in einem JSON-Objekt, z. b.`{"HTTPCode":"401"}` </td></tr> <tr><td><strong>InternalServerError</strong></td><td>Der Exchange-Server hat einen Fehler zurückgegeben. Weitere Informationen finden Sie im Diagnostics-Objekt.</td><td>Die Fehlermeldung vom Exchange-Server in einem JSON-Objekt, z. b.`{"ErrorText": "The mailbox database is temporarily unavailable"}`</td></tr> </table>
+      *Unterstützte Fehler* <table> <tr><th>`AsyncResult.error.name` </th><th>`AsyncResult.error.message` </th><th>Beschreibung des zurückgegebenen Diagnose Objekts </th></tr> <tr><td><strong>HTTPRequestFailure</strong> </td><td>Fehler bei der Anforderung. Sehen Sie sich das Diagnose Objekt für den HTTP-Fehlercode an. </td><td>Der HTTP-Fehlercode in einem JSON-Objekt, beispielsweise`{"HTTPCode":"401"}` </td></tr> <tr><td><strong>InternalServerError</strong></td><td>Der Exchange-Server hat einen Fehler zurückgegeben. Weitere Informationen finden Sie im Diagnostics-Objekt.</td><td>Die Fehlermeldung des Exchange-Servers in einem JSON-Objekt, beispielsweise`{"ErrorText": "The mailbox database is temporarily unavailable"}`</td></tr> </table>
     name: diagnostics
     fullName: diagnostics
     langs:
@@ -133,7 +136,7 @@ items:
           }
           ```
   - uid: office.Office.AsyncResult.status
-    summary: 'Ruft das [Office. AsyncResultStatus](xref:office.Office.AsyncResultStatus) des asynchronen Vorgangs ab.'
+    summary: 'Ruft die [Office. AsyncResultStatus](xref:office.Office.AsyncResultStatus) des asynchronen Vorgangs ab.'
     name: status
     fullName: status
     langs:
@@ -168,9 +171,9 @@ items:
   - uid: office.Office.AsyncResult.value
     summary: 'Ruft die Ladung oder den Inhalt dieses asynchronen Vorgangs ab, falls vorhanden.'
     remarks: |-
-      Sie greifen auf das AsyncResult-Objekt in der Funktion zu, die als Argument an den callback-Parameter einer "Async"-Methode `getSelectedDataAsync` übergeben `setSelectedDataAsync` wird, beispielsweise die und-Methoden des [Document](xref:office.Office.Document) -Objekts.
+      Sie greifen auf das AsyncResult-Objekt in der Funktion zu, die als Argument an den callback-Parameter einer "Async"-Methode `getSelectedDataAsync` übergeben `setSelectedDataAsync` wurde, wie beispielsweise die und-Methoden des [Document](xref:office.Office.Document) -Objekts.
 
-      **Hinweis**: Was die Value-Eigenschaft für eine bestimmte "Async"-Methode zurückgibt, hängt vom Zweck und Kontext dieser Methode ab. To determine what is returned by the value property for an "Async" method, refer to the "Callback value" section of the method's topic.
+      **Hinweis**: Was die Value-Eigenschaft für eine bestimmte "Async"-Methode zurückgibt, variiert je nach Zweck und Kontext dieser Methode. To determine what is returned by the value property for an "Async" method, refer to the "Callback value" section of the method's topic.
 
       #### <a name="examples"></a>Beispiele
 
