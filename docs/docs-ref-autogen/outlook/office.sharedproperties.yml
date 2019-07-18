@@ -2,13 +2,13 @@
 items:
   - uid: outlook.Office.SharedProperties
     summary: |-
-      <span data-ttu-id="b1065-101">Stellt die Eigenschaften eines Termins oder einer Nachricht in einem freigegebenen Ordner, Postfach oder Kalender dar.</span><span class="sxs-lookup"><span data-stu-id="b1065-101">Represents the properties of an appointment or message in a shared folder, mailbox, or calendar.</span></span>
+      <span data-ttu-id="9ef38-101">Stellt die Eigenschaften eines Termins oder einer Nachricht in einem freigegebenen Ordner, Postfach oder Kalender dar.</span><span class="sxs-lookup"><span data-stu-id="9ef38-101">Represents the properties of an appointment or message in a shared folder, mailbox, or calendar.</span></span>
 
-      <span data-ttu-id="b1065-102">\[[API-Satz: Post fach Vorschau](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="b1065-102">\[ [API set: Mailbox Preview](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \]</span></span>
+      <span data-ttu-id="9ef38-102">\[[API-Gruppe: Post fach Vorschau](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="9ef38-102">\[ [API set: Mailbox Preview](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets) \]</span></span>
     remarks: |-
-      <span data-ttu-id="b1065-103">\*\* [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->\*\*: ReadItem</span><span class="sxs-lookup"><span data-stu-id="b1065-103">**[Minimum permission level](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem</span></span>
+      <span data-ttu-id="9ef38-103">\*\* [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->\*\*: ReadItem</span><span class="sxs-lookup"><span data-stu-id="9ef38-103">**[Minimum permission level](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem</span></span>
 
-      <span data-ttu-id="b1065-104">\*\* [Anwendbarer Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->\*\*: Verfassen oder lesen</span><span class="sxs-lookup"><span data-stu-id="b1065-104">**[Applicable Outlook mode](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Compose or Read</span></span>
+      <span data-ttu-id="9ef38-104">\*\* [Anwendbarer Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->\*\*: Verfassen oder lesen</span><span class="sxs-lookup"><span data-stu-id="9ef38-104">**[Applicable Outlook mode](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Compose or Read</span></span>
     isPreview: true
     name: Office.SharedProperties
     fullName: Office.SharedProperties
@@ -19,9 +19,10 @@ items:
     children:
       - outlook.Office.SharedProperties.delegatePermissions
       - outlook.Office.SharedProperties.owner
-      - outlook.Office.SharedProperties.restUrl
+      - outlook.Office.SharedProperties.targetMailbox
+      - outlook.Office.SharedProperties.targetRestUrl
   - uid: outlook.Office.SharedProperties.delegatePermissions
-    summary: '<span data-ttu-id="b1065-105">Die Berechtigungen, die die Stellvertretung in einem freigegebenen Ordner hat.</span><span class="sxs-lookup"><span data-stu-id="b1065-105">The permissions that the delegate has on a shared folder.</span></span>'
+    summary: '<span data-ttu-id="9ef38-105">Die Berechtigungen, die die Stellvertretung für einen freigegebenen Ordner hat.</span><span class="sxs-lookup"><span data-stu-id="9ef38-105">The permissions that the delegate has on a shared folder.</span></span>'
     isPreview: true
     name: delegatePermissions
     fullName: delegatePermissions
@@ -34,7 +35,7 @@ items:
         type:
           - MailboxEnums.DelegatePermissions
   - uid: outlook.Office.SharedProperties.owner
-    summary: <span data-ttu-id="b1065-106">Die e-Mail-Adresse des Besitzers eines freigegebenen Elements.</span><span class="sxs-lookup"><span data-stu-id="b1065-106">The email address of the owner of a shared item.</span></span>
+    summary: <span data-ttu-id="9ef38-106">Die e-Mail-Adresse des Besitzers eines freigegebenen Elements.</span><span class="sxs-lookup"><span data-stu-id="9ef38-106">The email address of the owner of a shared item.</span></span>
     isPreview: true
     name: owner
     fullName: owner
@@ -42,20 +43,39 @@ items:
       - typeScript
     type: property
     syntax:
-      content: 'owner: String;'
+      content: 'owner: string;'
       return:
         type:
-          - String
-  - uid: outlook.Office.SharedProperties.restUrl
-    summary: <span data-ttu-id="b1065-107">Die Remote REST-URL für das Postfach des Besitzers.</span><span class="sxs-lookup"><span data-stu-id="b1065-107">The remote REST URL related to the owner’s mailbox.</span></span>
+          - string
+  - uid: outlook.Office.SharedProperties.targetMailbox
+    summary: |-
+      <span data-ttu-id="9ef38-107">Das Postfach des Ziels/Besitzers.</span><span class="sxs-lookup"><span data-stu-id="9ef38-107">The target/owner's mailbox.</span></span> <span data-ttu-id="9ef38-108">Verwenden Sie zusammen mit targetRestUrl, um die URL des Rest-Vorgangs zu erstellen.</span><span class="sxs-lookup"><span data-stu-id="9ef38-108">Use with targetRestUrl to construct REST operation's URL.</span></span>
+
+      <span data-ttu-id="9ef38-109">Beispiel Nutzung:`targetRestUrl + "/{api_version}/users/" + targetMailbox + "/{REST_operation}"`</span><span class="sxs-lookup"><span data-stu-id="9ef38-109">Example usage: `targetRestUrl + "/{api_version}/users/" + targetMailbox + "/{REST_operation}"`</span></span>
     isPreview: true
-    name: restUrl
-    fullName: restUrl
+    name: targetMailbox
+    fullName: targetMailbox
     langs:
       - typeScript
     type: property
     syntax:
-      content: 'restUrl: String;'
+      content: 'targetMailbox: string;'
       return:
         type:
-          - String
+          - string
+  - uid: outlook.Office.SharedProperties.targetRestUrl
+    summary: |-
+      <span data-ttu-id="9ef38-110">Die Basis-URL der Rest-API https://outlook.office.com/api)(derzeit.</span><span class="sxs-lookup"><span data-stu-id="9ef38-110">The REST API's base URL (currently https://outlook.office.com/api).</span></span> <span data-ttu-id="9ef38-111">Verwenden Sie zusammen mit targetMailbox, um die URL des Rest-Vorgangs zu erstellen.</span><span class="sxs-lookup"><span data-stu-id="9ef38-111">Use with targetMailbox to construct REST operation's URL.</span></span>
+
+      <span data-ttu-id="9ef38-112">Beispiel Nutzung:`targetRestUrl + "/{api_version}/users/" + targetMailbox + "/{REST_operation}"`</span><span class="sxs-lookup"><span data-stu-id="9ef38-112">Example usage: `targetRestUrl + "/{api_version}/users/" + targetMailbox + "/{REST_operation}"`</span></span>
+    isPreview: true
+    name: targetRestUrl
+    fullName: targetRestUrl
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'targetRestUrl: string;'
+      return:
+        type:
+          - string
