@@ -12,13 +12,11 @@ Ihr Feedback ist uns wichtig.
 
 * Wir begrüßen auch Ihre Beiträge zu dieser Dokumentation. Um mitwirken, die Verzweigung dieses Repository, aktualisieren Sie die Dateien, wie Sie es für erforderlich halten, und senden Sie eine Pull-Anforderung mit den vorgeschlagenen Änderungen. Weitere Informationen finden Sie unter [An dieser Dokumentation mitwirken](Contributing.md).
 
-    > **Wichtig**: Ändern Sie keine Dateien im Ordner [/docs/docs-Ref-Autogen](https://github.com/OfficeDev/office-js-docs-reference/tree/master/docs/docs-ref-autogen) dieses Repositorys. Alle Dateien in diesem Ordner werden automatisch generiert, sodass Sie nicht über Pull-Anforderung aktualisiert werden können. Um eine Änderung an einer der Dateien im [/docs/docs-Ref-Autogen](https://github.com/OfficeDev/office-js-docs-reference/tree/master/docs/docs-ref-autogen) -Ordner anzufordern, [Senden Sie ein Problem](https://github.com/OfficeDev/office-js-docs-reference/issues) in diesem Repository.
+    > **Wichtig**: Ändern Sie keine Dateien im Ordner [/docs/docs-Ref-Autogen](https://github.com/OfficeDev/office-js-docs-reference/tree/master/docs/docs-ref-autogen) dieses Repositorys. Alle Dateien in diesem Ordner werden automatisch generiert, sodass Sie nicht über Pull-Anforderung aktualisiert werden können. Um eine Änderung an einer der Dateien im [/docs/docs-Ref-Autogen](https://github.com/OfficeDev/office-js-docs-reference/tree/master/docs/docs-ref-autogen) -Ordner anzufordern, [Senden Sie ein Problem](https://github.com/OfficeDev/office-js-docs-reference/issues) in diesem Repository. Weitere Informationen zur Verwendung des Tools in diesem Repository finden Sie in [](https://github.com/OfficeDev/office-js-docs-reference/blob/master/DocumentationToolingNotes.md)diesem Artikel.
 
 * Um uns Ihre Erfahrungen mit der Programmierung mitzuteilen, welche Funktionen oder Codebeispiele Sie in zukünftigen Versionen wünschen usw., geben Sie Ihre Vorschläge unter [Office-Entwicklerplattform UserVoice](https://officespdev.uservoice.com/) ein.
-
 
 ## <a name="microsoft-open-source-code-of-conduct"></a>Microsoft Open Source-Verhaltensregeln
 
 In diesem Projekt wurden die [Microsoft Open Source-Verhaltensregeln](https://opensource.microsoft.com/codeofconduct/) übernommen.
 Weitere Informationen finden Sie im [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/)oder unter Contact [opencode@Microsoft.com](mailto:opencode@microsoft.com) mit weiteren Fragen oder Kommentaren.
-

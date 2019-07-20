@@ -20,20 +20,21 @@ Nachfolgend finden Sie einige Möglichkeiten, wie Sie zu dieser Dokumentation be
 
 ## <a name="contribute-using-github"></a>Mit GitHub mitwirken
 
-Verwenden Sie GitHub, um an dieser Dokumentation mitzuwirken, ohne dass Sie hierfür das Repo auf Ihrem Desktop klonen. Dies ist die einfachste Möglichkeit zum Erstellen einer Pullanforderung in diesem Repository. Verwenden Sie diese Methode, um eine kleinere Änderung vorzunehmen, mit der keine Codeänderungen einhergehen. 
+> **Wichtig**: der Verweis Inhalt in diesem Repository wird automatisch generiert. Lesen Sie die [Hinweise zur Dokumentationstools](https://github.com/OfficeDev/office-js-docs-reference/blob/master/DocumentationToolingNotes.md) vor dem Bearbeiten von Dateien.
 
-**Hinweis** Mit dieser Methode können Sie jeweils zu einem einzelnen Artikel beitragen.
+Verwenden Sie GitHub, um an dieser Dokumentation mitzuwirken, ohne dass Sie hierfür das Repo auf Ihrem Desktop klonen. Dies ist die einfachste Möglichkeit zum Erstellen einer Pullanforderung in diesem Repository. Verwenden Sie diese Methode, um eine kleinere Änderung vorzunehmen, mit der keine Codeänderungen einhergehen.
+
+Wenn Sie diese Methode verwenden, können Sie jeweils zu einem Artikel beitragen.
 
 ### <a name="to-contribute-using-github"></a>So können Sie mit GitHub mitwirken
 
 1. Suchen Sie den Artikel, den Sie bei GitHub beisteuern möchten.
-2. Wenn Sie sich auf dem Artikel in GitHub befinden, melden Sie sich bei GitHub an (erhalten Sie ein kostenloses Konto [Join GitHub](https://github.com/join)).
-3. Wählen Sie das **Stiftsymbol** aus (bearbeiten Sie die Datei in Ihrer Verzweigung des Projekts), und nehmen Sie Ihre Änderungen im Fenster **<>Edit file** vor. 
+2. Wenn Sie sich auf dem Artikel in GitHub befinden, melden Sie sich bei github an (abonnieren Sie ein kostenloses Konto bei [GitHub](https://github.com/join)).
+3. Wählen Sie das **Stiftsymbol** aus (bearbeiten Sie die Datei in Ihrer Verzweigung des Projekts), und nehmen Sie Ihre Änderungen im Fenster **<>Edit file** vor.
 4. Führen Sie einen Bildlauf nach unten durch, und geben Sie eine Beschreibung ein.
 5. Wählen Sie **Propose file change**>**Create pull request** aus.
 
-Sie haben nun erfolgreich eine Pullanforderung übermittelt. Pullanforderungen werden in der Regel innerhalb von 10 Werktagen bearbeitet. 
-
+Sie haben nun erfolgreich eine Pullanforderung übermittelt. Pullanforderungen werden in der Regel innerhalb von 10 Werktagen bearbeitet.
 
 ## <a name="contribute-using-git"></a>Mit Git mitwirken
 
@@ -46,8 +47,8 @@ Verwenden Sie Git, um umfangreiche Änderungen vorzunehmen, z. B.:
 
 ### <a name="to-contribute-using-git"></a>So können Sie mit Git mitwirken
 
-1. Wenn Sie nicht über ein GitHub-Konto verfügen, richten Sie eines auf [GitHub](https://github.com/join) ein. 
-2. Nachdem Sie ein Konto erstellt haben, installieren Sie Git auf Ihrem Computer. Führen Sie die Schritte im Lernprogramm zum [Einrichten von git] aus.
+1. Wenn Sie nicht über ein GitHub-Konto verfügen, richten Sie eines auf [GitHub](https://github.com/join) ein.
+2. Nachdem Sie ein Konto erstellt haben, installieren Sie Git auf Ihrem Computer. Befolgen Sie die Schritte im Lernprogramm zum [Einrichten von git] .
 3. Um eine Pullanforderung mit Git zu übermitteln, führen Sie die Schritte unter [Verwenden von GitHub, Git und diesem Repository](#use-github-git-and-this-repository) durch.
 4. Sie werden aufgefordert, den Lizenzvertrag für Mitwirkende zu unterzeichnen, wenn Sie:
 
@@ -56,7 +57,7 @@ Verwenden Sie Git, um umfangreiche Änderungen vorzunehmen, z. B.:
 
 Als Mitglied der Community müssen Sie den Lizenzvertrag für Mitwirkende (CLA) unterzeichnen, bevor Sie umfangreiche Beiträge zu einem Projekt leisten können. Sie müssen die Dokumentation nur einmal ausfüllen und übermitteln. Überprüfen Sie das Dokument sorgfältig. Möglicherweise muss Ihr Arbeitgeber das Dokument unterzeichnen.
 
-Durch das Unterzeichnen des Lizenzvertrags für Mitwirkende (CLA) erhalten Sie keine Zugriffsrechte auf das Hauptrepository, aber es bedeutet, dass die Office Developer- und Office Developer Content Publishing-Teams in der Lage sind, Ihre Beiträge zu prüfen und überdenken. Ihre Übermittlungen werden Ihnen gutgeschrieben.
+Durch das Unterzeichnen des Lizenzvertrags für Mitwirkende (CLA) erhalten Sie keine Zugriffsrechte auf das Hauptrepository, aber es bedeutet, dass die Office Developer- und Office Developer Content Publishing-Teams in der Lage sind, Ihre Beiträge zu prüfen und überdenken. Ihnen werden Ihre Übermittlungen gutgeschrieben.
 
 Pullanforderungen werden in der Regel innerhalb von 10 Werktagen bearbeitet.
 
@@ -66,10 +67,10 @@ Pullanforderungen werden in der Regel innerhalb von 10 Werktagen bearbeitet.
 
 ### <a name="to-set-up-your-fork-of-the-repository"></a>So richten Sie Ihre Verzweigung des Repositorys ein
 
-1.  Richten Sie ein GitHub-Konto ein, damit Sie an diesem Projekt mitwirken können. Falls noch nicht geschehen, wechseln Sie zu [GitHub](https://github.com/join), und richten Sie jetzt ein Konto ein.
-2.  Installieren Sie Git auf Ihrem Computer. Führen Sie die Schritte im Lernprogramm zum [Einrichten von git] aus.
-3.  Erstellen Sie Ihre eigene Verzweigung dieses Repositorys. Klicken Sie dazu oben auf der Seite auf die Schaltfläche **Verzweigung**.
-4.  Kopieren Sie die Verzweigung auf Ihren Computer. Öffnen Sie hierzu Git Bash. Geben Sie an der Eingabeaufforderung Folgendes ein:
+1. Richten Sie ein GitHub-Konto ein, damit Sie an diesem Projekt mitwirken können. Falls noch nicht geschehen, wechseln Sie zu [GitHub](https://github.com/join), und richten Sie jetzt ein Konto ein.
+2. Installieren Sie Git auf Ihrem Computer. Befolgen Sie die Schritte im Lernprogramm zum [Einrichten von git] .
+3. Erstellen Sie Ihre eigene Verzweigung dieses Repositorys. Klicken Sie dazu oben auf der Seite auf die Schaltfläche **Verzweigung**.
+4. Kopieren Sie die Verzweigung auf Ihren Computer. Öffnen Sie hierzu Git Bash. Geben Sie an der Eingabeaufforderung Folgendes ein:
 
         git clone https://github.com/<your user name>/<repo name>.git
 
@@ -100,10 +101,10 @@ Um die Mitwirkung für Sie so einfach wie möglich zu machen, führen Sie die fo
 
 #### <a name="to-create-a-new-branch"></a>So erstellen Sie eine neue Verzweigung
 
-1.  Öffnen Sie Git Bash.
-2.  Geben Sie an der Git Bash-Eingabeaufforderung `git pull upstream master:<new branch name>` ein. Dadurch wird eine neue Verzweigung lokal erstellt, die aus der neuesten OfficeDev-Hauptverzweigung kopiert wird.
-3.  Geben Sie an der Git Bash-Eingabeaufforderung `git push origin <new branch name>` ein. Dadurch wird GitHub auf die neue Verzweigung hingewiesen. Die neue Verzweigung sollte nun in Ihrer Verzweigung des Repository auf GitHub angezeigt werden.
-4.  Geben Sie in der Git Bash-Befehlszeile `git checkout <new branch name>` ein, um zu Ihrer neuen Verzweigung umzuschalten.
+1. Öffnen Sie Git Bash.
+2. Geben Sie an der Git Bash-Eingabeaufforderung `git pull upstream master:<new branch name>` ein. Dadurch wird eine neue Verzweigung lokal erstellt, die aus der neuesten OfficeDev-Hauptverzweigung kopiert wird.
+3. Geben Sie an der Git Bash-Eingabeaufforderung `git push origin <new branch name>` ein. Dadurch wird GitHub auf die neue Verzweigung hingewiesen. Die neue Verzweigung sollte nun in Ihrer Verzweigung des Repository auf GitHub angezeigt werden.
+4. Geben Sie in der Git Bash-Befehlszeile `git checkout <new branch name>` ein, um zu Ihrer neuen Verzweigung umzuschalten.
 
 #### <a name="add-new-content-or-edit-existing-content"></a>Hinzufügen neuer Inhalte oder Bearbeiten vorhandener Inhalte
 
@@ -128,13 +129,13 @@ Wenn Sie Ihre Arbeit abgeschlossen haben und bereit sind, sie mit dem zentralen 
 
 #### <a name="to-submit-a-pull-request-to-the-main-repository"></a>So übermitteln Sie eine Pullanforderung an das Hauptrepository
 
-1.  Geben Sie an der Git Bash-Eingabeaufforderung `git push origin <new branch name>` ein. Im lokalen Repository bezieht sich `origin` auf Ihr GitHub-Repository, aus dem Sie das lokale Repository geklont haben. Mit diesem Befehl wird der aktuelle Status Ihrer neuen Verzweigung, einschließlich aller im vorherigen Schritt vorgenommenen Commits, in Ihre GitHub-Verzweigung übertragen.
-2.  Navigieren Sie auf der GitHub-Website in Ihrer Verzweigung zur neuen Verzweigung.
-3.  Klicken Sie oben auf der Seite auf die Schaltfläche **Pullanforderung**.
-4.  Stellen Sie sicher, dass die untere Verzweigung `OfficeDev/<repo name>@master` und die obere Verzweigung `<your username>/<repo name>@<branch name>` lautet.
-5.  Klicken Sie auf die Schaltfläche **Commitbereich aktualisieren**.
-6.  Geben Sie Ihrer Pullanforderung einen Titel, und beschreiben Sie alle Änderungen, die Sie vornehmen.
-7.  Senden Sie die Pullanforderung.
+1. Geben Sie an der Git Bash-Eingabeaufforderung `git push origin <new branch name>` ein. Im lokalen Repository bezieht sich `origin` auf Ihr GitHub-Repository, aus dem Sie das lokale Repository geklont haben. Mit diesem Befehl wird der aktuelle Status Ihrer neuen Verzweigung, einschließlich aller im vorherigen Schritt vorgenommenen Commits, in Ihre GitHub-Verzweigung übertragen.
+2. Navigieren Sie auf der GitHub-Website in Ihrer Verzweigung zur neuen Verzweigung.
+3. Klicken Sie oben auf der Seite auf die Schaltfläche **Pullanforderung**.
+4. Stellen Sie sicher, dass die untere Verzweigung `OfficeDev/<repo name>@master` und die obere Verzweigung `<your username>/<repo name>@<branch name>` lautet.
+5. Klicken Sie auf die Schaltfläche **Commitbereich aktualisieren**.
+6. Geben Sie Ihrer Pullanforderung einen Titel, und beschreiben Sie alle Änderungen, die Sie vornehmen.
+7. Senden Sie die Pullanforderung.
 
 Einer der Websiteadministratoren wird nun Ihre Pullanforderung verarbeiten. Ihre Pullanforderung wird auf der OfficeDev/<repo name>-Website unter „Probleme“ angezeigt. Wenn die Pullanforderung angenommen wird, wird das Problem gelöst.
 
@@ -160,9 +161,9 @@ Nachdem Ihre Änderungen erfolgreich mit dem Hauptrepository zusammengeführt wu
 
 #### <a name="to-delete-a-branch"></a>So löschen Sie eine Verzweigung
 
-1.  Geben Sie an der Git Bash-Eingabeaufforderung `git checkout master` ein. Dadurch wird sichergestellt, dass Sie sich nicht in der zu löschenden Verzweigung befinden (das ist nicht zulässig).
-2.  Geben Sie an der Eingabeaufforderung `git branch -d <branch name>` ein: Dadurch wird die Verzweigung auf dem Computer nur dann gelöscht, wenn sie erfolgreich mit dem übergeordneten Repository zusammengeführt wurde. (Sie können dieses Verhalten mit dem `–D`-Flag außer Kraft setzen, allerdings sollten Sie sich in diesem Falle wirklich sicher sein.)
-3.  Geben Sie schließlich `git push origin :<branch name>` an der Befehlszeile ein (ein Leerzeichen vor dem Doppelpunkt, kein Leerzeichen dahinter).  Dadurch wird die Verzweigung in Ihrer Github-Verzweigung gelöscht.  
+1. Geben Sie an der Git Bash-Eingabeaufforderung `git checkout master` ein. Dadurch wird sichergestellt, dass Sie sich nicht in der zu löschenden Verzweigung befinden (das ist nicht zulässig).
+2. Geben Sie an der Eingabeaufforderung `git branch -d <branch name>` ein: Dadurch wird die Verzweigung auf dem Computer nur dann gelöscht, wenn sie erfolgreich mit dem übergeordneten Repository zusammengeführt wurde. (Sie können dieses Verhalten mit dem `–D`-Flag außer Kraft setzen, allerdings sollten Sie sich in diesem Falle wirklich sicher sein.)
+3. Geben Sie schließlich `git push origin :<branch name>` an der Befehlszeile ein (ein Leerzeichen vor dem Doppelpunkt, kein Leerzeichen dahinter).  Dadurch wird die Verzweigung in Ihrer Github-Verzweigung gelöscht.  
 
 Herzlichen Glückwunsch, Sie haben erfolgreich am Projekt mitgewirkt.
 
@@ -170,23 +171,23 @@ Herzlichen Glückwunsch, Sie haben erfolgreich am Projekt mitgewirkt.
 
 ### <a name="markdown"></a>Markdown
 
-Alle Artikel in diesem Repository verwenden Markdown. Eine vollständige Einführung (und eine Auflistung aller Syntax) finden Sie unter [Daring Fireball-]Abschläge.
- 
+Alle Artikel in diesem Repository verwenden Markdown. Eine vollständige Einführung (und eine Auflistung der gesamten Syntax) finden Sie unter [Daring Fireball-Abschlag].
+
 ## <a name="faq"></a>Häufig gestellte Fragen
 
 ### <a name="how-do-i-get-a-github-account"></a>Wie erhalte ich ein GitHub-Konto?
 
-Füllen Sie das Formular auf der Seite [Join GitHub](https://github.com/join) aus, um ein kostenloses GitHub-Konto zu eröffnen. 
+Füllen Sie das Formular auf der Seite [Join GitHub](https://github.com/join) aus, um ein kostenloses GitHub-Konto zu eröffnen.
 
 ### <a name="where-do-i-get-a-contributors-license-agreement"></a>Wo erhalte ich einen Lizenzvertrag für Mitwirkende? 
 
-Ihnen wird automatisch eine Benachrichtigung gesendet, dass Sie den Lizenzvertrag für Mitwirkende (Contributor's License Agreement, CLA) unterzeichnen müssen, wenn Ihre Pullanforderung dies erfordert. 
+Ihnen wird automatisch eine Benachrichtigung gesendet, dass Sie den Lizenzvertrag für Mitwirkende (Contributor's License Agreement, CLA) unterzeichnen müssen, wenn Ihre Pullanforderung dies erfordert.
 
 Als Mitglied der Community **müssen Sie den Lizenzvertrag für Mitwirkende (CLA) unterzeichnen, bevor Sie umfangreiche Beiträge zu diesem Projekt leisten können**. Sie müssen die Dokumentation nur einmal ausfüllen und übermitteln. Überprüfen Sie das Dokument sorgfältig. Möglicherweise muss Ihr Arbeitgeber das Dokument unterzeichnen.
 
 ### <a name="what-happens-with-my-contributions"></a>Was geschieht mit meinen Beiträgen?
 
-Wenn Sie Ihre Änderungen über eine Pull-Anfrage übermitteln, wird unser Team benachrichtigt und überprüft Ihre Pull-Anfrage. Sie erhalten Benachrichtigungen über Ihre Pull-Anforderung von GitHub; Sie können auch von jemandem aus unserem Team benachrichtigt werden, wenn wir weitere Informationen benötigen. Wenn Ihre Pull-Anforderung genehmigt wurde, aktualisieren wir die Dokumentation. Wir behalten uns das Recht vor, ihre Übermittlung zu rechts-, Stil-, Klarheits-oder sonstigen Problemen zu bearbeiten.
+Wenn Sie Ihre Änderungen über eine Pull-Anforderung übermitteln, wird unser Team benachrichtigt und überprüft Ihre Pull-Anforderung. Sie erhalten Benachrichtigungen über Ihre Pull-Anforderung von GitHub; Sie können auch von jemandem aus unserem Team benachrichtigt werden, wenn wir weitere Informationen benötigen. Wenn Ihre Pull-Anforderung genehmigt wird, aktualisieren wir die Dokumentation. Wir behalten uns das Recht vor, ihre Einreichung für rechtliche, stilistische, Klarheit oder andere Probleme zu bearbeiten.
 
 ### <a name="can-i-become-an-approver-for-this-repositorys-github-pull-requests"></a>Kann ich ein Genehmiger für die Pullanforderungen in GitHub für dieses Repository werden?
 
@@ -196,14 +197,13 @@ Derzeit können externe Mitwirkende keine Pullanforderungen in diesem Repository
 
 Pullanforderungen werden in der Regel innerhalb von 10 Werktagen bearbeitet.
 
-
 ## <a name="more-resources"></a>Weitere Ressourcen
 
-* Weitere Informationen zu Abschriften finden Sie auf der Website des Autors [Daring Fireball].
-* Weitere Informationen zur Verwendung von git und GitHub finden Sie in der [GitHub-Hilfe].
+* Wenn Sie mehr über das abwägen erfahren möchten, wechseln Sie zur Website des Abschlag Erstellers [Daring Fireball].
+* Wenn Sie mehr über die Verwendung von git und GitHub erfahren möchten, schauen Sie sich zunächst die [GitHub-Hilfe]an.
 
 [GitHub Home]: http://github.com
 [GitHub-Hilfe]: http://help.github.com/
 [Einrichten von git]: https://help.github.com/articles/set-up-git/
-[Waghalsige Feuerball-Abschriften]: http://daringfireball.net/projects/markdown/
+[Daring Fireball-Abschlag]: http://daringfireball.net/projects/markdown/
 [Daring Fireball]: http://daringfireball.net/
