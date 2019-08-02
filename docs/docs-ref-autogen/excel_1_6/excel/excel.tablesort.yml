@@ -1,0 +1,272 @@
+### YamlMime:UniversalReference
+items:
+  - uid: excel.Excel.TableSort
+    summary: |-
+      Verwaltet Sortiervorgänge für Table-Objekte.
+
+      \[[API-Gruppe: ExcelApi 1,2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: Excel.TableSort
+    fullName: Excel.TableSort
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: excel
+    children:
+      - excel.Excel.TableSort.apply
+      - excel.Excel.TableSort.apply_1
+      - excel.Excel.TableSort.clear
+      - excel.Excel.TableSort.context
+      - excel.Excel.TableSort.fields
+      - excel.Excel.TableSort.load
+      - excel.Excel.TableSort.load_1
+      - excel.Excel.TableSort.load_2
+      - excel.Excel.TableSort.matchCase
+      - excel.Excel.TableSort.method
+      - excel.Excel.TableSort.reapply
+      - excel.Excel.TableSort.toJSON
+  - uid: excel.Excel.TableSort.apply
+    summary: |-
+      Führt einen Sortiervorgang aus.
+
+      \[[API-Gruppe: ExcelApi 1,2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'apply(fields, matchCase, method)'
+    fullName: 'apply(fields, matchCase, method)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'apply(fields: Excel.SortField[], matchCase?: boolean, method?: Excel.SortMethod): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var tableName = 'Table1';
+              var table = ctx.workbook.tables.getItem(tableName);
+              table.sort.apply([ 
+                      {
+                          key: 2,
+                          ascending: true
+                      },
+                  ], true);
+              return ctx.sync(); 
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: fields
+          description: 'Die Liste der Bedingungen, nach denen sortiert werden soll.'
+          type:
+            - 'Excel.SortField[]'
+        - id: matchCase
+          description: 'Optional. Gibt an, ob sich die Groß-/Kleinschreibung auf die Zeichenfolgensortierung auswirkt.'
+          type:
+            - boolean
+        - id: method
+          description: Optional. Die Sortiermethode für chinesische Zeichen.
+          type:
+            - excel.Excel.SortMethod
+  - uid: excel.Excel.TableSort.apply_1
+    summary: |-
+      Führt einen Sortiervorgang aus.
+
+      \[[API-Gruppe: ExcelApi 1,2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'apply(fields, matchCase, methodString)'
+    fullName: 'apply(fields, matchCase, methodString)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'apply(fields: Excel.SortField[], matchCase?: boolean, methodString?: "PinYin" | "StrokeCount"): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: fields
+          description: 'Die Liste der Bedingungen, nach denen sortiert werden soll.'
+          type:
+            - 'Excel.SortField[]'
+        - id: matchCase
+          description: 'Optional. Gibt an, ob sich die Groß-/Kleinschreibung auf die Zeichenfolgensortierung auswirkt.'
+          type:
+            - boolean
+        - id: methodString
+          description: Optional. Die Sortiermethode für chinesische Zeichen.
+          type:
+            - '"PinYin" | "StrokeCount"'
+  - uid: excel.Excel.TableSort.clear
+    summary: |-
+      Löscht die Sortierung, die derzeit in der Tabelle enthalten ist. Dies ändert nicht die Sortierung der Tabelle, löscht jedoch den Zustand der Kopfzeilen-Schaltflächen.
+
+      \[[API-Gruppe: ExcelApi 1,2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: clear()
+    fullName: clear()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'clear(): void;'
+      return:
+        type:
+          - void
+        description: ''
+  - uid: excel.Excel.TableSort.context
+    summary: 'Der Anforderungskontext, der mit dem Objekt verknüpft ist. Dadurch wird das Add-in-Verfahren mit dem Prozess der Office-Hostanwendung verbunden.'
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - excel.Excel.RequestContext
+  - uid: excel.Excel.TableSort.fields
+    summary: |-
+      Stellt die aktuellen Bedingungen dar, die zuletzt zum Sortieren der Tabelle verwendet wurden. Schreibgeschützt.
+
+      \[[API-Gruppe: ExcelApi 1,2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: fields
+    fullName: fields
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly fields: Excel.SortField[];'
+      return:
+        type:
+          - 'Excel.SortField[]'
+  - uid: excel.Excel.TableSort.load
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "context.sync()" aufrufen.
+    remarks: |-
+      Zusätzlich zu dieser Signatur verfügt diese Methode über die folgenden Signaturen:
+
+      `load(option?: string | string[]): Excel.TableSort`-Wobei Option eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen ist, die die zu ladenden Eigenschaften angeben.
+
+      `load(option?: { select?: string; expand?: string; }): Excel.TableSort`-Bei Option. Select handelt es sich um eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und Options. Expand ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.
+
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.TableSort`Nur verfügbar für Sammlungstypen. Sie ähnelt der vorherigen Signatur. Option. Top gibt die maximale Anzahl von Sammlungselementen an, die in das Ergebnis einbezogen werden können. Option. Skip gibt die Anzahl der Elemente an, die übersprungen werden sollen und nicht im Ergebnis enthalten sind. Wenn Option. Top angegeben ist, wird das Resultset gestartet, nachdem die angegebene Anzahl von Elementen übersprungen wurde.
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Excel.Interfaces.TableSortLoadOptions): Excel.TableSort;'
+      return:
+        type:
+          - excel.Excel.TableSort
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - excel.Excel.Interfaces.TableSortLoadOptions
+  - uid: excel.Excel.TableSort.load_1
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Excel.TableSort;'
+      return:
+        type:
+          - excel.Excel.TableSort
+        description: ''
+      parameters:
+        - id: propertyNames
+          description: 'Eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.'
+          type:
+            - 'string | string[]'
+  - uid: excel.Excel.TableSort.load_2
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.TableSort;'
+      return:
+        type:
+          - excel.Excel.TableSort
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: 'Dabei ist propertyNamesAndPaths. Select eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und propertyNamesAndPaths. Expand ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: excel.Excel.TableSort.matchCase
+    summary: |-
+      Stellt dar, ob die Groß-/Kleinschreibung den letzten Sortiervorgang der Tabelle beeinflusst hat. Schreibgeschützt.
+
+      \[[API-Gruppe: ExcelApi 1,2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: matchCase
+    fullName: matchCase
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly matchCase: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: excel.Excel.TableSort.method
+    summary: |-
+      Stellt die chinesische Zeichensortiermethode dar, mit der die Tabelle zuletzt sortiert wurde. Schreibgeschützt.
+
+      \[[API-Gruppe: ExcelApi 1,2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: method
+    fullName: method
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly method: Excel.SortMethod | "PinYin" | "StrokeCount";'
+      return:
+        type:
+          - Excel.SortMethod | "PinYin" | "StrokeCount"
+  - uid: excel.Excel.TableSort.reapply
+    summary: |-
+      Wendet die aktuellen Sortierparameter erneut auf die Tabelle an.
+
+      \[[API-Gruppe: ExcelApi 1,2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: reapply()
+    fullName: reapply()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'reapply(): void;'
+      return:
+        type:
+          - void
+        description: ''
+  - uid: excel.Excel.TableSort.toJSON
+    summary: 'Überschreibt die `toJSON()` JavaScript-Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird.`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche Excel. tablesort-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt (typisiert als`Excel.Interfaces.TableSortData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Excel.Interfaces.TableSortData;'
+      return:
+        type:
+          - excel.Excel.Interfaces.TableSortData
+        description: ''

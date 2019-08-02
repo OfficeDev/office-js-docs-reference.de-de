@@ -1,0 +1,280 @@
+### YamlMime:UniversalReference
+items:
+  - uid: excel.Excel.RangeBorder
+    summary: |-
+      Stellt den Rahmen eines Objekts dar.
+
+      \[[API-Gruppe: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: Excel.RangeBorder
+    fullName: Excel.RangeBorder
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: excel
+    children:
+      - excel.Excel.RangeBorder.color
+      - excel.Excel.RangeBorder.context
+      - excel.Excel.RangeBorder.load
+      - excel.Excel.RangeBorder.load_1
+      - excel.Excel.RangeBorder.load_2
+      - excel.Excel.RangeBorder.set
+      - excel.Excel.RangeBorder.set_1
+      - excel.Excel.RangeBorder.sideIndex
+      - excel.Excel.RangeBorder.style
+      - excel.Excel.RangeBorder.tintAndShade
+      - excel.Excel.RangeBorder.toJSON
+      - excel.Excel.RangeBorder.weight
+  - uid: excel.Excel.RangeBorder.color
+    summary: |-
+      HTML-Farbcode, der die Farbe der Rahmenlinie des Formulars \#RRGGBB (z.b. "FFA500") oder als benannte HTML-Farbe (beispielsweise "Orange") darstellt.
+
+      \[[API-Gruppe: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: color
+    fullName: color
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'color: string;'
+      return:
+        type:
+          - string
+  - uid: excel.Excel.RangeBorder.context
+    summary: 'Der Anforderungskontext, der mit dem Objekt verknüpft ist. Dadurch wird das Add-in-Verfahren mit dem Prozess der Office-Hostanwendung verbunden.'
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - excel.Excel.RequestContext
+  - uid: excel.Excel.RangeBorder.load
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "context.sync()" aufrufen.
+    remarks: |-
+      Zusätzlich zu dieser Signatur verfügt diese Methode über die folgenden Signaturen:
+
+      `load(option?: string | string[]): Excel.RangeBorder`-Wobei Option eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen ist, die die zu ladenden Eigenschaften angeben.
+
+      `load(option?: { select?: string; expand?: string; }): Excel.RangeBorder`-Bei Option. Select handelt es sich um eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und Options. Expand ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.
+
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.RangeBorder`Nur verfügbar für Sammlungstypen. Sie ähnelt der vorherigen Signatur. Option. Top gibt die maximale Anzahl von Sammlungselementen an, die in das Ergebnis einbezogen werden können. Option. Skip gibt die Anzahl der Elemente an, die übersprungen werden sollen und nicht im Ergebnis enthalten sind. Wenn Option. Top angegeben ist, wird das Resultset gestartet, nachdem die angegebene Anzahl von Elementen übersprungen wurde.
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Excel.Interfaces.RangeBorderLoadOptions): Excel.RangeBorder;'
+      return:
+        type:
+          - excel.Excel.RangeBorder
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - excel.Excel.Interfaces.RangeBorderLoadOptions
+  - uid: excel.Excel.RangeBorder.load_1
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Excel.RangeBorder;'
+      return:
+        type:
+          - excel.Excel.RangeBorder
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet1";
+              var rangeAddress = "A1:F8";
+              var worksheet = ctx.workbook.worksheets.getItem(sheetName);
+              var range = worksheet.getRange(rangeAddress);
+              var borders = range.format.borders;
+              borders.load('items');
+              return ctx.sync().then(function() {
+                  console.log(borders.count);
+                  for (var i = 0; i < borders.items.length; i++)
+                  {
+                      console.log(borders.items[i].sideIndex);
+                  }
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```javascript
+          // The example below adds grid border around the range.
+          Excel.run(function (ctx) { 
+              var sheetName = "Sheet1";
+              var rangeAddress = "A1:F8";
+              var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);
+              range.format.borders.getItem('InsideHorizontal').style = 'Continuous';
+              range.format.borders.getItem('InsideVertical').style = 'Continuous';
+              range.format.borders.getItem('EdgeBottom').style = 'Continuous';
+              range.format.borders.getItem('EdgeLeft').style = 'Continuous';
+              range.format.borders.getItem('EdgeRight').style = 'Continuous';
+              range.format.borders.getItem('EdgeTop').style = 'Continuous';
+              return ctx.sync(); 
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: propertyNames
+          description: 'Eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.'
+          type:
+            - 'string | string[]'
+  - uid: excel.Excel.RangeBorder.load_2
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.RangeBorder;'
+      return:
+        type:
+          - excel.Excel.RangeBorder
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: 'Dabei ist propertyNamesAndPaths. Select eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und propertyNamesAndPaths. Expand ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: excel.Excel.RangeBorder.set
+    summary: Legt mehrere Eigenschaften eines Objekts gleichzeitig fest. Sie können entweder ein einfaches Objekt mit den entsprechenden Eigenschaften oder ein anderes API-Objekt desselben Typs übergeben.
+    remarks: |-
+      Diese Methode hat die folgende zusätzliche Signatur:
+
+      `set(properties: Excel.RangeBorder): void`
+    name: 'set(properties, options)'
+    fullName: 'set(properties, options)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Interfaces.RangeBorderUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: 'Ein JavaScript-Objekt mit Eigenschaften, die isomorphically für die Eigenschaften des Objekts strukturiert sind, für das die Methode aufgerufen wird.'
+          type:
+            - Interfaces.RangeBorderUpdateData
+        - id: options
+          description: 'Bietet eine Option zum Unterdrücken von Fehlern, wenn das Properties-Objekt versucht, schreibgeschützte Eigenschaften festzulegen.'
+          type:
+            - OfficeExtension.UpdateOptions
+  - uid: excel.Excel.RangeBorder.set_1
+    summary: Legt mehrere Eigenschaften für das Objekt gleichzeitig basierend auf einem vorhandenen geladenen Objekt fest.
+    name: set(properties)
+    fullName: set(properties)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Excel.RangeBorder): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: ''
+          type:
+            - excel.Excel.RangeBorder
+  - uid: excel.Excel.RangeBorder.sideIndex
+    summary: |-
+      Konstanter Wert, der die bestimmte Seiten des Rahmens angibt. Weitere Informationen finden Sie unter Excel. BorderIndex. Schreibgeschützt.
+
+      \[[API-Gruppe: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: sideIndex
+    fullName: sideIndex
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly sideIndex: Excel.BorderIndex | "EdgeTop" | "EdgeBottom" | "EdgeLeft" | "EdgeRight" | "InsideVertical" | "InsideHorizontal" | "DiagonalDown" | "DiagonalUp";'
+      return:
+        type:
+          - Excel.BorderIndex | "EdgeTop" | "EdgeBottom" | "EdgeLeft" | "EdgeRight" | "InsideVertical" | "InsideHorizontal" | "DiagonalDown" | "DiagonalUp"
+  - uid: excel.Excel.RangeBorder.style
+    summary: |-
+      Einer der Konstanten der Linienart, die die Linienart für den Rahmen angibt. Details finden Sie unter Excel. borderlinestyle.
+
+      \[[API-Gruppe: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: style
+    fullName: style
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'style: Excel.BorderLineStyle | "None" | "Continuous" | "Dash" | "DashDot" | "DashDotDot" | "Dot" | "Double" | "SlantDashDot";'
+      return:
+        type:
+          - Excel.BorderLineStyle | "None" | "Continuous" | "Dash" | "DashDot" | "DashDotDot" | "Dot" | "Double" | "SlantDashDot"
+  - uid: excel.Excel.RangeBorder.tintAndShade
+    summary: |-
+      Gibt einen Double-Wert zurück, der eine Farbe für RangeBorder aufhellt oder abdunkelt, oder legt diesen fest. Der Wert liegt zwischen -1 (dunkelster) und 1 (hellster), mit 0 für die Originalfarbe. Ein NULL-Wert gibt an, dass der Rahmen keine einheitliche tintAndShade-Einstellung aufweist.
+
+      \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: tintAndShade
+    fullName: tintAndShade
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'tintAndShade: number;'
+      return:
+        type:
+          - number
+  - uid: excel.Excel.RangeBorder.toJSON
+    summary: 'Überschreibt die `toJSON()` JavaScript-Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird.`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche Excel. RangeBorder-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt (typisiert als`Excel.Interfaces.RangeBorderData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Excel.Interfaces.RangeBorderData;'
+      return:
+        type:
+          - excel.Excel.Interfaces.RangeBorderData
+        description: ''
+  - uid: excel.Excel.RangeBorder.weight
+    summary: |-
+      Gibt die Stärke des Rahmens um einen Bereich an. Weitere Informationen finden Sie unter Excel. BorderWeight.
+
+      \[[API-Gruppe: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: weight
+    fullName: weight
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'weight: Excel.BorderWeight | "Hairline" | "Thin" | "Medium" | "Thick";'
+      return:
+        type:
+          - Excel.BorderWeight | "Hairline" | "Thin" | "Medium" | "Thick"
