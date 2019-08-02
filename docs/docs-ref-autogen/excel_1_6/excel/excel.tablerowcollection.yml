@@ -1,0 +1,286 @@
+### YamlMime:UniversalReference
+items:
+  - uid: excel.Excel.TableRowCollection
+    summary: |-
+      Stellt eine Auflistung aller Zeilen dar, die Teil der Tabelle sind.
+
+      Beachten Sie, dass im Gegensatz zu Bereichen oder Spalten, die angepasst werden, wenn neue Zeilen/Spalten vor Ihnen hinzugefügt werden, ein TableRow-Objekt den physikalischen Speicherort der Tabellenzeile darstellt, jedoch nicht die Daten. Das heißt, wenn die Daten sortiert werden oder wenn neue Zeilen hinzugefügt werden, zeigt eine Tabellenzeile weiterhin den Index an, für den Sie erstellt wurde.
+
+      \[[API-Gruppe: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: Excel.TableRowCollection
+    fullName: Excel.TableRowCollection
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: excel
+    children:
+      - excel.Excel.TableRowCollection.add
+      - excel.Excel.TableRowCollection.context
+      - excel.Excel.TableRowCollection.count
+      - excel.Excel.TableRowCollection.getCount
+      - excel.Excel.TableRowCollection.getItemAt
+      - excel.Excel.TableRowCollection.items
+      - excel.Excel.TableRowCollection.load
+      - excel.Excel.TableRowCollection.load_1
+      - excel.Excel.TableRowCollection.load_2
+      - excel.Excel.TableRowCollection.toJSON
+  - uid: excel.Excel.TableRowCollection.add
+    summary: |-
+      Fügt der Tabelle mindestens eine Zeile hinzu. Das Rückgabeobjekt ist die oberste Zeile der neu hinzugefügten Zeilen.
+
+      Beachten Sie, dass im Gegensatz zu Bereichen oder Spalten, die angepasst werden, wenn neue Zeilen/Spalten vor Ihnen hinzugefügt werden, ein TableRow-Objekt den physikalischen Speicherort der Tabellenzeile darstellt, jedoch nicht die Daten. Das heißt, wenn die Daten sortiert werden oder wenn neue Zeilen hinzugefügt werden, zeigt eine Tabellenzeile weiterhin den Index an, für den Sie erstellt wurde.
+
+      \[[API-Satz: ExcelApi 1,1 zum Hinzufügen einer einzelnen Zeile; 1,4 ermöglicht das Hinzufügen mehrerer Zeilen.](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
+    name: 'add(index, values)'
+    fullName: 'add(index, values)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'add(index?: number, values?: Array<Array<boolean | string | number>> | boolean | string | number): Excel.TableRow;'
+      return:
+        type:
+          - excel.Excel.TableRow
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var tables = ctx.workbook.tables;
+              var values = [["Sample", "Values", "For", "New", "Row"]];
+              var row = tables.getItem("Table1").rows.add(null, values);
+              row.load('index');
+              return ctx.sync().then(function() {
+                  console.log(row.index);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: index
+          description: Optional. Gibt die relative Position der neuen Zeile an. Bei NULL oder -1 erfolgt die Erweiterung am Ende. Alle Zeilen unterhalb der eingefügten Zeile werden nach unten verschoben. Nullindiziert.
+          type:
+            - number
+        - id: values
+          description: Optional. Ein 2-dimensionales Array von unformatierten Werten der Tabellenzeile.
+          type:
+            - Array<Array<boolean | string | number>> | boolean | string | number
+  - uid: excel.Excel.TableRowCollection.context
+    summary: 'Der Anforderungskontext, der mit dem Objekt verknüpft ist. Dadurch wird das Add-in-Verfahren mit dem Prozess der Office-Hostanwendung verbunden.'
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - excel.Excel.RequestContext
+  - uid: excel.Excel.TableRowCollection.count
+    summary: |-
+      Gibt die Anzahl der Zeilen in der Tabelle zurück. Schreibgeschützt.
+
+      \[[API-Gruppe: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: count
+    fullName: count
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly count: number;'
+      return:
+        type:
+          - number
+  - uid: excel.Excel.TableRowCollection.getCount
+    summary: |-
+      Ruft die Anzahl der Zeilen in der Tabelle ab.
+
+      \[[API-Gruppe: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getCount()
+    fullName: getCount()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getCount(): OfficeExtension.ClientResult<number>;'
+      return:
+        type:
+          - OfficeExtension.ClientResult<number>
+        description: ''
+  - uid: excel.Excel.TableRowCollection.getItemAt
+    summary: |-
+      Ruft eine Zeile anhand ihrer Position in der Auflistung ab.
+
+      Beachten Sie, dass im Gegensatz zu Bereichen oder Spalten, die angepasst werden, wenn neue Zeilen/Spalten vor Ihnen hinzugefügt werden, ein TableRow-Objekt den physikalischen Speicherort der Tabellenzeile darstellt, jedoch nicht die Daten. Das heißt, wenn die Daten sortiert werden oder wenn neue Zeilen hinzugefügt werden, zeigt eine Tabellenzeile weiterhin den Index an, für den Sie erstellt wurde.
+
+      \[[API-Gruppe: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getItemAt(index)
+    fullName: getItemAt(index)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getItemAt(index: number): Excel.TableRow;'
+      return:
+        type:
+          - excel.Excel.TableRow
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var tablerow = ctx.workbook.tables.getItem('Table1').rows.getItemAt(0);
+              tablerow.load('name');
+              return ctx.sync().then(function() {
+                      console.log(tablerow.name);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: index
+          description: Index-Wert des abzurufenden Objekts. Nullindiziert.
+          type:
+            - number
+  - uid: excel.Excel.TableRowCollection.items
+    summary: Ruft die geladenen untergeordneten Elemente in dieser Sammlung ab.
+    name: items
+    fullName: items
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly items: Excel.TableRow[];'
+      return:
+        type:
+          - 'Excel.TableRow[]'
+  - uid: excel.Excel.TableRowCollection.load
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "context.sync()" aufrufen.
+    remarks: |-
+      Zusätzlich zu dieser Signatur verfügt diese Methode über die folgenden Signaturen:
+
+      `load(option?: string | string[]): Excel.TableRowCollection`-Wobei Option eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen ist, die die zu ladenden Eigenschaften angeben.
+
+      `load(option?: { select?: string; expand?: string; }): Excel.TableRowCollection`-Bei Option. Select handelt es sich um eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und Options. Expand ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.
+
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.TableRowCollection`Nur verfügbar für Sammlungstypen. Sie ähnelt der vorherigen Signatur. Option. Top gibt die maximale Anzahl von Sammlungselementen an, die in das Ergebnis einbezogen werden können. Option. Skip gibt die Anzahl der Elemente an, die übersprungen werden sollen und nicht im Ergebnis enthalten sind. Wenn Option. Top angegeben ist, wird das Resultset gestartet, nachdem die angegebene Anzahl von Elementen übersprungen wurde.
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Excel.Interfaces.TableRowCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.TableRowCollection;'
+      return:
+        type:
+          - excel.Excel.TableRowCollection
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - Excel.Interfaces.TableRowCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
+  - uid: excel.Excel.TableRowCollection.load_1
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Excel.TableRowCollection;'
+      return:
+        type:
+          - excel.Excel.TableRowCollection
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var tablerows = ctx.workbook.tables.getItem('Table1').rows;
+              tablerows.load('items');
+              return ctx.sync().then(function() {
+                  console.log("tablerows Count: " + tablerows.count);
+                  for (var i = 0; i < tablerows.items.length; i++)
+                  {
+                      console.log(tablerows.items[i].index);
+                  }
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```javascript
+          // In the example, we'll select the top 100 rows of the table.
+          Excel.run(function (ctx) { 
+              var table = ctx.workbook.tables.getItem("Table1");
+              var tableRows = table.rows.load({"select" : "index, values","top": 100, "skip": 0 })
+              return ctx.sync().then(function() {
+                  for (var i = 0; i < tableRows.items.length; i++)
+                  {
+                      console.log(tableRows.items[i].index);
+                      console.log(tableRows.items[i].values);
+                  }
+              });
+          }).catch(function(error) {
+                  console.log("Error: " + error);
+                  if (error instanceof OfficeExtension.Error) {
+                      console.log("Debug info: " + JSON.stringify(error.debugInfo));
+                  }
+          });
+          ```
+      parameters:
+        - id: propertyNames
+          description: 'Eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.'
+          type:
+            - 'string | string[]'
+  - uid: excel.Excel.TableRowCollection.load_2
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: OfficeExtension.LoadOption): Excel.TableRowCollection;'
+      return:
+        type:
+          - excel.Excel.TableRowCollection
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - OfficeExtension.LoadOption
+  - uid: excel.Excel.TableRowCollection.toJSON
+    summary: 'Überschreibt die `toJSON()` JavaScript-Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird.`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche `Excel.TableRowCollection` Objekt ein API-Objekt ist, `toJSON` gibt die Methode ein einfaches JavaScript-Objekt (typisiert als`Excel.Interfaces.TableRowCollectionData`<!-- -->), die ein "Items"-Array mit flachen Kopien aller geladenen Eigenschaften aus den Elementen der Auflistung enthält.'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Excel.Interfaces.TableRowCollectionData;'
+      return:
+        type:
+          - excel.Excel.Interfaces.TableRowCollectionData
+        description: ''

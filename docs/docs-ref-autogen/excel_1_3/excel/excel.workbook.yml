@@ -1,0 +1,317 @@
+### YamlMime:UniversalReference
+items:
+  - uid: excel.Excel.Workbook
+    summary: |-
+      Die Arbeitsmappe ist das Objekt auf oberster Ebene , das dazugehörige Arbeitsmappenobjekte wie z. B. Arbeitsblätter, Tabellen, Bereiche usw. enthält.
+
+      \[[API-Gruppe: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: Excel.Workbook
+    fullName: Excel.Workbook
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: excel
+    children:
+      - excel.Excel.Workbook.application
+      - excel.Excel.Workbook.bindings
+      - excel.Excel.Workbook.context
+      - excel.Excel.Workbook.functions
+      - excel.Excel.Workbook.getSelectedRange
+      - excel.Excel.Workbook.load
+      - excel.Excel.Workbook.load_1
+      - excel.Excel.Workbook.load_2
+      - excel.Excel.Workbook.names
+      - excel.Excel.Workbook.onSelectionChanged
+      - excel.Excel.Workbook.pivotTables
+      - excel.Excel.Workbook.set
+      - excel.Excel.Workbook.set_1
+      - excel.Excel.Workbook.tables
+      - excel.Excel.Workbook.toJSON
+      - excel.Excel.Workbook.worksheets
+  - uid: excel.Excel.Workbook.application
+    summary: |-
+      Stellt die Excel-Anwendungsinstanz dar, die diese Arbeitsmappe enthält. Schreibgeschützt.
+
+      \[[API-Gruppe: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: application
+    fullName: application
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly application: Excel.Application;'
+      return:
+        type:
+          - excel.Excel.Application
+  - uid: excel.Excel.Workbook.bindings
+    summary: |-
+      Stellt eine Auflistung aller Bindungen dar, die Teil der Arbeitsmappe sind. Schreibgeschützt.
+
+      \[[API-Gruppe: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: bindings
+    fullName: bindings
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly bindings: Excel.BindingCollection;'
+      return:
+        type:
+          - excel.Excel.BindingCollection
+  - uid: excel.Excel.Workbook.context
+    summary: 'Der Anforderungskontext, der mit dem Objekt verknüpft ist. Dadurch wird das Add-in-Verfahren mit dem Prozess der Office-Hostanwendung verbunden.'
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - excel.Excel.RequestContext
+  - uid: excel.Excel.Workbook.functions
+    summary: |-
+      Stellt eine Auflistung von Arbeitsblattfunktionen dar, die für die Berechnung verwendet werden können. Schreibgeschützt.
+
+      \[[API-Gruppe: ExcelApi 1,2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: functions
+    fullName: functions
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly functions: Excel.Functions;'
+      return:
+        type:
+          - excel.Excel.Functions
+  - uid: excel.Excel.Workbook.getSelectedRange
+    summary: |-
+      Ruft den aktuell ausgewählten einzelnen Bereich aus der Arbeitsmappe ab. Wenn mehrere Bereiche ausgewählt sind, wird durch diese Methode ein Fehler ausgelöst.
+
+      \[[API-Gruppe: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getSelectedRange()
+    fullName: getSelectedRange()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getSelectedRange(): Excel.Range;'
+      return:
+        type:
+          - excel.Excel.Range
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          Excel.run(function (ctx) { 
+              var selectedRange = ctx.workbook.getSelectedRange();
+              selectedRange.load('address');
+              return ctx.sync().then(function() {
+                      console.log(selectedRange.address);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: excel.Excel.Workbook.load
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "context.sync()" aufrufen.
+    remarks: |-
+      Zusätzlich zu dieser Signatur verfügt diese Methode über die folgenden Signaturen:
+
+      `load(option?: string | string[]): Excel.Workbook`-Wobei Option eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen ist, die die zu ladenden Eigenschaften angeben.
+
+      `load(option?: { select?: string; expand?: string; }): Excel.Workbook`-Bei Option. Select handelt es sich um eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und Options. Expand ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.
+
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.Workbook`Nur verfügbar für Sammlungstypen. Sie ähnelt der vorherigen Signatur. Option. Top gibt die maximale Anzahl von Sammlungselementen an, die in das Ergebnis einbezogen werden können. Option. Skip gibt die Anzahl der Elemente an, die übersprungen werden sollen und nicht im Ergebnis enthalten sind. Wenn Option. Top angegeben ist, wird das Resultset gestartet, nachdem die angegebene Anzahl von Elementen übersprungen wurde.
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Excel.Interfaces.WorkbookLoadOptions): Excel.Workbook;'
+      return:
+        type:
+          - excel.Excel.Workbook
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - excel.Excel.Interfaces.WorkbookLoadOptions
+  - uid: excel.Excel.Workbook.load_1
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Excel.Workbook;'
+      return:
+        type:
+          - excel.Excel.Workbook
+        description: ''
+      parameters:
+        - id: propertyNames
+          description: 'Eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.'
+          type:
+            - 'string | string[]'
+  - uid: excel.Excel.Workbook.load_2
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.Workbook;'
+      return:
+        type:
+          - excel.Excel.Workbook
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: 'Dabei ist propertyNamesAndPaths. Select eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und propertyNamesAndPaths. Expand ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: excel.Excel.Workbook.names
+    summary: |-
+      Stellt eine Auflistung der benannten Elemente des Arbeitsmappenbereichs dar (benannte Bereiche und Konstanten). Schreibgeschützt.
+
+      \[[API-Gruppe: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: names
+    fullName: names
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly names: Excel.NamedItemCollection;'
+      return:
+        type:
+          - excel.Excel.NamedItemCollection
+  - uid: excel.Excel.Workbook.onSelectionChanged
+    summary: |-
+      Tritt ein, wenn die Auswahl im Dokument geändert wird.
+
+      \[[API-Gruppe: ExcelApi 1,2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: onSelectionChanged
+    fullName: onSelectionChanged
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onSelectionChanged: OfficeExtension.EventHandlers<Excel.SelectionChangedEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Excel.SelectionChangedEventArgs>
+  - uid: excel.Excel.Workbook.pivotTables
+    summary: |-
+      Stellt eine Auflistung der mit der Arbeitsmappe verknüpften PivotTables dar. Schreibgeschützt.
+
+      \[[API-Gruppe: ExcelApi 1,3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: pivotTables
+    fullName: pivotTables
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly pivotTables: Excel.PivotTableCollection;'
+      return:
+        type:
+          - excel.Excel.PivotTableCollection
+  - uid: excel.Excel.Workbook.set
+    summary: Legt mehrere Eigenschaften eines Objekts gleichzeitig fest. Sie können entweder ein einfaches Objekt mit den entsprechenden Eigenschaften oder ein anderes API-Objekt desselben Typs übergeben.
+    remarks: |-
+      Diese Methode hat die folgende zusätzliche Signatur:
+
+      `set(properties: Excel.Workbook): void`
+    name: 'set(properties, options)'
+    fullName: 'set(properties, options)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Interfaces.WorkbookUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: 'Ein JavaScript-Objekt mit Eigenschaften, die isomorphically für die Eigenschaften des Objekts strukturiert sind, für das die Methode aufgerufen wird.'
+          type:
+            - Interfaces.WorkbookUpdateData
+        - id: options
+          description: 'Bietet eine Option zum Unterdrücken von Fehlern, wenn das Properties-Objekt versucht, schreibgeschützte Eigenschaften festzulegen.'
+          type:
+            - OfficeExtension.UpdateOptions
+  - uid: excel.Excel.Workbook.set_1
+    summary: Legt mehrere Eigenschaften für das Objekt gleichzeitig basierend auf einem vorhandenen geladenen Objekt fest.
+    name: set(properties)
+    fullName: set(properties)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Excel.Workbook): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: ''
+          type:
+            - excel.Excel.Workbook
+  - uid: excel.Excel.Workbook.tables
+    summary: |-
+      Stellt eine Auflistung der mit der Arbeitsmappe verknüpften Tabellen dar. Schreibgeschützt.
+
+      \[[API-Gruppe: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: tables
+    fullName: tables
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly tables: Excel.TableCollection;'
+      return:
+        type:
+          - excel.Excel.TableCollection
+  - uid: excel.Excel.Workbook.toJSON
+    summary: 'Überschreibt die `toJSON()` JavaScript-Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird.`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche Excel. Workbook-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt (typisiert als`Excel.Interfaces.WorkbookData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Excel.Interfaces.WorkbookData;'
+      return:
+        type:
+          - excel.Excel.Interfaces.WorkbookData
+        description: ''
+  - uid: excel.Excel.Workbook.worksheets
+    summary: |-
+      Stellt eine Auflistung der mit der Arbeitsmappe verknüpften Arbeitsblätter dar. Schreibgeschützt.
+
+      \[[API-Gruppe: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: worksheets
+    fullName: worksheets
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly worksheets: Excel.WorksheetCollection;'
+      return:
+        type:
+          - excel.Excel.WorksheetCollection
