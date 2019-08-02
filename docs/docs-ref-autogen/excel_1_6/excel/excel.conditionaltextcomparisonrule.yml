@@ -1,0 +1,63 @@
+### YamlMime:UniversalReference
+items:
+  - uid: excel.Excel.ConditionalTextComparisonRule
+    summary: |-
+      <span data-ttu-id="641d3-101">Stellt eine bedingte Format Regel für Zellenwerte dar.</span><span class="sxs-lookup"><span data-stu-id="641d3-101">Represents a Cell Value Conditional Format Rule</span></span>
+
+      <span data-ttu-id="641d3-102">\[[API-Gruppe: ExcelApi 1,6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="641d3-102">\[ [API set: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: Excel.ConditionalTextComparisonRule
+    fullName: Excel.ConditionalTextComparisonRule
+    langs:
+      - typeScript
+    type: interface
+    package: excel
+    children:
+      - excel.Excel.ConditionalTextComparisonRule.operator
+      - excel.Excel.ConditionalTextComparisonRule.text
+  - uid: excel.Excel.ConditionalTextComparisonRule.operator
+    summary: |-
+      <span data-ttu-id="641d3-103">Der Operator des bedingten Textformats.</span><span class="sxs-lookup"><span data-stu-id="641d3-103">The operator of the text conditional format.</span></span>
+
+      <span data-ttu-id="641d3-104">\[[API-Gruppe: ExcelApi 1,6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="641d3-104">\[ [API set: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: operator
+    fullName: operator
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'operator: Excel.ConditionalTextOperator | "Invalid" | "Contains" | "NotContains" | "BeginsWith" | "EndsWith";'
+      return:
+        type:
+          - Excel.ConditionalTextOperator | "Invalid" | "Contains" | "NotContains" | "BeginsWith" | "EndsWith"
+  - uid: excel.Excel.ConditionalTextComparisonRule.text
+    summary: |-
+      <span data-ttu-id="641d3-105">Der Textwert des bedingten Formats.</span><span class="sxs-lookup"><span data-stu-id="641d3-105">The Text value of conditional format.</span></span>
+
+      <span data-ttu-id="641d3-106">\[[API-Gruppe: ExcelApi 1,6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="641d3-106">\[ [API set: ExcelApi 1.6](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: text
+    fullName: text
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'text: string;'
+      return:
+        type:
+          - string
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="641d3-107">Beispiele</span><span class="sxs-lookup"><span data-stu-id="641d3-107">Examples</span></span>
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getItem("Sample");
+              const range = sheet.getRange("B16:D18");
+              const conditionalFormat = range.conditionalFormats
+                  .add(Excel.ConditionalFormatType.containsText);
+              conditionalFormat.textComparison.format.font.color = "red";
+              conditionalFormat.textComparison.rule = { operator: Excel.ConditionalTextOperator.contains, text: "Delayed" };
+
+              await context.sync();
+          });
+          ```
