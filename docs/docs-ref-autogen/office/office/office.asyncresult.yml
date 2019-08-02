@@ -1,0 +1,205 @@
+### YamlMime:UniversalReference
+items:
+  - uid: office.Office.AsyncResult
+    summary: |-
+      <span data-ttu-id="79362-101">Ein Objekt, das das Ergebnis einer asynchronen Anforderung kapselt, einschließlich Status- und Fehlerinformationen, falls bei der Anforderung ein Fehler aufgetreten ist.</span><span class="sxs-lookup"><span data-stu-id="79362-101">An object which encapsulates the result of an asynchronous request, including status and error information if the request failed.</span></span>
+
+      <span data-ttu-id="79362-102">Wenn die Funktion, die Sie an `callback` den Parameter einer "Async"-Methode übergeben, ausgeführt wird, empfängt Sie ein AsyncResult-Objekt, `callback` auf das Sie über den einzigen Parameter der Funktion zugreifen können.</span><span class="sxs-lookup"><span data-stu-id="79362-102">When the function you pass to the `callback` parameter of an "Async" method executes, it receives an AsyncResult object that you can access from the `callback` function's only parameter.</span></span>
+    name: Office.AsyncResult
+    fullName: Office.AsyncResult
+    langs:
+      - typeScript
+    type: interface
+    syntax:
+      typeParameters:
+        - id: T
+    package: office
+    remarks: |-
+
+
+      #### <a name="examples"></a><span data-ttu-id="79362-103">Beispiele</span><span class="sxs-lookup"><span data-stu-id="79362-103">Examples</span></span>
+
+      ```javascript
+      // The following is an example applicable to content and task pane add-ins.
+      // The example shows a call to the getSelectedDataAsync method of the Document object.
+      Office.context.document.getSelectedDataAsync("text", {
+              valueFormat: "unformatted",
+              filterType: "all"
+          },
+          function (result) {
+              if (result.status === "success") {
+                  var dataValue = result.value; // Get selected data.
+                  console.log('Selected data is ' + dataValue);
+              } else {
+                  var err = result.error;
+                  console.log(err.name + ": " + err.message);
+              }
+          });
+      // The anonymous function passed as the callback argument ( function (result){...}) has a single 
+      // parameter named result that provides access to an AsyncResult object when the function executes.
+      // When the call to the getSelectedDataAsync method completes, the callback function executes, 
+      // and the following line of code accesses the value property of the AsyncResult object to 
+      // return the data selected in the document:
+      var dataValue = result.value;
+      // Note that other lines of code in the function use the result parameter of the callback function 
+      // to access the status and error properties of the AsyncResult object.
+      ```
+    children:
+      - office.Office.AsyncResult.asyncContext
+      - office.Office.AsyncResult.diagnostics
+      - office.Office.AsyncResult.error
+      - office.Office.AsyncResult.status
+      - office.Office.AsyncResult.value
+  - uid: office.Office.AsyncResult.asyncContext
+    summary: '<span data-ttu-id="79362-104">Ruft das an den optionalen `asyncContext` Parameter der aufgerufenen Methode übergebene benutzerdefinierte Element in demselben Zustand ab, in dem es übergeben wurde.</span><span class="sxs-lookup"><span data-stu-id="79362-104">Gets the user-defined item passed to the optional `asyncContext` parameter of the invoked method in the same state as it was passed in.</span></span> <span data-ttu-id="79362-105">Dadurch wird das benutzerdefinierte Element zurückgegeben (das einen beliebigen JavaScript-Typ aufweisen kann: String, Number, Boolean, Object, Array, NULL oder undefined), der `asyncContext` an den optionalen Parameter der aufgerufenen Methode übergeben wird.</span><span class="sxs-lookup"><span data-stu-id="79362-105">This returns the user-defined item (which can be of any JavaScript type: String, Number, Boolean, Object, Array, Null, or Undefined) passed to the optional `asyncContext` parameter of the invoked method.</span></span> <span data-ttu-id="79362-106">Gibt Undefined zurück, wenn kein Wert an den asyncContext-Parameter übergeben wurde.</span><span class="sxs-lookup"><span data-stu-id="79362-106">Returns Undefined, if you didn''t pass anything to the asyncContext parameter.</span></span>'
+    name: asyncContext
+    fullName: asyncContext
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'asyncContext: any;'
+      return:
+        type:
+          - any
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="79362-107">Beispiele</span><span class="sxs-lookup"><span data-stu-id="79362-107">Examples</span></span>
+
+          ```javascript
+          function getDataWithContext() {
+              var format = "Your data: ";
+              Office.context.document.getSelectedDataAsync(
+                  Office.CoercionType.Text, 
+                  { asyncContext: format }, 
+                  showDataWithContext);
+          }
+
+          function showDataWithContext(asyncResult) {
+              write(asyncResult.asyncContext + asyncResult.value);
+          }
+          // Function that writes to a div with id='message' on the page.
+          function write(message){
+              document.getElementById('message').innerText += message; 
+          }
+          ```
+  - uid: office.Office.AsyncResult.diagnostics
+    summary: '<span data-ttu-id="79362-108">Ruft ein Objekt ab, das möglicherweise zusätzliche Informationen bereitstellt, wenn ein Fehler aufgetreten ist.</span><span class="sxs-lookup"><span data-stu-id="79362-108">Gets an object that may provide additional information if an error occurred.</span></span>'
+    remarks: |-
+      <span data-ttu-id="79362-109">*Unterstützte APIs*</span><span class="sxs-lookup"><span data-stu-id="79362-109">*Supported APIs*</span></span>
+
+      `Office.context.mailbox.item.getCallbackTokenAsync`<!-- --><span data-ttu-id="79362-110">, `Office.context.mailbox.item.getUserIdentityTokenAsync`</span><span class="sxs-lookup"><span data-stu-id="79362-110"></span></span>
+
+      <span data-ttu-id="79362-111">*Unterstützte Fehler*</span><span class="sxs-lookup"><span data-stu-id="79362-111">*Supported errors*</span></span> <table> <tr><th>`AsyncResult.error.name` </th><th>`AsyncResult.error.message` </th><th><span data-ttu-id="79362-112">Beschreibung des zurückgegebenen Diagnose Objekts</span><span class="sxs-lookup"><span data-stu-id="79362-112">Description of diagnostics object returned</span></span> </th></tr> <tr><td><span data-ttu-id="79362-113"><strong>HTTPRequestFailure</strong></span><span class="sxs-lookup"><span data-stu-id="79362-113"><strong>HTTPRequestFailure</strong></span></span> </td><td><span data-ttu-id="79362-114">Fehler bei der Anforderung.</span><span class="sxs-lookup"><span data-stu-id="79362-114">The request has failed.</span></span> <span data-ttu-id="79362-115">Sehen Sie sich das Diagnose Objekt für den HTTP-Fehlercode an.</span><span class="sxs-lookup"><span data-stu-id="79362-115">Please look at the diagnostics object for the HTTP error code.</span></span> </td><td><span data-ttu-id="79362-116">Der HTTP-Fehlercode in einem JSON-Objekt, beispielsweise`{"HTTPCode":"401"}`</span><span class="sxs-lookup"><span data-stu-id="79362-116">The HTTP error code in a JSON object e.g., `{"HTTPCode":"401"}`</span></span> </td></tr> <tr><td><span data-ttu-id="79362-117"><strong>InternalServerError</strong></span><span class="sxs-lookup"><span data-stu-id="79362-117"><strong>InternalServerError</strong></span></span></td><td><span data-ttu-id="79362-118">Der Exchange-Server hat einen Fehler zurückgegeben.</span><span class="sxs-lookup"><span data-stu-id="79362-118">The Exchange server returned an error.</span></span> <span data-ttu-id="79362-119">Weitere Informationen finden Sie im Diagnostics-Objekt.</span><span class="sxs-lookup"><span data-stu-id="79362-119">Please look at the diagnostics object for more information.</span></span></td><td><span data-ttu-id="79362-120">Die Fehlermeldung des Exchange-Servers in einem JSON-Objekt, beispielsweise`{"ErrorText": "The mailbox database is temporarily unavailable"}`</span><span class="sxs-lookup"><span data-stu-id="79362-120">The error message from the Exchange server in a JSON object e.g., `{"ErrorText": "The mailbox database is temporarily unavailable"}`</span></span></td></tr> </table>
+    name: diagnostics
+    fullName: diagnostics
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'diagnostics: any;'
+      return:
+        type:
+          - any
+  - uid: office.Office.AsyncResult.error
+    summary: '<span data-ttu-id="79362-121">Ruft ein [Office. Error](xref:office.Office.Error) -Objekt ab, das eine Beschreibung des Fehlers bereitstellt, wenn ein Fehler aufgetreten ist.</span><span class="sxs-lookup"><span data-stu-id="79362-121">Gets an [Office.Error](xref:office.Office.Error) object that provides a description of the error, if any error occurred.</span></span>'
+    name: error
+    fullName: error
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'error: Office.Error;'
+      return:
+        type:
+          - office.Office.Error
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="79362-122">Beispiele</span><span class="sxs-lookup"><span data-stu-id="79362-122">Examples</span></span>
+
+          ```javascript
+          function getData() {
+              Office.context.document.getSelectedDataAsync(Office.CoercionType.Table, function(asyncResult) {
+                  if (asyncResult.status == Office.AsyncResultStatus.Failed) {
+                      write(asyncResult.error.message);
+                  }
+                  else {
+                      write(asyncResult.value);
+                  }
+              });
+          }
+          // Function that writes to a div with id='message' on the page.
+          function write(message){
+              document.getElementById('message').innerText += message; 
+          }
+          ```
+  - uid: office.Office.AsyncResult.status
+    summary: '<span data-ttu-id="79362-123">Ruft die [Office. AsyncResultStatus](xref:office.Office.AsyncResultStatus) des asynchronen Vorgangs ab.</span><span class="sxs-lookup"><span data-stu-id="79362-123">Gets the [Office.AsyncResultStatus](xref:office.Office.AsyncResultStatus) of the asynchronous operation.</span></span>'
+    name: status
+    fullName: status
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'status: AsyncResultStatus;'
+      return:
+        type:
+          - office.Office.AsyncResultStatus
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="79362-124">Beispiele</span><span class="sxs-lookup"><span data-stu-id="79362-124">Examples</span></span>
+
+          ```javascript
+          function getData() {
+              Office.context.document.getSelectedDataAsync(Office.CoercionType.Table, function(asyncResult) {
+                  if (asyncResult.status == Office.AsyncResultStatus.Failed) {
+                      write(asyncResult.error.message);
+                  }
+                  else {
+                      write(asyncResult.value);
+                  }
+              });
+          }
+          // Function that writes to a div with id='message' on the page.
+          function write(message){
+              document.getElementById('message').innerText += message; 
+          }
+          ```
+  - uid: office.Office.AsyncResult.value
+    summary: '<span data-ttu-id="79362-125">Ruft die Ladung oder den Inhalt dieses asynchronen Vorgangs ab, falls vorhanden.</span><span class="sxs-lookup"><span data-stu-id="79362-125">Gets the payload or content of this asynchronous operation, if any.</span></span>'
+    remarks: |-
+      <span data-ttu-id="79362-126">Sie greifen auf das AsyncResult-Objekt in der Funktion zu, die als Argument an den callback-Parameter einer "Async"-Methode `getSelectedDataAsync` übergeben `setSelectedDataAsync` wurde, wie beispielsweise die und-Methoden des [Document](xref:office.Office.Document) -Objekts.</span><span class="sxs-lookup"><span data-stu-id="79362-126">You access the AsyncResult object in the function passed as the argument to the callback parameter of an "Async" method, such as the `getSelectedDataAsync` and `setSelectedDataAsync` methods of the [Document](xref:office.Office.Document) object.</span></span>
+
+      <span data-ttu-id="79362-127">**Hinweis**: Was die Value-Eigenschaft für eine bestimmte "Async"-Methode zurückgibt, variiert je nach Zweck und Kontext dieser Methode.</span><span class="sxs-lookup"><span data-stu-id="79362-127">**Note**: What the value property returns for a particular "Async" method varies depending on the purpose and context of that method.</span></span> <span data-ttu-id="79362-128">To determine what is returned by the value property for an "Async" method, refer to the "Callback value" section of the method's topic.</span><span class="sxs-lookup"><span data-stu-id="79362-128">To determine what is returned by the value property for an "Async" method, refer to the "Callback value" section of the method's topic.</span></span>
+
+      #### <a name="examples"></a><span data-ttu-id="79362-129">Beispiele</span><span class="sxs-lookup"><span data-stu-id="79362-129">Examples</span></span>
+
+      ```javascript
+      function getData() {
+          Office.context.document.getSelectedDataAsync(Office.CoercionType.Table, function(asyncResult) {
+              if (asyncResult.status == Office.AsyncResultStatus.Failed) {
+                  write(asyncResult.error.message);
+              }
+              else {
+                  write(asyncResult.value);
+              }
+          });
+      }
+      // Function that writes to a div with id='message' on the page.
+      function write(message){
+          document.getElementById('message').innerText += message; 
+      }
+      ```
+    name: value
+    fullName: value
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'value: T;'
+      return:
+        type:
+          - T
