@@ -1,0 +1,425 @@
+### YamlMime:UniversalReference
+items:
+  - uid: visio.Visio.Document
+    summary: |-
+      Stellt die Document-Klasse dar.
+
+      \[[API-Menge: 1,1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: Visio.Document
+    fullName: Visio.Document
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: visio
+    children:
+      - visio.Visio.Document.application
+      - visio.Visio.Document.context
+      - visio.Visio.Document.getActivePage
+      - visio.Visio.Document.load
+      - visio.Visio.Document.load_1
+      - visio.Visio.Document.load_2
+      - visio.Visio.Document.onDataRefreshComplete
+      - visio.Visio.Document.onDocumentLoadComplete
+      - visio.Visio.Document.onPageLoadComplete
+      - visio.Visio.Document.onSelectionChanged
+      - visio.Visio.Document.onShapeMouseEnter
+      - visio.Visio.Document.onShapeMouseLeave
+      - visio.Visio.Document.pages
+      - visio.Visio.Document.set
+      - visio.Visio.Document.set_1
+      - visio.Visio.Document.setActivePage
+      - visio.Visio.Document.startDataRefresh
+      - visio.Visio.Document.toJSON
+      - visio.Visio.Document.view
+  - uid: visio.Visio.Document.application
+    summary: |-
+      Stellt die Instanz einer Visio-Anwendung dar, die dieses Dokument enthält. Schreibgeschützt.
+
+      \[[API-Menge: 1,1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: application
+    fullName: application
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly application: Visio.Application;'
+      return:
+        type:
+          - visio.Visio.Application
+  - uid: visio.Visio.Document.context
+    summary: 'Der Anforderungskontext, der mit dem Objekt verknüpft ist. Dadurch wird das Add-in-Verfahren mit dem Prozess der Office-Hostanwendung verbunden.'
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - visio.Visio.RequestContext
+  - uid: visio.Visio.Document.getActivePage
+    summary: |-
+      Gibt die aktive Seite des Dokuments zurück.
+
+      \[[API-Menge: 1,1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: getActivePage()
+    fullName: getActivePage()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getActivePage(): Visio.Page;'
+      return:
+        type:
+          - visio.Visio.Page
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          Visio.run(session, function (ctx) {
+              var document = ctx.document;
+              var activePage = document.getActivePage();
+              activePage.load("name");
+              return ctx.sync().then(function () {
+                  console.log("pageName: " +activePage.name);
+              });   
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: visio.Visio.Document.load
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "context.sync()" aufrufen.
+    remarks: |-
+      Zusätzlich zu dieser Signatur verfügt diese Methode über die folgenden Signaturen:
+
+      `load(option?: string | string[]): Visio.Document`-Wobei Option eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen ist, die die zu ladenden Eigenschaften angeben.
+
+      `load(option?: { select?: string; expand?: string; }): Visio.Document`-Bei Option. Select handelt es sich um eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und Options. Expand ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.
+
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Visio.Document`Nur verfügbar für Sammlungstypen. Sie ähnelt der vorherigen Signatur. Option. Top gibt die maximale Anzahl von Sammlungselementen an, die in das Ergebnis einbezogen werden können. Option. Skip gibt die Anzahl der Elemente an, die übersprungen werden sollen und nicht im Ergebnis enthalten sind. Wenn Option. Top angegeben ist, wird das Resultset gestartet, nachdem die angegebene Anzahl von Elementen übersprungen wurde.
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Visio.Interfaces.DocumentLoadOptions): Visio.Document;'
+      return:
+        type:
+          - visio.Visio.Document
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - visio.Visio.Interfaces.DocumentLoadOptions
+  - uid: visio.Visio.Document.load_1
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Visio.Document;'
+      return:
+        type:
+          - visio.Visio.Document
+        description: ''
+      parameters:
+        - id: propertyNames
+          description: 'Eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.'
+          type:
+            - 'string | string[]'
+  - uid: visio.Visio.Document.load_2
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Visio.Document;'
+      return:
+        type:
+          - visio.Visio.Document
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: 'Dabei ist propertyNamesAndPaths. Select eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und propertyNamesAndPaths. Expand ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: visio.Visio.Document.onDataRefreshComplete
+    summary: |-
+      Tritt auf, wenn die Daten im Diagramm aktualisiert werden.
+
+      \[[API-Menge: 1,1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: onDataRefreshComplete
+    fullName: onDataRefreshComplete
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onDataRefreshComplete: OfficeExtension.EventHandlers<Visio.DataRefreshCompleteEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Visio.DataRefreshCompleteEventArgs>
+  - uid: visio.Visio.Document.onDocumentLoadComplete
+    summary: |-
+      Tritt auf, wenn das Dokument geladen, aktualisiert oder geändert wird.
+
+      \[[API-Menge: 1,1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: onDocumentLoadComplete
+    fullName: onDocumentLoadComplete
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onDocumentLoadComplete: OfficeExtension.EventHandlers<Visio.DocumentLoadCompleteEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Visio.DocumentLoadCompleteEventArgs>
+  - uid: visio.Visio.Document.onPageLoadComplete
+    summary: |-
+      Tritt auf, wenn die Seite fertig geladen wird.
+
+      \[[API-Menge: 1,1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: onPageLoadComplete
+    fullName: onPageLoadComplete
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onPageLoadComplete: OfficeExtension.EventHandlers<Visio.PageLoadCompleteEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Visio.PageLoadCompleteEventArgs>
+  - uid: visio.Visio.Document.onSelectionChanged
+    summary: |-
+      Tritt auf, wenn sich die aktuelle Auswahl von Shapes ändert.
+
+      \[[API-Menge: 1,1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: onSelectionChanged
+    fullName: onSelectionChanged
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onSelectionChanged: OfficeExtension.EventHandlers<Visio.SelectionChangedEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Visio.SelectionChangedEventArgs>
+  - uid: visio.Visio.Document.onShapeMouseEnter
+    summary: |-
+      Tritt auf, wenn der Benutzer den Mauszeiger in das umschließende Feld eines Shapes verschiebt.
+
+      \[[API-Menge: 1,1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: onShapeMouseEnter
+    fullName: onShapeMouseEnter
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onShapeMouseEnter: OfficeExtension.EventHandlers<Visio.ShapeMouseEnterEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Visio.ShapeMouseEnterEventArgs>
+  - uid: visio.Visio.Document.onShapeMouseLeave
+    summary: |-
+      Tritt auf, wenn der Benutzer die Maus aus dem umgebenden Feld eines Shapes verschiebt.
+
+      \[[API-Menge: 1,1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: onShapeMouseLeave
+    fullName: onShapeMouseLeave
+    langs:
+      - typeScript
+    type: event
+    syntax:
+      content: 'readonly onShapeMouseLeave: OfficeExtension.EventHandlers<Visio.ShapeMouseLeaveEventArgs>;'
+      return:
+        type:
+          - OfficeExtension.EventHandlers<Visio.ShapeMouseLeaveEventArgs>
+  - uid: visio.Visio.Document.pages
+    summary: |-
+      Stellt eine Auflistung der mit dem Dokument verknüpften Seiten dar. Schreibgeschützt.
+
+      \[[API-Menge: 1,1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: pages
+    fullName: pages
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly pages: Visio.PageCollection;'
+      return:
+        type:
+          - visio.Visio.PageCollection
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          Visio.run(session, function (ctx) {
+              var pages = ctx.document.pages;
+              var pageCount = pages.getCount();
+              return ctx.sync().then(function () {
+                  console.log("Pages Count: " +pageCount.value);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: visio.Visio.Document.set
+    summary: Legt mehrere Eigenschaften eines Objekts gleichzeitig fest. Sie können entweder ein einfaches Objekt mit den entsprechenden Eigenschaften oder ein anderes API-Objekt desselben Typs übergeben.
+    remarks: |-
+      Diese Methode hat die folgende zusätzliche Signatur:
+
+      `set(properties: Visio.Document): void`
+    name: 'set(properties, options)'
+    fullName: 'set(properties, options)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Interfaces.DocumentUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: 'Ein JavaScript-Objekt mit Eigenschaften, die isomorphically für die Eigenschaften des Objekts strukturiert sind, für das die Methode aufgerufen wird.'
+          type:
+            - Interfaces.DocumentUpdateData
+        - id: options
+          description: 'Bietet eine Option zum Unterdrücken von Fehlern, wenn das Properties-Objekt versucht, schreibgeschützte Eigenschaften festzulegen.'
+          type:
+            - OfficeExtension.UpdateOptions
+  - uid: visio.Visio.Document.set_1
+    summary: Legt mehrere Eigenschaften für das Objekt gleichzeitig basierend auf einem vorhandenen geladenen Objekt fest.
+    name: set(properties)
+    fullName: set(properties)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Visio.Document): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: ''
+          type:
+            - visio.Visio.Document
+  - uid: visio.Visio.Document.setActivePage
+    summary: |-
+      Leg die aktive Seite des Dokuments fest.
+
+      \[[API-Menge: 1,1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: setActivePage(PageName)
+    fullName: setActivePage(PageName)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setActivePage(PageName: string): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          Visio.run(session, function (ctx) {
+              var document = ctx.document;
+              var pageName = "Page-1";
+              document.setActivePage(pageName);
+              return ctx.sync();
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: PageName
+          description: Name der Seite
+          type:
+            - string
+  - uid: visio.Visio.Document.startDataRefresh
+    summary: |-
+      Löst die Aktualisierung der Daten im Diagramm für alle Seiten aus..
+
+      \[[API-Menge: 1,1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: startDataRefresh()
+    fullName: startDataRefresh()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'startDataRefresh(): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          Visio.run(session, function (ctx) {
+              var document = ctx.document;
+              document.startDataRefresh();
+              return ctx.sync();
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: visio.Visio.Document.toJSON
+    summary: 'Überschreibt die `toJSON()` JavaScript-Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird.`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche Visio. Document-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt (typisiert als`Visio.Interfaces.DocumentData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Visio.Interfaces.DocumentData;'
+      return:
+        type:
+          - visio.Visio.Interfaces.DocumentData
+        description: ''
+  - uid: visio.Visio.Document.view
+    summary: |-
+      Gibt das DocumentView-Objekt zurück. Schreibgeschützt.
+
+      \[[API-Menge: 1,1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    name: view
+    fullName: view
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly view: Visio.DocumentView;'
+      return:
+        type:
+          - visio.Visio.DocumentView
