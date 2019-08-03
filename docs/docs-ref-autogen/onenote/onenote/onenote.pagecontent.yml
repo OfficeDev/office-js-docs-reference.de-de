@@ -1,0 +1,356 @@
+### YamlMime:UniversalReference
+items:
+  - uid: onenote.OneNote.PageContent
+    summary: |-
+      <span data-ttu-id="b49f8-p101">Stellt einen Bereich auf einer Seite dar, der Inhaltstypen auf oberster Ebene enthält, z. B. Outline oder Image. Ein PageContent-Objekt kann einer XY-Position zugewiesen werden.</span><span class="sxs-lookup"><span data-stu-id="b49f8-p101">Represents a region on a page that contains top-level content types such as Outline or Image. A PageContent object can be assigned an XY position.</span></span>
+
+      <span data-ttu-id="b49f8-103">\[[API-Gruppe: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="b49f8-103">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: OneNote.PageContent
+    fullName: OneNote.PageContent
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: onenote
+    children:
+      - onenote.OneNote.PageContent.context
+      - onenote.OneNote.PageContent.delete
+      - onenote.OneNote.PageContent.id
+      - onenote.OneNote.PageContent.image
+      - onenote.OneNote.PageContent.ink
+      - onenote.OneNote.PageContent.left
+      - onenote.OneNote.PageContent.load
+      - onenote.OneNote.PageContent.load_1
+      - onenote.OneNote.PageContent.load_2
+      - onenote.OneNote.PageContent.outline
+      - onenote.OneNote.PageContent.parentPage
+      - onenote.OneNote.PageContent.set
+      - onenote.OneNote.PageContent.set_1
+      - onenote.OneNote.PageContent.toJSON
+      - onenote.OneNote.PageContent.top
+      - onenote.OneNote.PageContent.track
+      - onenote.OneNote.PageContent.type
+      - onenote.OneNote.PageContent.untrack
+  - uid: onenote.OneNote.PageContent.context
+    summary: '<span data-ttu-id="b49f8-104">Der Anforderungskontext, der mit dem Objekt verknüpft ist.</span><span class="sxs-lookup"><span data-stu-id="b49f8-104">The request context associated with the object.</span></span> <span data-ttu-id="b49f8-105">Dadurch wird das Add-in-Verfahren mit dem Prozess der Office-Hostanwendung verbunden.</span><span class="sxs-lookup"><span data-stu-id="b49f8-105">This connects the add-in''s process to the Office host application''s process.</span></span>'
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - onenote.OneNote.RequestContext
+  - uid: onenote.OneNote.PageContent.delete
+    summary: |-
+      <span data-ttu-id="b49f8-106">Löscht das PageContent-Objekt.</span><span class="sxs-lookup"><span data-stu-id="b49f8-106">Deletes the PageContent object.</span></span>
+
+      <span data-ttu-id="b49f8-107">\[[API-Gruppe: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="b49f8-107">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: delete()
+    fullName: delete()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'delete(): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="b49f8-108">Beispiele</span><span class="sxs-lookup"><span data-stu-id="b49f8-108">Examples</span></span>
+
+          ```javascript
+          OneNote.run(function (context) {
+
+              var page = context.application.getActivePage();
+              var pageContents = page.contents;
+
+              var firstPageContent = pageContents.getItemAt(0);
+              firstPageContent.load('type');
+
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function () {
+                      if(firstPageContent.isNull === false) {
+                          firstPageContent.delete();
+                          return context.sync();
+                      }
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: onenote.OneNote.PageContent.id
+    summary: |-
+      <span data-ttu-id="b49f8-109">Ruft die ID des PageContent-Objekts ab.</span><span class="sxs-lookup"><span data-stu-id="b49f8-109">Gets the ID of the PageContent object.</span></span> <span data-ttu-id="b49f8-110">Schreibgeschützt.</span><span class="sxs-lookup"><span data-stu-id="b49f8-110">Read-only.</span></span>
+
+      <span data-ttu-id="b49f8-111">\[[API-Gruppe: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="b49f8-111">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: id
+    fullName: id
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly id: string;'
+      return:
+        type:
+          - string
+  - uid: onenote.OneNote.PageContent.image
+    summary: |-
+      <span data-ttu-id="b49f8-112">Ruft das Bild des PageContent-Objekts ab.</span><span class="sxs-lookup"><span data-stu-id="b49f8-112">Gets the Image in the PageContent object.</span></span> <span data-ttu-id="b49f8-113">Löst eine Ausnahme aus, wenn PageContentType nicht vom Typ „Image“ ist.</span><span class="sxs-lookup"><span data-stu-id="b49f8-113">Throws an exception if PageContentType is not Image.</span></span>
+
+      <span data-ttu-id="b49f8-114">\[[API-Gruppe: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="b49f8-114">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: image
+    fullName: image
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly image: OneNote.Image;'
+      return:
+        type:
+          - onenote.OneNote.Image
+  - uid: onenote.OneNote.PageContent.ink
+    summary: |-
+      <span data-ttu-id="b49f8-115">Ruft die Freihand im PageContent-Objekt ab.</span><span class="sxs-lookup"><span data-stu-id="b49f8-115">Gets the ink in the PageContent object.</span></span> <span data-ttu-id="b49f8-116">Löst eine Ausnahme aus, wenn PageContentType nicht vom Typ „Ink“ ist.</span><span class="sxs-lookup"><span data-stu-id="b49f8-116">Throws an exception if PageContentType is not Ink.</span></span>
+
+      <span data-ttu-id="b49f8-117">\[[API-Gruppe: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="b49f8-117">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: ink
+    fullName: ink
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly ink: OneNote.FloatingInk;'
+      return:
+        type:
+          - onenote.OneNote.FloatingInk
+  - uid: onenote.OneNote.PageContent.left
+    summary: |-
+      <span data-ttu-id="b49f8-118">Ruft die linke Position (X-Achse) des PageContent-Objekts ab oder legt sie fest.</span><span class="sxs-lookup"><span data-stu-id="b49f8-118">Gets or sets the left (X-axis) position of the PageContent object.</span></span>
+
+      <span data-ttu-id="b49f8-119">\[[API-Gruppe: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="b49f8-119">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: left
+    fullName: left
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'left: number;'
+      return:
+        type:
+          - number
+  - uid: onenote.OneNote.PageContent.load
+    summary: <span data-ttu-id="b49f8-120">Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein.</span><span class="sxs-lookup"><span data-stu-id="b49f8-120">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="b49f8-121">Vor dem Lesen der Eigenschaften müssen Sie "context.sync()" aufrufen.</span><span class="sxs-lookup"><span data-stu-id="b49f8-121">You must call "context.sync()" before reading the properties.</span></span>
+    remarks: |-
+      <span data-ttu-id="b49f8-122">Zusätzlich zu dieser Signatur verfügt diese Methode über die folgenden Signaturen:</span><span class="sxs-lookup"><span data-stu-id="b49f8-122">In addition to this signature, this method has the following signatures:</span></span>
+
+      <span data-ttu-id="b49f8-123">`load(option?: string | string[]): OneNote.PageContent`-Wobei Option eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen ist, die die zu ladenden Eigenschaften angeben.</span><span class="sxs-lookup"><span data-stu-id="b49f8-123">`load(option?: string | string[]): OneNote.PageContent` - Where option is a comma-delimited string or an array of strings that specify the properties to load.</span></span>
+
+      <span data-ttu-id="b49f8-124">`load(option?: { select?: string; expand?: string; }): OneNote.PageContent`-Bei Option. Select handelt es sich um eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und Options. Expand ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.</span><span class="sxs-lookup"><span data-stu-id="b49f8-124">`load(option?: { select?: string; expand?: string; }): OneNote.PageContent` - Where option.select is a comma-delimited string that specifies the properties to load, and options.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>
+
+      <span data-ttu-id="b49f8-125">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.PageContent`Nur verfügbar für Sammlungstypen.</span><span class="sxs-lookup"><span data-stu-id="b49f8-125">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.PageContent` - Only available on collection types.</span></span> <span data-ttu-id="b49f8-126">Sie ähnelt der vorherigen Signatur.</span><span class="sxs-lookup"><span data-stu-id="b49f8-126">It is similar to the preceding signature.</span></span> <span data-ttu-id="b49f8-127">Option. Top gibt die maximale Anzahl von Sammlungselementen an, die in das Ergebnis einbezogen werden können.</span><span class="sxs-lookup"><span data-stu-id="b49f8-127">Option.top specifies the maximum number of collection items that can be included in the result.</span></span> <span data-ttu-id="b49f8-128">Option. Skip gibt die Anzahl der Elemente an, die übersprungen werden sollen und nicht im Ergebnis enthalten sind.</span><span class="sxs-lookup"><span data-stu-id="b49f8-128">Option.skip specifies the number of items that are to be skipped and not included in the result.</span></span> <span data-ttu-id="b49f8-129">Wenn Option. Top angegeben ist, wird das Resultset gestartet, nachdem die angegebene Anzahl von Elementen übersprungen wurde.</span><span class="sxs-lookup"><span data-stu-id="b49f8-129">If option.top is specified, the result set will start after skipping the specified number of items.</span></span>
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: OneNote.Interfaces.PageContentLoadOptions): OneNote.PageContent;'
+      return:
+        type:
+          - onenote.OneNote.PageContent
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - onenote.OneNote.Interfaces.PageContentLoadOptions
+  - uid: onenote.OneNote.PageContent.load_1
+    summary: <span data-ttu-id="b49f8-130">Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein.</span><span class="sxs-lookup"><span data-stu-id="b49f8-130">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="b49f8-131">Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.</span><span class="sxs-lookup"><span data-stu-id="b49f8-131">You must call `context.sync()` before reading the properties.</span></span>
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): OneNote.PageContent;'
+      return:
+        type:
+          - onenote.OneNote.PageContent
+        description: ''
+      parameters:
+        - id: propertyNames
+          description: '<span data-ttu-id="b49f8-132">Eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.</span><span class="sxs-lookup"><span data-stu-id="b49f8-132">A comma-delimited string or an array of strings that specify the properties to load.</span></span>'
+          type:
+            - 'string | string[]'
+  - uid: onenote.OneNote.PageContent.load_2
+    summary: <span data-ttu-id="b49f8-133">Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein.</span><span class="sxs-lookup"><span data-stu-id="b49f8-133">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="b49f8-134">Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.</span><span class="sxs-lookup"><span data-stu-id="b49f8-134">You must call `context.sync()` before reading the properties.</span></span>
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): OneNote.PageContent;'
+      return:
+        type:
+          - onenote.OneNote.PageContent
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: '<span data-ttu-id="b49f8-135">Dabei ist propertyNamesAndPaths. Select eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und propertyNamesAndPaths. Expand ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.</span><span class="sxs-lookup"><span data-stu-id="b49f8-135">Where propertyNamesAndPaths.select is a comma-delimited string that specifies the properties to load, and propertyNamesAndPaths.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>'
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: onenote.OneNote.PageContent.outline
+    summary: |-
+      <span data-ttu-id="b49f8-136">Ruft die Gliederung des PageContent-Objekts ab.</span><span class="sxs-lookup"><span data-stu-id="b49f8-136">Gets the Outline in the PageContent object.</span></span> <span data-ttu-id="b49f8-137">Löst eine Ausnahme aus, wenn PageContentType nicht vom Typ „Outline“ ist.</span><span class="sxs-lookup"><span data-stu-id="b49f8-137">Throws an exception if PageContentType is not Outline.</span></span>
+
+      <span data-ttu-id="b49f8-138">\[[API-Gruppe: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="b49f8-138">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: outline
+    fullName: outline
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly outline: OneNote.Outline;'
+      return:
+        type:
+          - onenote.OneNote.Outline
+  - uid: onenote.OneNote.PageContent.parentPage
+    summary: |-
+      <span data-ttu-id="b49f8-139">Ruft die Seite ab, die das PageContent-Objekt enthält.</span><span class="sxs-lookup"><span data-stu-id="b49f8-139">Gets the page that contains the PageContent object.</span></span> <span data-ttu-id="b49f8-140">Schreibgeschützt.</span><span class="sxs-lookup"><span data-stu-id="b49f8-140">Read-only.</span></span>
+
+      <span data-ttu-id="b49f8-141">\[[API-Gruppe: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="b49f8-141">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: parentPage
+    fullName: parentPage
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly parentPage: OneNote.Page;'
+      return:
+        type:
+          - onenote.OneNote.Page
+  - uid: onenote.OneNote.PageContent.set
+    summary: '<span data-ttu-id="b49f8-142">Legt mehrere Eigenschaften eines Objekts gleichzeitig fest.</span><span class="sxs-lookup"><span data-stu-id="b49f8-142">Sets multiple properties of an object at the same time.</span></span> <span data-ttu-id="b49f8-143">Sie können entweder ein einfaches Objekt mit den entsprechenden Eigenschaften oder ein anderes API-Objekt desselben Typs übergeben.</span><span class="sxs-lookup"><span data-stu-id="b49f8-143">You can pass either a plain object with the appropriate properties, or another API object of the same type.</span></span>'
+    remarks: |-
+      <span data-ttu-id="b49f8-144">Diese Methode hat die folgende zusätzliche Signatur:</span><span class="sxs-lookup"><span data-stu-id="b49f8-144">This method has the following additional signature:</span></span>
+
+      `set(properties: OneNote.PageContent): void`
+    name: 'set(properties, options)'
+    fullName: 'set(properties, options)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Interfaces.PageContentUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: '<span data-ttu-id="b49f8-145">Ein JavaScript-Objekt mit Eigenschaften, die isomorphically für die Eigenschaften des Objekts strukturiert sind, für das die Methode aufgerufen wird.</span><span class="sxs-lookup"><span data-stu-id="b49f8-145">A JavaScript object with properties that are structured isomorphically to the properties of the object on which the method is called.</span></span>'
+          type:
+            - Interfaces.PageContentUpdateData
+        - id: options
+          description: '<span data-ttu-id="b49f8-146">Bietet eine Option zum Unterdrücken von Fehlern, wenn das Properties-Objekt versucht, schreibgeschützte Eigenschaften festzulegen.</span><span class="sxs-lookup"><span data-stu-id="b49f8-146">Provides an option to suppress errors if the properties object tries to set any read-only properties.</span></span>'
+          type:
+            - OfficeExtension.UpdateOptions
+  - uid: onenote.OneNote.PageContent.set_1
+    summary: '<span data-ttu-id="b49f8-147">Legt mehrere Eigenschaften für das Objekt gleichzeitig basierend auf einem vorhandenen geladenen Objekt fest.</span><span class="sxs-lookup"><span data-stu-id="b49f8-147">Sets multiple properties on the object at the same time, based on an existing loaded object.</span></span>'
+    name: set(properties)
+    fullName: set(properties)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: OneNote.PageContent): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: ''
+          type:
+            - onenote.OneNote.PageContent
+  - uid: onenote.OneNote.PageContent.toJSON
+    summary: '<span data-ttu-id="b49f8-148">Überschreibt die `toJSON()` JavaScript-Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird.`JSON.stringify()`</span><span class="sxs-lookup"><span data-stu-id="b49f8-148">Overrides the JavaScript `toJSON()` method in order to provide more useful output when an API object is passed to `JSON.stringify()`</span></span><!-- --><span data-ttu-id="b49f8-149">.</span><span class="sxs-lookup"><span data-stu-id="b49f8-149"></span></span> <span data-ttu-id="b49f8-150">(`JSON.stringify`</span><span class="sxs-lookup"><span data-stu-id="b49f8-150"></span></span><!-- --><span data-ttu-id="b49f8-151">wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche OneNote. Page Content-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt (typisiert als`OneNote.Interfaces.PageContentData`</span><span class="sxs-lookup"><span data-stu-id="b49f8-151">, in turn, calls the `toJSON` method of the object that is passed to it.) Whereas the original OneNote.PageContent object is an API object, the `toJSON` method returns a plain JavaScript object (typed as `OneNote.Interfaces.PageContentData`</span></span><!-- --><span data-ttu-id="b49f8-152">), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.</span><span class="sxs-lookup"><span data-stu-id="b49f8-152">) that contains shallow copies of any loaded child properties from the original object.</span></span>'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): OneNote.Interfaces.PageContentData;'
+      return:
+        type:
+          - onenote.OneNote.Interfaces.PageContentData
+        description: ''
+  - uid: onenote.OneNote.PageContent.top
+    summary: |-
+      <span data-ttu-id="b49f8-153">Ruft die obere Position (X-Achse) des PageContent-Objekts ab oder legt sie fest.</span><span class="sxs-lookup"><span data-stu-id="b49f8-153">Gets or sets the top (Y-axis) position of the PageContent object.</span></span>
+
+      <span data-ttu-id="b49f8-154">\[[API-Gruppe: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="b49f8-154">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: top
+    fullName: top
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'top: number;'
+      return:
+        type:
+          - number
+  - uid: onenote.OneNote.PageContent.track
+    summary: '<span data-ttu-id="b49f8-155">Nachverfolgung des Objekts zwecks automatischer Anpassung auf der Grundlage der umgebenden Änderungen im Dokument.</span><span class="sxs-lookup"><span data-stu-id="b49f8-155">Track the object for automatic adjustment based on surrounding changes in the document.</span></span> <span data-ttu-id="b49f8-156">Dieser Aufruf ist eine Kurzschreibweise für context.trackedObjects.add(thisObject).</span><span class="sxs-lookup"><span data-stu-id="b49f8-156">This call is a shorthand for context.trackedObjects.add(thisObject).</span></span> <span data-ttu-id="b49f8-157">Wenn Sie dieses Objekt übergreifend für ".sync"-Aufrufe und außerhalb der sequenziellen Ausführung eines ".run"-Stapels verwenden und beim Festlegen einer Eigenschaft oder Aufrufen einer Methode für das Objekt ein "InvalidObjectPath"-Fehler zurückgegeben wird, hätte das Objekt der nachverfolgten Objektsammlung hinzugefügt werden müssen, in der das Objekt ursprünglich erstellt wurde.</span><span class="sxs-lookup"><span data-stu-id="b49f8-157">If you are using this object across ".sync" calls and outside the sequential execution of a ".run" batch, and get an "InvalidObjectPath" error when setting a property or invoking a method on the object, you needed to have added the object to the tracked object collection when the object was first created.</span></span>'
+    name: track()
+    fullName: track()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'track(): OneNote.PageContent;'
+      return:
+        type:
+          - onenote.OneNote.PageContent
+        description: ''
+  - uid: onenote.OneNote.PageContent.type
+    summary: |-
+      <span data-ttu-id="b49f8-158">Ruft den Typ des PageContent-Objekts ab.</span><span class="sxs-lookup"><span data-stu-id="b49f8-158">Gets the type of the PageContent object.</span></span> <span data-ttu-id="b49f8-159">Schreibgeschützt.</span><span class="sxs-lookup"><span data-stu-id="b49f8-159">Read-only.</span></span>
+
+      <span data-ttu-id="b49f8-160">\[[API-Gruppe: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="b49f8-160">\[ [API set: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets) \]</span></span>
+    name: type
+    fullName: type
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly type: OneNote.PageContentType | "Outline" | "Image" | "Ink" | "Other";'
+      return:
+        type:
+          - OneNote.PageContentType | "Outline" | "Image" | "Ink" | "Other"
+  - uid: onenote.OneNote.PageContent.untrack
+    summary: '<span data-ttu-id="b49f8-161">Gibt den diesem Objekt zugewiesenen Arbeitsspeicher frei, wenn das Objekt zuvor nachverfolgt wurde.</span><span class="sxs-lookup"><span data-stu-id="b49f8-161">Release the memory associated with this object, if it has previously been tracked.</span></span> <span data-ttu-id="b49f8-162">Dieser Aufruf stellt eine Kurzschreibweise für context.trackedObjects.remove(thisObject) dar.</span><span class="sxs-lookup"><span data-stu-id="b49f8-162">This call is shorthand for context.trackedObjects.remove(thisObject).</span></span> <span data-ttu-id="b49f8-163">Viele nachverfolgte Objekte verlangsamen die Ausführung der Hostanwendung, also achten Sie darauf, alle hinzugefügten Objekte nach abgeschlossener Verwendung freizugeben.</span><span class="sxs-lookup"><span data-stu-id="b49f8-163">Having many tracked objects slows down the host application, so please remember to free any objects you add, once you''re done using them.</span></span> <span data-ttu-id="b49f8-164">Sie müssen "context.sync()" aufrufen, damit die Freigabe des Arbeitsspeichers wirksam wird.</span><span class="sxs-lookup"><span data-stu-id="b49f8-164">You will need to call "context.sync()" before the memory release takes effect.</span></span>'
+    name: untrack()
+    fullName: untrack()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'untrack(): OneNote.PageContent;'
+      return:
+        type:
+          - onenote.OneNote.PageContent
+        description: ''
