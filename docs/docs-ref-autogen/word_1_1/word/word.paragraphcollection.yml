@@ -1,0 +1,180 @@
+### YamlMime:UniversalReference
+items:
+  - uid: word.Word.ParagraphCollection
+    summary: |-
+      Enthält eine Auflistung von [Word. Paragraph](xref:word.Word.Paragraph) -Objekten.
+
+      \[[API-Gruppe: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: Word.ParagraphCollection
+    fullName: Word.ParagraphCollection
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: word
+    children:
+      - word.Word.ParagraphCollection.context
+      - word.Word.ParagraphCollection.items
+      - word.Word.ParagraphCollection.load
+      - word.Word.ParagraphCollection.load_1
+      - word.Word.ParagraphCollection.load_2
+      - word.Word.ParagraphCollection.toJSON
+      - word.Word.ParagraphCollection.track
+      - word.Word.ParagraphCollection.untrack
+  - uid: word.Word.ParagraphCollection.context
+    summary: 'Der Anforderungskontext, der mit dem Objekt verknüpft ist. Dadurch wird das Add-in-Verfahren mit dem Prozess der Office-Hostanwendung verbunden.'
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - word.Word.RequestContext
+  - uid: word.Word.ParagraphCollection.items
+    summary: Ruft die geladenen untergeordneten Elemente in dieser Sammlung ab.
+    name: items
+    fullName: items
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly items: Word.Paragraph[];'
+      return:
+        type:
+          - 'Word.Paragraph[]'
+  - uid: word.Word.ParagraphCollection.load
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "context.sync()" aufrufen.
+    remarks: |-
+      Zusätzlich zu dieser Signatur verfügt diese Methode über die folgenden Signaturen:
+
+      `load(option?: string | string[]): Word.ParagraphCollection`-Wobei Option eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen ist, die die zu ladenden Eigenschaften angeben.
+
+      `load(option?: { select?: string; expand?: string; }): Word.ParagraphCollection`-Bei Option. Select handelt es sich um eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und Options. Expand ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.
+
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Word.ParagraphCollection`Nur verfügbar für Sammlungstypen. Sie ähnelt der vorherigen Signatur. Option. Top gibt die maximale Anzahl von Sammlungselementen an, die in das Ergebnis einbezogen werden können. Option. Skip gibt die Anzahl der Elemente an, die übersprungen werden sollen und nicht im Ergebnis enthalten sind. Wenn Option. Top angegeben ist, wird das Resultset gestartet, nachdem die angegebene Anzahl von Elementen übersprungen wurde.
+
+      #### <a name="examples"></a>Beispiele
+
+      ```javascript
+      // This example shows how to get the paragraphs in the Word document
+      // along with their text and font size properties.
+      // 
+      // Run a batch operation against the Word object model.
+      Word.run(function (context) {
+
+          // Create a proxy object for the paragraphs collection.
+          var paragraphs = context.document.body.paragraphs;
+
+          // Queue a commmand to load the text and font properties.
+          // It is best practice to always specify the property set. Otherwise, all properties are
+          // returned in on the object.
+          context.load(paragraphs, 'text, font/size');
+
+          // Synchronize the document state by executing the queued commands,
+          // and return a promise to indicate task completion.
+          return context.sync().then(function () {
+
+          // Insert code that works with the paragraphs loaded by context.load().
+          })
+      })
+      .catch(function (error) {
+          console.log('Error: ' + JSON.stringify(error));
+          if (error instanceof OfficeExtension.Error) {
+              console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+          }
+      });
+      ```
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Word.Interfaces.ParagraphCollectionLoadOptions & Word.Interfaces.CollectionLoadOptions): Word.ParagraphCollection;'
+      return:
+        type:
+          - word.Word.ParagraphCollection
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - Word.Interfaces.ParagraphCollectionLoadOptions & Word.Interfaces.CollectionLoadOptions
+  - uid: word.Word.ParagraphCollection.load_1
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Word.ParagraphCollection;'
+      return:
+        type:
+          - word.Word.ParagraphCollection
+        description: ''
+      parameters:
+        - id: propertyNames
+          description: 'Eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.'
+          type:
+            - 'string | string[]'
+  - uid: word.Word.ParagraphCollection.load_2
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: OfficeExtension.LoadOption): Word.ParagraphCollection;'
+      return:
+        type:
+          - word.Word.ParagraphCollection
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - OfficeExtension.LoadOption
+  - uid: word.Word.ParagraphCollection.toJSON
+    summary: 'Überschreibt die `toJSON()` JavaScript-Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird.`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche `Word.ParagraphCollection` Objekt ein API-Objekt ist, `toJSON` gibt die Methode ein einfaches JavaScript-Objekt (typisiert als`Word.Interfaces.ParagraphCollectionData`<!-- -->), die ein "Items"-Array mit flachen Kopien aller geladenen Eigenschaften aus den Elementen der Auflistung enthält.'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Word.Interfaces.ParagraphCollectionData;'
+      return:
+        type:
+          - word.Word.Interfaces.ParagraphCollectionData
+        description: ''
+  - uid: word.Word.ParagraphCollection.track
+    summary: 'Nachverfolgung des Objekts zwecks automatischer Anpassung auf der Grundlage der umgebenden Änderungen im Dokument. Dieser Aufruf ist eine Kurzschreibweise für context.trackedObjects.add(thisObject). Wenn Sie dieses Objekt übergreifend für ".sync"-Aufrufe und außerhalb der sequenziellen Ausführung eines ".run"-Stapels verwenden und beim Festlegen einer Eigenschaft oder Aufrufen einer Methode für das Objekt ein "InvalidObjectPath"-Fehler zurückgegeben wird, hätte das Objekt der nachverfolgten Objektsammlung hinzugefügt werden müssen, in der das Objekt ursprünglich erstellt wurde.'
+    name: track()
+    fullName: track()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'track(): Word.ParagraphCollection;'
+      return:
+        type:
+          - word.Word.ParagraphCollection
+        description: ''
+  - uid: word.Word.ParagraphCollection.untrack
+    summary: 'Gibt den diesem Objekt zugewiesenen Arbeitsspeicher frei, wenn das Objekt zuvor nachverfolgt wurde. Dieser Aufruf stellt eine Kurzschreibweise für context.trackedObjects.remove(thisObject) dar. Viele nachverfolgte Objekte verlangsamen die Ausführung der Hostanwendung, also achten Sie darauf, alle hinzugefügten Objekte nach abgeschlossener Verwendung freizugeben. Sie müssen "context.sync()" aufrufen, damit die Freigabe des Arbeitsspeichers wirksam wird.'
+    name: untrack()
+    fullName: untrack()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'untrack(): Word.ParagraphCollection;'
+      return:
+        type:
+          - word.Word.ParagraphCollection
+        description: ''
