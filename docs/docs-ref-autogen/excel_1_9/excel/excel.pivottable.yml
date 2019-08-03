@@ -1,0 +1,458 @@
+### YamlMime:UniversalReference
+items:
+  - uid: excel.Excel.PivotTable
+    summary: |-
+      <span data-ttu-id="600ba-101">Stellt eine Excel-PivotTable dar.</span><span class="sxs-lookup"><span data-stu-id="600ba-101">Represents an Excel PivotTable.</span></span> <span data-ttu-id="600ba-102">Weitere Informationen zum PivotTable-Objektmodell finden Sie [unter Arbeiten mit PivotTables mithilfe der Excel-JavaScript-API](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-pivottables)</span><span class="sxs-lookup"><span data-stu-id="600ba-102">To learn more about the PivotTable object model, read [Work with PivotTables using the Excel JavaScript API](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-pivottables)</span></span><!-- --><span data-ttu-id="600ba-103">.</span><span class="sxs-lookup"><span data-stu-id="600ba-103"></span></span>
+
+      <span data-ttu-id="600ba-104">\[[API-Gruppe: ExcelApi 1,3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="600ba-104">\[ [API set: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: Excel.PivotTable
+    fullName: Excel.PivotTable
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: excel
+    children:
+      - excel.Excel.PivotTable.columnHierarchies
+      - excel.Excel.PivotTable.context
+      - excel.Excel.PivotTable.dataHierarchies
+      - excel.Excel.PivotTable.delete
+      - excel.Excel.PivotTable.enableDataValueEditing
+      - excel.Excel.PivotTable.filterHierarchies
+      - excel.Excel.PivotTable.hierarchies
+      - excel.Excel.PivotTable.id
+      - excel.Excel.PivotTable.layout
+      - excel.Excel.PivotTable.load
+      - excel.Excel.PivotTable.load_1
+      - excel.Excel.PivotTable.load_2
+      - excel.Excel.PivotTable.name
+      - excel.Excel.PivotTable.refresh
+      - excel.Excel.PivotTable.rowHierarchies
+      - excel.Excel.PivotTable.set
+      - excel.Excel.PivotTable.set_1
+      - excel.Excel.PivotTable.toJSON
+      - excel.Excel.PivotTable.useCustomSortLists
+      - excel.Excel.PivotTable.worksheet
+  - uid: excel.Excel.PivotTable.columnHierarchies
+    summary: |-
+      <span data-ttu-id="600ba-105">Die Pivot-Hierarchien der Spalten von PivotTable.</span><span class="sxs-lookup"><span data-stu-id="600ba-105">The Column Pivot Hierarchies of the PivotTable.</span></span>
+
+      <span data-ttu-id="600ba-106">\[[API-Gruppe: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="600ba-106">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: columnHierarchies
+    fullName: columnHierarchies
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly columnHierarchies: Excel.RowColumnPivotHierarchyCollection;'
+      return:
+        type:
+          - excel.Excel.RowColumnPivotHierarchyCollection
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="600ba-107">Beispiele</span><span class="sxs-lookup"><span data-stu-id="600ba-107">Examples</span></span>
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem("Farm Sales");       
+
+              // check if the PivotTable already has a column
+              const column = pivotTable.columnHierarchies.getItemOrNullObject("Farm");
+              column.load("id");
+              await context.sync();
+
+              if (column.isNullObject) {
+                  // ading the farm column to the column hierarchy automatically removes it from the row hierarchy
+                  pivotTable.columnHierarchies.add(pivotTable.hierarchies.getItem("Farm"));
+              } else {
+                  pivotTable.columnHierarchies.remove(column);
+              }
+
+              await context.sync();
+          });
+          ```
+  - uid: excel.Excel.PivotTable.context
+    summary: '<span data-ttu-id="600ba-108">Der Anforderungskontext, der mit dem Objekt verknüpft ist.</span><span class="sxs-lookup"><span data-stu-id="600ba-108">The request context associated with the object.</span></span> <span data-ttu-id="600ba-109">Dadurch wird das Add-in-Verfahren mit dem Prozess der Office-Hostanwendung verbunden.</span><span class="sxs-lookup"><span data-stu-id="600ba-109">This connects the add-in''s process to the Office host application''s process.</span></span>'
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - excel.Excel.RequestContext
+  - uid: excel.Excel.PivotTable.dataHierarchies
+    summary: |-
+      <span data-ttu-id="600ba-110">Die Pivot-Hierarchien der Daten von PivotTable.</span><span class="sxs-lookup"><span data-stu-id="600ba-110">The Data Pivot Hierarchies of the PivotTable.</span></span>
+
+      <span data-ttu-id="600ba-111">\[[API-Gruppe: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="600ba-111">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: dataHierarchies
+    fullName: dataHierarchies
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly dataHierarchies: Excel.DataPivotHierarchyCollection;'
+      return:
+        type:
+          - excel.Excel.DataPivotHierarchyCollection
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="600ba-112">Beispiele</span><span class="sxs-lookup"><span data-stu-id="600ba-112">Examples</span></span>
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem("Farm Sales");
+              pivotTable.dataHierarchies.add(pivotTable.hierarchies.getItem("Crates Sold at Farm"));
+              pivotTable.dataHierarchies.add(pivotTable.hierarchies.getItem("Crates Sold Wholesale"));
+
+              await context.sync();
+          });
+          ```
+  - uid: excel.Excel.PivotTable.delete
+    summary: |-
+      <span data-ttu-id="600ba-113">Aktualisiert PivotTable</span><span class="sxs-lookup"><span data-stu-id="600ba-113">Deletes the PivotTable.</span></span>
+
+      <span data-ttu-id="600ba-114">\[[API-Gruppe: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="600ba-114">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: delete()
+    fullName: delete()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'delete(): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="600ba-115">Beispiele</span><span class="sxs-lookup"><span data-stu-id="600ba-115">Examples</span></span>
+
+          ```typescript
+          await Excel.run(async (context) => {
+              context.workbook.worksheets.getItem("Pivot").pivotTables.getItem("Farm Sales").delete();
+
+              await context.sync();
+          });
+          ```
+  - uid: excel.Excel.PivotTable.enableDataValueEditing
+    summary: |-
+      <span data-ttu-id="600ba-116">Gibt an, ob die PivotTable erlaubt, dass Werte im Datenkörper vom Benutzer bearbeitet werden können.</span><span class="sxs-lookup"><span data-stu-id="600ba-116">Specifies whether the PivotTable allows values in the data body to be edited by the user.</span></span>
+
+      <span data-ttu-id="600ba-117">\[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="600ba-117">\[ [API set: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: enableDataValueEditing
+    fullName: enableDataValueEditing
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'enableDataValueEditing: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: excel.Excel.PivotTable.filterHierarchies
+    summary: |-
+      <span data-ttu-id="600ba-118">Die Pivot-Hierarchien der Filter von PivotTable.</span><span class="sxs-lookup"><span data-stu-id="600ba-118">The Filter Pivot Hierarchies of the PivotTable.</span></span>
+
+      <span data-ttu-id="600ba-119">\[[API-Gruppe: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="600ba-119">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: filterHierarchies
+    fullName: filterHierarchies
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly filterHierarchies: Excel.FilterPivotHierarchyCollection;'
+      return:
+        type:
+          - excel.Excel.FilterPivotHierarchyCollection
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="600ba-120">Beispiele</span><span class="sxs-lookup"><span data-stu-id="600ba-120">Examples</span></span>
+
+          ```typescript
+          async function filter(functionType: Excel.AggregationFunction) {
+              await Excel.run(async (context) => {
+                  const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem("Farm Sales");
+                  const filters = pivotTable.filterHierarchies;
+                  const filter = filters.getItemOrNullObject("Classification");
+                  filter.load();
+                  await context.sync();
+
+                  // add the Classification hierarchy to the filter, if it's not already there
+                  if (filter.isNullObject) {
+                      filters.add(pivotTable.hierarchies.getItem("Classification"));
+                      await context.sync();
+                  }
+              });
+          }
+          ```
+  - uid: excel.Excel.PivotTable.hierarchies
+    summary: |-
+      <span data-ttu-id="600ba-121">Die Pivot-Hierarchien von PivotTable.</span><span class="sxs-lookup"><span data-stu-id="600ba-121">The Pivot Hierarchies of the PivotTable.</span></span>
+
+      <span data-ttu-id="600ba-122">\[[API-Gruppe: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="600ba-122">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: hierarchies
+    fullName: hierarchies
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly hierarchies: Excel.PivotHierarchyCollection;'
+      return:
+        type:
+          - excel.Excel.PivotHierarchyCollection
+  - uid: excel.Excel.PivotTable.id
+    summary: |-
+      <span data-ttu-id="600ba-123">Die ID der PivotTable.</span><span class="sxs-lookup"><span data-stu-id="600ba-123">Id of the PivotTable.</span></span> <span data-ttu-id="600ba-124">Schreibgeschützt.</span><span class="sxs-lookup"><span data-stu-id="600ba-124">Read-only.</span></span>
+
+      <span data-ttu-id="600ba-125">\[[API-Gruppe: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="600ba-125">\[ [API set: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: id
+    fullName: id
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly id: string;'
+      return:
+        type:
+          - string
+  - uid: excel.Excel.PivotTable.layout
+    summary: |-
+      <span data-ttu-id="600ba-126">Das PivotLayout-Objekt, das das Layout und die visuelle Struktur von PivotTable beschreibt.</span><span class="sxs-lookup"><span data-stu-id="600ba-126">The PivotLayout describing the layout and visual structure of the PivotTable.</span></span>
+
+      <span data-ttu-id="600ba-127">\[[API-Gruppe: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="600ba-127">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: layout
+    fullName: layout
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly layout: Excel.PivotLayout;'
+      return:
+        type:
+          - excel.Excel.PivotLayout
+        description: |-
+
+
+          #### <a name="examples"></a><span data-ttu-id="600ba-128">Beispiele</span><span class="sxs-lookup"><span data-stu-id="600ba-128">Examples</span></span>
+
+          ```typescript
+          await Excel.run(async (context) => {
+              const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem("Farm Sales");
+              pivotTable.layout.load("layoutType");
+              await context.sync();
+
+              // cycle between the three layout types
+              if (pivotTable.layout.layoutType === "Compact") {
+                  pivotTable.layout.layoutType = "Outline";
+              } else if (pivotTable.layout.layoutType === "Outline") {
+                  pivotTable.layout.layoutType = "Tabular";
+              } else {
+                  pivotTable.layout.layoutType = "Compact";
+              }
+              await context.sync();
+              console.log("Pivot layout is now " + pivotTable.layout.layoutType);
+          });
+          ```
+  - uid: excel.Excel.PivotTable.load
+    summary: <span data-ttu-id="600ba-129">Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein.</span><span class="sxs-lookup"><span data-stu-id="600ba-129">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="600ba-130">Vor dem Lesen der Eigenschaften müssen Sie "context.sync()" aufrufen.</span><span class="sxs-lookup"><span data-stu-id="600ba-130">You must call "context.sync()" before reading the properties.</span></span>
+    remarks: |-
+      <span data-ttu-id="600ba-131">Zusätzlich zu dieser Signatur verfügt diese Methode über die folgenden Signaturen:</span><span class="sxs-lookup"><span data-stu-id="600ba-131">In addition to this signature, this method has the following signatures:</span></span>
+
+      <span data-ttu-id="600ba-132">`load(option?: string | string[]): Excel.PivotTable`-Wobei Option eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen ist, die die zu ladenden Eigenschaften angeben.</span><span class="sxs-lookup"><span data-stu-id="600ba-132">`load(option?: string | string[]): Excel.PivotTable` - Where option is a comma-delimited string or an array of strings that specify the properties to load.</span></span>
+
+      <span data-ttu-id="600ba-133">`load(option?: { select?: string; expand?: string; }): Excel.PivotTable`-Bei Option. Select handelt es sich um eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und Options. Expand ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.</span><span class="sxs-lookup"><span data-stu-id="600ba-133">`load(option?: { select?: string; expand?: string; }): Excel.PivotTable` - Where option.select is a comma-delimited string that specifies the properties to load, and options.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>
+
+      <span data-ttu-id="600ba-134">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.PivotTable`Nur verfügbar für Sammlungstypen.</span><span class="sxs-lookup"><span data-stu-id="600ba-134">`load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Excel.PivotTable` - Only available on collection types.</span></span> <span data-ttu-id="600ba-135">Sie ähnelt der vorherigen Signatur.</span><span class="sxs-lookup"><span data-stu-id="600ba-135">It is similar to the preceding signature.</span></span> <span data-ttu-id="600ba-136">Option. Top gibt die maximale Anzahl von Sammlungselementen an, die in das Ergebnis einbezogen werden können.</span><span class="sxs-lookup"><span data-stu-id="600ba-136">Option.top specifies the maximum number of collection items that can be included in the result.</span></span> <span data-ttu-id="600ba-137">Option. Skip gibt die Anzahl der Elemente an, die übersprungen werden sollen und nicht im Ergebnis enthalten sind.</span><span class="sxs-lookup"><span data-stu-id="600ba-137">Option.skip specifies the number of items that are to be skipped and not included in the result.</span></span> <span data-ttu-id="600ba-138">Wenn Option. Top angegeben ist, wird das Resultset gestartet, nachdem die angegebene Anzahl von Elementen übersprungen wurde.</span><span class="sxs-lookup"><span data-stu-id="600ba-138">If option.top is specified, the result set will start after skipping the specified number of items.</span></span>
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Excel.Interfaces.PivotTableLoadOptions): Excel.PivotTable;'
+      return:
+        type:
+          - excel.Excel.PivotTable
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - excel.Excel.Interfaces.PivotTableLoadOptions
+  - uid: excel.Excel.PivotTable.load_1
+    summary: <span data-ttu-id="600ba-139">Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein.</span><span class="sxs-lookup"><span data-stu-id="600ba-139">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="600ba-140">Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.</span><span class="sxs-lookup"><span data-stu-id="600ba-140">You must call `context.sync()` before reading the properties.</span></span>
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Excel.PivotTable;'
+      return:
+        type:
+          - excel.Excel.PivotTable
+        description: ''
+      parameters:
+        - id: propertyNames
+          description: '<span data-ttu-id="600ba-141">Eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.</span><span class="sxs-lookup"><span data-stu-id="600ba-141">A comma-delimited string or an array of strings that specify the properties to load.</span></span>'
+          type:
+            - 'string | string[]'
+  - uid: excel.Excel.PivotTable.load_2
+    summary: <span data-ttu-id="600ba-142">Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein.</span><span class="sxs-lookup"><span data-stu-id="600ba-142">Queues up a command to load the specified properties of the object.</span></span> <span data-ttu-id="600ba-143">Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.</span><span class="sxs-lookup"><span data-stu-id="600ba-143">You must call `context.sync()` before reading the properties.</span></span>
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Excel.PivotTable;'
+      return:
+        type:
+          - excel.Excel.PivotTable
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: '<span data-ttu-id="600ba-144">Dabei ist propertyNamesAndPaths. Select eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und propertyNamesAndPaths. Expand ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.</span><span class="sxs-lookup"><span data-stu-id="600ba-144">Where propertyNamesAndPaths.select is a comma-delimited string that specifies the properties to load, and propertyNamesAndPaths.expand is a comma-delimited string that specifies the navigation properties to load.</span></span>'
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: excel.Excel.PivotTable.name
+    summary: |-
+      <span data-ttu-id="600ba-145">Der Name der PivotTable.</span><span class="sxs-lookup"><span data-stu-id="600ba-145">Name of the PivotTable.</span></span>
+
+      <span data-ttu-id="600ba-146">\[[API-Gruppe: ExcelApi 1,3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="600ba-146">\[ [API set: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: name
+    fullName: name
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'name: string;'
+      return:
+        type:
+          - string
+  - uid: excel.Excel.PivotTable.refresh
+    summary: |-
+      <span data-ttu-id="600ba-147">Aktualisiert die PivotTable.</span><span class="sxs-lookup"><span data-stu-id="600ba-147">Refreshes the PivotTable.</span></span>
+
+      <span data-ttu-id="600ba-148">\[[API-Gruppe: ExcelApi 1,3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="600ba-148">\[ [API set: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: refresh()
+    fullName: refresh()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'refresh(): void;'
+      return:
+        type:
+          - void
+        description: ''
+  - uid: excel.Excel.PivotTable.rowHierarchies
+    summary: |-
+      <span data-ttu-id="600ba-149">Die Pivot-Hierarchien der Zeilen von PivotTable.</span><span class="sxs-lookup"><span data-stu-id="600ba-149">The Row Pivot Hierarchies of the PivotTable.</span></span>
+
+      <span data-ttu-id="600ba-150">\[[API-Gruppe: ExcelApi 1,8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="600ba-150">\[ [API set: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: rowHierarchies
+    fullName: rowHierarchies
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly rowHierarchies: Excel.RowColumnPivotHierarchyCollection;'
+      return:
+        type:
+          - excel.Excel.RowColumnPivotHierarchyCollection
+  - uid: excel.Excel.PivotTable.set
+    summary: '<span data-ttu-id="600ba-151">Legt mehrere Eigenschaften eines Objekts gleichzeitig fest.</span><span class="sxs-lookup"><span data-stu-id="600ba-151">Sets multiple properties of an object at the same time.</span></span> <span data-ttu-id="600ba-152">Sie können entweder ein einfaches Objekt mit den entsprechenden Eigenschaften oder ein anderes API-Objekt desselben Typs übergeben.</span><span class="sxs-lookup"><span data-stu-id="600ba-152">You can pass either a plain object with the appropriate properties, or another API object of the same type.</span></span>'
+    remarks: |-
+      <span data-ttu-id="600ba-153">Diese Methode hat die folgende zusätzliche Signatur:</span><span class="sxs-lookup"><span data-stu-id="600ba-153">This method has the following additional signature:</span></span>
+
+      `set(properties: Excel.PivotTable): void`
+    name: 'set(properties, options)'
+    fullName: 'set(properties, options)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Interfaces.PivotTableUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: '<span data-ttu-id="600ba-154">Ein JavaScript-Objekt mit Eigenschaften, die isomorphically für die Eigenschaften des Objekts strukturiert sind, für das die Methode aufgerufen wird.</span><span class="sxs-lookup"><span data-stu-id="600ba-154">A JavaScript object with properties that are structured isomorphically to the properties of the object on which the method is called.</span></span>'
+          type:
+            - Interfaces.PivotTableUpdateData
+        - id: options
+          description: '<span data-ttu-id="600ba-155">Bietet eine Option zum Unterdrücken von Fehlern, wenn das Properties-Objekt versucht, schreibgeschützte Eigenschaften festzulegen.</span><span class="sxs-lookup"><span data-stu-id="600ba-155">Provides an option to suppress errors if the properties object tries to set any read-only properties.</span></span>'
+          type:
+            - OfficeExtension.UpdateOptions
+  - uid: excel.Excel.PivotTable.set_1
+    summary: '<span data-ttu-id="600ba-156">Legt mehrere Eigenschaften für das Objekt gleichzeitig basierend auf einem vorhandenen geladenen Objekt fest.</span><span class="sxs-lookup"><span data-stu-id="600ba-156">Sets multiple properties on the object at the same time, based on an existing loaded object.</span></span>'
+    name: set(properties)
+    fullName: set(properties)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Excel.PivotTable): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: ''
+          type:
+            - excel.Excel.PivotTable
+  - uid: excel.Excel.PivotTable.toJSON
+    summary: '<span data-ttu-id="600ba-157">Überschreibt die `toJSON()` JavaScript-Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird.`JSON.stringify()`</span><span class="sxs-lookup"><span data-stu-id="600ba-157">Overrides the JavaScript `toJSON()` method in order to provide more useful output when an API object is passed to `JSON.stringify()`</span></span><!-- --><span data-ttu-id="600ba-158">.</span><span class="sxs-lookup"><span data-stu-id="600ba-158"></span></span> <span data-ttu-id="600ba-159">(`JSON.stringify`</span><span class="sxs-lookup"><span data-stu-id="600ba-159"></span></span><!-- --><span data-ttu-id="600ba-160">wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche Excel. PivotTable-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt (typisiert als`Excel.Interfaces.PivotTableData`</span><span class="sxs-lookup"><span data-stu-id="600ba-160">, in turn, calls the `toJSON` method of the object that is passed to it.) Whereas the original Excel.PivotTable object is an API object, the `toJSON` method returns a plain JavaScript object (typed as `Excel.Interfaces.PivotTableData`</span></span><!-- --><span data-ttu-id="600ba-161">), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.</span><span class="sxs-lookup"><span data-stu-id="600ba-161">) that contains shallow copies of any loaded child properties from the original object.</span></span>'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Excel.Interfaces.PivotTableData;'
+      return:
+        type:
+          - excel.Excel.Interfaces.PivotTableData
+        description: ''
+  - uid: excel.Excel.PivotTable.useCustomSortLists
+    summary: |-
+      <span data-ttu-id="600ba-162">Gibt an, ob die PivotTable beim Sortieren benutzerdefinierte Listen verwendet.</span><span class="sxs-lookup"><span data-stu-id="600ba-162">Specifies whether the PivotTable uses custom lists when sorting.</span></span>
+
+      <span data-ttu-id="600ba-163">\[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="600ba-163">\[ [API set: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: useCustomSortLists
+    fullName: useCustomSortLists
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'useCustomSortLists: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: excel.Excel.PivotTable.worksheet
+    summary: |-
+      <span data-ttu-id="600ba-164">Das Arbeitsblatt, das die aktuelle PivotTable enthält.</span><span class="sxs-lookup"><span data-stu-id="600ba-164">The worksheet containing the current PivotTable.</span></span>
+
+      <span data-ttu-id="600ba-165">\[[API-Gruppe: ExcelApi 1,3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]</span><span class="sxs-lookup"><span data-stu-id="600ba-165">\[ [API set: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]</span></span>
+    name: worksheet
+    fullName: worksheet
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly worksheet: Excel.Worksheet;'
+      return:
+        type:
+          - excel.Excel.Worksheet
