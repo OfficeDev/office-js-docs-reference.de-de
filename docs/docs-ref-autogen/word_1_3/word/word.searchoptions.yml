@@ -1,0 +1,441 @@
+### YamlMime:UniversalReference
+items:
+  - uid: word.Word.SearchOptions
+    summary: |-
+      Gibt die Optionen an, die in einem Suchvorgang eingeschlossen werden sollen.
+
+      \[[API-Gruppe: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: Word.SearchOptions
+    fullName: Word.SearchOptions
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: word
+    children:
+      - word.Word.SearchOptions.context
+      - word.Word.SearchOptions.ignorePunct
+      - word.Word.SearchOptions.ignoreSpace
+      - word.Word.SearchOptions.load
+      - word.Word.SearchOptions.load_1
+      - word.Word.SearchOptions.load_2
+      - word.Word.SearchOptions.matchCase
+      - word.Word.SearchOptions.matchPrefix
+      - word.Word.SearchOptions.matchSuffix
+      - word.Word.SearchOptions.matchWholeWord
+      - word.Word.SearchOptions.matchWildcards
+      - word.Word.SearchOptions.matchWildCards
+      - word.Word.SearchOptions.newObject
+      - word.Word.SearchOptions.set
+      - word.Word.SearchOptions.set_1
+      - word.Word.SearchOptions.toJSON
+  - uid: word.Word.SearchOptions.context
+    summary: 'Der Anforderungskontext, der mit dem Objekt verknüpft ist. Dadurch wird das Add-in-Verfahren mit dem Prozess der Office-Hostanwendung verbunden.'
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - word.Word.RequestContext
+  - uid: word.Word.SearchOptions.ignorePunct
+    summary: |-
+      Ruft einen Wert ab oder legt ihn fest, um anzugeben, dass alle Interpunktionszeichen zwischen Wörtern ignoriert werden sollen. Entspricht dem Kontrollkästchen Interpunktionszeichen ignorieren im Dialogfeld Suchen und Ersetzen.
+
+      \[[API-Gruppe: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: ignorePunct
+    fullName: ignorePunct
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'ignorePunct: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: word.Word.SearchOptions.ignoreSpace
+    summary: |-
+      Dient zum Abrufen oder Festlegen eines Werts, der angibt, ob alle Leerzeichen zwischen Wörtern ignoriert werden sollen. Entspricht dem Kontrollkästchen Leerzeichen ignorieren im Dialogfeld Suchen und ersetzen.
+
+      \[[API-Gruppe: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: ignoreSpace
+    fullName: ignoreSpace
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'ignoreSpace: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: word.Word.SearchOptions.load
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "context.sync()" aufrufen.
+    remarks: |-
+      Zusätzlich zu dieser Signatur verfügt diese Methode über die folgenden Signaturen:
+
+      `load(option?: string | string[]): Word.SearchOptions`-Wobei Option eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen ist, die die zu ladenden Eigenschaften angeben.
+
+      `load(option?: { select?: string; expand?: string; }): Word.SearchOptions`-Bei Option. Select handelt es sich um eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und Options. Expand ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.
+
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Word.SearchOptions`Nur verfügbar für Sammlungstypen. Sie ähnelt der vorherigen Signatur. Option. Top gibt die maximale Anzahl von Sammlungselementen an, die in das Ergebnis einbezogen werden können. Option. Skip gibt die Anzahl der Elemente an, die übersprungen werden sollen und nicht im Ergebnis enthalten sind. Wenn Option. Top angegeben ist, wird das Resultset gestartet, nachdem die angegebene Anzahl von Elementen übersprungen wurde.
+
+      #### <a name="examples"></a>Beispiele
+
+      ```javascript
+      // Ignore punctuation search
+      // Run a batch operation against the Word object model.
+      Word.run(function (context) {
+          
+          // Queue a command to search the document and ignore punctuation.
+          var searchResults = context.document.body.search('video you', {ignorePunct: true});
+
+          // Queue a command to load the search results and get the font property values.
+          context.load(searchResults, 'font');
+          
+          // Synchronize the document state by executing the queued commands, 
+          // and return a promise to indicate task completion.
+          return context.sync().then(function () {
+              console.log('Found count: ' + searchResults.items.length);
+
+              // Queue a set of commands to change the font for each found item.
+              for (var i = 0; i < searchResults.items.length; i++) {
+                  searchResults.items[i].font.color = 'purple';
+                  searchResults.items[i].font.highlightColor = '#FFFF00'; //Yellow
+                  searchResults.items[i].font.bold = true;
+              }
+              
+              // Synchronize the document state by executing the queued commands, 
+              // and return a promise to indicate task completion.
+              return context.sync();
+          });  
+      })
+      .catch(function (error) {
+          console.log('Error: ' + JSON.stringify(error));
+          if (error instanceof OfficeExtension.Error) {
+              console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+          }
+      });
+      ```
+      ```javascript
+      // Search based on a prefix
+      // Run a batch operation against the Word object model.
+      Word.run(function (context) {
+          
+          // Queue a command to search the document based on a prefix.
+          var searchResults = context.document.body.search('vid', {matchPrefix: true});
+
+          // Queue a command to load the search results and get the font property values.
+          context.load(searchResults, 'font');
+          
+          // Synchronize the document state by executing the queued commands, 
+          // and return a promise to indicate task completion.
+          return context.sync().then(function () {
+              console.log('Found count: ' + searchResults.items.length);
+
+              // Queue a set of commands to change the font for each found item.
+              for (var i = 0; i < searchResults.items.length; i++) {
+                  searchResults.items[i].font.color = 'purple';
+                  searchResults.items[i].font.highlightColor = '#FFFF00'; //Yellow
+                  searchResults.items[i].font.bold = true;
+              }
+              
+              // Synchronize the document state by executing the queued commands, 
+              // and return a promise to indicate task completion.
+              return context.sync();
+          });  
+      })
+      .catch(function (error) {
+          console.log('Error: ' + JSON.stringify(error));
+          if (error instanceof OfficeExtension.Error) {
+              console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+          }
+      });
+      ```
+      ```javascript
+      // Search based on a suffix
+      // Run a batch operation against the Word object model.
+      Word.run(function (context) {
+
+          // Queue a command to search the document for any string of characters after 'ly'.
+          var searchResults = context.document.body.search('ly', {matchSuffix: true});
+
+          // Queue a command to load the search results and get the font property values.
+          context.load(searchResults, 'font');
+          
+          // Synchronize the document state by executing the queued commands, 
+          // and return a promise to indicate task completion.
+          return context.sync().then(function () {
+              console.log('Found count: ' + searchResults.items.length);
+
+              // Queue a set of commands to change the font for each found item.
+              for (var i = 0; i < searchResults.items.length; i++) {
+                  searchResults.items[i].font.color = 'orange';
+                  searchResults.items[i].font.highlightColor = 'black';
+                  searchResults.items[i].font.bold = true;
+              }
+              
+              // Synchronize the document state by executing the queued commands, 
+              // and return a promise to indicate task completion.
+              return context.sync();
+          });  
+      })
+      .catch(function (error) {
+          console.log('Error: ' + JSON.stringify(error));
+          if (error instanceof OfficeExtension.Error) {
+              console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+          }
+      });
+      ```
+      ```javascript
+      // Search using a wildcard
+      // Run a batch operation against the Word object model.
+      Word.run(function (context) {
+          
+          // Queue a command to search the document with a wildcard
+          // for any string of characters that starts with 'to' and ends with 'n'.
+          var searchResults = context.document.body.search('to*n', {matchWildCards: true});
+
+          // Queue a command to load the search results and get the font property values.
+          context.load(searchResults, 'font');
+          
+          // Synchronize the document state by executing the queued commands, 
+          // and return a promise to indicate task completion.
+          return context.sync().then(function () {
+              console.log('Found count: ' + searchResults.items.length);
+
+              // Queue a set of commands to change the font for each found item.
+              for (var i = 0; i < searchResults.items.length; i++) {
+                  searchResults.items[i].font.color = 'purple';
+                  searchResults.items[i].font.highlightColor = 'pink';
+                  searchResults.items[i].font.bold = true;
+              }
+              
+              // Synchronize the document state by executing the queued commands, 
+              // and return a promise to indicate task completion.
+              return context.sync();
+          });  
+      })
+      .catch(function (error) {
+          console.log('Error: ' + JSON.stringify(error));
+          if (error instanceof OfficeExtension.Error) {
+              console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+          }
+      });
+      ```
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: Word.Interfaces.SearchOptionsLoadOptions): Word.SearchOptions;'
+      return:
+        type:
+          - word.Word.SearchOptions
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - word.Word.Interfaces.SearchOptionsLoadOptions
+  - uid: word.Word.SearchOptions.load_1
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): Word.SearchOptions;'
+      return:
+        type:
+          - word.Word.SearchOptions
+        description: ''
+      parameters:
+        - id: propertyNames
+          description: 'Eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.'
+          type:
+            - 'string | string[]'
+  - uid: word.Word.SearchOptions.load_2
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Word.SearchOptions;'
+      return:
+        type:
+          - word.Word.SearchOptions
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: 'Dabei ist propertyNamesAndPaths. Select eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und propertyNamesAndPaths. Expand ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: word.Word.SearchOptions.matchCase
+    summary: |-
+      Ruft einen Wert ab oder legt ihn fest, um anzugeben, dass die Suche mit Berücksichtigung von Groß-/Kleinschreibung durchgeführt werden soll. Entspricht dem Kontrollkästchen Groß-/Kleinschreibung anpassen im Dialogfeld Suchen und ersetzen.
+
+      \[[API-Gruppe: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: matchCase
+    fullName: matchCase
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'matchCase: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: word.Word.SearchOptions.matchPrefix
+    summary: |-
+      Ruft einen Wert ab oder legt ihn fest, um anzugeben, ob Wörter beachtet werden sollen, die mit der Suchzeichenfolge beginnen. Entspricht dem Kontrollkästchen Präfix beachten im Dialogfeld Suchen und Ersetzen (Menü Bearbeiten).
+
+      \[[API-Gruppe: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: matchPrefix
+    fullName: matchPrefix
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'matchPrefix: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: word.Word.SearchOptions.matchSuffix
+    summary: |-
+      Ruft einen Wert ab oder legt ihn fest, um anzugeben, ob Wörter beachtet werden sollen, die mit der Suchzeichenfolge enden. Entspricht dem Kontrollkästchen Suffix beachten im Dialogfeld Suchen und Ersetzen.
+
+      \[[API-Gruppe: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: matchSuffix
+    fullName: matchSuffix
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'matchSuffix: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: word.Word.SearchOptions.matchWholeWord
+    summary: |-
+      Ruft einen Wert ab oder legt ihn fest, um anzugeben, dass nur ganze Wörter und nicht nach Textelementen in längeren Wörtern gesucht werden soll. Entspricht dem Kontrollkästchen Nur ganzes Wort suchen im Dialogfeld Suchen und Ersetzen.
+
+      \[[API-Gruppe: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: matchWholeWord
+    fullName: matchWholeWord
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'matchWholeWord: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: word.Word.SearchOptions.matchWildcards
+    summary: |-
+      Ruft einen Wert ab oder legt ihn fest, um anzugeben, ob die Suche mithilfe von speziellen Suchoperatoren ausgeführt wird. Entspricht dem Kontrollkästchen Platzhalter verwenden im Dialogfeld Suchen und Ersetzen.
+
+      \[[API-Gruppe: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
+    name: matchWildcards
+    fullName: matchWildcards
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'matchWildcards: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: word.Word.SearchOptions.matchWildCards
+    name: matchWildCards
+    fullName: matchWildCards
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'matchWildCards: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: word.Word.SearchOptions.newObject
+    summary: Erstellen einer neuen Instanz des Word. SearchOptions-Objekts
+    name: newObject(context)
+    fullName: newObject(context)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'static newObject(context: OfficeExtension.ClientRequestContext): Word.SearchOptions;'
+      return:
+        type:
+          - word.Word.SearchOptions
+        description: ''
+      parameters:
+        - id: context
+          description: ''
+          type:
+            - OfficeExtension.ClientRequestContext
+  - uid: word.Word.SearchOptions.set
+    summary: Legt mehrere Eigenschaften eines Objekts gleichzeitig fest. Sie können entweder ein einfaches Objekt mit den entsprechenden Eigenschaften oder ein anderes API-Objekt desselben Typs übergeben.
+    remarks: |-
+      Diese Methode hat die folgende zusätzliche Signatur:
+
+      `set(properties: Word.SearchOptions): void`
+    name: 'set(properties, options)'
+    fullName: 'set(properties, options)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Interfaces.SearchOptionsUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: 'Ein JavaScript-Objekt mit Eigenschaften, die isomorphically für die Eigenschaften des Objekts strukturiert sind, für das die Methode aufgerufen wird.'
+          type:
+            - Interfaces.SearchOptionsUpdateData
+        - id: options
+          description: 'Bietet eine Option zum Unterdrücken von Fehlern, wenn das Properties-Objekt versucht, schreibgeschützte Eigenschaften festzulegen.'
+          type:
+            - OfficeExtension.UpdateOptions
+  - uid: word.Word.SearchOptions.set_1
+    summary: Legt mehrere Eigenschaften für das Objekt gleichzeitig basierend auf einem vorhandenen geladenen Objekt fest.
+    name: set(properties)
+    fullName: set(properties)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'set(properties: Word.SearchOptions): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: properties
+          description: ''
+          type:
+            - word.Word.SearchOptions
+  - uid: word.Word.SearchOptions.toJSON
+    summary: 'Überschreibt die `toJSON()` JavaScript-Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird.`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche Word. SearchOptions-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt (typisiert als`Word.Interfaces.SearchOptionsData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): Word.Interfaces.SearchOptionsData;'
+      return:
+        type:
+          - word.Word.Interfaces.SearchOptionsData
+        description: ''
