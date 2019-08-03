@@ -1,0 +1,185 @@
+### YamlMime:UniversalReference
+items:
+  - uid: Outlook.Office.Item
+    summary: |-
+      Der Element Namespace wird verwendet, um auf die aktuell ausgewählte Nachricht, die Besprechungsanfrage oder den Termin zuzugreifen. Sie können den Typ des Elements mithilfe der `itemType` -Eigenschaft bestimmen.
+
+      \[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: eingeschränkt
+
+      ** [Anwendbarer Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Verfassen oder lesen
+    name: Office.Item
+    fullName: Office.Item
+    langs:
+      - typeScript
+    type: interface
+    package: Outlook
+    children:
+      - Outlook.Office.Item.loadCustomPropertiesAsync
+      - Outlook.Office.Item.body
+      - Outlook.Office.Item.itemType
+      - Outlook.Office.Item.notificationMessages
+  - uid: Outlook.Office.Item.loadCustomPropertiesAsync
+    summary: |-
+      Lädt asynchron benutzerdefinierte Eigenschaften für dieses Add-In für das ausgewählte Element.
+
+      Benutzerdefinierte Eigenschaften werden als Schlüssel-/Wert-Paare pro App und pro Element gespeichert. Diese Methode gibt ein CustomProperties-Objekt im Rückruf zurück, das Methoden bereitstellt, um auf die benutzerdefinierten Eigenschaften zuzugreifen, die für das aktuelle Element und das aktuelle Add-in spezifisch sind. Benutzerdefinierte Eigenschaften sind für das Element nicht verschlüsselt und sollten darum nicht als sicherer Speicher verwendet werden.
+
+      Die benutzerdefinierten Eigenschaften werden als CustomProperties-Objekt in der AsyncResult. Value-Eigenschaft bereitgestellt. Dieses Objekt kann verwendet werden, um benutzerdefinierte Eigenschaften aus dem Element abzurufen, festzulegen und zu entfernen und um Änderungen am benutzerdefinierten Eigenschaftssatz wieder auf dem Server zu speichern.
+
+      \[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
+
+      ** [Anwendbarer Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Verfassen oder lesen
+
+      #### <a name="examples"></a>Beispiele
+
+      ```javascript
+      // The following example shows how to use the loadCustomPropertiesAsync method
+      // to asynchronously load custom properties that are specific to the current item.
+      // The example also shows how to use the saveAsync method to save these properties
+      // back to the server. After loading the custom properties, the example uses the
+      // get method to read the custom property myProp, the set method to write the
+      // custom property otherProp, and then finally calls the saveAsync method to save
+      // the custom properties.
+      Office.initialize = function () {
+          // Checks for the DOM to load using the jQuery ready function.
+          $(document).ready(function () {
+              // After the DOM is loaded, add-in-specific code can run.
+              var mailbox = Office.context.mailbox;
+              mailbox.item.loadCustomPropertiesAsync(customPropsCallback);
+          });
+      };
+
+      function customPropsCallback(asyncResult) {
+          var customProps = asyncResult.value;
+          var myProp = customProps.get("myProp");
+
+          customProps.set("otherProp", "value");
+          customProps.saveAsync(saveCallback);
+      }
+
+      function saveCallback(asyncResult) {
+      }
+      ```
+    name: 'loadCustomPropertiesAsync(callback, userContext)'
+    fullName: 'loadCustomPropertiesAsync(callback, userContext)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'loadCustomPropertiesAsync(callback: (asyncResult: Office.AsyncResult<CustomProperties>) => void, userContext?: any): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: callback
+          description: 'Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzigen Parameter vom Typ Office. AsyncResult aufgerufen.'
+          type:
+            - '(asyncResult: Office.AsyncResult<CustomProperties>) => void'
+        - id: userContext
+          description: 'Optional. Entwickler können ein beliebiges Objekt bereitstellen, auf das sie in der Callbackfunktion zugreifen möchten. Auf dieses Objekt kann über die AsyncResult. AsyncContext-Eigenschaft in der Rückruffunktion zugegriffen werden.'
+          type:
+            - any
+  - uid: Outlook.Office.Item.body
+    summary: |-
+      Ruft ein Objekt ab, das Methoden zum Bearbeiten des Textkörpers eines Elements bereitstellt.
+
+      \[[API-Gruppe: Mailbox 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
+
+      ** [Anwendbarer Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Verfassen oder lesen
+
+      #### <a name="examples"></a>Beispiele
+
+      ```javascript
+      // This example gets the body of the item as plain text.
+      Office.context.mailbox.item.body.getAsync(
+          "text",
+          { asyncContext: "This is passed to the callback" },
+          function callback(result) {
+              // Do something with the result.
+          });
+
+      // The following is an example of the result parameter passed to the callback function.
+      {
+          "value": "TEXT of whole body (including threads below)",
+          "status": "succeeded",
+          "asyncContext": "This is passed to the callback"
+      }
+      ```
+    name: body
+    fullName: body
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'body: Body;'
+      return:
+        type:
+          - Outlook.Office.Body
+  - uid: Outlook.Office.Item.itemType
+    summary: |-
+      Ruft den Typ des Elements ab, das eine Instanz darstellt.
+
+      Die ItemType-Eigenschaft gibt einen der Werte der ItemType-Enumeration zurück, der angibt, ob es sich bei der Item-Objektinstanz um eine Nachricht oder einen Termin handelt.
+
+      \[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
+
+      ** [Anwendbarer Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Verfassen oder lesen
+
+      #### <a name="examples"></a>Beispiele
+
+      ```javascript
+      if (Office.context.mailbox.item.itemType === Office.MailboxEnums.ItemType.Message) {
+          // Do something.
+      } else {
+          // Do something else.
+      }
+      ```
+    name: itemType
+    fullName: itemType
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'itemType: MailboxEnums.ItemType | string;'
+      return:
+        type:
+          - MailboxEnums.ItemType | string
+  - uid: Outlook.Office.Item.notificationMessages
+    summary: |-
+      Ruft die Benachrichtigungen für ein Element ab.
+
+      \[[API-Gruppe: Mailbox 1,3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
+
+      ** [Anwendbarer Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Verfassen oder lesen
+
+      #### <a name="examples"></a>Beispiele
+
+      ```javascript
+      // Get all notifications.
+      Office.context.mailbox.item.notificationMessages.getAllAsync(
+          function (asyncResult) {
+              console.log(JSON.stringify(asyncResult));
+          }
+      );
+      ```
+    name: notificationMessages
+    fullName: notificationMessages
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'notificationMessages: NotificationMessages;'
+      return:
+        type:
+          - Outlook.Office.NotificationMessages

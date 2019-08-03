@@ -1,0 +1,697 @@
+### YamlMime:UniversalReference
+items:
+  - uid: onenote.OneNote.Application
+    summary: |-
+      Stellt das Objekt der obersten Ebene dar, das alle global adressierbaren OneNote-Objekte enthält, z. B. Notizbücher, das aktive Notizbuch und den aktiven Abschnitt.
+
+      \[[API-Gruppe: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: OneNote.Application
+    fullName: OneNote.Application
+    langs:
+      - typeScript
+    type: class
+    extends:
+      - 'OfficeExtension.ClientObject '
+    package: onenote
+    children:
+      - onenote.OneNote.Application.context
+      - onenote.OneNote.Application.getActiveNotebook
+      - onenote.OneNote.Application.getActiveNotebookOrNull
+      - onenote.OneNote.Application.getActiveOutline
+      - onenote.OneNote.Application.getActiveOutlineOrNull
+      - onenote.OneNote.Application.getActivePage
+      - onenote.OneNote.Application.getActivePageOrNull
+      - onenote.OneNote.Application.getActiveParagraph
+      - onenote.OneNote.Application.getActiveParagraphOrNull
+      - onenote.OneNote.Application.getActiveSection
+      - onenote.OneNote.Application.getActiveSectionOrNull
+      - onenote.OneNote.Application.getWindowSize
+      - onenote.OneNote.Application.insertHtmlAtCurrentPosition
+      - onenote.OneNote.Application.isViewingDeletedNotes
+      - onenote.OneNote.Application.load
+      - onenote.OneNote.Application.load_1
+      - onenote.OneNote.Application.load_2
+      - onenote.OneNote.Application.navigateToPage
+      - onenote.OneNote.Application.navigateToPageWithClientUrl
+      - onenote.OneNote.Application.notebooks
+      - onenote.OneNote.Application.toJSON
+  - uid: onenote.OneNote.Application.context
+    summary: 'Der Anforderungskontext, der mit dem Objekt verknüpft ist. Dadurch wird das Add-in-Verfahren mit dem Prozess der Office-Hostanwendung verbunden.'
+    name: context
+    fullName: context
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'context: RequestContext;'
+      return:
+        type:
+          - onenote.OneNote.RequestContext
+  - uid: onenote.OneNote.Application.getActiveNotebook
+    summary: |-
+      Ruft das aktive Notizbuch ab, falls vorhanden. Wenn kein Notizbuch aktiv ist, wird ItemNotFound ausgelöst.
+
+      \[[API-Gruppe: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: getActiveNotebook()
+    fullName: getActiveNotebook()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getActiveNotebook(): OneNote.Notebook;'
+      return:
+        type:
+          - onenote.OneNote.Notebook
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          OneNote.run(function (context) {
+                  
+              // Get the active notebook.
+              var notebook = context.application.getActiveNotebook();
+                      
+              // Queue a command to load the notebook. 
+              // For best performance, request specific properties.           
+              notebook.load('id,name');
+                      
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function () {
+                              
+                      // Show some properties.
+                      console.log("Notebook name: " + notebook.name);
+                      console.log("Notebook ID: " + notebook.id);
+                      
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: onenote.OneNote.Application.getActiveNotebookOrNull
+    summary: |-
+      Ruft das aktive Notizbuch ab, falls vorhanden. Wenn kein Notizbuch aktiv ist, wird null zurückgegeben.
+
+      \[[API-Gruppe: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: getActiveNotebookOrNull()
+    fullName: getActiveNotebookOrNull()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getActiveNotebookOrNull(): OneNote.Notebook;'
+      return:
+        type:
+          - onenote.OneNote.Notebook
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          OneNote.run(function (context) {
+
+              // Get the active notebook.
+              var notebook = context.application.getActiveNotebookOrNull();
+
+              // Queue a command to load the notebook. 
+              // For best performance, request specific properties.           
+              notebook.load('id,name');
+
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function () {
+
+                      // check if active notebook is set.
+                      if (!notebook.isNull) {
+                          console.log("Notebook name: " + notebook.name);
+                          console.log("Notebook ID: " + notebook.id);
+                      }
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: onenote.OneNote.Application.getActiveOutline
+    summary: |-
+      Ruft die aktive Gliederung ab, falls vorhanden. Wenn keine Gliederung aktiv ist, wird ItemNotFound ausgelöst.
+
+      \[[API-Gruppe: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: getActiveOutline()
+    fullName: getActiveOutline()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getActiveOutline(): OneNote.Outline;'
+      return:
+        type:
+          - onenote.OneNote.Outline
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          OneNote.run(function (context) {
+
+              // get active outline.
+              var outline = context.application.getActiveOutline();
+
+              // Queue a command to load the id of the outline.         
+              outline.load('id');
+
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function () {
+
+                      // Show some properties.
+                      console.log("outline id: " + outline.id);
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: onenote.OneNote.Application.getActiveOutlineOrNull
+    summary: |-
+      Ruft die aktive Gliederung ab, falls vorhanden, andernfalls wird null zurückgegeben.
+
+      \[[API-Gruppe: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: getActiveOutlineOrNull()
+    fullName: getActiveOutlineOrNull()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getActiveOutlineOrNull(): OneNote.Outline;'
+      return:
+        type:
+          - onenote.OneNote.Outline
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          OneNote.run(function (context) {
+
+              // get active outline.
+              var outline = context.application.getActiveOutlineOrNull();
+
+              // Queue a command to load the id of the outline.         
+              outline.load('id');
+
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function () {
+
+                      if (!outline.isNull) {
+                          console.log("outline id: " + outline.id);
+                      }
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: onenote.OneNote.Application.getActivePage
+    summary: |-
+      Ruft die aktive Seite ab, falls vorhanden. Wenn keine Seite aktiv ist, wird ItemNotFound ausgelöst.
+
+      \[[API-Gruppe: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: getActivePage()
+    fullName: getActivePage()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getActivePage(): OneNote.Page;'
+      return:
+        type:
+          - onenote.OneNote.Page
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          OneNote.run(function (context) {
+                  
+              // Get the active page.
+              var page = context.application.getActivePage();
+                      
+              // Queue a command to load the page. 
+              // For best performance, request specific properties.           
+              page.load('id,title');
+                      
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function () {
+                              
+                      // Show some properties.
+                      console.log("Page title: " + page.title);
+                      console.log("Page ID: " + page.id);
+                      
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: onenote.OneNote.Application.getActivePageOrNull
+    summary: |-
+      Ruft die aktive Seite ab, falls vorhanden. Wenn keine Seite aktiv ist, wird null zurückgegeben.
+
+      \[[API-Gruppe: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: getActivePageOrNull()
+    fullName: getActivePageOrNull()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getActivePageOrNull(): OneNote.Page;'
+      return:
+        type:
+          - onenote.OneNote.Page
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          OneNote.run(function (context) {
+
+              // Get the active page.
+              var page = context.application.getActivePageOrNull();
+
+              // Queue a command to load the page. 
+              // For best performance, request specific properties.           
+              page.load('id,title');
+
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function () {
+                      
+                      if (!page.isNull) {
+                          // Show some properties.
+                          console.log("Page title: " + page.title);
+                          console.log("Page ID: " + page.id);
+                      }
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: onenote.OneNote.Application.getActiveParagraph
+    summary: |-
+      Ruft den aktiven Absatz ab, wenn einer vorhanden ist, wenn kein Absatz aktiv ist, löst ItemNotFound aus.
+
+      \[[API-Gruppe: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: getActiveParagraph()
+    fullName: getActiveParagraph()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getActiveParagraph(): OneNote.Paragraph;'
+      return:
+        type:
+          - onenote.OneNote.Paragraph
+        description: ''
+  - uid: onenote.OneNote.Application.getActiveParagraphOrNull
+    summary: |-
+      Ruft den aktiven Absatz ab, wenn einer vorhanden ist, andernfalls wird NULL zurückgegeben.
+
+      \[[API-Gruppe: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: getActiveParagraphOrNull()
+    fullName: getActiveParagraphOrNull()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getActiveParagraphOrNull(): OneNote.Paragraph;'
+      return:
+        type:
+          - onenote.OneNote.Paragraph
+        description: ''
+  - uid: onenote.OneNote.Application.getActiveSection
+    summary: |-
+      Ruft den aktiven Abschnitt ab, falls vorhanden. Wenn kein Abschnitt aktiv ist, wird ItemNotFound ausgelöst.
+
+      \[[API-Gruppe: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: getActiveSection()
+    fullName: getActiveSection()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getActiveSection(): OneNote.Section;'
+      return:
+        type:
+          - onenote.OneNote.Section
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          OneNote.run(function (context) {
+                  
+              // Get the active section.
+              var section = context.application.getActiveSection();
+                      
+              // Queue a command to load the section. 
+              // For best performance, request specific properties.           
+              section.load('id,name');
+                      
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function () {
+                              
+                      // Show some properties.
+                      console.log("Section name: " + section.name);
+                      console.log("Section ID: " + section.id);
+                      
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: onenote.OneNote.Application.getActiveSectionOrNull
+    summary: |-
+      Ruft den aktiven Abschnitt ab, falls vorhanden. Wenn kein Abschnitt aktiv ist, wird null zurückgegeben.
+
+      \[[API-Gruppe: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: getActiveSectionOrNull()
+    fullName: getActiveSectionOrNull()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getActiveSectionOrNull(): OneNote.Section;'
+      return:
+        type:
+          - onenote.OneNote.Section
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          OneNote.run(function (context) {
+
+              // Get the active section.
+              var section = context.application.getActiveSectionOrNull();
+
+              // Queue a command to load the section. 
+              // For best performance, request specific properties.           
+              section.load('id,name');
+
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function () {
+                      if (!section.isNull) {
+                          // Show some properties.
+                          console.log("Section name: " + section.name);
+                          console.log("Section ID: " + section.id);
+                      }
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+  - uid: onenote.OneNote.Application.getWindowSize
+    name: getWindowSize()
+    fullName: getWindowSize()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getWindowSize(): OfficeExtension.ClientResult<number[]>;'
+      return:
+        type:
+          - 'OfficeExtension.ClientResult<number[]>'
+        description: ''
+  - uid: onenote.OneNote.Application.insertHtmlAtCurrentPosition
+    name: insertHtmlAtCurrentPosition(html)
+    fullName: insertHtmlAtCurrentPosition(html)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'insertHtmlAtCurrentPosition(html: string): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: html
+          description: ''
+          type:
+            - string
+  - uid: onenote.OneNote.Application.isViewingDeletedNotes
+    name: isViewingDeletedNotes()
+    fullName: isViewingDeletedNotes()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'isViewingDeletedNotes(): OfficeExtension.ClientResult<boolean>;'
+      return:
+        type:
+          - OfficeExtension.ClientResult<boolean>
+        description: ''
+  - uid: onenote.OneNote.Application.load
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "context.sync()" aufrufen.
+    remarks: |-
+      Zusätzlich zu dieser Signatur verfügt diese Methode über die folgenden Signaturen:
+
+      `load(option?: string | string[]): OneNote.Application`-Wobei Option eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen ist, die die zu ladenden Eigenschaften angeben.
+
+      `load(option?: { select?: string; expand?: string; }): OneNote.Application`-Bei Option. Select handelt es sich um eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und Options. Expand ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.
+
+      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.Application`Nur verfügbar für Sammlungstypen. Sie ähnelt der vorherigen Signatur. Option. Top gibt die maximale Anzahl von Sammlungselementen an, die in das Ergebnis einbezogen werden können. Option. Skip gibt die Anzahl der Elemente an, die übersprungen werden sollen und nicht im Ergebnis enthalten sind. Wenn Option. Top angegeben ist, wird das Resultset gestartet, nachdem die angegebene Anzahl von Elementen übersprungen wurde.
+    name: load(option)
+    fullName: load(option)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(option?: OneNote.Interfaces.ApplicationLoadOptions): OneNote.Application;'
+      return:
+        type:
+          - onenote.OneNote.Application
+        description: ''
+      parameters:
+        - id: option
+          description: ''
+          type:
+            - onenote.OneNote.Interfaces.ApplicationLoadOptions
+  - uid: onenote.OneNote.Application.load_1
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.
+    name: load(propertyNames)
+    fullName: load(propertyNames)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNames?: string | string[]): OneNote.Application;'
+      return:
+        type:
+          - onenote.OneNote.Application
+        description: ''
+      parameters:
+        - id: propertyNames
+          description: 'Eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.'
+          type:
+            - 'string | string[]'
+  - uid: onenote.OneNote.Application.load_2
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): OneNote.Application;'
+      return:
+        type:
+          - onenote.OneNote.Application
+        description: ''
+      parameters:
+        - id: propertyNamesAndPaths
+          description: 'Dabei ist propertyNamesAndPaths. Select eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und propertyNamesAndPaths. Expand ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
+          type:
+            - '{ select?: string; expand?: string; }'
+  - uid: onenote.OneNote.Application.navigateToPage
+    summary: |-
+      Öffnet die angegebene Seite in der Anwendungsinstanz.
+
+      \[[API-Gruppe: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: navigateToPage(page)
+    fullName: navigateToPage(page)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'navigateToPage(page: OneNote.Page): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          OneNote.run(function (context) {
+                  
+              // Get the pages in the current section.
+              var pages = context.application.getActiveSection().pages;
+                      
+              // Queue a command to load the pages. 
+              // For best performance, request specific properties.           
+              pages.load('id');
+                      
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function () {
+                              
+                      // This example loads the first page in the section.
+                      var page = pages.items[0];
+                                  
+                      // Open the page in the application.                    
+                      context.application.navigateToPage(page);
+                              
+                      // Run the queued command.
+                      return context.sync();
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: page
+          description: Die zu öffnende Seite.
+          type:
+            - onenote.OneNote.Page
+  - uid: onenote.OneNote.Application.navigateToPageWithClientUrl
+    summary: |-
+      Ruft die angegebene Seite ab und öffnet sie in der Anwendungsinstanz.
+
+      \[[API-Gruppe: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: navigateToPageWithClientUrl(url)
+    fullName: navigateToPageWithClientUrl(url)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'navigateToPageWithClientUrl(url: string): OneNote.Page;'
+      return:
+        type:
+          - onenote.OneNote.Page
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          OneNote.run(function (context) {
+
+              // Get the pages in the current section.
+              var pages = context.application.getActiveSection().pages;
+
+              // Queue a command to load the pages. 
+              // For best performance, request specific properties.           
+              pages.load('clientUrl');
+
+              // Run the queued commands, and return a promise to indicate task completion.
+              return context.sync()
+                  .then(function () {
+
+                      // This example loads the first page in the section.
+                      var page = pages.items[0];
+
+                      // Open the page in the application.                    
+                      context.application.navigateToPageWithClientUrl(page.clientUrl);
+
+                      // Run the queued command.
+                      return context.sync();
+                  });
+          })
+          .catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+      parameters:
+        - id: url
+          description: Die Client-URL der zu öffnenden Seite.
+          type:
+            - string
+  - uid: onenote.OneNote.Application.notebooks
+    summary: |-
+      Ruft die Auflistung von Notizbüchern ab, die in der OneNote-Anwendungsinstanz geöffnet sind. In OneNote im Internet ist nur ein Notizbuch gleichzeitig in der Anwendungsinstanz geöffnet. Schreibgeschützt.
+
+      \[[API-Gruppe: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    name: notebooks
+    fullName: notebooks
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly notebooks: OneNote.NotebookCollection;'
+      return:
+        type:
+          - onenote.OneNote.NotebookCollection
+  - uid: onenote.OneNote.Application.toJSON
+    summary: 'Überschreibt die `toJSON()` JavaScript-Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird.`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche OneNote. Application-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt (typisiert als`OneNote.Interfaces.ApplicationData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
+    name: toJSON()
+    fullName: toJSON()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'toJSON(): OneNote.Interfaces.ApplicationData;'
+      return:
+        type:
+          - onenote.OneNote.Interfaces.ApplicationData
+        description: ''
