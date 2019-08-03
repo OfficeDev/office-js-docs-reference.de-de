@@ -1,0 +1,50 @@
+### YamlMime:UniversalReference
+items:
+  - uid: powerpoint
+    name: powerpoint
+    fullName: powerpoint
+    langs:
+      - typeScript
+    type: package
+    children:
+      - powerpoint.PowerPoint.createPresentation
+  - uid: powerpoint.PowerPoint.createPresentation
+    summary: |-
+      Erstellt eine neue Präsentation und öffnet sie. Optional kann die Präsentation vorab mit einer Base64-codierten pptx-Datei aufgefüllt werden.
+
+      \[[API-Gruppe: PowerPointApi 1,1](/office/dev/add-ins/reference/javascript-api-for-office)\]
+    name: PowerPoint.createPresentation
+    fullName: PowerPoint.createPresentation
+    langs:
+      - typeScript
+    type: function
+    syntax:
+      content: 'export function createPresentation(base64File?: string): Promise<void>;'
+      return:
+        type:
+          - Promise<void>
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          var myFile = document.getElementById("file");
+          var reader = new FileReader();
+
+          reader.onload = function (event) {
+              // strip off the metadata before the base64-encoded string
+              var startIndex = event.target.result.indexOf("base64,");
+              var copyBase64 = event.target.result.substr(startIndex + 7);
+
+              PowerPoint.createPresentation(copyBase64);        
+          };
+
+          // read in the file as a data URL so we can parse the base64-encoded string
+          reader.readAsDataURL(myFile.files[0]);
+          ```
+      parameters:
+        - id: base64File
+          description: Optional. Die Base64-codierte pptx-Datei. Der Standardwert ist null.
+          type:
+            - string
