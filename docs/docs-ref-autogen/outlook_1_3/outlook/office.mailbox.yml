@@ -323,14 +323,24 @@ items:
 
       Die getCallbackTokenAsync-Methode führt einen asynchronen Aufruf aus, um ein undurchsichtiges Token aus dem Exchange Server abzurufen, das das Postfach des Benutzers hostet. Die Gültigkeitsdauer des Rückruftokens beträgt 5 Minuten.
 
+      Das Token wird als Zeichenfolge in der `asyncResult.value` -Eigenschaft zurückgegeben.
+
       Sie können das Token und eine Anlagen- oder Element-ID an ein Drittanbietersystem weitergeben. Das Drittanbietersystem verwendet das Token als Trägerautorisierungstoken, um den Exchange Web Services-Vorgang (EWS) GetAttachment oder GetItem aufzurufen und eine Anlage oder ein Element zurückzugeben. Sie können beispielsweise einen Remotedienst zum Abrufen von Anlagen aus dem ausgewählten Element erstellen.
 
       Ihre APP muss über die im Manifest angegebene ReadItem-Berechtigung verfügen, um die getCallbackTokenAsync-Methode im Lesemodus aufzurufen.
 
       Im Verfassenmodus müssen Sie die saveAsync-Methode aufrufen, um einen Elementbezeichner abzurufen, der an die getCallbackTokenAsync-Methode übergeben wird. Ihre APP muss über ReadWriteItem-Berechtigungen verfügen, um die saveAsync-Methode aufzurufen.
 
-      \[[API-Gruppe: Mailbox 1,3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+      \[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
+      **Fehler**:
+
+      - HTTPRequestFailure: Fehler bei der Anforderung. Sehen Sie sich das Diagnose Objekt für den HTTP-Fehlercode an.
+
+      - InternalServerError: der Exchange-Server hat einen Fehler zurückgegeben. Weitere Informationen finden Sie im Diagnostics-Objekt.
+
+      - NetworkError: der Benutzer ist nicht mehr mit dem Netzwerk verbunden. Überprüfen Sie die Netzwerkverbindung, und versuchen Sie es erneut.
+
       ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
 
       ** [Anwendbarer Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Verfassen oder lesen
@@ -364,7 +374,7 @@ items:
         description: ''
       parameters:
         - id: callback
-          description: 'Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzigen Parameter vom Typ Office. AsyncResult aufgerufen. Das Token wird als Zeichenfolge in der `asyncResult.value`-Eigenschaft bereitgestellt. Wenn ein Fehler aufgetreten ist, geben `asyncResult.error` die `asyncResult.diagnostics` and-Eigenschaften möglicherweise zusätzliche Informationen an.'
+          description: 'Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzigen Parameter vom Typ Office. AsyncResult aufgerufen. Das Token wird als Zeichenfolge in der `asyncResult.value` -Eigenschaft zurückgegeben. Wenn ein Fehler aufgetreten ist, `asyncResult.error` bieten `asyncResult.diagnostics` die Eigenschaften und möglicherweise zusätzliche Informationen.'
           type:
             - '(asyncResult: Office.AsyncResult<string>) => void'
         - id: userContext
@@ -375,7 +385,7 @@ items:
     summary: |-
       Ruft ein Token ab, das den Benutzer und das Office-Add-In identifiziert.
 
-      Das Token wird als Zeichenfolge in der AsyncResult. Value-Eigenschaft bereitgestellt.
+      Das Token wird als Zeichenfolge in der `asyncResult.value` -Eigenschaft zurückgegeben.
 
       \[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -384,6 +394,14 @@ items:
       ** [Anwendbarer Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Verfassen oder lesen
 
       Die getUserIdentityTokenAsync-Methode gibt ein Token zurück, das Sie verwenden können, um [das Add-in und den Benutzer mit einem Drittanbietersystem](https://docs.microsoft.com/outlook/add-ins/authentication) zu identifizieren und zu authentifizieren.<!-- -->.
+
+      **Fehler**:
+
+      - HTTPRequestFailure: Fehler bei der Anforderung. Sehen Sie sich das Diagnose Objekt für den HTTP-Fehlercode an.
+
+      - InternalServerError: der Exchange-Server hat einen Fehler zurückgegeben. Weitere Informationen finden Sie im Diagnostics-Objekt.
+
+      - NetworkError: der Benutzer ist nicht mehr mit dem Netzwerk verbunden. Überprüfen Sie die Netzwerkverbindung, und versuchen Sie es erneut.
 
       #### <a name="examples"></a>Beispiele
 
@@ -409,7 +427,7 @@ items:
         description: ''
       parameters:
         - id: callback
-          description: 'Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzigen Parameter vom Typ Office. AsyncResult aufgerufen. Das Token wird als Zeichenfolge in der `asyncResult.value`-Eigenschaft bereitgestellt. Wenn ein Fehler aufgetreten ist, geben `asyncResult.error` die `asyncResult.diagnostics` and-Eigenschaften möglicherweise zusätzliche Informationen an.'
+          description: 'Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzigen Parameter vom Typ Office. AsyncResult aufgerufen. Das Token wird als Zeichenfolge in der `asyncResult.value` -Eigenschaft zurückgegeben. Wenn ein Fehler aufgetreten ist, `asyncResult.error` bieten `asyncResult.diagnostics` die Eigenschaften und möglicherweise zusätzliche Informationen.'
           type:
             - '(asyncResult: Office.AsyncResult<string>) => void'
         - id: userContext
@@ -527,9 +545,9 @@ items:
 
       Enthält die folgenden Member:
 
-      - Hostname (String): eine Zeichenfolge, die den Namen der Hostanwendung darstellt. Es handelt sich um einen der folgenden Werte: "Outlook", "OutlookWebApp", "OutlookIOS" oder "OutlookAndroid".
+      - Hostname (String): eine Zeichenfolge, die den Namen der Hostanwendung darstellt. Es sollte einer der folgenden Werte sein: "Outlook", "OutlookWebApp", "OutlookIOS" oder "OutlookAndroid". **Hinweis**: der Wert "Outlook" wird für Outlook auf Desktop Clients (also Windows und Mac) zurückgegeben.
 
-      - Host (String): eine Zeichenfolge, die die Version der Hostanwendung oder der Exchange Server darstellt. Wenn das e-Mail-Add-in in Outlook auf Desktop Clients oder IOS läuft, gibt die Host-Eigenschaft die Version der Hostanwendung, Outlook, zurück. In Outlook im Internet gibt die Eigenschaft die Version der Exchange Server zurück. Ein Beispiel ist die Zeichenfolge "15.0.468.0".
+      - Host (String): eine Zeichenfolge, die die Version der Hostanwendung oder der Exchange Server darstellt (beispielsweise "15.0.468.0"). Wenn das e-Mail-Add-in in Outlook auf Desktop-oder mobilen Clients läuft, gibt die Host-Eigenschaft die Version der Hostanwendung, Outlook, zurück. In Outlook im Internet gibt die Eigenschaft die Version der Exchange Server zurück.
 
       - OWAView (MailboxEnums. OWAView oder String): eine Enum (oder ein Zeichenfolgenliteral), die die aktuelle Ansicht von Outlook im Internet darstellt. Wenn es sich bei der Hostanwendung nicht um Outlook im Internet handelt, führt der Zugriff auf diese Eigenschaft zu undefined. Outlook im Internet verfügt über drei Ansichten ("OneColumn" – wird angezeigt, wenn der Bildschirm schmal ist, "TwoColumns" – wird angezeigt, wenn der Bildschirm breiter ist, und "ThreeColumns" – wird angezeigt, wenn der Bildschirm breit ist), die der Breite des Bildschirms und des Fensters entsprechen, und der Anzahl der Spalten, die angezeigt werden können.
 
