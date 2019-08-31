@@ -42,7 +42,7 @@ items:
     summary: |-
       Wandelt eine REST-formatierte Element-ID ins EWS-Format um.
 
-      Element-IDs, die über eine Rest-API (wie die Outlook-Mail-API oder das Microsoft Graph) abgerufen werden, verwenden ein anderes Format als das Format, das von Exchange Webdienste (EWS) verwendet wird. Die converttoewsid hinzugefügt-Methode konvertiert eine Rest-formatierte ID in das richtige Format für EWS.
+      Element-IDs, die über eine Rest-API (wie die Outlook-Mail-API oder Microsoft Graph) abgerufen werden, verwenden ein anderes Format als das von Exchange-Webdienste verwendete Format. Die converttoewsid hinzugefügt-Methode konvertiert eine Rest-formatierte ID in das richtige Format für EWS.
 
       **Hinweis**: Diese Methode wird in Outlook auf IOS oder Android nicht unterstützt.
 
@@ -164,6 +164,28 @@ items:
       ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
 
       ** [Anwendbarer Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Verfassen oder lesen
+
+      #### <a name="examples"></a>Beispiele
+
+      ```javascript
+      // Represents 3:37 PM PDT on Monday, August 26, 2019.
+      var input = {
+          date: 26,
+          hours: 15,
+          milliseconds: 2,
+          minutes: 37,
+          month: 7,
+          seconds: 2,
+          timezoneOffset: -420,
+          year: 2019
+      };
+
+      // result should be a Date object.
+      var result = Office.context.mailbox.convertToUtcClientTime(input);
+
+      // Output should be "2019-08-26T22:37:02.002Z".
+      console.log(result.toISOString());
+      ```
     name: convertToUtcClientTime(input)
     fullName: convertToUtcClientTime(input)
     langs:
@@ -436,7 +458,7 @@ items:
             - any
   - uid: outlook.Office.Mailbox.makeEwsRequestAsync
     summary: |-
-      Sendet eine asynchrone Anforderung an einen EWS-Dienst (Exchange Webdienste) auf dem Exchange-Server, der das Postfach des Benutzers hostet.
+      Sendet eine asynchrone Anforderung an einen Exchange-Webdienste Dienst auf dem Exchange-Server, der das Postfach des Benutzers hostet.
 
       In diesen Fällen sollten Add-Ins REST APIs verwenden, um auf das Postfach des Benutzers zuzugreifen.
 
