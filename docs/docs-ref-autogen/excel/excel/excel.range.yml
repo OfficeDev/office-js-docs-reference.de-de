@@ -158,7 +158,9 @@ items:
           - string
   - uid: excel.Excel.Range.autoFill
     summary: |-
-      Füllt den Bereich aus dem aktuellen Bereich zum Zielbereich. Der Zielbereich muss die Quelle entweder horizontal oder vertikal erweitern. Nicht zusammenhängende Bereiche werden nicht unterstützt.
+      Die Füllungen reichen vom aktuellen Bereich bis zum Zielbereich mithilfe der angegebenen AutoFill-Logik. Der Zielbereich kann NULL sein oder kann die Quelle horizontal oder vertikal erweitern. Wenn der Zielbereich NULL ist, werden Daten basierend auf den umgebenden Zellen ausgefüllt (Dies ist das Verhalten beim Doppelklicken auf den Bereichs Ausfüll Punkt der Benutzeroberfläche). Nicht zusammenhängende Bereiche werden nicht unterstützt.
+
+      Weitere Informationen finden Sie unter [use AutoFill and Blitzvorschau](https://support.office.com/article/video-use-autofill-and-flash-fill-2e79a709-c814-4b27-8bc2-c4dc84d49464)<!-- -->.
 
       \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: 'autoFill(destinationRange, autoFillType)'
@@ -183,7 +185,9 @@ items:
             - excel.Excel.AutoFillType
   - uid: excel.Excel.Range.autoFill_1
     summary: |-
-      Füllt den Bereich aus dem aktuellen Bereich zum Zielbereich. Der Zielbereich muss die Quelle entweder horizontal oder vertikal erweitern. Nicht zusammenhängende Bereiche werden nicht unterstützt.
+      Die Füllungen reichen vom aktuellen Bereich bis zum Zielbereich mithilfe der angegebenen AutoFill-Logik. Der Zielbereich kann NULL sein oder kann die Quelle horizontal oder vertikal erweitern. Wenn der Zielbereich NULL ist, werden Daten basierend auf den umgebenden Zellen ausgefüllt (Dies ist das Verhalten beim Doppelklicken auf den Bereichs Ausfüll Punkt der Benutzeroberfläche). Nicht zusammenhängende Bereiche werden nicht unterstützt.
+
+      Weitere Informationen finden Sie unter [use AutoFill and Blitzvorschau](https://support.office.com/article/video-use-autofill-and-flash-fill-2e79a709-c814-4b27-8bc2-c4dc84d49464)<!-- -->.
 
       \[[API-Gruppe: ExcelApi 1,9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: 'autoFill(destinationRange, autoFillTypeString)'
@@ -597,9 +601,9 @@ items:
               // NOTE: If no match is found, an ItemNotFound error
               // is thrown when Range.find is evaluated.
               const foundRange = searchRange.find($("#searchText").text(), {
-                  completeMatch: completeMatch,
-                  matchCase: matchCase,
-                  searchDirection: searchDirection
+                  completeMatch: isCompleteMatchToggle,
+                  matchCase: isMatchCaseToggle,
+                  searchDirection: searchDirectionToggle
               });
               
               foundRange.load("address");
@@ -644,9 +648,9 @@ items:
               const table = sheet.tables.getItem("ExpensesTable");
               const searchRange = table.getRange();
               const foundRange = searchRange.findOrNullObject($("#searchText").text(), {
-                  completeMatch: completeMatch,
-                  matchCase: matchCase,
-                  searchDirection: searchDirection
+                  completeMatch: isCompleteMatchToggle,
+                  matchCase: isMatchCaseToggle,
+                  searchDirection: searchDirectionToggle
               });
               
               foundRange.load("address");
