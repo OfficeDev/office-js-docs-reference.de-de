@@ -203,7 +203,7 @@ items:
           - 'excel!Excel.RequestContext:class'
   - uid: 'excel!Excel.Worksheet#copy:member(1)'
     summary: |-
-      Kopiert eine Arbeitsmappe, und platziert sie an der angegebenen Position. Gibt die kopierte Arbeitsmappe zurück.
+      Kopiert ein Arbeitsblatt und platziert es an der angegebenen Position.
 
       \[[API-Gruppe: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: 'copy(positionType, relativeTo)'
@@ -217,7 +217,7 @@ items:
         type:
           - 'excel!Excel.Worksheet:class'
         description: |-
-
+          Das neu erstellte Arbeitsblatt.
 
           #### <a name="examples"></a>Beispiele
 
@@ -238,16 +238,16 @@ items:
           ```
       parameters:
         - id: positionType
-          description: Optional.
+          description: 'Der Speicherort in der Arbeitsmappe, an dem das neu erstellte Arbeitsblatt platziert werden soll. Der Standardwert ist "None", wodurch das Arbeitsblatt am Anfang des Arbeitsblatts eingefügt wird.'
           type:
             - 'excel!Excel.WorksheetPositionType:enum'
         - id: relativeTo
-          description: Optional.
+          description: 'Das vorhandene Arbeitsblatt, das die Position des neu erstellten Arbeitsblatts bestimmt. Dies ist nur erforderlich, `positionType` wenn "Before" oder "After" ist.'
           type:
             - 'excel!Excel.Worksheet:class'
   - uid: 'excel!Excel.Worksheet#copy:member(2)'
     summary: |-
-      Kopiert eine Arbeitsmappe, und platziert sie an der angegebenen Position. Gibt die kopierte Arbeitsmappe zurück.
+      Kopiert ein Arbeitsblatt und platziert es an der angegebenen Position.
 
       \[[API-Gruppe: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: 'copy(positionTypeString, relativeTo)'
@@ -260,14 +260,14 @@ items:
       return:
         type:
           - 'excel!Excel.Worksheet:class'
-        description: ''
+        description: Das neu erstellte Arbeitsblatt.
       parameters:
         - id: positionTypeString
-          description: Optional.
+          description: 'Der Speicherort in der Arbeitsmappe, an dem das neu erstellte Arbeitsblatt platziert werden soll. Der Standardwert ist "None", wodurch das Arbeitsblatt am Anfang des Arbeitsblatts eingefügt wird.'
           type:
             - '"None" | "Before" | "After" | "Beginning" | "End"'
         - id: relativeTo
-          description: Optional.
+          description: 'Das vorhandene Arbeitsblatt, das die Position des neu erstellten Arbeitsblatts bestimmt. Dies ist nur erforderlich, `positionType` wenn "Before" oder "After" ist.'
           type:
             - 'excel!Excel.Worksheet:class'
   - uid: 'excel!Excel.Worksheet#delete:member(1)'
@@ -1030,7 +1030,7 @@ items:
           ```
   - uid: 'excel!Excel.Worksheet#onColumnSorted:member'
     summary: |-
-      Tritt auf, wenn eine oder mehrere Spalten sortiert wurden. Dies geschieht als Ergebnis eines Sortiervorgangs von links nach rechts.
+      Tritt auf, wenn eine oder mehrere Spalten sortiert wurden. Dies geschieht, wenn Spalten von links nach rechts sortiert werden.
 
       \[[API-Gruppe: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
@@ -1152,7 +1152,7 @@ items:
           - 'excel!Excel.Worksheet#onRowHiddenChanged~0:complex'
   - uid: 'excel!Excel.Worksheet#onRowSorted:member'
     summary: |-
-      Tritt auf, wenn eine oder mehrere Zeilen sortiert wurden. Dies geschieht als Ergebnis eines Sortiervorgangs von oben nach unten.
+      Tritt auf, wenn eine oder mehrere Zeilen sortiert wurden. Dies geschieht, wenn Zeilen von oben nach unten sortiert werden.
 
       \[[API-Gruppe: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
@@ -1472,7 +1472,29 @@ items:
       return:
         type:
           - void
-        description: ''
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```typescript
+          Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getActiveWorksheet();
+
+              // This collapses the entire outline.
+              sheet.showOutlineLevels(1, 1);
+              await context.sync();
+          });
+          ```
+          ```typescript
+          Excel.run(async (context) => {
+              const sheet = context.workbook.worksheets.getActiveWorksheet();
+
+              // This shows the top 3 outline levels; collapsing any additional sublevels.
+              sheet.showOutlineLevels(3, 3);
+              await context.sync();
+          });
+          ```
       parameters:
         - id: rowLevels
           description: 'Die Anzahl der Zeilenebenen einer Gliederung, die angezeigt werden soll.'
