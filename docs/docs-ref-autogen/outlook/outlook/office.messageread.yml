@@ -27,6 +27,7 @@ items:
       - 'outlook!Office.MessageRead#displayReplyAllForm:member(1)'
       - 'outlook!Office.MessageRead#displayReplyForm:member(1)'
       - 'outlook!Office.MessageRead#from:member'
+      - 'outlook!Office.MessageRead#getAllInternetHeadersAsync:member(1)'
       - 'outlook!Office.MessageRead#getEntities:member(1)'
       - 'outlook!Office.MessageRead#getEntitiesByType:member(1)'
       - 'outlook!Office.MessageRead#getFilteredEntitiesByName:member(1)'
@@ -36,7 +37,6 @@ items:
       - 'outlook!Office.MessageRead#getRegExMatchesByName:member(1)'
       - 'outlook!Office.MessageRead#getSelectedEntities:member(1)'
       - 'outlook!Office.MessageRead#getSelectedRegExMatches:member(1)'
-      - 'outlook!Office.MessageRead#internetHeaders:member'
       - 'outlook!Office.MessageRead#internetMessageId:member'
       - 'outlook!Office.MessageRead#itemClass:member'
       - 'outlook!Office.MessageRead#itemId:member'
@@ -243,7 +243,7 @@ items:
     summary: |-
       Bietet Zugriff auf die Kopienempfänger (Cc) einer Nachricht. Der Typ des Objekts und die Zugriffsebene hängen vom Modus des aktuellen Elements ab.
 
-      Die CC-Eigenschaft gibt ein Array zurück, das ein EmailAddressDetails-Objekt für jeden Empfänger enthält, der in der CC-Zeile der Nachricht aufgeführt ist. Die Auflistung ist auf höchstens 100 Elemente beschränkt.
+      Die CC-Eigenschaft gibt ein Array zurück, das ein EmailAddressDetails-Objekt für jeden Empfänger enthält, der in der CC-Zeile der Nachricht aufgeführt ist. Standardmäßig ist die Auflistung auf maximal 100 Mitglieder limitiert. Unter Windows und Mac können Sie jedoch maximal 500 Mitglieder erhalten.
 
       \[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -354,7 +354,7 @@ items:
     summary: |-
       Zeigt ein Antwortformular an, das den Absender und alle Empfänger der ausgewählten Nachricht oder des Organisators und alle Teilnehmer des ausgewählten Termins enthält.
 
-      In Outlook im Internet wird das Antwortformular als Popupformular in der 3-Spalten-Ansicht und als Popupformular in der 2-oder 1-Spalten-Ansicht angezeigt.
+      In Outlook im Web wird das Antwortformular als Popupformular in der Dreispaltenansicht und als Popupformular in der Zwei- oder Einspaltenansicht angezeigt.
 
       Wenn einer der Zeichenfolgenparameter seine Grenzen überschreitet, löst displayReplyAllForm eine Ausnahme aus.
 
@@ -459,7 +459,7 @@ items:
     summary: |-
       Zeigt ein Antwortformular an, das nur den Absender der ausgewählten Nachricht oder den Organisator des ausgewählten Termins enthält.
 
-      In Outlook im Internet wird das Antwortformular als Popupformular in der 3-Spalten-Ansicht und als Popupformular in der 2-oder 1-Spalten-Ansicht angezeigt.
+      In Outlook im Web wird das Antwortformular als Popupformular in der Dreispaltenansicht und als Popupformular in der Zwei- oder Einspaltenansicht angezeigt.
 
       Wenn einer der Zeichenfolgenparameter seine Grenzen überschreitet, löst displayReplyForm eine Ausnahme aus.
 
@@ -592,6 +592,56 @@ items:
       return:
         type:
           - 'outlook!Office.EmailAddressDetails:interface'
+  - uid: 'outlook!Office.MessageRead#getAllInternetHeadersAsync:member(1)'
+    summary: |-
+      Ruft alle Internetkopfzeilen für die Nachricht als Zeichenfolge ab.
+
+      \[[API-Gruppe: Post fach Vorschau](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
+
+      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Nachrichten Lesevorgang
+
+      #### <a name="examples"></a>Beispiele
+
+      ```javascript
+      // Get the internet headers related to the mail.
+      Office.context.mailbox.item.getAllInternetHeadersAsync(
+          function(asyncResult) {
+              if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+                  console.log(asyncResult.value);
+              } else {
+                  if (asyncResult.error.code == 9020) {
+                      // GenericResponseError returned when there is no context.
+                      // Treat as no context.
+                  } else {
+                      // Handle the error.
+                  }
+              }
+          }
+      );
+      ```
+    isPreview: true
+    name: 'getAllInternetHeadersAsync(options, callback)'
+    fullName: 'getAllInternetHeadersAsync(options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getAllInternetHeadersAsync(options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: options
+          description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. AsyncContext: Entwickler können ein beliebiges Objekt bereitstellen, auf das Sie in der Rückrufmethode zugreifen möchten.'
+          type:
+            - 'outlook!Office.AsyncContextOptions:interface'
+        - id: callback
+          description: 'Optional. Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzelnen Parameter (asyncResult) aufgerufen, bei dem es sich um ein Office. AsyncResult-Objekt handelt. Bei Erfolg werden die Internetkopfzeilen-Daten in der AsyncResult. Value-Eigenschaft als Zeichenfolge bereitgestellt. Informationen zur Formatierung des zurückgegebenen Zeichenfolgenwerts erhalten Sie in [RFC 2183](https://tools.ietf.org/html/rfc2183) . Wenn der Aufruf fehlschlägt, enthält die AsyncResult. Error-Eigenschaft einen Fehlercode mit dem Grund für den Fehler.'
+          type:
+            - 'outlook!Office.MessageRead#getAllInternetHeadersAsync~0:complex'
   - uid: 'outlook!Office.MessageRead#getEntities:member(1)'
     summary: |-
       Ruft die Entitäten im Text des ausgewählten Elements ab.
@@ -636,7 +686,7 @@ items:
 
       Während Sie die minimale Berechtigungsstufe für diese Methode Restricted ist, erfordern einige Entitätstypen ReadItem für den Zugriff, wie in der folgenden Tabelle angegeben wird.
 
-      <table> <tr> <th>Wert von EntityType</th> <th>Typ der Objekte im zurückgegebenen Array</th> <th>Erforderliche Berechtigungsstufe</th> </tr> <tr> <td>Adresse</td> <td>String</td> <td>Restricted</td> </tr> <tr> <td>Kontakt</td> <td>Kontakt</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>String</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>Restricted</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>String</td> <td>Restricted</td> </tr> </table>
+      <table> <tr> <th>Wert von EntityType</th> <th>Typ der Objekte im zurückgegebenen Array</th> <th>Erforderliche Berechtigungsstufe</th> </tr> <tr> <td>Adresse</td> <td>Zeichenfolge</td> <td>Eingeschränkt</td> </tr> <tr> <td>Contact</td> <td>Contact</td> <td>ReadItem</td> </tr> <tr> <td>EmailAddress</td> <td>Zeichenfolge</td> <td>ReadItem</td> </tr> <tr> <td>MeetingSuggestion</td> <td>MeetingSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>PhoneNumber</td> <td>PhoneNumber</td> <td>Eingeschränkt</td> </tr> <tr> <td>TaskSuggestion</td> <td>TaskSuggestion</td> <td>ReadItem</td> </tr> <tr> <td>URL</td> <td>Zeichenfolge</td> <td>Eingeschränkt</td> </tr> </table>
 
       #### <a name="examples"></a>Beispiele
 
@@ -948,39 +998,6 @@ items:
         type:
           - any
         description: 'Ein Objekt mit Arrays aus Zeichenfolgen, die den in der XML-Manifestdatei definierten regulären Ausdrücken entsprechen. Der Name jedes Arrays entspricht dem entsprechenden Wert des regexname-Attributs der übereinstimmenden ItemHasRegularExpressionMatch-Regel oder des filtersname-Attributs der übereinstimmenden ItemHasKnownEntity-Regel.'
-  - uid: 'outlook!Office.MessageRead#internetHeaders:member'
-    summary: |-
-      Dient zum Abrufen oder Festlegen der benutzerdefinierten Internetkopfzeilen einer Nachricht.
-
-      Die Internet Headers-Eigenschaft gibt ein Internet Headers-Objekt zurück, das Methoden zum Verwalten der Internetkopfzeilen in der Nachricht bereitstellt.
-
-      \[[API-Gruppe: Post fach Vorschau](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
-
-      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Nachrichten Lesevorgang
-
-      #### <a name="examples"></a>Beispiele
-
-      ```javascript
-      Office.context.mailbox.item.internetHeaders.getAsync(["header1", "header2"], callback);
-
-      function callback(asyncResult) {
-          var dictionary = asyncResult.value;
-          var header1_value = dictionary["header1"];
-      }
-      ```
-    isPreview: true
-    name: internetHeaders
-    fullName: internetHeaders
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'internetHeaders: InternetHeaders;'
-      return:
-        type:
-          - 'outlook!Office.InternetHeaders:interface'
   - uid: 'outlook!Office.MessageRead#internetMessageId:member'
     summary: |-
       Ruft die Internetnachricht-ID einer E-Mail-Nachricht ab.
@@ -1408,7 +1425,7 @@ items:
     summary: |-
       Bietet Zugriff auf die Empfänger in der Zeile An einer Nachricht. Der Typ des Objekts und die Zugriffsebene hängen vom Modus des aktuellen Elements ab.
 
-      Die to-Eigenschaft gibt ein Array zurück, das ein EmailAddressDetails-Objekt für jeden Empfänger enthält, der in der an-Codezeile der Nachricht aufgeführt ist. Die Auflistung ist auf höchstens 100 Elemente beschränkt.
+      Die to-Eigenschaft gibt ein Array zurück, das ein EmailAddressDetails-Objekt für jeden Empfänger enthält, der in der an-Codezeile der Nachricht aufgeführt ist. Standardmäßig ist die Auflistung auf maximal 100 Mitglieder limitiert. Unter Windows und Mac können Sie jedoch maximal 500 Mitglieder erhalten.
 
       \[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -1544,6 +1561,17 @@ references:
         fullName: <void>) => void
   - uid: 'outlook!Office.EmailAddressDetails:interface'
     name: EmailAddressDetails
+  - uid: 'outlook!Office.MessageRead#getAllInternetHeadersAsync~0:complex'
+    name: '(asyncResult: Office.AsyncResult<string>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<string>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <string>) => void
+        fullName: <string>) => void
   - uid: 'outlook!Office.Entities:interface'
     name: Entities
   - uid: 'outlook!Office.MessageRead#getEntitiesByType~0:complex'
@@ -1629,8 +1657,6 @@ references:
         fullName: Office.AsyncResult
       - name: <string>) => void
         fullName: <string>) => void
-  - uid: 'outlook!Office.InternetHeaders:interface'
-    name: InternetHeaders
   - uid: 'outlook!Office.MessageRead#itemType~0:complex'
     name: MailboxEnums.ItemType | string
     fullName: Office.MailboxEnums.ItemType | string

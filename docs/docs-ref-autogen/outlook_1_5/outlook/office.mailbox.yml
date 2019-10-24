@@ -331,20 +331,7 @@ items:
         type:
           - 'outlook!Office.Diagnostics:interface'
   - uid: 'outlook!Office.Mailbox#displayAppointmentForm:member(1)'
-    summary: |-
-      Zeigt einen bestehenden Kalendertermin an.
-
-      Mit der displayAppointmentForm-Methode wird ein vorhandener Kalendertermin auf dem Desktop in einem neuen Fenster oder auf Mobilgeräten in einem Dialogfeld geöffnet.
-
-      In Outlook auf Mac können Sie diese Methode verwenden, um einen einzelnen Termin anzuzeigen, der nicht Teil einer Terminserie ist, oder den Mastertermin einer Serie, aber Sie können keine Instanz der Datenreihe anzeigen. Dies liegt daran, dass Sie in Outlook auf dem Mac nicht auf die Eigenschaften (einschließlich der Element-ID) von Instanzen einer wiederkehrenden Datenreihe zugreifen können.
-
-      In Outlook im Internet öffnet diese Methode das angegebene Formular nur, wenn der Textkörper des Formulars kleiner als oder gleich 32 KB beschränkt Anzahl von Zeichen ist.
-
-      Wenn der angegebene Elementbezeichner keinen vorhandenen Termin identifiziert, wird auf dem Clientcomputer oder Gerät ein leerer Bereich geöffnet, und es wird keine Fehlermeldung zurückgegeben.
-
-      **Hinweis**: Diese Methode wird in Outlook auf IOS oder Android nicht unterstützt.
-
-      \[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    summary: "Zeigt einen bestehenden Kalendertermin an.\n\nMit der displayAppointmentForm-Methode wird ein vorhandener Kalendertermin auf dem Desktop in einem neuen Fenster oder auf Mobilgeräten in einem Dialogfeld geöffnet.\n\nIn Outlook auf einem Mac können Sie diese Methode verwenden, um einen einzelnen Termin anzuzeigen, der nicht Teil einer Terminserie ist, oder den Mastertermin einer Terminserie, jedoch keine Instanz der Terminserie. Dies liegt daran, dass Sie in Outlook auf einem Mac nicht auf die Eigenschaften (einschließlich der Element-ID) von Instanzen einer Terminserie zugreifen können.\n\nIn Outlook im Web öffnet diese Methode das angegebene Formular nur, wenn der Textkörper des Formulars nicht größer ist als 32\_KB.\n\nWenn der angegebene Elementbezeichner keinen vorhandenen Termin identifiziert, wird auf dem Clientcomputer oder Gerät ein leerer Bereich geöffnet, und es wird keine Fehlermeldung zurückgegeben.\n\n**Hinweis**: Diese Methode wird in Outlook auf IOS oder Android nicht unterstützt.\n\n\\[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\\]"
     remarks: |-
       ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
 
@@ -372,20 +359,7 @@ items:
           type:
             - string
   - uid: 'outlook!Office.Mailbox#displayMessageForm:member(1)'
-    summary: |-
-      Zeigt eine vorhandene Nachricht an.
-
-      Die Methode displayMessageForm öffnet eine vorhandene Nachricht in einem neuen Fenster auf dem Desktop bzw. in einem Dialogfeld auf Mobilgeräten.
-
-      In Outlook im Internet öffnet diese Methode das angegebene Formular nur, wenn der Textkörper des Formulars kleiner als oder gleich 32 KB Anzahl von Zeichen ist.
-
-      Wenn der angegebene Elementbezeichner keine vorhandenen Nachrichten erkennt, wird auf dem Client-Computer keine Nachricht angezeigt, und es werden keine Fehlermeldungen zurückgegeben.
-
-      Verwenden Sie die displayMessageForm-Methode nicht mit einer itemId-Eigenschaft, die einen Termin darstellt. Verwenden Sie die displayAppointmentForm-Methode, um einen vorhandenen Termin anzuzeigen, und displayNewAppointmentForm, um ein Formular anzuzeigen, um einen neuen Termin zu erstellen.
-
-      **Hinweis**: Diese Methode wird in Outlook auf IOS oder Android nicht unterstützt.
-
-      \[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    summary: "Zeigt eine vorhandene Nachricht an.\n\nDie Methode displayMessageForm öffnet eine vorhandene Nachricht in einem neuen Fenster auf dem Desktop bzw. in einem Dialogfeld auf Mobilgeräten.\n\nIn Outlook im Web öffnet diese Methode das angegebene Formular nur, wenn der Textkörper des Formulars nicht größer ist als 32\_KB.\n\nWenn der angegebene Elementbezeichner keine vorhandenen Nachrichten erkennt, wird auf dem Client-Computer keine Nachricht angezeigt, und es werden keine Fehlermeldungen zurückgegeben.\n\nVerwenden Sie die displayMessageForm-Methode nicht mit einer itemId-Eigenschaft, die einen Termin darstellt. Verwenden Sie die displayAppointmentForm-Methode, um einen vorhandenen Termin anzuzeigen, und displayNewAppointmentForm, um ein Formular anzuzeigen, um einen neuen Termin zu erstellen.\n\n**Hinweis**: Diese Methode wird in Outlook auf IOS oder Android nicht unterstützt.\n\n\\[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\\]"
     remarks: |-
       ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
 
@@ -498,9 +472,13 @@ items:
     summary: |-
       Ruft eine Zeichenfolge mit einem Token ab, das zum Aufrufen von REST-APIs oder Exchange-Webdiensten verwendet wird.
 
-      Die getCallbackTokenAsync-Methode führt einen asynchronen Aufruf aus, um ein undurchsichtiges Token aus dem Exchange Server abzurufen, das das Postfach des Benutzers hostet. Die Gültigkeitsdauer des Rückruftokens beträgt 5 Minuten.
+      Die `getCallbackTokenAsync`-Methode führt einen asynchronen Aufruf zum Abruf eines nicht transparenten Tokens vom Exchange-Server aus, der das Postfach des Benutzers hostet. Der Gültigkeitsdauer des Callbacktokens beträgt 5 Minuten.
 
       Das Token wird als Zeichenfolge in der `asyncResult.value` -Eigenschaft zurückgegeben.
+
+      Für den `getCallbackTokenAsync` Aufruf der-Methode im Lesemodus ist eine minimale Berechtigungsstufe von **ReadItem**erforderlich.
+
+      Zum Aufrufen `getCallbackTokenAsync` der Methode im Verfassenmodus müssen Sie das Element gespeichert haben. Für `saveAsync` die Methode ist eine minimale Berechtigungsstufe von **ReadWriteItem**erforderlich.
 
       *REST-Token*
 
@@ -514,6 +492,8 @@ items:
 
       Das Add-in sollte die ewsUrl-Eigenschaft verwenden, um die richtige URL zu ermitteln, die beim Ausführen von EWS-Aufrufen verwendet werden soll.
 
+      Sie können sowohl das Token als auch eine Anlagen-ID oder eine Element-ID an ein System eines Drittanbieters übergeben. Das Drittanbietersystem verwendet das Token als Träger Autorisierungstoken, um den Exchange-Webdienste [GetAttachment](https://docs.microsoft.com/exchange/client-developer/web-service-reference/getattachment-operation) -oder [GetItem](https://docs.microsoft.com/exchange/client-developer/web-service-reference/getitem-operation) -Vorgang aufzurufen, um eine Anlage oder ein Element zurückzugeben. Sie können beispielsweise einen Remotedienst zum [Abrufen von Anlagen aus dem ausgewählten Element](https://docs.microsoft.com/outlook/add-ins/get-attachments-of-an-outlook-item) erstellen.<!-- -->.
+
       **Hinweis**: Es wird empfohlen, dass Add-Ins die Rest-APIs anstelle von Exchange Webdienste verwenden, wenn möglich.
 
       \[[API-Gruppe: Mailbox 1,5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -524,11 +504,11 @@ items:
 
       **Fehler**:
 
-      - HTTPRequestFailure: Fehler bei der Anforderung. Sehen Sie sich das Diagnose Objekt für den HTTP-Fehlercode an.
+      - HTTPRequestFailure: Fehler bei der Anforderung. Den HTTP-Fehlercode finden Sie im Diagnoseobjekt.
 
-      - InternalServerError: der Exchange-Server hat einen Fehler zurückgegeben. Weitere Informationen finden Sie im Diagnostics-Objekt.
+      - InternalServerError: der Exchange-Server hat einen Fehler zurückgegeben. Weitere Informationen finden Sie im Diagnoseobjekt.
 
-      - NetworkError: der Benutzer ist nicht mehr mit dem Netzwerk verbunden. Überprüfen Sie die Netzwerkverbindung, und versuchen Sie es erneut.
+      - NetworkError: der Benutzer ist nicht mehr mit dem Netzwerk verbunden. Überprüfen Sie Ihre Netzwerkverbindung, und versuchen Sie es erneut.
 
       #### <a name="examples"></a>Beispiele
 
@@ -563,24 +543,24 @@ items:
           type:
             - 'outlook!Office.Mailbox#getCallbackTokenAsync~0:complex'
         - id: callback
-          description: 'Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzigen Parameter vom Typ Office. AsyncResult aufgerufen. Das Token wird als Zeichenfolge in der `asyncResult.value` -Eigenschaft zurückgegeben. Wenn ein Fehler aufgetreten ist, `asyncResult.error` bieten `asyncResult.diagnostics` die Eigenschaften und möglicherweise zusätzliche Informationen.'
+          description: 'Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzigen Parameter vom Typ Office. AsyncResult aufgerufen. Das Token wird als Zeichenfolge in der `asyncResult.value` -Eigenschaft zurückgegeben. Wenn ein Fehler aufgetreten ist, können die Eigenschaften `asyncResult.error` und `asyncResult.diagnostics` weitere Informationen enthalten.'
           type:
             - 'outlook!Office.Mailbox#getCallbackTokenAsync~1:complex'
   - uid: 'outlook!Office.Mailbox#getCallbackTokenAsync:member(2)'
     summary: |-
       Ruft eine Zeichenfolge ab, die einen Token enthält, der verwendet wird, um eine Anlage oder ein Element von einem Exchange Server abzurufen.
 
-      Die getCallbackTokenAsync-Methode führt einen asynchronen Aufruf aus, um ein undurchsichtiges Token aus dem Exchange Server abzurufen, das das Postfach des Benutzers hostet. Die Gültigkeitsdauer des Rückruftokens beträgt 5 Minuten.
+      Die `getCallbackTokenAsync`-Methode führt einen asynchronen Aufruf zum Abruf eines nicht transparenten Tokens vom Exchange-Server aus, der das Postfach des Benutzers hostet. Die Gültigkeitsdauer des Rückruftokens beträgt 5 Minuten.
 
       Das Token wird als Zeichenfolge in der `asyncResult.value` -Eigenschaft zurückgegeben.
 
-      Sie können das Token und eine Anlagen- oder Element-ID an ein Drittanbietersystem weitergeben. Das Drittanbietersystem verwendet das Token als Trägerautorisierungstoken, um den Exchange Web Services-Vorgang (EWS) GetAttachment oder GetItem aufzurufen und eine Anlage oder ein Element zurückzugeben. Sie können beispielsweise einen Remotedienst zum Abrufen von Anlagen aus dem ausgewählten Element erstellen.
+      Sie können sowohl das Token als auch eine Anlagen-ID oder eine Element-ID an ein System eines Drittanbieters übergeben. Das Drittanbietersystem verwendet das Token als Träger Autorisierungstoken, um den Exchange-Webdienste [GetAttachment](https://docs.microsoft.com/exchange/client-developer/web-service-reference/getattachment-operation) -oder [GetItem](https://docs.microsoft.com/exchange/client-developer/web-service-reference/getitem-operation) -Vorgang aufzurufen, um eine Anlage oder ein Element zurückzugeben. Sie können beispielsweise einen Remotedienst zum [Abrufen von Anlagen aus dem ausgewählten Element](https://docs.microsoft.com/outlook/add-ins/get-attachments-of-an-outlook-item) erstellen.<!-- -->.
 
-      Ihre APP muss über die im Manifest angegebene ReadItem-Berechtigung verfügen, um die getCallbackTokenAsync-Methode im Lesemodus aufzurufen.
+      Für den `getCallbackTokenAsync` Aufruf der-Methode im Lesemodus ist eine minimale Berechtigungsstufe von **ReadItem**erforderlich.
 
-      Im Verfassenmodus müssen Sie die saveAsync-Methode aufrufen, um einen Elementbezeichner abzurufen, der an die getCallbackTokenAsync-Methode übergeben wird. Ihre APP muss über ReadWriteItem-Berechtigungen verfügen, um die saveAsync-Methode aufzurufen.
+      Zum Aufrufen `getCallbackTokenAsync` der Methode im Verfassenmodus müssen Sie das Element gespeichert haben. Für `saveAsync` die Methode ist eine minimale Berechtigungsstufe von **ReadWriteItem**erforderlich.
 
-      \[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+      \[[API-Satz: Postfach 1,0 für Unterstützung für den Lesemodus; 1,3 für die Unterstützung des erstellmodus](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
 
@@ -588,11 +568,11 @@ items:
 
       **Fehler**:
 
-      - HTTPRequestFailure: Fehler bei der Anforderung. Sehen Sie sich das Diagnose Objekt für den HTTP-Fehlercode an.
+      - HTTPRequestFailure: Fehler bei der Anforderung. Den HTTP-Fehlercode finden Sie im Diagnoseobjekt.
 
-      - InternalServerError: der Exchange-Server hat einen Fehler zurückgegeben. Weitere Informationen finden Sie im Diagnostics-Objekt.
+      - InternalServerError: der Exchange-Server hat einen Fehler zurückgegeben. Weitere Informationen finden Sie im Diagnoseobjekt.
 
-      - NetworkError: der Benutzer ist nicht mehr mit dem Netzwerk verbunden. Überprüfen Sie die Netzwerkverbindung, und versuchen Sie es erneut.
+      - NetworkError: der Benutzer ist nicht mehr mit dem Netzwerk verbunden. Überprüfen Sie Ihre Netzwerkverbindung, und versuchen Sie es erneut.
 
       #### <a name="examples"></a>Beispiele
 
@@ -618,7 +598,7 @@ items:
         description: ''
       parameters:
         - id: callback
-          description: 'Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzigen Parameter vom Typ Office. AsyncResult aufgerufen. Das Token wird als Zeichenfolge in der `asyncResult.value` -Eigenschaft zurückgegeben. Wenn ein Fehler aufgetreten ist, `asyncResult.error` bieten `asyncResult.diagnostics` die Eigenschaften und möglicherweise zusätzliche Informationen.'
+          description: 'Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzigen Parameter vom Typ Office. AsyncResult aufgerufen. Das Token wird als Zeichenfolge in der `asyncResult.value` -Eigenschaft zurückgegeben. Wenn ein Fehler aufgetreten ist, können die Eigenschaften `asyncResult.error` und `asyncResult.diagnostics` weitere Informationen enthalten.'
           type:
             - 'outlook!Office.Mailbox#getCallbackTokenAsync~2:complex'
         - id: userContext
@@ -641,11 +621,11 @@ items:
 
       **Fehler**:
 
-      - HTTPRequestFailure: Fehler bei der Anforderung. Sehen Sie sich das Diagnose Objekt für den HTTP-Fehlercode an.
+      - HTTPRequestFailure: Fehler bei der Anforderung. Den HTTP-Fehlercode finden Sie im Diagnoseobjekt.
 
-      - InternalServerError: der Exchange-Server hat einen Fehler zurückgegeben. Weitere Informationen finden Sie im Diagnostics-Objekt.
+      - InternalServerError: der Exchange-Server hat einen Fehler zurückgegeben. Weitere Informationen finden Sie im Diagnoseobjekt.
 
-      - NetworkError: der Benutzer ist nicht mehr mit dem Netzwerk verbunden. Überprüfen Sie die Netzwerkverbindung, und versuchen Sie es erneut.
+      - NetworkError: der Benutzer ist nicht mehr mit dem Netzwerk verbunden. Überprüfen Sie Ihre Netzwerkverbindung, und versuchen Sie es erneut.
 
       #### <a name="examples"></a>Beispiele
 
@@ -671,7 +651,7 @@ items:
         description: ''
       parameters:
         - id: callback
-          description: 'Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzigen Parameter vom Typ Office. AsyncResult aufgerufen. Das Token wird als Zeichenfolge in der `asyncResult.value` -Eigenschaft zurückgegeben. Wenn ein Fehler aufgetreten ist, `asyncResult.error` bieten `asyncResult.diagnostics` die Eigenschaften und möglicherweise zusätzliche Informationen.'
+          description: 'Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzigen Parameter vom Typ Office. AsyncResult aufgerufen. Das Token wird als Zeichenfolge in der `asyncResult.value` -Eigenschaft zurückgegeben. Wenn ein Fehler aufgetreten ist, können die Eigenschaften `asyncResult.error` und `asyncResult.diagnostics` weitere Informationen enthalten.'
           type:
             - 'outlook!Office.Mailbox#getUserIdentityTokenAsync~0:complex'
         - id: userContext
