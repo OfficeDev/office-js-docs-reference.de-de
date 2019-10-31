@@ -1,13 +1,13 @@
 ---
 title: JavaScript-API-Referenz für Office
 description: Die Office-JavaScript-APIs pro Host Anforderungsgruppe
-ms.date: 07/25/2019
-ms.openlocfilehash: e4b45370dcaf82a60d39264a97f1e28c0dab543d
-ms.sourcegitcommit: ab859c363c348ddb336dfc7e331cf113a5b76305
+ms.date: 10/24/2019
+ms.openlocfilehash: fb6f228306c6fc5840c2f8b9c9bc46d56b43f50c
+ms.sourcegitcommit: dc57153a05b103a8493370c8aa1bd936f4d5f7c4
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/24/2019
-ms.locfileid: "37693892"
+ms.lasthandoff: 10/31/2019
+ms.locfileid: "37907128"
 ---
 # <a name="office-javascript-api-reference"></a>JavaScript-API-Referenz für Office
 
@@ -21,6 +21,7 @@ Im folgenden finden Sie eine Liste mit hostspezifischen Anforderungs Sätzen (un
 ## <a name="excel"></a>Excel
 
 - [ExcelApi-Vorschau](/javascript/api/excel?view=excel-js-preview)
+- [ExcelApi 1.10](/javascript/api/excel?view=excel-js-1.10)
 - [ExcelApi 1.9](/javascript/api/excel?view=excel-js-1.9)
 - [ExcelApi 1.8](/javascript/api/excel?view=excel-js-1.8)
 - [ExcelApi 1.7](/javascript/api/excel?view=excel-js-1.7)
@@ -38,6 +39,7 @@ Im folgenden finden Sie eine Liste mit hostspezifischen Anforderungs Sätzen (un
 ## <a name="outlook"></a>Outlook
 
 - [Post fach Vorschau](/javascript/api/outlook?view=outlook-js-preview)
+- [Postfach 1,8](/javascript/api/outlook?view=outlook-js-1.8)
 - [Mailbox 1.7](/javascript/api/outlook?view=outlook-js-1.7)
 - [Mailbox 1.6](/javascript/api/outlook?view=outlook-js-1.6)
 - [Mailbox 1.5](/javascript/api/outlook?view=outlook-js-1.5)
