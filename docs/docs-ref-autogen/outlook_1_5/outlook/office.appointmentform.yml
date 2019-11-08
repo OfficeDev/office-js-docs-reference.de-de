@@ -39,10 +39,10 @@ items:
       - typeScript
     type: property
     syntax:
-      content: 'body: string;'
+      content: 'body: Body | string;'
       return:
         type:
-          - string
+          - 'outlook!Office.AppointmentForm#body~0:complex'
   - uid: 'outlook!Office.AppointmentForm#end:member'
     summary: |-
       Ruft Datum und Zeit für das Ende des Termins ab oder legt diese fest.
@@ -70,10 +70,10 @@ items:
       - typeScript
     type: property
     syntax:
-      content: 'end: Date;'
+      content: 'end: Time | Date;'
       return:
         type:
-          - '!Date:interface'
+          - 'outlook!Office.AppointmentForm#end~0:complex'
   - uid: 'outlook!Office.AppointmentForm#location:member'
     summary: |-
       Ruft den Ort eines Termins ab bzw. legt ihn fest.
@@ -97,25 +97,25 @@ items:
       - typeScript
     type: property
     syntax:
-      content: 'location: string;'
+      content: 'location: Location | string;'
       return:
         type:
-          - string
+          - 'outlook!Office.AppointmentForm#location~0:complex'
   - uid: 'outlook!Office.AppointmentForm#optionalAttendees:member'
     summary: |-
       Bietet Zugriff auf die optionalen Teilnehmer eines Ereignisses. Der Typ des Objekts und die Zugriffsebene hängen vom Modus des aktuellen Elements ab.
 
       *Lesemodus*
 
-      Die optionalAttendees-Eigenschaft gibt ein Array mit einem EmailAddressDetails-Objekt für jeden optionalen Teilnehmer an der Besprechung zurück. Standardmäßig ist die Auflistung auf maximal 100 Mitglieder limitiert. Unter Windows und Mac können Sie jedoch maximal 500 Mitglieder erhalten.
+      Die optionalAttendees-Eigenschaft gibt ein Array mit einem EmailAddressDetails-Objekt für jeden optionalen Teilnehmer an der Besprechung zurück. Die Auflistung ist standardmäßig auf höchstens 100 Elemente beschränkt. Unter Windows und Mac können Sie jedoch maximal 500 Mitglieder abrufen.
 
       *Verfassenmodus*
 
-      Die optionalAttendees-Eigenschaft gibt ein Recipients-Objekt zurück, das Methoden zum Abrufen oder Aktualisieren der optionalen Teilnehmer für eine Besprechung bereitstellt. Standardmäßig ist die Auflistung auf maximal 100 Mitglieder limitiert. Unter Windows und Mac gelten jedoch die folgenden Grenzwerte.
+      Die optionalAttendees-Eigenschaft gibt ein Recipients-Objekt zurück, das Methoden zum Abrufen oder Aktualisieren der optionalen Teilnehmer für eine Besprechung bereitstellt. Die Auflistung ist standardmäßig auf höchstens 100 Elemente beschränkt. Unter Windows und Mac gelten jedoch die folgenden Beschränkungen:
 
-      - Maximal 500 Mitglieder abrufen.
+      - Abrufen: maximal 500 Mitglieder.
 
-      - Legen Sie maximal 100 Mitglieder pro Anruf fest, bis zu 500 Mitglieder insgesamt.
+      - Festlegen: maximal 100 Mitglieder pro Anruf (bis zu 500 Mitgliedern insgesamt).
 
       \[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -138,15 +138,15 @@ items:
 
       *Lesemodus*
 
-      Die requiredAttendees-Eigenschaft gibt ein Array mit einem EmailAddressDetails-Objekt für jeden erforderlichen Teilnehmer an der Besprechung zurück. Standardmäßig ist die Auflistung auf maximal 100 Mitglieder limitiert. Unter Windows und Mac können Sie jedoch maximal 500 Mitglieder erhalten.
+      Die requiredAttendees-Eigenschaft gibt ein Array mit einem EmailAddressDetails-Objekt für jeden erforderlichen Teilnehmer an der Besprechung zurück. Die Auflistung ist standardmäßig auf höchstens 100 Elemente beschränkt. Unter Windows und Mac können Sie jedoch maximal 500 Mitglieder abrufen.
 
       *Verfassenmodus*
 
-      Die requiredAttendees-Eigenschaft gibt ein Recipients-Objekt zurück, das Methoden zum Abrufen oder Aktualisieren der erforderlichen Teilnehmer für eine Besprechung bereitstellt. Standardmäßig ist die Auflistung auf maximal 100 Mitglieder limitiert. Unter Windows und Mac gelten jedoch die folgenden Grenzwerte.
+      Die requiredAttendees-Eigenschaft gibt ein Recipients-Objekt zurück, das Methoden zum Abrufen oder Aktualisieren der erforderlichen Teilnehmer für eine Besprechung bereitstellt. Die Auflistung ist standardmäßig auf höchstens 100 Elemente beschränkt. Unter Windows und Mac gelten jedoch die folgenden Beschränkungen:
 
-      - Maximal 500 Mitglieder abrufen.
+      - Abrufen: maximal 500 Mitglieder.
 
-      - Legen Sie maximal 100 Mitglieder pro Anruf fest, bis zu 500 Mitglieder insgesamt.
+      - Festlegen: maximal 100 Mitglieder pro Anruf (bis zu 500 Mitgliedern insgesamt).
 
       \[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
@@ -209,10 +209,10 @@ items:
       - typeScript
     type: property
     syntax:
-      content: 'start: Date;'
+      content: 'start: Time | Date;'
       return:
         type:
-          - '!Date:interface'
+          - 'outlook!Office.AppointmentForm#start~0:complex'
   - uid: 'outlook!Office.AppointmentForm#subject:member'
     summary: |-
       Ruft die Beschreibung ab, die im Betrefffeld eines Elements angezeigt wird, oder legt sie fest.
@@ -238,13 +238,41 @@ items:
       - typeScript
     type: property
     syntax:
-      content: 'subject: string;'
+      content: 'subject: Subject | string;'
       return:
         type:
-          - string
+          - 'outlook!Office.AppointmentForm#subject~0:complex'
 references:
-  - uid: '!Date:interface'
-    name: Date
+  - uid: 'outlook!Office.AppointmentForm#body~0:complex'
+    name: Body | string
+    fullName: Office.Body | string
+    spec.typeScript:
+      - uid: 'outlook!Office.Body:interface'
+        name: Body
+        fullName: Office.Body
+      - name: ' | string'
+        fullName: ' | string'
+  - uid: 'outlook!Office.AppointmentForm#end~0:complex'
+    name: Time | Date
+    fullName: Office.Time | Date
+    spec.typeScript:
+      - uid: 'outlook!Office.Time:interface'
+        name: Time
+        fullName: Office.Time
+      - name: ' | '
+        fullName: ' | '
+      - uid: '!Date:interface'
+        name: Date
+        fullName: Date
+  - uid: 'outlook!Office.AppointmentForm#location~0:complex'
+    name: Location | string
+    fullName: Office.Location | string
+    spec.typeScript:
+      - uid: 'outlook!Office.Location:interface'
+        name: Location
+        fullName: Office.Location
+      - name: ' | string'
+        fullName: ' | string'
   - uid: 'outlook!Office.AppointmentForm#optionalAttendees~0:complex'
     name: 'Recipients[] | EmailAddressDetails[]'
     fullName: 'Office.Recipients[] | Office.EmailAddressDetails[]'
@@ -273,3 +301,24 @@ references:
         fullName: Office.EmailAddressDetails
       - name: '[]'
         fullName: '[]'
+  - uid: 'outlook!Office.AppointmentForm#start~0:complex'
+    name: Time | Date
+    fullName: Office.Time | Date
+    spec.typeScript:
+      - uid: 'outlook!Office.Time:interface'
+        name: Time
+        fullName: Office.Time
+      - name: ' | '
+        fullName: ' | '
+      - uid: '!Date:interface'
+        name: Date
+        fullName: Date
+  - uid: 'outlook!Office.AppointmentForm#subject~0:complex'
+    name: Subject | string
+    fullName: Office.Subject | string
+    spec.typeScript:
+      - uid: 'outlook!Office.Subject:interface'
+        name: Subject
+        fullName: Office.Subject
+      - name: ' | string'
+        fullName: ' | string'
