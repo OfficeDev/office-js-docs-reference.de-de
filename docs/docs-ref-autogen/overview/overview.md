@@ -1,74 +1,77 @@
 ---
 title: JavaScript-API-Referenz für Office
 description: Die Office-JavaScript-APIs pro Host Anforderungsgruppe
-ms.date: 10/24/2019
-ms.openlocfilehash: fb6f228306c6fc5840c2f8b9c9bc46d56b43f50c
-ms.sourcegitcommit: dc57153a05b103a8493370c8aa1bd936f4d5f7c4
+ms.date: 11/19/2019
+ms.openlocfilehash: f4072c23cb0d6e0d5375cf79d92b4f6dd9b35f0f
+ms.sourcegitcommit: d37268ff5254061632a886b196ec28f2f4087377
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 10/31/2019
-ms.locfileid: "37904991"
+ms.lasthandoff: 11/21/2019
+ms.locfileid: "38758414"
 ---
-# <a name="office-javascript-api-reference"></a><span data-ttu-id="3bddc-103">JavaScript-API-Referenz für Office</span><span class="sxs-lookup"><span data-stu-id="3bddc-103">Office JavaScript API reference</span></span>
+# <a name="office-javascript-api-reference"></a><span data-ttu-id="a48a1-103">JavaScript-API-Referenz für Office</span><span class="sxs-lookup"><span data-stu-id="a48a1-103">Office JavaScript API reference</span></span>
 
-<span data-ttu-id="3bddc-104">Die JavaScript-API für Office ermöglicht Ihnen, Webanwendungen zu erstellen, die mit den Objektmodellen in Office-Hostanwendungen interagieren.</span><span class="sxs-lookup"><span data-stu-id="3bddc-104">The JavaScript API for Office enables you to create web applications that interact with the object models in Office host applications.</span></span> <span data-ttu-id="3bddc-105">In diesem Abschnitt erfahren Sie mehr über die Klassen, Methoden und anderen Typen, die für das Erstellen von Office-Add-Ins verfügbar sind.</span><span class="sxs-lookup"><span data-stu-id="3bddc-105">Use this section to learn more about the classes, methods, and other types available for building Office Add-ins.</span></span>
+<span data-ttu-id="a48a1-104">Die JavaScript-API für Office ermöglicht Ihnen, Webanwendungen zu erstellen, die mit den Objektmodellen in Office-Hostanwendungen interagieren.</span><span class="sxs-lookup"><span data-stu-id="a48a1-104">The JavaScript API for Office enables you to create web applications that interact with the object models in Office host applications.</span></span> <span data-ttu-id="a48a1-105">In diesem Abschnitt erfahren Sie mehr über die Klassen, Methoden und anderen Typen, die für das Erstellen von Office-Add-Ins verfügbar sind.</span><span class="sxs-lookup"><span data-stu-id="a48a1-105">Use this section to learn more about the classes, methods, and other types available for building Office Add-ins.</span></span>
 
-<span data-ttu-id="3bddc-106">Im folgenden finden Sie eine Liste mit hostspezifischen Anforderungs Sätzen (und die Host übergreifenden Common APIs).</span><span class="sxs-lookup"><span data-stu-id="3bddc-106">The following is a list of host-specific requirement sets (and the cross-host Common APIs).</span></span> <span data-ttu-id="3bddc-107">Jedes Element verweist auf eine Version der API-Referenzdokumentation, die von diesem Anforderungs Satzes unterstützt wird (beispielsweise ExcelApi 1,3 zeigt APIs in ExcelApi 1,1, 1,2, 1,3 sowie die gemeinsame API).</span><span class="sxs-lookup"><span data-stu-id="3bddc-107">Each item links to a version of the API reference documentation that is supported by that requirement set (e.g. ExcelApi 1.3 shows APIs in ExcelApi 1.1, 1.2, 1.3 as well as the Common API).</span></span>
+<span data-ttu-id="a48a1-106">Im folgenden finden Sie eine Liste mit hostspezifischen Anforderungs Sätzen (und die Host übergreifenden Common APIs).</span><span class="sxs-lookup"><span data-stu-id="a48a1-106">The following is a list of host-specific requirement sets (and the cross-host Common APIs).</span></span> <span data-ttu-id="a48a1-107">Jedes Element verweist auf eine Version der API-Referenzdokumentation, die von diesem Anforderungs Satzes unterstützt wird (beispielsweise ExcelApi 1,3 zeigt APIs in ExcelApi 1,1, 1,2, 1,3 sowie die gemeinsame API).</span><span class="sxs-lookup"><span data-stu-id="a48a1-107">Each item links to a version of the API reference documentation that is supported by that requirement set (e.g. ExcelApi 1.3 shows APIs in ExcelApi 1.1, 1.2, 1.3 as well as the Common API).</span></span>
+
+<span data-ttu-id="a48a1-108">`ExcelApiOnline 1.1`ist eine spezielle Anforderungsgruppe.</span><span class="sxs-lookup"><span data-stu-id="a48a1-108">`ExcelApiOnline 1.1` is a special requirement set.</span></span> <span data-ttu-id="a48a1-109">Sie enthält die neuesten APIs für Excel im Internet, aber diese APIs werden möglicherweise noch nicht vollständig auf allen Plattformen unterstützt.</span><span class="sxs-lookup"><span data-stu-id="a48a1-109">It contains the latest APIs for Excel on the web, but those APIs may not yet be fully supported across all platforms.</span></span> <span data-ttu-id="a48a1-110">Weitere Informationen finden Sie unter [Excel JavaScript API Online-only Requirement Sets](/office/dev/add-ins/reference/requirement-sets/excel-api-online-requirement-set) .</span><span class="sxs-lookup"><span data-stu-id="a48a1-110">See [Excel JavaScript API online-only requirement set](/office/dev/add-ins/reference/requirement-sets/excel-api-online-requirement-set) for more information.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="3bddc-108">Wählen Sie auf dieser Seite einen Link aus, um die Referenzdokumentation für APIs anzuzeigen, die von dem angegebenen Anforderungs Satzes unterstützt werden, oder verwenden Sie das Dropdownmenü Filterauswahl oberhalb des Inhaltsverzeichnisses, um den Anforderungs jederzeit zu ändern.</span><span class="sxs-lookup"><span data-stu-id="3bddc-108">Choose a link on this page to view reference documentation for APIs supported by the specified requirement set, or use the filter selection drop-down menu above the table of contents to change the requirement set at any time.</span></span>
+> <span data-ttu-id="a48a1-111">Wählen Sie auf dieser Seite einen Link aus, um die Referenzdokumentation für APIs anzuzeigen, die von dem angegebenen Anforderungs Satzes unterstützt werden, oder verwenden Sie das Dropdownmenü Filterauswahl oberhalb des Inhaltsverzeichnisses, um den Anforderungs jederzeit zu ändern.</span><span class="sxs-lookup"><span data-stu-id="a48a1-111">Choose a link on this page to view reference documentation for APIs supported by the specified requirement set, or use the filter selection drop-down menu above the table of contents to change the requirement set at any time.</span></span>
 
-## <a name="excel"></a><span data-ttu-id="3bddc-109">Excel</span><span class="sxs-lookup"><span data-stu-id="3bddc-109">Excel</span></span>
+## <a name="excel"></a><span data-ttu-id="a48a1-112">Excel</span><span class="sxs-lookup"><span data-stu-id="a48a1-112">Excel</span></span>
 
-- [<span data-ttu-id="3bddc-110">ExcelApi-Vorschau</span><span class="sxs-lookup"><span data-stu-id="3bddc-110">ExcelApi Preview</span></span>](/javascript/api/excel?view=excel-js-preview)
-- [<span data-ttu-id="3bddc-111">ExcelApi 1.10</span><span class="sxs-lookup"><span data-stu-id="3bddc-111">ExcelApi 1.10</span></span>](/javascript/api/excel?view=excel-js-1.10)
-- [<span data-ttu-id="3bddc-112">ExcelApi 1.9</span><span class="sxs-lookup"><span data-stu-id="3bddc-112">ExcelApi 1.9</span></span>](/javascript/api/excel?view=excel-js-1.9)
-- [<span data-ttu-id="3bddc-113">ExcelApi 1.8</span><span class="sxs-lookup"><span data-stu-id="3bddc-113">ExcelApi 1.8</span></span>](/javascript/api/excel?view=excel-js-1.8)
-- [<span data-ttu-id="3bddc-114">ExcelApi 1.7</span><span class="sxs-lookup"><span data-stu-id="3bddc-114">ExcelApi 1.7</span></span>](/javascript/api/excel?view=excel-js-1.7)
-- [<span data-ttu-id="3bddc-115">ExcelApi 1.6</span><span class="sxs-lookup"><span data-stu-id="3bddc-115">ExcelApi 1.6</span></span>](/javascript/api/excel?view=excel-js-1.6)
-- [<span data-ttu-id="3bddc-116">ExcelApi 1.5</span><span class="sxs-lookup"><span data-stu-id="3bddc-116">ExcelApi 1.5</span></span>](/javascript/api/excel?view=excel-js-1.5)
-- [<span data-ttu-id="3bddc-117">ExcelApi 1.4</span><span class="sxs-lookup"><span data-stu-id="3bddc-117">ExcelApi 1.4</span></span>](/javascript/api/excel?view=excel-js-1.4)
-- [<span data-ttu-id="3bddc-118">ExcelApi 1.3</span><span class="sxs-lookup"><span data-stu-id="3bddc-118">ExcelApi 1.3</span></span>](/javascript/api/excel?view=excel-js-1.3)
-- [<span data-ttu-id="3bddc-119">ExcelApi 1.2</span><span class="sxs-lookup"><span data-stu-id="3bddc-119">ExcelApi 1.2</span></span>](/javascript/api/excel?view=excel-js-1.2)
-- [<span data-ttu-id="3bddc-120">ExcelApi 1.1</span><span class="sxs-lookup"><span data-stu-id="3bddc-120">ExcelApi 1.1</span></span>](/javascript/api/excel?view=excel-js-1.1)
+- [<span data-ttu-id="a48a1-113">ExcelApi-Vorschau</span><span class="sxs-lookup"><span data-stu-id="a48a1-113">ExcelApi Preview</span></span>](/javascript/api/excel?view=excel-js-preview)
+- [<span data-ttu-id="a48a1-114">ExcelApiOnline 1,1</span><span class="sxs-lookup"><span data-stu-id="a48a1-114">ExcelApiOnline 1.1</span></span>](/javascript/api/excel?view=excel-js-online)
+- [<span data-ttu-id="a48a1-115">ExcelApi 1.10</span><span class="sxs-lookup"><span data-stu-id="a48a1-115">ExcelApi 1.10</span></span>](/javascript/api/excel?view=excel-js-1.10)
+- [<span data-ttu-id="a48a1-116">ExcelApi 1.9</span><span class="sxs-lookup"><span data-stu-id="a48a1-116">ExcelApi 1.9</span></span>](/javascript/api/excel?view=excel-js-1.9)
+- [<span data-ttu-id="a48a1-117">ExcelApi 1.8</span><span class="sxs-lookup"><span data-stu-id="a48a1-117">ExcelApi 1.8</span></span>](/javascript/api/excel?view=excel-js-1.8)
+- [<span data-ttu-id="a48a1-118">ExcelApi 1.7</span><span class="sxs-lookup"><span data-stu-id="a48a1-118">ExcelApi 1.7</span></span>](/javascript/api/excel?view=excel-js-1.7)
+- [<span data-ttu-id="a48a1-119">ExcelApi 1.6</span><span class="sxs-lookup"><span data-stu-id="a48a1-119">ExcelApi 1.6</span></span>](/javascript/api/excel?view=excel-js-1.6)
+- [<span data-ttu-id="a48a1-120">ExcelApi 1.5</span><span class="sxs-lookup"><span data-stu-id="a48a1-120">ExcelApi 1.5</span></span>](/javascript/api/excel?view=excel-js-1.5)
+- [<span data-ttu-id="a48a1-121">ExcelApi 1.4</span><span class="sxs-lookup"><span data-stu-id="a48a1-121">ExcelApi 1.4</span></span>](/javascript/api/excel?view=excel-js-1.4)
+- [<span data-ttu-id="a48a1-122">ExcelApi 1.3</span><span class="sxs-lookup"><span data-stu-id="a48a1-122">ExcelApi 1.3</span></span>](/javascript/api/excel?view=excel-js-1.3)
+- [<span data-ttu-id="a48a1-123">ExcelApi 1.2</span><span class="sxs-lookup"><span data-stu-id="a48a1-123">ExcelApi 1.2</span></span>](/javascript/api/excel?view=excel-js-1.2)
+- [<span data-ttu-id="a48a1-124">ExcelApi 1.1</span><span class="sxs-lookup"><span data-stu-id="a48a1-124">ExcelApi 1.1</span></span>](/javascript/api/excel?view=excel-js-1.1)
 
-## <a name="onenote"></a><span data-ttu-id="3bddc-121">OneNote</span><span class="sxs-lookup"><span data-stu-id="3bddc-121">OneNote</span></span>
+## <a name="onenote"></a><span data-ttu-id="a48a1-125">OneNote</span><span class="sxs-lookup"><span data-stu-id="a48a1-125">OneNote</span></span>
 
-- [<span data-ttu-id="3bddc-122">OneNote 1,1</span><span class="sxs-lookup"><span data-stu-id="3bddc-122">OneNote 1.1</span></span>](/javascript/api/onenote?view=onenote-js-1.1)
+- [<span data-ttu-id="a48a1-126">OneNote 1,1</span><span class="sxs-lookup"><span data-stu-id="a48a1-126">OneNote 1.1</span></span>](/javascript/api/onenote?view=onenote-js-1.1)
 
-## <a name="outlook"></a><span data-ttu-id="3bddc-123">Outlook</span><span class="sxs-lookup"><span data-stu-id="3bddc-123">Outlook</span></span>
+## <a name="outlook"></a><span data-ttu-id="a48a1-127">Outlook</span><span class="sxs-lookup"><span data-stu-id="a48a1-127">Outlook</span></span>
 
-- [<span data-ttu-id="3bddc-124">Post fach Vorschau</span><span class="sxs-lookup"><span data-stu-id="3bddc-124">Mailbox Preview</span></span>](/javascript/api/outlook?view=outlook-js-preview)
-- [<span data-ttu-id="3bddc-125">Postfach 1,8</span><span class="sxs-lookup"><span data-stu-id="3bddc-125">Mailbox 1.8</span></span>](/javascript/api/outlook?view=outlook-js-1.8)
-- [<span data-ttu-id="3bddc-126">Mailbox 1.7</span><span class="sxs-lookup"><span data-stu-id="3bddc-126">Mailbox 1.7</span></span>](/javascript/api/outlook?view=outlook-js-1.7)
-- [<span data-ttu-id="3bddc-127">Mailbox 1.6</span><span class="sxs-lookup"><span data-stu-id="3bddc-127">Mailbox 1.6</span></span>](/javascript/api/outlook?view=outlook-js-1.6)
-- [<span data-ttu-id="3bddc-128">Mailbox 1.5</span><span class="sxs-lookup"><span data-stu-id="3bddc-128">Mailbox 1.5</span></span>](/javascript/api/outlook?view=outlook-js-1.5)
-- [<span data-ttu-id="3bddc-129">Mailbox 1.4</span><span class="sxs-lookup"><span data-stu-id="3bddc-129">Mailbox 1.4</span></span>](/javascript/api/outlook?view=outlook-js-1.4)
-- [<span data-ttu-id="3bddc-130">Mailbox 1.3</span><span class="sxs-lookup"><span data-stu-id="3bddc-130">Mailbox 1.3</span></span>](/javascript/api/outlook?view=outlook-js-1.3)
-- [<span data-ttu-id="3bddc-131">Mailbox 1.2</span><span class="sxs-lookup"><span data-stu-id="3bddc-131">Mailbox 1.2</span></span>](/javascript/api/outlook?view=outlook-js-1.2)
-- [<span data-ttu-id="3bddc-132">Mailbox 1.1</span><span class="sxs-lookup"><span data-stu-id="3bddc-132">Mailbox 1.1</span></span>](/javascript/api/outlook?view=outlook-js-1.1)
+- [<span data-ttu-id="a48a1-128">Post fach Vorschau</span><span class="sxs-lookup"><span data-stu-id="a48a1-128">Mailbox Preview</span></span>](/javascript/api/outlook?view=outlook-js-preview)
+- [<span data-ttu-id="a48a1-129">Postfach 1.8</span><span class="sxs-lookup"><span data-stu-id="a48a1-129">Mailbox 1.8</span></span>](/javascript/api/outlook?view=outlook-js-1.8)
+- [<span data-ttu-id="a48a1-130">Mailbox 1.7</span><span class="sxs-lookup"><span data-stu-id="a48a1-130">Mailbox 1.7</span></span>](/javascript/api/outlook?view=outlook-js-1.7)
+- [<span data-ttu-id="a48a1-131">Mailbox 1.6</span><span class="sxs-lookup"><span data-stu-id="a48a1-131">Mailbox 1.6</span></span>](/javascript/api/outlook?view=outlook-js-1.6)
+- [<span data-ttu-id="a48a1-132">Mailbox 1.5</span><span class="sxs-lookup"><span data-stu-id="a48a1-132">Mailbox 1.5</span></span>](/javascript/api/outlook?view=outlook-js-1.5)
+- [<span data-ttu-id="a48a1-133">Mailbox 1.4</span><span class="sxs-lookup"><span data-stu-id="a48a1-133">Mailbox 1.4</span></span>](/javascript/api/outlook?view=outlook-js-1.4)
+- [<span data-ttu-id="a48a1-134">Mailbox 1.3</span><span class="sxs-lookup"><span data-stu-id="a48a1-134">Mailbox 1.3</span></span>](/javascript/api/outlook?view=outlook-js-1.3)
+- [<span data-ttu-id="a48a1-135">Mailbox 1.2</span><span class="sxs-lookup"><span data-stu-id="a48a1-135">Mailbox 1.2</span></span>](/javascript/api/outlook?view=outlook-js-1.2)
+- [<span data-ttu-id="a48a1-136">Mailbox 1.1</span><span class="sxs-lookup"><span data-stu-id="a48a1-136">Mailbox 1.1</span></span>](/javascript/api/outlook?view=outlook-js-1.1)
 
-## <a name="powerpoint"></a><span data-ttu-id="3bddc-133">PowerPoint</span><span class="sxs-lookup"><span data-stu-id="3bddc-133">PowerPoint</span></span>
+## <a name="powerpoint"></a><span data-ttu-id="a48a1-137">PowerPoint</span><span class="sxs-lookup"><span data-stu-id="a48a1-137">PowerPoint</span></span>
 
-- [<span data-ttu-id="3bddc-134">PowerPointApi 1.1</span><span class="sxs-lookup"><span data-stu-id="3bddc-134">PowerPointApi 1.1</span></span>](/javascript/api/powerpoint?view=powerpoint-js-1.1)
+- [<span data-ttu-id="a48a1-138">PowerPointApi 1.1</span><span class="sxs-lookup"><span data-stu-id="a48a1-138">PowerPointApi 1.1</span></span>](/javascript/api/powerpoint?view=powerpoint-js-1.1)
 
-## <a name="visio"></a><span data-ttu-id="3bddc-135">Visio</span><span class="sxs-lookup"><span data-stu-id="3bddc-135">Visio</span></span>
+## <a name="visio"></a><span data-ttu-id="a48a1-139">Visio</span><span class="sxs-lookup"><span data-stu-id="a48a1-139">Visio</span></span>
 
-- [<span data-ttu-id="3bddc-136">VisioApi 1,1</span><span class="sxs-lookup"><span data-stu-id="3bddc-136">VisioApi 1.1</span></span>](/javascript/api/visio?view=visio-js-1.1)
+- [<span data-ttu-id="a48a1-140">VisioApi 1,1</span><span class="sxs-lookup"><span data-stu-id="a48a1-140">VisioApi 1.1</span></span>](/javascript/api/visio?view=visio-js-1.1)
 
-## <a name="word"></a><span data-ttu-id="3bddc-137">Word</span><span class="sxs-lookup"><span data-stu-id="3bddc-137">Word</span></span>
+## <a name="word"></a><span data-ttu-id="a48a1-141">Word</span><span class="sxs-lookup"><span data-stu-id="a48a1-141">Word</span></span>
 
-- [<span data-ttu-id="3bddc-138">Word-Vorschau</span><span class="sxs-lookup"><span data-stu-id="3bddc-138">Word Preview</span></span>](/javascript/api/word?view=word-js-preview)
-- [<span data-ttu-id="3bddc-139">WordApi 1.3</span><span class="sxs-lookup"><span data-stu-id="3bddc-139">WordApi 1.3</span></span>](/javascript/api/word?view=word-js-1.3)
-- [<span data-ttu-id="3bddc-140">WordApi 1.2</span><span class="sxs-lookup"><span data-stu-id="3bddc-140">WordApi 1.2</span></span>](/javascript/api/word?view=word-js-1.2)
-- [<span data-ttu-id="3bddc-141">WordApi 1.1</span><span class="sxs-lookup"><span data-stu-id="3bddc-141">WordApi 1.1</span></span>](/javascript/api/word?view=word-js-1.1)
+- [<span data-ttu-id="a48a1-142">Word-Vorschau</span><span class="sxs-lookup"><span data-stu-id="a48a1-142">Word Preview</span></span>](/javascript/api/word?view=word-js-preview)
+- [<span data-ttu-id="a48a1-143">WordApi 1.3</span><span class="sxs-lookup"><span data-stu-id="a48a1-143">WordApi 1.3</span></span>](/javascript/api/word?view=word-js-1.3)
+- [<span data-ttu-id="a48a1-144">WordApi 1.2</span><span class="sxs-lookup"><span data-stu-id="a48a1-144">WordApi 1.2</span></span>](/javascript/api/word?view=word-js-1.2)
+- [<span data-ttu-id="a48a1-145">WordApi 1.1</span><span class="sxs-lookup"><span data-stu-id="a48a1-145">WordApi 1.1</span></span>](/javascript/api/word?view=word-js-1.1)
 
-## <a name="common-api"></a><span data-ttu-id="3bddc-142">Allgemeine API</span><span class="sxs-lookup"><span data-stu-id="3bddc-142">Common API</span></span>
+## <a name="common-api"></a><span data-ttu-id="a48a1-146">Allgemeine API</span><span class="sxs-lookup"><span data-stu-id="a48a1-146">Common API</span></span>
 
-- [<span data-ttu-id="3bddc-143">Allgemeine API</span><span class="sxs-lookup"><span data-stu-id="3bddc-143">Common API</span></span>](/javascript/api/office?view=common-js)
+- [<span data-ttu-id="a48a1-147">Allgemeine API</span><span class="sxs-lookup"><span data-stu-id="a48a1-147">Common API</span></span>](/javascript/api/office?view=common-js)
 
-## <a name="see-also"></a><span data-ttu-id="3bddc-144">Siehe auch</span><span class="sxs-lookup"><span data-stu-id="3bddc-144">See also</span></span>
+## <a name="see-also"></a><span data-ttu-id="a48a1-148">Siehe auch</span><span class="sxs-lookup"><span data-stu-id="a48a1-148">See also</span></span>
 
-- [<span data-ttu-id="3bddc-145">Informationen zu Office-Add-Ins</span><span class="sxs-lookup"><span data-stu-id="3bddc-145">About Office Add-ins</span></span>](/office/dev/add-ins/overview)
-- [<span data-ttu-id="3bddc-146">Host- und Plattformverfügbarkeit von Office-Add-Ins</span><span class="sxs-lookup"><span data-stu-id="3bddc-146">Office Add-in host and platform availability</span></span>](/office/dev/add-ins/overview/office-add-in-availability)
-- [<span data-ttu-id="3bddc-147">Office-Versionen und Anforderungssätze</span><span class="sxs-lookup"><span data-stu-id="3bddc-147">Office versions and requirement sets</span></span>](/office/dev/add-ins/develop/office-versions-and-requirement-sets)
+- [<span data-ttu-id="a48a1-149">Informationen zu Office-Add-Ins</span><span class="sxs-lookup"><span data-stu-id="a48a1-149">About Office Add-ins</span></span>](/office/dev/add-ins/overview)
+- [<span data-ttu-id="a48a1-150">Host- und Plattformverfügbarkeit von Office-Add-Ins</span><span class="sxs-lookup"><span data-stu-id="a48a1-150">Office Add-in host and platform availability</span></span>](/office/dev/add-ins/overview/office-add-in-availability)
+- [<span data-ttu-id="a48a1-151">Office-Versionen und Anforderungssätze</span><span class="sxs-lookup"><span data-stu-id="a48a1-151">Office versions and requirement sets</span></span>](/office/dev/add-ins/develop/office-versions-and-requirement-sets)
