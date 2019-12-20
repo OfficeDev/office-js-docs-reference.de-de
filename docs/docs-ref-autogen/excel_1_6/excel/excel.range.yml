@@ -58,6 +58,7 @@ items:
       - 'excel!Excel.Range#load:member(2)'
       - 'excel!Excel.Range#load:member(3)'
       - 'excel!Excel.Range#merge:member(1)'
+      - 'excel!Excel.Range#moveTo:member(1)'
       - 'excel!Excel.Range#numberFormat:member'
       - 'excel!Excel.Range#rowCount:member'
       - 'excel!Excel.Range#rowHidden:member'
@@ -898,7 +899,7 @@ items:
                   ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress).getOffsetRange(-1,4);
               range.load('address');
               return ctx.sync().then(function() {
-                  console.log(range.address); // prints Sheet1!H3:K5
+                  console.log(range.address); // prints Sheet1!H3:J5
               });
           }).catch(function(error) {
               console.log("Error: " + error);
@@ -1398,7 +1399,7 @@ items:
                       }
   - uid: 'excel!Excel.Range#merge:member(1)'
     summary: |-
-      Führt die Zellen des Bereichs in einen Bereich im Arbeitsblatt zusammen.
+      Führt die Zellen des Bereichs in eine Region im Arbeitsblatt zusammen.
 
       \[[API-Gruppe: ExcelApi 1,2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: merge(across)
@@ -1449,6 +1450,27 @@ items:
           description: Optional. Mit „true“ werden Zellen in allen Zeilen des angegebenen Bereichs als einzelne zusammengeführte Zellen zusammengeführt. Der Standardwert lautet „false“.
           type:
             - boolean
+  - uid: 'excel!Excel.Range#moveTo:member(1)'
+    summary: |-
+      Verschiebt Zellenwerte, Formatierungen und Formeln aus dem aktuellen Bereich in den Zielbereich, wobei die alten Informationen in diesen Zellen ersetzt werden. Der Zielbereich wird automatisch erweitert, wenn er kleiner als der aktuelle Bereich ist. Alle Zellen im Zielbereich, die sich außerhalb des Bereichs des ursprünglichen Bereichs befinden, werden nicht geändert.
+
+      \[[API-Gruppe: ExcelApiOnline 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: moveTo(destinationRange)
+    fullName: moveTo(destinationRange)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'moveTo(destinationRange: Range | string): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: destinationRange
+          description: 'destinationRange gibt den Bereich an, in den die Informationen in diesem Bereich verschoben werden.'
+          type:
+            - 'excel!Excel.Range#moveTo~0:complex'
   - uid: 'excel!Excel.Range#numberFormat:member'
     summary: |-
       Stellt den Zahlenformatcode für Excel für den angegebenen Bereich dar. Beim Festlegen des Zahlenformats für einen Bereich kann das value-Argument entweder ein einzelner Wert (Zeichenfolge) oder ein zweidimensionales Array sein. Wenn es sich bei dem Argument um einen einzelnen Wert handelt, wird es auf alle Zellen im Bereich angewendet.
@@ -1701,7 +1723,7 @@ items:
           - 'excel!Excel.Interfaces.RangeData:interface'
         description: ''
   - uid: 'excel!Excel.Range#track:member(1)'
-    summary: 'Nachverfolgung des Objekts zwecks automatischer Anpassung auf der Grundlage der umgebenden Änderungen im Dokument. Dieser Aufruf ist eine Kurzform für`context.trackedObjects.add(thisObject)`<!-- -->. Wenn Sie dieses Objekt für `.sync` Aufrufe und außerhalb der sequenziellen Ausführung eines ". Run"-Batches verwenden und beim Festlegen einer Eigenschaft oder beim Aufrufen einer Methode für das Objekt einen "InvalidObjectPath"-Fehler erhalten, muss das Objekt dem nachverfolgten Objekt hinzugefügt worden sein. Auflistung, wenn das Objekt zum ersten Mal erstellt wurde.'
+    summary: 'Nachverfolgung des Objekts zwecks automatischer Anpassung auf der Grundlage der umgebenden Änderungen im Dokument. Dieser Aufruf ist eine Kurzform für`context.trackedObjects.add(thisObject)`<!-- -->. Wenn Sie dieses Objekt für `.sync` Aufrufe und außerhalb der sequenziellen Ausführung eines ". Run"-Batches verwenden und beim Festlegen einer Eigenschaft oder beim Aufrufen einer Methode für das Objekt einen "InvalidObjectPath"-Fehler erhalten, mussten Sie das Objekt der nachverfolgten Objektauflistung hinzugefügt haben, als das Objekt zum ersten Mal erstellt wurde.'
     name: track()
     fullName: track()
     langs:
@@ -1876,6 +1898,15 @@ references:
     name: Excel.InsertShiftDirection
   - uid: 'excel!Excel.Interfaces.RangeLoadOptions:interface'
     name: Excel.Interfaces.RangeLoadOptions
+  - uid: 'excel!Excel.Range#moveTo~0:complex'
+    name: Range | string
+    fullName: Excel.Range | string
+    spec.typeScript:
+      - uid: 'excel!Excel.Range:class'
+        name: Range
+        fullName: Excel.Range
+      - name: ' | string'
+        fullName: ' | string'
   - uid: 'excel!Excel.Interfaces.RangeUpdateData:interface'
     name: Interfaces.RangeUpdateData
   - uid: 'excel!OfficeExtension.UpdateOptions:interface'
