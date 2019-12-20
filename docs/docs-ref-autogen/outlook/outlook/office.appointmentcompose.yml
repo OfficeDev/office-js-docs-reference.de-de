@@ -5,6 +5,12 @@ items:
       Der Termin Organisator Modus von [Office. Context. Mailbox. Item](xref:outlook!Office.Item:interface)<!-- -->.
 
       **Wichtig**: Dies ist ein internes Outlook-Objekt, das nicht direkt über vorhandene Schnittstellen verfügbar gemacht wird. Sie sollten dies als Modus von Office. Context. Mailbox. Item behandeln. Weitere Informationen erhalten Sie auf der Seite [Objektmodell](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/preview-requirement-set/office.context.mailbox.item) .
+
+      Übergeordnete Schnittstellen:
+
+      - [ItemCompose](xref:outlook!Office.ItemCompose:interface)
+
+      - [Termin](xref:outlook!Office.Appointment:interface)
     name: Office.AppointmentCompose
     fullName: Office.AppointmentCompose
     langs:
@@ -28,6 +34,8 @@ items:
       - 'outlook!Office.AppointmentCompose#close:member(1)'
       - 'outlook!Office.AppointmentCompose#end:member'
       - 'outlook!Office.AppointmentCompose#enhancedLocation:member'
+      - 'outlook!Office.AppointmentCompose#getAttachmentContentAsync:member(1)'
+      - 'outlook!Office.AppointmentCompose#getAttachmentContentAsync:member(2)'
       - 'outlook!Office.AppointmentCompose#getAttachmentsAsync:member(1)'
       - 'outlook!Office.AppointmentCompose#getAttachmentsAsync:member(2)'
       - 'outlook!Office.AppointmentCompose#getInitializationContextAsync:member(1)'
@@ -36,6 +44,8 @@ items:
       - 'outlook!Office.AppointmentCompose#getItemIdAsync:member(2)'
       - 'outlook!Office.AppointmentCompose#getSelectedDataAsync:member(1)'
       - 'outlook!Office.AppointmentCompose#getSelectedDataAsync:member(2)'
+      - 'outlook!Office.AppointmentCompose#getSharedPropertiesAsync:member(1)'
+      - 'outlook!Office.AppointmentCompose#getSharedPropertiesAsync:member(2)'
       - 'outlook!Office.AppointmentCompose#itemType:member'
       - 'outlook!Office.AppointmentCompose#loadCustomPropertiesAsync:member(1)'
       - 'outlook!Office.AppointmentCompose#location:member'
@@ -577,8 +587,6 @@ items:
       Die End-Eigenschaft ist ein [time](xref:outlook!Office.Time:interface) -Objekt, das als Coordinated Universal Time (UTC)-Datum und-Zeitwert ausgedrückt wird. Sie können die convertToLocalClientTime-Methode verwenden, um den Wert der End-Eigenschaft in das lokale Datum und die Uhrzeit des Clients zu konvertieren.
 
       Wenn Sie die Time. setasync-Methode verwenden, um die Endzeit festzulegen, sollten Sie die convertToUtcClientTime-Methode verwenden, um die Ortszeit auf dem Client für den Server in UTC zu konvertieren.
-
-      \[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
 
@@ -665,6 +673,80 @@ items:
       return:
         type:
           - 'outlook!Office.EnhancedLocation:interface'
+  - uid: 'outlook!Office.AppointmentCompose#getAttachmentContentAsync:member(1)'
+    summary: |-
+      Ruft eine Anlage aus einer Nachricht oder einem Termin ab und gibt Sie als **AttachmentContent** -Objekt zurück.
+
+      Die `getAttachmentContentAsync` -Methode ruft die Anlage mit dem angegebenen Bezeichner aus dem Element ab. Als bewährte Methode sollten Sie den Bezeichner verwenden, um eine Anlage in derselben Sitzung abzurufen, die die attachmentIds mit dem `getAttachmentsAsync` oder `item.attachments` -Aufruf abgerufen haben. In Outlook im Web und für Mobilgeräte ist die Anlagen-ID nur innerhalb der gleichen Sitzung gültig. Eine Sitzung ist beendet, wenn der Benutzer die APP schließt oder wenn der Benutzer mit dem Erstellen eines Inline Formulars beginnt und anschließend das Formular öffnet, um in einem separaten Fenster fortzufahren.
+
+      \[[API-Gruppe: Mailbox 1,8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
+
+      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Terminplaner
+
+      **Fehler**:
+
+      - InvalidAttachmentId: die Anlagen-ID ist nicht vorhanden.
+    name: 'getAttachmentContentAsync(attachmentId, options, callback)'
+    fullName: 'getAttachmentContentAsync(attachmentId, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getAttachmentContentAsync(attachmentId: string, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<AttachmentContent>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: attachmentId
+          description: 'Der Bezeichner der Anlage, die abgerufen werden soll.'
+          type:
+            - string
+        - id: options
+          description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. AsyncContext: Entwickler können ein beliebiges Objekt bereitstellen, auf das Sie in der Rückrufmethode zugreifen möchten.'
+          type:
+            - 'outlook!Office.AsyncContextOptions:interface'
+        - id: callback
+          description: 'Optional. Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzelnen Parameter (asyncResult) aufgerufen, bei dem es sich um ein Office. AsyncResult-Objekt handelt. Wenn der Aufruf fehlschlägt, enthält die AsyncResult. Error-Eigenschaft einen Fehlercode mit dem Grund für den Fehler.'
+          type:
+            - 'outlook!Office.AppointmentCompose#getAttachmentContentAsync~0:complex'
+  - uid: 'outlook!Office.AppointmentCompose#getAttachmentContentAsync:member(2)'
+    summary: |-
+      Ruft eine Anlage aus einer Nachricht oder einem Termin ab und gibt Sie als **AttachmentContent** -Objekt zurück.
+
+      Die `getAttachmentContentAsync` -Methode ruft die Anlage mit dem angegebenen Bezeichner aus dem Element ab. Als bewährte Methode sollten Sie den Bezeichner verwenden, um eine Anlage in derselben Sitzung abzurufen, die die attachmentIds mit dem `getAttachmentsAsync` oder `item.attachments` -Aufruf abgerufen haben. In Outlook im Web und für Mobilgeräte ist die Anlagen-ID nur innerhalb der gleichen Sitzung gültig. Eine Sitzung ist beendet, wenn der Benutzer die APP schließt oder wenn der Benutzer mit dem Erstellen eines Inline Formulars beginnt und anschließend das Formular öffnet, um in einem separaten Fenster fortzufahren.
+
+      \[[API-Gruppe: Mailbox 1,8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
+
+      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Terminplaner
+
+      **Fehler**:
+
+      - InvalidAttachmentId: die Anlagen-ID ist nicht vorhanden.
+    name: 'getAttachmentContentAsync(attachmentId, callback)'
+    fullName: 'getAttachmentContentAsync(attachmentId, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getAttachmentContentAsync(attachmentId: string, callback?: (asyncResult: Office.AsyncResult<AttachmentContent>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: attachmentId
+          description: 'Der Bezeichner der Anlage, die abgerufen werden soll.'
+          type:
+            - string
+        - id: callback
+          description: 'Optional. Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzelnen Parameter (asyncResult) aufgerufen, bei dem es sich um ein Office. AsyncResult-Objekt handelt. Wenn der Aufruf fehlschlägt, enthält die AsyncResult. Error-Eigenschaft einen Fehlercode mit dem Grund für den Fehler.'
+          type:
+            - 'outlook!Office.AppointmentCompose#getAttachmentContentAsync~1:complex'
   - uid: 'outlook!Office.AppointmentCompose#getAttachmentsAsync:member(1)'
     summary: |-
       Ruft die Anlagen des Elements als Array ab.
@@ -884,8 +966,6 @@ items:
 
       Um auf die ausgewählten Daten aus der Rückrufmethode zuzugreifen, rufen Sie AsyncResult. Value. Data auf. Um auf die Source-Eigenschaft zuzugreifen, von der die Auswahl stammt, rufen Sie AsyncResult. Value. SourceProperty auf, die entweder Body oder Subject ist.
 
-      **Hinweis**: in Outlook im Internet gibt die Methode die Zeichenfolge "Null" zurück, wenn kein Text ausgewählt ist, der Cursor sich jedoch im Textkörper befindet.
-
       \[[API-Gruppe: Mailbox 1,2](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
@@ -939,8 +1019,6 @@ items:
 
       Um auf die ausgewählten Daten aus der Rückrufmethode zuzugreifen, rufen Sie AsyncResult. Value. Data auf. Um auf die Source-Eigenschaft zuzugreifen, von der die Auswahl stammt, rufen Sie AsyncResult. Value. SourceProperty auf, die entweder Body oder Subject ist.
 
-      **Hinweis**: in Outlook im Internet gibt die Methode die Zeichenfolge "Null" zurück, wenn kein Text ausgewählt ist, der Cursor sich jedoch im Textkörper befindet.
-
       \[[API-Gruppe: Mailbox 1,2](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
@@ -966,13 +1044,65 @@ items:
           description: 'Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzigen Parameter vom Typ Office. AsyncResult aufgerufen.'
           type:
             - 'outlook!Office.AppointmentCompose#getSelectedDataAsync~3:complex'
+  - uid: 'outlook!Office.AppointmentCompose#getSharedPropertiesAsync:member(1)'
+    summary: |-
+      Ruft die Eigenschaften eines Termins oder einer Nachricht in einem freigegebenen Ordner, Kalender oder Postfach ab.
+
+      \[[API-Gruppe: Mailbox 1,8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
+
+      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Terminplaner
+    name: 'getSharedPropertiesAsync(options, callback)'
+    fullName: 'getSharedPropertiesAsync(options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getSharedPropertiesAsync(options: Office.AsyncContextOptions, callback: (asyncResult: Office.AsyncResult<SharedProperties>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: options
+          description: 'Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. AsyncContext: Entwickler können ein beliebiges Objekt bereitstellen, auf das Sie in der Rückrufmethode zugreifen möchten.'
+          type:
+            - 'outlook!Office.AsyncContextOptions:interface'
+        - id: callback
+          description: 'Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzigen Parameter vom Typ Office. AsyncResult aufgerufen. Die `value` Eigenschaft des Ergebnisses ist die Eigenschaften des freigegebenen Elements.'
+          type:
+            - 'outlook!Office.AppointmentCompose#getSharedPropertiesAsync~0:complex'
+  - uid: 'outlook!Office.AppointmentCompose#getSharedPropertiesAsync:member(2)'
+    summary: |-
+      Ruft die Eigenschaften eines Termins oder einer Nachricht in einem freigegebenen Ordner, Kalender oder Postfach ab.
+
+      \[[API-Gruppe: Mailbox 1,8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
+
+      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Terminplaner
+    name: getSharedPropertiesAsync(callback)
+    fullName: getSharedPropertiesAsync(callback)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getSharedPropertiesAsync(callback: (asyncResult: Office.AsyncResult<SharedProperties>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: callback
+          description: 'Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzigen Parameter vom Typ Office. AsyncResult aufgerufen. Die `value` Eigenschaft des Ergebnisses ist die Eigenschaften des freigegebenen Elements.'
+          type:
+            - 'outlook!Office.AppointmentCompose#getSharedPropertiesAsync~1:complex'
   - uid: 'outlook!Office.AppointmentCompose#itemType:member'
     summary: |-
       Ruft den Typ des Elements ab, das eine Instanz darstellt.
 
       Die ItemType-Eigenschaft gibt einen der Werte der ItemType-Enumeration zurück, der angibt, ob es sich bei der Item-Objektinstanz um eine Nachricht oder einen Termin handelt.
-
-      \[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
 
@@ -1004,8 +1134,6 @@ items:
       Benutzerdefinierte Eigenschaften werden als Schlüssel-/Wert-Paare pro App und pro Element gespeichert. Diese Methode gibt ein CustomProperties-Objekt im Rückruf zurück, das Methoden bereitstellt, um auf die benutzerdefinierten Eigenschaften zuzugreifen, die für das aktuelle Element und das aktuelle Add-in spezifisch sind. Benutzerdefinierte Eigenschaften sind für das Element nicht verschlüsselt und sollten darum nicht als sicherer Speicher verwendet werden.
 
       Die benutzerdefinierten Eigenschaften werden als CustomProperties-Objekt in der AsyncResult. Value-Eigenschaft bereitgestellt. Dieses Objekt kann verwendet werden, um benutzerdefinierte Eigenschaften aus dem Element abzurufen, festzulegen und zu entfernen und um Änderungen am benutzerdefinierten Eigenschaftssatz wieder auf dem Server zu speichern.
-
-      \[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
 
@@ -1031,10 +1159,7 @@ items:
           type:
             - any
   - uid: 'outlook!Office.AppointmentCompose#location:member'
-    summary: |-
-      Ruft den Ort eines Termins ab bzw. legt ihn fest. Die Location-Eigenschaft gibt ein [Location](xref:outlook!Office.Location:interface) -Objekt zurück, das Methoden bereitstellt, die zum Abrufen und Festlegen des Orts des Termins verwendet werden.
-
-      \[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    summary: 'Ruft den Ort eines Termins ab bzw. legt ihn fest. Die Location-Eigenschaft gibt ein [Location](xref:outlook!Office.Location:interface) -Objekt zurück, das Methoden bereitstellt, die zum Abrufen und Festlegen des Orts des Termins verwendet werden.'
     remarks: |-
       ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
 
@@ -1100,8 +1225,6 @@ items:
       - Abrufen: maximal 500 Mitglieder.
 
       - Festlegen: maximal 100 Mitglieder pro Anruf (bis zu 500 Mitgliedern insgesamt).
-
-      \[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
 
@@ -1375,8 +1498,6 @@ items:
       - Abrufen: maximal 500 Mitglieder.
 
       - Festlegen: maximal 100 Mitglieder pro Anruf (bis zu 500 Mitgliedern insgesamt).
-
-      \[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
 
@@ -1513,7 +1634,7 @@ items:
     summary: |-
       Ruft die ID der Datenreihe ab, zu der eine Instanz gehört.
 
-      In Outlook im Internet und Desktop Clients gibt die Series-ID die Exchange-Webdienste-ID des übergeordneten Elements (Series) zurück, zu dem dieses Element gehört. Auf IOS und Android gibt die Series-ID jedoch die Rest-ID des übergeordneten Elements zurück.
+      In Outlook im Internet und Desktop Clients gibt die Series-ID die Exchange Webdienste (EWS)-ID des übergeordneten (Series)-Elements zurück, zu dem dieses Element gehört. Auf IOS und Android gibt die Series-ID jedoch die Rest-ID des übergeordneten Elements zurück.
 
       **Hinweis**: der von der Series-ID-Eigenschaft zurückgegebene Bezeichner ist identisch mit der ID des Exchange Webdienste-Elements. Die Series-ID-Eigenschaft ist nicht identisch mit den Outlook-IDs, die von der Outlook-Rest-API verwendet werden. Bevor Sie REST-API-Aufrufe mit diesem Wert ausführen, sollte dieser mithilfe von Office.context.mailbox.convertToRestId konvertiert werden. Weitere Informationen finden Sie unter [Verwenden der Outlook-Rest-APIs aus einem Outlook-Add-in](https://docs.microsoft.com/outlook/add-ins/use-rest-api)<!-- -->.
 
@@ -1641,8 +1762,6 @@ items:
       Die Start-Eigenschaft ist ein [time](xref:outlook!Office.Time:interface) -Objekt, das als Coordinated Universal Time (UTC)-Datum und-Zeitwert ausgedrückt wird. Sie können die convertToLocalClientTime-Methode verwenden, um den Wert in das lokale Datum und die Uhrzeit des Clients zu konvertieren.
 
       Wenn Sie die Time. setasync-Methode verwenden, um die Startzeit festzulegen, sollten Sie die convertToUtcClientTime-Methode verwenden, um die Ortszeit auf dem Client für den Server in UTC zu konvertieren.
-
-      \[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
 
@@ -1684,8 +1803,6 @@ items:
       Die Subject-Eigenschaft ruft den gesamten Betreff des Elements ab oder legt ihn fest, wie er vom e-Mail-Server gesendet wird.
 
       Die Subject-Eigenschaft gibt ein Subject-Objekt zurück, das Methoden zum Abrufen und Festlegen des Betreffs bereitstellt.
-
-      \[[API-Gruppe: Mailbox 1,0](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
 
@@ -1849,6 +1966,38 @@ references:
     name: Time
   - uid: 'outlook!Office.EnhancedLocation:interface'
     name: EnhancedLocation
+  - uid: 'outlook!Office.AppointmentCompose#getAttachmentContentAsync~0:complex'
+    name: '(asyncResult: Office.AsyncResult<AttachmentContent>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<Office.AttachmentContent>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <
+        fullName: <
+      - uid: 'outlook!Office.AttachmentContent:interface'
+        name: AttachmentContent
+        fullName: Office.AttachmentContent
+      - name: '>) => void'
+        fullName: '>) => void'
+  - uid: 'outlook!Office.AppointmentCompose#getAttachmentContentAsync~1:complex'
+    name: '(asyncResult: Office.AsyncResult<AttachmentContent>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<Office.AttachmentContent>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <
+        fullName: <
+      - uid: 'outlook!Office.AttachmentContent:interface'
+        name: AttachmentContent
+        fullName: Office.AttachmentContent
+      - name: '>) => void'
+        fullName: '>) => void'
   - uid: 'outlook!Office.AppointmentCompose#getAttachmentsAsync~0:complex'
     name: '(asyncResult: Office.AsyncResult<AttachmentDetails[]>) => void'
     fullName: '(asyncResult: Office.AsyncResult<Office.AttachmentDetails[]>) => void'
@@ -1965,6 +2114,38 @@ references:
         fullName: Office.AsyncResult
       - name: <string>) => void
         fullName: <string>) => void
+  - uid: 'outlook!Office.AppointmentCompose#getSharedPropertiesAsync~0:complex'
+    name: '(asyncResult: Office.AsyncResult<SharedProperties>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<Office.SharedProperties>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <
+        fullName: <
+      - uid: 'outlook!Office.SharedProperties:interface'
+        name: SharedProperties
+        fullName: Office.SharedProperties
+      - name: '>) => void'
+        fullName: '>) => void'
+  - uid: 'outlook!Office.AppointmentCompose#getSharedPropertiesAsync~1:complex'
+    name: '(asyncResult: Office.AsyncResult<SharedProperties>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<Office.SharedProperties>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <
+        fullName: <
+      - uid: 'outlook!Office.SharedProperties:interface'
+        name: SharedProperties
+        fullName: Office.SharedProperties
+      - name: '>) => void'
+        fullName: '>) => void'
   - uid: 'outlook!Office.AppointmentCompose#itemType~0:complex'
     name: MailboxEnums.ItemType | string
     fullName: Office.MailboxEnums.ItemType | string
