@@ -10,7 +10,7 @@ items:
 
       - [ItemCompose](xref:outlook!Office.ItemCompose:interface)
 
-      - [Meldung](xref:outlook!Office.Message:interface)
+      - [Nachricht](xref:outlook!Office.Message:interface)
     name: Office.MessageCompose
     fullName: Office.MessageCompose
     langs:
@@ -364,6 +364,20 @@ items:
       ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
 
       ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Nachrichten verfassen
+
+      #### <a name="examples"></a>Beispiele
+
+      ```javascript
+      function myHandlerFunction(eventarg) {
+          if (eventarg.attachmentStatus === Office.MailboxEnums.AttachmentStatus.Added) {
+              var attachment = eventarg.attachmentDetails;
+              console.log("Event Fired and Attachment Added!");
+              getAttachmentContentAsync(attachment.id, options, callback);
+          }
+      }
+
+      Office.context.mailbox.item.addHandlerAsync(Office.EventType.AttachmentsChanged, myHandlerFunction, myCallback);
+      ```
     name: 'addHandlerAsync(eventType, handler, callback)'
     fullName: 'addHandlerAsync(eventType, handler, callback)'
     langs:
@@ -1210,6 +1224,37 @@ items:
       ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/outlook/add-ins/understanding-outlook-add-in-permissions)<!-- -->**: ReadItem
 
       ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/outlook/add-ins/#extension-points)<!-- -->**: Nachrichten verfassen
+
+      #### <a name="examples"></a>Beispiele
+
+      ```javascript
+      // The following example shows how to use the loadCustomPropertiesAsync method
+      // to asynchronously load custom properties that are specific to the current item.
+      // The example also shows how to use the saveAsync method to save these properties
+      // back to the server. After loading the custom properties, the example uses the
+      // get method to read the custom property myProp, the set method to write the
+      // custom property otherProp, and then finally calls the saveAsync method to save
+      // the custom properties.
+      Office.initialize = function () {
+          // Checks for the DOM to load using the jQuery ready function.
+          $(document).ready(function () {
+              // After the DOM is loaded, add-in-specific code can run.
+              var mailbox = Office.context.mailbox;
+              mailbox.item.loadCustomPropertiesAsync(customPropsCallback);
+          });
+      };
+
+      function customPropsCallback(asyncResult) {
+          var customProps = asyncResult.value;
+          var myProp = customProps.get("myProp");
+
+          customProps.set("otherProp", "value");
+          customProps.saveAsync(saveCallback);
+      }
+
+      function saveCallback(asyncResult) {
+      }
+      ```
     name: 'loadCustomPropertiesAsync(callback, userContext)'
     fullName: 'loadCustomPropertiesAsync(callback, userContext)'
     langs:
@@ -1523,7 +1568,7 @@ items:
     summary: |-
       Ruft die ID der Datenreihe ab, zu der eine Instanz gehört.
 
-      In Outlook im Internet und Desktop Clients gibt die Series-ID die Exchange Webdienste (EWS)-ID des übergeordneten (Series)-Elements zurück, zu dem dieses Element gehört. Auf IOS und Android gibt die Series-ID jedoch die Rest-ID des übergeordneten Elements zurück.
+      In Outlook im Internet und Desktop Clients gibt die Series-ID die Exchange-Webdienste-ID des übergeordneten Elements (Series) zurück, zu dem dieses Element gehört. Auf IOS und Android gibt die Series-ID jedoch die Rest-ID des übergeordneten Elements zurück.
 
       **Hinweis**: der von der Series-ID-Eigenschaft zurückgegebene Bezeichner ist identisch mit der ID des Exchange Webdienste-Elements. Die Series-ID-Eigenschaft ist nicht identisch mit den Outlook-IDs, die von der Outlook-Rest-API verwendet werden. Bevor Sie REST-API-Aufrufe mit diesem Wert ausführen, sollte dieser mithilfe von Office.context.mailbox.convertToRestId konvertiert werden. Weitere Informationen finden Sie unter [Verwenden der Outlook-Rest-APIs aus einem Outlook-Add-in](https://docs.microsoft.com/outlook/add-ins/use-rest-api)<!-- -->.
 

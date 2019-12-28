@@ -16,6 +16,7 @@ items:
     children:
       - 'excel!Excel.CommentCollection#add:member(1)'
       - 'excel!Excel.CommentCollection#add:member(2)'
+      - 'excel!Excel.CommentCollection#add:member(3)'
       - 'excel!Excel.CommentCollection#context:member'
       - 'excel!Excel.CommentCollection#getCount:member(1)'
       - 'excel!Excel.CommentCollection#getItem:member(1)'
@@ -31,7 +32,7 @@ items:
     summary: |-
       Erstellt einen neuen Kommentar mit dem angegebenen Inhalt auf der angegebenen Zelle. Wenn `InvalidArgument` der angegebene Bereich größer als eine Zelle ist, wird ein Fehler ausgelöst.
 
-      \[[API-Gruppe: ExcelApi 1,10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApiOnline 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: 'add(cellAddress, content, contentType)'
     fullName: 'add(cellAddress, content, contentType)'
     langs:
@@ -62,18 +63,18 @@ items:
           type:
             - 'excel!Excel.CommentCollection#add~0:complex'
         - id: content
-          description: 'Der Inhalt des Kommentars. Dies kann eine Zeichenfolge oder ein CommentRichContent-Objekt sein. Zeichenfolgen werden für nur-Text verwendet. CommentRichContent-Objekte ermöglichen andere Kommentarfeatures wie Erwähnungen. \[API-Gruppe: ExcelApi 1,10 für Zeichenfolge, ExcelApiOnline 1,1 für CommentRichContent-Objekt\]'
+          description: Der Inhalt des Kommentars. Dies kann eine Zeichenfolge oder ein CommentRichContent-Objekt sein. Zeichenfolgen werden für nur-Text verwendet. CommentRichContent-Objekte ermöglichen andere Kommentarfeatures wie Erwähnungen.
           type:
             - 'excel!Excel.CommentCollection#add~1:complex'
         - id: contentType
-          description: 'Optional. Der Typ des Inhalts, der im Kommentar enthalten ist. Der Standardwert ist Enum.`ContentType.Plain`<!-- -->. \[API-Gruppe: ExcelApi 1,10 for Enum ContentType. Plain, ExcelApiOnline 1,1 for Enum ContentType. mention\]'
+          description: 'Optional. Der Typ des Inhalts, der im Kommentar enthalten ist. Der Standardwert ist Enum.`ContentType.Plain`<!-- -->.'
           type:
             - 'excel!Excel.ContentType:enum'
   - uid: 'excel!Excel.CommentCollection#add:member(2)'
     summary: |-
       Erstellt einen neuen Kommentar mit dem angegebenen Inhalt auf der angegebenen Zelle. Wenn `InvalidArgument` der angegebene Bereich größer als eine Zelle ist, wird ein Fehler ausgelöst.
 
-      \[[API-Gruppe: ExcelApi 1,10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+      \[[API-Gruppe: ExcelApiOnline 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: 'add(cellAddress, content, contentTypeString)'
     fullName: 'add(cellAddress, content, contentTypeString)'
     langs:
@@ -91,13 +92,38 @@ items:
           type:
             - 'excel!Excel.CommentCollection#add~2:complex'
         - id: content
-          description: 'Der Inhalt des Kommentars. Dies kann eine Zeichenfolge oder ein CommentRichContent-Objekt sein. Zeichenfolgen werden für nur-Text verwendet. CommentRichContent-Objekte ermöglichen andere Kommentarfeatures wie Erwähnungen. \[API-Gruppe: ExcelApi 1,10 für Zeichenfolge, ExcelApiOnline 1,1 für CommentRichContent-Objekt\]'
+          description: Der Inhalt des Kommentars. Dies kann eine Zeichenfolge oder ein CommentRichContent-Objekt sein. Zeichenfolgen werden für nur-Text verwendet. CommentRichContent-Objekte ermöglichen andere Kommentarfeatures wie Erwähnungen.
           type:
             - 'excel!Excel.CommentCollection#add~3:complex'
         - id: contentTypeString
-          description: 'Optional. Der Typ des Inhalts, der im Kommentar enthalten ist. Der Standardwert ist Enum.`ContentType.Plain`<!-- -->. \[API-Gruppe: ExcelApi 1,10 for Enum ContentType. Plain, ExcelApiOnline 1,1 for Enum ContentType. mention\]'
+          description: 'Optional. Der Typ des Inhalts, der im Kommentar enthalten ist. Der Standardwert ist Enum.`ContentType.Plain`<!-- -->.'
           type:
             - '"Plain" | "Mention"'
+  - uid: 'excel!Excel.CommentCollection#add:member(3)'
+    summary: |-
+      Erstellt einen neuen Kommentar mit dem angegebenen Inhalt auf der angegebenen Zelle. Wenn `InvalidArgument` der angegebene Bereich größer als eine Zelle ist, wird ein Fehler ausgelöst.
+
+      \[[API-Gruppe: ExcelApi 1,10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: 'add(cellAddress, content)'
+    fullName: 'add(cellAddress, content)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'add(cellAddress: Range | string, content: string): Excel.Comment;'
+      return:
+        type:
+          - 'excel!Excel.Comment:class'
+        description: ''
+      parameters:
+        - id: cellAddress
+          description: 'Die Zelle, der der Kommentar hinzugefügt wird. Dies kann ein Range-Objekt oder eine Zeichenfolge sein. Wenn es sich um eine Zeichenfolge handelt, muss Sie die vollständige Adresse enthalten, einschließlich des Blatt namens. Wenn `InvalidArgument` der angegebene Bereich größer als eine Zelle ist, wird ein Fehler ausgelöst.'
+          type:
+            - 'excel!Excel.CommentCollection#add~4:complex'
+        - id: content
+          description: 'Der Inhalt des Kommentars als Zeichenfolge, die nur-Text darstellt.'
+          type:
+            - string
   - uid: 'excel!Excel.CommentCollection#context:member'
     summary: 'Der Anforderungskontext, der mit dem Objekt verknüpft ist. Dadurch wird das Add-in-Verfahren mit dem Prozess der Office-Hostanwendung verbunden.'
     name: context
@@ -330,6 +356,15 @@ references:
       - uid: 'excel!Excel.CommentRichContent:interface'
         name: CommentRichContent
         fullName: Excel.CommentRichContent
+      - name: ' | string'
+        fullName: ' | string'
+  - uid: 'excel!Excel.CommentCollection#add~4:complex'
+    name: Range | string
+    fullName: Excel.Range | string
+    spec.typeScript:
+      - uid: 'excel!Excel.Range:class'
+        name: Range
+        fullName: Excel.Range
       - name: ' | string'
         fullName: ' | string'
   - uid: 'excel!Excel.RequestContext:class'
