@@ -40,7 +40,7 @@ items:
     summary: |-
       Wandelt eine REST-formatierte Element-ID ins EWS-Format um.
 
-      Element-IDs, die über eine Rest-API (wie die Outlook-Mail-API oder das Microsoft Graph) abgerufen werden, verwenden ein anderes Format als das Format, das von Exchange Webdienste (EWS) verwendet wird. Die converttoewsid hinzugefügt-Methode konvertiert eine Rest-formatierte ID in das richtige Format für EWS.
+      Element-IDs, die über eine Rest-API (wie die Outlook-Mail-API oder Microsoft Graph) abgerufen werden, verwenden ein anderes Format als das von Exchange-Webdienste verwendete Format. Die converttoewsid hinzugefügt-Methode konvertiert eine Rest-formatierte ID in das richtige Format für EWS.
 
       **Hinweis**: Diese Methode wird in Outlook auf IOS oder Android nicht unterstützt.
 
@@ -474,22 +474,22 @@ items:
             - any
   - uid: 'outlook!Office.Mailbox#item:member'
     summary: |-
-      Das Postfachelement. Je nachdem, in welchem Kontext das Add-in geöffnet wurde, kann es sich bei dem Element um eine beliebige Anzahl von Typen handeln. Wenn Sie IntelliSense nur für einen bestimmten Typ anzeigen möchten, können Sie dieses Element in eines der folgenden Elemente umwandeln:
+      Das Postfachelement. Je nachdem, in welchem Kontext das Add-in geöffnet wurde, kann der Elementtyp variieren. Wenn Sie IntelliSense nur für einen bestimmten Typ oder Modus anzeigen möchten, wandeln Sie dieses Element in eines der folgenden Elemente um:
 
-      [ItemCompose](xref:outlook!Office.ItemCompose:interface)<!-- -->, [ItemRead](xref:outlook!Office.ItemRead:interface)<!-- -->, [MessageCompose](xref:outlook!Office.MessageCompose:interface)<!-- -->, [MessageRead](xref:outlook!Office.MessageRead:interface)<!-- -->, [AppointmentCompose](xref:outlook!Office.AppointmentCompose:interface)<!-- -->, [AppointmentRead](xref:outlook!Office.AppointmentRead:interface)
+      [ItemCompose](xref:outlook!Office.ItemCompose:interface)<!-- -->, [ItemRead](xref:outlook!Office.ItemRead:interface)<!-- -->, [Nachricht](xref:outlook!Office.Message:interface)<!-- -->, [Termin](xref:outlook!Office.Appointment:interface)<!-- -->, [MessageCompose](xref:outlook!Office.MessageCompose:interface)<!-- -->, [MessageRead](xref:outlook!Office.MessageRead:interface)<!-- -->, [AppointmentCompose](xref:outlook!Office.AppointmentCompose:interface)<!-- -->, [AppointmentRead](xref:outlook!Office.AppointmentRead:interface)
     name: item
     fullName: item
     langs:
       - typeScript
     type: property
     syntax:
-      content: 'item: Item & ItemCompose & ItemRead & MessageRead & MessageCompose & AppointmentRead & AppointmentCompose;'
+      content: 'item: Item & ItemCompose & ItemRead & Message & MessageCompose & MessageRead & Appointment & AppointmentCompose & AppointmentRead;'
       return:
         type:
           - 'outlook!Office.Mailbox#item~0:complex'
   - uid: 'outlook!Office.Mailbox#makeEwsRequestAsync:member(1)'
     summary: |-
-      Sendet eine asynchrone Anforderung an einen EWS-Dienst (Exchange Webdienste) auf dem Exchange-Server, der das Postfach des Benutzers hostet.
+      Sendet eine asynchrone Anforderung an einen Exchange-Webdienste Dienst auf dem Exchange-Server, der das Postfach des Benutzers hostet.
 
       In diesen Fällen sollten Add-Ins REST APIs verwenden, um auf das Postfach des Benutzers zuzugreifen.
 
@@ -655,8 +655,8 @@ references:
       - name: <string>) => void
         fullName: <string>) => void
   - uid: 'outlook!Office.Mailbox#item~0:complex'
-    name: Item & ItemCompose & ItemRead & MessageRead & MessageCompose & AppointmentRead & AppointmentCompose
-    fullName: Office.Item & Office.ItemCompose & Office.ItemRead & Office.MessageRead & Office.MessageCompose & Office.AppointmentRead & Office.AppointmentCompose
+    name: Item & ItemCompose & ItemRead & Message & MessageCompose & MessageRead & Appointment & AppointmentCompose & AppointmentRead
+    fullName: Office.Item & Office.ItemCompose & Office.ItemRead & Office.Message & Office.MessageCompose & Office.MessageRead & Office.Appointment & Office.AppointmentCompose & Office.AppointmentRead
     spec.typeScript:
       - uid: 'outlook!Office.Item:interface'
         name: Item
@@ -673,9 +673,9 @@ references:
         fullName: Office.ItemRead
       - name: ' & '
         fullName: ' & '
-      - uid: 'outlook!Office.MessageRead:interface'
-        name: MessageRead
-        fullName: Office.MessageRead
+      - uid: 'outlook!Office.Message:interface'
+        name: Message
+        fullName: Office.Message
       - name: ' & '
         fullName: ' & '
       - uid: 'outlook!Office.MessageCompose:interface'
@@ -683,14 +683,24 @@ references:
         fullName: Office.MessageCompose
       - name: ' & '
         fullName: ' & '
-      - uid: 'outlook!Office.AppointmentRead:interface'
-        name: AppointmentRead
-        fullName: Office.AppointmentRead
+      - uid: 'outlook!Office.MessageRead:interface'
+        name: MessageRead
+        fullName: Office.MessageRead
+      - name: ' & '
+        fullName: ' & '
+      - uid: 'outlook!Office.Appointment:interface'
+        name: Appointment
+        fullName: Office.Appointment
       - name: ' & '
         fullName: ' & '
       - uid: 'outlook!Office.AppointmentCompose:interface'
         name: AppointmentCompose
         fullName: Office.AppointmentCompose
+      - name: ' & '
+        fullName: ' & '
+      - uid: 'outlook!Office.AppointmentRead:interface'
+        name: AppointmentRead
+        fullName: Office.AppointmentRead
   - uid: 'outlook!Office.Mailbox#makeEwsRequestAsync~0:complex'
     name: '(asyncResult: Office.AsyncResult<string>) => void'
     fullName: '(asyncResult: Office.AsyncResult<string>) => void'
