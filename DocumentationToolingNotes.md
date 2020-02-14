@@ -24,12 +24,18 @@ Es gibt vier relevante d. TS-Dateien, die Quellinhalte für verschiedene Unterab
   - [Outlook (Vorschau)](https://docs.microsoft.com/javascript/api/outlook)
   - [Word (Vorschau)](https://docs.microsoft.com/javascript/api/word)
   - [Allgemeine API](https://docs.microsoft.com/javascript/api/office)
-- [Custom-Functions-Runtime](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/custom-functions-runtime/index.d.ts)(die Excel-Lauf Zeitdefinitionen für benutzerdefinierte Funktionen)
+- [Custom-Functions-Runtime/Index. d. TS](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/custom-functions-runtime/index.d.ts) (die CLR-Definitionen für benutzerdefinierte Excel-Funktionen)
   - [Benutzerdefinierte Funktionen](https://docs.microsoft.com/javascript/api/custom-functions-runtime)
-- [Office-Runtime](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/office-runtime/index.d.ts)(die Office-Lauf Zeitdefinitionen für die benutzerdefinierte Funktionen-Plattform.)
+- [Office-Runtime/Index. d. TS](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/office-runtime/index.d.ts) (die Office-Lauf Zeitdefinitionen für die Plattform für benutzerdefinierte Funktionen)
   - [Office-Laufzeit](https://docs.microsoft.com/javascript/api/office-runtime)
 
 Ältere Versionen der APIs haben eigene d. TS-Dateien. Diese werden beibehalten, wenn ein neuer API-Anforderungs Satzes freigegeben wird. Sie können auch mithilfe des [Version Remover-Tools](https://github.com/OfficeDev/office-js-docs-reference/blob/master/generate-docs/tools/VersionRemover.ts)generiert werden. Diese alten d. TS-Dateien werden beibehalten, sodass im Ereignis-APIs gepatcht oder geändert werden, das ursprüngliche Verhalten ist weiterhin dokumentiert. Dies ist hilfreich, wenn Sie eine ältere Version der API als Ziel haben.
+
+#### <a name="testing-type-definition-file-changes"></a>Testen von Änderungen an der Typen Definitionsdatei
+
+Alle Änderungen an der Dokumentation für die Office-JavaScript-API werden durch Bearbeiten der oben erwähnten vier d. TS-Dateien vorgenommen. Sie können jedoch eine Änderung testen, bevor Sie eine PR an DefinitelyTyped übermitteln (wenn Sie beispielsweise testen möchten, wie ihre Formatierung in ein Abschlag übersetzt wird), indem Sie die entsprechende Datei in [generieren-docs/Script-Inputs](https://github.com/OfficeDev/office-js-docs-reference/tree/master/generate-docs/script-inputs) bearbeiten und [GenerateDocs. cmd](https://github.com/OfficeDev/office-js-docs-reference/blob/master/generate-docs/GenerateDocs.cmd)ausführen. Wenn Sie dazu aufgefordert werden, wählen Sie die Option "lokale Dateien" aus.
+
+Durch das Pushen von Änderungen an einem Remote Zweig dieses Repo wird die docs.Microsoft.com-Plattform zum Erstellen einer Test Verzweigung veranlasst. Diese Verzweigung wird auf Review.docs.Microsoft.com gerendert, auf die nur interne Microsoft-Mitarbeiter zugreifen können. Jeder, der Ihre PR überprüft, überprüft die Website überprüfen auf Richtigkeit.
 
 ### <a name="code-snippets"></a>Codeausschnitte
 
