@@ -319,25 +319,6 @@ items:
               }
           });
           ```
-          ```javascript
-          // Set table style. 
-          Excel.run(function (ctx) { 
-              var tableName = 'Table1';
-              var table = ctx.workbook.tables.getItem(tableName);
-              table.name = 'Table1-Renamed';
-              table.showTotals = false;
-              table.style = 'TableStyleMedium2';
-              table.load('tableStyle');
-              return ctx.sync().then(function() {
-                      console.log(table.style);
-              });
-          }).catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
       parameters:
         - id: propertyNames
           description: 'Eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.'
@@ -490,6 +471,30 @@ items:
       return:
         type:
           - string
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          // Set table style. 
+          Excel.run(function (ctx) { 
+              var tableName = 'Table1';
+              var table = ctx.workbook.tables.getItem(tableName);
+              table.name = 'Table1-Renamed';
+              table.showTotals = false;
+              table.style = 'TableStyleMedium2';
+              table.load('tableStyle');
+              return ctx.sync().then(function() {
+                      console.log(table.style);
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
   - uid: 'excel!Excel.Table#toJSON:member(1)'
     summary: 'Überschreibt die `toJSON()` JavaScript-Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird.`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche Excel. Table-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt (typisiert als`Excel.Interfaces.TableData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
     name: toJSON()

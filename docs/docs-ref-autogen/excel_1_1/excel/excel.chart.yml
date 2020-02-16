@@ -170,6 +170,28 @@ items:
       return:
         type:
           - 'excel!Excel.ChartLegend:class'
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          // Set to show legend of Chart1 and make it on top of the chart.
+          Excel.run(function (ctx) { 
+              var chart = ctx.workbook.worksheets.getItem("Sheet1").charts.getItem("Chart1");    
+              chart.legend.visible = true;
+              chart.legend.position = "top"; 
+              chart.legend.overlay = false; 
+              return ctx.sync().then(function() {
+                      console.log("Legend Shown ");
+              });
+          }).catch(function(error) {
+              console.log("Error: " + error);
+              if (error instanceof OfficeExtension.Error) {
+                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
   - uid: 'excel!Excel.Chart#load:member(1)'
     summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.
     name: load(options)
