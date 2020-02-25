@@ -11,6 +11,7 @@ items:
       - 'office!Office.AddBindingFromNamedItemOptions:interface'
       - 'office!Office.AddBindingFromPromptOptions:interface'
       - 'office!Office.AddBindingFromSelectionOptions:interface'
+      - 'office!Office.Addin:interface'
       - 'office!Office.AddinCommands.Event:interface'
       - 'office!Office.AddinCommands.EventCompletedOptions:interface'
       - 'office!Office.AddinCommands.Source:interface'
@@ -27,6 +28,7 @@ items:
       - 'office!Office.CoercionType:enum'
       - 'office!Office.Context:interface'
       - 'office!Office.ContextInformation:interface'
+      - 'office!Office.Control:interface'
       - 'office!Office.CustomXmlNode:interface'
       - 'office!Office.CustomXMLNodeType:enum'
       - 'office!Office.CustomXmlPart:interface'
@@ -43,6 +45,7 @@ items:
       - 'office!Office.FileProperties:interface'
       - 'office!Office.FileType:enum'
       - 'office!Office.FilterType:enum'
+      - 'office!Office.Gallery:interface'
       - 'office!Office.GetBindingDataOptions:interface'
       - 'office!Office.GetFileOptions:interface'
       - 'office!Office.GetSelectedDataOptions:interface'
@@ -53,6 +56,7 @@ items:
       - 'office!Office.InitializationReason:enum'
       - 'office!Office.initialize:function(1)'
       - 'office!Office.IPromiseConstructor:interface'
+      - 'office!Office.isSetSupported:function(1)'
       - 'office!Office.MatrixBinding:interface'
       - 'office!Office.NodeDeletedEventArgs:interface'
       - 'office!Office.NodeInsertedEventArgs:interface'
@@ -68,6 +72,8 @@ items:
       - 'office!Office.RangeFormatConfiguration:interface'
       - 'office!Office.RemoveHandlerOptions:interface'
       - 'office!Office.RequirementSetSupport:interface'
+      - 'office!Office.Ribbon:interface'
+      - 'office!Office.RibbonUpdaterData:interface'
       - 'office!Office.SaveSettingsOptions:interface'
       - 'office!Office.select:function(1)'
       - 'office!Office.SelectionMode:enum'
@@ -76,6 +82,8 @@ items:
       - 'office!Office.Settings:interface'
       - 'office!Office.SettingsChangedEventArgs:interface'
       - 'office!Office.Slice:interface'
+      - 'office!Office.StartupBehavior:enum'
+      - 'office!Office.Tab:interface'
       - 'office!Office.Table:enum'
       - 'office!Office.TableBinding:interface'
       - 'office!Office.TableData:class'
@@ -83,6 +91,8 @@ items:
       - 'office!Office.UI:interface'
       - 'office!Office.useShortNamespace:function(1)'
       - 'office!Office.ValueFormat:enum'
+      - 'office!Office.VisibilityMode:enum'
+      - 'office!Office.VisibilityModeChangedMessage:interface'
       - 'office!OfficeExtension.ClientObject:class'
       - 'office!OfficeExtension.ClientRequestContext:class'
       - 'office!OfficeExtension.ClientResult:class'
@@ -118,7 +128,7 @@ items:
 
       Weitere Informationen zu den Anforderungen der Office-Hostanwendung und des Servers finden Sie unter [Anforderungen für die Ausführung von Office-Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
 
-      *Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office unter Windows </th><th> Office im Webbrowser </th><th> Office auf dem iPad </th><th> Outlook auf mobilen Geräten </th><th> Office auf dem Mac </th></tr> <tr><td><strong>Excel</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> <tr><td><strong>Outlook</strong></td><td> v </td><td> v </td><td> </td><td> v </td><td> v </td></tr> <tr><td><strong>PowerPoint</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> <tr><td><strong>Project</strong></td><td> v </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Wort</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> </table>
+      *Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office unter Windows </th><th> Office im Webbrowser </th><th> Office auf dem iPad </th><th> Outlook auf mobilen Geräten </th><th> Office für Mac </th></tr> <tr><td><strong>Excel</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> <tr><td><strong>Outlook</strong></td><td> v </td><td> v </td><td> </td><td> v </td><td> v </td></tr> <tr><td><strong>PowerPoint</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> <tr><td><strong>Project</strong></td><td> v </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Wort</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> </table>
 
       #### <a name="examples"></a>Beispiele
 
@@ -161,6 +171,28 @@ items:
           description: 'Gibt an, wie die APP initialisiert wurde.'
           type:
             - 'office!Office.InitializationReason:enum'
+  - uid: 'office!Office.isSetSupported:function(1)'
+    summary: 'Überprüft, ob der angegebene Anforderungs Satzes von der Host-Office-Anwendung unterstützt wird.'
+    name: 'Office.isSetSupported(name, minVersion)'
+    fullName: 'Office.isSetSupported(name, minVersion)'
+    langs:
+      - typeScript
+    type: function
+    syntax:
+      content: 'export function isSetSupported(name: string, minVersion?: string): boolean;'
+      return:
+        type:
+          - boolean
+        description: ''
+      parameters:
+        - id: name
+          description: Name festlegen; beispielsweise "MatrixBindings".
+          type:
+            - string
+        - id: minVersion
+          description: 'Die mindestens erforderliche Version; beispielsweise "1,4".'
+          type:
+            - string
   - uid: 'office!Office.onReady:function(1)'
     summary: 'Stellt sicher, dass die Office-JavaScript-APIs bereit sind, vom Add-in aufgerufen zu werden. Wenn das Framework noch nicht initialisiert wurde, wird der Rückruf oder die Zusage warten, bis der Office-Host bereit ist, API-Aufrufe zu akzeptieren. Beachten Sie, dass diese API zwar für die Verwendung in einem Office-Add-in vorgesehen ist, aber auch außerhalb des Add-Ins verwendet werden kann. In diesem Fall ruft Office. js nach der Festlegung, dass es außerhalb einer Office-Hostanwendung läuft, den Rückruf auf und löst das Promise mit "Null" sowohl für den Host als auch für die Plattform auf.'
     name: Office.onReady(callback)
@@ -232,7 +264,7 @@ items:
 
       Weitere Informationen zu den Anforderungen der Office-Hostanwendung und des Servers finden Sie unter [Anforderungen für die Ausführung von Office-Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
 
-      *Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office unter Windows </th><th> Office im Webbrowser </th><th> Office auf dem iPad </th><th> Outlook auf mobilen Geräten </th><th> Office auf dem Mac </th></tr> <tr><td><strong>Excel</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> <tr><td><strong>Outlook</strong></td><td> v </td><td> v </td><td> </td><td> v </td><td> v </td></tr> <tr><td><strong>PowerPoint</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> <tr><td><strong>Project</strong></td><td> v </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Wort</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> </table>
+      *Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office unter Windows </th><th> Office im Webbrowser </th><th> Office auf dem iPad </th><th> Outlook auf mobilen Geräten </th><th> Office für Mac </th></tr> <tr><td><strong>Excel</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> <tr><td><strong>Outlook</strong></td><td> v </td><td> v </td><td> </td><td> v </td><td> v </td></tr> <tr><td><strong>PowerPoint</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> <tr><td><strong>Project</strong></td><td> v </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><strong>Wort</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> </table>
 
       #### <a name="examples"></a>Beispiele
 
@@ -287,6 +319,8 @@ references:
     name: Office.AddBindingFromPromptOptions
   - uid: 'office!Office.AddBindingFromSelectionOptions:interface'
     name: Office.AddBindingFromSelectionOptions
+  - uid: 'office!Office.Addin:interface'
+    name: Office.Addin
   - uid: 'office!Office.AddinCommands.Event:interface'
     name: Office.AddinCommands.Event
   - uid: 'office!Office.AddinCommands.EventCompletedOptions:interface'
@@ -319,6 +353,8 @@ references:
     name: Office.Context
   - uid: 'office!Office.ContextInformation:interface'
     name: Office.ContextInformation
+  - uid: 'office!Office.Control:interface'
+    name: Office.Control
   - uid: 'office!Office.CustomXmlNode:interface'
     name: Office.CustomXmlNode
   - uid: 'office!Office.CustomXMLNodeType:enum'
@@ -351,6 +387,8 @@ references:
     name: Office.FileType
   - uid: 'office!Office.FilterType:enum'
     name: Office.FilterType
+  - uid: 'office!Office.Gallery:interface'
+    name: Office.Gallery
   - uid: 'office!Office.GetBindingDataOptions:interface'
     name: Office.GetBindingDataOptions
   - uid: 'office!Office.GetFileOptions:interface'
@@ -432,6 +470,10 @@ references:
     name: Office.RemoveHandlerOptions
   - uid: 'office!Office.RequirementSetSupport:interface'
     name: Office.RequirementSetSupport
+  - uid: 'office!Office.Ribbon:interface'
+    name: Office.Ribbon
+  - uid: 'office!Office.RibbonUpdaterData:interface'
+    name: Office.RibbonUpdaterData
   - uid: 'office!Office.SaveSettingsOptions:interface'
     name: Office.SaveSettingsOptions
   - uid: 'office!Office.select~0:complex'
@@ -457,6 +499,10 @@ references:
     name: Office.SettingsChangedEventArgs
   - uid: 'office!Office.Slice:interface'
     name: Office.Slice
+  - uid: 'office!Office.StartupBehavior:enum'
+    name: Office.StartupBehavior
+  - uid: 'office!Office.Tab:interface'
+    name: Office.Tab
   - uid: 'office!Office.Table:enum'
     name: Office.Table
   - uid: 'office!Office.TableBinding:interface'
@@ -469,6 +515,10 @@ references:
     name: Office.UI
   - uid: 'office!Office.ValueFormat:enum'
     name: Office.ValueFormat
+  - uid: 'office!Office.VisibilityMode:enum'
+    name: Office.VisibilityMode
+  - uid: 'office!Office.VisibilityModeChangedMessage:interface'
+    name: Office.VisibilityModeChangedMessage
   - uid: 'office!OfficeExtension.ClientObject:class'
     name: OfficeExtension.ClientObject
   - uid: 'office!OfficeExtension.ClientRequestContext:class'
