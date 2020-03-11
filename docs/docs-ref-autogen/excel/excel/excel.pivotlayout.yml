@@ -30,11 +30,13 @@ items:
       - 'excel!Excel.PivotLayout#load:member(1)'
       - 'excel!Excel.PivotLayout#load:member(2)'
       - 'excel!Excel.PivotLayout#load:member(3)'
+      - 'excel!Excel.PivotLayout#pivotStyle:member'
       - 'excel!Excel.PivotLayout#preserveFormatting:member'
       - 'excel!Excel.PivotLayout#set:member(1)'
       - 'excel!Excel.PivotLayout#set:member(2)'
       - 'excel!Excel.PivotLayout#setAutoSortOnCell:member(1)'
       - 'excel!Excel.PivotLayout#setAutoSortOnCell:member(2)'
+      - 'excel!Excel.PivotLayout#setStyle:member(1)'
       - 'excel!Excel.PivotLayout#showColumnGrandTotals:member'
       - 'excel!Excel.PivotLayout#showRowGrandTotals:member'
       - 'excel!Excel.PivotLayout#subtotalLocation:member'
@@ -361,6 +363,22 @@ items:
                           select?: string;
                           expand?: string;
                       }
+  - uid: 'excel!Excel.PivotLayout#pivotStyle:member'
+    summary: |-
+      Die Formatvorlage, die auf die PivotTable angewendet wird.
+
+      \[[API-Gruppe: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: pivotStyle
+    fullName: pivotStyle
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly pivotStyle: Excel.PivotTableStyle;'
+      return:
+        type:
+          - 'excel!Excel.PivotTableStyle:class'
   - uid: 'excel!Excel.PivotLayout#preserveFormatting:member'
     summary: |-
       Gibt an, ob die Formatierung beim Aktualisieren des Berichts beibehalten oder durch Vorgänge wie Pivotieren, Sortieren oder das Ändern von Feldelementen der Seite neu berechnet wird.
@@ -470,6 +488,28 @@ items:
           description: Die Richtung der Sortierung.
           type:
             - '"Ascending" | "Descending"'
+  - uid: 'excel!Excel.PivotLayout#setStyle:member(1)'
+    summary: |-
+      Legt die Formatvorlage fest, die auf die PivotTable angewendet wird.
+
+      \[[API-Gruppe: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: setStyle(style)
+    fullName: setStyle(style)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'setStyle(style: string | PivotTableStyle | BuiltInPivotTableStyle): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: style
+          description: 'Die Formatvorlage, die auf die PivotTable angewendet werden soll. Eine `InvalidArgumentException` wird ausgelöst, wenn eine Zeichenfolge bereitgestellt wird, die nicht mit dem Namen einer beliebigen Formatvorlage übereinstimmt.'
+          type:
+            - 'excel!Excel.PivotLayout#setStyle~0:complex'
   - uid: 'excel!Excel.PivotLayout#showColumnGrandTotals:member'
     summary: |-
       Gibt an, ob der PivotTable-Bericht Gesamtergebnisse für Spalten anzeigt.
@@ -644,6 +684,8 @@ references:
     name: Excel.PivotLayout
   - uid: 'excel!Excel.Interfaces.PivotLayoutLoadOptions:interface'
     name: Excel.Interfaces.PivotLayoutLoadOptions
+  - uid: 'excel!Excel.PivotTableStyle:class'
+    name: Excel.PivotTableStyle
   - uid: 'excel!Excel.Interfaces.PivotLayoutUpdateData:interface'
     name: Interfaces.PivotLayoutUpdateData
   - uid: 'excel!OfficeExtension.UpdateOptions:interface'
@@ -668,6 +710,20 @@ references:
         fullName: Excel.Range
       - name: ' | string'
         fullName: ' | string'
+  - uid: 'excel!Excel.PivotLayout#setStyle~0:complex'
+    name: string | PivotTableStyle | BuiltInPivotTableStyle
+    fullName: string | Excel.PivotTableStyle | Excel.BuiltInPivotTableStyle
+    spec.typeScript:
+      - name: 'string | '
+        fullName: 'string | '
+      - uid: 'excel!Excel.PivotTableStyle:class'
+        name: PivotTableStyle
+        fullName: Excel.PivotTableStyle
+      - name: ' | '
+        fullName: ' | '
+      - uid: 'excel!Excel.BuiltInPivotTableStyle:enum'
+        name: BuiltInPivotTableStyle
+        fullName: Excel.BuiltInPivotTableStyle
   - uid: 'excel!Excel.PivotLayout#subtotalLocation~0:complex'
     name: Excel.SubtotalLocationType | "AtTop" | "AtBottom" | "Off"
     fullName: Excel.SubtotalLocationType | "AtTop" | "AtBottom" | "Off"

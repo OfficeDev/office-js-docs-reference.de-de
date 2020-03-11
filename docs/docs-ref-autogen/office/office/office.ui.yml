@@ -2,9 +2,9 @@
 items:
   - uid: 'office!Office.UI:interface'
     summary: |-
-      Stellt Objekte und Methoden bereit, die Sie zum Erstellen und Bearbeiten von Benutzeroberflächenkomponenten wie Dialogfeldern in Ihren Office-Add-Ins verwenden können.
+      Stellt Objekte und Methoden bereit, mit denen Sie Benutzeroberflächenkomponenten wie Dialogfelder in Ihrer Office-Add-Ins erstellen und bearbeiten können.
 
-      Visit "[Verwenden der Dialog-API in Ihren Office-Add-ins](https://docs.microsoft.com/office/dev/add-ins/develop/dialog-api-in-office-add-ins)<!-- -->"Weitere Informationen.
+      Visit "[Verwenden der Dialog-API in Ihrer Office-Add-ins](https://docs.microsoft.com/office/dev/add-ins/develop/dialog-api-in-office-add-ins)<!-- -->"Weitere Informationen.
     name: Office.UI
     fullName: Office.UI
     langs:
@@ -12,10 +12,46 @@ items:
     type: interface
     package: office!
     children:
+      - 'office!Office.UI#addHandlerAsync:member(1)'
       - 'office!Office.UI#closeContainer:member(1)'
       - 'office!Office.UI#displayDialogAsync:member(1)'
       - 'office!Office.UI#displayDialogAsync:member(2)'
       - 'office!Office.UI#messageParent:member(1)'
+  - uid: 'office!Office.UI#addHandlerAsync:member(1)'
+    summary: Fügt dem Objekt mithilfe des angegebenen Ereignistyps einen Ereignishandler hinzu.
+    remarks: |-
+      **Anforderungsgruppe**: unverbindlich
+
+      Sie können mehrere Ereignishandler für den angegebenen Ereignistyp hinzufügen, solange der Name der einzelnen Ereignishandler-Funktionen eindeutig ist.
+    isPreview: true
+    name: 'addHandlerAsync(eventType, handler, options, callback)'
+    fullName: 'addHandlerAsync(eventType, handler, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'addHandlerAsync(eventType: Office.EventType, handler: (result: any) => void, options?: Office.AsyncContextOptions, callback?: (result: AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: eventType
+          description: 'Gibt den Ereignistyp an, der hinzugefügt werden soll. Dies muss`Office.EventType.DialogParentMessageReceived`<!-- -->.'
+          type:
+            - 'office!Office.EventType:enum'
+        - id: handler
+          description: 'Die Ereignis Handlerfunktion, die hinzugefügt werden soll, deren einziger Parameter vom Typ ist.'
+          type:
+            - '(result: any) => void'
+        - id: options
+          description: 'Optional. Stellt eine Option zum Beibehalten von Kontextdaten eines beliebigen Typs, unverändert, zur Verwendung in einem Rückruf bereit.'
+          type:
+            - 'office!Office.AsyncContextOptions:interface'
+        - id: callback
+          description: 'Optional. Eine Funktion, die aufgerufen wird, wenn die Handler-Registrierung zurückgegeben wird, deren einziger Parameter vom Typ [Office. AsyncResult](xref:office!Office.AsyncResult:interface) ist<!-- -->.'
+          type:
+            - 'office!Office.UI#addHandlerAsync~0:complex'
   - uid: 'office!Office.UI#closeContainer:member(1)'
     summary: 'Schließt den UI-Container, in dem der JavaScript-Code ausgeführt wird.'
     remarks: |-
@@ -62,7 +98,7 @@ items:
 
       Die folgenden Entwurfsüberlegungen gelten für Dialogfelder:
 
-      - In einem Office-Add-in-Aufgabenbereich kann immer nur ein Dialogfeld geöffnet sein. Mehrere Dialogfelder können von Add-in-Befehlen gleichzeitig geöffnet werden (benutzerdefinierte menübandschaltflächen oder Menüelemente).
+      - In einem Office-Add-in Aufgabenbereich kann immer nur ein Dialogfeld geöffnet sein. Mehrere Dialogfelder können von Add-in-Befehlen gleichzeitig geöffnet werden (benutzerdefinierte menübandschaltflächen oder Menüelemente).
 
       - Jedes Dialogfeld kann vom Benutzer verschoben und in der Größe geändert werden.
 
@@ -134,7 +170,7 @@ items:
 
       Die folgenden Entwurfsüberlegungen gelten für Dialogfelder:
 
-      - In einem Office-Add-in-Aufgabenbereich kann immer nur ein Dialogfeld geöffnet sein. Mehrere Dialogfelder können von Add-in-Befehlen gleichzeitig geöffnet werden (benutzerdefinierte menübandschaltflächen oder Menüelemente).
+      - In einem Office-Add-in Aufgabenbereich kann immer nur ein Dialogfeld geöffnet sein. Mehrere Dialogfelder können von Add-in-Befehlen gleichzeitig geöffnet werden (benutzerdefinierte menübandschaltflächen oder Menüelemente).
 
       - Jedes Dialogfeld kann vom Benutzer verschoben und in der Größe geändert werden.
 
@@ -201,6 +237,21 @@ items:
           type:
             - boolean | string
 references:
+  - uid: 'office!Office.EventType:enum'
+    name: Office.EventType
+  - uid: 'office!Office.AsyncContextOptions:interface'
+    name: Office.AsyncContextOptions
+  - uid: 'office!Office.UI#addHandlerAsync~0:complex'
+    name: '(result: AsyncResult<void>) => void'
+    fullName: '(result: Office.AsyncResult<void>) => void'
+    spec.typeScript:
+      - name: '(result: '
+        fullName: '(result: '
+      - uid: 'office!Office.AsyncResult:interface'
+        name: AsyncResult
+        fullName: Office.AsyncResult
+      - name: <void>) => void
+        fullName: <void>) => void
   - uid: 'office!Office.DialogOptions:interface'
     name: DialogOptions
   - uid: 'office!Office.UI#displayDialogAsync~0:complex'
