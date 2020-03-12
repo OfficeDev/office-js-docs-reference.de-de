@@ -16,6 +16,8 @@ items:
     type: interface
     package: outlook!
     children:
+      - 'outlook!Office.Body#appendOnSendAsync:member(1)'
+      - 'outlook!Office.Body#appendOnSendAsync:member(2)'
       - 'outlook!Office.Body#getAsync:member(1)'
       - 'outlook!Office.Body#getAsync:member(2)'
       - 'outlook!Office.Body#getTypeAsync:member(1)'
@@ -26,6 +28,108 @@ items:
       - 'outlook!Office.Body#setAsync:member(2)'
       - 'outlook!Office.Body#setSelectedDataAsync:member(1)'
       - 'outlook!Office.Body#setSelectedDataAsync:member(2)'
+  - uid: 'outlook!Office.Body#appendOnSendAsync:member(1)'
+    summary: |-
+      Fügt beim Senden des angegebenen Inhalts an das Ende des Elementtexts nach einer beliebigen Signatur an.
+
+      Wenn der Benutzer Add-ins ausführt, die die [Funktion "beim Senden" mit \`ItemSend\` im Manifest](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-on-send-addins?tabs=windows) implementieren<!-- -->, wird Append on Send vor der Funktion "beim Senden" ausgeführt.
+
+      **Wichtig**: Verwenden Sie`appendOnSendAsync`<!-- -->, muss `AppendOnSend` die erweiterte Berechtigung im `ExtendedPermissions` Knoten des Manifests enthalten sein.
+
+      **Hinweis**: um Daten aus einem vorherigen `appendOnSendAsync` Aufruf zu löschen, können Sie Sie erneut aufrufen, `data` indem Sie den Parameter auf festlegen.`null`<!-- -->.
+
+      \[[API-Gruppe: Post fach Vorschau](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->**:`ReadWriteItem`
+
+      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)<!-- -->**: Verfassen
+
+      **Fehler**:
+
+      - `DataExceedsMaximumSize`<!-- -->: Der `data` -Parameter ist länger als 5.000 Zeichen.
+
+      - `InvalidFormatError`<!-- -->: Der `options.coercionType` Parameter ist auf fest `Office.CoercionType.Html` gelegt, aber der Nachrichtentext ist im nur-Text-Format.
+
+      #### <a name="examples"></a>Beispiele
+
+      ```javascript
+      Office.context.mailbox.item.body.appendOnSendAsync(
+          "P.S. This text was appended on send.",
+          {coercionType: Office.CoercionType.Html},
+          function (asyncResult) {
+              if (asyncResult.status === Office.AsyncResultStatus.Failed) {
+                  console.log("Action failed with error: " + asyncResult.error.message);
+              }
+          }
+      );
+      ```
+    isPreview: true
+    name: 'appendOnSendAsync(data, options, callback)'
+    fullName: 'appendOnSendAsync(data, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'appendOnSendAsync(data: string, options?: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: data
+          description: 'Die Zeichenfolge, die am Ende des Texts hinzugefügt werden soll. Die Zeichenfolge ist auf 5.000 Zeichen limitiert.'
+          type:
+            - string
+        - id: options
+          description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können ein beliebiges Objekt bereitstellen, auf das Sie in der Rückrufmethode zugreifen möchten. `coercionType`<!-- -->: Das gewünschte Format für die anzufügenden Daten. Der Zeichenfolge im `data`-Parameter wird in dieses Format konvertiert.'
+          type:
+            - 'outlook!Office.Body#appendOnSendAsync~0:complex'
+        - id: callback
+          description: 'Optional. Wenn die Methode abgeschlossen ist, wird die Funktion, `callback` die im-Parameter übergeben wird, mit einem einzelnen Parameter vom Typ aufgerufen.`Office.AsyncResult`<!-- -->. Alle aufgetretenen Fehler werden in der `asyncResult.error`-Eigenschaft bereitgestellt.'
+          type:
+            - 'outlook!Office.Body#appendOnSendAsync~1:complex'
+  - uid: 'outlook!Office.Body#appendOnSendAsync:member(2)'
+    summary: |-
+      Fügt beim Senden des angegebenen Inhalts an das Ende des Elementtexts nach einer beliebigen Signatur an.
+
+      Wenn der Benutzer Add-ins ausführt, die die [Funktion "beim Senden" mit \`ItemSend\` im Manifest](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-on-send-addins?tabs=windows) implementieren<!-- -->, wird Append on Send vor der Funktion "beim Senden" ausgeführt.
+
+      **Wichtig**: Verwenden Sie`appendOnSendAsync`<!-- -->, muss `AppendOnSend` die erweiterte Berechtigung im `ExtendedPermissions` Knoten des Manifests enthalten sein.
+
+      **Hinweis**: um Daten aus einem vorherigen `appendOnSendAsync` Aufruf zu löschen, können Sie Sie erneut aufrufen, `data` indem Sie den Parameter auf festlegen.`null`<!-- -->.
+
+      \[[API-Gruppe: Post fach Vorschau](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->**:`ReadWriteItem`
+
+      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points)<!-- -->**: Verfassen
+
+      **Fehler**:
+
+      - `DataExceedsMaximumSize`<!-- -->: Der `data` -Parameter ist länger als 5.000 Zeichen.
+
+      - `InvalidFormatError`<!-- -->: Der `options.coercionType` Parameter ist auf fest `Office.CoercionType.Html` gelegt, aber der Nachrichtentext ist im nur-Text-Format.
+    isPreview: true
+    name: 'appendOnSendAsync(data, callback)'
+    fullName: 'appendOnSendAsync(data, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'appendOnSendAsync(data: string, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: data
+          description: 'Die Zeichenfolge, die am Ende des Texts hinzugefügt werden soll. Die Zeichenfolge ist auf 5.000 Zeichen limitiert.'
+          type:
+            - string
+        - id: callback
+          description: 'Optional. Wenn die Methode abgeschlossen ist, wird die Funktion, `callback` die im-Parameter übergeben wird, mit einem einzelnen Parameter vom Typ aufgerufen.`Office.AsyncResult`<!-- -->. Alle aufgetretenen Fehler werden in der `asyncResult.error`-Eigenschaft bereitgestellt.'
+          type:
+            - 'outlook!Office.Body#appendOnSendAsync~2:complex'
   - uid: 'outlook!Office.Body#getAsync:member(1)'
     summary: |-
       Gibt den aktuellen Text in einem bestimmten Format zurück.
@@ -222,7 +326,7 @@ items:
         description: ''
       parameters:
         - id: data
-          description: 'Die Zeichenfolge, die am Anfang des Texts eingefügt werden soll. Die Zeichenfolge ist auf 1.000.000 Zeichen beschränkt.'
+          description: 'Die Zeichenfolge, die am Anfang des Texts eingefügt werden soll. Die Zeichenfolge ist auf 1.000.000 Zeichen begrenzt.'
           type:
             - string
         - id: options
@@ -263,7 +367,7 @@ items:
         description: ''
       parameters:
         - id: data
-          description: 'Die Zeichenfolge, die am Anfang des Texts eingefügt werden soll. Die Zeichenfolge ist auf 1.000.000 Zeichen beschränkt.'
+          description: 'Die Zeichenfolge, die am Anfang des Texts eingefügt werden soll. Die Zeichenfolge ist auf 1.000.000 Zeichen begrenzt.'
           type:
             - string
         - id: callback
@@ -288,7 +392,7 @@ items:
 
       - `DataExceedsMaximumSize`<!-- -->: Der Data-Parameter ist länger als 1 Million Zeichen.
 
-      - `InvalidFormatError`<!-- -->: Der Parameter options. coercionType ist auf fest `Office.CoercionType.Html` gelegt, und der Nachrichtentext ist im nur-Text-Format.
+      - `InvalidFormatError`<!-- -->: Der `options.coercionType` Parameter ist auf fest `Office.CoercionType.Html` gelegt, und der Nachrichtentext ist im nur-Text-Format.
 
       #### <a name="examples"></a>Beispiele
 
@@ -470,6 +574,40 @@ items:
           type:
             - 'outlook!Office.Body#setSelectedDataAsync~2:complex'
 references:
+  - uid: 'outlook!Office.Body#appendOnSendAsync~0:complex'
+    name: Office.AsyncContextOptions & CoercionTypeOptions
+    fullName: Office.AsyncContextOptions & Office.CoercionTypeOptions
+    spec.typeScript:
+      - uid: 'outlook!Office.AsyncContextOptions:interface'
+        name: Office.AsyncContextOptions
+        fullName: Office.AsyncContextOptions
+      - name: ' & '
+        fullName: ' & '
+      - uid: 'outlook!Office.CoercionTypeOptions:interface'
+        name: CoercionTypeOptions
+        fullName: Office.CoercionTypeOptions
+  - uid: 'outlook!Office.Body#appendOnSendAsync~1:complex'
+    name: '(asyncResult: Office.AsyncResult<void>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <void>) => void
+        fullName: <void>) => void
+  - uid: 'outlook!Office.Body#appendOnSendAsync~2:complex'
+    name: '(asyncResult: Office.AsyncResult<void>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <void>) => void
+        fullName: <void>) => void
   - uid: 'outlook!Office.Body#getAsync~0:complex'
     name: Office.CoercionType | string
     fullName: Office.CoercionType | string
