@@ -32,6 +32,8 @@ items:
       - 'outlook!Office.AppointmentCompose#body:member'
       - 'outlook!Office.AppointmentCompose#categories:member'
       - 'outlook!Office.AppointmentCompose#close:member(1)'
+      - 'outlook!Office.AppointmentCompose#disableClientSignatureAsync:member(1)'
+      - 'outlook!Office.AppointmentCompose#disableClientSignatureAsync:member(2)'
       - 'outlook!Office.AppointmentCompose#end:member'
       - 'outlook!Office.AppointmentCompose#enhancedLocation:member'
       - 'outlook!Office.AppointmentCompose#getAttachmentContentAsync:member(1)'
@@ -46,6 +48,8 @@ items:
       - 'outlook!Office.AppointmentCompose#getSelectedDataAsync:member(2)'
       - 'outlook!Office.AppointmentCompose#getSharedPropertiesAsync:member(1)'
       - 'outlook!Office.AppointmentCompose#getSharedPropertiesAsync:member(2)'
+      - 'outlook!Office.AppointmentCompose#isClientSignatureEnabledAsync:member(1)'
+      - 'outlook!Office.AppointmentCompose#isClientSignatureEnabledAsync:member(2)'
       - 'outlook!Office.AppointmentCompose#itemType:member'
       - 'outlook!Office.AppointmentCompose#loadCustomPropertiesAsync:member(1)'
       - 'outlook!Office.AppointmentCompose#location:member'
@@ -642,6 +646,78 @@ items:
         type:
           - void
         description: ''
+  - uid: 'outlook!Office.AppointmentCompose#disableClientSignatureAsync:member(1)'
+    summary: |-
+      Deaktiviert die Outlook-Client Signatur.
+
+      Für Windows-und Mac-Rich-Clients legt diese API die Signatur unter den Abschnitten "neue Nachricht" und "Antworten/Weiterleitungen" für das sendende Konto auf "(keine)" fest, wodurch die Signatur effektiv deaktiviert wird. Für Outlook im Internet sollte die API die Signaturoption für neue e-Mail-Nachrichten, Antworten und Weiterleitungen deaktivieren. Wenn die Signatur ausgewählt ist, sollte dieser API-Aufruf diese deaktivieren.
+
+      \[[API-Gruppe: Post fach Vorschau](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+
+      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->**:`ReadWriteItem`
+
+      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/#extension-points)<!-- -->**: Terminplaner
+    name: 'disableClientSignatureAsync(options, callback)'
+    fullName: 'disableClientSignatureAsync(options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'disableClientSignatureAsync(options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: options
+          description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können ein beliebiges Objekt bereitstellen, auf das Sie in der Rückrufmethode zugreifen möchten.'
+          type:
+            - 'outlook!Office.AsyncContextOptions:interface'
+        - id: callback
+          description: 'Optional. Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzigen Parameter aufgerufen.`asyncResult`<!-- -->, bei dem es `Office.AsyncResult` sich um ein Objekt handelt.'
+          type:
+            - 'outlook!Office.AppointmentCompose#disableClientSignatureAsync~0:complex'
+  - uid: 'outlook!Office.AppointmentCompose#disableClientSignatureAsync:member(2)'
+    summary: |-
+      Deaktiviert die Outlook-Client Signatur.
+
+      Für Windows-und Mac-Rich-Clients legt diese API die Signatur unter den Abschnitten "neue Nachricht" und "Antworten/Weiterleitungen" für das sendende Konto auf "(keine)" fest, wodurch die Signatur effektiv deaktiviert wird. Für Outlook im Internet sollte die API die Signaturoption für neue e-Mail-Nachrichten, Antworten und Weiterleitungen deaktivieren. Wenn die Signatur ausgewählt ist, sollte dieser API-Aufruf diese deaktivieren.
+
+      \[[API-Gruppe: Post fach Vorschau](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+
+      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->**:`ReadWriteItem`
+
+      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/#extension-points)<!-- -->**: Terminplaner
+    name: disableClientSignatureAsync(callback)
+    fullName: disableClientSignatureAsync(callback)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'disableClientSignatureAsync(callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          // Disable the client signature.
+          Office.context.mailbox.item.disableClientSignatureAsync(function(asyncResult) {
+            if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+              console.log("disableClientSignatureAsync succeeded");
+            } else {
+              console.error(asyncResult.error);
+            }
+          });
+          ```
+      parameters:
+        - id: callback
+          description: 'Optional. Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzigen Parameter aufgerufen.`asyncResult`<!-- -->, bei dem es `Office.AsyncResult` sich um ein Objekt handelt.'
+          type:
+            - 'outlook!Office.AppointmentCompose#disableClientSignatureAsync~1:complex'
   - uid: 'outlook!Office.AppointmentCompose#end:member'
     summary: |-
       Ruft Datum und Zeit für das Ende des Termins ab oder legt diese fest.
@@ -1378,6 +1454,77 @@ items:
           description: 'Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzelnen Parameter vom Typ aufgerufen.`Office.AsyncResult`<!-- -->. Die `value` Eigenschaft des Ergebnisses ist die Eigenschaften des freigegebenen Elements.'
           type:
             - 'outlook!Office.AppointmentCompose#getSharedPropertiesAsync~1:complex'
+  - uid: 'outlook!Office.AppointmentCompose#isClientSignatureEnabledAsync:member(1)'
+    summary: |-
+      Ruft ab, ob die Client Signatur aktiviert ist.
+
+      Für Windows-und Mac-Rich-Clients sollte der API `true` -Aufruf zurückgegeben werden, wenn die Standardsignatur für neue Nachrichten, Antworten oder Weiterleitungen auf eine Vorlage für das sendende Outlook-Konto festgelegt ist. Für Outlook im Internet sollte der API-Aufruf zurückgegeben `true` werden, wenn die Signatur für Compose-Typen aktiviert ist.`newMail`<!-- -->, `reply`<!-- -->oder`forward`<!-- -->. Wenn die Einstellungen in Mac-oder Windows-Rich-Clients auf "(keine)" festgelegt sind oder in Outlook im Internet deaktiviert sind, sollte der API-Aufruf zurückgegeben werden.`false`<!-- -->.
+
+      \[[API-Gruppe: Post fach Vorschau](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->**:`ReadItem`
+
+      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/#extension-points)<!-- -->**: Terminplaner
+    name: 'isClientSignatureEnabledAsync(options, callback)'
+    fullName: 'isClientSignatureEnabledAsync(options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'isClientSignatureEnabledAsync(options: Office.AsyncContextOptions, callback: (asyncResult: Office.AsyncResult<boolean>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: options
+          description: 'Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können ein beliebiges Objekt bereitstellen, auf das Sie in der Rückrufmethode zugreifen möchten.'
+          type:
+            - 'outlook!Office.AsyncContextOptions:interface'
+        - id: callback
+          description: 'Wenn die Methode abgeschlossen ist, wird die Funktion, `callback` die im-Parameter übergeben wird, mit einem einzelnen Parameter vom Typ aufgerufen.`Office.AsyncResult`<!-- -->.'
+          type:
+            - 'outlook!Office.AppointmentCompose#isClientSignatureEnabledAsync~0:complex'
+  - uid: 'outlook!Office.AppointmentCompose#isClientSignatureEnabledAsync:member(2)'
+    summary: |-
+      Ruft ab, ob die Client Signatur aktiviert ist.
+
+      Für Windows-und Mac-Rich-Clients sollte der API `true` -Aufruf zurückgegeben werden, wenn die Standardsignatur für neue Nachrichten, Antworten oder Weiterleitungen auf eine Vorlage für das sendende Outlook-Konto festgelegt ist. Für Outlook im Internet sollte der API-Aufruf zurückgegeben `true` werden, wenn die Signatur für Compose-Typen aktiviert ist.`newMail`<!-- -->, `reply`<!-- -->oder`forward`<!-- -->. Wenn die Einstellungen in Mac-oder Windows-Rich-Clients auf "(keine)" festgelegt sind oder in Outlook im Internet deaktiviert sind, sollte der API-Aufruf zurückgegeben werden.`false`<!-- -->.
+
+      \[[API-Gruppe: Post fach Vorschau](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->**:`ReadItem`
+
+      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/#extension-points)<!-- -->**: Terminplaner
+
+      #### <a name="examples"></a>Beispiele
+
+      ```javascript
+      // Check if the client signature is currently enabled.
+      Office.context.mailbox.item.isClientSignatureEnabledAsync(function(asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          console.log("isClientSignatureEnabledAsync succeeded with result: " + asyncResult.value);
+        } else {
+          console.error(asyncResult.error);
+        }
+      });
+      ```
+    name: isClientSignatureEnabledAsync(callback)
+    fullName: isClientSignatureEnabledAsync(callback)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'isClientSignatureEnabledAsync(callback: (asyncResult: Office.AsyncResult<boolean>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: callback
+          description: 'Wenn die Methode abgeschlossen ist, wird die Funktion, `callback` die im-Parameter übergeben wird, mit einem einzelnen Parameter vom Typ aufgerufen.`Office.AsyncResult`<!-- -->.'
+          type:
+            - 'outlook!Office.AppointmentCompose#isClientSignatureEnabledAsync~1:complex'
   - uid: 'outlook!Office.AppointmentCompose#itemType:member'
     summary: |-
       Ruft den Typ des Elements ab, das eine Instanz darstellt.
@@ -2450,6 +2597,28 @@ references:
     name: Body
   - uid: 'outlook!Office.Categories:interface'
     name: Categories
+  - uid: 'outlook!Office.AppointmentCompose#disableClientSignatureAsync~0:complex'
+    name: '(asyncResult: Office.AsyncResult<void>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <void>) => void
+        fullName: <void>) => void
+  - uid: 'outlook!Office.AppointmentCompose#disableClientSignatureAsync~1:complex'
+    name: '(asyncResult: Office.AsyncResult<void>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <void>) => void
+        fullName: <void>) => void
   - uid: 'outlook!Office.Time:interface'
     name: Time
   - uid: 'outlook!Office.EnhancedLocation:interface'
@@ -2634,6 +2803,28 @@ references:
         fullName: Office.SharedProperties
       - name: '>) => void'
         fullName: '>) => void'
+  - uid: 'outlook!Office.AppointmentCompose#isClientSignatureEnabledAsync~0:complex'
+    name: '(asyncResult: Office.AsyncResult<boolean>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<boolean>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <boolean>) => void
+        fullName: <boolean>) => void
+  - uid: 'outlook!Office.AppointmentCompose#isClientSignatureEnabledAsync~1:complex'
+    name: '(asyncResult: Office.AsyncResult<boolean>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<boolean>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'outlook!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <boolean>) => void
+        fullName: <boolean>) => void
   - uid: 'outlook!Office.AppointmentCompose#itemType~0:complex'
     name: MailboxEnums.ItemType | string
     fullName: Office.MailboxEnums.ItemType | string
