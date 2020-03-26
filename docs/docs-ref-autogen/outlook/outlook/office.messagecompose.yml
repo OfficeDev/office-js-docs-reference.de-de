@@ -10,7 +10,7 @@ items:
 
       - [ItemCompose](xref:outlook!Office.ItemCompose:interface)
 
-      - [Nachricht](xref:outlook!Office.Message:interface)
+      - [Meldung](xref:outlook!Office.Message:interface)
     name: Office.MessageCompose
     fullName: Office.MessageCompose
     langs:
@@ -800,10 +800,11 @@ items:
       Für Windows-und Mac-Rich-Clients legt diese API die Signatur unter den Abschnitten "neue Nachricht" und "Antworten/Weiterleitungen" für das sendende Konto auf "(keine)" fest, wodurch die Signatur effektiv deaktiviert wird. Für Outlook im Internet sollte die API die Signaturoption für neue e-Mail-Nachrichten, Antworten und Weiterleitungen deaktivieren. Wenn die Signatur ausgewählt ist, sollte dieser API-Aufruf diese deaktivieren.
 
       \[[API-Gruppe: Post fach Vorschau](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-
+    remarks: |-
       ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->**:`ReadWriteItem`
 
       ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/#extension-points)<!-- -->**: Nachrichten verfassen
+    isPreview: true
     name: 'disableClientSignatureAsync(options, callback)'
     fullName: 'disableClientSignatureAsync(options, callback)'
     langs:
@@ -831,10 +832,24 @@ items:
       Für Windows-und Mac-Rich-Clients legt diese API die Signatur unter den Abschnitten "neue Nachricht" und "Antworten/Weiterleitungen" für das sendende Konto auf "(keine)" fest, wodurch die Signatur effektiv deaktiviert wird. Für Outlook im Internet sollte die API die Signaturoption für neue e-Mail-Nachrichten, Antworten und Weiterleitungen deaktivieren. Wenn die Signatur ausgewählt ist, sollte dieser API-Aufruf diese deaktivieren.
 
       \[[API-Gruppe: Post fach Vorschau](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-
+    remarks: |-
       ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->**:`ReadWriteItem`
 
       ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/#extension-points)<!-- -->**: Nachrichten verfassen
+
+      #### <a name="examples"></a>Beispiele
+
+      ```javascript
+      // Disable the client signature.
+      Office.context.mailbox.item.disableClientSignatureAsync(function(asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          console.log("disableClientSignatureAsync succeeded");
+        } else {
+          console.error(asyncResult.error);
+        }
+      });
+      ```
+    isPreview: true
     name: disableClientSignatureAsync(callback)
     fullName: disableClientSignatureAsync(callback)
     langs:
@@ -845,21 +860,7 @@ items:
       return:
         type:
           - void
-        description: |-
-
-
-          #### <a name="examples"></a>Beispiele
-
-          ```javascript
-          // Disable the client signature.
-          Office.context.mailbox.item.disableClientSignatureAsync(function(asyncResult) {
-            if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
-              console.log("disableClientSignatureAsync succeeded");
-            } else {
-              console.error(asyncResult.error);
-            }
-          });
-          ```
+        description: ''
       parameters:
         - id: callback
           description: 'Optional. Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzigen Parameter aufgerufen.`asyncResult`<!-- -->, bei dem es `Office.AsyncResult` sich um ein Objekt handelt.'
@@ -1157,11 +1158,15 @@ items:
           type:
             - 'outlook!Office.MessageCompose#getAttachmentsAsync~1:complex'
   - uid: 'outlook!Office.MessageCompose#getComposeTypeAsync:member(1)'
-    summary: 'Gibt den Typ des Verfassens von Nachrichten und den gewünschten Umwandlungs an. Die Nachricht kann neu sein, oder eine Antwort oder Weiterleitung. Der Umwandlungs kann HTML oder nur-Text sein.'
+    summary: |-
+      Gibt den Typ des Verfassens von Nachrichten und den gewünschten Umwandlungs an. Die Nachricht kann neu sein, oder eine Antwort oder Weiterleitung. Der Umwandlungs kann HTML oder nur-Text sein.
+
+      \[[API-Gruppe: Post fach Vorschau](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->**:`ReadItem`
 
       ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/#extension-points)<!-- -->**: Nachrichten verfassen
+    isPreview: true
     name: 'getComposeTypeAsync(options, callback)'
     fullName: 'getComposeTypeAsync(options, callback)'
     langs:
@@ -1179,14 +1184,14 @@ items:
           type:
             - 'outlook!Office.AsyncContextOptions:interface'
         - id: callback
-          description: |-
-            Wenn die Methode abgeschlossen ist, wird die Funktion, `callback` die im-Parameter übergeben wird, mit einem einzelnen Parameter vom Typ aufgerufen.`Office.AsyncResult`<!-- -->. Bei Erfolg enthält die `asyncResult.value` Eigenschaft ein Objekt mit dem erstelltyp und dem Umwandlungs des Elements.
-
-            \[API-Gruppe: Post fach Vorschau\]
+          description: 'Wenn die Methode abgeschlossen ist, wird die Funktion, `callback` die im-Parameter übergeben wird, mit einem einzelnen Parameter vom Typ aufgerufen.`Office.AsyncResult`<!-- -->. Bei Erfolg enthält die `asyncResult.value` Eigenschaft ein Objekt mit dem erstelltyp und dem Umwandlungs des Elements.'
           type:
             - 'outlook!Office.MessageCompose#getComposeTypeAsync~0:complex'
   - uid: 'outlook!Office.MessageCompose#getComposeTypeAsync:member(2)'
-    summary: 'Gibt den Typ des Verfassens von Nachrichten und den gewünschten Umwandlungs an. Die Nachricht kann neu sein, oder eine Antwort oder Weiterleitung. Der Umwandlungs kann HTML oder nur-Text sein.'
+    summary: |-
+      Gibt den Typ des Verfassens von Nachrichten und den gewünschten Umwandlungs an. Die Nachricht kann neu sein, oder eine Antwort oder Weiterleitung. Der Umwandlungs kann HTML oder nur-Text sein.
+
+      \[[API-Gruppe: Post fach Vorschau](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
       ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->**:`ReadItem`
 
@@ -1209,6 +1214,7 @@ items:
         }
       });
       ```
+    isPreview: true
     name: getComposeTypeAsync(callback)
     fullName: getComposeTypeAsync(callback)
     langs:
@@ -1222,10 +1228,7 @@ items:
         description: Ein Objekt mit `ComposeType` und `CoercionType` Enumerationswerte für das Nachrichtenelement.
       parameters:
         - id: callback
-          description: |-
-            Wenn die Methode abgeschlossen ist, wird die Funktion, `callback` die im-Parameter übergeben wird, mit einem einzelnen Parameter vom Typ aufgerufen.`Office.AsyncResult`<!-- -->. Bei Erfolg enthält die `asyncResult.value` Eigenschaft ein Objekt mit dem erstelltyp und dem Umwandlungs des Elements.
-
-            \[API-Gruppe: Post fach Vorschau\]
+          description: 'Wenn die Methode abgeschlossen ist, wird die Funktion, `callback` die im-Parameter übergeben wird, mit einem einzelnen Parameter vom Typ aufgerufen.`Office.AsyncResult`<!-- -->. Bei Erfolg enthält die `asyncResult.value` Eigenschaft ein Objekt mit dem erstelltyp und dem Umwandlungs des Elements.'
           type:
             - 'outlook!Office.MessageCompose#getComposeTypeAsync~1:complex'
   - uid: 'outlook!Office.MessageCompose#getInitializationContextAsync:member(1)'
@@ -1666,6 +1669,7 @@ items:
       ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->**:`ReadItem`
 
       ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/#extension-points)<!-- -->**: Nachrichten verfassen
+    isPreview: true
     name: 'isClientSignatureEnabledAsync(options, callback)'
     fullName: 'isClientSignatureEnabledAsync(options, callback)'
     langs:
@@ -1710,6 +1714,7 @@ items:
         }
       });
       ```
+    isPreview: true
     name: isClientSignatureEnabledAsync(callback)
     fullName: isClientSignatureEnabledAsync(callback)
     langs:
