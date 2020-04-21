@@ -46,7 +46,7 @@ Code Beispiel Ausschnitte werden den Verweisseiten aus zwei Quellen hinzugefügt
 
 Die lokalen Codeausschnitte befinden sich in hostspezifischen YAML-Dateien. Ihr Inhalt ist nach Klasse und Feld organisiert, sodass er der entsprechenden Stelle in einer Referenzseite zugeordnet werden kann. Die Sprache des Codeausschnitts (JavaScript oder Manuskript) wird durch die Verwendung von await-Anweisungen hergeleitet.
 
-Die Skript Labor Codeausschnitte werden aus Arbeitsbeispielen abgerufen. Derzeit werden Excel-und Word-Beispiele den Referenzdokumenten Abschnitten durch ein [Paar von Zuordnungsdateien](https://github.com/OfficeDev/office-js-snippets/tree/master/snippet-extractor-metadata)zugeordnet. Diese stimmen mit einzelnen Beispiel Methoden mit Eigenschaften oder Methoden in der API überein. Beim `yarn start` Ausführen des Office-js-Snippets-Repositorys wird [eine YAML-Datei](https://github.com/OfficeDev/office-js-snippets/blob/master/snippet-extractor-output/snippets.yaml) erstellt, die alle zugeordneten Codeausschnitte enthält. Diese YAML-Datei ist die Eingabe in das Referenz Dokumentationstool.
+Die Skript Labor Codeausschnitte werden aus Arbeitsbeispielen abgerufen. Derzeit werden Excel-, Outlook-und Word-Beispiele den Referenzdokumenten Abschnitten durch [Zuordnungsdateien](https://github.com/OfficeDev/office-js-snippets/tree/master/snippet-extractor-metadata)zugeordnet. Diese stimmen mit einzelnen Beispiel Methoden mit Eigenschaften oder Methoden in der API überein. Beim `yarn start` Ausführen des Office-js-Snippets-Repositorys wird [eine YAML-Datei](https://github.com/OfficeDev/office-js-snippets/blob/master/snippet-extractor-output/snippets.yaml) erstellt, die alle zugeordneten Codeausschnitte enthält. Diese YAML-Datei ist die Eingabe in das Referenz Dokumentationstool.
 
 ## <a name="tooling-pipeline"></a>Tooling-Pipeline
 
@@ -64,7 +64,7 @@ Der Präprozessor verwendet die d. TS-Dateien und teilt Sie in hostspezifische A
 
 API Extractor konvertiert die d. TS-Dateien in JSON-Daten. Dadurch werden alle Typdaten löst, sodass eine einfachere Analyse möglich ist.
 
-Der Prozessor Ruft die Codeausschnitte ab und verbindet Sie mit den entsprechenden Hosts.
+Der Mittel Prozessor Ruft die Codeausschnitte ab und verbindet Sie mit den richtigen Hosts und bereinigt die Vernetzung zwischen Outlook und Common API-Objekten.
 
 API-Dokumentierer wandelt die JSON-Daten in yml-Dateien um. Die yml-Dateien werden vom geöffneten Veröffentlichungs System, das unsere Dokumente in docs.Microsoft.com veröffentlicht, in einen Abschlag umgewandelt. API-Dokumentierer enthält auch eine Office-spezifische Erweiterung, die unsere Codeausschnitte einfügt.
 

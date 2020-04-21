@@ -1,13 +1,13 @@
 ---
 title: JavaScript-API-Referenz für Office
-description: Die Office-JavaScript-APIs pro Host Anforderungsgruppe
-ms.date: 11/19/2019
-ms.openlocfilehash: f4072c23cb0d6e0d5375cf79d92b4f6dd9b35f0f
-ms.sourcegitcommit: d37268ff5254061632a886b196ec28f2f4087377
+description: Die Office-JavaScript-APIs-Anforderungs Sätze durch Host.
+ms.date: 04/17/2020
+ms.openlocfilehash: 765b2ee6108f6433ffe17d3ca15ba9c68fbd9617
+ms.sourcegitcommit: 6dd770ff4893a67c625e1e4fd06ee197a3992ae0
 ms.translationtype: MT
 ms.contentlocale: de-DE
-ms.lasthandoff: 11/21/2019
-ms.locfileid: "38758421"
+ms.lasthandoff: 04/21/2020
+ms.locfileid: "43594827"
 ---
 # <a name="office-javascript-api-reference"></a>JavaScript-API-Referenz für Office
 
@@ -75,3 +75,4 @@ Im folgenden finden Sie eine Liste mit hostspezifischen Anforderungs Sätzen (un
 - [Informationen zu Office-Add-Ins](/office/dev/add-ins/overview)
 - [Host- und Plattformverfügbarkeit von Office-Add-Ins](/office/dev/add-ins/overview/office-add-in-availability)
 - [Office-Versionen und Anforderungssätze](/office/dev/add-ins/develop/office-versions-and-requirement-sets)
+- [Erkunden der Office JavaScript API mithilfe von Script Lab](/office/dev/add-ins/overview/explore-with-script-lab)
