@@ -11,7 +11,7 @@ items:
       - typeScript
     type: class
     extends:
-      - 'excel!OfficeExtension.ClientObject:class'
+      - 'office!OfficeExtension.ClientObject:class'
     package: excel!
     children:
       - 'excel!Excel.CommentReply#authorEmail:member'
@@ -26,12 +26,9 @@ items:
       - 'excel!Excel.CommentReply#load:member(1)'
       - 'excel!Excel.CommentReply#load:member(2)'
       - 'excel!Excel.CommentReply#load:member(3)'
-      - 'excel!Excel.CommentReply#mentions:member'
-      - 'excel!Excel.CommentReply#richContent:member'
       - 'excel!Excel.CommentReply#set:member(1)'
       - 'excel!Excel.CommentReply#set:member(2)'
       - 'excel!Excel.CommentReply#toJSON:member(1)'
-      - 'excel!Excel.CommentReply#updateMentions:member(1)'
   - uid: 'excel!Excel.CommentReply#authorEmail:member'
     summary: |-
       Ruft die E-Mail des Autors der Kommentarantwort ab.
@@ -64,7 +61,7 @@ items:
           - string
   - uid: 'excel!Excel.CommentReply#content:member'
     summary: |-
-      Ruft den Inhalt der Kommentarantwort ab oder legt ihn fest. Die Zeichenfolge ist nur-Text.
+      Der Inhalt der Kommentar Antwort. Die Zeichenfolge ist nur-Text.
 
       \[[API-Gruppe: ExcelApi 1,10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: content
@@ -188,7 +185,7 @@ items:
         description: ''
   - uid: 'excel!Excel.CommentReply#id:member'
     summary: |-
-      Stellt die ID der Kommentarantwort dar. Schreibgeschützt.
+      Gibt den Kommentar Antwort Bezeichner an.
 
       \[[API-Gruppe: ExcelApi 1,10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     name: id
@@ -263,36 +260,6 @@ items:
                           select?: string;
                           expand?: string;
                       }
-  - uid: 'excel!Excel.CommentReply#mentions:member'
-    summary: |-
-      Ruft die Entitäten (z. b. Personen) ab, die in Kommentaren erwähnt werden.
-
-      \[[API-Gruppe: ExcelApiOnline 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: mentions
-    fullName: mentions
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly mentions: Excel.CommentMention[];'
-      return:
-        type:
-          - 'excel!Excel.CommentReply#mentions~0:complex'
-  - uid: 'excel!Excel.CommentReply#richContent:member'
-    summary: |-
-      Ruft den umfangreichen Kommentar Inhalt ab (beispielsweise Erwähnungen in Kommentaren). Diese Zeichenfolge soll Endbenutzern nicht angezeigt werden. Das Add-in sollte nur dazu verwendet werden, um umfangreiche Kommentar Inhalte zu analysieren.
-
-      \[[API-Gruppe: ExcelApiOnline 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: richContent
-    fullName: richContent
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly richContent: string;'
-      return:
-        type:
-          - string
   - uid: 'excel!Excel.CommentReply#set:member(1)'
     summary: Legt mehrere Eigenschaften eines Objekts gleichzeitig fest. Sie können entweder ein einfaches Objekt mit den entsprechenden Eigenschaften oder ein anderes API-Objekt desselben Typs übergeben.
     remarks: |-
@@ -318,7 +285,7 @@ items:
         - id: options
           description: 'Bietet eine Option zum Unterdrücken von Fehlern, wenn das Properties-Objekt versucht, schreibgeschützte Eigenschaften festzulegen.'
           type:
-            - 'excel!OfficeExtension.UpdateOptions:interface'
+            - 'office!OfficeExtension.UpdateOptions:interface'
   - uid: 'excel!Excel.CommentReply#set:member(2)'
     summary: Legt mehrere Eigenschaften für das Objekt gleichzeitig basierend auf einem vorhandenen geladenen Objekt fest.
     name: set(properties)
@@ -350,29 +317,8 @@ items:
         type:
           - 'excel!Excel.Interfaces.CommentReplyData:interface'
         description: ''
-  - uid: 'excel!Excel.CommentReply#updateMentions:member(1)'
-    summary: |-
-      Aktualisiert den Kommentar Inhalt mit einer speziell formatierten Zeichenfolge und einer Liste von Erwähnungen.
-
-      \[[API-Gruppe: ExcelApiOnline 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: updateMentions(contentWithMentions)
-    fullName: updateMentions(contentWithMentions)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'updateMentions(contentWithMentions: Excel.CommentRichContent): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: contentWithMentions
-          description: 'Der Inhalt des Kommentars. Dies enthält eine speziell formatierte Zeichenfolge und eine Liste von Erwähnungen, die in der Zeichenfolge analysiert werden, wenn Sie von Excel angezeigt werden.'
-          type:
-            - 'excel!Excel.CommentRichContent:interface'
 references:
-  - uid: 'excel!OfficeExtension.ClientObject:class'
+  - uid: 'office!OfficeExtension.ClientObject:class'
     name: OfficeExtension.ClientObject
   - uid: 'excel!Excel.RequestContext:class'
     name: RequestContext
@@ -386,20 +332,9 @@ references:
     name: Excel.CommentReply
   - uid: 'excel!Excel.Interfaces.CommentReplyLoadOptions:interface'
     name: Excel.Interfaces.CommentReplyLoadOptions
-  - uid: 'excel!Excel.CommentReply#mentions~0:complex'
-    name: 'Excel.CommentMention[]'
-    fullName: 'Excel.CommentMention[]'
-    spec.typeScript:
-      - uid: 'excel!Excel.CommentMention:interface'
-        name: Excel.CommentMention
-        fullName: Excel.CommentMention
-      - name: '[]'
-        fullName: '[]'
   - uid: 'excel!Excel.Interfaces.CommentReplyUpdateData:interface'
     name: Interfaces.CommentReplyUpdateData
-  - uid: 'excel!OfficeExtension.UpdateOptions:interface'
+  - uid: 'office!OfficeExtension.UpdateOptions:interface'
     name: OfficeExtension.UpdateOptions
   - uid: 'excel!Excel.Interfaces.CommentReplyData:interface'
     name: Excel.Interfaces.CommentReplyData
-  - uid: 'excel!Excel.CommentRichContent:interface'
-    name: Excel.CommentRichContent
