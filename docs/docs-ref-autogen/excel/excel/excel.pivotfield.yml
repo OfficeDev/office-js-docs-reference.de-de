@@ -11,7 +11,7 @@ items:
       - typeScript
     type: class
     extends:
-      - 'excel!OfficeExtension.ClientObject:class'
+      - 'office!OfficeExtension.ClientObject:class'
     package: excel!
     children:
       - 'excel!Excel.PivotField#applyFilter:member(1)'
@@ -38,7 +38,7 @@ items:
       - 'excel!Excel.PivotField#toJSON:member(1)'
   - uid: 'excel!Excel.PivotField#applyFilter:member(1)'
     summary: |-
-      Legt ein oder mehrere der aktuellen PivotFilters des Felds fest und wendet Sie auf das Feld an. Wenn die bereitgestellten Filter (en) ungültig sind oder nicht angewendet werden können, wird eine Ausnahme ausgelöst.
+      Legt ein oder mehrere der aktuellen PivotFilters des Felds fest und wendet Sie auf das Feld an. Wenn die bereitgestellten Filter ungültig sind oder nicht angewendet werden können, wird eine Ausnahme ausgelöst.
 
       \[[API-Gruppe: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
     isPreview: true
@@ -48,7 +48,7 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'applyFilter(filter: PivotValueFilter | PivotLabelFilter | PivotManualFilter | PivotDateFilter | PivotFilters): void;'
+      content: 'applyFilter(filter: Excel.PivotFilters): void;'
       return:
         type:
           - void
@@ -57,7 +57,7 @@ items:
         - id: filter
           description: Ein konfigurierter bestimmter PivotFilter oder eine PivotFilters-Schnittstelle mit mehreren konfigurierten filtern.
           type:
-            - 'excel!Excel.PivotField#applyFilter~0:complex'
+            - 'excel!Excel.PivotFilters:interface'
   - uid: 'excel!Excel.PivotField#clearAllFilters:member(1)'
     summary: |-
       Löscht alle Kriterien aus allen Filtern des Felds. Dadurch werden alle aktiven Filter für das Feld entfernt.
@@ -322,7 +322,7 @@ items:
         - id: options
           description: 'Bietet eine Option zum Unterdrücken von Fehlern, wenn das Properties-Objekt versucht, schreibgeschützte Eigenschaften festzulegen.'
           type:
-            - 'excel!OfficeExtension.UpdateOptions:interface'
+            - 'office!OfficeExtension.UpdateOptions:interface'
   - uid: 'excel!Excel.PivotField#set:member(2)'
     summary: Legt mehrere Eigenschaften für das Objekt gleichzeitig basierend auf einem vorhandenen geladenen Objekt fest.
     name: set(properties)
@@ -374,7 +374,7 @@ items:
         description: ''
       parameters:
         - id: sortBy
-          description: 'Stellt dar, ob die Sortierung in aufsteigender oder absteigender Reihenfolge erfolgt.'
+          description: 'Gibt an, ob die Sortierung in aufsteigender oder absteigender Reihenfolge erfolgt.'
           type:
             - 'excel!Excel.SortBy:enum'
   - uid: 'excel!Excel.PivotField#sortByValues:member(1)'
@@ -395,7 +395,7 @@ items:
         description: ''
       parameters:
         - id: sortBy
-          description: 'Stellt dar, ob die Sortierung in aufsteigender oder absteigender Reihenfolge erfolgt.'
+          description: 'Gibt an, ob die Sortierung in aufsteigender oder absteigender Reihenfolge erfolgt.'
           type:
             - 'excel!Excel.SortBy:enum'
         - id: valuesHierarchy
@@ -424,7 +424,7 @@ items:
         description: ''
       parameters:
         - id: sortByString
-          description: 'Stellt dar, ob die Sortierung in aufsteigender oder absteigender Reihenfolge erfolgt.'
+          description: 'Gibt an, ob die Sortierung in aufsteigender oder absteigender Reihenfolge erfolgt.'
           type:
             - '"Ascending" | "Descending"'
         - id: valuesHierarchy
@@ -464,35 +464,10 @@ items:
           - 'excel!Excel.Interfaces.PivotFieldData:interface'
         description: ''
 references:
-  - uid: 'excel!OfficeExtension.ClientObject:class'
+  - uid: 'office!OfficeExtension.ClientObject:class'
     name: OfficeExtension.ClientObject
-  - uid: 'excel!Excel.PivotField#applyFilter~0:complex'
-    name: PivotValueFilter | PivotLabelFilter | PivotManualFilter | PivotDateFilter | PivotFilters
-    fullName: Excel.PivotValueFilter | Excel.PivotLabelFilter | Excel.PivotManualFilter | Excel.PivotDateFilter | Excel.PivotFilters
-    spec.typeScript:
-      - uid: 'excel!Excel.PivotValueFilter:interface'
-        name: PivotValueFilter
-        fullName: Excel.PivotValueFilter
-      - name: ' | '
-        fullName: ' | '
-      - uid: 'excel!Excel.PivotLabelFilter:interface'
-        name: PivotLabelFilter
-        fullName: Excel.PivotLabelFilter
-      - name: ' | '
-        fullName: ' | '
-      - uid: 'excel!Excel.PivotManualFilter:interface'
-        name: PivotManualFilter
-        fullName: Excel.PivotManualFilter
-      - name: ' | '
-        fullName: ' | '
-      - uid: 'excel!Excel.PivotDateFilter:interface'
-        name: PivotDateFilter
-        fullName: Excel.PivotDateFilter
-      - name: ' | '
-        fullName: ' | '
-      - uid: 'excel!Excel.PivotFilters:interface'
-        name: PivotFilters
-        fullName: Excel.PivotFilters
+  - uid: 'excel!Excel.PivotFilters:interface'
+    name: Excel.PivotFilters
   - uid: 'excel!Excel.PivotFilterType:enum'
     name: Excel.PivotFilterType
   - uid: 'excel!Excel.RequestContext:class'
@@ -501,7 +476,7 @@ references:
     name: OfficeExtension.ClientResult<Excel.PivotFilters>
     fullName: OfficeExtension.ClientResult<Excel.PivotFilters>
     spec.typeScript:
-      - uid: 'excel!OfficeExtension.ClientResult:class'
+      - uid: 'office!OfficeExtension.ClientResult:class'
         name: OfficeExtension.ClientResult
         fullName: OfficeExtension.ClientResult
       - name: <
@@ -515,7 +490,7 @@ references:
     name: OfficeExtension.ClientResult<boolean>
     fullName: OfficeExtension.ClientResult<boolean>
     spec.typeScript:
-      - uid: 'excel!OfficeExtension.ClientResult:class'
+      - uid: 'office!OfficeExtension.ClientResult:class'
         name: OfficeExtension.ClientResult
         fullName: OfficeExtension.ClientResult
       - name: <boolean>
@@ -524,7 +499,7 @@ references:
     name: OfficeExtension.ClientResult<boolean>
     fullName: OfficeExtension.ClientResult<boolean>
     spec.typeScript:
-      - uid: 'excel!OfficeExtension.ClientResult:class'
+      - uid: 'office!OfficeExtension.ClientResult:class'
         name: OfficeExtension.ClientResult
         fullName: OfficeExtension.ClientResult
       - name: <boolean>
@@ -537,7 +512,7 @@ references:
     name: Excel.Interfaces.PivotFieldLoadOptions
   - uid: 'excel!Excel.Interfaces.PivotFieldUpdateData:interface'
     name: Interfaces.PivotFieldUpdateData
-  - uid: 'excel!OfficeExtension.UpdateOptions:interface'
+  - uid: 'office!OfficeExtension.UpdateOptions:interface'
     name: OfficeExtension.UpdateOptions
   - uid: 'excel!Excel.SortBy:enum'
     name: SortBy
