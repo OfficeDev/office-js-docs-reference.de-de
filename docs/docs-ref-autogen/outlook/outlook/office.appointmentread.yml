@@ -29,7 +29,9 @@ items:
       - 'outlook!Office.AppointmentRead#dateTimeCreated:member'
       - 'outlook!Office.AppointmentRead#dateTimeModified:member'
       - 'outlook!Office.AppointmentRead#displayReplyAllForm:member(1)'
+      - 'outlook!Office.AppointmentRead#displayReplyAllFormAsync:member(1)'
       - 'outlook!Office.AppointmentRead#displayReplyForm:member(1)'
+      - 'outlook!Office.AppointmentRead#displayReplyFormAsync:member(1)'
       - 'outlook!Office.AppointmentRead#end:member'
       - 'outlook!Office.AppointmentRead#enhancedLocation:member'
       - 'outlook!Office.AppointmentRead#getAttachmentContentAsync:member(1)'
@@ -373,13 +375,13 @@ items:
           - '!Date:interface'
   - uid: 'outlook!Office.AppointmentRead#displayReplyAllForm:member(1)'
     summary: |-
-      Zeigt ein Antwortformular an, das den Absender und alle Empfänger der ausgewählten Nachricht oder des Organisators und alle Teilnehmer des ausgewählten Termins enthält.
+      Zeigt ein Antwortformular an, das den Absender und alle Empfänger der ausgewählten Nachricht oder den Organisator und alle Teilnehmer des ausgewählten Termins enthält.
 
-      In Outlook im Web wird das Antwortformular als Popupformular in der Dreispaltenansicht und als Popupformular in der Zwei- oder Einspaltenansicht angezeigt.
+      In Outlook im Internet wird das Antwortformular als Popupformular in der 3-Spalten-Ansicht und als Popupformular in der Ansicht 2 Spalten oder 1 Spalte angezeigt.
 
       Wenn einer der Zeichenfolgenparameter seinen Grenzwert überschreitet, löst `displayReplyAllForm` eine Ausnahme aus.
 
-      Wenn Anlagen im `formData.attachments`-Parameter angegeben werden, versuchen Outlook im Web und Desktop-Clients alle Anlagen herunterzuladen und sie an das Antwortformular anzufügen. Wenn Anlagen nicht hinzugefügt werden können, wird in der Formularbenutzeroberfläche ein Fehler ausgegeben. Wenn dies nicht möglich ist, wird keine Fehlermeldung ausgegeben.
+      Wenn Anlagen im `formData.attachments` -Parameter angegeben werden, versucht Outlook, alle Anlagen herunterzuladen und an das Antwortformular anzufügen. Wenn Anlagen nicht hinzugefügt werden können, wird in der Formularbenutzeroberfläche ein Fehler angezeigt. Wenn dies nicht möglich ist, wird keine Fehlermeldung ausgegeben.
 
       **Hinweis**: Diese Methode wird in Outlook auf IOS oder Android nicht unterstützt.
     remarks: |-
@@ -476,15 +478,57 @@ items:
           description: 'Eine Zeichenfolge, die Text- und HTML-Code enthält, die den Hauptteil des Antwortformulars darstellen. Die Zeichenfolge ist auf 32 KB oder ein [ReplyFormData](xref:outlook!Office.ReplyFormData:interface) -Objekt, das Body-oder Attachment-Daten und eine Rückruffunktion enthält, limitiert.'
           type:
             - 'outlook!Office.AppointmentRead#displayReplyAllForm~0:complex'
+  - uid: 'outlook!Office.AppointmentRead#displayReplyAllFormAsync:member(1)'
+    summary: |-
+      Zeigt ein Antwortformular an, das den Absender und alle Empfänger der ausgewählten Nachricht oder den Organisator und alle Teilnehmer des ausgewählten Termins enthält.
+
+      In Outlook im Internet wird das Antwortformular als Popupformular in der 3-Spalten-Ansicht und als Popupformular in der Ansicht 2 Spalten oder 1 Spalte angezeigt.
+
+      Wenn einer der Zeichenfolgenparameter seinen Grenzwert überschreitet, löst `displayReplyAllFormAsync` eine Ausnahme aus.
+
+      Wenn Anlagen im `formData.attachments` -Parameter angegeben werden, versucht Outlook, alle Anlagen herunterzuladen und an das Antwortformular anzufügen. Wenn Anlagen nicht hinzugefügt werden können, wird in der Formularbenutzeroberfläche ein Fehler angezeigt. Wenn dies nicht möglich ist, wird keine Fehlermeldung ausgegeben.
+
+      **Hinweis**: Diese Methode wird in Outlook auf IOS oder Android nicht unterstützt.
+
+      \[[API-Gruppe: Post fach Vorschau](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **:`ReadItem`
+
+      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **: Termin Teilnehmer
+    isPreview: true
+    name: 'displayReplyAllFormAsync(formData, options, callback)'
+    fullName: 'displayReplyAllFormAsync(formData, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'displayReplyAllFormAsync(formData: string | ReplyFormData, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: formData
+          description: 'Eine Zeichenfolge, die Text- und HTML-Code enthält, die den Hauptteil des Antwortformulars darstellen. Die Zeichenfolge ist auf 32 KB oder ein [ReplyFormData](xref:outlook!Office.ReplyFormData:interface) -Objekt, das Body-oder Attachment-Daten und eine Rückruffunktion enthält, limitiert.'
+          type:
+            - 'outlook!Office.AppointmentRead#displayReplyAllFormAsync~0:complex'
+        - id: options
+          description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können ein beliebiges Objekt bereitstellen, auf das Sie in der Rückrufmethode zugreifen möchten.'
+          type:
+            - 'office!Office.AsyncContextOptions:interface'
+        - id: callback
+          description: 'Optional. Wenn die Methode abgeschlossen ist, wird die Funktion, die im- `callback` Parameter übergeben wird, mit einem einzelnen Parameter aufgerufen.`asyncResult`<!-- -->, bei dem es sich um ein `Office.AsyncResult` Objekt handelt.'
+          type:
+            - 'outlook!Office.AppointmentRead#displayReplyAllFormAsync~1:complex'
   - uid: 'outlook!Office.AppointmentRead#displayReplyForm:member(1)'
     summary: |-
       Zeigt ein Antwortformular an, das nur den Absender der ausgewählten Nachricht oder den Organisator des ausgewählten Termins enthält.
 
-      In Outlook im Web wird das Antwortformular als Popupformular in der Dreispaltenansicht und als Popupformular in der Zwei- oder Einspaltenansicht angezeigt.
+      In Outlook im Internet wird das Antwortformular als Popupformular in der 3-Spalten-Ansicht und als Popupformular in der Ansicht 2 Spalten oder 1 Spalte angezeigt.
 
       Wenn einer der Zeichenfolgenparameter seinen Grenzwert überschreitet, löst `displayReplyForm` eine Ausnahme aus.
 
-      Wenn Anlagen im `formData.attachments`-Parameter angegeben werden, versuchen Outlook im Web und Desktop-Clients alle Anlagen herunterzuladen und sie an das Antwortformular anzufügen. Wenn Anlagen nicht hinzugefügt werden können, wird in der Formularbenutzeroberfläche ein Fehler ausgegeben. Wenn dies nicht möglich ist, wird keine Fehlermeldung ausgegeben.
+      Wenn Anlagen im `formData.attachments` -Parameter angegeben werden, versucht Outlook, alle Anlagen herunterzuladen und an das Antwortformular anzufügen. Wenn Anlagen nicht hinzugefügt werden können, wird in der Formularbenutzeroberfläche ein Fehler angezeigt. Wenn dies nicht möglich ist, wird keine Fehlermeldung ausgegeben.
 
       **Hinweis**: Diese Methode wird in Outlook auf IOS oder Android nicht unterstützt.
     remarks: |-
@@ -601,6 +645,48 @@ items:
           description: 'Eine Zeichenfolge, die Text- und HTML-Code enthält, die den Hauptteil des Antwortformulars darstellen. Die Zeichenfolge ist auf 32 KB oder ein [ReplyFormData](xref:outlook!Office.ReplyFormData:interface) -Objekt, das Body-oder Attachment-Daten und eine Rückruffunktion enthält, limitiert.'
           type:
             - 'outlook!Office.AppointmentRead#displayReplyForm~0:complex'
+  - uid: 'outlook!Office.AppointmentRead#displayReplyFormAsync:member(1)'
+    summary: |-
+      Zeigt ein Antwortformular an, das nur den Absender der ausgewählten Nachricht oder den Organisator des ausgewählten Termins enthält.
+
+      In Outlook im Internet wird das Antwortformular als Popupformular in der 3-Spalten-Ansicht und als Popupformular in der Ansicht 2 Spalten oder 1 Spalte angezeigt.
+
+      Wenn einer der Zeichenfolgenparameter seinen Grenzwert überschreitet, löst `displayReplyFormAsync` eine Ausnahme aus.
+
+      Wenn Anlagen im `formData.attachments` -Parameter angegeben werden, versucht Outlook, alle Anlagen herunterzuladen und an das Antwortformular anzufügen. Wenn Anlagen nicht hinzugefügt werden können, wird in der Formularbenutzeroberfläche ein Fehler angezeigt. Wenn dies nicht möglich ist, wird keine Fehlermeldung ausgegeben.
+
+      **Hinweis**: Diese Methode wird in Outlook auf IOS oder Android nicht unterstützt.
+
+      \[[API-Gruppe: Post fach Vorschau](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **:`ReadItem`
+
+      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **: Termin Teilnehmer
+    isPreview: true
+    name: 'displayReplyFormAsync(formData, options, callback)'
+    fullName: 'displayReplyFormAsync(formData, options, callback)'
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'displayReplyFormAsync(formData: string | ReplyFormData, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: formData
+          description: 'Eine Zeichenfolge, die Text- und HTML-Code enthält, die den Hauptteil des Antwortformulars darstellen. Die Zeichenfolge ist auf 32 KB oder ein [ReplyFormData](xref:outlook!Office.ReplyFormData:interface) -Objekt, das Body-oder Attachment-Daten und eine Rückruffunktion enthält, limitiert.'
+          type:
+            - 'outlook!Office.AppointmentRead#displayReplyFormAsync~0:complex'
+        - id: options
+          description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können ein beliebiges Objekt bereitstellen, auf das Sie in der Rückrufmethode zugreifen möchten.'
+          type:
+            - 'office!Office.AsyncContextOptions:interface'
+        - id: callback
+          description: 'Optional. Wenn die Methode abgeschlossen ist, wird die Funktion, die im- `callback` Parameter übergeben wird, mit einem einzelnen Parameter aufgerufen.`asyncResult`<!-- -->, bei dem es sich um ein `Office.AsyncResult` Objekt handelt.'
+          type:
+            - 'outlook!Office.AppointmentRead#displayReplyFormAsync~1:complex'
   - uid: 'outlook!Office.AppointmentRead#end:member'
     summary: |-
       Ruft Datum und Uhrzeit der Beendigung des Termins ab.
@@ -1021,7 +1107,7 @@ items:
     summary: |-
       Gibt Zeichenfolgenwerte im ausgewählten Element zurück, die den in der XML-Manifestdatei definierten regulären Ausdrücken entsprechen.
 
-      Die `getRegExMatches`-Methode gibt die Zeichenfolgen zurück, die dem im `ItemHasRegularExpressionMatch`- oder `ItemHasKnownEntity`-Regelelement der XML-Manifestdatei definierten regulären Ausdruck entsprechen. Bei einer `ItemHasRegularExpressionMatch`-Regel muss eine entsprechende Zeichenfolge in der Eigenschaft des Elements vorhanden sein, das von dieser Regel angegeben wird. Der einfache `PropertyName`-Typ definiert die unterstützten Eigenschaften.
+      The `getRegExMatches` method returns the strings that match the regular expression defined in each `ItemHasRegularExpressionMatch` or `ItemHasKnownEntity` rule element in the manifest XML file. For an `ItemHasRegularExpressionMatch` rule, a matching string has to occur in the property of the item that is specified by that rule. The `PropertyName` simple type defines the supported properties.
 
       Wenn Sie eine `ItemHasRegularExpressionMatch`-Regel für die Textkörpereigenschaft eines Elements festlegen, sollte der reguläre Ausdruck den Textkörper weiter filtern und nicht versuchen, den gesamten Textkörper des Elements zurückzugeben. Bei Verwendung eines regulären Ausdrucks wie .* zum Abrufen des gesamten Textkörpers eines Elements werden nicht immer die erwarteten Ergebnisse zurückgegeben. Verwenden Sie stattdessen die `Body.getAsync`-Methode, um den gesamten Textkörper abzurufen.
 
@@ -1201,7 +1287,7 @@ items:
     summary: |-
       Gibt Zeichenfolgenwerte in einer hervorgehobenen Übereinstimmung zurück, die den in der XML-Manifestdatei definierten regulären Ausdrücken entsprechen. Hervorgehobene Übereinstimmungen gelten für Kontext-Add-Ins.
 
-      Die `getSelectedRegExMatches`-Methode gibt die Zeichenfolgen zurück, die dem im `ItemHasRegularExpressionMatch`- oder `ItemHasKnownEntity`-Regelelement der XML-Manifestdatei definierten regulären Ausdruck entsprechen. Bei einer `ItemHasRegularExpressionMatch`-Regel muss eine entsprechende Zeichenfolge in der Eigenschaft des Elements vorhanden sein, das von dieser Regel angegeben wird. Der einfache `PropertyName`-Typ definiert die unterstützten Eigenschaften.
+      The `getSelectedRegExMatches` method returns the strings that match the regular expression defined in each `ItemHasRegularExpressionMatch` or `ItemHasKnownEntity` rule element in the manifest XML file. For an `ItemHasRegularExpressionMatch` rule, a matching string has to occur in the property of the item that is specified by that rule. The `PropertyName` simple type defines the supported properties.
 
       Wenn Sie eine `ItemHasRegularExpressionMatch`-Regel für die Textkörpereigenschaft eines Elements festlegen, sollte der reguläre Ausdruck den Textkörper weiter filtern und nicht versuchen, den gesamten Textkörper des Elements zurückzugeben. Bei Verwendung eines regulären Ausdrucks wie .* zum Abrufen des gesamten Textkörpers eines Elements werden nicht immer die erwarteten Ergebnisse zurückgegeben. Verwenden Sie stattdessen die `Body.getAsync` -Methode, um den gesamten Textkörper abzurufen.
 
@@ -1258,7 +1344,7 @@ items:
       return:
         type:
           - any
-        description: 'Ein Objekt mit Arrays aus Zeichenfolgen, die den in der XML-Manifestdatei definierten regulären Ausdrücken entsprechen. Der Name der einzelnen Arrays ist gleich dem entsprechenden Wert des `RegExName`-Attributs der entsprechenden `ItemHasRegularExpressionMatch`-Regel oder des `FilterName`-Attributs der entsprechenden `ItemHasKnownEntity`-Regel.'
+        description: An object that contains arrays of strings that match the regular expressions defined in the manifest XML file. The name of each array is equal to the corresponding value of the `RegExName` attribute of the matching `ItemHasRegularExpressionMatch` rule or the `FilterName` attribute of the matching `ItemHasKnownEntity` rule.
   - uid: 'outlook!Office.AppointmentRead#getSharedPropertiesAsync:member(1)'
     summary: |-
       Ruft die Eigenschaften eines Termins oder einer Nachricht in einem freigegebenen Ordner, Kalender oder Postfach ab.
@@ -1413,7 +1499,7 @@ items:
 
       ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **: Termin Teilnehmer
 
-      Die `itemClass`-Eigenschaft gibt die Nachrichtenklasse des ausgewählten Elements an. Folgende Standardnachrichtenklassen für das Nachrichten- oder Terminelement sind vorhanden:
+      The `itemClass` property specifies the message class of the selected item. The following are the default message classes for the message or appointment item.
 
       <table> <tr> <th>Typ</th> <th>Beschreibung</th> <th>Item-Klasse</th> </tr> <tr> <td>Terminelemente</td> <td>Dies sind Kalenderelemente der Elementklasse IPM. Termin oder IPM. Termin. vorkommen.</td> <td>IPM. Termin, IPM. Termin. vorkommen</td> </tr> <tr> <td>Nachrichtenelemente</td> <td>Diese Elemente umfassen E-Mail-Nachrichten der Standardnachrichtenklasse "IPM.Note" sowie Besprechungsanfragen, -antworten und -absagen, die "IPM.Schedule.Meeting" als Basisnachrichtenklasse verwenden.</td> <td>IPM. Hinweis: IPM. Schedule. Meeting. Request, IPM. Schedule. Meeting. negativ, IPM. Schedule. Meeting. POS, IPM. Schedule. Meeting. Tent, IPM. Schedule. Meeting. Canceled</td> </tr> </table>
 
@@ -1501,7 +1587,7 @@ items:
     summary: |-
       Lädt asynchron benutzerdefinierte Eigenschaften für dieses Add-In für das ausgewählte Element.
 
-      Benutzerdefinierte Eigenschaften werden als Schlüssel-/Wert-Paare pro App und pro Element gespeichert. Diese Methode gibt ein `CustomProperties`-Objekt im Rückruf zurück, das Methoden für den Zugriff auf die benutzerdefinierten Eigenschaften für das aktuelle Element und das aktuelle Add-In bietet. Benutzerdefinierte Eigenschaften sind für das Element nicht verschlüsselt und sollten darum nicht als sicherer Speicher verwendet werden.
+      Custom properties are stored as key/value pairs on a per-app, per-item basis. This method returns a `CustomProperties` object in the callback, which provides methods to access the custom properties specific to the current item and the current add-in. Custom properties are not encrypted on the item, so this should not be used as secure storage.
 
       Die benutzerdefinierten Eigenschaften werden als `CustomProperties` Objekt in der AsyncResult. Value-Eigenschaft bereitgestellt. Dieses Objekt kann verwendet werden, um benutzerdefinierte Eigenschaften aus dem Element abzurufen, festzulegen und zu entfernen und um Änderungen am benutzerdefinierten Eigenschaftssatz wieder auf dem Server zu speichern.
     remarks: |-
@@ -2106,6 +2192,26 @@ references:
       - uid: 'outlook!Office.ReplyFormData:interface'
         name: ReplyFormData
         fullName: Office.ReplyFormData
+  - uid: 'outlook!Office.AppointmentRead#displayReplyAllFormAsync~0:complex'
+    name: string | ReplyFormData
+    fullName: string | Office.ReplyFormData
+    spec.typeScript:
+      - name: 'string | '
+        fullName: 'string | '
+      - uid: 'outlook!Office.ReplyFormData:interface'
+        name: ReplyFormData
+        fullName: Office.ReplyFormData
+  - uid: 'outlook!Office.AppointmentRead#displayReplyAllFormAsync~1:complex'
+    name: '(asyncResult: Office.AsyncResult<void>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'office!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <void>) => void
+        fullName: <void>) => void
   - uid: 'outlook!Office.AppointmentRead#displayReplyForm~0:complex'
     name: string | ReplyFormData
     fullName: string | Office.ReplyFormData
@@ -2115,6 +2221,26 @@ references:
       - uid: 'outlook!Office.ReplyFormData:interface'
         name: ReplyFormData
         fullName: Office.ReplyFormData
+  - uid: 'outlook!Office.AppointmentRead#displayReplyFormAsync~0:complex'
+    name: string | ReplyFormData
+    fullName: string | Office.ReplyFormData
+    spec.typeScript:
+      - name: 'string | '
+        fullName: 'string | '
+      - uid: 'outlook!Office.ReplyFormData:interface'
+        name: ReplyFormData
+        fullName: Office.ReplyFormData
+  - uid: 'outlook!Office.AppointmentRead#displayReplyFormAsync~1:complex'
+    name: '(asyncResult: Office.AsyncResult<void>) => void'
+    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
+    spec.typeScript:
+      - name: '(asyncResult: '
+        fullName: '(asyncResult: '
+      - uid: 'office!Office.AsyncResult:interface'
+        name: Office.AsyncResult
+        fullName: Office.AsyncResult
+      - name: <void>) => void
+        fullName: <void>) => void
   - uid: 'outlook!Office.EnhancedLocation:interface'
     name: EnhancedLocation
   - uid: 'outlook!Office.AppointmentRead#getAttachmentContentAsync~0:complex'
