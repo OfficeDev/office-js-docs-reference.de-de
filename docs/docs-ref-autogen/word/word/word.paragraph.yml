@@ -119,7 +119,7 @@ items:
           ```
   - uid: 'word!Word.Paragraph#attachToList:member(1)'
     summary: |-
-      Fügt den Absatz zu einer vorhandenen Liste auf der angegebenen Ebene hinzu. Führt zu einem Fehler, wenn der Absatz nicht in die Liste aufgenommen werden kann oder der Absatz bereits ein Listenelement ist.
+      Lets the paragraph join an existing list at the specified level. Fails if the paragraph cannot join the list or if the paragraph is already a list item.
 
       \[[API-Gruppe: WordApi 1,3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: 'attachToList(listId, level)'
@@ -289,7 +289,7 @@ items:
         description: ''
   - uid: 'word!Word.Paragraph#firstLineIndent:member'
     summary: |-
-      Ruft den Wert in Punkten für einen Erstzeileneinzug oder einen hängenden Einzug ab, oder legt ihn fest. Verwenden Sie zum Festlegen eines Erstzeileneinzugs einen positiven Wert, und verwenden Sie für einen negativen Wert für einen hängenden Einzug.
+      Gets or sets the value, in points, for a first line or hanging indent. Use a positive value to set a first-line indent, and use a negative value to set a hanging indent.
 
       \[[API-Gruppe: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: firstLineIndent
@@ -1426,33 +1426,25 @@ items:
         type:
           - 'word!Word.List:class'
   - uid: 'word!Word.Paragraph#load:member(1)'
-    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "context.sync()" aufrufen.
-    remarks: |-
-      Zusätzlich zu dieser Signatur verfügt diese Methode über die folgenden Signaturen:
-
-      `load(option?: string | string[]): Word.Paragraph`-Wobei Option eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen ist, die die zu ladenden Eigenschaften angeben.
-
-      `load(option?: { select?: string; expand?: string; }): Word.Paragraph`-Bei Option. Select handelt es sich um eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und Options. Expand ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.
-
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Word.Paragraph`Nur verfügbar für Sammlungstypen. Sie ähnelt der vorherigen Signatur. Option. Top gibt die maximale Anzahl von Sammlungselementen an, die in das Ergebnis einbezogen werden können. Option. Skip gibt die Anzahl der Elemente an, die übersprungen werden sollen und nicht im Ergebnis enthalten sind. Wenn Option. Top angegeben ist, wird das Resultset gestartet, nachdem die angegebene Anzahl von Elementen übersprungen wurde.
-    name: load(option)
-    fullName: load(option)
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen `context.sync()` vor dem Lesen der Eigenschaften aufrufen.
+    name: load(options)
+    fullName: load(options)
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'load(option?: Word.Interfaces.ParagraphLoadOptions): Word.Paragraph;'
+      content: 'load(options?: Word.Interfaces.ParagraphLoadOptions): Word.Paragraph;'
       return:
         type:
           - 'word!Word.Paragraph:class'
         description: ''
       parameters:
-        - id: option
-          description: ''
+        - id: options
+          description: Enthält Optionen für die Eigenschaften des zu ladenden Objekts.
           type:
             - 'word!Word.Interfaces.ParagraphLoadOptions:interface'
   - uid: 'word!Word.Paragraph#load:member(2)'
-    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen `context.sync()` vor dem Lesen der Eigenschaften aufrufen.
     name: load(propertyNames)
     fullName: load(propertyNames)
     langs:
@@ -1470,23 +1462,31 @@ items:
           type:
             - 'string | string[]'
   - uid: 'word!Word.Paragraph#load:member(3)'
-    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen `context.sync()` vor dem Lesen der Eigenschaften aufrufen.
     name: load(propertyNamesAndPaths)
     fullName: load(propertyNamesAndPaths)
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Word.Paragraph;'
+      content: |-
+        load(propertyNamesAndPaths?: {
+                    select?: string;
+                    expand?: string;
+                }): Word.Paragraph;
       return:
         type:
           - 'word!Word.Paragraph:class'
         description: ''
       parameters:
         - id: propertyNamesAndPaths
-          description: 'Dabei ist propertyNamesAndPaths. Select eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und propertyNamesAndPaths. Expand ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
+          description: '`propertyNamesAndPaths.select`ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und `propertyNamesAndPaths.expand` ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
           type:
-            - '{ select?: string; expand?: string; }'
+            - |-
+              {
+                          select?: string;
+                          expand?: string;
+                      }
   - uid: 'word!Word.Paragraph#outlineLevel:member'
     summary: |-
       Ruft die Gliederungsebene für den Absatz fest oder ruft sie ab.
@@ -1954,7 +1954,7 @@ items:
           - string
   - uid: 'word!Word.Paragraph#styleBuiltIn:member'
     summary: |-
-      Ruft den Namen der integrierten Formatvorlage für den Absatz ab oder legt ihn fest. Verwenden Sie diese Eigenschaft für integrierte Formatvorlagen, die zwischen Gebietsschemas portabel sind. Informationen zum Verwenden benutzerdefinierter Formatvorlagen oder lokalisierter Namen finden Sie unter der Eigenschaft "style".
+      Gets or sets the built-in style name for the paragraph. Use this property for built-in styles that are portable between locales. To use custom styles or localized style names, see the "style" property.
 
       \[[API-Gruppe: WordApi 1,3](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: styleBuiltIn
@@ -2014,7 +2014,7 @@ items:
           });
           ```
   - uid: 'word!Word.Paragraph#toJSON:member(1)'
-    summary: 'Überschreibt die `toJSON()` JavaScript-Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird.`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche Word. Paragraph-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt (typisiert als`Word.Interfaces.ParagraphData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
+    summary: 'Überschreibt die JavaScript `toJSON()` -Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird.`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche Word. Paragraph-Objekt ein API-Objekt ist, `toJSON` gibt die Methode ein einfaches JavaScript-Objekt (typisiert als`Word.Interfaces.ParagraphData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
     name: toJSON()
     fullName: toJSON()
     langs:
@@ -2027,7 +2027,7 @@ items:
           - 'word!Word.Interfaces.ParagraphData:interface'
         description: ''
   - uid: 'word!Word.Paragraph#track:member(1)'
-    summary: 'Nachverfolgung des Objekts zwecks automatischer Anpassung auf der Grundlage der umgebenden Änderungen im Dokument. Dieser Aufruf ist eine Kurzschreibweise für context.trackedObjects.add(thisObject). Wenn Sie dieses Objekt übergreifend für ".sync"-Aufrufe und außerhalb der sequenziellen Ausführung eines ".run"-Stapels verwenden und beim Festlegen einer Eigenschaft oder Aufrufen einer Methode für das Objekt ein "InvalidObjectPath"-Fehler zurückgegeben wird, hätte das Objekt der nachverfolgten Objektsammlung hinzugefügt werden müssen, in der das Objekt ursprünglich erstellt wurde.'
+    summary: 'Nachverfolgung des Objekts zwecks automatischer Anpassung auf der Grundlage der umgebenden Änderungen im Dokument. Dieser Aufruf ist eine Kurzform für`context.trackedObjects.add(thisObject)`<!-- -->. Wenn Sie dieses Objekt für `.sync` Aufrufe und außerhalb der sequenziellen Ausführung eines ". Run"-Batches verwenden und beim Festlegen einer Eigenschaft oder beim Aufrufen einer Methode für das Objekt einen "InvalidObjectPath"-Fehler erhalten, mussten Sie das Objekt der nachverfolgten Objektauflistung hinzugefügt haben, als das Objekt zum ersten Mal erstellt wurde.'
     name: track()
     fullName: track()
     langs:
@@ -2040,7 +2040,7 @@ items:
           - 'word!Word.Paragraph:class'
         description: ''
   - uid: 'word!Word.Paragraph#untrack:member(1)'
-    summary: 'Gibt den diesem Objekt zugewiesenen Arbeitsspeicher frei, wenn das Objekt zuvor nachverfolgt wurde. Dieser Aufruf stellt eine Kurzschreibweise für context.trackedObjects.remove(thisObject) dar. Viele nachverfolgte Objekte verlangsamen die Ausführung der Hostanwendung, also achten Sie darauf, alle hinzugefügten Objekte nach abgeschlossener Verwendung freizugeben. Sie müssen "context.sync()" aufrufen, damit die Freigabe des Arbeitsspeichers wirksam wird.'
+    summary: 'Gibt den diesem Objekt zugewiesenen Arbeitsspeicher frei, wenn das Objekt zuvor nachverfolgt wurde. Bei diesem Aufruf handelt es sich um eine Kurzform`context.trackedObjects.remove(thisObject)`<!-- -->. Viele nachverfolgte Objekte verlangsamen die Ausführung der Hostanwendung, also achten Sie darauf, alle hinzugefügten Objekte nach abgeschlossener Verwendung freizugeben. Sie müssen anrufen, `context.sync()` bevor die Speicherfreigabe wirksam wird.'
     name: untrack()
     fullName: untrack()
     langs:

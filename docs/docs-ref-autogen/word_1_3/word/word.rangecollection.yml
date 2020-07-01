@@ -81,33 +81,25 @@ items:
         type:
           - 'word!Word.RangeCollection#items~0:complex'
   - uid: 'word!Word.RangeCollection#load:member(1)'
-    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "context.sync()" aufrufen.
-    remarks: |-
-      Zusätzlich zu dieser Signatur verfügt diese Methode über die folgenden Signaturen:
-
-      `load(option?: string | string[]): Word.RangeCollection`-Wobei Option eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen ist, die die zu ladenden Eigenschaften angeben.
-
-      `load(option?: { select?: string; expand?: string; }): Word.RangeCollection`-Bei Option. Select handelt es sich um eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und Options. Expand ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.
-
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Word.RangeCollection`Nur verfügbar für Sammlungstypen. Sie ähnelt der vorherigen Signatur. Option. Top gibt die maximale Anzahl von Sammlungselementen an, die in das Ergebnis einbezogen werden können. Option. Skip gibt die Anzahl der Elemente an, die übersprungen werden sollen und nicht im Ergebnis enthalten sind. Wenn Option. Top angegeben ist, wird das Resultset gestartet, nachdem die angegebene Anzahl von Elementen übersprungen wurde.
-    name: load(option)
-    fullName: load(option)
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen `context.sync()` vor dem Lesen der Eigenschaften aufrufen.
+    name: load(options)
+    fullName: load(options)
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'load(option?: Word.Interfaces.RangeCollectionLoadOptions & Word.Interfaces.CollectionLoadOptions): Word.RangeCollection;'
+      content: 'load(options?: Word.Interfaces.RangeCollectionLoadOptions & Word.Interfaces.CollectionLoadOptions): Word.RangeCollection;'
       return:
         type:
           - 'word!Word.RangeCollection:class'
         description: ''
       parameters:
-        - id: option
-          description: ''
+        - id: options
+          description: Enthält Optionen für die Eigenschaften des zu ladenden Objekts.
           type:
             - 'word!Word.RangeCollection#load~0:complex'
   - uid: 'word!Word.RangeCollection#load:member(2)'
-    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen `context.sync()` vor dem Lesen der Eigenschaften aufrufen.
     name: load(propertyNames)
     fullName: load(propertyNames)
     langs:
@@ -125,24 +117,25 @@ items:
           type:
             - 'string | string[]'
   - uid: 'word!Word.RangeCollection#load:member(3)'
-    name: load(option)
-    fullName: load(option)
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen `context.sync()` vor dem Lesen der Eigenschaften aufrufen.
+    name: load(propertyNamesAndPaths)
+    fullName: load(propertyNamesAndPaths)
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'load(option?: OfficeExtension.LoadOption): Word.RangeCollection;'
+      content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): Word.RangeCollection;'
       return:
         type:
           - 'word!Word.RangeCollection:class'
         description: ''
       parameters:
-        - id: option
-          description: ''
+        - id: propertyNamesAndPaths
+          description: '`propertyNamesAndPaths.select`ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und `propertyNamesAndPaths.expand` ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
           type:
             - 'office!OfficeExtension.LoadOption:interface'
   - uid: 'word!Word.RangeCollection#toJSON:member(1)'
-    summary: 'Überschreibt die `toJSON()` JavaScript-Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird.`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche `Word.RangeCollection` Objekt ein API-Objekt ist, `toJSON` gibt die Methode ein einfaches JavaScript-Objekt (typisiert als`Word.Interfaces.RangeCollectionData`<!-- -->), die ein "Items"-Array mit flachen Kopien aller geladenen Eigenschaften aus den Elementen der Auflistung enthält.'
+    summary: 'Überschreibt die JavaScript `toJSON()` -Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird.`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche `Word.RangeCollection` Objekt ein API-Objekt ist, `toJSON` gibt die Methode ein einfaches JavaScript-Objekt (typisiert als`Word.Interfaces.RangeCollectionData`<!-- -->), die ein "Items"-Array mit flachen Kopien aller geladenen Eigenschaften aus den Elementen der Auflistung enthält.'
     name: toJSON()
     fullName: toJSON()
     langs:
@@ -155,7 +148,7 @@ items:
           - 'word!Word.Interfaces.RangeCollectionData:interface'
         description: ''
   - uid: 'word!Word.RangeCollection#track:member(1)'
-    summary: 'Nachverfolgung des Objekts zwecks automatischer Anpassung auf der Grundlage der umgebenden Änderungen im Dokument. Dieser Aufruf ist eine Kurzschreibweise für context.trackedObjects.add(thisObject). Wenn Sie dieses Objekt übergreifend für ".sync"-Aufrufe und außerhalb der sequenziellen Ausführung eines ".run"-Stapels verwenden und beim Festlegen einer Eigenschaft oder Aufrufen einer Methode für das Objekt ein "InvalidObjectPath"-Fehler zurückgegeben wird, hätte das Objekt der nachverfolgten Objektsammlung hinzugefügt werden müssen, in der das Objekt ursprünglich erstellt wurde.'
+    summary: 'Nachverfolgung des Objekts zwecks automatischer Anpassung auf der Grundlage der umgebenden Änderungen im Dokument. Dieser Aufruf ist eine Kurzform für`context.trackedObjects.add(thisObject)`<!-- -->. Wenn Sie dieses Objekt für `.sync` Aufrufe und außerhalb der sequenziellen Ausführung eines ". Run"-Batches verwenden und beim Festlegen einer Eigenschaft oder beim Aufrufen einer Methode für das Objekt einen "InvalidObjectPath"-Fehler erhalten, mussten Sie das Objekt der nachverfolgten Objektauflistung hinzugefügt haben, als das Objekt zum ersten Mal erstellt wurde.'
     name: track()
     fullName: track()
     langs:
@@ -168,7 +161,7 @@ items:
           - 'word!Word.RangeCollection:class'
         description: ''
   - uid: 'word!Word.RangeCollection#untrack:member(1)'
-    summary: 'Gibt den diesem Objekt zugewiesenen Arbeitsspeicher frei, wenn das Objekt zuvor nachverfolgt wurde. Dieser Aufruf stellt eine Kurzschreibweise für context.trackedObjects.remove(thisObject) dar. Viele nachverfolgte Objekte verlangsamen die Ausführung der Hostanwendung, also achten Sie darauf, alle hinzugefügten Objekte nach abgeschlossener Verwendung freizugeben. Sie müssen "context.sync()" aufrufen, damit die Freigabe des Arbeitsspeichers wirksam wird.'
+    summary: 'Gibt den diesem Objekt zugewiesenen Arbeitsspeicher frei, wenn das Objekt zuvor nachverfolgt wurde. Bei diesem Aufruf handelt es sich um eine Kurzform`context.trackedObjects.remove(thisObject)`<!-- -->. Viele nachverfolgte Objekte verlangsamen die Ausführung der Hostanwendung, also achten Sie darauf, alle hinzugefügten Objekte nach abgeschlossener Verwendung freizugeben. Sie müssen anrufen, `context.sync()` bevor die Speicherfreigabe wirksam wird.'
     name: untrack()
     fullName: untrack()
     langs:

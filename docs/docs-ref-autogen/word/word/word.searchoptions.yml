@@ -27,7 +27,6 @@ items:
       - 'word!Word.SearchOptions#matchSuffix:member'
       - 'word!Word.SearchOptions#matchWholeWord:member'
       - 'word!Word.SearchOptions#matchWildcards:member'
-      - 'word!Word.SearchOptions#matchWildCards:member'
       - 'word!Word.SearchOptions.newObject:member(1)'
       - 'word!Word.SearchOptions#set:member(1)'
       - 'word!Word.SearchOptions#set:member(2)'
@@ -46,7 +45,7 @@ items:
           - 'word!Word.RequestContext:class'
   - uid: 'word!Word.SearchOptions#ignorePunct:member'
     summary: |-
-      Ruft einen Wert ab oder legt ihn fest, um anzugeben, dass alle Interpunktionszeichen zwischen Wörtern ignoriert werden sollen. Entspricht dem Kontrollkästchen Interpunktionszeichen ignorieren im Dialogfeld Suchen und Ersetzen.
+      Gets or sets a value that indicates whether to ignore all punctuation characters between words. Corresponds to the Ignore punctuation check box in the Find and Replace dialog box.
 
       \[[API-Gruppe: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: ignorePunct
@@ -75,177 +74,170 @@ items:
         type:
           - boolean
   - uid: 'word!Word.SearchOptions#load:member(1)'
-    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "context.sync()" aufrufen.
-    remarks: |-
-      Zusätzlich zu dieser Signatur verfügt diese Methode über die folgenden Signaturen:
-
-      `load(option?: string | string[]): Word.SearchOptions`-Wobei Option eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen ist, die die zu ladenden Eigenschaften angeben.
-
-      `load(option?: { select?: string; expand?: string; }): Word.SearchOptions`-Bei Option. Select handelt es sich um eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und Options. Expand ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.
-
-      `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): Word.SearchOptions`Nur verfügbar für Sammlungstypen. Sie ähnelt der vorherigen Signatur. Option. Top gibt die maximale Anzahl von Sammlungselementen an, die in das Ergebnis einbezogen werden können. Option. Skip gibt die Anzahl der Elemente an, die übersprungen werden sollen und nicht im Ergebnis enthalten sind. Wenn Option. Top angegeben ist, wird das Resultset gestartet, nachdem die angegebene Anzahl von Elementen übersprungen wurde.
-
-      #### <a name="examples"></a>Beispiele
-
-      ```javascript
-      // Ignore punctuation search
-      // Run a batch operation against the Word object model.
-      Word.run(function (context) {
-          
-          // Queue a command to search the document and ignore punctuation.
-          var searchResults = context.document.body.search('video you', {ignorePunct: true});
-
-          // Queue a command to load the search results and get the font property values.
-          context.load(searchResults, 'font');
-          
-          // Synchronize the document state by executing the queued commands, 
-          // and return a promise to indicate task completion.
-          return context.sync().then(function () {
-              console.log('Found count: ' + searchResults.items.length);
-
-              // Queue a set of commands to change the font for each found item.
-              for (var i = 0; i < searchResults.items.length; i++) {
-                  searchResults.items[i].font.color = 'purple';
-                  searchResults.items[i].font.highlightColor = '#FFFF00'; //Yellow
-                  searchResults.items[i].font.bold = true;
-              }
-              
-              // Synchronize the document state by executing the queued commands, 
-              // and return a promise to indicate task completion.
-              return context.sync();
-          });  
-      })
-      .catch(function (error) {
-          console.log('Error: ' + JSON.stringify(error));
-          if (error instanceof OfficeExtension.Error) {
-              console.log('Debug info: ' + JSON.stringify(error.debugInfo));
-          }
-      });
-      ```
-      ```javascript
-      // Search based on a prefix
-      // Run a batch operation against the Word object model.
-      Word.run(function (context) {
-          
-          // Queue a command to search the document based on a prefix.
-          var searchResults = context.document.body.search('vid', {matchPrefix: true});
-
-          // Queue a command to load the search results and get the font property values.
-          context.load(searchResults, 'font');
-          
-          // Synchronize the document state by executing the queued commands, 
-          // and return a promise to indicate task completion.
-          return context.sync().then(function () {
-              console.log('Found count: ' + searchResults.items.length);
-
-              // Queue a set of commands to change the font for each found item.
-              for (var i = 0; i < searchResults.items.length; i++) {
-                  searchResults.items[i].font.color = 'purple';
-                  searchResults.items[i].font.highlightColor = '#FFFF00'; //Yellow
-                  searchResults.items[i].font.bold = true;
-              }
-              
-              // Synchronize the document state by executing the queued commands, 
-              // and return a promise to indicate task completion.
-              return context.sync();
-          });  
-      })
-      .catch(function (error) {
-          console.log('Error: ' + JSON.stringify(error));
-          if (error instanceof OfficeExtension.Error) {
-              console.log('Debug info: ' + JSON.stringify(error.debugInfo));
-          }
-      });
-      ```
-      ```javascript
-      // Search based on a suffix
-      // Run a batch operation against the Word object model.
-      Word.run(function (context) {
-
-          // Queue a command to search the document for any string of characters after 'ly'.
-          var searchResults = context.document.body.search('ly', {matchSuffix: true});
-
-          // Queue a command to load the search results and get the font property values.
-          context.load(searchResults, 'font');
-          
-          // Synchronize the document state by executing the queued commands, 
-          // and return a promise to indicate task completion.
-          return context.sync().then(function () {
-              console.log('Found count: ' + searchResults.items.length);
-
-              // Queue a set of commands to change the font for each found item.
-              for (var i = 0; i < searchResults.items.length; i++) {
-                  searchResults.items[i].font.color = 'orange';
-                  searchResults.items[i].font.highlightColor = 'black';
-                  searchResults.items[i].font.bold = true;
-              }
-              
-              // Synchronize the document state by executing the queued commands, 
-              // and return a promise to indicate task completion.
-              return context.sync();
-          });  
-      })
-      .catch(function (error) {
-          console.log('Error: ' + JSON.stringify(error));
-          if (error instanceof OfficeExtension.Error) {
-              console.log('Debug info: ' + JSON.stringify(error.debugInfo));
-          }
-      });
-      ```
-      ```javascript
-      // Search using a wildcard
-      // Run a batch operation against the Word object model.
-      Word.run(function (context) {
-          
-          // Queue a command to search the document with a wildcard
-          // for any string of characters that starts with 'to' and ends with 'n'.
-          var searchResults = context.document.body.search('to*n', {matchWildCards: true});
-
-          // Queue a command to load the search results and get the font property values.
-          context.load(searchResults, 'font');
-          
-          // Synchronize the document state by executing the queued commands, 
-          // and return a promise to indicate task completion.
-          return context.sync().then(function () {
-              console.log('Found count: ' + searchResults.items.length);
-
-              // Queue a set of commands to change the font for each found item.
-              for (var i = 0; i < searchResults.items.length; i++) {
-                  searchResults.items[i].font.color = 'purple';
-                  searchResults.items[i].font.highlightColor = 'pink';
-                  searchResults.items[i].font.bold = true;
-              }
-              
-              // Synchronize the document state by executing the queued commands, 
-              // and return a promise to indicate task completion.
-              return context.sync();
-          });  
-      })
-      .catch(function (error) {
-          console.log('Error: ' + JSON.stringify(error));
-          if (error instanceof OfficeExtension.Error) {
-              console.log('Debug info: ' + JSON.stringify(error.debugInfo));
-          }
-      });
-      ```
-    name: load(option)
-    fullName: load(option)
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen `context.sync()` vor dem Lesen der Eigenschaften aufrufen.
+    name: load(options)
+    fullName: load(options)
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'load(option?: Word.Interfaces.SearchOptionsLoadOptions): Word.SearchOptions;'
+      content: 'load(options?: Word.Interfaces.SearchOptionsLoadOptions): Word.SearchOptions;'
       return:
         type:
           - 'word!Word.SearchOptions:class'
-        description: ''
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          // Ignore punctuation search
+          // Run a batch operation against the Word object model.
+          Word.run(function (context) {
+              
+              // Queue a command to search the document and ignore punctuation.
+              var searchResults = context.document.body.search('video you', {ignorePunct: true});
+
+              // Queue a command to load the search results and get the font property values.
+              context.load(searchResults, 'font');
+              
+              // Synchronize the document state by executing the queued commands, 
+              // and return a promise to indicate task completion.
+              return context.sync().then(function () {
+                  console.log('Found count: ' + searchResults.items.length);
+
+                  // Queue a set of commands to change the font for each found item.
+                  for (var i = 0; i < searchResults.items.length; i++) {
+                      searchResults.items[i].font.color = 'purple';
+                      searchResults.items[i].font.highlightColor = '#FFFF00'; //Yellow
+                      searchResults.items[i].font.bold = true;
+                  }
+                  
+                  // Synchronize the document state by executing the queued commands, 
+                  // and return a promise to indicate task completion.
+                  return context.sync();
+              });  
+          })
+          .catch(function (error) {
+              console.log('Error: ' + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```javascript
+          // Search based on a prefix
+          // Run a batch operation against the Word object model.
+          Word.run(function (context) {
+              
+              // Queue a command to search the document based on a prefix.
+              var searchResults = context.document.body.search('vid', {matchPrefix: true});
+
+              // Queue a command to load the search results and get the font property values.
+              context.load(searchResults, 'font');
+              
+              // Synchronize the document state by executing the queued commands, 
+              // and return a promise to indicate task completion.
+              return context.sync().then(function () {
+                  console.log('Found count: ' + searchResults.items.length);
+
+                  // Queue a set of commands to change the font for each found item.
+                  for (var i = 0; i < searchResults.items.length; i++) {
+                      searchResults.items[i].font.color = 'purple';
+                      searchResults.items[i].font.highlightColor = '#FFFF00'; //Yellow
+                      searchResults.items[i].font.bold = true;
+                  }
+                  
+                  // Synchronize the document state by executing the queued commands, 
+                  // and return a promise to indicate task completion.
+                  return context.sync();
+              });  
+          })
+          .catch(function (error) {
+              console.log('Error: ' + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```javascript
+          // Search based on a suffix
+          // Run a batch operation against the Word object model.
+          Word.run(function (context) {
+
+              // Queue a command to search the document for any string of characters after 'ly'.
+              var searchResults = context.document.body.search('ly', {matchSuffix: true});
+
+              // Queue a command to load the search results and get the font property values.
+              context.load(searchResults, 'font');
+              
+              // Synchronize the document state by executing the queued commands, 
+              // and return a promise to indicate task completion.
+              return context.sync().then(function () {
+                  console.log('Found count: ' + searchResults.items.length);
+
+                  // Queue a set of commands to change the font for each found item.
+                  for (var i = 0; i < searchResults.items.length; i++) {
+                      searchResults.items[i].font.color = 'orange';
+                      searchResults.items[i].font.highlightColor = 'black';
+                      searchResults.items[i].font.bold = true;
+                  }
+                  
+                  // Synchronize the document state by executing the queued commands, 
+                  // and return a promise to indicate task completion.
+                  return context.sync();
+              });  
+          })
+          .catch(function (error) {
+              console.log('Error: ' + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
+          ```javascript
+          // Search using a wildcard
+          // Run a batch operation against the Word object model.
+          Word.run(function (context) {
+              
+              // Queue a command to search the document with a wildcard
+              // for any string of characters that starts with 'to' and ends with 'n'.
+              var searchResults = context.document.body.search('to*n', {matchWildCards: true});
+
+              // Queue a command to load the search results and get the font property values.
+              context.load(searchResults, 'font');
+              
+              // Synchronize the document state by executing the queued commands, 
+              // and return a promise to indicate task completion.
+              return context.sync().then(function () {
+                  console.log('Found count: ' + searchResults.items.length);
+
+                  // Queue a set of commands to change the font for each found item.
+                  for (var i = 0; i < searchResults.items.length; i++) {
+                      searchResults.items[i].font.color = 'purple';
+                      searchResults.items[i].font.highlightColor = 'pink';
+                      searchResults.items[i].font.bold = true;
+                  }
+                  
+                  // Synchronize the document state by executing the queued commands, 
+                  // and return a promise to indicate task completion.
+                  return context.sync();
+              });  
+          })
+          .catch(function (error) {
+              console.log('Error: ' + JSON.stringify(error));
+              if (error instanceof OfficeExtension.Error) {
+                  console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+              }
+          });
+          ```
       parameters:
-        - id: option
-          description: ''
+        - id: options
+          description: Enthält Optionen für die Eigenschaften des zu ladenden Objekts.
           type:
             - 'word!Word.Interfaces.SearchOptionsLoadOptions:interface'
   - uid: 'word!Word.SearchOptions#load:member(2)'
-    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen `context.sync()` vor dem Lesen der Eigenschaften aufrufen.
     name: load(propertyNames)
     fullName: load(propertyNames)
     langs:
@@ -263,23 +255,31 @@ items:
           type:
             - 'string | string[]'
   - uid: 'word!Word.SearchOptions#load:member(3)'
-    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen vor `context.sync()` dem Lesen der Eigenschaften aufrufen.
+    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Sie müssen `context.sync()` vor dem Lesen der Eigenschaften aufrufen.
     name: load(propertyNamesAndPaths)
     fullName: load(propertyNamesAndPaths)
     langs:
       - typeScript
     type: method
     syntax:
-      content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): Word.SearchOptions;'
+      content: |-
+        load(propertyNamesAndPaths?: {
+                    select?: string;
+                    expand?: string;
+                }): Word.SearchOptions;
       return:
         type:
           - 'word!Word.SearchOptions:class'
         description: ''
       parameters:
         - id: propertyNamesAndPaths
-          description: 'Dabei ist propertyNamesAndPaths. Select eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und propertyNamesAndPaths. Expand ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
+          description: '`propertyNamesAndPaths.select`ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und `propertyNamesAndPaths.expand` ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
           type:
-            - '{ select?: string; expand?: string; }'
+            - |-
+              {
+                          select?: string;
+                          expand?: string;
+                      }
   - uid: 'word!Word.SearchOptions#matchCase:member'
     summary: |-
       Ruft einen Wert ab oder legt ihn fest, um anzugeben, dass die Suche mit Berücksichtigung von Groß-/Kleinschreibung durchgeführt werden soll. Entspricht dem Kontrollkästchen Groß-/Kleinschreibung anpassen im Dialogfeld Suchen und ersetzen.
@@ -297,7 +297,7 @@ items:
           - boolean
   - uid: 'word!Word.SearchOptions#matchPrefix:member'
     summary: |-
-      Ruft einen Wert ab oder legt ihn fest, um anzugeben, ob Wörter beachtet werden sollen, die mit der Suchzeichenfolge beginnen. Entspricht dem Kontrollkästchen Präfix beachten im Dialogfeld Suchen und Ersetzen (Menü Bearbeiten).
+      Gets or sets a value that indicates whether to match words that begin with the search string. Corresponds to the Match prefix check box in the Find and Replace dialog box.
 
       \[[API-Gruppe: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: matchPrefix
@@ -312,7 +312,7 @@ items:
           - boolean
   - uid: 'word!Word.SearchOptions#matchSuffix:member'
     summary: |-
-      Ruft einen Wert ab oder legt ihn fest, um anzugeben, ob Wörter beachtet werden sollen, die mit der Suchzeichenfolge enden. Entspricht dem Kontrollkästchen Suffix beachten im Dialogfeld Suchen und Ersetzen.
+      Gets or sets a value that indicates whether to match words that end with the search string. Corresponds to the Match suffix check box in the Find and Replace dialog box.
 
       \[[API-Gruppe: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: matchSuffix
@@ -327,7 +327,7 @@ items:
           - boolean
   - uid: 'word!Word.SearchOptions#matchWholeWord:member'
     summary: |-
-      Ruft einen Wert ab oder legt ihn fest, um anzugeben, dass nur ganze Wörter und nicht nach Textelementen in längeren Wörtern gesucht werden soll. Entspricht dem Kontrollkästchen Nur ganzes Wort suchen im Dialogfeld Suchen und Ersetzen.
+      Gets or sets a value that indicates whether to find operation only entire words, not text that is part of a larger word. Corresponds to the Find whole words only check box in the Find and Replace dialog box.
 
       \[[API-Gruppe: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: matchWholeWord
@@ -342,7 +342,7 @@ items:
           - boolean
   - uid: 'word!Word.SearchOptions#matchWildcards:member'
     summary: |-
-      Ruft einen Wert ab oder legt ihn fest, um anzugeben, ob die Suche mithilfe von speziellen Suchoperatoren ausgeführt wird. Entspricht dem Kontrollkästchen Platzhalter verwenden im Dialogfeld Suchen und Ersetzen.
+      Gets or sets a value that indicates whether the search will be performed using special search operators. Corresponds to the Use wildcards check box in the Find and Replace dialog box.
 
       \[[API-Gruppe: WordApi 1,1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
     name: matchWildcards
@@ -352,17 +352,6 @@ items:
     type: property
     syntax:
       content: 'matchWildcards: boolean;'
-      return:
-        type:
-          - boolean
-  - uid: 'word!Word.SearchOptions#matchWildCards:member'
-    name: matchWildCards
-    fullName: matchWildCards
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'matchWildCards: boolean;'
       return:
         type:
           - boolean
@@ -429,7 +418,7 @@ items:
           type:
             - 'word!Word.SearchOptions:class'
   - uid: 'word!Word.SearchOptions#toJSON:member(1)'
-    summary: 'Überschreibt die `toJSON()` JavaScript-Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird.`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche Word. SearchOptions-Objekt ein API-Objekt ist `toJSON` , gibt die Methode ein einfaches JavaScript-Objekt (typisiert als`Word.Interfaces.SearchOptionsData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
+    summary: 'Überschreibt die JavaScript `toJSON()` -Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird.`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche Word. SearchOptions-Objekt ein API-Objekt ist, `toJSON` gibt die Methode ein einfaches JavaScript-Objekt (typisiert als`Word.Interfaces.SearchOptionsData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
     name: toJSON()
     fullName: toJSON()
     langs:
