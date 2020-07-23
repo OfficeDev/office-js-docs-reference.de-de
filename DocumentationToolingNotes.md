@@ -35,7 +35,7 @@ Es gibt vier relevante d. TS-Dateien, die Quellinhalte für verschiedene Unterab
 
 Alle Änderungen an der Dokumentation für die Office-JavaScript-API werden durch Bearbeiten der oben erwähnten vier d. TS-Dateien vorgenommen. Sie können jedoch eine Änderung testen, bevor Sie eine PR an DefinitelyTyped übermitteln (wenn Sie beispielsweise testen möchten, wie ihre Formatierung in ein Abschlag übersetzt wird), indem Sie die entsprechende Datei in [generieren-docs/Script-Inputs](https://github.com/OfficeDev/office-js-docs-reference/tree/master/generate-docs/script-inputs) bearbeiten und [GenerateDocs. cmd](https://github.com/OfficeDev/office-js-docs-reference/blob/master/generate-docs/GenerateDocs.cmd)ausführen. Wenn Sie dazu aufgefordert werden, wählen Sie die Option "lokale Dateien" aus.
 
-Durch das Pushen von Änderungen an einem Remote Zweig dieses Repo wird die docs.Microsoft.com-Plattform zum Erstellen einer Test Verzweigung veranlasst. Diese Verzweigung wird auf Review.docs.Microsoft.com gerendert, auf die nur interne Microsoft-Mitarbeiter zugreifen können. Jeder, der Ihre PR überprüft, überprüft die Website überprüfen auf Richtigkeit.
+Durch das Pushen von Änderungen an einem Remote Zweig dieses Repo wird die docs.Microsoft.com-Plattform zum Erstellen einer Test Verzweigung veranlasst. Diese Verzweigung wird auf review.docs.Microsoft.com gerendert, auf die nur interne Microsoft-Mitarbeiter zugreifen können. Jeder, der Ihre PR überprüft, überprüft die Website überprüfen auf Richtigkeit.
 
 ### <a name="code-snippets"></a>Codeausschnitte
 
@@ -46,7 +46,7 @@ Code Beispiel Ausschnitte werden den Verweisseiten aus zwei Quellen hinzugefügt
 
 Die lokalen Codeausschnitte befinden sich in hostspezifischen YAML-Dateien. Ihr Inhalt ist nach Klasse und Feld organisiert, sodass er der entsprechenden Stelle in einer Referenzseite zugeordnet werden kann. Die Sprache des Codeausschnitts (JavaScript oder Manuskript) wird durch die Verwendung von await-Anweisungen hergeleitet.
 
-Die Skript Labor Codeausschnitte werden aus Arbeitsbeispielen abgerufen. Derzeit werden Excel-, Outlook-und Word-Beispiele den Referenzdokumenten Abschnitten durch [Zuordnungsdateien](https://github.com/OfficeDev/office-js-snippets/tree/master/snippet-extractor-metadata)zugeordnet. Diese stimmen mit einzelnen Beispiel Methoden mit Eigenschaften oder Methoden in der API überein. Beim `yarn start` Ausführen des Office-js-Snippets-Repositorys wird [eine YAML-Datei](https://github.com/OfficeDev/office-js-snippets/blob/master/snippet-extractor-output/snippets.yaml) erstellt, die alle zugeordneten Codeausschnitte enthält. Diese YAML-Datei ist die Eingabe in das Referenz Dokumentationstool.
+Die Skript Labor Codeausschnitte werden aus Arbeitsbeispielen abgerufen. Derzeit werden Excel-, Outlook-und Word-Beispiele den Referenzdokumenten Abschnitten durch [Zuordnungsdateien](https://github.com/OfficeDev/office-js-snippets/tree/master/snippet-extractor-metadata)zugeordnet. Diese stimmen mit einzelnen Beispiel Methoden mit Eigenschaften oder Methoden in der API überein. Beim Ausführen des Office-js-Snippets-Repositorys `yarn start` wird [eine YAML-Datei](https://github.com/OfficeDev/office-js-snippets/blob/master/snippet-extractor-output/snippets.yaml) erstellt, die alle zugeordneten Codeausschnitte enthält. Diese YAML-Datei ist die Eingabe in das Referenz Dokumentationstool.
 
 ## <a name="tooling-pipeline"></a>Tooling-Pipeline
 
