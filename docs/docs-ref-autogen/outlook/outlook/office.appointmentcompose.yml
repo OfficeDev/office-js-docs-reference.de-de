@@ -67,6 +67,7 @@ items:
       - 'outlook!Office.AppointmentCompose#saveAsync:member(2)'
       - 'outlook!Office.AppointmentCompose#sensitivity:member'
       - 'outlook!Office.AppointmentCompose#seriesId:member'
+      - 'outlook!Office.AppointmentCompose#sessionData:member'
       - 'outlook!Office.AppointmentCompose#setSelectedDataAsync:member(1)'
       - 'outlook!Office.AppointmentCompose#setSelectedDataAsync:member(2)'
       - 'outlook!Office.AppointmentCompose#start:member'
@@ -2486,6 +2487,39 @@ items:
       return:
         type:
           - string
+  - uid: 'outlook!Office.AppointmentCompose#sessionData:member'
+    summary: |-
+      Verwaltet die [SessionData](xref:outlook!Office.SessionData:interface) eines Elements im erstellmodus.
+
+      \[[API-Gruppe: Post fach Vorschau](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **:`ReadItem`
+
+      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **: Terminplaner
+
+      #### <a name="examples"></a>Beispiele
+
+      ```javascript
+      // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/99-preview-apis/session-data-apis.yaml
+      Office.context.mailbox.item.sessionData.getAllAsync(function(asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          console.log("The sessionData is " + JSON.stringify(asyncResult.value));
+        } else {
+          console.log("Failed to get all sessionData. Error: " + JSON.stringify(asyncResult.error));
+        }
+      });
+      ```
+    isPreview: true
+    name: sessionData
+    fullName: sessionData
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'sessionData: SessionData;'
+      return:
+        type:
+          - 'outlook!Office.SessionData:interface'
   - uid: 'outlook!Office.AppointmentCompose#setSelectedDataAsync:member(1)'
     summary: |-
       Fügt asynchron Daten in den Textkörper oder Betreff einer Nachricht ein.
@@ -3159,6 +3193,8 @@ references:
         fullName: <string>) => void
   - uid: 'outlook!Office.Sensitivity:interface'
     name: Sensitivity
+  - uid: 'outlook!Office.SessionData:interface'
+    name: SessionData
   - uid: 'outlook!Office.AppointmentCompose#setSelectedDataAsync~0:complex'
     name: Office.AsyncContextOptions & CoercionTypeOptions
     fullName: Office.AsyncContextOptions & Office.CoercionTypeOptions
