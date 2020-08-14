@@ -27,20 +27,20 @@ items:
       - typeScript
     type: method
     syntax:
-      content: 'addEventHandler(eventType: Office.EventType, handler: Function): void;'
+      content: 'addEventHandler(eventType: Office.EventType, handler: (args: {message: string | boolean} | {error: number}) => void): void;'
       return:
         type:
           - void
         description: ''
       parameters:
         - id: eventType
-          description: ''
+          description: Muss entweder DialogMessageReceived oder DialogEventReceived sein.
           type:
             - 'office!Office.EventType:enum'
         - id: handler
-          description: ''
+          description: 'Eine Funktion, die entweder ein Objekt mit einer `message` Eigenschaft annimmt, wenn eventType DialogMessageReceived ist, oder ein Objekt mit einer `error` Eigenschaft, wenn eventType DialogEventReceived ist.'
           type:
-            - '!Function:interface'
+            - '(args: {message: string | boolean} | {error: number}) => void'
   - uid: 'office!Office.Dialog#close:member(1)'
     summary: 'Wird von einer übergeordneten Seite aufgerufen, um das entsprechende Dialogfeld zu schließen.'
     name: close()
@@ -95,5 +95,3 @@ items:
 references:
   - uid: 'office!Office.EventType:enum'
     name: Office.EventType
-  - uid: '!Function:interface'
-    name: Function
