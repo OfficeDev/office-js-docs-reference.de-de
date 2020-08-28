@@ -59,6 +59,32 @@ items:
       return:
         type:
           - 'excel!Excel.RangeAreasCollection:class'
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```typescript
+          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/85-preview-apis/direct-precedents.yaml
+          await Excel.run(async (context) => {
+            // Precedents are cells referenced by the formula in a cell.
+            let range = context.workbook.getActiveCell();
+            let directPrecedents = range.getDirectPrecedents();
+            range.load("address");
+            directPrecedents.areas.load("address");
+            await context.sync();
+
+            console.log(`Direct precedent cells of ${range.address}:`);
+
+            // Use the direct precedents API to loop through precedents of the active cell. 
+            for (var i = 0; i < directPrecedents.areas.items.length; i++) {
+              // Highlight and console the address of each precedent cell.
+              directPrecedents.areas.items[i].format.fill.color = "Yellow";
+              console.log(`  ${directPrecedents.areas.items[i].address}`);
+            }
+            await context.sync();
+          });
+          ```
   - uid: 'excel!Excel.WorkbookRangeAreas#context:member'
     summary: 'Der Anforderungskontext, der mit dem Objekt verknüpft ist. Dadurch wird das Add-in-Verfahren mit dem Prozess der Office-Hostanwendung verbunden.'
     isPreview: true
@@ -174,7 +200,7 @@ items:
         description: ''
       parameters:
         - id: propertyNamesAndPaths
-          description: '`propertyNamesAndPaths.select`ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und `propertyNamesAndPaths.expand` ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
+          description: '`propertyNamesAndPaths.select` ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und `propertyNamesAndPaths.expand` ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
           type:
             - |-
               {
@@ -198,7 +224,7 @@ items:
         type:
           - 'excel!Excel.RangeCollection:class'
   - uid: 'excel!Excel.WorkbookRangeAreas#toJSON:member(1)'
-    summary: 'Überschreibt die JavaScript `toJSON()` -Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird.`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche Excel. WorkbookRangeAreas-Objekt ein API-Objekt ist, `toJSON` gibt die Methode ein einfaches JavaScript-Objekt (typisiert als`Excel.Interfaces.WorkbookRangeAreasData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
+    summary: 'Überschreibt die JavaScript `toJSON()` -Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird. `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche Excel. WorkbookRangeAreas-Objekt ein API-Objekt ist, `toJSON` gibt die Methode ein einfaches JavaScript-Objekt (typisiert als `Excel.Interfaces.WorkbookRangeAreasData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
     isPreview: true
     name: toJSON()
     fullName: toJSON()
@@ -212,7 +238,7 @@ items:
           - 'excel!Excel.Interfaces.WorkbookRangeAreasData:interface'
         description: ''
   - uid: 'excel!Excel.WorkbookRangeAreas#track:member(1)'
-    summary: 'Nachverfolgung des Objekts zwecks automatischer Anpassung auf der Grundlage der umgebenden Änderungen im Dokument. Dieser Aufruf ist eine Kurzform für`context.trackedObjects.add(thisObject)`<!-- -->. Wenn Sie dieses Objekt für `.sync` Aufrufe und außerhalb der sequenziellen Ausführung eines ". Run"-Batches verwenden und beim Festlegen einer Eigenschaft oder beim Aufrufen einer Methode für das Objekt einen "InvalidObjectPath"-Fehler erhalten, mussten Sie das Objekt der nachverfolgten Objektauflistung hinzugefügt haben, als das Objekt zum ersten Mal erstellt wurde.'
+    summary: 'Nachverfolgung des Objekts zwecks automatischer Anpassung auf der Grundlage der umgebenden Änderungen im Dokument. Dieser Aufruf ist eine Kurzform für `context.trackedObjects.add(thisObject)`<!-- -->. Wenn Sie dieses Objekt für `.sync` Aufrufe und außerhalb der sequenziellen Ausführung eines ". Run"-Batches verwenden und beim Festlegen einer Eigenschaft oder beim Aufrufen einer Methode für das Objekt einen "InvalidObjectPath"-Fehler erhalten, mussten Sie das Objekt der nachverfolgten Objektauflistung hinzugefügt haben, als das Objekt zum ersten Mal erstellt wurde.'
     isPreview: true
     name: track()
     fullName: track()
@@ -226,7 +252,7 @@ items:
           - 'excel!Excel.WorkbookRangeAreas:class'
         description: ''
   - uid: 'excel!Excel.WorkbookRangeAreas#untrack:member(1)'
-    summary: 'Gibt den diesem Objekt zugewiesenen Arbeitsspeicher frei, wenn das Objekt zuvor nachverfolgt wurde. Bei diesem Aufruf handelt es sich um eine Kurzform`context.trackedObjects.remove(thisObject)`<!-- -->. Viele nachverfolgte Objekte verlangsamen die Ausführung der Hostanwendung, also achten Sie darauf, alle hinzugefügten Objekte nach abgeschlossener Verwendung freizugeben. Sie müssen anrufen, `context.sync()` bevor die Speicherfreigabe wirksam wird.'
+    summary: 'Gibt den diesem Objekt zugewiesenen Arbeitsspeicher frei, wenn das Objekt zuvor nachverfolgt wurde. Bei diesem Aufruf handelt es sich um eine Kurzform `context.trackedObjects.remove(thisObject)`<!-- -->. Viele nachverfolgte Objekte verlangsamen die Ausführung der Hostanwendung, also achten Sie darauf, alle hinzugefügten Objekte nach abgeschlossener Verwendung freizugeben. Sie müssen anrufen, `context.sync()` bevor die Speicherfreigabe wirksam wird.'
     isPreview: true
     name: untrack()
     fullName: untrack()
