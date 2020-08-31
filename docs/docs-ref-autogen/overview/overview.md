@@ -39,7 +39,7 @@ Die folgende Liste enthält APIs für die [unterstützten Office-Hostanwendungen
             <div class="cardText">
                 <h3>Excel-APIs</h3>
                 <ul>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-preview">ExcelApi Preview</a></li>
+                    <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-preview">ExcelApi-Vorschau</a></li>
                     <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-online">ExcelApiOnline 1.1</a></li>
                     <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.11">ExcelApi 1.11</a></li>
                     <li><a style="font-size: 1rem;" href="/javascript/api/excel?view=excel-js-1.10">ExcelApi 1.10</a></li>
@@ -67,8 +67,8 @@ Die folgende Liste enthält APIs für die [unterstützten Office-Hostanwendungen
             <div class="cardText">
                 <h3>Outlook-APIs</h3>
                 <ul>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-preview">Postfach-Vorschau</a></li>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.8">Postfach 1.8</a></li>
+                    <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-preview">Mailbox-Vorschau</a></li>
+                    <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.8">Mailbox 1.8</a></li>
                     <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.7">Mailbox 1.7</a></li>
                     <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.6">Mailbox 1.6</a></li>
                     <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.5">Mailbox 1.5</a></li>
@@ -157,7 +157,7 @@ Die folgende Liste enthält APIs für die [unterstützten Office-Hostanwendungen
             <div class="cardText">
                 <h3>Projekt-APIs</h3>
                 <ul>
-                    <li><a style="font-size: 1rem;" href="/javascript/api/office?view=common-js">ausschließlich Allgemeine APIs</a></li>
+                    <li><a style="font-size: 1rem;" href="/javascript/api/office?view=common-js">Ausschließlich Allgemeine APIs</a></li>
                 </ul>
             </div>
         </a>
@@ -165,7 +165,7 @@ Die folgende Liste enthält APIs für die [unterstützten Office-Hostanwendungen
 </ul>
 
 > [!NOTE]
-> Wenn Sie JavaScript-APIs zum Entwickeln von Office-Scripts suchen, gehen Sie auf [Office Scripts-API-Referenz](/javascript/api/office-scripts/overview).
+> Wenn Sie JavaScript-APIs zum Entwickeln von Office-Scripts suchen, gehen Sie auf [Referenzdokumentation zur Office Scripts-API](/javascript/api/office-scripts/overview).
 
 ## <a name="see-also"></a>Weitere Informationen:
 
