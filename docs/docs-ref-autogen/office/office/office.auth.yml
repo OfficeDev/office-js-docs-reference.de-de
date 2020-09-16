@@ -9,13 +9,35 @@ items:
     type: interface
     package: office!
     children:
+      - 'office!Office.Auth#getAccessToken:member(1)'
       - 'office!Office.Auth#getAccessTokenAsync:member(1)'
       - 'office!Office.Auth#getAccessTokenAsync:member(2)'
-  - uid: 'office!Office.Auth#getAccessTokenAsync:member(1)'
-    summary: |-
-      Ruft den Azure Active Directory V 2.0-Endpunkt auf, um ein Zugriffstoken für das Add-In Ihrer Web-Anwendung zu erhalten. Aktiviert Add-Ins zum Identifizieren von Benutzern. Server seitiger Code kann dieses Token für den Zugriff auf Microsoft Graph für die Webanwendung des Add-Ins verwenden, indem Sie den [OAuth-Fluss "im Auftrag von"](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-protocols-oauth-on-behalf-of) verwenden.<!-- -->.
+  - uid: 'office!Office.Auth#getAccessToken:member(1)'
+    summary: 'Ruft den Azure Active Directory V 2.0-Endpunkt auf, um ein Zugriffstoken für das Add-In Ihrer Web-Anwendung zu erhalten. Aktiviert Add-Ins zum Identifizieren von Benutzern. Server seitiger Code kann dieses Token für den Zugriff auf Microsoft Graph für die Webanwendung des Add-Ins verwenden, indem Sie den [OAuth-Fluss "im Auftrag von"](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-protocols-oauth-on-behalf-of) verwenden.<!-- -->. Diese API erfordert eine Single Sign-On-Konfiguration, die das Add-In mit einer Azure-Anwendung verbindet. Office-Benutzer melden sich mit Organisations Konten und Microsoft-Konten an. Microsoft Azure gibt Token für den Zugriff auf Ressourcen von Microsoft Graph für beide Kontotypen zurück.'
+    remarks: |-
+      **Hosts**: Excel, OneNote, Outlook, PowerPoint, Word
 
       **Wichtig**: Diese API wird in Outlook nicht unterstützt, wenn das Add-in in ein Outlook.com-oder Gmail-Postfach geladen wird.
+
+      **Anforderungsgruppe**: [IdentityAPI](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/identity-api-requirement-sets)
+    name: getAccessToken(options)
+    fullName: getAccessToken(options)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getAccessToken(options?: AuthOptions): Promise<string>;'
+      return:
+        type:
+          - 'office!Office.Auth#getAccessToken~0:complex'
+        description: Zusage an das Zugriffstoken.
+      parameters:
+        - id: options
+          description: Optional. Akzeptiert ein `AuthOptions` Objekt zum Definieren von Anmeldeverhalten.
+          type:
+            - 'office!Office.AuthOptions:interface'
+  - uid: 'office!Office.Auth#getAccessTokenAsync:member(1)'
+    summary: 'Ruft den Azure Active Directory V 2.0-Endpunkt auf, um ein Zugriffstoken für das Add-In Ihrer Web-Anwendung zu erhalten. Aktiviert Add-Ins zum Identifizieren von Benutzern. Server seitiger Code kann dieses Token für den Zugriff auf Microsoft Graph für die Webanwendung des Add-Ins verwenden, indem Sie den [OAuth-Fluss "im Auftrag von"](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-protocols-oauth-on-behalf-of) verwenden.<!-- -->.'
     remarks: |-
       **Hosts**: Excel, OneNote, Outlook, PowerPoint, Word
 
@@ -35,6 +57,11 @@ items:
           }
       });
       ```
+    deprecated:
+      content: |-
+        Use Office.auth.getAccessToken instead.
+
+        \*\*Important\*\*: In Outlook, this API is not supported if the add-in is loaded in an Outlook.com or Gmail mailbox.
     name: 'getAccessTokenAsync(options, callback)'
     fullName: 'getAccessTokenAsync(options, callback)'
     langs:
@@ -56,16 +83,18 @@ items:
           type:
             - 'office!Office.Auth#getAccessTokenAsync~0:complex'
   - uid: 'office!Office.Auth#getAccessTokenAsync:member(2)'
-    summary: |-
-      Ruft den Azure Active Directory V 2.0-Endpunkt auf, um ein Zugriffstoken für das Add-In Ihrer Web-Anwendung zu erhalten. Aktiviert Add-Ins zum Identifizieren von Benutzern. Server seitiger Code kann dieses Token für den Zugriff auf Microsoft Graph für die Webanwendung des Add-Ins verwenden, indem Sie den [OAuth-Fluss "im Auftrag von"](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-protocols-oauth-on-behalf-of) verwenden.<!-- -->.
-
-      **Wichtig**: Diese API wird in Outlook nicht unterstützt, wenn das Add-in in ein Outlook.com-oder Gmail-Postfach geladen wird.
+    summary: 'Ruft den Azure Active Directory V 2.0-Endpunkt auf, um ein Zugriffstoken für das Add-In Ihrer Web-Anwendung zu erhalten. Aktiviert Add-Ins zum Identifizieren von Benutzern. Server seitiger Code kann dieses Token für den Zugriff auf Microsoft Graph für die Webanwendung des Add-Ins verwenden, indem Sie den [OAuth-Fluss "im Auftrag von"](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-protocols-oauth-on-behalf-of) verwenden.<!-- -->.'
     remarks: |-
       **Hosts**: Excel, OneNote, Outlook, PowerPoint, Word
 
       **Anforderungsgruppe**: [IdentityAPI](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/identity-api-requirement-sets)
 
       Diese API erfordert eine Single Sign-On-Konfiguration, die das Add-In mit einer Azure-Anwendung verbindet. Office-Benutzer melden sich mit Organisations Konten und Microsoft-Konten an. Microsoft Azure gibt Token für den Zugriff auf Ressourcen von Microsoft Graph für beide Kontotypen zurück.
+    deprecated:
+      content: |-
+        Use `Office.auth.getAccessToken` instead.
+
+        \*\*Important\*\*: In Outlook, this API is not supported if the add-in is loaded in an Outlook.com or Gmail mailbox.
     name: getAccessTokenAsync(callback)
     fullName: getAccessTokenAsync(callback)
     langs:
@@ -83,6 +112,15 @@ items:
           type:
             - 'office!Office.Auth#getAccessTokenAsync~1:complex'
 references:
+  - uid: 'office!Office.Auth#getAccessToken~0:complex'
+    name: Promise<string>
+    fullName: Promise<string>
+    spec.typeScript:
+      - uid: '!Promise:interface'
+        name: Promise
+        fullName: Promise
+      - name: <string>
+        fullName: <string>
   - uid: 'office!Office.AuthOptions:interface'
     name: AuthOptions
   - uid: 'office!Office.Auth#getAccessTokenAsync~0:complex'
