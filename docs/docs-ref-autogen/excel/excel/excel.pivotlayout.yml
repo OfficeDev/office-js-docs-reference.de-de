@@ -14,9 +14,14 @@ items:
       - 'office!OfficeExtension.ClientObject:class'
     package: excel!
     children:
+      - 'excel!Excel.PivotLayout#altTextDescription:member'
+      - 'excel!Excel.PivotLayout#altTextTitle:member'
       - 'excel!Excel.PivotLayout#autoFormat:member'
       - 'excel!Excel.PivotLayout#context:member'
+      - 'excel!Excel.PivotLayout#displayBlankLineAfterEachItem:member(1)'
+      - 'excel!Excel.PivotLayout#emptyCellText:member'
       - 'excel!Excel.PivotLayout#enableFieldList:member'
+      - 'excel!Excel.PivotLayout#fillEmptyCells:member'
       - 'excel!Excel.PivotLayout#getCell:member(1)'
       - 'excel!Excel.PivotLayout#getColumnLabelRange:member(1)'
       - 'excel!Excel.PivotLayout#getDataBodyRange:member(1)'
@@ -32,15 +37,53 @@ items:
       - 'excel!Excel.PivotLayout#load:member(3)'
       - 'excel!Excel.PivotLayout#pivotStyle:member'
       - 'excel!Excel.PivotLayout#preserveFormatting:member'
+      - 'excel!Excel.PivotLayout#repeatAllItemLabels:member(1)'
       - 'excel!Excel.PivotLayout#set:member(1)'
       - 'excel!Excel.PivotLayout#set:member(2)'
       - 'excel!Excel.PivotLayout#setAutoSortOnCell:member(1)'
       - 'excel!Excel.PivotLayout#setAutoSortOnCell:member(2)'
       - 'excel!Excel.PivotLayout#setStyle:member(1)'
       - 'excel!Excel.PivotLayout#showColumnGrandTotals:member'
+      - 'excel!Excel.PivotLayout#showFieldHeaders:member'
       - 'excel!Excel.PivotLayout#showRowGrandTotals:member'
       - 'excel!Excel.PivotLayout#subtotalLocation:member'
       - 'excel!Excel.PivotLayout#toJSON:member(1)'
+  - uid: 'excel!Excel.PivotLayout#altTextDescription:member'
+    summary: |-
+      Die Alternativtext Beschreibung der PivotTable.
+
+      Alternativtext bietet alternative, textbasierte Darstellungen der in der PivotTable enthaltenen Informationen. Diese Informationen sind nützlich für Personen mit Sehstörungen oder kognitiven Beeinträchtigungen, die die Tabelle möglicherweise nicht sehen oder verstehen können. Ein Titel kann für eine Person mit einer Behinderung gelesen werden und wird verwendet, um zu bestimmen, ob Sie die Beschreibung des Inhalts hören möchten.
+
+      \[[API-Gruppe: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: altTextDescription
+    fullName: altTextDescription
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'altTextDescription: string;'
+      return:
+        type:
+          - string
+  - uid: 'excel!Excel.PivotLayout#altTextTitle:member'
+    summary: |-
+      Der alt-Text Titel der PivotTable.
+
+      Alternativtext bietet alternative, textbasierte Darstellungen der in der PivotTable enthaltenen Informationen. Diese Informationen sind nützlich für Personen mit Sehstörungen oder kognitiven Beeinträchtigungen, die die Tabelle möglicherweise nicht sehen oder verstehen können. Ein Titel kann für eine Person mit einer Behinderung gelesen werden und wird verwendet, um zu bestimmen, ob Sie die Beschreibung des Inhalts hören möchten.
+
+      \[[API-Gruppe: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: altTextTitle
+    fullName: altTextTitle
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'altTextTitle: string;'
+      return:
+        type:
+          - string
   - uid: 'excel!Excel.PivotLayout#autoFormat:member'
     summary: |-
       Gibt an, ob die Formatierung beim Aktualisieren oder beim Verschieben von Feldern automatisch formatiert wird.
@@ -68,6 +111,44 @@ items:
       return:
         type:
           - 'excel!Excel.RequestContext:class'
+  - uid: 'excel!Excel.PivotLayout#displayBlankLineAfterEachItem:member(1)'
+    summary: |-
+      Legt fest, ob nach jedem Element eine leere Position angezeigt werden soll. Dieser wird auf globaler Ebene für die PivotTable festgelegt und auf einzelne PivotFields angewendet. Diese Funktion überschreibt die Einstellung für alle Felder in der PivotTable in den Wert des `display` Parameters.
+
+      \[[API-Gruppe: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: displayBlankLineAfterEachItem(display)
+    fullName: displayBlankLineAfterEachItem(display)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'displayBlankLineAfterEachItem(display: boolean): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: display
+          description: True aktiviert die Einstellung für die Anzeige leerer Leitungen. False schaltet ihn aus.
+          type:
+            - boolean
+  - uid: 'excel!Excel.PivotLayout#emptyCellText:member'
+    summary: |-
+      Der Text, der automatisch in eine beliebige leere Zelle in der PivotTable eingefügt wird, wenn `fillEmptyCells == true`<!-- -->. Beachten Sie, dass dieser Wert persistent bleibt `fillEmptyCells` , wenn er auf false festgelegt ist, und dass durch Festlegen dieses Werts diese Eigenschaft nicht auf true festgelegt wird. Standardmäßig handelt es sich dabei um eine leere Zeichenfolge.
+
+      \[[API-Gruppe: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: emptyCellText
+    fullName: emptyCellText
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'emptyCellText: string;'
+      return:
+        type:
+          - string
   - uid: 'excel!Excel.PivotLayout#enableFieldList:member'
     summary: |-
       Gibt an, ob die Feldliste auf der Benutzeroberfläche angezeigt werden kann.
@@ -80,6 +161,22 @@ items:
     type: property
     syntax:
       content: 'enableFieldList: boolean;'
+      return:
+        type:
+          - boolean
+  - uid: 'excel!Excel.PivotLayout#fillEmptyCells:member'
+    summary: |-
+      Gibt an, ob leere Zellen in der PivotTable mit dem aufgefüllt werden sollen. `emptyCellText`<!-- -->. Der Standardwert ist False. Beachten Sie, dass der Wert von `emptyCellText` beibehält, wenn diese Eigenschaft auf false festgelegt ist.
+
+      \[[API-Gruppe: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: fillEmptyCells
+    fullName: fillEmptyCells
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'fillEmptyCells: boolean;'
       return:
         type:
           - boolean
@@ -357,7 +454,7 @@ items:
         description: ''
       parameters:
         - id: propertyNamesAndPaths
-          description: '`propertyNamesAndPaths.select`ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und `propertyNamesAndPaths.expand` ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
+          description: '`propertyNamesAndPaths.select` ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und `propertyNamesAndPaths.expand` ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
           type:
             - |-
               {
@@ -369,7 +466,6 @@ items:
       Die Formatvorlage, die auf die PivotTable angewendet wird.
 
       \[[API-Gruppe: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    isPreview: true
     name: pivotStyle
     fullName: pivotStyle
     langs:
@@ -395,6 +491,28 @@ items:
       return:
         type:
           - boolean
+  - uid: 'excel!Excel.PivotLayout#repeatAllItemLabels:member(1)'
+    summary: |-
+      Legt die Einstellung "alle Elementbezeichnungen wiederholen" auf alle Felder in der PivotTable fest.
+
+      \[[API-Gruppe: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: repeatAllItemLabels(repeatLabels)
+    fullName: repeatAllItemLabels(repeatLabels)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'repeatAllItemLabels(repeatLabels: boolean): void;'
+      return:
+        type:
+          - void
+        description: ''
+      parameters:
+        - id: repeatLabels
+          description: True aktiviert die Anzeigeeinstellung für die Beschriftungs Wiederholung. False schaltet ihn aus.
+          type:
+            - boolean
   - uid: 'excel!Excel.PivotLayout#set:member(1)'
     summary: Legt mehrere Eigenschaften eines Objekts gleichzeitig fest. Sie können entweder ein einfaches Objekt mit den entsprechenden Eigenschaften oder ein anderes API-Objekt desselben Typs übergeben.
     remarks: |-
@@ -526,6 +644,22 @@ items:
       return:
         type:
           - boolean
+  - uid: 'excel!Excel.PivotLayout#showFieldHeaders:member'
+    summary: |-
+      Gibt an, ob in der PivotTable Feld Header angezeigt werden (Feldbeschriftungen und Filter DropDowns).
+
+      \[[API-Gruppe: ExcelApi Beta (nur Vorschau)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    isPreview: true
+    name: showFieldHeaders
+    fullName: showFieldHeaders
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'showFieldHeaders: boolean;'
+      return:
+        type:
+          - boolean
   - uid: 'excel!Excel.PivotLayout#showRowGrandTotals:member'
     summary: |-
       Gibt an, ob im PivotTable-Bericht Gesamtergebnisse für Zeilen angezeigt werden.
@@ -557,7 +691,7 @@ items:
         type:
           - 'excel!Excel.PivotLayout#subtotalLocation~0:complex'
   - uid: 'excel!Excel.PivotLayout#toJSON:member(1)'
-    summary: 'Überschreibt die JavaScript `toJSON()` -Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird.`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche Excel. PivotLayout-Objekt ein API-Objekt ist, `toJSON` gibt die Methode ein einfaches JavaScript-Objekt (typisiert als`Excel.Interfaces.PivotLayoutData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
+    summary: 'Überschreibt die JavaScript `toJSON()` -Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird. `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche Excel. PivotLayout-Objekt ein API-Objekt ist, `toJSON` gibt die Methode ein einfaches JavaScript-Objekt (typisiert als `Excel.Interfaces.PivotLayoutData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
     name: toJSON()
     fullName: toJSON()
     langs:
