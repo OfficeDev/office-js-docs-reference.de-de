@@ -23,6 +23,7 @@ items:
       - 'excel!Excel.ChartAxisTitle#set:member(2)'
       - 'excel!Excel.ChartAxisTitle#setFormula:member(1)'
       - 'excel!Excel.ChartAxisTitle#text:member'
+      - 'excel!Excel.ChartAxisTitle#textOrientation:member'
       - 'excel!Excel.ChartAxisTitle#toJSON:member(1)'
       - 'excel!Excel.ChartAxisTitle#visible:member'
   - uid: 'excel!Excel.ChartAxisTitle#context:member'
@@ -213,6 +214,43 @@ items:
       return:
         type:
           - string
+  - uid: 'excel!Excel.ChartAxisTitle#textOrientation:member'
+    summary: |-
+      Gibt den Winkel an, an dem der Text für den Titel der Diagrammachse ausgerichtet ist. Der Wert sollte entweder eine ganze Zahl von-90 bis 90 oder die ganze Zahl 180 für vertikal orientierten Text sein.
+
+      \[[API-Gruppe: ExcelApi 1,12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: textOrientation
+    fullName: textOrientation
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'textOrientation: number;'
+      return:
+        type:
+          - number
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```typescript
+          await Excel.run(async (context) => {
+            // Get a chart named "Sales Chart" from the "Sample" worksheet.
+            const sheet = context.workbook.worksheets.getItem("Sample");
+            let chart = sheet.charts.getItem("Sales Chart");
+
+            // Set the value axis title to "Profits".
+            chart.axes.valueAxis.title.text = "Profits";
+
+            /* Set the value axis text orientation to 0.
+              For charts with a y-axis, this makes the label on the y-axis horizontal, 
+              instead of the default look of rotated-vertically.
+              */ 
+            chart.axes.valueAxis.title.textOrientation = 0;
+            await context.sync();
+          });
+          ```
   - uid: 'excel!Excel.ChartAxisTitle#toJSON:member(1)'
     summary: 'Überschreibt die JavaScript `toJSON()` -Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird. `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche Excel. ChartAxisTitle-Objekt ein API-Objekt ist, `toJSON` gibt die Methode ein einfaches JavaScript-Objekt (typisiert als `Excel.Interfaces.ChartAxisTitleData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
     name: toJSON()
