@@ -49,6 +49,7 @@ items:
       - 'excel!Excel.Range#getColumnProperties:member(1)'
       - 'excel!Excel.Range#getColumnsAfter:member(1)'
       - 'excel!Excel.Range#getColumnsBefore:member(1)'
+      - 'excel!Excel.Range#getDirectPrecedents:member(1)'
       - 'excel!Excel.Range#getEntireColumn:member(1)'
       - 'excel!Excel.Range#getEntireRow:member(1)'
       - 'excel!Excel.Range#getImage:member(1)'
@@ -58,6 +59,7 @@ items:
       - 'excel!Excel.Range#getLastColumn:member(1)'
       - 'excel!Excel.Range#getLastRow:member(1)'
       - 'excel!Excel.Range#getOffsetRange:member(1)'
+      - 'excel!Excel.Range#getPivotTables:member(1)'
       - 'excel!Excel.Range#getResizedRange:member(1)'
       - 'excel!Excel.Range#getRow:member(1)'
       - 'excel!Excel.Range#getRowProperties:member(1)'
@@ -67,6 +69,10 @@ items:
       - 'excel!Excel.Range#getSpecialCells:member(2)'
       - 'excel!Excel.Range#getSpecialCellsOrNullObject:member(1)'
       - 'excel!Excel.Range#getSpecialCellsOrNullObject:member(2)'
+      - 'excel!Excel.Range#getSpillingToRange:member(1)'
+      - 'excel!Excel.Range#getSpillingToRangeOrNullObject:member(1)'
+      - 'excel!Excel.Range#getSpillParent:member(1)'
+      - 'excel!Excel.Range#getSpillParentOrNullObject:member(1)'
       - 'excel!Excel.Range#getSurroundingRegion:member(1)'
       - 'excel!Excel.Range#getTables:member(1)'
       - 'excel!Excel.Range#getUsedRange:member(1)'
@@ -74,6 +80,7 @@ items:
       - 'excel!Excel.Range#getVisibleView:member(1)'
       - 'excel!Excel.Range#group:member(1)'
       - 'excel!Excel.Range#group:member(2)'
+      - 'excel!Excel.Range#hasSpill:member'
       - 'excel!Excel.Range#height:member'
       - 'excel!Excel.Range#hidden:member'
       - 'excel!Excel.Range#hideGroupDetails:member(1)'
@@ -91,12 +98,14 @@ items:
       - 'excel!Excel.Range#merge:member(1)'
       - 'excel!Excel.Range#moveTo:member(1)'
       - 'excel!Excel.Range#numberFormat:member'
+      - 'excel!Excel.Range#numberFormatCategories:member'
       - 'excel!Excel.Range#numberFormatLocal:member'
       - 'excel!Excel.Range#removeDuplicates:member(1)'
       - 'excel!Excel.Range#replaceAll:member(1)'
       - 'excel!Excel.Range#rowCount:member'
       - 'excel!Excel.Range#rowHidden:member'
       - 'excel!Excel.Range#rowIndex:member'
+      - 'excel!Excel.Range#savedAsArray:member'
       - 'excel!Excel.Range#select:member(1)'
       - 'excel!Excel.Range#set:member(1)'
       - 'excel!Excel.Range#set:member(2)'
@@ -1031,6 +1040,47 @@ items:
           description: 'Optional. Die Anzahl von Spalten, die in den Ergebnisbereich aufgenommen werden soll. Grundsätzlich verwenden Sie eine positive Zahl, um einen Bereich außerhalb des aktuellen Bereichs zu erstellen. Sie können auch eine negative Zahl verwenden, um einen Bereich innerhalb des aktuellen Bereichs zu erstellen. Der Standardwert ist 1.'
           type:
             - number
+  - uid: 'excel!Excel.Range#getDirectPrecedents:member(1)'
+    summary: |-
+      Gibt ein WorkbookRangeAreas-Objekt zurück, das den Bereich darstellt, der alle direkten Präzedenzfälle einer Zelle im gleichen Arbeitsblatt oder in mehreren Arbeitsblättern enthält.
+
+      \[[API-Gruppe: ExcelApi 1,12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getDirectPrecedents()
+    fullName: getDirectPrecedents()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getDirectPrecedents(): Excel.WorkbookRangeAreas;'
+      return:
+        type:
+          - 'excel!Excel.WorkbookRangeAreas:class'
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```typescript
+          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/85-preview-apis/direct-precedents.yaml
+          await Excel.run(async (context) => {
+            // Precedents are cells referenced by the formula in a cell.
+            let range = context.workbook.getActiveCell();
+            let directPrecedents = range.getDirectPrecedents();
+            range.load("address");
+            directPrecedents.areas.load("address");
+            await context.sync();
+
+            console.log(`Direct precedent cells of ${range.address}:`);
+
+            // Use the direct precedents API to loop through precedents of the active cell. 
+            for (var i = 0; i < directPrecedents.areas.items.length; i++) {
+              // Highlight and console the address of each precedent cell.
+              directPrecedents.areas.items[i].format.fill.color = "Yellow";
+              console.log(`  ${directPrecedents.areas.items[i].address}`);
+            }
+            await context.sync();
+          });
+          ```
   - uid: 'excel!Excel.Range#getEntireColumn:member(1)'
     summary: |-
       Ruft ein Objekt ab, das die gesamte Spalte des Bereichs darstellt (beispielsweise, wenn der aktuelle Bereich die Zellen "B4: e11" darstellt, sein `getEntireColumn` Wert ist ein Bereich, der die Spalten "B:E" darstellt).
@@ -1406,6 +1456,56 @@ items:
           description: 'Die Anzahl an Spalten (positiv, negativ oder 0), um die der Bereich versetzt werden muss. Bei positiven Werten wird der Bereich nach unten versetzt. Bei negativen Werten wird der Bereich nach oben versetzt.'
           type:
             - number
+  - uid: 'excel!Excel.Range#getPivotTables:member(1)'
+    summary: |-
+      Ruft eine bereichsbezogene Auflistung von PivotTables ab, die sich mit dem Bereich überschneiden.
+
+      \[[API-Gruppe: ExcelApi 1,12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getPivotTables(fullyContained)
+    fullName: getPivotTables(fullyContained)
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getPivotTables(fullyContained?: boolean): Excel.PivotTableScopedCollection;'
+      return:
+        type:
+          - 'excel!Excel.PivotTableScopedCollection:class'
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```typescript
+          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/85-preview-apis/pivottable-get-pivottables.yaml
+          await Excel.run(async (context) => {
+            const activeRange = context.workbook.getSelectedRange();
+
+            // Get all the PivotTables that intersect with this range.
+            const partiallyContainedPivotTables = activeRange.getPivotTables();
+            // Get all the PivotTables that are completely contained within this range.
+            const fullyContainedPivotTables = activeRange.getPivotTables(true);
+
+            partiallyContainedPivotTables.load("name");
+            fullyContainedPivotTables.load("name");
+            await context.sync();
+
+            // Display the names in the console.
+            console.log("PivotTables in the current range:")
+            partiallyContainedPivotTables.items.forEach((pivotTable) => {
+              console.log(`\t${pivotTable.name}`);
+            });
+            console.log("PivotTables completely contained in the current range:")
+            fullyContainedPivotTables.items.forEach((pivotTable) => {
+              console.log(`\t${pivotTable.name}`);
+            });
+          });
+          ```
+      parameters:
+        - id: fullyContained
+          description: 'Wenn true, werden nur PivotTables zurückgegeben, die vollständig innerhalb der Bereichsgrenzen enthalten sind. Der Standardwert ist false.'
+          type:
+            - boolean
   - uid: 'excel!Excel.Range#getResizedRange:member(1)'
     summary: |-
       Ruft ein Range-Objekt ähnlich dem aktuellen Range-Objekt ab, dessen untere rechte Ecke jedoch um eine bestimmte Anzahl von Zeilen und Spalten erweitert (oder verkleinert) ist.
@@ -1653,6 +1753,94 @@ items:
           description: 'Wenn CellType entweder Konstanten oder Formeln ist, wird dieses Argument verwendet, um zu bestimmen, welche Arten von Zellen in das Ergebnis einbezogen werden sollen. Diese Werte können miteinander kombiniert werden, um mehr als einen Typ zurückzugeben. Standardmäßig werden alle Konstanten oder Formeln unabhängig vom Typ ausgewählt.'
           type:
             - '"All" | "Errors" | "ErrorsLogical" | "ErrorsNumbers" | "ErrorsText" | "ErrorsLogicalNumber" | "ErrorsLogicalText" | "ErrorsNumberText" | "Logical" | "LogicalNumbers" | "LogicalText" | "LogicalNumbersText" | "Numbers" | "NumbersText" | "Text"'
+  - uid: 'excel!Excel.Range#getSpillingToRange:member(1)'
+    summary: |-
+      Ruft beim Aufruf für eine Ankerzelle das Bereichsobjekt ab, das den Überlaufbereich enthält. Schlägt bei Anwendung auf einen Bereich mit mehr als einer Zelle fehl.
+
+      \[[API-Gruppe: ExcelApi 1,12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getSpillingToRange()
+    fullName: getSpillingToRange()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getSpillingToRange(): Excel.Range;'
+      return:
+        type:
+          - 'excel!Excel.Range:class'
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```typescript
+          // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/85-preview-apis/dynamic-arrays.yaml
+          await Excel.run(async (context) => {
+            const sheet = context.workbook.worksheets.getItem("Sample");
+
+            // Set G4 to a formula that returns a dynamic array.
+            const targetCell = sheet.getRange("G4");
+            targetCell.formulas = [["=A4:D4"]];
+
+            // Get the address of the cells that the dynamic array spilled into.
+            const spillRange = targetCell.getSpillingToRange();
+            spillRange.load("address");
+
+            // Fit the columns for readability.
+            sheet.getUsedRange().format.autofitColumns();
+            await context.sync();
+
+            console.log(`Copying the table headers spilled into ${spillRange.address}.`);
+          });
+          ```
+  - uid: 'excel!Excel.Range#getSpillingToRangeOrNullObject:member(1)'
+    summary: |-
+      Ruft beim Aufruf für eine Ankerzelle das Bereichsobjekt ab, das den Überlaufbereich enthält. Wenn es sich bei dem Bereich nicht um eine Ankerzelle oder keinen verschüttenbereich handelt, wird ein NULL-Objekt zurückgegeben.
+
+      \[[API-Gruppe: ExcelApi 1,12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getSpillingToRangeOrNullObject()
+    fullName: getSpillingToRangeOrNullObject()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getSpillingToRangeOrNullObject(): Excel.Range;'
+      return:
+        type:
+          - 'excel!Excel.Range:class'
+        description: ''
+  - uid: 'excel!Excel.Range#getSpillParent:member(1)'
+    summary: |-
+      Ruft das Bereichsobjekt ab, das die Ankerzelle für eine Zelle enthält, in die ein Überlauf erfolgen kann. Schlägt bei Anwendung auf einen Bereich mit mehr als einer Zelle fehl.
+
+      \[[API-Gruppe: ExcelApi 1,12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getSpillParent()
+    fullName: getSpillParent()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getSpillParent(): Excel.Range;'
+      return:
+        type:
+          - 'excel!Excel.Range:class'
+        description: ''
+  - uid: 'excel!Excel.Range#getSpillParentOrNullObject:member(1)'
+    summary: |-
+      Ruft das Bereichsobjekt ab, das die Ankerzelle für eine Zelle enthält, in die ein Überlauf erfolgen kann. Wenn es sich nicht um eine Spill-Zelle oder mehr als einmal Zellen geben, wird ein NULL-Objekt zurückgegeben.
+
+      \[[API-Gruppe: ExcelApi 1,12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: getSpillParentOrNullObject()
+    fullName: getSpillParentOrNullObject()
+    langs:
+      - typeScript
+    type: method
+    syntax:
+      content: 'getSpillParentOrNullObject(): Excel.Range;'
+      return:
+        type:
+          - 'excel!Excel.Range:class'
+        description: ''
   - uid: 'excel!Excel.Range#getSurroundingRegion:member(1)'
     summary: |-
       Gibt ein Bereichsobjekt zurück, das die umgebenden Region für die Zelle oben links in diesem Bereich darstellt. Eine umgebende Region ist ein Bereich, der von einer Kombination von leeren Zeilen und leeren Spalten relativ zu diesem Bereich begrenzt wird.
@@ -1910,6 +2098,21 @@ items:
           description: 'Gibt an, wie der Bereich nach Zeilen oder Spalten gruppiert werden kann. Ein `InvalidArgument` Fehler wird ausgelöst, wenn die Group-Option sich von dem Bereich oder der Eigenschaft unterscheidet `isEntireRow` `isEntireColumn` (also `range.isEntireRow` ist true und `groupOption` "ByColumns" oder " `range.isEntireColumn` true" und `groupOption` "ByRows").'
           type:
             - '"ByRows" | "ByColumns"'
+  - uid: 'excel!Excel.Range#hasSpill:member'
+    summary: |-
+      Stellt dar, ob alle Zellen einen Überlaufrahmen aufweisen. Gibt true zurück, wenn alle Zellen einen Überlauf Rahmen haben, oder false, wenn alle Zellen keinen Überlauf Rahmen haben. Gibt NULL zurück, wenn Zellen mit und ohne Spill-Rahmen innerhalb des Bereichs vorhanden sind.
+
+      \[[API-Gruppe: ExcelApi 1,12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: hasSpill
+    fullName: hasSpill
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly hasSpill: boolean;'
+      return:
+        type:
+          - boolean
   - uid: 'excel!Excel.Range#height:member'
     summary: |-
       Liefert den Abstand in Punkten, für 100 % Zoom, vom oberen Rand des Bereichs bis zum unteren Rand des Bereichs.
@@ -2353,6 +2556,21 @@ items:
               }
           });
           ```
+  - uid: 'excel!Excel.Range#numberFormatCategories:member'
+    summary: |-
+      Stellt die Kategorie des Zahlenformats jeder Zelle dar.
+
+      \[[API-Gruppe: ExcelApi 1,12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: numberFormatCategories
+    fullName: numberFormatCategories
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly numberFormatCategories: Excel.NumberFormatCategory[][];'
+      return:
+        type:
+          - 'excel!Excel.Range#numberFormatCategories~0:complex'
   - uid: 'excel!Excel.Range#numberFormatLocal:member'
     summary: |-
       Stellt basierend auf den Spracheinstellungen des Benutzers den Zahlenformatcode für Excel für den angegebenen Bereich dar. Excel führt beim Abruf oder Festlegen der Eigenschaft keine sprach-oder Formatumwandlung durch `numberFormatLocal` . Jeder zurückgegebene Text verwendet die lokal formatierten Zeichenfolgen basierend auf der in den Systemeinstellungen angegebenen Sprache.
@@ -2485,6 +2703,21 @@ items:
       return:
         type:
           - number
+  - uid: 'excel!Excel.Range#savedAsArray:member'
+    summary: |-
+      Stellt dar, ob alle Zellen als Arrayformel gespeichert würden. Gibt true zurück, wenn alle Zellen als Arrayformel gespeichert würden, oder false, wenn alle Zellen nicht als Arrayformel gespeichert würden. Gibt NULL zurück, wenn einige Zellen als Arrayformel gespeichert würden und einige nicht.
+
+      \[[API-Gruppe: ExcelApi 1,12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    name: savedAsArray
+    fullName: savedAsArray
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'readonly savedAsArray: boolean;'
+      return:
+        type:
+          - boolean
   - uid: 'excel!Excel.Range#select:member(1)'
     summary: |-
       Wählt den angegebenen Bereich in der Excel-Benutzeroberfläche aus.
@@ -3256,6 +3489,8 @@ references:
         fullName: '[]>'
   - uid: 'excel!Excel.ColumnPropertiesLoadOptions:interface'
     name: ColumnPropertiesLoadOptions
+  - uid: 'excel!Excel.WorkbookRangeAreas:class'
+    name: Excel.WorkbookRangeAreas
   - uid: 'excel!Excel.Range#getImage~0:complex'
     name: OfficeExtension.ClientResult<string>
     fullName: OfficeExtension.ClientResult<string>
@@ -3283,6 +3518,8 @@ references:
         fullName: Excel.Range
       - name: ' | string'
         fullName: ' | string'
+  - uid: 'excel!Excel.PivotTableScopedCollection:class'
+    name: Excel.PivotTableScopedCollection
   - uid: 'excel!Excel.Range#getRowProperties~0:complex'
     name: 'OfficeExtension.ClientResult<RowProperties[]>'
     fullName: 'OfficeExtension.ClientResult<Excel.RowProperties[]>'
@@ -3335,6 +3572,15 @@ references:
         fullName: Excel.Range
       - name: ' | string'
         fullName: ' | string'
+  - uid: 'excel!Excel.Range#numberFormatCategories~0:complex'
+    name: 'Excel.NumberFormatCategory[][]'
+    fullName: 'Excel.NumberFormatCategory[][]'
+    spec.typeScript:
+      - uid: 'excel!Excel.NumberFormatCategory:enum'
+        name: Excel.NumberFormatCategory
+        fullName: Excel.NumberFormatCategory
+      - name: '[][]'
+        fullName: '[][]'
   - uid: 'excel!Excel.RemoveDuplicatesResult:class'
     name: Excel.RemoveDuplicatesResult
   - uid: 'excel!Excel.Range#replaceAll~0:complex'
