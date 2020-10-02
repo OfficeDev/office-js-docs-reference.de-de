@@ -1280,6 +1280,14 @@ items:
     summary: |-
       Ruft die Eigenschaften eines Termins oder einer Nachricht in einem freigegebenen Ordner, Kalender oder Postfach ab.
 
+      **Wichtig**: im Modus zum Verfassen von Nachrichten wird diese API in Outlook im Internet oder in Windows nur dann unterstützt, wenn die folgenden Bedingungen erfüllt sind.
+
+      1. Der Besitzer teilt mindestens einen Postfachordner mit der Stellvertretung.
+
+      2. Der Stellvertreter erstellt eine Nachricht im freigegebenen Ordner.
+
+      Nachdem die Nachricht gesendet wurde, befindet Sie sich normalerweise im Ordner " **Gesendete Elemente** " des Stellvertreters.
+
       Weitere Informationen zur Verwendung dieser API finden Sie im Artikel [Delegate Access](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access) .
 
       **Hinweis**: Diese Methode wird in Outlook auf IOS oder Android nicht unterstützt.
@@ -1310,7 +1318,7 @@ items:
               let sharedProperties = result2.value;
               let delegatePermissions = sharedProperties.delegatePermissions;
 
-              // Determine if user can do the expected operation, e.g., do they have Write permission?
+              // Determine if user has the appropriate permission to do the operation.
               if ((delegatePermissions & Office.MailboxEnums.DelegatePermissions.Read) != 0) {
                 var ewsId = Office.context.mailbox.item.itemId;
                 var restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);
@@ -1358,6 +1366,14 @@ items:
     summary: |-
       Ruft die Eigenschaften eines Termins oder einer Nachricht in einem freigegebenen Ordner, Kalender oder Postfach ab.
 
+      **Wichtig**: im Modus zum Verfassen von Nachrichten wird diese API in Outlook im Internet oder in Windows nur dann unterstützt, wenn die folgenden Bedingungen erfüllt sind.
+
+      1. Der Besitzer teilt mindestens einen Postfachordner mit der Stellvertretung.
+
+      2. Der Stellvertreter erstellt eine Nachricht im freigegebenen Ordner.
+
+      Nachdem die Nachricht gesendet wurde, befindet Sie sich normalerweise im Ordner " **Gesendete Elemente** " des Stellvertreters.
+
       Weitere Informationen zur Verwendung dieser API finden Sie im Artikel [Delegate Access](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access) .
 
       **Hinweis**: Diese Methode wird in Outlook auf IOS oder Android nicht unterstützt.
@@ -1373,7 +1389,7 @@ items:
       ```javascript
       // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/outlook/65-delegates-and-shared-folders/get-shared-properties.yaml
       if (!Office.context.mailbox.item.getSharedPropertiesAsync) {
-        console.error("Try this sample on a message from a shared folder.");
+        console.error("Try this sample on an item from a shared folder.");
         return;
       }
 
