@@ -1,0 +1,101 @@
+### YamlMime:UniversalReference
+items:
+  - uid: 'outlook!Office.AttachmentContent:interface'
+    summary: |-
+      Stellt den Inhalt einer Anlage für eine Nachricht oder ein Terminelement dar.
+
+      \[[API-Gruppe: Mailbox 1,8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    remarks: |-
+      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **:`ReadItem`
+
+      ** [Anwendbarer Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **: Verfassen oder lesen
+    name: Office.AttachmentContent
+    fullName: Office.AttachmentContent
+    langs:
+      - typeScript
+    type: interface
+    package: outlook!
+    children:
+      - 'outlook!Office.AttachmentContent#content:member'
+      - 'outlook!Office.AttachmentContent#format:member'
+  - uid: 'outlook!Office.AttachmentContent#content:member'
+    summary: Der Inhalt einer Anlage als Zeichenfolge.
+    name: content
+    fullName: content
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'content: string;'
+      return:
+        type:
+          - string
+  - uid: 'outlook!Office.AttachmentContent#format:member'
+    summary: |-
+      Das Zeichenfolgenformat, das für den Inhalt einer Anlage verwendet werden soll.
+
+      Bei Dateianlagen handelt es sich bei der Formatierung um eine Base64-codierte Zeichenfolge.
+
+      Bei Element Anlagen, die Nachrichten darstellen und durch Drag & Drop oder "Attach Item" angefügt wurden, ist die Formatierung eine Zeichenfolge, die eine EML-formatierte Datei darstellt. **Wichtig**: Wenn ein Nachrichtenelement per Drag & Drop in Outlook im Internet angefügt wurde, wird `getAttachmentContentAsync` ein Fehler ausgelöst.
+
+      Bei Element Anlagen, die Kalenderelemente darstellen und durch Drag & Drop oder "Attach Item" angefügt wurden, ist die Formatierung eine Zeichenfolge, die eine iCalendar-Datei darstellt. **Wichtig**: Wenn ein Kalenderelement per Drag & Drop in Outlook im Internet angefügt wurde, wird `getAttachmentContentAsync` ein Fehler ausgelöst.
+
+      Bei Cloud-Anlagen ist die Formatierung eine URL-Zeichenfolge.
+    name: format
+    fullName: format
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'format: MailboxEnums.AttachmentContentFormat | string;'
+      return:
+        type:
+          - 'outlook!Office.AttachmentContent#format~0:complex'
+        description: |-
+
+
+          #### <a name="examples"></a>Beispiele
+
+          ```javascript
+          var item = Office.context.mailbox.item;
+          var options = {asyncContext: {currentItem: item}};
+          item.getAttachmentsAsync(options, callback);
+
+          function callback(result) {
+              if (result.value.length > 0) {
+                  for (i = 0 ; i < result.value.length ; i++) {
+                      result.asyncContext.currentItem.getAttachmentContentAsync(result.value[i].id, handleAttachmentsCallback);
+                  }
+              }
+          }
+
+          function handleAttachmentsCallback(result) {
+              // Parse string to be a url, an .eml file, a base64-encoded string, or an .icalendar file.
+              switch (result.value.format) {
+                  case Office.MailboxEnums.AttachmentContentFormat.Base64:
+                      // Handle file attachment.
+                      break;
+                  case Office.MailboxEnums.AttachmentContentFormat.Eml:
+                      // Handle email item attachment.
+                      break;
+                  case Office.MailboxEnums.AttachmentContentFormat.ICalendar:
+                      // Handle .icalender attachment.
+                      break;
+                  case Office.MailboxEnums.AttachmentContentFormat.Url:
+                      // Handle cloud attachment.
+                      break;
+                  default:
+                      // Handle attachment formats that are not supported.
+              }
+          }
+          ```
+references:
+  - uid: 'outlook!Office.AttachmentContent#format~0:complex'
+    name: MailboxEnums.AttachmentContentFormat | string
+    fullName: Office.MailboxEnums.AttachmentContentFormat | string
+    spec.typeScript:
+      - uid: 'outlook!Office.MailboxEnums.AttachmentContentFormat:enum'
+        name: MailboxEnums.AttachmentContentFormat
+        fullName: Office.MailboxEnums.AttachmentContentFormat
+      - name: ' | string'
+        fullName: ' | string'

@@ -1,0 +1,71 @@
+### YamlMime:UniversalReference
+items:
+  - uid: 'outlook!Office.PhoneNumber:interface'
+    summary: |-
+      Stellt eine in einem Element erkannte Telefonnummer dar. Nur Lesemodus.
+
+      Ein Array mir `PhoneNumber`-Objekten mit den Telefonnummern in einer E-Mail-Nachricht wird in der Eigenschaft `phoneNumbers` des `Entities`-Objekts zurückgegeben, das wiederum zurückgegeben wird, wenn Sie die Methode `getEntities`s für das ausgewählte Element aufrufen.
+    remarks: |-
+      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **:`ReadItem`
+
+      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **: Lesen
+
+      #### <a name="examples"></a>Beispiele
+
+      ```javascript
+      var item = Office.context.mailbox.item;
+      // Get an array of strings that represent phone numbers in the current item's body.
+      var phoneNumbers = item.getEntitiesByType(Office.MailboxEnums.EntityType.PhoneNumber);
+      console.log("There are " + phoneNumbers.length + " phone numbers.")
+      phoneNumbers.forEach(function (phoneNumber) {
+          console.log("Phone number: " + JSON.stringify(phoneNumber.phoneString));
+          console.log("Type: " + JSON.stringify(phoneNumber.type));
+          console.log("Source text: " + JSON.stringify(phoneNumber.originalPhoneString));
+      });
+      ```
+    name: Office.PhoneNumber
+    fullName: Office.PhoneNumber
+    langs:
+      - typeScript
+    type: interface
+    package: outlook!
+    children:
+      - 'outlook!Office.PhoneNumber#originalPhoneString:member'
+      - 'outlook!Office.PhoneNumber#phoneString:member'
+      - 'outlook!Office.PhoneNumber#type:member'
+  - uid: 'outlook!Office.PhoneNumber#originalPhoneString:member'
+    summary: 'Ruft den Text ab, der in einem Element als Telefonnummer identifiziert wurde.'
+    name: originalPhoneString
+    fullName: originalPhoneString
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'originalPhoneString: string;'
+      return:
+        type:
+          - string
+  - uid: 'outlook!Office.PhoneNumber#phoneString:member'
+    summary: "Ruft eine Zeichenfolge mit einer Telefonnummer ab. Diese Zeichenfolge enthält nur die Ziffern der Telefonnummer und schließt Zeichen wie z.\_B. Klammern und Bindestriche aus, wenn diese im ursprüngliche Element enthalten sind."
+    name: phoneString
+    fullName: phoneString
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'phoneString: string;'
+      return:
+        type:
+          - string
+  - uid: 'outlook!Office.PhoneNumber#type:member'
+    summary: 'Ruft eine Zeichenfolge, die den Typ der Telefonnummer identifiziert: Home, Work, Mobile, nicht spezifiziert.'
+    name: type
+    fullName: type
+    langs:
+      - typeScript
+    type: property
+    syntax:
+      content: 'type: string;'
+      return:
+        type:
+          - string
