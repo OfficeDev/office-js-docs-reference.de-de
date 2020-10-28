@@ -4,7 +4,7 @@ items:
     summary: |-
       Der Nachrichten erstellmodus von [Office. Context. Mailbox. Item](xref:outlook!Office.Item:interface)<!-- -->.
 
-      **Wichtig**: Dies ist ein internes Outlook-Objekt, das nicht direkt über vorhandene Schnittstellen verfügbar gemacht wird. Sie sollten dies als einen Modus von behandeln `Office.context.mailbox.item`<!-- -->. Weitere Informationen erhalten Sie auf der Seite [Objektmodell](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.1/office.context.mailbox.item) .
+      **Wichtig** : Dies ist ein internes Outlook-Objekt, das nicht direkt über vorhandene Schnittstellen verfügbar gemacht wird. Sie sollten dies als einen Modus von behandeln `Office.context.mailbox.item`<!-- -->. Weitere Informationen erhalten Sie auf der Seite [Objektmodell](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.1/office.context.mailbox.item) .
 
       Übergeordnete Schnittstellen:
 
@@ -22,9 +22,7 @@ items:
     package: outlook!
     children:
       - 'outlook!Office.MessageCompose#addFileAttachmentAsync:member(1)'
-      - 'outlook!Office.MessageCompose#addFileAttachmentAsync:member(2)'
       - 'outlook!Office.MessageCompose#addItemAttachmentAsync:member(1)'
-      - 'outlook!Office.MessageCompose#addItemAttachmentAsync:member(2)'
       - 'outlook!Office.MessageCompose#bcc:member'
       - 'outlook!Office.MessageCompose#body:member'
       - 'outlook!Office.MessageCompose#cc:member'
@@ -32,7 +30,6 @@ items:
       - 'outlook!Office.MessageCompose#itemType:member'
       - 'outlook!Office.MessageCompose#loadCustomPropertiesAsync:member(1)'
       - 'outlook!Office.MessageCompose#removeAttachmentAsync:member(1)'
-      - 'outlook!Office.MessageCompose#removeAttachmentAsync:member(2)'
       - 'outlook!Office.MessageCompose#subject:member'
       - 'outlook!Office.MessageCompose#to:member'
   - uid: 'outlook!Office.MessageCompose#addFileAttachmentAsync:member(1)'
@@ -43,15 +40,15 @@ items:
 
       Anschließend können Sie den Bezeichner mit der `removeAttachmentAsync`-Methode in der gleichen Sitzung zum Entfernen der Anlage verwenden.
 
-      **Wichtig**: in den letzten Versionen von Outlook unter Windows wurde ein Fehler eingeführt, der fälschlicherweise einen `Authorization: Bearer` Header an diese Aktion anfügt (unabhängig davon, ob diese API oder die Outlook-Benutzeroberfläche verwendet wird). Um dieses Problem zu umgehen, können Sie versuchen, die `addFileAttachmentFromBase64` mit dem Anforderungs 1,8 eingeführte API zu verwenden.
+      **Wichtig** : in den letzten Versionen von Outlook unter Windows wurde ein Fehler eingeführt, der fälschlicherweise einen `Authorization: Bearer` Header an diese Aktion anfügt (unabhängig davon, ob diese API oder die Outlook-Benutzeroberfläche verwendet wird). Um dieses Problem zu umgehen, können Sie versuchen, die `addFileAttachmentFromBase64` mit dem Anforderungs 1,8 eingeführte API zu verwenden.
 
       \[[API-Gruppe: Mailbox 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **:`ReadWriteItem`
+      **[Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** :`ReadWriteItem`
 
-      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **: Nachrichten verfassen
+      **[Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** : Nachrichten verfassen
 
-      **Fehler**:
+      **Fehler** :
 
       - `AttachmentSizeExceeded`<!-- -->: Die Anlage ist größer als zulässig.
 
@@ -135,53 +132,6 @@ items:
           description: 'Optional. Wenn die Methode abgeschlossen ist, wird die Funktion, die im- `callback` Parameter übergeben wird, mit einem einzelnen Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->. Bei Erfolg wird der Anlagenbezeichner in der `asyncResult.value`-Eigenschaft bereitgestellt. Wenn beim Hochladen der Anlage ein Fehler auftritt, enthält das `asyncResult`-Objekt ein `Error`-Objekt mit einer Beschreibung des Fehlers.'
           type:
             - 'outlook!Office.MessageCompose#addFileAttachmentAsync~1:complex'
-  - uid: 'outlook!Office.MessageCompose#addFileAttachmentAsync:member(2)'
-    summary: |-
-      Fügt eine Datei zu einer Nachricht oder einem Termin als Anlage hinzu.
-
-      Die `addFileAttachmentAsync`-Methode lädt die Datei am angegebenen URI hoch und fügt sie an das Element im Verfassenformular an.
-
-      Anschließend können Sie den Bezeichner mit der `removeAttachmentAsync`-Methode in der gleichen Sitzung zum Entfernen der Anlage verwenden.
-
-      **Wichtig**: in den letzten Versionen von Outlook unter Windows wurde ein Fehler eingeführt, der fälschlicherweise einen `Authorization: Bearer` Header an diese Aktion anfügt (unabhängig davon, ob diese API oder die Outlook-Benutzeroberfläche verwendet wird). Um dieses Problem zu umgehen, können Sie versuchen, die `addFileAttachmentFromBase64` mit dem Anforderungs 1,8 eingeführte API zu verwenden.
-
-      \[[API-Gruppe: Mailbox 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **:`ReadWriteItem`
-
-      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **: Nachrichten verfassen
-
-      **Fehler**:
-
-      - `AttachmentSizeExceeded`<!-- -->: Die Anlage ist größer als zulässig.
-
-      - `FileTypeNotSupported`<!-- -->: Die Anlage weist eine Erweiterung auf, die nicht zulässig ist.
-
-      - `NumberOfAttachmentsExceeded`<!-- -->: Die Nachricht oder der Termin enthält zu viele Anlagen.
-    name: 'addFileAttachmentAsync(uri, attachmentName, callback)'
-    fullName: 'addFileAttachmentAsync(uri, attachmentName, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'addFileAttachmentAsync(uri: string, attachmentName: string, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: uri
-          description: 'Der URI, der den Speicherort der an die Nachricht oder den Termin anzuhängenden Datei angibt. Die maximale Länge ist 2048 Zeichen.'
-          type:
-            - string
-        - id: attachmentName
-          description: 'Der Name der Anlage, der beim Hochladen der Anlage angezeigt wird. Die maximale Länge ist 255 Zeichen.'
-          type:
-            - string
-        - id: callback
-          description: 'Optional. Wenn die Methode abgeschlossen ist, wird die Funktion, die im callback-Parameter übergeben wird, mit einem einzelnen Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->. Bei Erfolg wird der Anlagenbezeichner in der `asyncResult.value`-Eigenschaft bereitgestellt. Wenn beim Hochladen der Anlage ein Fehler auftritt, enthält das `asyncResult`-Objekt ein `Error`-Objekt mit einer Beschreibung des Fehlers.'
-          type:
-            - 'outlook!Office.MessageCompose#addFileAttachmentAsync~2:complex'
   - uid: 'outlook!Office.MessageCompose#addItemAttachmentAsync:member(1)'
     summary: |-
       Fügt der Nachricht oder dem Termin ein Exchange-Objekt, wie z. B. eine Nachricht, als Anhang hinzu.
@@ -194,11 +144,11 @@ items:
 
       \[[API-Gruppe: Mailbox 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **:`ReadWriteItem`
+      **[Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** :`ReadWriteItem`
 
-      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **: Nachrichten verfassen
+      **[Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** : Nachrichten verfassen
 
-      **Fehler**:
+      **Fehler** :
 
       - `NumberOfAttachmentsExceeded`<!-- -->: Die Nachricht oder der Termin enthält zu viele Anlagen.
 
@@ -262,49 +212,6 @@ items:
           description: 'Optional. Wenn die Methode abgeschlossen ist, wird die Funktion, die im- `callback` Parameter übergeben wird, mit einem einzelnen Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->. Bei Erfolg wird der Anlagenbezeichner in der `asyncResult.value`-Eigenschaft bereitgestellt. Wenn beim Hinzufügen der Anlage ein Fehler auftritt, enthält das `asyncResult`-Objekt ein `Error`-Objekt mit einer Beschreibung des Fehlers.'
           type:
             - 'outlook!Office.MessageCompose#addItemAttachmentAsync~0:complex'
-  - uid: 'outlook!Office.MessageCompose#addItemAttachmentAsync:member(2)'
-    summary: |-
-      Fügt der Nachricht oder dem Termin ein Exchange-Objekt, wie z. B. eine Nachricht, als Anhang hinzu.
-
-      Die `addItemAttachmentAsync` -Methode fügt das Element mit dem angegebenen Exchange-Bezeichner an das Element im Formular Verfassen an. Wenn Sie eine Rückrufmethode angeben, wird die Methode mit einem Parameter aufgerufen. `asyncResult`<!-- -->, die entweder den Anlagen Bezeichner oder einen Code enthält, der alle Fehler angibt, die beim Anfügen des Elements aufgetreten sind. Sie können den Parameter options verwenden, um Zustandsinformationen bei Bedarf an die Rückrufmethode zu übergeben.
-
-      Anschließend können Sie den Bezeichner mit der `removeAttachmentAsync`-Methode in der gleichen Sitzung zum Entfernen der Anlage verwenden.
-
-      Wenn Ihr Office Add-In in Outlook im Web ausgeführt wird, kann die Methode `addItemAttachmentAsync` Elemente an andere Elemente anfügen als an das Element, das Sie gerade bearbeiten. Dies wird jedoch nicht unterstützt und nicht empfohlen.
-
-      \[[API-Gruppe: Mailbox 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **:`ReadWriteItem`
-
-      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **: Nachrichten verfassen
-
-      **Fehler**:
-
-      - `NumberOfAttachmentsExceeded`<!-- -->: Die Nachricht oder der Termin enthält zu viele Anlagen.
-    name: 'addItemAttachmentAsync(itemId, attachmentName, callback)'
-    fullName: 'addItemAttachmentAsync(itemId, attachmentName, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'addItemAttachmentAsync(itemId: any, attachmentName: string, callback?: (asyncResult: Office.AsyncResult<string>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: itemId
-          description: 'Der Exchange-Bezeichner des Objekts, das angehängt werden soll. Die maximale Länge beträgt 100 Zeichen.'
-          type:
-            - any
-        - id: attachmentName
-          description: 'Der Name der Anlage, der beim Hochladen der Anlage angezeigt wird. Die maximale Länge ist 255 Zeichen.'
-          type:
-            - string
-        - id: callback
-          description: 'Optional. Wenn die Methode abgeschlossen ist, wird die Funktion, die im- `callback` Parameter übergeben wird, mit einem einzelnen Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->. Bei Erfolg wird der Anlagenbezeichner in der `asyncResult.value`-Eigenschaft bereitgestellt. Wenn beim Hinzufügen der Anlage ein Fehler auftritt, enthält das `asyncResult`-Objekt ein `Error`-Objekt mit einer Beschreibung des Fehlers.'
-          type:
-            - 'outlook!Office.MessageCompose#addItemAttachmentAsync~1:complex'
   - uid: 'outlook!Office.MessageCompose#bcc:member'
     summary: |-
       Ruft ein Objekt ab, das Methoden zum Abrufen oder Aktualisieren der Empfänger in der Zeile **Bcc** (Blind Carbon Copy) einer Nachricht bereitstellt.
@@ -313,9 +220,9 @@ items:
 
       \[[API-Gruppe: Mailbox 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **:`ReadItem`
+      **[Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** :`ReadItem`
 
-      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **: Nachrichten verfassen
+      **[Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** : Nachrichten verfassen
 
       #### <a name="examples"></a>Beispiele
 
@@ -372,9 +279,9 @@ items:
 
       \[[API-Gruppe: Mailbox 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **:`ReadItem`
+      **[Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** :`ReadItem`
 
-      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **: Nachrichten verfassen
+      **[Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** : Nachrichten verfassen
 
       #### <a name="examples"></a>Beispiele
 
@@ -408,11 +315,11 @@ items:
     summary: |-
       Bietet Zugriff auf die Kopienempfänger (Cc) einer Nachricht. Der Typ des Objekts und die Zugriffsebene hängen vom Modus des aktuellen Elements ab.
 
-      Die `cc`-Eigenschaft gibt ein `Recipients`-Objekt zurück, das Methoden zum Abrufen oder Aktualisieren der Empfänger in der **Cc**-Zeile der Nachricht bereitstellt. Je nach Client/Plattform (also Windows, Mac usw.) können jedoch Beschränkungen für die Anzahl der Empfänger, die Sie erhalten oder aktualisieren können, gelten. Weitere Informationen finden Sie unter dem [Recipients](xref:outlook!Office.Recipients:interface) -Objekt.
+      Die `cc`-Eigenschaft gibt ein `Recipients`-Objekt zurück, das Methoden zum Abrufen oder Aktualisieren der Empfänger in der **Cc** -Zeile der Nachricht bereitstellt. Je nach Client/Plattform (also Windows, Mac usw.) können jedoch Beschränkungen für die Anzahl der Empfänger, die Sie erhalten oder aktualisieren können, gelten. Weitere Informationen finden Sie unter dem [Recipients](xref:outlook!Office.Recipients:interface) -Objekt.
     remarks: |-
-      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **:`ReadItem`
+      **[Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** :`ReadItem`
 
-      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **: Nachrichten verfassen
+      **[Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** : Nachrichten verfassen
 
       #### <a name="examples"></a>Beispiele
 
@@ -471,9 +378,9 @@ items:
 
       Sie erhalten in einem Formular zum Verfassen für diese Eigenschaft für ein neues Element null. Wenn der Benutzer einen Betreff festlegt und das Element speichert, gibt die `conversationId`-Eigenschaft einen Wert zurück.
     remarks: |-
-      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **:`ReadItem`
+      **[Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** :`ReadItem`
 
-      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **: Nachrichten verfassen
+      **[Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** : Nachrichten verfassen
 
       #### <a name="examples"></a>Beispiele
 
@@ -497,9 +404,9 @@ items:
 
       Die `itemType` -Eigenschaft gibt einen der `ItemType` Enumerationswerte zurück, der angibt, ob es sich bei der Item-Objektinstanz um eine Nachricht oder einen Termin handelt.
     remarks: |-
-      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **:`ReadItem`
+      **[Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** :`ReadItem`
 
-      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **: Nachrichten verfassen
+      **[Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** : Nachrichten verfassen
 
       #### <a name="examples"></a>Beispiele
 
@@ -525,9 +432,9 @@ items:
 
       Die benutzerdefinierten Eigenschaften werden als `CustomProperties` Objekt in der AsyncResult. Value-Eigenschaft bereitgestellt. Dieses Objekt kann verwendet werden, um benutzerdefinierte Eigenschaften aus dem Element abzurufen, festzulegen und zu entfernen und um Änderungen am benutzerdefinierten Eigenschaftssatz wieder auf dem Server zu speichern.
     remarks: |-
-      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **:`ReadItem`
+      **[Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** :`ReadItem`
 
-      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **: Nachrichten verfassen
+      **[Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** : Nachrichten verfassen
 
       #### <a name="examples"></a>Beispiele
 
@@ -606,11 +513,11 @@ items:
 
       \[[API-Gruppe: Mailbox 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
     remarks: |-
-      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **:`ReadWriteItem`
+      **[Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** :`ReadWriteItem`
 
-      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **: Nachrichten verfassen
+      **[Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** : Nachrichten verfassen
 
-      **Fehler**:
+      **Fehler** :
 
       - `InvalidAttachmentId`<!-- -->: Die Anlagen-ID ist nicht vorhanden.
 
@@ -666,41 +573,6 @@ items:
           description: 'Optional. Wenn die Methode abgeschlossen ist, wird die Funktion, die im- `callback` Parameter übergeben wird, mit einem einzelnen Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->. Wenn beim Entfernen der Anlage ein Fehler auftritt, enthält die Eigenschaft `asyncResult.error` einen Fehlercode mit dem Grund für den Fehler.'
           type:
             - 'outlook!Office.MessageCompose#removeAttachmentAsync~0:complex'
-  - uid: 'outlook!Office.MessageCompose#removeAttachmentAsync:member(2)'
-    summary: |-
-      Entfernt eine Anlage aus einer Nachricht oder einem Termin.
-
-      Die `removeAttachmentAsync`-Methode entfernt die Anlage mit dem angegebenen Bezeichner aus dem Element. Als bewährte Vorgehensweise sollten Sie den Anlagenbezeichner nur dann zum Entfernen einer Anlage verwenden, wenn die gleiche Mail-App die Anlage in der gleichen Sitzung hinzugefügt hat. In Outlook im Web und für Mobilgeräte ist die Anlagen-ID nur innerhalb der gleichen Sitzung gültig. Eine Sitzung ist beendet, wenn der Benutzer die APP schließt oder wenn der Benutzer mit dem Erstellen eines Inline Formulars beginnt und anschließend das Formular öffnet, um in einem separaten Fenster fortzufahren.
-
-      \[[API-Gruppe: Mailbox 1,1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-    remarks: |-
-      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **:`ReadWriteItem`
-
-      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **: Nachrichten verfassen
-
-      **Fehler**:
-
-      - `InvalidAttachmentId`<!-- -->: Die Anlagen-ID ist nicht vorhanden.
-    name: 'removeAttachmentAsync(attachmentId, callback)'
-    fullName: 'removeAttachmentAsync(attachmentId, callback)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'removeAttachmentAsync(attachmentId: string, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
-      return:
-        type:
-          - void
-        description: ''
-      parameters:
-        - id: attachmentId
-          description: Der Bezeichner der zu entfernenden Anlage.
-          type:
-            - string
-        - id: callback
-          description: 'Optional. Wenn die Methode abgeschlossen ist, wird die Funktion, die im- `callback` Parameter übergeben wird, mit einem einzelnen Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->. Wenn beim Entfernen der Anlage ein Fehler auftritt, enthält die Eigenschaft `asyncResult.error` einen Fehlercode mit dem Grund für den Fehler.'
-          type:
-            - 'outlook!Office.MessageCompose#removeAttachmentAsync~1:complex'
   - uid: 'outlook!Office.MessageCompose#subject:member'
     summary: |-
       Ruft die Beschreibung ab, die im Betrefffeld eines Elements angezeigt wird, oder legt sie fest.
@@ -709,9 +581,9 @@ items:
 
       Die `subject`-Eigenschaft gibt ein `Subject`-Objekt zurück, das Methoden zum Abrufen und Festlegen des Betreffs bereitstellt.
     remarks: |-
-      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **:`ReadItem`
+      **[Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** :`ReadItem`
 
-      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **: Nachrichten verfassen
+      **[Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** : Nachrichten verfassen
 
       #### <a name="examples"></a>Beispiele
 
@@ -750,11 +622,11 @@ items:
     summary: |-
       Bietet Zugriff auf die Empfänger in der Zeile **An** einer Nachricht. Der Typ des Objekts und die Zugriffsebene hängen vom Modus des aktuellen Elements ab.
 
-      Die `to`-Eigenschaft gibt ein `Recipients`-Objekt zurück, das Methoden zum Abrufen oder Aktualisieren der Empfänger in der **An**-Zeile der Nachricht bereitstellt. Je nach Client/Plattform (also Windows, Mac usw.) können jedoch Beschränkungen für die Anzahl der Empfänger, die Sie erhalten oder aktualisieren können, gelten. Weitere Informationen finden Sie unter dem [Recipients](xref:outlook!Office.Recipients:interface) -Objekt.
+      Die `to`-Eigenschaft gibt ein `Recipients`-Objekt zurück, das Methoden zum Abrufen oder Aktualisieren der Empfänger in der **An** -Zeile der Nachricht bereitstellt. Je nach Client/Plattform (also Windows, Mac usw.) können jedoch Beschränkungen für die Anzahl der Empfänger, die Sie erhalten oder aktualisieren können, gelten. Weitere Informationen finden Sie unter dem [Recipients](xref:outlook!Office.Recipients:interface) -Objekt.
     remarks: |-
-      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **:`ReadItem`
+      **[Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->** :`ReadItem`
 
-      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **: Nachrichten verfassen
+      **[Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** : Nachrichten verfassen
 
       #### <a name="examples"></a>Beispiele
 
@@ -830,31 +702,9 @@ references:
         fullName: Office.AsyncResult
       - name: <string>) => void
         fullName: <string>) => void
-  - uid: 'outlook!Office.MessageCompose#addFileAttachmentAsync~2:complex'
-    name: '(asyncResult: Office.AsyncResult<string>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<string>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <string>) => void
-        fullName: <string>) => void
   - uid: 'office!Office.AsyncContextOptions:interface'
     name: Office.AsyncContextOptions
   - uid: 'outlook!Office.MessageCompose#addItemAttachmentAsync~0:complex'
-    name: '(asyncResult: Office.AsyncResult<string>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<string>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <string>) => void
-        fullName: <string>) => void
-  - uid: 'outlook!Office.MessageCompose#addItemAttachmentAsync~1:complex'
     name: '(asyncResult: Office.AsyncResult<string>) => void'
     fullName: '(asyncResult: Office.AsyncResult<string>) => void'
     spec.typeScript:
@@ -895,17 +745,6 @@ references:
       - name: '>) => void'
         fullName: '>) => void'
   - uid: 'outlook!Office.MessageCompose#removeAttachmentAsync~0:complex'
-    name: '(asyncResult: Office.AsyncResult<void>) => void'
-    fullName: '(asyncResult: Office.AsyncResult<void>) => void'
-    spec.typeScript:
-      - name: '(asyncResult: '
-        fullName: '(asyncResult: '
-      - uid: 'office!Office.AsyncResult:interface'
-        name: Office.AsyncResult
-        fullName: Office.AsyncResult
-      - name: <void>) => void
-        fullName: <void>) => void
-  - uid: 'outlook!Office.MessageCompose#removeAttachmentAsync~1:complex'
     name: '(asyncResult: Office.AsyncResult<void>) => void'
     fullName: '(asyncResult: Office.AsyncResult<void>) => void'
     spec.typeScript:
