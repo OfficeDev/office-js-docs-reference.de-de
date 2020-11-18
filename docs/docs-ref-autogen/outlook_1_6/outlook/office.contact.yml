@@ -1,137 +1,149 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'outlook!Office.Contact:interface'
-    summary: |-
-      Stellt die Details zu einem Kontakt dar (ähnlich wie auf einem physischen Kontakt oder einer Visitenkarte), die aus dem Textkörper des Elements extrahiert wurden. Nur im Lesemodus.
+### YamlMime:TSType
+name: Office.Contact
+uid: outlook!Office.Contact:interface
+package: outlook!
+fullName: Office.Contact
+summary: >-
+  Stellt die Details zu einem Kontakt dar (ähnlich wie auf einem physischen Kontakt oder einer Visitenkarte), die aus dem Textkörper des Elements extrahiert wurden. Nur im Lesemodus.
 
-      Die Liste der Kontakte, die aus dem Textkörper einer e-Mail-Nachricht oder eines Termins extrahiert wurden, wird in der `contacts` Eigenschaft des [Entities](xref:outlook!Office.Entities:interface) -Objekts zurückgegeben, das von der `getEntities` oder `getEntitiesByType` -Methode des aktuellen Elements zurückgegeben wird.
-    remarks: |-
-      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **:`Restricted`
 
-      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **: Lesen
+  Die Liste der Kontakte, die aus dem Textkörper einer e-Mail-Nachricht oder eines Termins extrahiert wurden, wird in der `contacts` Eigenschaft des [Entities](xref:outlook!Office.Entities:interface) -Objekts zurückgegeben, das von der `getEntities` oder `getEntitiesByType` -Methode des aktuellen Elements zurückgegeben wird.
+remarks: >-
+  **[Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`Restricted`
 
-      #### <a name="examples"></a>Beispiele
 
-      ```javascript
-      var item = Office.context.mailbox.item;
-      // Get an array of strings that represent contacts in the current item's body.
-      var contacts = item.getEntitiesByType(Office.MailboxEnums.EntityType.Contact);
-      console.log("There are " + contacts.length + " contacts.")
-      contacts.forEach(function (contact) {
-          console.log("Person name: " + JSON.stringify(contact.personName));
-          console.log("Business name: " + JSON.stringify(contact.businessName));
-          console.log("Addresses: " + JSON.stringify(contact.addresses));
-          console.log("Phone numbers: " + JSON.stringify(contact.phoneNumbers));
-          console.log("Email addresses: " + JSON.stringify(contact.emailAddresses));
-          console.log("Urls: " + JSON.stringify(contact.urls));
-      });
+  **[Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Lesen
 
-      /* Example email that includes contact details of sender, John Smith:
-      Hi there,
-      I have received the package.
 
-      Thanks.
-      John Smith
-      Account Manager
-      Contoso Corporation
-      1 Contoso Way, Redmond, WA 98052
-      john.smith@contoso.com
-      111-111-1111
-      https://contoso.com/john.smith
-      */
-      ```
-    name: Office.Contact
-    fullName: Office.Contact
-    langs:
-      - typeScript
-    type: interface
-    package: outlook!
-    children:
-      - 'outlook!Office.Contact#addresses:member'
-      - 'outlook!Office.Contact#businessName:member'
-      - 'outlook!Office.Contact#emailAddresses:member'
-      - 'outlook!Office.Contact#personName:member'
-      - 'outlook!Office.Contact#phoneNumbers:member'
-      - 'outlook!Office.Contact#urls:member'
-  - uid: 'outlook!Office.Contact#addresses:member'
-    summary: Ein Array aus Zeichenfolgen mit der Postadresse und der Anschrift des Kontakts. Nullwerte zulassend.
-    name: addresses
-    fullName: addresses
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'addresses: string[];'
-      return:
-        type:
-          - 'string[]'
-  - uid: 'outlook!Office.Contact#businessName:member'
-    summary: 'Eine Zeichenfolge mit dem Namen des Unternehmens, das dem Kontakt zugeordnet ist. Nullwerte zulassend.'
-    name: businessName
-    fullName: businessName
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'businessName: string;'
-      return:
-        type:
-          - string
-  - uid: 'outlook!Office.Contact#emailAddresses:member'
-    summary: Ein Array aus Zeichenfolgen mit den SMTP-E-Mail-Adressen des Kontakts. Nullwerte zulassend.
-    name: emailAddresses
-    fullName: emailAddresses
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'emailAddresses: string[];'
-      return:
-        type:
-          - 'string[]'
-  - uid: 'outlook!Office.Contact#personName:member'
-    summary: 'Eine Zeichenfolge mit dem Namen der Person, die dem Kontakt zugeordnet ist. Nullwerte zulassend.'
-    name: personName
-    fullName: personName
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'personName: string;'
-      return:
-        type:
-          - string
-  - uid: 'outlook!Office.Contact#phoneNumbers:member'
-    summary: Ein Array mit einem `PhoneNumber`-Objekt für jede Telefonnummer des Kontakts. Nullwerte zulassend.
-    name: phoneNumbers
-    fullName: phoneNumbers
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'phoneNumbers: PhoneNumber[];'
-      return:
-        type:
-          - 'outlook!Office.Contact#phoneNumbers~0:complex'
-  - uid: 'outlook!Office.Contact#urls:member'
-    summary: Ein Array aus Zeichenfolgen mit den Internet-URLs des Kontakts. Nullwerte zulassend.
-    name: urls
-    fullName: urls
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'urls: string[];'
-      return:
-        type:
-          - 'string[]'
-references:
-  - uid: 'outlook!Office.Contact#phoneNumbers~0:complex'
-    name: 'PhoneNumber[]'
-    fullName: 'Office.PhoneNumber[]'
-    spec.typeScript:
-      - uid: 'outlook!Office.PhoneNumber:interface'
-        name: PhoneNumber
-        fullName: Office.PhoneNumber
-      - name: '[]'
-        fullName: '[]'
+  #### <a name="examples"></a>Beispiele
+
+
+  ```javascript
+
+  var item = Office.context.mailbox.item;
+
+  // Get an array of strings that represent contacts in the current item's body.
+
+  var contacts = item.getEntitiesByType(Office.MailboxEnums.EntityType.Contact);
+
+  console.log("There are " + contacts.length + " contacts.")
+
+  contacts.forEach(function (contact) {
+      console.log("Person name: " + JSON.stringify(contact.personName));
+      console.log("Business name: " + JSON.stringify(contact.businessName));
+      console.log("Addresses: " + JSON.stringify(contact.addresses));
+      console.log("Phone numbers: " + JSON.stringify(contact.phoneNumbers));
+      console.log("Email addresses: " + JSON.stringify(contact.emailAddresses));
+      console.log("Urls: " + JSON.stringify(contact.urls));
+  });
+
+
+  /* Example email that includes contact details of sender, John Smith:
+
+  Hi there,
+
+  I have received the package.
+
+
+  Thanks.
+
+  John Smith
+
+  Account Manager
+
+  Contoso Corporation
+
+  1 Contoso Way, Redmond, WA 98052
+
+  john.smith@contoso.com
+
+  111-111-1111
+
+  https://contoso.com/john.smith
+
+  */
+
+  ```
+isPreview: false
+isDeprecated: false
+type: interface
+properties:
+- name: addresses
+  uid: outlook!Office.Contact#addresses:member
+  package: outlook!
+  fullName: addresses
+  summary: Ein Array aus Zeichenfolgen mit der Postadresse und der Anschrift des Kontakts. Lässt NULL-Werte zu.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'addresses: string[];'
+    return:
+      type: string[]
+- name: businessName
+  uid: outlook!Office.Contact#businessName:member
+  package: outlook!
+  fullName: businessName
+  summary: Eine Zeichenfolge mit dem Namen des Unternehmens, das dem Kontakt zugeordnet ist. Lässt NULL-Werte zu.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'businessName: string;'
+    return:
+      type: string
+- name: emailAddresses
+  uid: outlook!Office.Contact#emailAddresses:member
+  package: outlook!
+  fullName: emailAddresses
+  summary: Ein Array aus Zeichenfolgen mit den SMTP-E-Mail-Adressen des Kontakts. Lässt NULL-Werte zu.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'emailAddresses: string[];'
+    return:
+      type: string[]
+- name: personName
+  uid: outlook!Office.Contact#personName:member
+  package: outlook!
+  fullName: personName
+  summary: Eine Zeichenfolge mit dem Namen der Person, die dem Kontakt zugeordnet ist. Lässt NULL-Werte zu.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'personName: string;'
+    return:
+      type: string
+- name: phoneNumbers
+  uid: outlook!Office.Contact#phoneNumbers:member
+  package: outlook!
+  fullName: phoneNumbers
+  summary: Ein Array mit einem `PhoneNumber`-Objekt für jede Telefonnummer des Kontakts. Lässt NULL-Werte zu.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'phoneNumbers: PhoneNumber[];'
+    return:
+      type: <xref uid="outlook!Office.PhoneNumber:interface" />[]
+- name: urls
+  uid: outlook!Office.Contact#urls:member
+  package: outlook!
+  fullName: urls
+  summary: Ein Array aus Zeichenfolgen mit den Internet-URLs des Kontakts. Lässt NULL-Werte zu.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'urls: string[];'
+    return:
+      type: string[]
+metadata:
+  ms.openlocfilehash: fb13447dd1064a864bb817544c3da7b7254952b5
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: de-DE
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49143197"
