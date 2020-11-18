@@ -2,8 +2,8 @@
 |:---|:---|:---|
 |[Binding](/javascript/api/excel/excel.binding)|[onDataChanged](/javascript/api/excel/excel.binding#ondatachanged)|Tritt ein, wenn die Daten oder die Formatierung in der Datenbindung geändert werden.|
 ||[onSelectionChanged](/javascript/api/excel/excel.binding#onselectionchanged)|Tritt auf, wenn der ausgewählte Inhalt in der Bindung geändert wird.|
-|[BindingDataChangedEventArgs](/javascript/api/excel/excel.bindingdatachangedeventargs)|[binding](/javascript/api/excel/excel.bindingdatachangedeventargs#binding)|Ruft ein temporäres `Binding` Objekt ab, das die ID des `Binding` Objekts enthält, das das Ereignis ausgelöst hat.|
-|[BindingSelectionChangedEventArgs](/javascript/api/excel/excel.bindingselectionchangedeventargs)|[binding](/javascript/api/excel/excel.bindingselectionchangedeventargs#binding)|Ruft ein temporäres `Binding` Objekt ab, das die ID des `Binding` Objekts enthält, das das Ereignis ausgelöst hat.|
+|[BindingDataChangedEventArgs](/javascript/api/excel/excel.bindingdatachangedeventargs)|[binding](/javascript/api/excel/excel.bindingdatachangedeventargs#binding)|Ruft ein temporäres  `Binding`   Objekt ab, das die ID des  `Binding`   Objekts enthält, das das Ereignis ausgelöst hat.Verwenden Sie diese ID, `BindingCollection.getItem(id)`   um die Bindung abzurufen.|
+|[BindingSelectionChangedEventArgs](/javascript/api/excel/excel.bindingselectionchangedeventargs)|[binding](/javascript/api/excel/excel.bindingselectionchangedeventargs#binding)|Ruft ein temporäres  `Binding`   Objekt ab, das die ID des  `Binding`   Objekts enthält, das das Ereignis ausgelöst hat.Verwenden Sie diese ID, `BindingCollection.getItem(id)`   um die Bindung abzurufen.|
 ||[ColumnCount](/javascript/api/excel/excel.bindingselectionchangedeventargs#columncount)|Ruft die Anzahl der ausgewählten Spalten ab.|
 ||[RowCount](/javascript/api/excel/excel.bindingselectionchangedeventargs#rowcount)|Ruft die Anzahl der ausgewählten Zeilen ab.|
 ||[startColumn](/javascript/api/excel/excel.bindingselectionchangedeventargs#startcolumn)|Ruft den Index der ersten Spalte der Auswahl ab (nullbasiert).|
