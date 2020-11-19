@@ -13,7 +13,7 @@
 ||[minimum](/javascript/api/excel/excel.conditionalcolorscalecriteria#minimum)|Das Minimumpunktkriterium der Farbskala.|
 |[ConditionalColorScaleCriterion](/javascript/api/excel/excel.conditionalcolorscalecriterion)|[color](/javascript/api/excel/excel.conditionalcolorscalecriterion#color)|HTML-Farb Codedarstellung der Farbskalen Farbe (beispielsweise #FF0000 rot).|
 ||[formula](/javascript/api/excel/excel.conditionalcolorscalecriterion#formula)|Eine Zahl, eine Formel oder NULL (für Typ „LowestValue“).|
-||[Typ](/javascript/api/excel/excel.conditionalcolorscalecriterion#type)|Worauf das Kriterium bedingte Formel basieren soll.|
+||[type](/javascript/api/excel/excel.conditionalcolorscalecriterion#type)|Worauf das Kriterium bedingte Formel basieren soll.|
 |[ConditionalDataBarNegativeFormat](/javascript/api/excel/excel.conditionaldatabarnegativeformat)|[BorderColor](/javascript/api/excel/excel.conditionaldatabarnegativeformat#bordercolor)|HTML-Farbcode, der die Farbe der Rahmenlinie, des Formulars #RRGGBB (z. B.  "FFA500") oder als benannte HTML-Farbe (z. B. "orange") darstellt.|
 ||[FillColor](/javascript/api/excel/excel.conditionaldatabarnegativeformat#fillcolor)|HTML-Farbcode, der die Füllfarbe darstellt, des Formulars #RRGGBB (beispielsweise "FFA500") oder als benannte HTML-Farbe (beispielsweise "Orange").|
 ||[matchPositiveBorderColor](/javascript/api/excel/excel.conditionaldatabarnegativeformat#matchpositivebordercolor)|Gibt an, ob der negative Datenleiste dieselbe Rahmenfarbe wie der positive Datenbereich aufweist.|
@@ -22,7 +22,7 @@
 ||[FillColor](/javascript/api/excel/excel.conditionaldatabarpositiveformat#fillcolor)|HTML-Farbcode, der die Füllfarbe darstellt, des Formulars #RRGGBB (beispielsweise "FFA500") oder als benannte HTML-Farbe (beispielsweise "Orange").|
 ||[gradientFill](/javascript/api/excel/excel.conditionaldatabarpositiveformat#gradientfill)|Gibt an, ob der Datenbalken einen Farbverlauf aufweist.|
 |[ConditionalDataBarRule](/javascript/api/excel/excel.conditionaldatabarrule)|[formula](/javascript/api/excel/excel.conditionaldatabarrule#formula)|Die Formel, sofern erforderlich, nach der die Datenbalkenregel ausgewertet werden soll.|
-||[Typ](/javascript/api/excel/excel.conditionaldatabarrule#type)|Der Typ der Regel für den datenbar.|
+||[type](/javascript/api/excel/excel.conditionaldatabarrule#type)|Der Typ der Regel für den datenbar.|
 |[ConditionalFormat](/javascript/api/excel/excel.conditionalformat)|[delete()](/javascript/api/excel/excel.conditionalformat#delete--)|Löscht dieses bedingte Format.|
 ||[getRange()](/javascript/api/excel/excel.conditionalformat#getrange--)|Gibt den Bereich zurück, auf den das bedingte Format angewendet wird.|
 ||[getRangeOrNullObject()](/javascript/api/excel/excel.conditionalformat#getrangeornullobject--)|Gibt den Bereich zurück, auf den das bedingte-Format angewendet wird, oder ein NULL-Objekt, wenn das bedingte Format auf mehrere Bereiche angewendet wird.|
@@ -44,7 +44,7 @@
 ||[textComparisonOrNullObject](/javascript/api/excel/excel.conditionalformat#textcomparisonornullobject)|Gibt die spezifischen Text bedingten Formateigenschaften zurück, wenn es sich bei dem aktuellen bedingten Format um einen Texttyp handelt.|
 ||[topBottom](/javascript/api/excel/excel.conditionalformat#topbottom)|Gibt die oberen/unteren bedingten Formateigenschaften zurück, wenn es sich bei dem aktuellen bedingten Format um einen untersten Typ handelt.|
 ||[topBottomOrNullObject](/javascript/api/excel/excel.conditionalformat#topbottomornullobject)|Gibt die oberen/unteren bedingten Formateigenschaften zurück, wenn es sich bei dem aktuellen bedingten Format um einen untersten Typ handelt.|
-||[Typ](/javascript/api/excel/excel.conditionalformat#type)|Ein Typ von bedingter Formatierung.|
+||[type](/javascript/api/excel/excel.conditionalformat#type)|Ein Typ von bedingter Formatierung.|
 ||[stopIfTrue](/javascript/api/excel/excel.conditionalformat#stopiftrue)|Wenn die Bedingungen dieses bedingten Formats erfüllt sind, werden keine Formate niedrigerer Priorität für diese Zelle wirksam.|
 |[ConditionalFormatCollection](/javascript/api/excel/excel.conditionalformatcollection)|[Add (Typ: Excel. ConditionalFormatType)](/javascript/api/excel/excel.conditionalformatcollection#add-type-)|Fügt der Auflistung ein neues bedingtes Format an der ersten/obersten Priorität hinzu.|
 ||[clearAll ()](/javascript/api/excel/excel.conditionalformatcollection#clearall--)|Löscht alle bedingten Formate, die im aktuellen angegebenen Bereich aktiv sind.|
@@ -58,7 +58,7 @@
 |[ConditionalIconCriterion](/javascript/api/excel/excel.conditionaliconcriterion)|[customIcon](/javascript/api/excel/excel.conditionaliconcriterion#customicon)|Das benutzerdefinierte Symbol für das aktuelle Kriterium, sofern verschieden vom Standard-IconSet; andernfalls wird NULL zurückgegeben.|
 ||[formula](/javascript/api/excel/excel.conditionaliconcriterion#formula)|Eine Zahl oder eine Formel, je nach Typ.|
 ||[operator](/javascript/api/excel/excel.conditionaliconcriterion#operator)|GreaterThan oder GreaterThanOrEqual für jeden Typ des Regel Typs für das bedingte Symbol Format.|
-||[Typ](/javascript/api/excel/excel.conditionaliconcriterion#type)|Die Basis für die bedingte Symbolformel.|
+||[type](/javascript/api/excel/excel.conditionaliconcriterion#type)|Die Basis für die bedingte Symbolformel.|
 |[ConditionalPresetCriteriaRule](/javascript/api/excel/excel.conditionalpresetcriteriarule)|[Kriterium](/javascript/api/excel/excel.conditionalpresetcriteriarule#criterion)|Das Kriterium des bedingten Formats.|
 |[ConditionalRangeBorder](/javascript/api/excel/excel.conditionalrangeborder)|[color](/javascript/api/excel/excel.conditionalrangeborder#color)|HTML-Farbcode, der die Farbe der Rahmenlinie, des Formulars #RRGGBB (z. B.  "FFA500") oder als benannte HTML-Farbe (z. B. "orange") darstellt.|
 ||[sideIndex](/javascript/api/excel/excel.conditionalrangeborder#sideindex)|Konstanter Wert, der die bestimmte Seiten des Rahmens angibt.|
@@ -86,7 +86,7 @@
 |[ConditionalTextComparisonRule](/javascript/api/excel/excel.conditionaltextcomparisonrule)|[operator](/javascript/api/excel/excel.conditionaltextcomparisonrule#operator)|Der Operator des bedingten Textformats.|
 ||[text](/javascript/api/excel/excel.conditionaltextcomparisonrule#text)|Der Textwert des bedingten Formats.|
 |[ConditionalTopBottomRule](/javascript/api/excel/excel.conditionaltopbottomrule)|[rank](/javascript/api/excel/excel.conditionaltopbottomrule#rank)|Der Rang zwischen 1 und 1000 für numerische Ränge oder 1 und 100 als Prozentränge.|
-||[Typ](/javascript/api/excel/excel.conditionaltopbottomrule#type)|Formatieren Sie Werte basierend auf dem oberen oder unteren Rang.|
+||[type](/javascript/api/excel/excel.conditionaltopbottomrule#type)|Formatieren Sie Werte basierend auf dem oberen oder unteren Rang.|
 |[CustomConditionalFormat](/javascript/api/excel/excel.customconditionalformat)|[format](/javascript/api/excel/excel.customconditionalformat#format)|Gibt ein Format-Objekt zurück, das die Schriftart, Füllung, Rahmen und andere Eigenschaften für bedingte Formate kapselt.|
 ||[Regel](/javascript/api/excel/excel.customconditionalformat#rule)|Gibt das Rule-Objekt für dieses bedingte Format an.|
 |[DataBarConditionalFormat](/javascript/api/excel/excel.databarconditionalformat)|[axisColor](/javascript/api/excel/excel.databarconditionalformat#axiscolor)|HTML-Farbcode, der die Farbe der Achsenlinie, des Formulars #RRGGBB (z. b. "FFA500") oder als benannte HTML-Farbe (beispielsweise "Orange") darstellt.|
@@ -105,8 +105,8 @@
 ||[Regel](/javascript/api/excel/excel.presetcriteriaconditionalformat#rule)|Die Regel des bedingten Formats.|
 |[Range](/javascript/api/excel/excel.range)|[calculate()](/javascript/api/excel/excel.range#calculate--)|Berechnet einen Zellbereich auf einem Arbeitsblatt.|
 ||[conditionalFormats](/javascript/api/excel/excel.range#conditionalformats)|Die ConditionalFormats-Auflistung, die den Bereich schneidet.|
-|[TextConditionalFormat](/javascript/api/excel/excel.textconditionalformat)|[format](/javascript/api/excel/excel.textconditionalformat#format)|Gibt ein Format-Objekt zurück, das die Schriftart, Füllung, Rahmen und andere Eigenschaften für bedingte Formate kapselt.|
+|[TextConditionalFormat](/javascript/api/excel/excel.textconditionalformat)|[format](/javascript/api/excel/excel.textconditionalformat#format)|Gibt ein Format-Objekt zurück, das die Schriftart, Füllung, Rahmen und andere Eigenschaften der bedingten Formatierung kapselt.|
 ||[Regel](/javascript/api/excel/excel.textconditionalformat#rule)|Die Regel des bedingten Formats.|
-|[TopBottomConditionalFormat](/javascript/api/excel/excel.topbottomconditionalformat)|[format](/javascript/api/excel/excel.topbottomconditionalformat#format)|Gibt ein Format-Objekt zurück, das die Schriftart, Füllung, Rahmen und andere Eigenschaften für bedingte Formate kapselt.|
+|[TopBottomConditionalFormat](/javascript/api/excel/excel.topbottomconditionalformat)|[format](/javascript/api/excel/excel.topbottomconditionalformat#format)|Gibt ein Format-Objekt zurück, das die Schriftart, Füllung, Rahmen und andere Eigenschaften der bedingten Formatierung kapselt.|
 ||[Regel](/javascript/api/excel/excel.topbottomconditionalformat#rule)|Die Kriterien des bedingten Formats oben/unten.|
 |[Arbeitsblatt](/javascript/api/excel/excel.worksheet)|[Calculate (markAllDirty: Boolean)](/javascript/api/excel/excel.worksheet#calculate-markalldirty-)|Berechnet alle Zellen auf einem Arbeitsblatt.|
