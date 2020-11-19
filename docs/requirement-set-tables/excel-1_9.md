@@ -72,7 +72,7 @@
 ||[allowUnderflow](/javascript/api/excel/excel.chartbinoptions#allowunderflow)|Gibt an, ob der Papierkorb Unterlauf in einem Histogramm-oder Pareto-Diagramm aktiviert ist.|
 ||[count](/javascript/api/excel/excel.chartbinoptions#count)|Gibt die Anzahl der Container eines Histogramms oder eines Pareto-Diagramms an.|
 ||[overflowValue](/javascript/api/excel/excel.chartbinoptions#overflowvalue)|Gibt den Wert des bin-Überlauf Werts eines Histogramm-oder Pareto-Diagramms an.|
-||[Typ](/javascript/api/excel/excel.chartbinoptions#type)|Gibt den Typ des Papierkorbs für ein Histogramm-oder Pareto-Diagramm an.|
+||[type](/javascript/api/excel/excel.chartbinoptions#type)|Gibt den Typ des Papierkorbs für ein Histogramm-oder Pareto-Diagramm an.|
 ||[underflowValue](/javascript/api/excel/excel.chartbinoptions#underflowvalue)|Gibt den Wert des Papierkorbs für ein Histogramm-oder Pareto-Diagramm an.|
 ||[width](/javascript/api/excel/excel.chartbinoptions#width)|Gibt den Wert der bin-Breite eines Histogramm-oder Pareto-Diagramms an.|
 |[ChartBoxwhiskerOptions](/javascript/api/excel/excel.chartboxwhiskeroptions)|[quartileCalculation](/javascript/api/excel/excel.chartboxwhiskeroptions#quartilecalculation)|Gibt an, ob der geteilte Berechnungstyp für ein Feld und ein Schnurrbart Diagramm angezeigt wird.|
@@ -280,7 +280,7 @@
 |[RangeFill](/javascript/api/excel/excel.rangefill)|[pattern](/javascript/api/excel/excel.rangefill#pattern)|Das Muster eines Bereichs.|
 ||[patternColor](/javascript/api/excel/excel.rangefill#patterncolor)|Der HTML-Farbcode, der die Farbe des Bereichs Musters, des Formulars #RRGGBB (beispielsweise "FFA500") oder als benannte HTML-Farbe (beispielsweise "Orange") darstellt.|
 ||[patternTintAndShade](/javascript/api/excel/excel.rangefill#patterntintandshade)|Gibt einen Double-Wert an, der eine Musterfarbe für die Bereichs Füllung aufhellt oder verdunkelt, wobei der Wert zwischen-1 (am dunkelsten) und 1 (am hellsten) mit 0 für die ursprüngliche Farbe liegt.|
-||[tintAndShade](/javascript/api/excel/excel.rangefill#tintandshade)|Gibt einen Double-Wert an, der eine Farbe für die Bereichs Füllung aufhellt oder verdunkelt, wobei der Wert zwischen-1 (am dunkelsten) und 1 (am hellsten) mit 0 für die ursprüngliche Farbe liegt.|
+||[tintAndShade](/javascript/api/excel/excel.rangefill#tintandshade)|Gibt einen Double-Wert an, der eine Farbe für die Bereichs Füllung aufhellt oder verdunkelt.|
 |[RangeFont](/javascript/api/excel/excel.rangefont)|[strikethrough](/javascript/api/excel/excel.rangefont#strikethrough)|Gibt den durchgestrichen Status der Schriftart an.|
 ||[subscript](/javascript/api/excel/excel.rangefont#subscript)|Gibt den tiefgestellten Status der Schriftart an.|
 ||[superscript](/javascript/api/excel/excel.rangefont#superscript)|Gibt den Superscript-Status der Schriftart an.|
@@ -359,7 +359,7 @@
 ||[worksheetId](/javascript/api/excel/excel.shapedeactivatedeventargs#worksheetid)|Ruft die ID des Arbeitsblatts ab, auf dem die Form deaktiviert wird.|
 |[ShapeFill](/javascript/api/excel/excel.shapefill)|[clear()](/javascript/api/excel/excel.shapefill#clear--)|Löscht die Füllungsformatierung dieser Form.|
 ||[foregroundColor](/javascript/api/excel/excel.shapefill#foregroundcolor)|Stellt die Vordergrundfarbe der Formfüllung im HTML-Farbformat, des Formulars #RRGGBB (z. b. "FFA500") oder als benannte HTML-Farbe (beispielsweise "Orange") dar.|
-||[Typ](/javascript/api/excel/excel.shapefill#type)|Gibt den Füllungstyp der Form zurück.|
+||[type](/javascript/api/excel/excel.shapefill#type)|Gibt den Füllungstyp der Form zurück.|
 ||[setSolidColor(color: string)](/javascript/api/excel/excel.shapefill#setsolidcolor-color-)|Legt die Füllungsformatierung der Form auf einfarbige Füllung fest.|
 ||[transparency](/javascript/api/excel/excel.shapefill#transparency)|Gibt den Transparenz Prozentsatz der Füllung als Wert von 0,0 (deckend) bis 1,0 (Clear) an.|
 |[ShapeFont](/javascript/api/excel/excel.shapefont)|[bold](/javascript/api/excel/excel.shapefont#bold)|Stellt den Fett-Status der Schriftart dar.|
@@ -392,7 +392,7 @@
 |[TableDeletedEventArgs](/javascript/api/excel/excel.tabledeletedeventargs)|[source](/javascript/api/excel/excel.tabledeletedeventargs#source)|Ruft die Quelle des Ereignisses ab.|
 ||[tableId](/javascript/api/excel/excel.tabledeletedeventargs#tableid)|Ruft die ID der Tabelle ab, die gelöscht wird.|
 ||[tableName](/javascript/api/excel/excel.tabledeletedeventargs#tablename)|Ruft den Namen der Tabelle ab, die gelöscht wird.|
-||[Typ](/javascript/api/excel/excel.tabledeletedeventargs#type)|Ruft den Typ des Ereignisses ab.|
+||[type](/javascript/api/excel/excel.tabledeletedeventargs#type)|Ruft den Typ des Ereignisses ab.|
 ||[worksheetId](/javascript/api/excel/excel.tabledeletedeventargs#worksheetid)|Ruft die ID des Arbeitsblatts ab, in dem die Tabelle gelöscht wird.|
 |[TableScopedCollection](/javascript/api/excel/excel.tablescopedcollection)|[getCount()](/javascript/api/excel/excel.tablescopedcollection#getcount--)|Ruft die Anzahl von Tabellen in der Auflistung ab.|
 ||[getFirst()](/javascript/api/excel/excel.tablescopedcollection#getfirst--)|Ruft die erste Tabelle in der Sammlung ab.|
@@ -426,7 +426,7 @@
 ||[onAutoSaveSettingChanged](/javascript/api/excel/excel.workbook#onautosavesettingchanged)|Tritt ein, wenn die AutoSpeichern-Einstellung für die Arbeitsmappe geändert wird.|
 ||[previouslySaved](/javascript/api/excel/excel.workbook#previouslysaved)|Gibt an, ob die Arbeitsmappe jemals lokal oder online gespeichert wurde.|
 ||[usePrecisionAsDisplayed](/javascript/api/excel/excel.workbook#useprecisionasdisplayed)|True, wenn die Berechnungen in dieser Arbeitsmappe nur mit der Genauigkeit durchgeführt werden, mit der die Zahlen angezeigt werden.|
-|[WorkbookAutoSaveSettingChangedEventArgs](/javascript/api/excel/excel.workbookautosavesettingchangedeventargs)|[Typ](/javascript/api/excel/excel.workbookautosavesettingchangedeventargs#type)|Ruft den Typ des Ereignisses ab.|
+|[WorkbookAutoSaveSettingChangedEventArgs](/javascript/api/excel/excel.workbookautosavesettingchangedeventargs)|[type](/javascript/api/excel/excel.workbookautosavesettingchangedeventargs#type)|Ruft den Typ des Ereignisses ab.|
 |[Arbeitsblatt](/javascript/api/excel/excel.worksheet)|[enableCalculation](/javascript/api/excel/excel.worksheet#enablecalculation)|Bestimmt, ob Excel das Arbeitsblatt bei Bedarf neu berechnen sollte.|
 ||[findAll(text: string, criteria: Excel.WorksheetSearchCriteria)](/javascript/api/excel/excel.worksheet#findall-text--criteria-)|Findet alle Vorkommen der angegebenen Zeichenfolge auf der Grundlage der angegebenen Kriterien und gibt sie als RangeAreas-Objekt zurück, das einen oder mehrere rechteckige Bereiche umfasst.|
 ||[findAllOrNullObject(text: string, criteria: Excel.WorksheetSearchCriteria)](/javascript/api/excel/excel.worksheet#findallornullobject-text--criteria-)|Findet alle Vorkommen der angegebenen Zeichenfolge auf der Grundlage der angegebenen Kriterien und gibt sie als RangeAreas-Objekt zurück, das einen oder mehrere rechteckige Bereiche umfasst.|
@@ -446,7 +446,7 @@
 ||[getRange(ctx: Excel.RequestContext)](/javascript/api/excel/excel.worksheetformatchangedeventargs#getrange-ctx-)|Ruft den Bereich ab, der den geänderten Bereich eines bestimmten Arbeitsblatts darstellt.|
 ||[getRangeOrNullObject(ctx: Excel.RequestContext)](/javascript/api/excel/excel.worksheetformatchangedeventargs#getrangeornullobject-ctx-)|Ruft den Bereich ab, der den geänderten Bereich eines bestimmten Arbeitsblatts darstellt.|
 ||[source](/javascript/api/excel/excel.worksheetformatchangedeventargs#source)|Ruft die Quelle des Ereignisses ab.|
-||[Typ](/javascript/api/excel/excel.worksheetformatchangedeventargs#type)|Ruft den Typ des Ereignisses ab.|
+||[type](/javascript/api/excel/excel.worksheetformatchangedeventargs#type)|Ruft den Typ des Ereignisses ab.|
 ||[worksheetId](/javascript/api/excel/excel.worksheetformatchangedeventargs#worksheetid)|Ruft die ID des Arbeitsblatts ab, auf dem die Daten geändert wurden.|
 |[WorksheetSearchCriteria](/javascript/api/excel/excel.worksheetsearchcriteria)|[completeMatch](/javascript/api/excel/excel.worksheetsearchcriteria#completematch)|Gibt an, ob die Übereinstimmung vollständig oder partiell sein muss.|
 ||[matchCase](/javascript/api/excel/excel.worksheetsearchcriteria#matchcase)|Gibt an, ob bei der Übereinstimmung die Groß-/Kleinschreibung beachtet wird.|
