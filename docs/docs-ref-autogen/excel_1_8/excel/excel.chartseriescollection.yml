@@ -1,293 +1,190 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'excel!Excel.ChartSeriesCollection:class'
-    summary: |-
-      Stellt eine Sammlung von Diagrammdatenreihen dar.
-
-      \[[API-Gruppe: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: Excel.ChartSeriesCollection
-    fullName: Excel.ChartSeriesCollection
-    langs:
-      - typeScript
-    type: class
-    extends:
-      - 'office!OfficeExtension.ClientObject:class'
-    package: excel!
-    children:
-      - 'excel!Excel.ChartSeriesCollection#add:member(1)'
-      - 'excel!Excel.ChartSeriesCollection#context:member'
-      - 'excel!Excel.ChartSeriesCollection#count:member'
-      - 'excel!Excel.ChartSeriesCollection#getCount:member(1)'
-      - 'excel!Excel.ChartSeriesCollection#getItemAt:member(1)'
-      - 'excel!Excel.ChartSeriesCollection#items:member'
-      - 'excel!Excel.ChartSeriesCollection#load:member(1)'
-      - 'excel!Excel.ChartSeriesCollection#load:member(2)'
-      - 'excel!Excel.ChartSeriesCollection#load:member(3)'
-      - 'excel!Excel.ChartSeriesCollection#toJSON:member(1)'
-  - uid: 'excel!Excel.ChartSeriesCollection#add:member(1)'
-    summary: |-
-      Fügt der Sammlung eine neue Reihe hinzu. Die neue hinzugefügte Datenreihe ist erst dann sichtbar, wenn die festgelegten Werte/x-Achsenwerte/Blasengrößen dafür (je nach Diagrammtyp).
-
-      \[[API-Gruppe: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: 'add(name, index)'
-    fullName: 'add(name, index)'
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'add(name?: string, index?: number): Excel.ChartSeries;'
-      return:
-        type:
-          - 'excel!Excel.ChartSeries:class'
-        description: ''
-      parameters:
-        - id: name
-          description: Optional. Der Name der Datenreihe.
-          type:
-            - string
-        - id: index
-          description: Optional. Indexwert der hinzuzufügenden Datenreihe. Nullindiziert.
-          type:
-            - number
-  - uid: 'excel!Excel.ChartSeriesCollection#context:member'
-    summary: 'Der Anforderungskontext, der mit dem Objekt verknüpft ist. Dadurch wird das Add-in-Verfahren mit dem Prozess der Office-Hostanwendung verbunden.'
-    name: context
-    fullName: context
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'context: RequestContext;'
-      return:
-        type:
-          - 'excel!Excel.RequestContext:class'
-  - uid: 'excel!Excel.ChartSeriesCollection#count:member'
-    summary: |-
-      Gibt die Anzahl der Datenreihen in der Sammlung zurück.
-
-      \[[API-Gruppe: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: count
-    fullName: count
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly count: number;'
-      return:
-        type:
-          - number
-  - uid: 'excel!Excel.ChartSeriesCollection#getCount:member(1)'
-    summary: |-
-      Gibt die Anzahl der Datenreihen in der Sammlung zurück.
-
-      \[[API-Gruppe: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: getCount()
-    fullName: getCount()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getCount(): OfficeExtension.ClientResult<number>;'
-      return:
-        type:
-          - 'excel!Excel.ChartSeriesCollection#getCount~0:complex'
-        description: ''
-  - uid: 'excel!Excel.ChartSeriesCollection#getItemAt:member(1)'
-    summary: |-
-      Ruft eine Datenreihe anhand ihrer Position in der Sammlung ab.
-
-      \[[API-Gruppe: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-    name: getItemAt(index)
-    fullName: getItemAt(index)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'getItemAt(index: number): Excel.ChartSeries;'
-      return:
-        type:
-          - 'excel!Excel.ChartSeries:class'
-        description: |-
+### YamlMime:TSType
+name: Excel.ChartSeriesCollection
+uid: excel!Excel.ChartSeriesCollection:class
+package: excel!
+fullName: Excel.ChartSeriesCollection
+summary: >-
+  Stellt eine Sammlung von Diagrammdatenreihen dar.
 
 
-          #### <a name="examples"></a>Beispiele
-
-          ```javascript
-          // Get the name of the first series in the series collection.
-          Excel.run(function (ctx) { 
-              var seriesCollection = ctx.workbook.worksheets.getItem("Sheet1").charts.getItem("Chart1").series;
-              seriesCollection.load('items');
-              return ctx.sync().then(function() {
-                  console.log(seriesCollection.items[0].name);
-              });
-          }).catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-      parameters:
-        - id: index
-          description: Index-Wert des abzurufenden Objekts. Nullindiziert.
-          type:
-            - number
-  - uid: 'excel!Excel.ChartSeriesCollection#items:member'
-    summary: Ruft die geladenen untergeordneten Elemente in dieser Sammlung ab.
-    name: items
-    fullName: items
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'readonly items: Excel.ChartSeries[];'
-      return:
-        type:
-          - 'excel!Excel.ChartSeriesCollection#items~0:complex'
-  - uid: 'excel!Excel.ChartSeriesCollection#load:member(1)'
-    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
-    name: load(options)
-    fullName: load(options)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(options?: Excel.Interfaces.ChartSeriesCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.ChartSeriesCollection;'
-      return:
-        type:
-          - 'excel!Excel.ChartSeriesCollection:class'
-        description: ''
-      parameters:
-        - id: options
-          description: Enthält Optionen für die Eigenschaften des zu ladenden Objekts.
-          type:
-            - 'excel!Excel.ChartSeriesCollection#load~0:complex'
-  - uid: 'excel!Excel.ChartSeriesCollection#load:member(2)'
-    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
-    name: load(propertyNames)
-    fullName: load(propertyNames)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(propertyNames?: string | string[]): Excel.ChartSeriesCollection;'
-      return:
-        type:
-          - 'excel!Excel.ChartSeriesCollection:class'
-        description: |-
+  \[[API-Gruppe: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: context
+  uid: excel!Excel.ChartSeriesCollection#context:member
+  package: excel!
+  fullName: context
+  summary: Der Anforderungskontext, der mit dem Objekt verknüpft ist. Dadurch wird das Add-in-Verfahren mit dem Prozess der Office-Hostanwendung verbunden.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="excel!Excel.RequestContext:class" />
+- name: count
+  uid: excel!Excel.ChartSeriesCollection#count:member
+  package: excel!
+  fullName: count
+  summary: >-
+    Gibt die Anzahl der Datenreihen in der Sammlung zurück.
 
 
-          #### <a name="examples"></a>Beispiele
+    \[[API-Gruppe: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly count: number;'
+    return:
+      type: number
+- name: items
+  uid: excel!Excel.ChartSeriesCollection#items:member
+  package: excel!
+  fullName: items
+  summary: Ruft die geladenen untergeordneten Elemente in dieser Sammlung ab.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly items: Excel.ChartSeries[];'
+    return:
+      type: <xref uid="excel!Excel.ChartSeries:class" />[]
+methods:
+- name: add(name, index)
+  uid: excel!Excel.ChartSeriesCollection#add:member(1)
+  package: excel!
+  fullName: add(name, index)
+  summary: >-
+    Fügt der Sammlung eine neue Reihe hinzu. Die neue hinzugefügte Datenreihe ist erst dann sichtbar, wenn die festgelegten Werte/x-Achsenwerte/Blasengrößen dafür (je nach Diagrammtyp).
 
-          ```javascript
-          // Getting the names of series in the series collection.
-          Excel.run(function (ctx) { 
-              var seriesCollection = ctx.workbook.worksheets.getItem("Sheet1").charts.getItem("Chart1").series;
-              seriesCollection.load('items');
-              return ctx.sync().then(function() {
-                  for (var i = 0; i < seriesCollection.items.length; i++)
-                  {
-                      console.log(seriesCollection.items[i].name);
-                  }
-              });
-          }).catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-          ```javascript
-          // Get the number of chart series in collection.
-          Excel.run(function (ctx) { 
-              var seriesCollection = ctx.workbook.worksheets.getItem("Sheet1").charts.getItem("Chart1").series;
-              seriesCollection.load('count');
-              return ctx.sync().then(function() {
-                  console.log("series: Count= " + seriesCollection.count);
-              });
-          }).catch(function(error) {
-              console.log("Error: " + error);
-              if (error instanceof OfficeExtension.Error) {
-                  console.log("Debug info: " + JSON.stringify(error.debugInfo));
-              }
-          });
-          ```
-      parameters:
-        - id: propertyNames
-          description: 'Eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.'
-          type:
-            - 'string | string[]'
-  - uid: 'excel!Excel.ChartSeriesCollection#load:member(3)'
-    summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
-    name: load(propertyNamesAndPaths)
-    fullName: load(propertyNamesAndPaths)
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): Excel.ChartSeriesCollection;'
-      return:
-        type:
-          - 'excel!Excel.ChartSeriesCollection:class'
-        description: ''
-      parameters:
-        - id: propertyNamesAndPaths
-          description: '`propertyNamesAndPaths.select`ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und `propertyNamesAndPaths.expand` ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
-          type:
-            - 'office!OfficeExtension.LoadOption:interface'
-  - uid: 'excel!Excel.ChartSeriesCollection#toJSON:member(1)'
-    summary: 'Überschreibt die JavaScript `toJSON()` -Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird.`JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche `Excel.ChartSeriesCollection` Objekt ein API-Objekt ist, `toJSON` gibt die Methode ein einfaches JavaScript-Objekt (typisiert als`Excel.Interfaces.ChartSeriesCollectionData`<!-- -->), die ein "Items"-Array mit flachen Kopien aller geladenen Eigenschaften aus den Elementen der Auflistung enthält.'
-    name: toJSON()
-    fullName: toJSON()
-    langs:
-      - typeScript
-    type: method
-    syntax:
-      content: 'toJSON(): Excel.Interfaces.ChartSeriesCollectionData;'
-      return:
-        type:
-          - 'excel!Excel.Interfaces.ChartSeriesCollectionData:interface'
-        description: ''
-references:
-  - uid: 'office!OfficeExtension.ClientObject:class'
-    name: OfficeExtension.ClientObject
-  - uid: 'excel!Excel.ChartSeries:class'
-    name: Excel.ChartSeries
-  - uid: 'excel!Excel.RequestContext:class'
-    name: RequestContext
-  - uid: 'excel!Excel.ChartSeriesCollection#getCount~0:complex'
-    name: OfficeExtension.ClientResult<number>
-    fullName: OfficeExtension.ClientResult<number>
-    spec.typeScript:
-      - uid: 'office!OfficeExtension.ClientResult:class'
-        name: OfficeExtension.ClientResult
-        fullName: OfficeExtension.ClientResult
-      - name: <number>
-        fullName: <number>
-  - uid: 'excel!Excel.ChartSeriesCollection#items~0:complex'
-    name: 'Excel.ChartSeries[]'
-    fullName: 'Excel.ChartSeries[]'
-    spec.typeScript:
-      - uid: 'excel!Excel.ChartSeries:class'
-        name: Excel.ChartSeries
-        fullName: Excel.ChartSeries
-      - name: '[]'
-        fullName: '[]'
-  - uid: 'excel!Excel.ChartSeriesCollection:class'
-    name: Excel.ChartSeriesCollection
-  - uid: 'excel!Excel.ChartSeriesCollection#load~0:complex'
-    name: Excel.Interfaces.ChartSeriesCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
-    fullName: Excel.Interfaces.ChartSeriesCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions
-    spec.typeScript:
-      - uid: 'excel!Excel.Interfaces.ChartSeriesCollectionLoadOptions:interface'
-        name: Excel.Interfaces.ChartSeriesCollectionLoadOptions
-        fullName: Excel.Interfaces.ChartSeriesCollectionLoadOptions
-      - name: ' & '
-        fullName: ' & '
-      - uid: 'excel!Excel.Interfaces.CollectionLoadOptions:interface'
-        name: Excel.Interfaces.CollectionLoadOptions
-        fullName: Excel.Interfaces.CollectionLoadOptions
-  - uid: 'office!OfficeExtension.LoadOption:interface'
-    name: OfficeExtension.LoadOption
-  - uid: 'excel!Excel.Interfaces.ChartSeriesCollectionData:interface'
-    name: Excel.Interfaces.ChartSeriesCollectionData
+
+    \[[API-Gruppe: ExcelApi 1,7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'add(name?: string, index?: number): Excel.ChartSeries;'
+    parameters:
+    - id: name
+      description: Optional. Der Name der Datenreihe.
+      type: string
+    - id: index
+      description: Optional. Indexwert der hinzuzufügenden Datenreihe. Nullindiziert.
+      type: number
+    return:
+      type: <xref uid="excel!Excel.ChartSeries:class" />
+      description: ''
+- name: getCount()
+  uid: excel!Excel.ChartSeriesCollection#getCount:member(1)
+  package: excel!
+  fullName: getCount()
+  summary: >-
+    Gibt die Anzahl der Datenreihen in der Sammlung zurück.
+
+
+    \[[API-Gruppe: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getCount(): OfficeExtension.ClientResult<number>;'
+    return:
+      type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;number&gt;
+      description: ''
+- name: getItemAt(index)
+  uid: excel!Excel.ChartSeriesCollection#getItemAt:member(1)
+  package: excel!
+  fullName: getItemAt(index)
+  summary: >-
+    Ruft eine Datenreihe anhand ihrer Position in der Sammlung ab.
+
+
+    \[[API-Gruppe: ExcelApi 1,1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getItemAt(index: number): Excel.ChartSeries;'
+    parameters:
+    - id: index
+      description: Index-Wert des abzurufenden Objekts. Nullindiziert.
+      type: number
+    return:
+      type: <xref uid="excel!Excel.ChartSeries:class" />
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// Get the name of the first series in the series collection.\nExcel.run(function (ctx) { \n    var seriesCollection = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\").series;\n    seriesCollection.load('items');\n    return ctx.sync().then(function() {\n        console.log(seriesCollection.items[0].name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: load(options)
+  uid: excel!Excel.ChartSeriesCollection#load:member(1)
+  package: excel!
+  fullName: load(options)
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(options?: Excel.Interfaces.ChartSeriesCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.ChartSeriesCollection;'
+    parameters:
+    - id: options
+      description: Enthält Optionen für die Eigenschaften des zu ladenden Objekts.
+      type: <xref uid="excel!Excel.Interfaces.ChartSeriesCollectionLoadOptions:interface" /> & <xref uid="excel!Excel.Interfaces.CollectionLoadOptions:interface" />
+    return:
+      type: <xref uid="excel!Excel.ChartSeriesCollection:class" />
+      description: ''
+- name: load(propertyNames)
+  uid: excel!Excel.ChartSeriesCollection#load:member(2)
+  package: excel!
+  fullName: load(propertyNames)
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.ChartSeriesCollection;'
+    parameters:
+    - id: propertyNames
+      description: Eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.
+      type: string | string[]
+    return:
+      type: <xref uid="excel!Excel.ChartSeriesCollection:class" />
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// Getting the names of series in the series collection.\nExcel.run(function (ctx) { \n    var seriesCollection = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\").series;\n    seriesCollection.load('items');\n    return ctx.sync().then(function() {\n        for (var i = 0; i < seriesCollection.items.length; i++)\n        {\n            console.log(seriesCollection.items[i].name);\n        }\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// Get the number of chart series in collection.\nExcel.run(function (ctx) { \n    var seriesCollection = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\").series;\n    seriesCollection.load('count');\n    return ctx.sync().then(function() {\n        console.log(\"series: Count= \" + seriesCollection.count);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: load(propertyNamesAndPaths)
+  uid: excel!Excel.ChartSeriesCollection#load:member(3)
+  package: excel!
+  fullName: load(propertyNamesAndPaths)
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): Excel.ChartSeriesCollection;'
+    parameters:
+    - id: propertyNamesAndPaths
+      description: '`propertyNamesAndPaths.select` ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und `propertyNamesAndPaths.expand` ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
+      type: <xref uid="office!OfficeExtension.LoadOption:interface" />
+    return:
+      type: <xref uid="excel!Excel.ChartSeriesCollection:class" />
+      description: ''
+- name: toJSON()
+  uid: excel!Excel.ChartSeriesCollection#toJSON:member(1)
+  package: excel!
+  fullName: toJSON()
+  summary: Überschreibt die JavaScript `toJSON()` -Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird. `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche `Excel.ChartSeriesCollection` Objekt ein API-Objekt ist, `toJSON` gibt die Methode ein einfaches JavaScript-Objekt (typisiert als `Excel.Interfaces.ChartSeriesCollectionData`<!-- -->), die ein "Items"-Array mit flachen Kopien aller geladenen Eigenschaften aus den Elementen der Auflistung enthält.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.ChartSeriesCollectionData;'
+    return:
+      type: <xref uid="excel!Excel.Interfaces.ChartSeriesCollectionData:interface" />
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: 5a30643cea41ee0544de54fbf4b801d3ffbf6cb2
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: de-DE
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49175894"
