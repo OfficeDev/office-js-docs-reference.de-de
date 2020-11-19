@@ -1,197 +1,132 @@
-### YamlMime:UniversalReference
-items:
-  - uid: 'outlook!Office.Entities:interface'
-    summary: "Stellt eine Auflistung von in einer E-Mail-Nachricht oder einem Termin gefundenen Entitäten dar. Nur Lesemodus.\n\nDas `Entities`-Objekt ist ein Container für die Entitätsarrays, die von der `getEntities`-Methode und der `getEntitiesByType`-Methode zurückgegeben werden, wenn das Element (eine E-Mail-Nachricht oder ein Termin) mindestens eine vom Exchange-Server gefundene Entität enthält. Sie können diese Entitäten im Code verwenden, um zusätzliche Kontextinformationen für den Betrachter bereitzustellen, z. B. eine Karte für eine im Element gefundene Adresse anzeigen oder ein Wählprogramm für eine Telefonnummer im Element öffnen.\n\nWenn keine Entitäten des in der Eigenschaft angegebenen Typs im Element vorhanden sind, lautet die dieser Entität zugeordnete Eigenschaft null. Wenn eine Nachricht z.\_B. eine Adresse und eine Telefonnummer enthält, enthalten die addresses-Eigenschaft und die phoneNumbers-Eigenschaft Informationen, und die anderen Eigenschaften sind null.\n\nDamit eine Zeichenfolge als Adresse erkannt wird, muss sie eine US-Postadresse enthalten, die mindestens einen Teilsatz der Elemente Straßennummer, Straßenname, Stadt, Staat und Postleitzahl enthält.\n\nDamit die Zeichenfolge als Telefonnummer erkannt wird, muss die Zeichenfolge ein nordamerikanisches Telefonnummernformat enthalten.\n\nDie Entitätserkennung beruht auf der Erkennung von natürlicher Sprache, die auf großen, maschinell eingelernten Datenmengen basiert. Die Erkennung einer Entität ist nichtdeterministisch und der Erfolg hängt in einigen Fällen vom jeweiligen Kontext in einem Element ab.\n\nWenn die Eigenschaften Arrays von der-Methode zurückgegeben werden `getEntitiesByType` , enthält nur die-Eigenschaft für die angegebene Entität Daten; alle anderen Eigenschaften sind NULL."
-    remarks: |-
-      ** [Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- --> **:`ReadItem`
-
-      ** [Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- --> **: Lesen
-    name: Office.Entities
-    fullName: Office.Entities
-    langs:
-      - typeScript
-    type: interface
-    package: outlook!
-    children:
-      - 'outlook!Office.Entities#addresses:member'
-      - 'outlook!Office.Entities#contacts:member'
-      - 'outlook!Office.Entities#emailAddresses:member'
-      - 'outlook!Office.Entities#meetingSuggestions:member'
-      - 'outlook!Office.Entities#phoneNumbers:member'
-      - 'outlook!Office.Entities#taskSuggestions:member'
-      - 'outlook!Office.Entities#urls:member'
-  - uid: 'outlook!Office.Entities#addresses:member'
-    summary: Ruft die physischen Adressen (Postadressen) in einer E-Mail-Nachricht oder einem Termin ab.
-    name: addresses
-    fullName: addresses
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'addresses: string[];'
-      return:
-        type:
-          - 'string[]'
-        description: |-
+### YamlMime:TSType
+name: Office.Entities
+uid: outlook!Office.Entities:interface
+package: outlook!
+fullName: Office.Entities
+summary: >-
+  Stellt eine Auflistung von in einer E-Mail-Nachricht oder einem Termin gefundenen Entitäten dar. Nur Lesemodus.
 
 
-          #### <a name="examples"></a>Beispiele
-
-          ```javascript
-          var item = Office.context.mailbox.item;
-          var addresses = item.getEntitiesByType(Office.MailboxEnums.EntityType.Address);
-          ```
-  - uid: 'outlook!Office.Entities#contacts:member'
-    summary: Ruft die in einer E-Mail-Adresse oder einem Termin enthalten Kontakte ab.
-    name: contacts
-    fullName: contacts
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'contacts: Contact[];'
-      return:
-        type:
-          - 'outlook!Office.Entities#contacts~0:complex'
-        description: |-
+  Das `Entities`-Objekt ist ein Container für die Entitätsarrays, die von der `getEntities`-Methode und der `getEntitiesByType`-Methode zurückgegeben werden, wenn das Element (eine E-Mail-Nachricht oder ein Termin) mindestens eine vom Exchange-Server gefundene Entität enthält. Sie können diese Entitäten im Code verwenden, um zusätzliche Kontextinformationen für den Betrachter bereitzustellen, z. B. eine Karte für eine im Element gefundene Adresse anzeigen oder ein Wählprogramm für eine Telefonnummer im Element öffnen.
 
 
-          #### <a name="examples"></a>Beispiele
-
-          ```javascript
-          var item = Office.context.mailbox.item;
-          var contacts = item.getEntitiesByType(Office.MailboxEnums.EntityType.Contact);
-          ```
-  - uid: 'outlook!Office.Entities#emailAddresses:member'
-    summary: Ruft die E-Mail-Adressen in einer E-Mail-Nachricht oder einem Termin ab.
-    name: emailAddresses
-    fullName: emailAddresses
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'emailAddresses: string[];'
-      return:
-        type:
-          - 'string[]'
-        description: |-
+  Wenn keine Entitäten des in der Eigenschaft angegebenen Typs im Element vorhanden sind, lautet die dieser Entität zugeordnete Eigenschaft null. Wenn eine Nachricht z. B. eine Adresse und eine Telefonnummer enthält, enthalten die addresses-Eigenschaft und die phoneNumbers-Eigenschaft Informationen, und die anderen Eigenschaften sind null.
 
 
-          #### <a name="examples"></a>Beispiele
-
-          ```javascript
-          var item = Office.context.mailbox.item;
-          var emailAddresses = item.getEntitiesByType(Office.MailboxEnums.EntityType.EmailAddress);
-          ```
-  - uid: 'outlook!Office.Entities#meetingSuggestions:member'
-    summary: Ruft die Besprechungsvorschläge in einer E-Mail-Nachricht ab.
-    name: meetingSuggestions
-    fullName: meetingSuggestions
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'meetingSuggestions: MeetingSuggestion[];'
-      return:
-        type:
-          - 'outlook!Office.Entities#meetingSuggestions~0:complex'
-        description: |-
+  Damit eine Zeichenfolge als Adresse erkannt wird, muss sie eine US-Postadresse enthalten, die mindestens einen Teilsatz der Elemente Straßennummer, Straßenname, Stadt, Staat und Postleitzahl enthält.
 
 
-          #### <a name="examples"></a>Beispiele
-
-          ```javascript
-          var item = Office.context.mailbox.item;
-          var meetingSuggestions = item.getEntitiesByType(Office.MailboxEnums.EntityType.MeetingSuggestion);
-          ```
-  - uid: 'outlook!Office.Entities#phoneNumbers:member'
-    summary: Ruft die Telefonnummern in einer E-Mail-Nachricht oder einem Termin ab.
-    name: phoneNumbers
-    fullName: phoneNumbers
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'phoneNumbers: PhoneNumber[];'
-      return:
-        type:
-          - 'outlook!Office.Entities#phoneNumbers~0:complex'
-        description: |-
+  Damit die Zeichenfolge als Telefonnummer erkannt wird, muss die Zeichenfolge ein nordamerikanisches Telefonnummernformat enthalten.
 
 
-          #### <a name="examples"></a>Beispiele
-
-          ```javascript
-          var item = Office.context.mailbox.item;
-          var phoneNumbers = item.getEntitiesByType(Office.MailboxEnums.EntityType.PhoneNumber);
-          ```
-  - uid: 'outlook!Office.Entities#taskSuggestions:member'
-    summary: Ruft die in einer E-Mail-Nachricht oder einem Termin enthalten Vorgangsvorschläge ab.
-    name: taskSuggestions
-    fullName: taskSuggestions
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'taskSuggestions: string[];'
-      return:
-        type:
-          - 'string[]'
-        description: |-
+  Die Entitätserkennung beruht auf der Erkennung von natürlicher Sprache, die auf großen, maschinell eingelernten Datenmengen basiert. Die Erkennung einer Entität ist nichtdeterministisch und der Erfolg hängt in einigen Fällen vom jeweiligen Kontext in einem Element ab.
 
 
-          #### <a name="examples"></a>Beispiele
-
-          ```javascript
-          var item = Office.context.mailbox.item;
-          var taskSuggestions = item.getEntitiesByType(Office.MailboxEnums.EntityType.TaskSuggestion);
-          ```
-  - uid: 'outlook!Office.Entities#urls:member'
-    summary: Ruft die in einer E-Mail-Nachricht oder einem Termin enthaltenen Internet-URLs ab.
-    name: urls
-    fullName: urls
-    langs:
-      - typeScript
-    type: property
-    syntax:
-      content: 'urls: string[];'
-      return:
-        type:
-          - 'string[]'
-        description: |-
+  Wenn die Eigenschaften Arrays von der-Methode zurückgegeben werden `getEntitiesByType` , enthält nur die-Eigenschaft für die angegebene Entität Daten; alle anderen Eigenschaften sind NULL.
+remarks: >-
+  **[Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
 
 
-          #### <a name="examples"></a>Beispiele
-
-          ```javascript
-          var item = Office.context.mailbox.item;
-          var urls = item.getEntitiesByType(Office.MailboxEnums.EntityType.Url);
-          ```
-references:
-  - uid: 'outlook!Office.Entities#contacts~0:complex'
-    name: 'Contact[]'
-    fullName: 'Office.Contact[]'
-    spec.typeScript:
-      - uid: 'outlook!Office.Contact:interface'
-        name: Contact
-        fullName: Office.Contact
-      - name: '[]'
-        fullName: '[]'
-  - uid: 'outlook!Office.Entities#meetingSuggestions~0:complex'
-    name: 'MeetingSuggestion[]'
-    fullName: 'Office.MeetingSuggestion[]'
-    spec.typeScript:
-      - uid: 'outlook!Office.MeetingSuggestion:interface'
-        name: MeetingSuggestion
-        fullName: Office.MeetingSuggestion
-      - name: '[]'
-        fullName: '[]'
-  - uid: 'outlook!Office.Entities#phoneNumbers~0:complex'
-    name: 'PhoneNumber[]'
-    fullName: 'Office.PhoneNumber[]'
-    spec.typeScript:
-      - uid: 'outlook!Office.PhoneNumber:interface'
-        name: PhoneNumber
-        fullName: Office.PhoneNumber
-      - name: '[]'
-        fullName: '[]'
+  **[Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Lesen
+isPreview: false
+isDeprecated: false
+type: interface
+properties:
+- name: addresses
+  uid: outlook!Office.Entities#addresses:member
+  package: outlook!
+  fullName: addresses
+  summary: Ruft die physischen Adressen (Postadressen) in einer E-Mail-Nachricht oder einem Termin ab.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'addresses: string[];'
+    return:
+      type: string[]
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nvar item = Office.context.mailbox.item;\nvar addresses = item.getEntitiesByType(Office.MailboxEnums.EntityType.Address);\n```"
+- name: contacts
+  uid: outlook!Office.Entities#contacts:member
+  package: outlook!
+  fullName: contacts
+  summary: Ruft die in einer E-Mail-Adresse oder einem Termin enthalten Kontakte ab.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'contacts: Contact[];'
+    return:
+      type: <xref uid="outlook!Office.Contact:interface" />[]
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nvar item = Office.context.mailbox.item;\nvar contacts = item.getEntitiesByType(Office.MailboxEnums.EntityType.Contact);\n```"
+- name: emailAddresses
+  uid: outlook!Office.Entities#emailAddresses:member
+  package: outlook!
+  fullName: emailAddresses
+  summary: Ruft die E-Mail-Adressen in einer E-Mail-Nachricht oder einem Termin ab.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'emailAddresses: string[];'
+    return:
+      type: string[]
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nvar item = Office.context.mailbox.item;\nvar emailAddresses = item.getEntitiesByType(Office.MailboxEnums.EntityType.EmailAddress);\n```"
+- name: meetingSuggestions
+  uid: outlook!Office.Entities#meetingSuggestions:member
+  package: outlook!
+  fullName: meetingSuggestions
+  summary: Ruft die Besprechungsvorschläge in einer E-Mail-Nachricht ab.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'meetingSuggestions: MeetingSuggestion[];'
+    return:
+      type: <xref uid="outlook!Office.MeetingSuggestion:interface" />[]
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nvar item = Office.context.mailbox.item;\nvar meetingSuggestions = item.getEntitiesByType(Office.MailboxEnums.EntityType.MeetingSuggestion);\n```"
+- name: phoneNumbers
+  uid: outlook!Office.Entities#phoneNumbers:member
+  package: outlook!
+  fullName: phoneNumbers
+  summary: Ruft die Telefonnummern in einer E-Mail-Nachricht oder einem Termin ab.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'phoneNumbers: PhoneNumber[];'
+    return:
+      type: <xref uid="outlook!Office.PhoneNumber:interface" />[]
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nvar item = Office.context.mailbox.item;\nvar phoneNumbers = item.getEntitiesByType(Office.MailboxEnums.EntityType.PhoneNumber);\n```"
+- name: taskSuggestions
+  uid: outlook!Office.Entities#taskSuggestions:member
+  package: outlook!
+  fullName: taskSuggestions
+  summary: Ruft die in einer E-Mail-Nachricht oder einem Termin enthalten Vorgangsvorschläge ab.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'taskSuggestions: string[];'
+    return:
+      type: string[]
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nvar item = Office.context.mailbox.item;\nvar taskSuggestions = item.getEntitiesByType(Office.MailboxEnums.EntityType.TaskSuggestion);\n```"
+- name: urls
+  uid: outlook!Office.Entities#urls:member
+  package: outlook!
+  fullName: urls
+  summary: Ruft die in einer E-Mail-Nachricht oder einem Termin enthaltenen Internet-URLs ab.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'urls: string[];'
+    return:
+      type: string[]
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nvar item = Office.context.mailbox.item;\nvar urls = item.getEntitiesByType(Office.MailboxEnums.EntityType.Url);\n```"
+metadata:
+  ms.openlocfilehash: 7676703caf97d83f2ad4061acb1404a025b06277
+  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.translationtype: MT
+  ms.contentlocale: de-DE
+  ms.lasthandoff: 11/18/2020
+  ms.locfileid: "49340379"
