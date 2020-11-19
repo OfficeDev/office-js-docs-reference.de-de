@@ -3,21 +3,21 @@
 |[ChartAxisTitle](/javascript/api/excel/excel.chartaxistitle)|[textOrientation](/javascript/api/excel/excel.chartaxistitle#textorientation)|Gibt den Winkel an, an dem der Text für den Titel der Diagrammachse ausgerichtet ist.|
 |[ChartSeries](/javascript/api/excel/excel.chartseries)|[getDimensionValues (Dimension: Excel. ChartSeriesDimension)](/javascript/api/excel/excel.chartseries#getdimensionvalues-dimension-)|Ruft die Werte aus einer einzelnen Dimension der Diagrammdatenreihe ab.|
 |[Kommentar](/javascript/api/excel/excel.comment)|[contentType](/javascript/api/excel/excel.comment#contenttype)|Ruft den Inhaltstyp des Kommentars ab.|
-|[CommentAddedEventArgs](/javascript/api/excel/excel.commentaddedeventargs)|[commentDetails](/javascript/api/excel/excel.commentaddedeventargs#commentdetails)|Rufen Sie das CommentDetail-Array ab, das die Kommentar-ID und die IDs der zugehörigen Antworten enthält.|
+|[CommentAddedEventArgs](/javascript/api/excel/excel.commentaddedeventargs)|[commentDetails](/javascript/api/excel/excel.commentaddedeventargs#commentdetails)|Ruft das `CommentDetail` Array ab, das die Kommentar-ID und die IDs der zugehörigen Antworten enthält.|
 ||[source](/javascript/api/excel/excel.commentaddedeventargs#source)|Gibt die Quelle des Ereignisses an.|
-||[Typ](/javascript/api/excel/excel.commentaddedeventargs#type)|Ruft den Typ des Ereignisses ab.|
+||[type](/javascript/api/excel/excel.commentaddedeventargs#type)|Ruft den Typ des Ereignisses ab.|
 ||[worksheetId](/javascript/api/excel/excel.commentaddedeventargs#worksheetid)|Ruft die ID des Arbeitsblatts ab, in dem das Ereignis aufgetreten ist.|
 |[CommentChangedEventArgs](/javascript/api/excel/excel.commentchangedeventargs)|[changeType](/javascript/api/excel/excel.commentchangedeventargs#changetype)|Ruft den Änderungstyp ab, der angibt, wie das Changed-Ereignis ausgelöst wird.|
 ||[commentDetails](/javascript/api/excel/excel.commentchangedeventargs#commentdetails)|Rufen Sie das CommentDetail-Array ab, das die Kommentar-ID und die IDs der zugehörigen Antworten enthält.|
 ||[source](/javascript/api/excel/excel.commentchangedeventargs#source)|Gibt die Quelle des Ereignisses an.|
-||[Typ](/javascript/api/excel/excel.commentchangedeventargs#type)|Ruft den Typ des Ereignisses ab.|
+||[type](/javascript/api/excel/excel.commentchangedeventargs#type)|Ruft den Typ des Ereignisses ab.|
 ||[worksheetId](/javascript/api/excel/excel.commentchangedeventargs#worksheetid)|Ruft die ID des Arbeitsblatts ab, in dem das Ereignis aufgetreten ist.|
 |[CommentCollection](/javascript/api/excel/excel.commentcollection)|[onAdded](/javascript/api/excel/excel.commentcollection#onadded)|Tritt auf, wenn die Kommentare hinzugefügt werden.|
 ||[onChanged](/javascript/api/excel/excel.commentcollection#onchanged)|Tritt auf, wenn Kommentare oder Antworten in einer Comment-Auflistung geändert werden, einschließlich wenn Antworten gelöscht werden.|
 ||[onDeleted](/javascript/api/excel/excel.commentcollection#ondeleted)|Tritt auf, wenn Kommentare in der Comment-Auflistung gelöscht werden.|
-|[CommentDeletedEventArgs](/javascript/api/excel/excel.commentdeletedeventargs)|[commentDetails](/javascript/api/excel/excel.commentdeletedeventargs#commentdetails)|Rufen Sie das CommentDetail-Array ab, das die Kommentar-ID und die IDs der zugehörigen Antworten enthält.|
+|[CommentDeletedEventArgs](/javascript/api/excel/excel.commentdeletedeventargs)|[commentDetails](/javascript/api/excel/excel.commentdeletedeventargs#commentdetails)|Ruft das `CommentDetail` Array ab, das die Kommentar-ID und die IDs der zugehörigen Antworten enthält.|
 ||[source](/javascript/api/excel/excel.commentdeletedeventargs#source)|Gibt die Quelle des Ereignisses an.|
-||[Typ](/javascript/api/excel/excel.commentdeletedeventargs#type)|Ruft den Typ des Ereignisses ab.|
+||[type](/javascript/api/excel/excel.commentdeletedeventargs#type)|Ruft den Typ des Ereignisses ab.|
 ||[worksheetId](/javascript/api/excel/excel.commentdeletedeventargs#worksheetid)|Ruft die ID des Arbeitsblatts ab, in dem das Ereignis aufgetreten ist.|
 |[CommentDetail](/javascript/api/excel/excel.commentdetail)|[Kommentar-Nr](/javascript/api/excel/excel.commentdetail#commentid)|Stellt die ID des Kommentars dar.|
 ||[replyIds](/javascript/api/excel/excel.commentdetail#replyids)|Stellt die IDs der zugehörigen Antworten, die zum Kommentar gehören, dar.|
@@ -47,7 +47,7 @@
 ||[Bedingung](/javascript/api/excel/excel.pivotlabelfilter#condition)|Gibt die Bedingung für den Filter an, die die erforderlichen Filterkriterien definiert.|
 ||[exklusiven](/javascript/api/excel/excel.pivotlabelfilter#exclusive)|Bei true werden Elemente, die Kriterien erfüllen, von Filter *ausgeschlossen* .|
 ||[lowerBound](/javascript/api/excel/excel.pivotlabelfilter#lowerbound)|Die untere Grenze des Bereichs für die zwischen Filterbedingung.|
-||[substring](/javascript/api/excel/excel.pivotlabelfilter#substring)|Die für-,- `BeginsWith` `EndsWith` und `Contains` Filterbedingungen verwendete Teilzeichenfolge.|
+||[Teilzeichenfolge](/javascript/api/excel/excel.pivotlabelfilter#substring)|Die für-,- `BeginsWith` `EndsWith` und `Contains` Filterbedingungen verwendete Teilzeichenfolge.|
 ||[upperBound](/javascript/api/excel/excel.pivotlabelfilter#upperbound)|Die obere Grenze des Bereichs für die zwischen Filterbedingung.|
 |[PivotManualFilter](/javascript/api/excel/excel.pivotmanualfilter)|[selectedItems](/javascript/api/excel/excel.pivotmanualfilter#selecteditems)|Eine Liste der ausgewählten Elemente, die manuell gefiltert werden sollen.|
 |[PivotTable](/javascript/api/excel/excel.pivottable)|[allowMultipleFiltersPerField](/javascript/api/excel/excel.pivottable#allowmultiplefiltersperfield)|Gibt an, ob die PivotTable die Anwendung mehrerer PivotFilters in einem bestimmten PivotField in der Tabelle zulässt.|
@@ -80,7 +80,7 @@
 ||[getRangeAreasOrNullObjectBySheet (Key: String)](/javascript/api/excel/excel.workbookrangeareas#getrangeareasornullobjectbysheet-key-)|Gibt das `RangeAreas` auf dem Arbeitsblattnamen oder der ID in der Auflistung basierende Objekt zurück.|
 ||[addresses](/javascript/api/excel/excel.workbookrangeareas#addresses)|Gibt ein Array von Address im a1-Format zurück.|
 ||[areas](/javascript/api/excel/excel.workbookrangeareas#areas)|Gibt das `RangeAreasCollection` Objekt zurück.|
-||[Bereiche](/javascript/api/excel/excel.workbookrangeareas#ranges)|Gibt Bereiche zurück, die dieses Objekt in einem `RangeCollection` -Objekt enthalten.|
+||[Bereiche](/javascript/api/excel/excel.workbookrangeareas#ranges)|Gibt Bereiche zurück, die dieses Objekt in einem  `RangeCollection`   -Objekt enthalten.|
 |[Arbeitsblatt](/javascript/api/excel/excel.worksheet)|[customProperties](/javascript/api/excel/excel.worksheet#customproperties)|Ruft eine Auflistung von benutzerdefinierten Eigenschaften auf Arbeitsblattebene ab.|
 |[WorksheetCustomProperty](/javascript/api/excel/excel.worksheetcustomproperty)|[delete()](/javascript/api/excel/excel.worksheetcustomproperty#delete--)|Löscht die benutzerdefinierte Eigenschaft.|
 ||[key](/javascript/api/excel/excel.worksheetcustomproperty#key)|Ruft den Schlüssel der benutzerdefinierten Eigenschaft ab.|
