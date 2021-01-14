@@ -4,36 +4,36 @@ uid: outlook!Office.InternetHeaders:interface
 package: outlook!
 fullName: Office.InternetHeaders
 summary: >-
-  Das `InternetHeaders` -Objekt stellt benutzerdefinierte Internetkopfzeilen dar, die beibehalten werden, nachdem das Nachrichtenelement Exchange verlassen hat und in eine MIME-Nachricht konvertiert wird. Diese Kopfzeilen werden in der MIME-Nachricht als x-Header gespeichert.
+  Das Objekt stellt benutzerdefinierte Internetkopfzeilen dar, die beibehalten werden, nachdem das Nachrichtenelement Exchange verlässt und in `InternetHeaders` eine MIME-Nachricht konvertiert wird. Diese Kopfzeilen werden als x-Header in der MIME-Nachricht gespeichert.
 
 
-  Internet Kopfzeilen werden auf Einzelelement Basis als Schlüssel/Wert-Paare gespeichert.
+  Internetkopfzeilen werden als Schlüssel-Wert-Paare pro Element gespeichert.
 
 
-  **Hinweis**: dieses Objekt dient zum Festlegen und Abrufen von benutzerdefinierten Kopfzeilen für ein Nachrichtenelement.
+  **Hinweis:** Dieses Objekt ist für Sie vorgesehen, um Ihre benutzerdefinierten Kopfzeilen für ein Nachrichtenelement zu festlegen und zu erhalten. Weitere Informationen finden Sie unter ["Get and set internet headers on a message in an Outlook add-in"](https://docs.microsoft.com/office/dev/add-ins/outlook/internet-headers)<!-- -->.
 
 
-  \[[API-Gruppe: Mailbox 1,8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  \[[API-Satz: Postfach 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
 remarks: >-
   **Empfohlene Vorgehensweise**
 
 
-  Derzeit handelt es sich bei Internetkopfzeilen um eine endliche Ressource für das Postfach eines Benutzers. Wenn das Kontingent erschöpft ist, können Sie keine weiteren Internetkopfzeilen für dieses Postfach erstellen, was zu unerwartetem Verhalten von Clients führen kann, die auf diese Funktion zurückgreifen.
+  Derzeit sind Internetkopfzeilen eine begrenzte Ressource im Postfach eines Benutzers. Wenn das Kontingent aufgebraucht ist, können Sie keine weiteren Internetheader für dieses Postfach erstellen, was zu unerwartetem Verhalten von Clients führen kann, die diese Funktion nutzen.
 
 
-  Wenden Sie die folgenden Richtlinien an, wenn Sie Internetkopfzeilen in Ihrem Add-in erstellen.
+  Wenden Sie die folgenden Richtlinien an, wenn Sie Internetheader in Ihrem Add-In erstellen.
 
 
-  - Erstellen Sie die minimale Anzahl von erforderlichen Kopfzeilen.
+  - Erstellen Sie die mindestens erforderliche Anzahl von Headern.
 
 
-  - Name-Header, sodass Sie später ihre Werte wieder verwenden und aktualisieren können. Vermeiden Sie daher die Benennung von Kopfzeilen in variabler Weise (beispielsweise basierend auf Benutzereingaben, Zeitstempel usw.).
+  - Benennen Sie Kopfzeilen, damit Sie ihre Werte später wiederverwenden und aktualisieren können. Vermeiden Sie deshalb die Benennung von Kopfzeilen auf variable Weise (z. B. basierend auf Benutzereingabe, Zeitstempel usw.).
 
 
-  **[Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+  **[Mindestberechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
 
 
-  **[Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Verfassen
+  **[Zutreffender Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen
 isPreview: false
 isDeprecated: false
 type: interface
@@ -43,18 +43,18 @@ methods:
   package: outlook!
   fullName: getAsync(names, options, callback)
   summary: >-
-    Bei einem Array von Internet-Headernamen gibt diese Methode ein Wörterbuch zurück, das die Internetkopfzeilen und deren Werte enthält. Wenn das Add-in eine nicht verfügbare x-Kopfzeile anfordert, wird diese x-Kopfzeile nicht in den Ergebnissen zurückgegeben.
+    Bei einem Array von Internetkopfzeilennamen gibt diese Methode ein Wörterbuch zurück, das diese Internetkopfzeilen und deren Werte enthält. Wenn das Add-in einen x-Header anfordert, der nicht verfügbar ist, wird dieser X-Header nicht in den Ergebnissen zurückgegeben.
 
 
-    **Hinweis**: Diese Methode dient zum Zurückgeben der Werte der benutzerdefinierten Header, die Sie mithilfe der-Methode festgelegt haben `setAsync` .
+    **Hinweis:** Diese Methode soll die Werte der benutzerdefinierten Kopfzeilen zurückgeben, die Sie mit der Methode festgelegt `setAsync` haben.
 
 
-    \[[API-Gruppe: Mailbox 1,8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API-Satz: Postfach 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    **[Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+    **[Mindestberechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
 
 
-    **[Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Verfassen
+    **[Zutreffender Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen
 
 
     #### <a name="examples"></a>Beispiele
@@ -62,13 +62,18 @@ methods:
 
     ```javascript
 
-    Office.context.mailbox.item.internetHeaders.getAsync(["header1", "header2"], callback);
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/70-mime-headers/manage-custom-internet-headers-message-compose.yaml
 
-
-    function callback(asyncResult) {
-        var dictionary = asyncResult.value;
-        var header1_value = dictionary["header1"];
-    }
+    Office.context.mailbox.item.internetHeaders.getAsync(
+      ["x-preferred-fruit", "x-preferred-vegetable", "x-best-vegetable", "x-nonexistent-header"],
+      function (asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          console.log("Selected headers: " + JSON.stringify(asyncResult.value));
+        } else {
+          console.log("Error getting selected headers: " + JSON.stringify(asyncResult.error));
+        }
+      }
+    );
 
     ```
   isPreview: false
@@ -77,13 +82,13 @@ methods:
     content: 'getAsync(names: string[], options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<InternetHeaders>) => void): void;'
     parameters:
     - id: names
-      description: Die Namen der zurückzugebenden Internetkopfzeilen.
+      description: Die Namen der zurück zu verwendenden Internetheader.
       type: string[]
     - id: options
-      description: 'Optional. Ein Objekt Literal, das eine oder mehrere der folgenden Eigenschaften enthält: `asyncContext`<!-- -->: Entwickler können ein beliebiges Objekt bereitstellen, auf das Sie in der Rückrufmethode zugreifen möchten.'
+      description: 'Optional. Ein Objektliteral, das eine oder mehrere der folgenden Eigenschaften enthält: `asyncContext`<!-- -->: Entwickler können in der Rückrufmethode jedes Objekt bereitstellen, auf das sie zugreifen möchten.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: Optional. Wenn die Methode abgeschlossen ist, wird die Funktion, die im- `callback` Parameter übergeben wird, mit einem einzelnen Parameter aufgerufen. `asyncResult`<!-- -->, bei dem es sich um ein `Office.AsyncResult` Objekt handelt.
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene `callback` Funktion mit einem einzigen Parameter aufgerufen. `asyncResult`<!-- -->, bei dem es sich um ein Objekt `Office.AsyncResult` handelt.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.InternetHeaders:interface" />&gt;) =&gt; void'
     return:
       type: void
@@ -93,18 +98,18 @@ methods:
   package: outlook!
   fullName: removeAsync(names, options, callback)
   summary: >-
-    Bei einem Array von Internet-Headernamen entfernt diese Methode die angegebenen Header aus der Internet Header-Auflistung.
+    Bei einem Array von Internetheadernamen entfernt diese Methode die angegebenen Kopfzeilen aus der Internetheadersammlung.
 
 
-    **Hinweis**: Diese Methode dient zum Entfernen der benutzerdefinierten Header, die Sie mithilfe der-Methode festgelegt haben `setAsync` .
+    **Hinweis:** Mit dieser Methode sollen die benutzerdefinierten Kopfzeilen entfernt werden, die Sie mithilfe der Methode festgelegt `setAsync` haben.
 
 
-    \[[API-Gruppe: Mailbox 1,8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API-Satz: Postfach 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    **[Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadWriteItem`
+    **[Mindestberechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadWriteItem`
 
 
-    **[Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Verfassen
+    **[Zutreffender Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen
 
 
     #### <a name="examples"></a>Beispiele
@@ -112,7 +117,18 @@ methods:
 
     ```javascript
 
-    Office.context.mailbox.item.internetHeaders.removeAsync(["header1", "header2"]);
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/70-mime-headers/manage-custom-internet-headers-message-compose.yaml
+
+    Office.context.mailbox.item.internetHeaders.removeAsync(
+      ["x-best-vegetable", "x-nonexistent-header"],
+      function (asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          console.log("Successfully removed selected headers");
+        } else {
+          console.log("Error removing selected headers: " + JSON.stringify(asyncResult.error));
+        }
+      }
+    );
 
     ```
   isPreview: false
@@ -121,13 +137,13 @@ methods:
     content: 'removeAsync(names: string[], options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<InternetHeaders>) => void): void;'
     parameters:
     - id: names
-      description: Die Namen der zu entfernenden Internetkopfzeilen.
+      description: Die Namen der zu entfernenden Internetheader.
       type: string[]
     - id: options
-      description: 'Optional. Ein Objekt Literal, das eine oder mehrere der folgenden Eigenschaften enthält: `asyncContext`<!-- -->: Entwickler können ein beliebiges Objekt bereitstellen, auf das Sie in der Rückrufmethode zugreifen möchten.'
+      description: 'Optional. Ein Objektliteral, das eine oder mehrere der folgenden Eigenschaften enthält: `asyncContext`<!-- -->: Entwickler können in der Rückrufmethode jedes Objekt bereitstellen, auf das sie zugreifen möchten.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: Optional. Wenn die Methode abgeschlossen ist, wird die Funktion, die im- `callback` Parameter übergeben wird, mit einem einzelnen Parameter aufgerufen. `asyncResult`<!-- -->, bei dem es sich um ein `Office.AsyncResult` Objekt handelt.
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene `callback` Funktion mit einem einzigen Parameter aufgerufen. `asyncResult`<!-- -->, bei dem es sich um ein Objekt `Office.AsyncResult` handelt.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.InternetHeaders:interface" />&gt;) =&gt; void'
     return:
       type: void
@@ -137,21 +153,21 @@ methods:
   package: outlook!
   fullName: setAsync(headers, options, callback)
   summary: >-
-    Legt die angegebenen Internetkopfzeilen auf die angegebenen Werte fest.
+    Legt die angegebenen Internetheader auf die angegebenen Werte fest.
 
 
-    Die `setAsync` -Methode erstellt eine neue Kopfzeile, wenn der angegebene Header nicht bereits vorhanden ist; andernfalls wird der vorhandene Wert durch den neuen Wert ersetzt.
+    Die Methode erstellt einen neuen Header, wenn der angegebene Header noch nicht vorhanden ist. Andernfalls wird der vorhandene Wert durch `setAsync` den neuen Wert ersetzt.
 
 
-    **Hinweis**: Diese Methode dient zum Festlegen der Werte Ihrer benutzerdefinierten Kopfzeilen.
+    **Hinweis:** Diese Methode dient zum Festlegen der Werte Ihrer benutzerdefinierten Kopfzeilen.
 
 
-    \[[API-Gruppe: Mailbox 1,8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API-Satz: Postfach 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    **[Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadWriteItem`
+    **[Mindestberechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadWriteItem`
 
 
-    **[Zutreffender Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Verfassen
+    **[Zutreffender Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen
 
 
     #### <a name="examples"></a>Beispiele
@@ -159,7 +175,19 @@ methods:
 
     ```javascript
 
-    Office.context.mailbox.item.internetHeaders.setAsync({"header1": "value1", "header2": "value2"});
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/70-mime-headers/manage-custom-internet-headers-message-compose.yaml
+
+    Office.context.mailbox.item.internetHeaders.setAsync(
+      { "x-preferred-fruit": "orange", "x-preferred-vegetable": "broccoli", "x-best-vegetable": "spinach" },
+      function (asyncResult) {
+        if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+          console.log("Successfully set headers");
+        } else {
+          console.log("Error setting headers: " + JSON.stringify(asyncResult.error));
+        }
+      }
+
+    );
 
     ```
   isPreview: false
@@ -168,21 +196,21 @@ methods:
     content: 'setAsync(headers: Object, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     parameters:
     - id: headers
-      description: Die Namen und die entsprechenden Werte der festzulegenden Kopfzeilen. Sollte ein Dictionary-Objekt sein, dessen Schlüssel die Namen der Internetkopfzeilen und Werte für die Werte der Internetkopfzeilen sind.
+      description: Die Namen und die entsprechenden Werte der kopfzeilen, die festgelegt werden sollen. Sollte ein Wörterbuchobjekt sein, bei dem Schlüssel die Namen der Internetkopfzeilen und Werte die Werte der Internetkopfzeilen sind.
       type: Object
     - id: options
-      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können ein beliebiges Objekt bereitstellen, auf das Sie in der Rückrufmethode zugreifen möchten.'
+      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können in der Rückrufmethode jedes Objekt bereitstellen, auf das sie zugreifen möchten.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: Optional. Wenn die Methode abgeschlossen ist, wird die Funktion, die im- `callback` Parameter übergeben wird, mit einem einzigen Parameter vom Typ Office. AsyncResult aufgerufen. Alle aufgetretenen Fehler werden in der `asyncResult.error`-Eigenschaft bereitgestellt.
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion mit einem einzelnen Parameter vom Typ `callback` Office.AsyncResult aufgerufen. Alle aufgetretenen Fehler werden in der `asyncResult.error`-Eigenschaft bereitgestellt.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
       description: ''
 metadata:
-  ms.openlocfilehash: c26c15caa645c162148936a6906c64a22903a0b7
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: e666b64587a4509d9d2d850231902c4d8b9ebca4
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49210991"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49861294"
