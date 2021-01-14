@@ -4,10 +4,10 @@ uid: excel!Excel.Setting:class
 package: excel!
 fullName: Excel.Setting
 summary: >-
-  Setting stellt ein Schlüssel-Wert-Paar einer Einstellung dar, die im Dokument gespeichert ist (pro Datei pro Add-in). Diese benutzerdefinierten Schlüssel/Wert-Paare können zum Speichern von Status-oder Lebenszyklusinformationen verwendet werden, die vom Inhalts-oder Aufgabenbereich-Add-in benötigt werden. Beachten Sie, dass Einstellungen im Dokument gespeichert werden und daher keine vertraulichen oder geschützten Informationen wie Benutzerinformationen und Kennwort gespeichert werden können.
+  Die Einstellung stellt ein Schlüssel-Wert-Paar einer im Dokument gespeicherten Einstellung (pro Datei pro Add-In) dar. Dieses benutzerdefinierte Schlüssel-Wert-Paar kann zum Speichern von Status- oder Lebenszyklusinformationen verwendet werden, die vom Inhalts- oder Aufgabenbereich-Add-In benötigt werden. Beachten Sie, dass Einstellungen im Dokument beibehalten werden und daher kein Ort zum Speichern vertraulicher oder geschützter Informationen wie Benutzerinformationen und Kennwort ist.
 
 
-  \[[API-Gruppe: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  \[[API-Satz: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -17,7 +17,7 @@ properties:
   uid: excel!Excel.Setting#context:member
   package: excel!
   fullName: context
-  summary: Der Anforderungskontext, der mit dem Objekt verknüpft ist. Dadurch wird das Add-in-Verfahren mit dem Prozess der Office-Hostanwendung verbunden.
+  summary: Der dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office-Hostanwendung verbunden.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -33,7 +33,7 @@ properties:
     Der Schlüssel, der die ID der Einstellung darstellt.
 
 
-    \[[API-Gruppe: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API-Satz: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -49,7 +49,7 @@ properties:
     Stellt den Wert dar, der für diese Einstellung gespeichert ist.
 
 
-    \[[API-Gruppe: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API-Satz: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -66,7 +66,7 @@ methods:
     Löscht die Einstellung.
 
 
-    \[[API-Gruppe: ExcelApi 1,4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API-Satz: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -74,7 +74,7 @@ methods:
     content: 'delete(): void;'
     return:
       type: void
-      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/50-workbook/create-get-change-delete-settings.yaml\nawait Excel.run(async (context) => {\n    const settings = context.workbook.settings;\n    let needsReview = settings.getItem(\"NeedsReview\");\n    needsReview.delete();\n    needsReview = settings.getItemOrNullObject(\"NeedsReview\");\n\n    await context.sync();\n\n    if (needsReview.isNullObject) {\n        console.log(\"The setting has been deleted\");\n    } else {\n        console.log(\"The setting was not deleted\");\n    }\n\n    await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/50-workbook/create-get-change-delete-settings.yaml\nawait Excel.run(async (context) => {\n    const settings = context.workbook.settings;\n    let needsReview = settings.getItem(\"NeedsReview\");\n    needsReview.delete();\n    needsReview = settings.getItemOrNullObject(\"NeedsReview\");\n\n    await context.sync();\n\n    if (needsReview.isNullObject) {\n        console.log(\"The setting has been deleted\");\n    } else {\n        console.log(\"The setting was not deleted\");\n    }\n\n    await context.sync();\n});\n```"
 - name: load(options)
   uid: excel!Excel.Setting#load:member(1)
   package: excel!
@@ -87,7 +87,7 @@ methods:
     content: 'load(options?: Excel.Interfaces.SettingLoadOptions): Excel.Setting;'
     parameters:
     - id: options
-      description: Enthält Optionen für die Eigenschaften des zu ladenden Objekts.
+      description: Stellt Optionen für die Eigenschaften des zu ladenden Objekts zur Verfügung.
       type: <xref uid="excel!Excel.Interfaces.SettingLoadOptions:interface" />
     return:
       type: <xref uid="excel!Excel.Setting:class" />
@@ -104,7 +104,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Excel.Setting;'
     parameters:
     - id: propertyNames
-      description: Eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.
+      description: Eine durch Trennzeichen getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.Setting:class" />
@@ -125,7 +125,7 @@ methods:
               }): Excel.Setting;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und `propertyNamesAndPaths.expand` ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
+      description: '`propertyNamesAndPaths.select` ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden `propertyNamesAndPaths.expand` Navigationseigenschaften angibt.'
       type: >-
         {
                     select?: string;
@@ -140,7 +140,7 @@ methods:
   fullName: set(properties, options)
   summary: Legt mehrere Eigenschaften eines Objekts gleichzeitig fest. Sie können entweder ein einfaches Objekt mit den entsprechenden Eigenschaften oder ein anderes API-Objekt desselben Typs übergeben.
   remarks: >-
-    Diese Methode hat die folgende zusätzliche Signatur:
+    Diese Methode verfügt über die folgende zusätzliche Signatur:
 
 
     `set(properties: Excel.Setting): void`
@@ -150,10 +150,10 @@ methods:
     content: 'set(properties: Interfaces.SettingUpdateData, options?: OfficeExtension.UpdateOptions): void;'
     parameters:
     - id: properties
-      description: Ein JavaScript-Objekt mit Eigenschaften, die isomorphically für die Eigenschaften des Objekts strukturiert sind, für das die Methode aufgerufen wird.
+      description: Ein JavaScript-Objekt mit Eigenschaften, die isomorph zu den Eigenschaften des Objekts strukturiert sind, für das die Methode aufgerufen wird.
       type: <xref uid="excel!Excel.Interfaces.SettingUpdateData:interface" />
     - id: options
-      description: Bietet eine Option zum Unterdrücken von Fehlern, wenn das Properties-Objekt versucht, schreibgeschützte Eigenschaften festzulegen.
+      description: Bietet eine Option zum Unterdrücken von Fehlern, wenn das Eigenschaftenobjekt versucht, schreibgeschützte Eigenschaften zu setzen.
       type: <xref uid="office!OfficeExtension.UpdateOptions:interface" />
     return:
       type: void
@@ -162,7 +162,7 @@ methods:
   uid: excel!Excel.Setting#set:member(2)
   package: excel!
   fullName: set(properties)
-  summary: Legt mehrere Eigenschaften für das Objekt gleichzeitig basierend auf einem vorhandenen geladenen Objekt fest.
+  summary: Legt mehrere Eigenschaften für das Objekt gleichzeitig fest, basierend auf einem vorhandenen geladenen Objekt.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -179,7 +179,7 @@ methods:
   uid: excel!Excel.Setting#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: Überschreibt die JavaScript `toJSON()` -Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird. `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche Excel. Setting-Objekt ein API-Objekt ist, `toJSON` gibt die Methode ein einfaches JavaScript-Objekt (typisiert als `Excel.Interfaces.SettingData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.
+  summary: Überschreibt die JavaScript-Methode, um eine nützlichere Ausgabe zu ermöglichen, wenn `toJSON()` ein API-Objekt an `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode `toJSON` des Objekts auf, das an das Objekt übergeben wird.) Während das ursprüngliche Excel.Setting-Objekt ein API-Objekt ist, gibt die Methode ein einfaches `toJSON``Excel.Interfaces.SettingData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -190,9 +190,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 98622d7d9f7c55063b574b02fbfbaee259f21b5d
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: 022c46b71118a8b53112bb1ba48f2db0b76bf0c2
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49202760"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49851816"
