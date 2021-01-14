@@ -4,10 +4,10 @@ uid: excel!Excel.CustomXmlPartCollection:class
 package: excel!
 fullName: Excel.CustomXmlPartCollection
 summary: >-
-  Eine Auflistung von benutzerdefinierten XML-Komponenten.
+  Eine Auflistung von benutzerdefinierten XML-Teilen.
 
 
-  \[[API-Gruppe: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  \[[API-Satz: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -17,7 +17,7 @@ properties:
   uid: excel!Excel.CustomXmlPartCollection#context:member
   package: excel!
   fullName: context
-  summary: Der Anforderungskontext, der mit dem Objekt verknüpft ist. Dadurch wird das Add-in-Verfahren mit dem Prozess der Office-Hostanwendung verbunden.
+  summary: Der dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office-Hostanwendung verbunden.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -46,7 +46,7 @@ methods:
     Fügt der Arbeitsmappe eine neue benutzerdefinierte XML-Komponente hinzu.
 
 
-    \[[API-Gruppe: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API-Satz: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -54,11 +54,11 @@ methods:
     content: 'add(xml: string): Excel.CustomXmlPart;'
     parameters:
     - id: xml
-      description: XML-Inhalt. Es muss sich um ein gültiges XML-Fragment handeln.
+      description: XML-Inhalt. Muss ein gültiges XML-Fragment sein.
       type: string
     return:
       type: <xref uid="excel!Excel.CustomXmlPart:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/18-custom-xml-parts/create-set-get-and-delete-custom-xml-parts.yaml\nawait Excel.run(async (context) => {\n    // You must have the xmlns attribute to populate the \n    // CustomXml.namespaceUri property.\n    const originalXml = \"<Reviewers xmlns='http://schemas.contoso.com/review/1.0'><Reviewer>Juan</Reviewer><Reviewer>Hong</Reviewer><Reviewer>Sally</Reviewer></Reviewers>\";\n    const customXmlPart = context.workbook.customXmlParts.add(originalXml);\n    customXmlPart.load(\"id\");\n    const xmlBlob = customXmlPart.getXml();\n\n    await context.sync();\n\n    const readableXml = addLineBreaksToXML(xmlBlob.value);\n    $(\"#display-xml\").text(readableXml);\n\n    // Store the XML part's ID in a setting.\n    const settings = context.workbook.settings;\n    settings.add(\"ContosoReviewXmlPartId\", customXmlPart.id);\n\n    await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/18-custom-xml-parts/create-set-get-and-delete-custom-xml-parts.yaml\nawait Excel.run(async (context) => {\n    // You must have the xmlns attribute to populate the \n    // CustomXml.namespaceUri property.\n    const originalXml = \"<Reviewers xmlns='http://schemas.contoso.com/review/1.0'><Reviewer>Juan</Reviewer><Reviewer>Hong</Reviewer><Reviewer>Sally</Reviewer></Reviewers>\";\n    const customXmlPart = context.workbook.customXmlParts.add(originalXml);\n    customXmlPart.load(\"id\");\n    const xmlBlob = customXmlPart.getXml();\n\n    await context.sync();\n\n    const readableXml = addLineBreaksToXML(xmlBlob.value);\n    $(\"#display-xml\").text(readableXml);\n\n    // Store the XML part's ID in a setting.\n    const settings = context.workbook.settings;\n    settings.add(\"ContosoReviewXmlPartId\", customXmlPart.id);\n\n    await context.sync();\n});\n```"
 - name: getByNamespace(namespaceUri)
   uid: excel!Excel.CustomXmlPartCollection#getByNamespace:member(1)
   package: excel!
@@ -67,7 +67,7 @@ methods:
     Ruft eine neue bereichsbezogene Sammlung von benutzerdefinierten XML-Komponenten ab, deren Namespaces dem angegebenen Namespace entsprechen.
 
 
-    \[[API-Gruppe: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API-Satz: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -75,11 +75,11 @@ methods:
     content: 'getByNamespace(namespaceUri: string): Excel.CustomXmlPartScopedCollection;'
     parameters:
     - id: namespaceUri
-      description: 'Hierbei muss es sich um einen vollqualifizierten Schema-URI handeln. Beispiel: " http://schemas.contoso.com/review/1.0 ".'
+      description: 'Dies muss ein vollqualifizierter Schema-URI sein. Beispiel: " http://schemas.contoso.com/review/1.0 ".'
       type: string
     return:
       type: <xref uid="excel!Excel.CustomXmlPartScopedCollection:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/18-custom-xml-parts/test-xml-for-unique-namespace.yaml\nawait Excel.run(async (context) => {\n    $(\"#display-xml\").text(\"\");\n    const contosoNamespace = \"http://schemas.contoso.com/review/1.0\";\n    const customXmlParts = context.workbook.customXmlParts;\n    const filteredXmlParts = customXmlParts.getByNamespace(contosoNamespace);\n    const numberOfPartsInNamespace = filteredXmlParts.getCount();\n\n    await context.sync();\n\n    if (numberOfPartsInNamespace.value == 1) {\n        const onlyXmlPartInNamespace = filteredXmlParts.getOnlyItem();\n        const xmlBlob = onlyXmlPartInNamespace.getXml();\n\n        await context.sync();\n\n        // Make it a bit more readable.\n        const readableXml = xmlBlob.value.replace(/></g, \">\\n<\");\n\n        $(\"#display-xml\").text(`The only XML part in the namespace ${contosoNamespace} is:\n            ${readableXml}`);\n\n    } else {\n        console.log(`There are ${numberOfPartsInNamespace.value} XML parts with namespace ${contosoNamespace}. There should be exactly 1.`);\n    }        \n\n    await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/18-custom-xml-parts/test-xml-for-unique-namespace.yaml\nawait Excel.run(async (context) => {\n    $(\"#display-xml\").text(\"\");\n    const contosoNamespace = \"http://schemas.contoso.com/review/1.0\";\n    const customXmlParts = context.workbook.customXmlParts;\n    const filteredXmlParts = customXmlParts.getByNamespace(contosoNamespace);\n    const numberOfPartsInNamespace = filteredXmlParts.getCount();\n\n    await context.sync();\n\n    if (numberOfPartsInNamespace.value == 1) {\n        const onlyXmlPartInNamespace = filteredXmlParts.getOnlyItem();\n        const xmlBlob = onlyXmlPartInNamespace.getXml();\n\n        await context.sync();\n\n        // Make it a bit more readable.\n        const readableXml = xmlBlob.value.replace(/></g, \">\\n<\");\n\n        $(\"#display-xml\").text(`The only XML part in the namespace ${contosoNamespace} is:\n            ${readableXml}`);\n\n    } else {\n        console.log(`There are ${numberOfPartsInNamespace.value} XML parts with namespace ${contosoNamespace}. There should be exactly 1.`);\n    }        \n\n    await context.sync();\n});\n```"
 - name: getCount()
   uid: excel!Excel.CustomXmlPartCollection#getCount:member(1)
   package: excel!
@@ -88,7 +88,7 @@ methods:
     Ruft die Anzahl von CustomXml-Komponenten in der Sammlung ab.
 
 
-    \[[API-Gruppe: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API-Satz: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -105,7 +105,7 @@ methods:
     Ruft eine benutzerdefinierte XML-Komponente basierend auf ihrer ID ab.
 
 
-    \[[API-Gruppe: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API-Satz: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -113,20 +113,20 @@ methods:
     content: 'getItem(id: string): Excel.CustomXmlPart;'
     parameters:
     - id: id
-      description: ID des Objekts, das abgerufen werden soll.
+      description: ID des abzurufende Objekts.
       type: string
     return:
       type: <xref uid="excel!Excel.CustomXmlPart:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/master/samples/excel/18-custom-xml-parts/create-set-get-and-delete-custom-xml-parts.yaml\nawait Excel.run(async (context) => {\n    const settings = context.workbook.settings;\n    const xmlPartIDSetting = settings.getItemOrNullObject(\"ContosoReviewXmlPartId\").load(\"value\");\n    await context.sync();\n\n    if (xmlPartIDSetting.value) {   \n        const customXmlPart = context.workbook.customXmlParts.getItem(xmlPartIDSetting.value);\n\n        // The setXml method does a whole-for-whole replacement \n        // of the entire XML.\n        customXmlPart.setXml(\"<Reviewers xmlns='http://schemas.contoso.com/review/1.0'><Reviewer>John</Reviewer><Reviewer>Hitomi</Reviewer></Reviewers>\");\n        const xmlBlob = customXmlPart.getXml();\n        await context.sync();\n\n        const readableXml = addLineBreaksToXML(xmlBlob.value);\n        $(\"#display-xml\").text(readableXml);\n        await context.sync();\n    }\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/18-custom-xml-parts/create-set-get-and-delete-custom-xml-parts.yaml\nawait Excel.run(async (context) => {\n    const settings = context.workbook.settings;\n    const xmlPartIDSetting = settings.getItemOrNullObject(\"ContosoReviewXmlPartId\").load(\"value\");\n    await context.sync();\n\n    if (xmlPartIDSetting.value) {   \n        const customXmlPart = context.workbook.customXmlParts.getItem(xmlPartIDSetting.value);\n\n        // The setXml method does a whole-for-whole replacement \n        // of the entire XML.\n        customXmlPart.setXml(\"<Reviewers xmlns='http://schemas.contoso.com/review/1.0'><Reviewer>John</Reviewer><Reviewer>Hitomi</Reviewer></Reviewers>\");\n        const xmlBlob = customXmlPart.getXml();\n        await context.sync();\n\n        const readableXml = addLineBreaksToXML(xmlBlob.value);\n        $(\"#display-xml\").text(readableXml);\n        await context.sync();\n    }\n});\n```"
 - name: getItemOrNullObject(id)
   uid: excel!Excel.CustomXmlPartCollection#getItemOrNullObject:member(1)
   package: excel!
   fullName: getItemOrNullObject(id)
   summary: >-
-    Ruft eine benutzerdefinierte XML-Komponente basierend auf ihrer ID ab. Wenn das CustomXMLPart-Objekt nicht vorhanden ist, wird die IsNull-Eigenschaft des Rückgabe Objekts auf true festgelegt.
+    Ruft eine benutzerdefinierte XML-Komponente basierend auf ihrer ID ab. Wenn das CustomXmlPart nicht vorhanden ist, ist die isNull-Eigenschaft des Rückgabeobjekts "true".
 
 
-    \[[API-Gruppe: ExcelApi 1,5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API-Satz: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -134,7 +134,7 @@ methods:
     content: 'getItemOrNullObject(id: string): Excel.CustomXmlPart;'
     parameters:
     - id: id
-      description: ID des Objekts, das abgerufen werden soll.
+      description: ID des abzurufende Objekts.
       type: string
     return:
       type: <xref uid="excel!Excel.CustomXmlPart:class" />
@@ -151,7 +151,7 @@ methods:
     content: 'load(options?: Excel.Interfaces.CustomXmlPartCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.CustomXmlPartCollection;'
     parameters:
     - id: options
-      description: Enthält Optionen für die Eigenschaften des zu ladenden Objekts.
+      description: Stellt Optionen für die Eigenschaften des zu ladenden Objekts zur Verfügung.
       type: <xref uid="excel!Excel.Interfaces.CustomXmlPartCollectionLoadOptions:interface" /> & <xref uid="excel!Excel.Interfaces.CollectionLoadOptions:interface" />
     return:
       type: <xref uid="excel!Excel.CustomXmlPartCollection:class" />
@@ -168,7 +168,7 @@ methods:
     content: 'load(propertyNames?: string | string[]): Excel.CustomXmlPartCollection;'
     parameters:
     - id: propertyNames
-      description: Eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.
+      description: Eine durch Trennzeichen getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.
       type: string | string[]
     return:
       type: <xref uid="excel!Excel.CustomXmlPartCollection:class" />
@@ -185,7 +185,7 @@ methods:
     content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): Excel.CustomXmlPartCollection;'
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und `propertyNamesAndPaths.expand` ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
+      description: '`propertyNamesAndPaths.select` ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden `propertyNamesAndPaths.expand` Navigationseigenschaften angibt.'
       type: <xref uid="office!OfficeExtension.LoadOption:interface" />
     return:
       type: <xref uid="excel!Excel.CustomXmlPartCollection:class" />
@@ -194,7 +194,7 @@ methods:
   uid: excel!Excel.CustomXmlPartCollection#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: Überschreibt die JavaScript `toJSON()` -Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird. `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche `Excel.CustomXmlPartCollection` Objekt ein API-Objekt ist, `toJSON` gibt die Methode ein einfaches JavaScript-Objekt (typisiert als `Excel.Interfaces.CustomXmlPartCollectionData`<!-- -->), die ein "Items"-Array mit flachen Kopien aller geladenen Eigenschaften aus den Elementen der Auflistung enthält.
+  summary: Überschreibt die JavaScript-Methode, um eine nützlichere Ausgabe zu ermöglichen, wenn `toJSON()` ein API-Objekt an `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode des Objekts `toJSON` auf, das an das Objekt übergeben wird.) Während das ursprüngliche Objekt ein API-Objekt ist, gibt die Methode `Excel.CustomXmlPartCollection` `toJSON` ein einfaches `Excel.Interfaces.CustomXmlPartCollectionData`<!-- -->), das ein "items"-Array mit flachen Kopien aller geladenen Eigenschaften aus den Elementen der Auflistung enthält.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -205,9 +205,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 3ac918146b56f10634dba645e7052cd682e5a8d7
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: 302d119c6636d032fa09a448e21194dbea0a1e09
+  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49188367"
+  ms.lasthandoff: 01/13/2021
+  ms.locfileid: "49857969"
