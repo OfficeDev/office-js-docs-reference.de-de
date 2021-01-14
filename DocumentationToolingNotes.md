@@ -1,73 +1,73 @@
-# <a name="how-the-office-javascript-api-documentation-is-generated"></a>So wird die Office-JavaScript-API-Dokumentation generiert
+# <a name="how-the-office-javascript-api-documentation-is-generated"></a>Wie die JavaScript-API-Dokumentation für Office generiert wird
 
-Die Office JavaScript-Referenz Dokumentationsseiten werden aus typdefinitions Dateien und Beispielcode Ausschnitten generiert. Dieser Prozess verwendet eine Mischung aus Open Source-Tools und Repository-spezifischen Skripts. Dieses Dokument zielt darauf ab, die Prozesse in diesem Repository transparent zu machen, damit die Community besser von diesen Inhalten profitieren und dazu beitragen kann.
+Die Office-JavaScript-Referenzdokumentationsseiten werden aus Typdefinitionsdateien und Beispielausschnitten generiert. Dieser Prozess verwendet eine Mischung aus Open Source-Tools und repositoryspezifischen Skripts. Dieses Dokument soll die Prozesse dieses Repositorys transparent machen, damit die Community von diesen Inhalten besser profitieren und zu diesen beitragen kann.
 
 ## <a name="content-sources"></a>Inhaltsquellen
 
-Zwei Arten von Inhalten werden zusammengefasst, um die Office-js-Referenzdokumentation zu erstellen: Typdefinitionen und Codeausschnitte. Dadurch wird eine vollständige API-Abdeckung gewährleistet und kleine Inlinecode Beispiele gegeben.
+Zwei Inhaltstypen werden kombiniert, um die Office-JS-Referenzdokumentation zu erstellen: Typdefinitionen und Codeausschnitte. Diese stellen eine vollständige API-Abdeckung sicher und geben kleine Inlinecodebeispiele.
 
-### <a name="type-definition-files"></a>Typen Definitionsdateien
+### <a name="type-definition-files"></a>Typdefinitionsdateien
 
-Die typdefinitions Dateien auf [eindeutig typisiert](https://github.com/DefinitelyTyped/DefinitelyTyped) sind die einzige Quelle der Wahrheit für die Dokumentation. Alle Office-Add-in, bei denen die Ausführung von schreiben mithilfe dieser typdefinitions Dateien kompiliert wird. Diese geben auch JavaScript-und Scripting-Entwickler-IntelliSense-Funktionen. Durch die Erstellung der Referenzdokumentation aus diesen Definitionen werden genauere Informationen bereitgestellt.
+Die Typdefinitionsdateien auf ["Definitely Typed"](https://github.com/DefinitelyTyped/DefinitelyTyped) sind die einzige Wahrheitsquelle für die Dokumentation. Jedes Office-Add-In, das TypeScript verwendet, kompiliert mithilfe dieser Typdefinitionsdateien. Diese bieten JavaScript- und TypeScript-Entwicklern IntelliSense Funktionen. Durch erstellen der Referenzdokumentation aus diesen Definitionen stellen wir genauere Informationen zur Verfügung.
 
-Es gibt vier relevante d. TS-Dateien, die Quellinhalte für verschiedene Unterabschnitte der Dokumente bereitstellen.
+Es gibt vier relevante d.ts-Dateien, die Quellinhalte für verschiedene Unterabschnitte der Dokumente bereitstellen.
 
-- [Office-js/Index. d. TS](https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/master/types/office-js/index.d.ts) (die Veröffentlichungs Definitionen)
-  - [Excel (Version)](https://docs.microsoft.com/javascript/api/excel_release)
+- [office-js/index.d.ts](https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/master/types/office-js/index.d.ts) (Die Releasedefinitionen.)
+  - [Excel (Release)](https://docs.microsoft.com/javascript/api/excel_release)
   - [OneNote](https://docs.microsoft.com/javascript/api/onenote)
   - [PowerPoint](https://docs.microsoft.com/javascript/api/powerpoint)
   - [Visio](https://docs.microsoft.com/javascript/api/visio)
-  - [Word (Version)](https://docs.microsoft.com/javascript/api/word_release)
-  - [OfficeExtensions-unter Abschnitt der allgemeinen API](https://docs.microsoft.com/javascript/api/office)
-- [Office-js-Preview/Index. d. TS](https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/master/types/office-js-preview/index.d.ts) (die Vorschau Definitionen.)
+  - [Word (Release)](https://docs.microsoft.com/javascript/api/word_release)
+  - [Unterabschnitt "OfficeExtensions" der allgemeinen API](https://docs.microsoft.com/javascript/api/office)
+- [office-js-preview/index.d.ts](https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/master/types/office-js-preview/index.d.ts) (Die Vorschaudefinitionen.)
   - [Excel (Vorschau)](https://docs.microsoft.com/javascript/api/excel)
   - [Outlook (Vorschau)](https://docs.microsoft.com/javascript/api/outlook)
   - [Word (Vorschau)](https://docs.microsoft.com/javascript/api/word)
   - [Allgemeine API](https://docs.microsoft.com/javascript/api/office)
-- [Custom-Functions-Runtime/Index. d. TS](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/custom-functions-runtime/index.d.ts) (die CLR-Definitionen für benutzerdefinierte Excel-Funktionen)
+- [custom-functions-runtime/index.d.ts (Die](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/custom-functions-runtime/index.d.ts) Excel Custom Functions-Laufzeitdefinitionen).)
   - [Benutzerdefinierte Funktionen](https://docs.microsoft.com/javascript/api/custom-functions-runtime)
-- [Office-Runtime/Index. d. TS](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/office-runtime/index.d.ts) (die Office-Lauf Zeitdefinitionen für die Plattform für benutzerdefinierte Funktionen)
-  - [Office-Laufzeit](https://docs.microsoft.com/javascript/api/office-runtime)
+- [office-runtime/index.d.ts](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/office-runtime/index.d.ts) (Die Office-Laufzeitdefinitionen für die Plattform für benutzerdefinierte Funktionen.)
+  - [Office Runtime](https://docs.microsoft.com/javascript/api/office-runtime)
 
-Ältere Versionen der APIs haben eigene d. TS-Dateien. Diese werden beibehalten, wenn ein neuer API-Anforderungs Satzes freigegeben wird. Sie können auch mithilfe des [Version Remover-Tools](https://github.com/OfficeDev/office-js-docs-reference/blob/master/generate-docs/tools/VersionRemover.ts)generiert werden. Diese alten d. TS-Dateien werden beibehalten, sodass im Ereignis-APIs gepatcht oder geändert werden, das ursprüngliche Verhalten ist weiterhin dokumentiert. Dies ist hilfreich, wenn Sie eine ältere Version der API als Ziel haben.
+Ältere Versionen der APIs verfügen über eigene d.ts-Dateien. Diese werden beibehalten, wenn ein neuer API-Anforderungssatz veröffentlicht wird. Sie können auch mit dem Tool ["Versionsentferner" generiert werden.](https://github.com/OfficeDev/office-js-docs-reference/blob/master/generate-docs/tools/VersionRemover.ts) Diese alten d.ts-Dateien werden so beibehalten, dass das ursprüngliche Verhalten weiterhin dokumentiert wird, wenn APIs gepatcht oder geändert werden. Dies ist hilfreich, wenn Sie eine ältere Version der API als Ziel verwenden müssen.
 
-#### <a name="testing-type-definition-file-changes"></a>Testen von Änderungen an der Typen Definitionsdatei
+#### <a name="testing-type-definition-file-changes"></a>Testen von Änderungen der Typdefinitionsdatei
 
-Alle Änderungen an der Dokumentation für die Office-JavaScript-API werden durch Bearbeiten der oben erwähnten vier d. TS-Dateien vorgenommen. Sie können jedoch eine Änderung testen, bevor Sie eine PR an DefinitelyTyped übermitteln (wenn Sie beispielsweise testen möchten, wie ihre Formatierung in ein Abschlag übersetzt wird), indem Sie die entsprechende Datei in [generieren-docs/Script-Inputs](https://github.com/OfficeDev/office-js-docs-reference/tree/master/generate-docs/script-inputs) bearbeiten und [GenerateDocs. cmd](https://github.com/OfficeDev/office-js-docs-reference/blob/master/generate-docs/GenerateDocs.cmd)ausführen. Wenn Sie dazu aufgefordert werden, wählen Sie die Option "lokale Dateien" aus.
+Alle Dokumentationsänderungen für die Office-JavaScript-API werden durch Bearbeiten der vier oben genannten d.ts-Dateien vorgenommen. Sie können jedoch eine Änderung testen, bevor Sie eine PR an DefinitelyTyped übermitteln (wenn Sie z. B. testen müssen, wie Ihre Formatierung in Markdown übersetzt wird), indem Sie die entsprechende Datei in [generate-docs/script-inputs](https://github.com/OfficeDev/office-js-docs-reference/tree/master/generate-docs/script-inputs) bearbeiten und [GenerateDocs.cmd](https://github.com/OfficeDev/office-js-docs-reference/blob/master/generate-docs/GenerateDocs.cmd)ausführen. Wenn Sie dazu aufgefordert werden, wählen Sie die Option "Lokale Dateien" aus.
 
-Durch das Pushen von Änderungen an einem Remote Zweig dieses Repo wird die docs.Microsoft.com-Plattform zum Erstellen einer Test Verzweigung veranlasst. Diese Verzweigung wird auf review.docs.Microsoft.com gerendert, auf die nur interne Microsoft-Mitarbeiter zugreifen können. Jeder, der Ihre PR überprüft, überprüft die Website überprüfen auf Richtigkeit.
+Das Pushen von Änderungen an einen Remotezweig dieses Repositorys bewirkt, dass die docs.microsoft.com A0 einen Testzweig aufbaut. Diese Verzweigung wird auf einem review.docs.microsoft.com gerendert, auf den nur interne Mitarbeiter von Microsoft zugriffen können. Jeder, der Ihre PR überprüft, überprüft die Überprüfungswebsite auf Genauigkeit.
 
 ### <a name="code-snippets"></a>Codeausschnitte
 
-Code Beispiel Ausschnitte werden den Verweisseiten aus zwei Quellen hinzugefügt:
+Codebeispielausschnitte werden den Referenzseiten aus zwei Quellen hinzugefügt:
 
-- [Skript laborbeispiele](https://github.com/OfficeDev/office-js-snippets)
-- [Lokale Code Ausschnitte](https://github.com/OfficeDev/office-js-docs-reference/tree/master/docs/code-snippets)
+- [Script Lab Samples](https://github.com/OfficeDev/office-js-snippets)
+- [Lokale Codeausschnitte](https://github.com/OfficeDev/office-js-docs-reference/tree/master/docs/code-snippets)
 
-Die lokalen Codeausschnitte befinden sich in hostspezifischen YAML-Dateien. Ihr Inhalt ist nach Klasse und Feld organisiert, sodass er der entsprechenden Stelle in einer Referenzseite zugeordnet werden kann. Die Sprache des Codeausschnitts (JavaScript oder Manuskript) wird durch die Verwendung von await-Anweisungen hergeleitet.
+Die lokalen Codeausschnitte befinden sich in hostspezifischen Yaml-Dateien. Der Inhalt ist nach Klasse und Feld organisiert, sodass er dem entsprechenden Ort auf einer Referenzseite zugeordnet werden kann. Die Sprache des Codeausschnitts (JavaScript oder TypeScript) wird durch die Verwendung von await-Anweisungen abgeleitet.
 
-Die Skript Labor Codeausschnitte werden aus Arbeitsbeispielen abgerufen. Derzeit werden Excel-, Outlook-und Word-Beispiele den Referenzdokumenten Abschnitten durch [Zuordnungsdateien](https://github.com/OfficeDev/office-js-snippets/tree/master/snippet-extractor-metadata)zugeordnet. Diese stimmen mit einzelnen Beispiel Methoden mit Eigenschaften oder Methoden in der API überein. Beim Ausführen des Office-js-Snippets-Repositorys `yarn start` wird [eine YAML-Datei](https://github.com/OfficeDev/office-js-snippets/blob/master/snippet-extractor-output/snippets.yaml) erstellt, die alle zugeordneten Codeausschnitte enthält. Diese YAML-Datei ist die Eingabe in das Referenz Dokumentationstool.
+Die Script Lab-Codeausschnitte werden aus Arbeitsbeispielen entnommen. Derzeit werden Excel-, Outlook-, PowerPoint- und Word-Beispiele so zugeordnet, dass sie über Zuordnungsdateien auf [Dokumentabschnitte verweisen.](https://github.com/OfficeDev/office-js-snippets/tree/prod/snippet-extractor-metadata) Diese entsprechen einzelnen Beispielmethoden Eigenschaften oder Methoden in der API. Wenn das Office-js-snippets-Repository ausgeführt wird, wird eine Yaml-Datei mit allen zugeordneten `yarn start` Codeausschnitten [](https://github.com/OfficeDev/office-js-snippets/blob/prod/snippet-extractor-output/snippets.yaml) erstellt. Diese Yaml-Datei ist die Eingabe in das Referenzdokumentationstool.
 
-## <a name="tooling-pipeline"></a>Tooling-Pipeline
+## <a name="tooling-pipeline"></a>Toolpipeline
 
-![Ein Bild, das die Ablaufsteuerung von eindeutig typisiert, an den Präprozessor, den API-Extraktionsprozess, den Präprozessor, den API-Dokumenter und bis zum Postprocessor zeigt.](ToolingPipeline.png)
+![Abbildung des Steuerungsflusses von "Definitely Typed" zum Präprozessor, API Extractor, Midprocessor, API Documenter und zum Postprocessor.](ToolingPipeline.png)
 
-Zwischen den Inhaltsquellen und den letzten Seiten werden im Dokumentations Inhalt fünf Tools beschrieben:
+Zwischen den Inhaltsquellen und den endgültigen Seiten durchgeht der Dokumentationsinhalt fünf Toolschritte:
 
-1. [Präprozessor-Skript](https://github.com/OfficeDev/office-js-docs-reference/blob/master/generate-docs/scripts/preprocessor.ts)
-1. [API-Extraktion](https://api-extractor.com/)
-1. [Präprozessor-Skript](https://github.com/OfficeDev/office-js-docs-reference/blob/master/generate-docs/scripts/midprocessor.ts)
-1. [API-Dokumentation](https://github.com/microsoft/rushstack/blob/master/apps/api-documenter/README.md)
-1. [Postprocessor-Skript](https://github.com/OfficeDev/office-js-docs-reference/blob/master/generate-docs/scripts/postprocessor.ts)
+1. [Präprozessorskript](https://github.com/OfficeDev/office-js-docs-reference/blob/master/generate-docs/scripts/preprocessor.ts)
+1. [API Extractor](https://api-extractor.com/)
+1. [Midprocessorskript](https://github.com/OfficeDev/office-js-docs-reference/blob/master/generate-docs/scripts/midprocessor.ts)
+1. [API Documenter](https://github.com/microsoft/rushstack/blob/master/apps/api-documenter/README.md)
+1. [Postprocessorskript](https://github.com/OfficeDev/office-js-docs-reference/blob/master/generate-docs/scripts/postprocessor.ts)
 
-Der Präprozessor verwendet die d. TS-Dateien und teilt Sie in hostspezifische Abschnitte auf. Sie führt alle erforderlichen Aufräumvorgänge aus, damit die nachfolgenden Tools die Daten ordnungsgemäß verarbeiten können.
+Der Präprozessor übernimmt die d.ts-Dateien und teilt sie in hostspezifische Abschnitte auf. Sie führt alle Bereinigungen durch, die für die nachfolgenden Tools erforderlich sind, um die Daten ordnungsgemäß zu verarbeiten.
 
-API Extractor konvertiert die d. TS-Dateien in JSON-Daten. Dadurch werden alle Typdaten löst, sodass eine einfachere Analyse möglich ist.
+Der API Extractor konvertiert die d.ts-Dateien in JSON-Daten. Dadurch werden alle Typdaten tokenisiert, was eine einfachere Analyse ermöglicht.
 
-Der Mittel Prozessor Ruft die Codeausschnitte ab und verbindet Sie mit den richtigen Hosts und bereinigt die Vernetzung zwischen Outlook und Common API-Objekten.
+Der Midprocessor ruft die Codeausschnitte ab und paart sie mit den richtigen Hosts und bereinigt die Verknüpfung zwischen Outlook- und allgemeinen API-Objekten.
 
-API-Dokumentierer wandelt die JSON-Daten in yml-Dateien um. Die yml-Dateien werden vom geöffneten Veröffentlichungs System, das unsere Dokumente in docs.Microsoft.com veröffentlicht, in einen Abschlag umgewandelt. API-Dokumentierer enthält auch eine Office-spezifische Erweiterung, die unsere Codeausschnitte einfügt.
+API Documenter konvertiert die JSON-Daten in YML-Dateien. Die .yml-Dateien werden vom Open Publishing System, das unsere Dokumente in der Datei veröffentlicht, in Markdown docs.microsoft.com. DER API Documenter enthält auch eine Office-spezifische Erweiterung, die unsere Codeausschnitte einf?en.
 
-Der postprocesser bereinigt das Inhaltsverzeichnis und verschiebt die yml-Dateien in den [Veröffentlichungsordner](https://github.com/OfficeDev/office-js-docs-reference/tree/master/docs/docs-ref-autogen).
+Der Postprozessor bereinigt das Inhaltsverzeichnis und verschiebt die YML-Dateien in den [Veröffentlichungsordner.](https://github.com/OfficeDev/office-js-docs-reference/tree/master/docs/docs-ref-autogen)
 
-Alle fünf Schritte werden ausgeführt, wenn [GenerateDocs. cmd](https://github.com/OfficeDev/office-js-docs-reference/blob/master/generate-docs/GenerateDocs.cmd) ausgeführt wird. Dieses Skript verarbeitet auch die Installation von Knoten Modulen, bereinigt alte Dateisätze und typdefinitions Dateien für Versionstypen für jeden Anforderungssatz.
+Alle fünf dieser Schritte werden ausgeführt, wenn [GenerateDocs.cmd](https://github.com/OfficeDev/office-js-docs-reference/blob/master/generate-docs/GenerateDocs.cmd) ausgeführt wird. Dieses Skript verarbeitet auch die Knotenmodulinstallation, bereinigt alte Dateisätze und Versionstypdefinitionsdateien für jeden Anforderungssatz.
