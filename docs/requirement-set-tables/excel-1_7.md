@@ -3,7 +3,7 @@
 |[Chart](/javascript/api/excel/excel.chart)|[ChartType](/javascript/api/excel/excel.chart#charttype)|Gibt den Typ des Diagramms an.|
 ||[id](/javascript/api/excel/excel.chart#id)|Die eindeutige ID des Diagramms.|
 ||[showAllFieldButtons](/javascript/api/excel/excel.chart#showallfieldbuttons)|Gibt an, ob alle Feldschaltflächen in einem PivotChart angezeigt werden sollen.|
-|[ChartAreaFormat](/javascript/api/excel/excel.chartareaformat)|[border](/javascript/api/excel/excel.chartareaformat#border)|Stellt das Rahmenformat des Diagrammbereichs dar, das Farbe, Linienart und Gewichtung enthält.|
+|[ChartAreaFormat](/javascript/api/excel/excel.chartareaformat)|[Rahmen](/javascript/api/excel/excel.chartareaformat#border)|Stellt das Rahmenformat des Diagrammbereichs dar, das Farbe, Linienart und Gewichtung enthält.|
 |[ChartAxes](/javascript/api/excel/excel.chartaxes)|[GetItem (Typ: Excel. ChartAxisType, Group?: Excel. ChartAxisGroup)](/javascript/api/excel/excel.chartaxes#getitem-type--group-)|Gibt eine bestimmte Achse anhand des Typs und der Gruppe zurück.|
 |[ChartAxis](/javascript/api/excel/excel.chartaxis)|[baseTimeUnit](/javascript/api/excel/excel.chartaxis#basetimeunit)|Gibt die Basiseinheit für die angegebene Rubrikenachse an.|
 ||[CategoryType](/javascript/api/excel/excel.chartaxis#categorytype)|Gibt den Typ der Rubrikenachse an.|
@@ -18,7 +18,7 @@
 ||[height](/javascript/api/excel/excel.chartaxis#height)|Gibt die Höhe der Diagrammachse in Punkten an.|
 ||[left](/javascript/api/excel/excel.chartaxis#left)|Gibt den Abstand zwischen dem linken Rand der Achse und der linken Seite des Diagrammbereichs in Punkten an.|
 ||[top](/javascript/api/excel/excel.chartaxis#top)|Gibt den Abstand zwischen dem oberen Rand der Achse und dem oberen Rand des Diagrammbereichs in Punkten an.|
-||[type](/javascript/api/excel/excel.chartaxis#type)|Gibt den Achsentyp an.|
+||[Typ](/javascript/api/excel/excel.chartaxis#type)|Gibt den Achsentyp an.|
 ||[width](/javascript/api/excel/excel.chartaxis#width)|Gibt die Breite der Diagrammachse in Punkten an.|
 ||[reversePlotOrder](/javascript/api/excel/excel.chartaxis#reverseplotorder)|Gibt an, ob Excel Datenpunkte vom letzten bis zum ersten Diagramm zeichnet.|
 ||[scaleType](/javascript/api/excel/excel.chartaxis#scaletype)|Gibt den Skalierungs der Größenachse an.|
@@ -53,13 +53,13 @@
 ||[items](/javascript/api/excel/excel.chartlegendentrycollection#items)|Ruft die geladenen untergeordneten Elemente in dieser Sammlung ab.|
 |[ChartLineFormat](/javascript/api/excel/excel.chartlineformat)|[LineStyle](/javascript/api/excel/excel.chartlineformat#linestyle)|Stellt das Linienformat dar.|
 ||[weight](/javascript/api/excel/excel.chartlineformat#weight)|Stärke der Linie, angegeben in Punkt.|
-|[ChartPoint](/javascript/api/excel/excel.chartpoint)|[hasDataLabel](/javascript/api/excel/excel.chartpoint#hasdatalabel)|Stellt dar, ob ein Datenpunkt eine Datenbeschriftung aufweist.|
+|[Chart Point](/javascript/api/excel/excel.chartpoint)|[hasDataLabel](/javascript/api/excel/excel.chartpoint#hasdatalabel)|Stellt dar, ob ein Datenpunkt eine Datenbeschriftung aufweist.|
 ||[markerBackgroundColor](/javascript/api/excel/excel.chartpoint#markerbackgroundcolor)|HTML-Farb Codedarstellung der Marker-Hintergrundfarbe des Datenpunkts (z. b. #FF0000 rot darstellt).|
 ||[markerForegroundColor](/javascript/api/excel/excel.chartpoint#markerforegroundcolor)|HTML-Farb Codedarstellung der Marker-Vordergrundfarbe des Datenpunkts (z. b. #FF0000 steht für rot).|
 ||[markerSize](/javascript/api/excel/excel.chartpoint#markersize)|Stellt die Markergröße eines Datenpunkts dar.|
 ||[markerStyle](/javascript/api/excel/excel.chartpoint#markerstyle)|Stellt den Markerstil eines Diagrammdatenpunkts dar.|
 ||[dataLabel](/javascript/api/excel/excel.chartpoint#datalabel)|Gibt die Datenbeschriftung eines Diagrammpunkts zurück.|
-|[ChartPointFormat](/javascript/api/excel/excel.chartpointformat)|[border](/javascript/api/excel/excel.chartpointformat#border)|Stellt das Rahmenformat eines Diagrammdaten Punktes dar, das Farbe, Format und Gewichtungsinformationen enthält.|
+|[ChartPointFormat](/javascript/api/excel/excel.chartpointformat)|[Rahmen](/javascript/api/excel/excel.chartpointformat#border)|Stellt das Rahmenformat eines Diagrammdaten Punktes dar, das Farbe, Format und Gewichtungsinformationen enthält.|
 |[ChartSeries](/javascript/api/excel/excel.chartseries)|[ChartType](/javascript/api/excel/excel.chartseries#charttype)|Stellt den Diagrammtyp einer Reihe dar.|
 ||[delete()](/javascript/api/excel/excel.chartseries#delete--)|Löscht die Diagrammreihen.|
 ||[doughnutHoleSize](/javascript/api/excel/excel.chartseries#doughnutholesize)|Stellt die Innenringgröße einer Diagrammreihe dar.|
@@ -89,14 +89,14 @@
 ||[textOrientation](/javascript/api/excel/excel.charttitle#textorientation)|Gibt den Winkel an, an dem der Text für den Diagrammtitel ausgerichtet ist.|
 ||[top](/javascript/api/excel/excel.charttitle#top)|Gibt den Abstand zwischen dem oberen Rand des Diagrammtitels und dem oberen Rand des Diagrammbereichs in Punkten an.|
 ||[verticalAlignment](/javascript/api/excel/excel.charttitle#verticalalignment)|Gibt die vertikale Ausrichtung des Diagrammtitels an.|
-|[ChartTitleFormat](/javascript/api/excel/excel.charttitleformat)|[border](/javascript/api/excel/excel.charttitleformat#border)|Stellt das Rahmenformat des Diagrammtitels dar, das Farbe, Linienart und Gewichtung enthält.|
+|[ChartTitleFormat](/javascript/api/excel/excel.charttitleformat)|[Rahmen](/javascript/api/excel/excel.charttitleformat#border)|Stellt das Rahmenformat des Diagrammtitels dar, das Farbe, Linienart und Gewichtung enthält.|
 |[ChartTrendline](/javascript/api/excel/excel.charttrendline)|[delete()](/javascript/api/excel/excel.charttrendline#delete--)|Löschen des Trendline-Objekts.|
 ||[Intercept](/javascript/api/excel/excel.charttrendline#intercept)|Stellt den Wert der y-Schnittpunkt der Trendlinie dar.|
 ||[movingAveragePeriod](/javascript/api/excel/excel.charttrendline#movingaverageperiod)|Stellt den Zeitraum einer Diagramm Trendlinie dar.|
 ||[name](/javascript/api/excel/excel.charttrendline#name)|Gibt den Namen der Trendlinie zurück.|
 ||[polynomialOrder](/javascript/api/excel/excel.charttrendline#polynomialorder)|Stellt die Reihenfolge einer Diagramm Trendlinie dar.|
 ||[format](/javascript/api/excel/excel.charttrendline#format)|Stellt die Formatierung der Diagrammtrendlinie dar.|
-||[type](/javascript/api/excel/excel.charttrendline#type)|Stellt die Beschriftung einer Diagrammtrendlinie dar.|
+||[Typ](/javascript/api/excel/excel.charttrendline#type)|Stellt die Beschriftung einer Diagrammtrendlinie dar.|
 |[ChartTrendlineCollection](/javascript/api/excel/excel.charttrendlinecollection)|[Add (Type?: Excel. ChartTrendlineType)](/javascript/api/excel/excel.charttrendlinecollection#add-type-)|Fügt der Trendliniensammlung eine neue Trendlinie hinzu.|
 ||[getCount()](/javascript/api/excel/excel.charttrendlinecollection#getcount--)|Gibt die Anzahl der Trendlinien in der Sammlung zurück.|
 ||[getItem(index: number)](/javascript/api/excel/excel.charttrendlinecollection#getitem-index-)|Ruft das Trendlinien-Objekt anhand des Index ab, der die Einfügereihenfolge im Elementarray darstellt.|
@@ -104,7 +104,7 @@
 |[ChartTrendlineFormat](/javascript/api/excel/excel.charttrendlineformat)|[line](/javascript/api/excel/excel.charttrendlineformat#line)|Stellt die Formatierung der Diagrammlinien dar.|
 |[CustomProperty](/javascript/api/excel/excel.customproperty)|[delete()](/javascript/api/excel/excel.customproperty#delete--)|Löscht die benutzerdefinierte Eigenschaft.|
 ||[key](/javascript/api/excel/excel.customproperty#key)|Der Schlüssel der benutzerdefinierten Eigenschaft.|
-||[type](/javascript/api/excel/excel.customproperty#type)|Der Typ des Werts, der für die benutzerdefinierte Eigenschaft verwendet wird.|
+||[Typ](/javascript/api/excel/excel.customproperty#type)|Der Typ des Werts, der für die benutzerdefinierte Eigenschaft verwendet wird.|
 ||[value](/javascript/api/excel/excel.customproperty#value)|Der Wert der benutzerdefinierten Eigenschaft.|
 |[CustomPropertyCollection](/javascript/api/excel/excel.custompropertycollection)|[Add (Key: String, Value: any)](/javascript/api/excel/excel.custompropertycollection#add-key--value-)|Erstellt eine neue benutzerdefinierte Eigenschaft oder legt eine vorhandene fest.|
 ||[DeleteAll ()](/javascript/api/excel/excel.custompropertycollection#deleteall--)|Löscht alle benutzerdefinierten Eigenschaften in dieser Sammlung.|
@@ -139,8 +139,8 @@
 ||[showCard ()](/javascript/api/excel/excel.range#showcard--)|Zeigt die Karte für eine aktive Zelle an, wenn sie einen hohen Wertinhalt hat.|
 ||[style](/javascript/api/excel/excel.range#style)|Stellt die Formatvorlage des aktuellen Bereichs dar.|
 |[RangeFormat](/javascript/api/excel/excel.rangeformat)|[textOrientation](/javascript/api/excel/excel.rangeformat#textorientation)|Die Textausrichtung aller Zellen innerhalb des Bereichs.|
-||[useStandardHeight](/javascript/api/excel/excel.rangeformat#usestandardheight)|Legt fest, ob die Zeilenhöhe des Bereichsobjekts mit der Standardhöhe des Blatts übereinstimmt.|
-||[useStandardWidth](/javascript/api/excel/excel.rangeformat#usestandardwidth)|Gibt an, ob die Spaltenbreite des Range-Objekts der Standardbreite des Blatts entspricht.|
+||[useStandardHeight](/javascript/api/excel/excel.rangeformat#usestandardheight)|Bestimmt, ob die Zeilenhöhe des `Range` Objekts der Standardhöhe des Blatts entspricht.|
+||[useStandardWidth](/javascript/api/excel/excel.rangeformat#usestandardwidth)|Gibt an, ob die Spaltenbreite des `Range` Objekts der Standardbreite des Blatts entspricht.|
 |[RangeHyperlink](/javascript/api/excel/excel.rangehyperlink)|[address](/javascript/api/excel/excel.rangehyperlink#address)|Stellt das Ziel der URL für den Link dar.|
 ||[documentReference](/javascript/api/excel/excel.rangehyperlink#documentreference)|Stellt das Dokumentreferenz Ziel für den Hyperlink dar.|
 ||[QuickInfo](/javascript/api/excel/excel.rangehyperlink#screentip)|Stellt die Zeichenfolge dar, die angezeigt wird, wenn mit dem Mauszeiger über den Link gefahren wird.|
@@ -176,13 +176,13 @@
 ||[changeType](/javascript/api/excel/excel.tablechangedeventargs#changetype)|Ruft den Änderungstyp ab, der darstellt, wie das geänderte Ereignis ausgelöst wird.|
 ||[source](/javascript/api/excel/excel.tablechangedeventargs#source)|Ruft die Quelle des Ereignisses ab.|
 ||[tableId](/javascript/api/excel/excel.tablechangedeventargs#tableid)|Ruft die ID der Tabelle ab, in der die Daten geändert wurden.|
-||[type](/javascript/api/excel/excel.tablechangedeventargs#type)|Ruft den Typ des Ereignisses ab.|
+||[Typ](/javascript/api/excel/excel.tablechangedeventargs#type)|Ruft den Typ des Ereignisses ab.|
 ||[worksheetId](/javascript/api/excel/excel.tablechangedeventargs#worksheetid)|Ruft die ID des Arbeitsblatts ab, auf dem die Daten geändert wurden.|
 |[TableCollection](/javascript/api/excel/excel.tablecollection)|[onChanged](/javascript/api/excel/excel.tablecollection#onchanged)|Tritt auf, wenn Daten für eine Tabelle in einer Arbeitsmappe oder ein Arbeitsblatt geändert werden.|
 |[TableSelectionChangedEventArgs](/javascript/api/excel/excel.tableselectionchangedeventargs)|[address](/javascript/api/excel/excel.tableselectionchangedeventargs#address)|Ruft die Bereichsadresse ab, die den ausgewählten Bereich der Tabelle auf einem bestimmten Arbeitsblatt darstellt.|
 ||[insideable](/javascript/api/excel/excel.tableselectionchangedeventargs#isinsidetable)|Gibt an, ob sich die Auswahl in einer Tabelle befindet, die Adresse ist nutzlos, wenn insideable auf false festgelegt ist.|
 ||[tableId](/javascript/api/excel/excel.tableselectionchangedeventargs#tableid)|Ruft die ID der Tabelle ab, in der die Auswahl geändert wurde.|
-||[type](/javascript/api/excel/excel.tableselectionchangedeventargs#type)|Ruft den Typ des Ereignisses ab.|
+||[Typ](/javascript/api/excel/excel.tableselectionchangedeventargs#type)|Ruft den Typ des Ereignisses ab.|
 ||[worksheetId](/javascript/api/excel/excel.tableselectionchangedeventargs#worksheetid)|Ruft die ID des Arbeitsblatts ab, in der die Auswahl geändert wurde.|
 |[Workbook](/javascript/api/excel/excel.workbook)|[getActiveCell()](/javascript/api/excel/excel.workbook#getactivecell--)|Ruft die derzeit aktive Zelle aus der Arbeitsmappe ab.|
 ||[DataConnections](/javascript/api/excel/excel.workbook#dataconnections)|Stellt alle Datenverbindungen in der Arbeitsmappe dar.|
@@ -203,24 +203,24 @@
 ||[standardHeight](/javascript/api/excel/excel.worksheet#standardheight)|Gibt die Standardhöhe (Standard) aller Zeilen in der Arbeitsmappe in Punkt zurück.|
 ||[standardWidth](/javascript/api/excel/excel.worksheet#standardwidth)|Gibt die Standardbreite aller Spalten im Arbeitsblatt an.|
 ||[tabColor](/javascript/api/excel/excel.worksheet#tabcolor)|Die Registerkarten Farbe des Arbeitsblatts.|
-|[WorksheetActivatedEventArgs](/javascript/api/excel/excel.worksheetactivatedeventargs)|[type](/javascript/api/excel/excel.worksheetactivatedeventargs#type)|Ruft den Typ des Ereignisses ab.|
+|[WorksheetActivatedEventArgs](/javascript/api/excel/excel.worksheetactivatedeventargs)|[Typ](/javascript/api/excel/excel.worksheetactivatedeventargs#type)|Ruft den Typ des Ereignisses ab.|
 ||[worksheetId](/javascript/api/excel/excel.worksheetactivatedeventargs#worksheetid)|Ruft die ID der Arbeitsmappe ab, die aktiv ist.|
 |[WorksheetAddedEventArgs](/javascript/api/excel/excel.worksheetaddedeventargs)|[source](/javascript/api/excel/excel.worksheetaddedeventargs#source)|Ruft die Quelle des Ereignisses ab.|
-||[type](/javascript/api/excel/excel.worksheetaddedeventargs#type)|Ruft den Typ des Ereignisses ab.|
+||[Typ](/javascript/api/excel/excel.worksheetaddedeventargs#type)|Ruft den Typ des Ereignisses ab.|
 ||[worksheetId](/javascript/api/excel/excel.worksheetaddedeventargs#worksheetid)|Ruft die ID des Arbeitsblatts ab, das zur Arbeitsmappe hinzugefügt wird.|
 |[WorksheetChangedEventArgs](/javascript/api/excel/excel.worksheetchangedeventargs)|[address](/javascript/api/excel/excel.worksheetchangedeventargs#address)|Ruft die Bereichsadresse ab, die den geänderten Bereich eines bestimmten Arbeitsblatts darstellt.|
 ||[changeType](/javascript/api/excel/excel.worksheetchangedeventargs#changetype)|Ruft den Änderungstyp ab, der darstellt, wie das geänderte Ereignis ausgelöst wird.|
 ||[source](/javascript/api/excel/excel.worksheetchangedeventargs#source)|Ruft die Quelle des Ereignisses ab.|
-||[type](/javascript/api/excel/excel.worksheetchangedeventargs#type)|Ruft den Typ des Ereignisses ab.|
+||[Typ](/javascript/api/excel/excel.worksheetchangedeventargs#type)|Ruft den Typ des Ereignisses ab.|
 ||[worksheetId](/javascript/api/excel/excel.worksheetchangedeventargs#worksheetid)|Ruft die ID des Arbeitsblatts ab, auf dem die Daten geändert wurden.|
 |[WorksheetCollection](/javascript/api/excel/excel.worksheetcollection)|[onActivated](/javascript/api/excel/excel.worksheetcollection#onactivated)|Tritt auf, wenn ein beliebiges Arbeitsblatt in der Arbeitsmappe aktiviert wird.|
 ||[onAdded](/javascript/api/excel/excel.worksheetcollection#onadded)|Tritt ein, wenn der Arbeitsmappe ein neues Arbeitsblatt hinzugefügt wird.|
 ||[onDeactivated](/javascript/api/excel/excel.worksheetcollection#ondeactivated)|Tritt auf, wenn ein beliebiges Arbeitsblatt in der Arbeitsmappe deaktiviert wird.|
 ||[onDeleted](/javascript/api/excel/excel.worksheetcollection#ondeleted)|Tritt ein, wenn ein Arbeitsblatt aus der Arbeitsmappe gelöscht wird.|
-|[WorksheetDeactivatedEventArgs](/javascript/api/excel/excel.worksheetdeactivatedeventargs)|[type](/javascript/api/excel/excel.worksheetdeactivatedeventargs#type)|Ruft den Typ des Ereignisses ab.|
+|[WorksheetDeactivatedEventArgs](/javascript/api/excel/excel.worksheetdeactivatedeventargs)|[Typ](/javascript/api/excel/excel.worksheetdeactivatedeventargs#type)|Ruft den Typ des Ereignisses ab.|
 ||[worksheetId](/javascript/api/excel/excel.worksheetdeactivatedeventargs#worksheetid)|Ruft die ID der Arbeitsmappe ab, die deaktiviert ist.|
 |[WorksheetDeletedEventArgs](/javascript/api/excel/excel.worksheetdeletedeventargs)|[source](/javascript/api/excel/excel.worksheetdeletedeventargs#source)|Ruft die Quelle des Ereignisses ab.|
-||[type](/javascript/api/excel/excel.worksheetdeletedeventargs#type)|Ruft den Typ des Ereignisses ab.|
+||[Typ](/javascript/api/excel/excel.worksheetdeletedeventargs#type)|Ruft den Typ des Ereignisses ab.|
 ||[worksheetId](/javascript/api/excel/excel.worksheetdeletedeventargs#worksheetid)|Ruft die ID des Arbeitsblatts ab, das aus der Arbeitsmappe gelöscht wird.|
 |[WorksheetFreezePanes](/javascript/api/excel/excel.worksheetfreezepanes)|[ffreezeat (frozenRange: Bereichs \| Zeichenfolge)](/javascript/api/excel/excel.worksheetfreezepanes#freezeat-frozenrange-)|Legt die fixierten Zellen in der Ansicht des aktiven Arbeitsblatts fest.|
 ||[freezeColumns (count?: Number)](/javascript/api/excel/excel.worksheetfreezepanes#freezecolumns-count-)|Fixieren Sie die erste Spalte oder Spalten des Arbeitsblatts an der richtigen Stelle.|
@@ -233,5 +233,5 @@
 ||[allowEditScenarios](/javascript/api/excel/excel.worksheetprotectionoptions#alloweditscenarios)|Stellt die Arbeitsblatt-Schutzoption zum Zulassen der Bearbeitung von Szenarien dar.|
 ||[SelectionMode](/javascript/api/excel/excel.worksheetprotectionoptions#selectionmode)|Stellt die Arbeitsblatt-Schutzoption zum Zulassen des Auswahlmodus dar.|
 |[WorksheetSelectionChangedEventArgs](/javascript/api/excel/excel.worksheetselectionchangedeventargs)|[address](/javascript/api/excel/excel.worksheetselectionchangedeventargs#address)|Ruft die Bereichsadresse ab, die den ausgewählten Bereich auf einem bestimmten Arbeitsblatt darstellt.|
-||[type](/javascript/api/excel/excel.worksheetselectionchangedeventargs#type)|Ruft den Typ des Ereignisses ab.|
+||[Typ](/javascript/api/excel/excel.worksheetselectionchangedeventargs#type)|Ruft den Typ des Ereignisses ab.|
 ||[worksheetId](/javascript/api/excel/excel.worksheetselectionchangedeventargs#worksheetid)|Ruft die ID des Arbeitsblatts ab, in der die Auswahl geändert wurde.|
