@@ -208,7 +208,7 @@ properties:
   package: excel!
   fullName: onActivated
   summary: >-
-    Tritt ein, wenn das Arbeitsblatt aktiviert wird.
+    Tritt auf, wenn das Arbeitsblatt aktiviert wird.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -320,6 +320,22 @@ properties:
     content: 'readonly onFormatChanged: OfficeExtension.EventHandlers<Excel.WorksheetFormatChangedEventArgs>;'
     return:
       type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.WorksheetFormatChangedEventArgs:interface" />&gt;
+- name: onFormulaChanged
+  uid: excel!Excel.Worksheet#onFormulaChanged:member
+  package: excel!
+  fullName: onFormulaChanged
+  summary: >-
+    Tritt auf, wenn eine oder mehrere Formeln in diesem Arbeitsblatt geändert werden. Dieses Ereignis ist für den Fall, dass sich die Formel selbst ändert, nicht der aus der Berechnung der Formel resultierende Datenwert.
+
+
+    \[[API-Satz: ExcelApi BETA (NUR VORSCHAU)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'readonly onFormulaChanged: OfficeExtension.EventHandlers<Excel.WorksheetFormulaChangedEventArgs>;'
+    return:
+      type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.WorksheetFormulaChangedEventArgs:interface" />&gt;
 - name: onRowHiddenChanged
   uid: excel!Excel.Worksheet#onRowHiddenChanged:member
   package: excel!
@@ -695,7 +711,7 @@ methods:
     content: 'copy(positionType?: Excel.WorksheetPositionType, relativeTo?: Excel.Worksheet): Excel.Worksheet;'
     parameters:
     - id: positionType
-      description: Der Speicherort in der Arbeitsmappe, an dem das neu erstellte Arbeitsblatt gespeichert werden soll. Der Standardwert ist "None", wodurch das Arbeitsblatt am Anfang des Arbeitsblatts eingefügt wird.
+      description: Die Position in der Arbeitsmappe, an der das neu erstellte Arbeitsblatt gespeichert werden soll. Der Standardwert ist "None", wodurch das Arbeitsblatt am Anfang des Arbeitsblatts eingefügt wird.
       type: <xref uid="excel!Excel.WorksheetPositionType:enum" />
     - id: relativeTo
       description: Das vorhandene Arbeitsblatt, das die Position des neu erstellten Arbeitsblatts bestimmt. Dies ist nur erforderlich, `positionType` wenn "Before" oder "After" ist.
@@ -744,7 +760,7 @@ methods:
     content: 'copy(positionTypeString?: "None" | "Before" | "After" | "Beginning" | "End", relativeTo?: Excel.Worksheet): Excel.Worksheet;'
     parameters:
     - id: positionTypeString
-      description: Der Speicherort in der Arbeitsmappe, an dem das neu erstellte Arbeitsblatt gespeichert werden soll. Der Standardwert ist "None", wodurch das Arbeitsblatt am Anfang des Arbeitsblatts eingefügt wird.
+      description: Die Position in der Arbeitsmappe, an der das neu erstellte Arbeitsblatt gespeichert werden soll. Der Standardwert ist "None", wodurch das Arbeitsblatt am Anfang des Arbeitsblatts eingefügt wird.
       type: "\"None\" | \"Before\" | \"After\" | \"Beginning\" | \"End\""
     - id: relativeTo
       description: Das vorhandene Arbeitsblatt, das die Position des neu erstellten Arbeitsblatts bestimmt. Dies ist nur erforderlich, `positionType` wenn "Before" oder "After" ist.
@@ -792,7 +808,7 @@ methods:
       type: <xref uid="excel!Excel.WorksheetSearchCriteria:interface" />
     return:
       type: <xref uid="excel!Excel.RangeAreas:class" />
-      description: Ein RangeArea-Objekt, das aus einem oder mehreren rechteckigen Bereichen besteht und den Suchkriterien entspricht. Wenn keine Zellen dieses Kriterium erfüllen, wird ein ItemNotFound-Fehler ausgelöst.
+      description: Ein RangeArea-Objekt, das aus einem oder mehreren rechteckigen Bereichen besteht und den Suchkriterien entspricht. Wenn keine Zellen diese Kriterien erfüllen, wird ein ItemNotFound-Fehler ausgelöst.
 - name: findAllOrNullObject(text, criteria)
   uid: excel!Excel.Worksheet#findAllOrNullObject:member(1)
   package: excel!
@@ -817,7 +833,7 @@ methods:
     return:
       type: <xref uid="excel!Excel.RangeAreas:class" />
       description: >-
-        Ein RangeArea-Objekt, das aus einem oder mehreren rechteckigen Bereichen besteht und den Suchkriterien entspricht. Wenn es keine Übereinstimmungen gibt, gibt diese Funktion ein Nullobjekt zurück.
+        Ein RangeArea-Objekt, das aus einem oder mehreren rechteckigen Bereichen besteht und den Suchkriterien entspricht. Wenn es keine Übereinstimmungen gibt, gibt diese Funktion ein Objekt zurück, dessen `isNullObject` Eigenschaft auf `true`<!-- -->. Weitere Informationen finden Sie unter [ \* "OrNullObject"-Methoden und -Eigenschaften.](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
         #### <a name="examples"></a>Beispiele
@@ -894,7 +910,7 @@ methods:
   package: excel!
   fullName: getNextOrNullObject(visibleOnly)
   summary: >-
-    Ruft das Arbeitsblatt ab, das auf dieses folgt. Wenn diesem Arbeitsblatt keine Arbeitsblätter folgen, gibt diese Methode ein Nullobjekt zurück.
+    Ruft das Arbeitsblatt ab, das auf dieses folgt. Wenn diesem Arbeitsblatt keine Arbeitsblätter folgen, gibt diese Methode ein Objekt zurück, dessen `isNullObject` Eigenschaft auf `true`<!-- -->. Weitere Informationen finden Sie unter [*OrNullObject-Methoden und -Eigenschaften.](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[API-Satz: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1050,7 +1066,7 @@ methods:
   package: excel!
   fullName: getUsedRangeOrNullObject(valuesOnly)
   summary: >-
-    Der verwendete Bereich ist der kleinste Bereich, der mindestens eine der Zellen umfasst, die einen Wert enthalten oder denen eine Formatierung zugewiesen wurde. Wenn das gesamte Arbeitsblatt leer ist, gibt diese Funktion ein NULL-Objekt zurück.
+    Der verwendete Bereich ist der kleinste Bereich, der mindestens eine der Zellen umfasst, die einen Wert enthalten oder denen eine Formatierung zugewiesen wurde. Wenn das gesamte Arbeitsblatt leer ist, gibt diese Funktion ein Objekt zurück, dessen `isNullObject` Eigenschaft auf `true`<!-- -->. Weitere Informationen finden Sie unter [*OrNullObject-Methoden und -Eigenschaften.](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[API-Satz: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1221,7 +1237,7 @@ methods:
   uid: excel!Excel.Worksheet#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: Überschreibt die JavaScript-Methode, um eine nützlichere Ausgabe zu ermöglichen, wenn `toJSON()` ein API-Objekt an `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode `toJSON` des Objekts auf, das an das Objekt übergeben wird.) Während das ursprüngliche Excel.Worksheet-Objekt ein API-Objekt ist, gibt die Methode ein `toJSON` einfaches `Excel.Interfaces.WorksheetData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.
+  summary: Überschreibt die JavaScript-Methode, um eine nützlichere Ausgabe zu ermöglichen, wenn `toJSON()` ein API-Objekt an `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode `toJSON` des Objekts auf, das an das Objekt übergeben wird.) Während das ursprüngliche Excel.Worksheet-Objekt ein API-Objekt ist, gibt die Methode ein einfaches `toJSON``Excel.Interfaces.WorksheetData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1232,9 +1248,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: a97fdcf6e4247d09689f105aec02889963a125f9
-  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
+  ms.openlocfilehash: b7f3b4e06e50b3a7d27b2010a07cc6b888de7506
+  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 01/13/2021
-  ms.locfileid: "49852208"
+  ms.lasthandoff: 01/27/2021
+  ms.locfileid: "49991674"
