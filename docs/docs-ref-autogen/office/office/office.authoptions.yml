@@ -3,7 +3,7 @@ name: Office.AuthOptions
 uid: office!Office.AuthOptions:interface
 package: office!
 fullName: Office.AuthOptions
-summary: Bietet Optionen für die Benutzeroberfläche, wenn Office ein Zugriffstoken für das Add-in von Aad v abruft. 2.0 abruft (mit der Methode `getAccessToken`).
+summary: Stellt Optionen für die Benutzeroberfläche zur Verfügung, wenn Office ein Zugriffstoken für das Add-in von AAD v. 2.0 abruft (mit der Methode `getAccessToken`).
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -13,7 +13,7 @@ properties:
   uid: office!Office.AuthOptions#allowConsentPrompt:member
   package: office!
   fullName: allowConsentPrompt
-  summary: Ermöglicht, dass Office ein Zugriffstoken im Hintergrund oder durch interaktive Zustimmung erhält, wenn eine erforderlich ist. Der Standardwert ist `false`<!-- -->. Bei Festlegung auf `false`<!-- -->, Versucht Office automatisch, ein Zugriffstoken abzurufen. Wenn dies nicht der Fall ist, gibt Office einen beschreibenden Fehler zurück. Bei Festlegung auf `true`<!-- -->Wird in Office eine Benutzeroberfläche für interaktive Zustimmung angezeigt, nachdem ein Zugriffstoken nicht automatisch abgerufen werden konnte. Die Eingabeaufforderung lässt nur Zustimmung zum Aad-Profilbereich zu, nicht zu Microsoft Graph-Bereichen.
+  summary: Ermöglicht Office, ein Zugriffstoken im Hintergrund oder durch interaktive Zustimmung abzurufen, falls erforderlich. Der Standardwert ist `false`<!-- -->. Wenn festgelegt auf `false`<!-- -->versucht Office im Hintergrund, ein Zugriffstoken abzurufen. Wenn dies nicht der Fehler ist, gibt Office einen beschreibenden Fehler zurück. Wenn festgelegt auf `true`<!-- -->zeigt Office eine interaktive Zustimmungsbenutzeroberfläche an, nachdem es kein Zugriffstoken im Hintergrund erhalten hat. Die Eingabeaufforderung lässt nur die Zustimmung zum AAD-Profilbereich zu, nicht zu Microsoft Graph-Bereich.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -25,7 +25,7 @@ properties:
   uid: office!Office.AuthOptions#allowSignInPrompt:member
   package: office!
   fullName: allowSignInPrompt
-  summary: Ermöglicht Office das Abrufen eines Zugriffstokens, für das die Zustimmung automatisch erteilt wurde oder die interaktive Benutzeroberfläche zum Anmelden des Benutzers anzeigen. Der Standardwert ist `false`<!-- -->. Bei Festlegung auf `false`<!-- -->, Versucht Office automatisch, ein Zugriffstoken abzurufen. Wenn dies nicht der Fall ist, gibt Office einen beschreibenden Fehler zurück. Bei Festlegung auf `true`<!-- -->Wird in Office eine interaktive Anmeldebenutzeroberfläche angezeigt, nachdem ein Zugriffstoken nicht automatisch abgerufen werden konnte.
+  summary: Ermöglicht Office, ein Zugriffstoken im Hintergrund abzurufen, sofern die Zustimmung vorhanden ist, oder eine interaktive Benutzeroberfläche zum Anmelden des Benutzers anzeigen. Der Standardwert ist `false`<!-- -->. Wenn festgelegt auf `false`<!-- -->versucht Office im Hintergrund, ein Zugriffstoken abzurufen. Wenn dies nicht der Fehler ist, gibt Office einen beschreibenden Fehler zurück. Wenn festgelegt auf `true`<!-- -->zeigt Office eine interaktive Anmeldebenutzeroberfläche an, nachdem es kein Zugriffstoken im Hintergrund erhalten hat.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -37,7 +37,7 @@ properties:
   uid: office!Office.AuthOptions#asyncContext:member
   package: office!
   fullName: asyncContext
-  summary: Ein benutzerdefiniertes Element eines beliebigen Typs, der in der `asyncContext` Eigenschaft des `AsyncResult` Objekts, das an einen Rückruf übergeben wird, unverändert zurückgegeben wird.
+  summary: Ein benutzerdefiniertes Element eines beliebigen Typs, das unverändert in der Eigenschaft des Objekts zurückgegeben wird, das an `asyncContext` `AsyncResult` einen Rückruf übergeben wird.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -49,7 +49,7 @@ properties:
   uid: office!Office.AuthOptions#authChallenge:member
   package: office!
   fullName: authChallenge
-  summary: Veranlasst Office dazu, den Benutzer aufzufordern, den zusätzlichen Faktor anzugeben, wenn für das von Microsoft Graph angezielte Mandanten mehrstufige Authentifizierung erforderlich ist. Der String-Wert gibt den Typ des zusätzlichen Faktors an, der erforderlich ist. In den meisten Fällen wissen Sie zur Entwicklungszeit nicht, ob der Mandant des Benutzers einen zusätzlichen Faktor benötigt oder was die Zeichenfolge sein sollte. Diese Option würde also in einem "zweiten try"-Aufruf von verwendet `getAccessToken` , nachdem Microsoft Graph eine Fehlermeldung gesendet hat, die den zusätzlichen Faktor anfordert und die Zeichenfolge enthält, die mit der Option verwendet werden sollte `authChallenge` .
+  summary: Veranlasst Office, den Benutzer zur Bereitstellung des zusätzlichen Faktors auffordern, wenn für den von Microsoft Graph bestimmten Mandanz eine mehrstufige Authentifizierung erforderlich ist. Der Zeichenfolgenwert gibt den Typ des zusätzlichen Faktors an, der erforderlich ist. In den meisten Fällen wissen Sie zur Entwicklungszeit nicht, ob der Mandant des Benutzers einen zusätzlichen Faktor erfordert oder wie die Zeichenfolge sein sollte. Diese Option wird also in einem "zweiten Versuch"-Aufruf verwendet, nachdem Microsoft Graph einen Fehler gesendet hat, der den zusätzlichen Faktor anfordert und die Zeichenfolge enthält, die mit der Option `getAccessToken` verwendet werden `authChallenge` soll.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -61,7 +61,11 @@ properties:
   uid: office!Office.AuthOptions#forceAddAccount:member
   package: office!
   fullName: forceAddAccount
-  summary: Fordert den Benutzer auf, sein Office-Konto hinzuzufügen (oder zu wechseln, wenn es bereits hinzugefügt wurde). Der Standardwert ist `false`<!-- -->.
+  summary: >-
+    Fordert den Benutzer auf, sein Office-Konto hinzuzufügen (oder zu diesem zu wechseln, falls es bereits hinzugefügt wurde). Der Standardwert ist `false`<!-- -->.
+
+
+    **Warnung**: `forceAddAccount` Ist veraltet. Verwenden `allowSignInPrompt` Sie stattdessen.
   remarks: ''
   isPreview: false
   isDeprecated: true
@@ -74,7 +78,11 @@ properties:
   uid: office!Office.AuthOptions#forceConsent:member
   package: office!
   fullName: forceConsent
-  summary: Bewirkt, dass Office die Add-In-Zustimmung anzeigt. Diese Methode ist nützlich, wenn die Add-In-Azure-Berechtigungen geändert wurden oder die Zustimmung des Benutzers gesperrt wurde. Der Standardwert ist `false`<!-- -->.
+  summary: >-
+    Bewirkt, dass Office die Add-In-Zustimmung anzeigt. Diese Methode ist nützlich, wenn die Add-In-Azure-Berechtigungen geändert wurden oder die Zustimmung des Benutzers gesperrt wurde. Der Standardwert ist `false`<!-- -->.
+
+
+    **Warnung**: `forceConsent` Ist veraltet. Verwenden `allowConsentPrompt` Sie stattdessen.
   remarks: ''
   isPreview: false
   isDeprecated: true
@@ -87,7 +95,7 @@ properties:
   uid: office!Office.AuthOptions#forMSGraphAccess:member
   package: office!
   fullName: forMSGraphAccess
-  summary: Bewirkt, dass Office einen beschreibenden Fehler zurückgibt, wenn das Add-in auf Microsoft Graph zugreifen möchte, und der Benutzer/Administrator dem Diagrammbereich keine Zustimmung erteilt hat. Der Standardwert ist `false`<!-- -->. Office unterstützt nur die Zustimmung zu Diagramm Bereichen, wenn das Add-in von einem mandantenadministrator bereitgestellt wurde. Diese Informationen sind während der Entwicklung nicht verfügbar. Durch Festlegen dieser Option `true` wird Office dazu veranlassen, das Add-in vorab zu informieren (indem ein beschreibendes Problem zurückgegeben wird), wenn der Graph-Zugriff fehlschlägt.
+  summary: Bewirkt, dass Office einen beschreibenden Fehler zurück gibt, wenn das Add-in auf Microsoft Graph zugreifen möchte und der Benutzer/Administrator keine Zustimmung zu den Graph-Bereich erteilt hat. Der Standardwert ist `false`<!-- -->. Office unterstützt die Zustimmung zu Graph-Bereich nur, wenn das Add-in von einem Mandantenadministrator bereitgestellt wurde. Diese Informationen stehen während der Entwicklung nicht zur Verfügung. Wenn Sie diese Option festlegen, informiert Office Ihr Add-in vorab (indem ein beschreibender Fehler zurückgegeben wird), wenn der Zugriff auf `true` Graph fehlschlägt.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -96,9 +104,9 @@ properties:
     return:
       type: boolean
 metadata:
-  ms.openlocfilehash: 622e5b5d59481a8d6984208677307dc21a4de56f
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: c9a42edfa3f6fe0a2873389520ac6e6bdb093ca8
+  ms.sourcegitcommit: 94ed3108858c111541f7430d7482ea329ad21dbd
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49251633"
+  ms.lasthandoff: 02/03/2021
+  ms.locfileid: "50092018"
