@@ -4,18 +4,63 @@ uid: outlook!Office.NotificationMessageAction:interface
 package: outlook!
 fullName: Office.NotificationMessageAction
 summary: >-
-  Die Definition der Aktion für eine Benachrichtigungsmeldung.
+  Die Definition der Aktion für eine Benachrichtigung.
 
 
-  **Wichtig**: in modernen Outlook im Internet `NotificationMessageAction` steht das Objekt nur im Verfassenmodus zur Verfügung.
+  **Wichtig:** In modernen Outlook im Web ist das Objekt nur `NotificationMessageAction` im Verfassenmodus verfügbar.
 
 
-  \[[API-Gruppe: Post fach Vorschau](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  \[[API-Satz: Postfachvorschau](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
 remarks: >-
-  **[Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+  **[Mindestberechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
 
 
-  **[Anwendbarer Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Verfassen oder lesen
+  **[Zutreffender Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
+
+
+  #### <a name="examples"></a>Beispiele
+
+
+  ```javascript
+
+  // Define notification.
+
+  const insightMessage = {
+      type: Office.MailboxEnums.ItemNotificationMessageType.InsightMessage,
+      message: "This is an insight notification",
+      icon: "Icon.80x80",
+      actions: [{
+          actionText: "Open insight",
+          actionType: Office.MailboxEnums.ActionType.ShowTaskPane,
+          commandId: "msgComposeOpenPaneButton",
+          contextData: JSON.stringify({a: "aValue", b: "bValue"})
+      }]
+  };
+
+
+  // Show notification.
+
+  Office.context.mailbox.item.notificationMessages.replaceAsync("messageKey", insightMessage, (result) => {
+      console.log("Added notification:");
+      console.log(result);
+  });
+
+
+  // Retrieve contextData.
+
+  // IMPORTANT: At present, this only works in Outlook on Windows.
+
+  Office.context.mailbox.item.getInitializationContextAsync(function (asyncResult) {
+      console.log("Initialization context:");
+      console.log(asyncResult);
+
+      // Note: Use JSON.parse(asyncResult.value) to read the result. Example:
+      var contextData = JSON.parse(asyncResult.value);
+      console.log("a:")
+      console.log(contextData.a);
+  });
+
+  ```
 isPreview: true
 isDeprecated: false
 type: interface
@@ -36,7 +81,7 @@ properties:
   uid: outlook!Office.NotificationMessageAction#actionType:member
   package: outlook!
   fullName: actionType
-  summary: Der Typ der durchzuführenden Aktion. `ActionType.ShowTaskPane` ist die einzige unterstützte Aktion.
+  summary: Der Typ der zu verwendende Aktion. `ActionType.ShowTaskPane` ist die einzige unterstützte Aktion.
   remarks: ''
   isPreview: true
   isDeprecated: false
@@ -48,7 +93,7 @@ properties:
   uid: outlook!Office.NotificationMessageAction#commandId:member
   package: outlook!
   fullName: commandId
-  summary: Die im Manifest auf der Grundlage des Elementtyps definierte Schaltfläche.
+  summary: Die im Manifest definierte Schaltfläche basierend auf dem Elementtyp.
   remarks: ''
   isPreview: true
   isDeprecated: false
@@ -60,7 +105,11 @@ properties:
   uid: outlook!Office.NotificationMessageAction#contextData:member
   package: outlook!
   fullName: contextData
-  summary: Alle JSON-Daten, die die Schaltfläche übergeben muss. Diese Daten können durch Aufrufen abgerufen werden. `item.getInitializationContextAsync`<!-- -->.
+  summary: >-
+    Alle JSON-Daten, die die Schaltfläche übergeben muss. Diese Daten können durch Aufrufen `item.getInitializationContextAsync`<!-- -->.
+
+
+    **Wichtig:** In Outlook im Web ist die Möglichkeit zum Abrufen `contextData` noch nicht verfügbar.
   remarks: ''
   isPreview: true
   isDeprecated: false
@@ -69,9 +118,9 @@ properties:
     return:
       type: any
 metadata:
-  ms.openlocfilehash: 8ec7a20c6784648fe4a9689c8063ef6961550570
-  ms.sourcegitcommit: 6702d1aafaf1d8114bcf5e5eeb5d7833c108d56a
+  ms.openlocfilehash: 6a2b532a355cd539ba93458717175b4f2904c3ea
+  ms.sourcegitcommit: 8eb514f1a5760c86e970fb5a4c10eac1b0c06b93
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 12/10/2020
-  ms.locfileid: "49623335"
+  ms.lasthandoff: 02/06/2021
+  ms.locfileid: "50126650"
