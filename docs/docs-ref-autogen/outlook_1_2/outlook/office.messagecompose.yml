@@ -7,7 +7,7 @@ summary: >-
   Der Nachrichtenerstellenmodus von [Office.context.mailbox.item](xref:outlook!Office.Item:interface)<!-- -->.
 
 
-  **Wichtig:** Dies ist ein internes Outlook-Objekt, das nicht direkt über vorhandene Schnittstellen verfügbar gemacht wird. Sie sollten dies als Modus von `Office.context.mailbox.item`<!-- -->. Weitere Informationen finden Sie [auf der](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.2/office.context.mailbox.item) Seite "Objektmodell".
+  **Wichtig:** Dies ist ein internes Outlook-Objekt, das nicht direkt über vorhandene Schnittstellen verfügbar gemacht wird. Sie sollten dies als einen Modus von `Office.context.mailbox.item`<!-- -->. Weitere Informationen finden Sie [auf](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.2/office.context.mailbox.item) der Seite "Objektmodell".
 
 
   Übergeordnete Schnittstellen:
@@ -16,7 +16,7 @@ summary: >-
   - [ItemCompose](xref:outlook!Office.ItemCompose:interface)
 
 
-  - [Meldung](xref:outlook!Office.Message:interface)
+  - [Nachricht](xref:outlook!Office.Message:interface)
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -27,7 +27,7 @@ properties:
   package: outlook!
   fullName: bcc
   summary: >-
-    Ruft ein Objekt ab, das Methoden zum Erhalten oder Aktualisieren der Empfänger in der **Zeile Bcc** (Blind Carbon Copy) einer Nachricht bietet.
+    Ruft ein Objekt ab, das Methoden zum Erhalten oder Aktualisieren der Empfänger in der **Bcc** (Blind Carbon Copy)-Zeile einer Nachricht bietet.
 
 
     Je nach Client/Plattform (z. B. Windows, Mac usw.) können Grenzwerte für die Anzahl der Empfänger gelten, die Sie erhalten oder aktualisieren können. Weitere Informationen finden [Sie](xref:outlook!Office.Recipients:interface) im Recipients-Objekt.
@@ -437,7 +437,7 @@ methods:
     Anschließend können Sie den Bezeichner mit der `removeAttachmentAsync`-Methode in der gleichen Sitzung zum Entfernen der Anlage verwenden.
 
 
-    **Wichtig:** In den letzten Builds von Outlook unter Windows wurde ein Fehler eingeführt, der fälschlicherweise einen Header an diese Aktion anfügen kann (unabhängig davon, ob Sie diese API oder die `Authorization: Bearer` Outlook-Benutzeroberfläche verwenden). Um dieses Problem zu beheben, können Sie versuchen, die `addFileAttachmentFromBase64` mit Anforderungssatz 1.8 eingeführte API zu verwenden.
+    **Wichtig:** In aktuellen Builds von Outlook unter Windows wurde ein Fehler eingeführt, der fälschlicherweise einen Header an diese Aktion anfügen kann (unabhängig davon, ob Sie diese API oder die `Authorization: Bearer` Outlook-Benutzeroberfläche verwenden). Um dieses Problem zu beheben, können Sie versuchen, die `addFileAttachmentFromBase64` mit Anforderungssatz 1.8 eingeführte API zu verwenden.
 
 
     \[[API-Satz: Postfach 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -548,7 +548,7 @@ methods:
     Fügt der Nachricht oder dem Termin ein Exchange-Objekt, wie z. B. eine Nachricht, als Anhang hinzu.
 
 
-    Die `addItemAttachmentAsync` Methode fügt das Element mit dem angegebenen Exchange-Bezeichner an das Element im Formular zum Verfassen an. Wenn Sie eine Rückrufmethode angeben, wird die Methode mit einem Parameter aufgerufen: `asyncResult`<!-- -->, der entweder den Anlagenbezeichner oder einen Code enthält, der einen Fehler angibt, der beim Anfügen des Elements aufgetreten ist. Sie können den Parameter "options" verwenden, um bei Bedarf Statusinformationen an die Rückrufmethode zu übergeben.
+    Die Methode fügt das Element mit dem angegebenen `addItemAttachmentAsync` Exchange-Bezeichner an das Element im Formular zum Verfassen an. Wenn Sie eine Rückrufmethode angeben, wird die Methode mit einem Parameter aufgerufen: `asyncResult`<!-- -->, der entweder den Anlagenbezeichner oder einen Code enthält, der einen Fehler angibt, der beim Anfügen des Elements aufgetreten ist. Sie können den Parameter "options" verwenden, um bei Bedarf Statusinformationen an die Rückrufmethode zu übergeben.
 
 
     Anschließend können Sie den Bezeichner mit der `removeAttachmentAsync`-Methode in der gleichen Sitzung zum Entfernen der Anlage verwenden.
@@ -644,7 +644,7 @@ methods:
     Wenn keine Auswahl vorhanden ist, aber der Cursor sich im Nachrichtentext oder Betreff befindet, gibt die Methode für die ausgewählten Daten eine leere Zeichenfolge zurück. Wenn ein anderes Feld als der Textkörper oder Betreff ausgewählt ist, gibt die Methode den `InvalidSelection`-Fehler zurück.
 
 
-    Um über die Rückrufmethode auf die ausgewählten Daten zu zugreifen, rufen Sie `asyncResult.value.data`<!-- -->. Um auf die Quelleigenschaft zu zugreifen, aus der die Auswahl stammt, rufen Sie `asyncResult.value.sourceProperty`<!-- -->, die entweder `body` oder `subject`<!-- -->.
+    Um über die Rückrufmethode auf die ausgewählten Daten zu zugreifen, rufen Sie `asyncResult.value.data`<!-- -->. Rufen Sie zum Zugreifen auf die Quelleigenschaft, aus der die Auswahl stammt, `asyncResult.value.sourceProperty`<!-- -->, die entweder `body` oder `subject`<!-- -->.
 
 
     \[[API-Satz: Postfach 1.2](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -703,7 +703,7 @@ methods:
     Wenn keine Auswahl vorhanden ist, aber der Cursor sich im Nachrichtentext oder Betreff befindet, gibt die Methode für die ausgewählten Daten eine leere Zeichenfolge zurück. Wenn ein anderes Feld als der Textkörper oder Betreff ausgewählt ist, gibt die Methode den `InvalidSelection`-Fehler zurück.
 
 
-    Um über die Rückrufmethode auf die ausgewählten Daten zu zugreifen, rufen Sie `asyncResult.value.data`<!-- -->. Um auf die Quelleigenschaft zu zugreifen, aus der die Auswahl stammt, rufen Sie `asyncResult.value.sourceProperty`<!-- -->, die entweder `body` oder `subject`<!-- -->.
+    Um über die Rückrufmethode auf die ausgewählten Daten zu zugreifen, rufen Sie `asyncResult.value.data`<!-- -->. Rufen Sie zum Zugreifen auf die Quelleigenschaft, aus der die Auswahl stammt, `asyncResult.value.sourceProperty`<!-- -->, die entweder `body` oder `subject`<!-- -->.
 
 
     \[[API-Satz: Postfach 1.2](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -840,7 +840,7 @@ methods:
     content: 'removeAttachmentAsync(attachmentId: string, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     parameters:
     - id: attachmentId
-      description: Der Bezeichner der zu entfernenden Anlage. Die maximale Zeichenfolgenlänge beträgt `attachmentId` 200 Zeichen in Outlook im Web und 100 Zeichen in Outlook unter Windows.
+      description: Der Bezeichner der zu entfernenden Anlage. Die maximale Zeichenfolgenlänge beträgt `attachmentId` 200 Zeichen in Outlook im Web und unter Windows.
       type: string
     - id: options
       description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können in der Rückrufmethode jedes Objekt bereitstellen, auf das sie zugreifen möchten.'
@@ -923,9 +923,9 @@ methods:
       description: ''
 extends: <xref uid="outlook!Office.Message:interface" />
 metadata:
-  ms.openlocfilehash: 9b64eb7a8cdd6305ddca775993c528fe88e82349
-  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
+  ms.openlocfilehash: 54d9f8c69ce0869373b59f3a1bb47f2c3a9c84dc
+  ms.sourcegitcommit: 9dba9247601805ad821e7a7260ac418e566786b7
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 01/13/2021
-  ms.locfileid: "49851725"
+  ms.lasthandoff: 02/10/2021
+  ms.locfileid: "50173363"
