@@ -7,7 +7,7 @@ summary: >-
   Der Nachrichtenerstellenmodus von [Office.context.mailbox.item](xref:outlook!Office.Item:interface)<!-- -->.
 
 
-  **Wichtig:** Dies ist ein internes Outlook-Objekt, das nicht direkt über vorhandene Schnittstellen verfügbar gemacht wird. Sie sollten dies als Modus von `Office.context.mailbox.item`<!-- -->. Weitere Informationen finden Sie [auf](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.7/office.context.mailbox.item) der Seite "Objektmodell".
+  **Wichtig:** Dies ist ein internes Outlook-Objekt, das nicht direkt über vorhandene Schnittstellen verfügbar gemacht wird. Sie sollten dies als einen Modus von `Office.context.mailbox.item`<!-- -->. Weitere Informationen finden Sie [auf](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.7/office.context.mailbox.item) der Seite "Objektmodell".
 
 
   Übergeordnete Schnittstellen:
@@ -16,7 +16,7 @@ summary: >-
   - [ItemCompose](xref:outlook!Office.ItemCompose:interface)
 
 
-  - [Meldung](xref:outlook!Office.Message:interface)
+  - [Nachricht](xref:outlook!Office.Message:interface)
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -27,7 +27,7 @@ properties:
   package: outlook!
   fullName: bcc
   summary: >-
-    Ruft ein Objekt ab, das Methoden zum Erhalten oder Aktualisieren der Empfänger in der **Zeile Bcc** (Blind Carbon Copy) einer Nachricht bietet.
+    Ruft ein Objekt ab, das Methoden zum Erhalten oder Aktualisieren der Empfänger in der **Bcc** (Blind Carbon Copy)-Zeile einer Nachricht bietet.
 
 
     Je nach Client/Plattform (z. B. Windows, Mac usw.) können Grenzwerte für die Anzahl der Empfänger gelten, die Sie erhalten oder aktualisieren können. Weitere Informationen finden [Sie](xref:outlook!Office.Recipients:interface) im Recipients-Objekt.
@@ -358,7 +358,7 @@ properties:
     In Outlook im Web- und Desktopclients gibt der die `seriesId` EXCHANGE Web Services (EWS)-ID des übergeordneten Elements (Datenreihenelements) zurück, zu dem dieses Element gehört. Unter iOS und Android gibt die seriesId jedoch die REST-ID des übergeordneten Elements zurück.
 
 
-    **Hinweis:** Der von der Eigenschaft zurückgegebene Bezeichner `seriesId` ist identisch mit dem Exchange-Webdienste-Elementbezeichner. Die `seriesId` Eigenschaft ist nicht identisch mit den Outlook-IDs, die von der Outlook-REST-API verwendet werden. Bevor Sie REST-API-Aufrufe mit diesem Wert erstellen, sollte er mithilfe von `Office.context.mailbox.convertToRestId`<!-- -->. Weitere Informationen finden Sie unter [Verwenden der Outlook-REST-APIs aus einem Outlook-Add-In.](https://docs.microsoft.com/office/dev/add-ins/outlook/use-rest-api)<!-- -->.
+    **Hinweis:** Der von der Eigenschaft zurückgegebene Bezeichner ist identisch mit dem `seriesId` Exchange-Webdienste-Elementbezeichner. Die `seriesId` Eigenschaft ist nicht identisch mit den Outlook-IDs, die von der Outlook-REST-API verwendet werden. Bevor Sie REST-API-Aufrufe unter Verwendung dieses Werts erstellen, sollte sie mit `Office.context.mailbox.convertToRestId`<!-- -->. Weitere Informationen finden Sie unter [Verwenden der Outlook-REST-APIs aus einem Outlook-Add-In.](https://docs.microsoft.com/office/dev/add-ins/outlook/use-rest-api)<!-- -->.
 
 
     Die Eigenschaft wird für Elemente zurückgegeben, die nicht über übergeordnete Elemente verfügen, z. B. einzelne Termine, Datenreihenelemente oder Besprechungsanfragen, und für alle anderen Elemente, die keine `seriesId` `null` `undefined` Besprechungsanfragen sind, zurückgegeben.
@@ -545,7 +545,7 @@ methods:
     Anschließend können Sie den Bezeichner mit der `removeAttachmentAsync`-Methode in der gleichen Sitzung zum Entfernen der Anlage verwenden.
 
 
-    **Wichtig:** In den letzten Builds von Outlook unter Windows wurde ein Fehler eingeführt, der fälschlicherweise einen Header an diese Aktion anfügen kann (unabhängig davon, ob Sie diese API oder die `Authorization: Bearer` Outlook-Benutzeroberfläche verwenden). Um dieses Problem zu beheben, können Sie versuchen, die `addFileAttachmentFromBase64` mit Anforderungssatz 1.8 eingeführte API zu verwenden.
+    **Wichtig:** In aktuellen Builds von Outlook unter Windows wurde ein Fehler eingeführt, der fälschlicherweise einen Header an diese Aktion anfügen kann (unabhängig davon, ob Sie diese API oder die `Authorization: Bearer` Outlook-Benutzeroberfläche verwenden). Um dieses Problem zu beheben, können Sie versuchen, die `addFileAttachmentFromBase64` mit Anforderungssatz 1.8 eingeführte API zu verwenden.
 
 
     \[[API-Satz: Postfach 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -712,7 +712,7 @@ methods:
     Fügt der Nachricht oder dem Termin ein Exchange-Objekt, wie z. B. eine Nachricht, als Anhang hinzu.
 
 
-    Die `addItemAttachmentAsync` Methode fügt das Element mit dem angegebenen Exchange-Bezeichner an das Element im Formular zum Verfassen an. Wenn Sie eine Rückrufmethode angeben, wird die Methode mit einem Parameter aufgerufen: `asyncResult`<!-- -->, der entweder den Anlagenbezeichner oder einen Code enthält, der einen Fehler angibt, der beim Anfügen des Elements aufgetreten ist. Sie können den Parameter "options" verwenden, um bei Bedarf Statusinformationen an die Rückrufmethode zu übergeben.
+    Die Methode fügt das Element mit dem angegebenen `addItemAttachmentAsync` Exchange-Bezeichner an das Element im Formular zum Verfassen an. Wenn Sie eine Rückrufmethode angeben, wird die Methode mit einem Parameter aufgerufen: `asyncResult`<!-- -->, der entweder den Anlagenbezeichner oder einen Code enthält, der einen Fehler angibt, der beim Anfügen des Elements aufgetreten ist. Sie können den Parameter "options" verwenden, um bei Bedarf Statusinformationen an die Rückrufmethode zu übergeben.
 
 
     Anschließend können Sie den Bezeichner mit der `removeAttachmentAsync`-Methode in der gleichen Sitzung zum Entfernen der Anlage verwenden.
@@ -987,7 +987,7 @@ methods:
     Entfernt eine Anlage aus einer Nachricht oder einem Termin.
 
 
-    Die `removeAttachmentAsync`-Methode entfernt die Anlage mit dem angegebenen Bezeichner aus dem Element. Als bewährte Vorgehensweise sollten Sie den Anlagenbezeichner nur dann zum Entfernen einer Anlage verwenden, wenn die gleiche Mail-App die Anlage in der gleichen Sitzung hinzugefügt hat. In Outlook im Web und für Mobilgeräte ist die Anlagen-ID nur innerhalb der gleichen Sitzung gültig. Eine Sitzung ist beendet, wenn der Benutzer die App schließt, oder wenn der Benutzer mit dem Erstellen eines Inlineformulars beginnt, wird das Formular anschließend angezeigt, um in einem separaten Fenster fortzufahren.
+    Die `removeAttachmentAsync`-Methode entfernt die Anlage mit dem angegebenen Bezeichner aus dem Element. Als bewährte Vorgehensweise sollten Sie den Anlagenbezeichner nur dann zum Entfernen einer Anlage verwenden, wenn die gleiche Mail-App die Anlage in der gleichen Sitzung hinzugefügt hat. In Outlook im Web und für Mobilgeräte ist die Anlagen-ID nur innerhalb der gleichen Sitzung gültig. Eine Sitzung ist beendet, wenn der Benutzer die App schließt, oder wenn der Benutzer mit dem Erstellen eines Inlineformulars beginnt, dann wird das Formular angezeigt, um in einem separaten Fenster fortzufahren.
 
 
     \[[API-Satz: Postfach 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
@@ -1046,7 +1046,7 @@ methods:
     content: 'removeAttachmentAsync(attachmentId: string, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     parameters:
     - id: attachmentId
-      description: Der Bezeichner der zu entfernenden Anlage. Die maximale Zeichenfolgenlänge beträgt `attachmentId` 200 Zeichen in Outlook im Web und 100 Zeichen in Outlook unter Windows.
+      description: Der Bezeichner der zu entfernenden Anlage. Die maximale Zeichenfolgenlänge beträgt `attachmentId` 200 Zeichen in Outlook im Web und unter Windows.
       type: string
     - id: options
       description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können in der Rückrufmethode jedes Objekt bereitstellen, auf das sie zugreifen möchten.'
@@ -1274,9 +1274,9 @@ methods:
       description: ''
 extends: <xref uid="outlook!Office.Message:interface" />
 metadata:
-  ms.openlocfilehash: ed07f41679353a4b9460cf473038dbea7880be1d
-  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
+  ms.openlocfilehash: 994ee239f851ded3ad67558dd05acc49507aaac1
+  ms.sourcegitcommit: 9dba9247601805ad821e7a7260ac418e566786b7
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 01/13/2021
-  ms.locfileid: "49859061"
+  ms.lasthandoff: 02/10/2021
+  ms.locfileid: "50173265"
