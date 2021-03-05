@@ -3,8 +3,8 @@ name: Office.Dialog
 uid: office!Office.Dialog:interface
 package: office!
 fullName: Office.Dialog
-summary: Das Objekt, das zurückgegeben wird, wenn `UI.displayDialogAsync` aufgerufen wird. Es macht Methoden zum Registrieren von Ereignishandlern und zum Schließen des Dialogs verfügbar.
-remarks: '**Anforderungsgruppe**: [DialogAPI](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/dialog-api-requirement-sets)'
+summary: Das Objekt, das zurückgegeben wird, wenn `UI.displayDialogAsync` aufgerufen wird. Es werden Methoden zum Registrieren von Ereignishandlern und Zum Schließen des Dialogfelds verfügbar gemacht.
+remarks: '**Anforderungssatz**: [DialogAPI](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/dialog-api-requirement-sets)'
 isPreview: false
 isDeprecated: false
 type: interface
@@ -31,7 +31,7 @@ methods:
       description: Muss entweder DialogMessageReceived oder DialogEventReceived sein.
       type: <xref uid="office!Office.EventType:enum" />
     - id: handler
-      description: Eine Funktion, die entweder ein Objekt mit einer `message` Eigenschaft annimmt, wenn eventType DialogMessageReceived ist, oder ein Objekt mit einer `error` Eigenschaft, wenn eventType DialogEventReceived ist.
+      description: Eine Funktion, die entweder ein Objekt mit einer Eigenschaft `message` akzeptiert, wenn eventType DialogMessageReceived ist, oder ein Objekt mit einer `error` Eigenschaft, wenn eventType DialogEventReceived ist.
       type: '(args: {message: string | boolean} | {error: number}) =&gt; void'
     return:
       type: void
@@ -40,7 +40,11 @@ methods:
   uid: office!Office.Dialog#close:member(1)
   package: office!
   fullName: close()
-  summary: Wird von einer übergeordneten Seite aufgerufen, um das entsprechende Dialogfeld zu schließen.
+  summary: >-
+    Wird von einer übergeordneten Seite aufgerufen, um das entsprechende Dialogfeld zu schließen.
+
+
+    Diese Methode ist asynchron. Es wird kein Rückrufparameter verwendet, und er gibt kein Promise-Objekt zurück, sodass es weder mit dem Schlüsselwort noch mit der `await` Funktion erwartet werden `then` kann. Weitere Informationen finden Sie unter dieser bewährten Methode: [Öffnen eines anderen Dialogfelds unmittelbar nach dem Schließen eines Dialogfelds](https://docs.microsoft.com/office/dev/add-ins/develop/dialog-best-practices#opening-another-dialog-immediately-after-closing-one)
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -53,15 +57,15 @@ methods:
   uid: office!Office.Dialog#messageChild:member(1)
   package: office!
   fullName: messageChild(message)
-  summary: Übermittelt eine Nachricht von der Hostseite, beispielsweise einem Aufgabenbereich oder einer Benutzeroberflächen losen Funktionsdatei, an ein von der Seite geöffnetes Dialogfeld.
+  summary: Übermittelt eine Nachricht von der Hostseite, z. B. einem Aufgabenbereich oder einer Funktionsdatei ohne Benutzeroberfläche, an ein Dialogfeld, das von der Seite aus geöffnet wurde.
   remarks: >-
-    **Hosts**: Excel, Outlook (minimaler Anforderungssatz: Postfach 1,9), PowerPoint, Word
+    **Hosts**: Excel, Outlook (Mindestanforderungssatz: Postfach 1.9), PowerPoint, Word
 
 
-    **Anforderungs Sätze**:
+    **Anforderungssätze**:
 
 
-    - [DialogAPI 1,2](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/dialog-api-requirement-sets)
+    - [DialogAPI 1.2](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/dialog-api-requirement-sets)
 
 
     - [Mailbox 1.9](https://docs.microsoft.com/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)
@@ -71,7 +75,7 @@ methods:
     content: 'messageChild(message: string): void;'
     parameters:
     - id: message
-      description: Akzeptiert eine Nachricht von der Hostseite, die an das Dialogfeld übergeben werden soll. Alles, was in eine Zeichenfolge serialisiert werden kann, einschließlich JSON und XML, kann gesendet werden.
+      description: Akzeptiert eine Nachricht von der Hostseite, um sie an das Dialogfeld zu senden. Alles, was in eine Zeichenfolge serialisiert werden kann, einschließlich JSON und XML, kann gesendet werden.
       type: string
     return:
       type: void
@@ -80,7 +84,7 @@ methods:
   uid: office!Office.Dialog#sendMessage:member(1)
   package: office!
   fullName: sendMessage(name)
-  summary: nur für die interne Verwendung. Rufen Sie den Code nicht auf.
+  summary: NUR FÜR DIE INTERNE VERWENDUNG. RUFEN SIE IN IHREM CODE NICHT AUF.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -94,9 +98,9 @@ methods:
       type: void
       description: ''
 metadata:
-  ms.openlocfilehash: c007533112e45e4ffec29b45883add8161532d6c
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: f328302115888d80b8d95f5b7d97d4331e0cc2b1
+  ms.sourcegitcommit: f55d2bbeba2a20abb522cbf742e727b82bcf73ee
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49183363"
+  ms.lasthandoff: 03/05/2021
+  ms.locfileid: "50463385"
