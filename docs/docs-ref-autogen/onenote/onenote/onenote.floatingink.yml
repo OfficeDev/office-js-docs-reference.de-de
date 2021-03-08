@@ -7,7 +7,7 @@ summary: >-
   Stellt eine Gruppe von Freihandstrichen dar.
 
 
-  \[[API-Gruppe: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+  \[[API-Satz: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
 remarks: ''
 isPreview: false
 isDeprecated: false
@@ -17,7 +17,7 @@ properties:
   uid: onenote!OneNote.FloatingInk#context:member
   package: onenote!
   fullName: context
-  summary: Der Anforderungskontext, der mit dem Objekt verknüpft ist. Dadurch wird das Add-in-Verfahren mit dem Prozess der Office-Hostanwendung verbunden.
+  summary: Der Dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office-Hostanwendung verbunden.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -33,7 +33,7 @@ properties:
     Ruft die ID des FloatingInk-Objekts ab. Schreibgeschützt.
 
 
-    \[[API-Gruppe: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    \[[API-Satz: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -49,7 +49,7 @@ properties:
     Ruft die Striche des FloatingInk-Objekts ab. Schreibgeschützt.
 
 
-    \[[API-Gruppe: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    \[[API-Satz: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -65,7 +65,7 @@ properties:
     Ruft das übergeordnete Element PageContent des FloatingInk-Objekts ab. Schreibgeschützt.
 
 
-    \[[API-Gruppe: OneNoteApi 1,1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
+    \[[API-Satz: OneNoteApi 1.1](/office/dev/add-ins/reference/requirement-sets/onenote-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -83,13 +83,13 @@ methods:
     Zusätzlich zu dieser Signatur verfügt diese Methode über die folgenden Signaturen:
 
 
-    `load(option?: string | string[]): OneNote.FloatingInk` -Wobei Option eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen ist, die die zu ladenden Eigenschaften angeben.
+    `load(option?: string | string[]): OneNote.FloatingInk` - Bei der Option handelt es sich um eine durch Kommas getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.
 
 
-    `load(option?: { select?: string; expand?: string; }): OneNote.FloatingInk` -Bei Option. Select handelt es sich um eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und Options. Expand ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.
+    `load(option?: { select?: string; expand?: string; }): OneNote.FloatingInk` - Dabei ist option.select eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und options.expand ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.
 
 
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.FloatingInk` Nur verfügbar für Sammlungstypen. Sie ähnelt der vorherigen Signatur. Option. Top gibt die maximale Anzahl von Sammlungselementen an, die in das Ergebnis einbezogen werden können. Option. Skip gibt die Anzahl der Elemente an, die übersprungen werden sollen und nicht im Ergebnis enthalten sind. Wenn Option. Top angegeben ist, wird das Resultset gestartet, nachdem die angegebene Anzahl von Elementen übersprungen wurde.
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.FloatingInk` - Nur für Auflistungstypen verfügbar. Sie ähnelt der vorherigen Signatur. Option.top gibt die maximale Anzahl von Auflistungselementen an, die in das Ergebnis eingeschlossen werden können. Option.skip gibt die Anzahl der Elemente an, die übersprungen und nicht in das Ergebnis einbezogen werden sollen. Wenn option.top angegeben ist, wird das Ergebnisset gestartet, nachdem die angegebene Anzahl von Elementen übersprungen wurde.
   isPreview: false
   isDeprecated: false
   syntax:
@@ -113,25 +113,33 @@ methods:
     content: 'load(propertyNames?: string | string[]): OneNote.FloatingInk;'
     parameters:
     - id: propertyNames
-      description: Eine durch trennzeichengetrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.
+      description: Eine durch Trennzeichen getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.
       type: string | string[]
     return:
       type: <xref uid="onenote!OneNote.FloatingInk:class" />
       description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nOneNote.run(function(context) {\n\n    // Gets the active page.\n    var page = context.application.getActivePage();\n    var contents = page.contents;\n    \n    // Load page contents and their types.\n    page.load('contents/type');\n    return context.sync()\n        .then(function(){\n        \n            // Load every ink content.\n            $.each(contents.items, function(i, content) {\n                if (content.type == \"Ink\")\n                {\n                    content.load('ink/id');\n                }                            \n            })\n            return context.sync();\n        })\n        .then(function(){\n        \n            // Log ID of every ink content.\n            $.each(contents.items, function(i, content) {\n                if (content.type == \"Ink\")\n                {\n                    console.log(content.ink.id);\n                }                            \n            })                \n        });\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n}); \n```"
-- name: load(propertyNamesAndPaths)
+- name: load(option)
   uid: onenote!OneNote.FloatingInk#load:member(3)
   package: onenote!
-  fullName: load(propertyNamesAndPaths)
-  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
+  fullName: load(option)
+  summary: ''
   remarks: ''
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): OneNote.FloatingInk;'
+    content: >-
+      load(option?: {
+                  select?: string;
+                  expand?: string;
+              }): OneNote.FloatingInk;
     parameters:
-    - id: propertyNamesAndPaths
-      description: Dabei ist propertyNamesAndPaths. Select eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und propertyNamesAndPaths. Expand ist eine durch trennzeichengetrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.
-      type: '{ select?: string; expand?: string; }'
+    - id: option
+      description: ''
+      type: >-
+        {
+                    select?: string;
+                    expand?: string;
+                }
     return:
       type: <xref uid="onenote!OneNote.FloatingInk:class" />
       description: ''
@@ -139,7 +147,7 @@ methods:
   uid: onenote!OneNote.FloatingInk#toJSON:member(1)
   package: onenote!
   fullName: toJSON()
-  summary: Überschreibt die JavaScript `toJSON()` -Methode, um hilfreichere Ausgaben bereitzustellen, wenn ein API-Objekt an übergeben wird. `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->wiederum ruft die `toJSON` Methode des Objekts auf, das an Sie übergeben wird.) Während das ursprüngliche OneNote. FloatingInk-Objekt ein API-Objekt ist, `toJSON` gibt die Methode ein einfaches JavaScript-Objekt (typisiert als `OneNote.Interfaces.FloatingInkData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.
+  summary: 'Überschreibt die JavaScript-Methode, um eine nützlichere Ausgabe zu `toJSON()` bieten, wenn ein API-Objekt an übergeben wird `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode `toJSON` des Objekts auf, das an das Objekt übergeben wird.) Während das ursprüngliche OneNote.FloatingInk-Objekt ein API-Objekt ist, gibt die Methode ein `toJSON` einfaches JavaScript-Objekt zurück (Typ: `OneNote.Interfaces.FloatingInkData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -176,9 +184,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: f30f14ee3e56e2abcd86a0ab1259495afa4d1145
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: eebf0ccbe061b5c314b61d3a84207cc5984600be
+  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49183076"
+  ms.lasthandoff: 03/08/2021
+  ms.locfileid: "50538107"

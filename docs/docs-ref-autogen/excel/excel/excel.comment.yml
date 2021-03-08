@@ -50,7 +50,7 @@ properties:
   package: excel!
   fullName: content
   summary: >-
-    Der Inhalt des Kommentars. Bei der Zeichenfolge handelt es sich um einfachen Text.
+    Der Inhalt des Kommentars. Die Zeichenfolge ist Nur-Text.
 
 
     \[[API-Satz: ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -82,7 +82,7 @@ properties:
   uid: excel!Excel.Comment#context:member
   package: excel!
   fullName: context
-  summary: Der dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office-Hostanwendung verbunden.
+  summary: Der Dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office-Hostanwendung verbunden.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -95,7 +95,7 @@ properties:
   package: excel!
   fullName: creationDate
   summary: >-
-    Ruft den Erstellungszeitpunkt des Kommentars ab. Gibt Null zurück, wenn der Kommentar aus einer Notiz konvertiert wurde, da der Kommentar kein Erstellungsdatum hat.
+    Ruft den Erstellungszeitpunkt des Kommentars ab. Gibt `null` zurück, ob der Kommentar aus einer Notiz konvertiert wurde, da der Kommentar kein Erstellungsdatum hat.
 
 
     \[[API-Satz: ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -159,7 +159,7 @@ properties:
   package: excel!
   fullName: resolved
   summary: >-
-    Der Status des Kommentarthreads. Der Wert "true" bedeutet, dass der Kommentarthread aufgelöst wird.
+    Der Kommentarthreadstatus. Ein Wert von `true` bedeutet, dass der Kommentarthread aufgelöst wird.
 
 
     \[[API-Satz: ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -176,7 +176,7 @@ properties:
   package: excel!
   fullName: richContent
   summary: >-
-    Ruft den inhaltreichen Kommentar ab (z. B. Erwähnungen in Kommentaren). Diese Zeichenfolge sollte endbenutzern nicht angezeigt werden. Ihr Add-in sollte dies nur verwenden, um umfangreiche Kommentarinhalte zu analysieren.
+    Ruft den reichhaltigen Kommentarinhalt ab (z. B. Erwähnungen in Kommentaren). Diese Zeichenfolge ist nicht für Endbenutzer gedacht. Ihr Add-In sollte dies nur zum Analysieren von Rich-Comment-Inhalten verwenden.
 
 
     \[[API-Satz: ExcelApi 1.11](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -188,12 +188,12 @@ properties:
     return:
       type: string
 methods:
-- name: assignTask(email)
+- name: assignTask(assignee)
   uid: excel!Excel.Comment#assignTask:member(1)
   package: excel!
-  fullName: assignTask(email)
+  fullName: assignTask(assignee)
   summary: >-
-    Weist die dem Kommentar zugeordnete Aufgabe dem angegebenen Benutzer als alleinigen Zugewiesenen zu. Wenn keine Aufgabe besteht, wird eine erstellt.
+    Weist die dem Kommentar zugeordnete Aufgabe dem angegebenen Benutzer als Assignee zu. Wenn keine Aufgabe besteht, wird eine erstellt.
 
 
     \[[API-Satz: ExcelApi BETA (NUR VORSCHAU)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -201,13 +201,13 @@ methods:
   isPreview: true
   isDeprecated: false
   syntax:
-    content: 'assignTask(email: string): Excel.Task;'
+    content: 'assignTask(assignee: Identity): Excel.DocumentTask;'
     parameters:
-    - id: email
-      description: Die E-Mail-Adresse des Benutzers, dem die Aufgabe zugewiesen werden soll.
-      type: string
+    - id: assignee
+      description: Die Benutzeridentitätsinformationen des Zuordnende.
+      type: <xref uid="excel!Excel.Identity:interface" />
     return:
-      type: <xref uid="excel!Excel.Task:class" />
+      type: <xref uid="excel!Excel.DocumentTask:class" />
       description: ''
 - name: delete()
   uid: excel!Excel.Comment#delete:member(1)
@@ -248,7 +248,7 @@ methods:
   package: excel!
   fullName: getTask()
   summary: >-
-    Ruft den Vorgang ab, der diesem Kommentar zugeordnet ist. Wenn es keine Aufgabe für den Kommentarthread gibt, wird eine ItemNotFound-Ausnahme ausgelöst.
+    Ruft die Aufgabe ab, die diesem Kommentar zugeordnet ist. Wenn für den Kommentarthread keine Aufgabe besteht, wird `ItemNotFound` eine Ausnahme ausgelöst.
 
 
     \[[API-Satz: ExcelApi BETA (NUR VORSCHAU)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -256,16 +256,16 @@ methods:
   isPreview: true
   isDeprecated: false
   syntax:
-    content: 'getTask(): Excel.Task;'
+    content: 'getTask(): Excel.DocumentTask;'
     return:
-      type: <xref uid="excel!Excel.Task:class" />
+      type: <xref uid="excel!Excel.DocumentTask:class" />
       description: ''
 - name: getTaskOrNullObject()
   uid: excel!Excel.Comment#getTaskOrNullObject:member(1)
   package: excel!
   fullName: getTaskOrNullObject()
   summary: >-
-    Ruft den diesem Kommentar zugeordneten Vorgang ab. Wenn es keine Aufgabe für den Kommentarthread gibt, gibt diese Funktion ein Objekt zurück, dessen `isNullObject` Eigenschaft auf `true`<!-- -->. Weitere Informationen finden Sie unter [*OrNullObject-Methoden und -Eigenschaften.](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+    Ruft die Aufgabe ab, die diesem Kommentar zugeordnet ist. Wenn für den Kommentarthread keine Aufgabe besteht, gibt diese Funktion ein Objekt zurück, dessen `isNullObject` Eigenschaft auf festgelegt ist. `true`<!-- -->. Weitere Informationen finden Sie unter [*OrNullObject-Methoden und -Eigenschaften.](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[API-Satz: ExcelApi BETA (NUR VORSCHAU)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -273,9 +273,9 @@ methods:
   isPreview: true
   isDeprecated: false
   syntax:
-    content: 'getTaskOrNullObject(): Excel.Task;'
+    content: 'getTaskOrNullObject(): Excel.DocumentTask;'
     return:
-      type: <xref uid="excel!Excel.Task:class" />
+      type: <xref uid="excel!Excel.DocumentTask:class" />
       description: ''
 - name: load(options)
   uid: excel!Excel.Comment#load:member(1)
@@ -327,7 +327,7 @@ methods:
               }): Excel.Comment;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden `propertyNamesAndPaths.expand` Navigationseigenschaften angibt.'
+      description: '`propertyNamesAndPaths.select` ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und eine durch Kommas getrennte Zeichenfolge, die die zu ladenden `propertyNamesAndPaths.expand` Navigationseigenschaften angibt.'
       type: >-
         {
                     select?: string;
@@ -355,7 +355,7 @@ methods:
       description: Ein JavaScript-Objekt mit Eigenschaften, die isomorph zu den Eigenschaften des Objekts strukturiert sind, für das die Methode aufgerufen wird.
       type: <xref uid="excel!Excel.Interfaces.CommentUpdateData:interface" />
     - id: options
-      description: Bietet eine Option zum Unterdrücken von Fehlern, wenn das Eigenschaftenobjekt versucht, schreibgeschützte Eigenschaften zu setzen.
+      description: Bietet eine Option zum Unterdrücken von Fehlern, wenn das Properties-Objekt versucht, schreibgeschützte Eigenschaften zu setzen.
       type: <xref uid="office!OfficeExtension.UpdateOptions:interface" />
     return:
       type: void
@@ -381,7 +381,7 @@ methods:
   uid: excel!Excel.Comment#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: Überschreibt die JavaScript-Methode, um eine nützlichere Ausgabe zu ermöglichen, wenn `toJSON()` ein API-Objekt an `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode `toJSON` des Objekts auf, das an das Objekt übergeben wird.) Während das ursprüngliche Excel.Comment-Objekt ein API-Objekt ist, gibt die Methode ein einfaches `toJSON``Excel.Interfaces.CommentData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.
+  summary: 'Überschreibt die JavaScript-Methode, um eine nützlichere Ausgabe zu `toJSON()` bieten, wenn ein API-Objekt an übergeben wird `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode `toJSON` des Objekts auf, das an das Objekt übergeben wird.) Während das ursprüngliche Excel.Comment-Objekt ein API-Objekt ist, gibt die Methode ein `toJSON` einfaches JavaScript-Objekt zurück (Typ: `Excel.Interfaces.CommentData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -406,16 +406,16 @@ methods:
     content: 'updateMentions(contentWithMentions: Excel.CommentRichContent): void;'
     parameters:
     - id: contentWithMentions
-      description: Der Inhalt des Kommentars. Diese enthält eine speziell formatierte Zeichenfolge und eine Liste von Erwähnungen, die in der Zeichenfolge analysiert werden, wenn sie von Excel angezeigt wird.
+      description: Der Inhalt des Kommentars. Dies enthält eine speziell formatierte Zeichenfolge und eine Liste von Erwähnungen, die in der Zeichenfolge analysiert werden, wenn sie von Excel angezeigt wird.
       type: <xref uid="excel!Excel.CommentRichContent:interface" />
     return:
       type: void
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 10ca1f834a9a7e242f6f567fc5831f566848f4e8
-  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
+  ms.openlocfilehash: bfb3ea3d0a5fa76b0d9812092af4ef957f35391a
+  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 01/27/2021
-  ms.locfileid: "49991800"
+  ms.lasthandoff: 03/08/2021
+  ms.locfileid: "50539290"
