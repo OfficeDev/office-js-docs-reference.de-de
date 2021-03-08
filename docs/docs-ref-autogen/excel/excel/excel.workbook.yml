@@ -4,7 +4,7 @@ uid: excel!Excel.Workbook:class
 package: excel!
 fullName: Excel.Workbook
 summary: >-
-  Arbeitsmappe ist das Objekt der obersten Ebene, das verwandte Arbeitsmappenobjekte wie Arbeitsblätter, Tabellen, Bereiche usw. enthält. Weitere Informationen zum Arbeitsmappenobjektmodell finden Sie unter "Arbeiten mit [Arbeitsmappen mithilfe der Excel-JavaScript-API".](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-workbooks)<!-- -->.
+  Workbook ist das Objekt auf oberster Ebene, das verwandte Arbeitsmappenobjekte wie Arbeitsblätter, Tabellen und Bereiche enthält. Weitere Informationen zum Arbeitsmappenobjektmodell finden Sie unter Arbeiten mit [Arbeitsmappen mithilfe der Excel-JavaScript-API.](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-workbooks)<!-- -->.
 
 
   \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -34,7 +34,7 @@ properties:
   package: excel!
   fullName: autoSave
   summary: >-
-    Gibt an, ob sich die Arbeitsmappe im automatischen Speichern befindet.
+    Gibt an, ob sich die Arbeitsmappe im AutoSave-Modus befindet.
 
 
     \[[API-Satz: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -98,7 +98,7 @@ properties:
   package: excel!
   fullName: comments
   summary: >-
-    Stellt eine Sammlung der mit der Arbeitsmappe verknüpften Kommentare dar.
+    Stellt eine Sammlung von Kommentaren dar, die der Arbeitsmappe zugeordnet sind.
 
 
     \[[API-Satz: ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -113,7 +113,7 @@ properties:
   uid: excel!Excel.Workbook#context:member
   package: excel!
   fullName: context
-  summary: Der dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office-Hostanwendung verbunden.
+  summary: Der Dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office-Hostanwendung verbunden.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -174,7 +174,7 @@ properties:
   package: excel!
   fullName: isDirty
   summary: >-
-    Gibt an, ob seit dem letzten Speichern der Arbeitsmappe Änderungen vorgenommen wurden. Sie können diese Eigenschaft auf "true" festlegen, wenn Sie eine geänderte Arbeitsmappe schließen möchten, ohne sie zu speichern oder sie zu speichern.
+    Gibt an, ob seit dem letzten Speichern der Arbeitsmappe Änderungen vorgenommen wurden. Sie können diese Eigenschaft auf festlegen, wenn Sie eine geänderte Arbeitsmappe schließen möchten, ohne sie zu speichern oder `true` zum Speichern aufgefordert zu werden.
 
 
     \[[API-Satz: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -222,7 +222,7 @@ properties:
   package: excel!
   fullName: names
   summary: >-
-    Stellt eine Auflistung der benannten Elemente des Arbeitsmappenbereichs dar (benannte Bereiche und Konstanten).
+    Represents a collection of workbook-scoped named items (named ranges and constants).
 
 
     \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -233,12 +233,28 @@ properties:
     content: 'readonly names: Excel.NamedItemCollection;'
     return:
       type: <xref uid="excel!Excel.NamedItemCollection:class" />
+- name: onActivated
+  uid: excel!Excel.Workbook#onActivated:member
+  package: excel!
+  fullName: onActivated
+  summary: >-
+    Tritt auf, wenn die Arbeitsmappe aktiviert wird. Hinweis: Dieses Ereignis wird beim Öffnen der Arbeitsmappe nicht geöffnet.
+
+
+    \[[API-Satz: ExcelApi BETA (NUR VORSCHAU)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'readonly onActivated: OfficeExtension.EventHandlers<Excel.WorkbookActivatedEventArgs>;'
+    return:
+      type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.WorkbookActivatedEventArgs:interface" />&gt;
 - name: onAutoSaveSettingChanged
   uid: excel!Excel.Workbook#onAutoSaveSettingChanged:member
   package: excel!
   fullName: onAutoSaveSettingChanged
   summary: >-
-    Tritt ein, wenn die AutoSpeichern-Einstellung für die Arbeitsmappe geändert wird.
+    Tritt auf, wenn die Einstellung AutoSave in der Arbeitsmappe geändert wird.
 
 
     \[[API-Satz: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -352,7 +368,7 @@ properties:
   package: excel!
   fullName: readOnly
   summary: >-
-    True, wenn die Arbeitsmappe im schreibgeschützten Modus geöffnet ist.
+    Gibt `true` zurück, ob die Arbeitsmappe im schreibgeschützten Modus geöffnet ist.
 
 
     \[[API-Satz: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -368,7 +384,7 @@ properties:
   package: excel!
   fullName: settings
   summary: >-
-    Stellt eine Auflistung der mit der Arbeitsmappe verknüpften Einstellungen dar.
+    Stellt eine Auflistung von Einstellungen dar, die der Arbeitsmappe zugeordnet sind.
 
 
     \[[API-Satz: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -400,7 +416,7 @@ properties:
   package: excel!
   fullName: slicers
   summary: >-
-    Stellt eine Sammlung der mit der Arbeitsmappe verknüpften Datenschnitte dar.
+    Stellt eine Sammlung von Datenschnitten dar, die der Arbeitsmappe zugeordnet sind.
 
 
     \[[API-Satz: ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -489,9 +505,9 @@ properties:
   isPreview: true
   isDeprecated: false
   syntax:
-    content: 'readonly tasks: Excel.TaskCollection;'
+    content: 'readonly tasks: Excel.DocumentTaskCollection;'
     return:
-      type: <xref uid="excel!Excel.TaskCollection:class" />
+      type: <xref uid="excel!Excel.DocumentTaskCollection:class" />
 - name: timelineStyles
   uid: excel!Excel.Workbook#timelineStyles:member
   package: excel!
@@ -529,7 +545,7 @@ properties:
   package: excel!
   fullName: usePrecisionAsDisplayed
   summary: >-
-    True, wenn die Berechnungen in dieser Arbeitsmappe nur mit der Genauigkeit durchgeführt werden, mit der die Zahlen angezeigt werden. Daten verlieren dauerhaft die Genauigkeit, wenn diese Eigenschaft von "false" in "true" wechselt.
+    True, wenn die Berechnungen in dieser Arbeitsmappe nur mit der Genauigkeit durchgeführt werden, mit der die Zahlen angezeigt werden. Die Genauigkeit der Daten geht beim Wechsel dieser Eigenschaft von auf `false` dauerhaft verloren. `true`<!-- -->.
 
 
     \[[API-Satz: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -573,7 +589,7 @@ methods:
     content: 'close(closeBehavior?: Excel.CloseBehavior): void;'
     parameters:
     - id: closeBehavior
-      description: Verhalten beim Schließen der Arbeitsmappe.
+      description: Verhalten des Schließens der Arbeitsmappe.
       type: <xref uid="excel!Excel.CloseBehavior:enum" />
     return:
       type: void
@@ -594,7 +610,7 @@ methods:
     content: 'close(closeBehaviorString?: "Save" | "SkipSave"): void;'
     parameters:
     - id: closeBehaviorString
-      description: Verhalten beim Schließen der Arbeitsmappe.
+      description: Verhalten des Schließens der Arbeitsmappe.
       type: "\"Save\" | \"SkipSave\""
     return:
       type: void
@@ -638,7 +654,7 @@ methods:
   package: excel!
   fullName: getActiveChartOrNullObject()
   summary: >-
-    Ruft das derzeit aktive Diagramm in der Arbeitsmappe ab. Wenn kein aktives Diagramm vorhanden ist, gibt diese Funktion ein Objekt zurück, dessen `isNullObject` Eigenschaft auf `true`<!-- -->. Weitere Informationen finden Sie unter [*OrNullObject-Methoden und -Eigenschaften.](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+    Ruft das derzeit aktive Diagramm in der Arbeitsmappe ab. Wenn kein aktives Diagramm vorhanden ist, gibt diese Funktion ein Objekt zurück, dessen `isNullObject` Eigenschaft auf festgelegt ist. `true`<!-- -->. Weitere Informationen finden Sie unter [*OrNullObject-Methoden und -Eigenschaften.](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[API-Satz: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -655,7 +671,7 @@ methods:
   package: excel!
   fullName: getActiveSlicer()
   summary: >-
-    Ruft den derzeit aktiven Datenschnitt in der Arbeitsmappe ab. Wenn kein aktiver Datenschnitt aktiv ist, wird `ItemNotFound` eine Ausnahme ausgelöst.
+    Ruft den derzeit aktiven Datenschnitt in der Arbeitsmappe ab. Wenn kein aktiver Datenschnitt vor ist, wird `ItemNotFound` eine Ausnahme ausgelöst.
 
 
     \[[API-Satz: ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -672,7 +688,7 @@ methods:
   package: excel!
   fullName: getActiveSlicerOrNullObject()
   summary: >-
-    Ruft den derzeit aktiven Datenschnitt in der Arbeitsmappe ab. Wenn kein aktiver Datenschnitt vor ist, gibt diese Funktion ein Objekt zurück, dessen `isNullObject` Eigenschaft auf `true`<!-- -->. Weitere Informationen finden Sie unter [*OrNullObject-Methoden und -Eigenschaften.](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+    Ruft den derzeit aktiven Datenschnitt in der Arbeitsmappe ab. Wenn kein aktiver Datenschnitt vor ist, gibt diese Funktion ein Objekt zurück, dessen `isNullObject` Eigenschaft auf festgelegt ist. `true`<!-- -->. Weitere Informationen finden Sie unter [*OrNullObject-Methoden und -Eigenschaften.](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[API-Satz: ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -689,7 +705,7 @@ methods:
   package: excel!
   fullName: getIsActiveCollabSession()
   summary: >-
-    True, wenn die Arbeitsmappe von mehreren Benutzern bearbeitet wird (gemeinsame Dokumenterstellung). Bitte beachten Sie, dass es eine gewisse Verzögerung zwischen der Änderung des Arbeitsmappenstatus und der Spiegelung der Änderungen im Ergebnis der Methode geben kann.
+    Gibt `true` zurück, ob die Arbeitsmappe von mehreren Benutzern bearbeitet wird (durch gemeinsamen Erstellen). Beachten Sie, dass es möglicherweise eine Gewisse Verzögerung zwischen dem Ändern des Arbeitsmappenstatus und der Spiegelung der Änderungen im Ergebnis der Methode gibt.
 
 
     \[[API-Satz: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -706,7 +722,7 @@ methods:
   package: excel!
   fullName: getSelectedRange()
   summary: >-
-    Ruft den aktuell ausgewählten einzelnen Bereich aus der Arbeitsmappe ab. Wenn mehrere Bereiche ausgewählt sind, wird durch diese Methode ein Fehler ausgelöst.
+    Ruft den aktuell ausgewählten einzelnen Bereich aus der Arbeitsmappe ab. Wenn mehrere Bereiche ausgewählt sind, wird mit dieser Methode ein Fehler ausgelöst.
 
 
     \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -723,7 +739,7 @@ methods:
   package: excel!
   fullName: getSelectedRanges()
   summary: >-
-    Ruft die aktuell ausgewählten Bereiche (einen oder mehrere) aus der Arbeitsmappe ab. Gibt im Gegensatz zu getSelectedRange() ein RangeAreas-Objekt zurück, das alle ausgewählten Bereiche darstellt.
+    Ruft die aktuell ausgewählten Bereiche (einen oder mehrere) aus der Arbeitsmappe ab. Im Gegensatz zu `getSelectedRange()`<!-- -->gibt diese Methode ein `RangeAreas` Objekt zurück, das alle ausgewählten Bereiche darstellt.
 
 
     \[[API-Satz: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -735,6 +751,33 @@ methods:
     return:
       type: <xref uid="excel!Excel.RangeAreas:class" />
       description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/42-range/range-areas.yaml\nawait Excel.run(async (context) => {\n\n    const selectedRanges = context.workbook.getSelectedRanges();\n    selectedRanges.format.fill.color = \"lightblue\";\n\n    await context.sync();\n})\n```"
+- name: insertWorksheetsFromBase64(base64File, options)
+  uid: excel!Excel.Workbook#insertWorksheetsFromBase64:member(1)
+  package: excel!
+  fullName: insertWorksheetsFromBase64(base64File, options)
+  summary: >-
+    Fügt die angegebenen Arbeitsblätter aus einer Quellarbeitsmappe in die aktuelle Arbeitsmappe ein.
+
+
+    *Hinweis**: Diese API wird derzeit nur für Office unter Windows, Mac und Online unterstützt.
+
+
+    \[[API-Satz: ExcelApi BETA (NUR VORSCHAU)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'insertWorksheetsFromBase64(base64File: string, options?: Excel.InsertWorksheetOptions): OfficeExtension.ClientResult<string[]>;'
+    parameters:
+    - id: base64File
+      description: Erforderlich. Die base64-codierte Zeichenfolge, die die Quellarbeitsmappendatei darstellt.
+      type: string
+    - id: options
+      description: Optional. Die Optionen, mit denen definiert wird, welche Arbeitsblätter eingefügt werden sollen und wo in der Arbeitsmappe die neuen Arbeitsblätter eingefügt werden. Standardmäßig werden alle Arbeitsblätter aus der Quellarbeitsmappe am Ende der aktuellen Arbeitsmappe eingefügt.
+      type: <xref uid="excel!Excel.InsertWorksheetOptions:interface" />
+    return:
+      type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;string[]&gt;
+      description: Ein Array von Ids, das jedem neu eingefügten Arbeitsblatt entspricht.
 - name: load(options)
   uid: excel!Excel.Workbook#load:member(1)
   package: excel!
@@ -785,7 +828,7 @@ methods:
               }): Excel.Workbook;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden `propertyNamesAndPaths.expand` Navigationseigenschaften angibt.'
+      description: '`propertyNamesAndPaths.select` ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und eine durch Kommas getrennte Zeichenfolge, die die zu ladenden `propertyNamesAndPaths.expand` Navigationseigenschaften angibt.'
       type: >-
         {
                     select?: string;
@@ -810,7 +853,7 @@ methods:
     content: 'save(saveBehavior?: Excel.SaveBehavior): void;'
     parameters:
     - id: saveBehavior
-      description: Verhalten beim Speichern der Arbeitsmappe.
+      description: Verhalten zum Speichern von Arbeitsmappen.
       type: <xref uid="excel!Excel.SaveBehavior:enum" />
     return:
       type: void
@@ -831,7 +874,7 @@ methods:
     content: 'save(saveBehaviorString?: "Save" | "Prompt"): void;'
     parameters:
     - id: saveBehaviorString
-      description: Verhalten beim Speichern der Arbeitsmappe.
+      description: Verhalten zum Speichern von Arbeitsmappen.
       type: "\"Save\" | \"Prompt\""
     return:
       type: void
@@ -855,7 +898,7 @@ methods:
       description: Ein JavaScript-Objekt mit Eigenschaften, die isomorph zu den Eigenschaften des Objekts strukturiert sind, für das die Methode aufgerufen wird.
       type: <xref uid="excel!Excel.Interfaces.WorkbookUpdateData:interface" />
     - id: options
-      description: Bietet eine Option zum Unterdrücken von Fehlern, wenn das Eigenschaftenobjekt versucht, schreibgeschützte Eigenschaften zu setzen.
+      description: Bietet eine Option zum Unterdrücken von Fehlern, wenn das Properties-Objekt versucht, schreibgeschützte Eigenschaften zu setzen.
       type: <xref uid="office!OfficeExtension.UpdateOptions:interface" />
     return:
       type: void
@@ -881,7 +924,7 @@ methods:
   uid: excel!Excel.Workbook#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: Überschreibt die JavaScript-Methode, um eine nützlichere Ausgabe zu ermöglichen, wenn `toJSON()` ein API-Objekt an `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode `toJSON` des Objekts auf, das an das Objekt übergeben wird.) Während das ursprüngliche Excel.Workbook-Objekt ein API-Objekt ist, gibt die Methode ein einfaches `toJSON``Excel.Interfaces.WorkbookData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.
+  summary: 'Überschreibt die JavaScript-Methode, um eine nützlichere Ausgabe zu `toJSON()` bieten, wenn ein API-Objekt an übergeben wird `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode `toJSON` des Objekts auf, das an das Objekt übergeben wird.) Während das ursprüngliche Excel.Workbook-Objekt ein API-Objekt ist, gibt die Methode ein `toJSON` einfaches JavaScript-Objekt zurück (Typ: `Excel.Interfaces.WorkbookData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -892,9 +935,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 290ffa4398d248dd68ea5b12e851158b09235a76
-  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
+  ms.openlocfilehash: f1bff832afa7ed5cafd48a50c93539767475c5d3
+  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 01/27/2021
-  ms.locfileid: "49991982"
+  ms.lasthandoff: 03/08/2021
+  ms.locfileid: "50540529"
