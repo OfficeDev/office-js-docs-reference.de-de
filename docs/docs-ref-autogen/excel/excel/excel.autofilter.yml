@@ -4,7 +4,7 @@ uid: excel!Excel.AutoFilter:class
 package: excel!
 fullName: Excel.AutoFilter
 summary: >-
-  Stellt das AutoFilter -Objekt dar. AutoFilter wandelt die Werte in der Spalte Excel basierend auf dem Zelleninhalt in bestimmte Filter um.
+  Represents the `AutoFilter` object. AutoFilter wandelt die Werte in der Spalte Excel basierend auf dem Zellinhalt in bestimmte Filter um.
 
 
   \[[API-Satz: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -17,7 +17,7 @@ properties:
   uid: excel!Excel.AutoFilter#context:member
   package: excel!
   fullName: context
-  summary: Der dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office-Hostanwendung verbunden.
+  summary: Der Dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office-Hostanwendung verbunden.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -101,6 +101,27 @@ methods:
     return:
       type: void
       description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/54-worksheet/worksheet-auto-filter.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n    const farmData = sheet.getUsedRange();\n\n    // This filter will only show the rows with the top 25% of values in column 3.\n    sheet.autoFilter.apply(farmData, 3, { criterion1: \"25\", filterOn: Excel.FilterOn.topPercent });\n    await context.sync();\n});\n```"
+- name: clearColumnCriteria(columnIndex)
+  uid: excel!Excel.AutoFilter#clearColumnCriteria:member(1)
+  package: excel!
+  fullName: clearColumnCriteria(columnIndex)
+  summary: >-
+    Löscht die Filterkriterien von AutoFilter.
+
+
+    \[[API-Satz: ExcelApi BETA (NUR VORSCHAU)](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: true
+  isDeprecated: false
+  syntax:
+    content: 'clearColumnCriteria(columnIndex: number): void;'
+    parameters:
+    - id: columnIndex
+      description: Der nullbasierte Spaltenindex, der darstellt, welcher Spaltenfilter geräumt werden muss. Wenn der Indexwert nicht unterstützt wird (z. B. wenn der Wert eine negative Zahl ist oder der Wert größer als die Anzahl der verfügbaren Spalten im Bereich ist), wird eine Ausnahme `InvalidArgument` ausgelöst.
+      type: number
+    return:
+      type: void
+      description: ''
 - name: clearCriteria()
   uid: excel!Excel.AutoFilter#clearCriteria:member(1)
   package: excel!
@@ -123,7 +144,7 @@ methods:
   package: excel!
   fullName: getRange()
   summary: >-
-    Gibt das Range-Objekt zurück, das den Bereich darstellt, auf den der AutoFilter angewendet wird.
+    Gibt das `Range` Objekt zurück, das den Bereich darstellt, auf den der AutoFilter angewendet wird.
 
 
     \[[API-Satz: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -140,7 +161,7 @@ methods:
   package: excel!
   fullName: getRangeOrNullObject()
   summary: >-
-    Gibt das `Range` Objekt zurück, das den Bereich darstellt, auf den das `AutoFilter` Angewendete angewendet wird. Wenn dem Objekt `Range` kein Objekt zugeordnet ist `AutoFilter`<!-- -->gibt diese Methode ein Objekt zurück, dessen `isNullObject` Eigenschaft auf `true`<!-- -->. Weitere Informationen finden Sie unter [*OrNullObject-Methoden und -Eigenschaften.](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+    Gibt das `Range` Objekt zurück, das den Bereich darstellt, auf den der AutoFilter angewendet wird. Wenn dem AutoFilter kein Objekt zugeordnet ist, gibt diese Methode ein Objekt zurück, dessen `Range` Eigenschaft auf festgelegt `isNullObject` ist. `true`<!-- -->. Weitere Informationen finden Sie unter [*OrNullObject-Methoden und -Eigenschaften.](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[API-Satz: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -202,7 +223,7 @@ methods:
               }): Excel.AutoFilter;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden `propertyNamesAndPaths.expand` Navigationseigenschaften angibt.'
+      description: '`propertyNamesAndPaths.select` ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und eine durch Kommas getrennte Zeichenfolge, die die zu ladenden `propertyNamesAndPaths.expand` Navigationseigenschaften angibt.'
       type: >-
         {
                     select?: string;
@@ -249,7 +270,7 @@ methods:
   uid: excel!Excel.AutoFilter#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: Überschreibt die JavaScript-Methode, um eine nützlichere Ausgabe zu ermöglichen, wenn `toJSON()` ein API-Objekt an `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode `toJSON` des Objekts auf, das an das Objekt übergeben wird.) Während das ursprüngliche Excel.AutoFilter-Objekt ein API-Objekt ist, gibt die Methode ein einfaches `toJSON``Excel.Interfaces.AutoFilterData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.
+  summary: 'Überschreibt die JavaScript-Methode, um eine nützlichere Ausgabe zu `toJSON()` bieten, wenn ein API-Objekt an übergeben wird `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode `toJSON` des Objekts auf, das an das Objekt übergeben wird.) Während das ursprüngliche Excel.AutoFilter-Objekt ein API-Objekt ist, gibt die Methode ein `toJSON` einfaches JavaScript-Objekt zurück (Typ: `Excel.Interfaces.AutoFilterData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -260,9 +281,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 0007599fa27b2247c73798735f0d34b67192811a
-  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
+  ms.openlocfilehash: ce09c071d21c03ad8c48d68beb3ef0f5d22f4e58
+  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 01/27/2021
-  ms.locfileid: "49991842"
+  ms.lasthandoff: 03/08/2021
+  ms.locfileid: "50537988"
