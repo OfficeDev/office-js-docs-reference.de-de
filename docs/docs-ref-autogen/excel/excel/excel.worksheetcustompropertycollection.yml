@@ -17,7 +17,7 @@ properties:
   uid: excel!Excel.WorksheetCustomPropertyCollection#context:member
   package: excel!
   fullName: context
-  summary: Der dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office-Hostanwendung verbunden.
+  summary: Der Dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office-Hostanwendung verbunden.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -43,7 +43,7 @@ methods:
   package: excel!
   fullName: add(key, value)
   summary: >-
-    Fügt eine neue benutzerdefinierte Eigenschaft hinzu, die dem bereitgestellten Schlüssel zu ordnet. Dadurch werden vorhandene benutzerdefinierte Eigenschaften mit diesem Schlüssel überschrieben.
+    Fügt eine neue benutzerdefinierte Eigenschaft hinzu, die dem bereitgestellten Schlüssel zufügt. Dadurch werden vorhandene benutzerdefinierte Eigenschaften mit diesem Schlüssel überschrieben.
 
 
     \[[API-Satz: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -54,7 +54,7 @@ methods:
     content: 'add(key: string, value: string): Excel.WorksheetCustomProperty;'
     parameters:
     - id: key
-      description: Der Schlüssel, der das benutzerdefinierte Eigenschaftsobjekt identifiziert. Die Groß-/Kleinschreibung wird nicht beachtet. Der Schlüssel ist auf 255 Zeichen beschränkt (größere Werte führen dazu, dass der Fehler "InvalidArgument" ausgelöst wird.)
+      description: Der Schlüssel, der das benutzerdefinierte Eigenschaftsobjekt identifiziert. Die Groß-/Kleinschreibung wird nicht beachtet. Der Schlüssel ist auf 255 Zeichen beschränkt (größere Werte führen zu einem `InvalidArgument` Fehler.)
       type: string
     - id: value
       description: Der Wert dieser benutzerdefinierten Eigenschaft.
@@ -84,7 +84,7 @@ methods:
   package: excel!
   fullName: getItem(key)
   summary: >-
-    Ruft ein Objekt für benutzerdefinierte Eigenschaften über seinen Schlüssel ab, bei dem Groß-/Kleinschreibung nicht beachtet wird. Wird ausgelöst, wenn die benutzerdefinierte Eigenschaft nicht vorhanden ist.
+    Ruft ein Objekt für benutzerdefinierte Eigenschaften über seinen Schlüssel ab, bei dem Groß-/Kleinschreibung nicht beachtet wird. Gibt einen Fehler zurück, wenn die benutzerdefinierte Eigenschaft nicht vorhanden ist.
 
 
     \[[API-Satz: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -105,7 +105,7 @@ methods:
   package: excel!
   fullName: getItemOrNullObject(key)
   summary: >-
-    Ruft ein Objekt für benutzerdefinierte Eigenschaften über seinen Schlüssel ab, bei dem Groß-/Kleinschreibung nicht beachtet wird. Wenn die benutzerdefinierte Eigenschaft nicht vorhanden ist, gibt diese Funktion ein Objekt zurück, dessen `isNullObject` Eigenschaft auf `true`<!-- -->. Weitere Informationen finden Sie unter [*OrNullObject-Methoden und -Eigenschaften.](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+    Ruft ein Objekt für benutzerdefinierte Eigenschaften über seinen Schlüssel ab, bei dem Groß-/Kleinschreibung nicht beachtet wird. Wenn die benutzerdefinierte Eigenschaft nicht vorhanden ist, gibt diese Funktion ein Objekt zurück, dessen `isNullObject` Eigenschaft auf festgelegt ist. `true`<!-- -->. Weitere Informationen finden Sie unter [*OrNullObject-Methoden und -Eigenschaften.](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[API-Satz: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -167,7 +167,7 @@ methods:
     content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): Excel.WorksheetCustomPropertyCollection;'
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden `propertyNamesAndPaths.expand` Navigationseigenschaften angibt.'
+      description: '`propertyNamesAndPaths.select` ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und eine durch Kommas getrennte Zeichenfolge, die die zu ladenden `propertyNamesAndPaths.expand` Navigationseigenschaften angibt.'
       type: <xref uid="office!OfficeExtension.LoadOption:interface" />
     return:
       type: <xref uid="excel!Excel.WorksheetCustomPropertyCollection:class" />
@@ -176,7 +176,7 @@ methods:
   uid: excel!Excel.WorksheetCustomPropertyCollection#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: Überschreibt die JavaScript-Methode, um eine nützlichere Ausgabe zu ermöglichen, wenn `toJSON()` ein API-Objekt an `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode `toJSON` des Objekts auf, das an das Objekt übergeben wird.) Während das ursprüngliche Objekt ein API-Objekt ist, gibt die Methode `Excel.WorksheetCustomPropertyCollection` `toJSON` ein einfaches `Excel.Interfaces.WorksheetCustomPropertyCollectionData`<!-- -->), das ein "items"-Array mit flachen Kopien aller geladenen Eigenschaften aus den Elementen der Auflistung enthält.
+  summary: Überschreibt die JavaScript-Methode, um eine nützlichere Ausgabe zu `toJSON()` bieten, wenn ein API-Objekt an übergeben wird `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode `toJSON` des Objekts auf, das an das Objekt übergeben wird.) Während das ursprüngliche Objekt ein API-Objekt ist, gibt die Methode `Excel.WorksheetCustomPropertyCollection` `toJSON` ein einfaches JavaScript-Objekt zurück (typisiert als `Excel.Interfaces.WorksheetCustomPropertyCollectionData`<!-- -->), das ein "Items"-Array mit flachen Kopien aller geladenen Eigenschaften aus den Elementen der Auflistung enthält.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -187,9 +187,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 700a9157314d53f535d5837fcbce23d5c7be68b4
-  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
+  ms.openlocfilehash: f4be95c3d54b97078d924516b408ea2a256bc456
+  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 01/27/2021
-  ms.locfileid: "49991485"
+  ms.lasthandoff: 03/08/2021
+  ms.locfileid: "50540340"
