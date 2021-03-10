@@ -4,7 +4,7 @@ uid: powerpoint!PowerPoint.SlideCollection:class
 package: powerpoint!
 fullName: PowerPoint.SlideCollection
 summary: >-
-  Stellt die Auflistung der Folien in der Präsentation dar.
+  Stellt die Auflistung von Folien in der Präsentation dar.
 
 
   \[[API-Satz: PowerPointApi 1.2](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
@@ -17,7 +17,7 @@ properties:
   uid: powerpoint!PowerPoint.SlideCollection#context:member
   package: powerpoint!
   fullName: context
-  summary: Der dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office-Hostanwendung verbunden.
+  summary: Der Dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office-Hostanwendung verbunden.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -58,7 +58,7 @@ methods:
       type: <xref uid="powerpoint!PowerPoint.AddSlideOptions:interface" />
     return:
       type: void
-      description: ''
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/powerpoint/preview-apis/add-slides.yaml\nconst chosenMaster = $(\"#master-id\").val() as string;\nconst chosenLayout = $(\"#layout-id\").val() as string;\n\nawait PowerPoint.run(async function(context) {\n  context.presentation.slides.add({\n    slideMasterId: chosenMaster,\n    layoutId: chosenLayout\n  });\n  await context.sync();\n});\n```"
 - name: getCount()
   uid: powerpoint!PowerPoint.SlideCollection#getCount:member(1)
   package: powerpoint!
@@ -102,7 +102,7 @@ methods:
   package: powerpoint!
   fullName: getItemAt(index)
   summary: >-
-    Ruft eine Folie mithilfe ihres nullbasierten Indexes in der Auflistung ab. Folien werden in derselben Reihenfolge gespeichert, in der sie in der Präsentation angezeigt werden.
+    Ruft eine Folie mit ihrem nullbasierten Index in der Auflistung ab. Folien werden in der gleichen Reihenfolge wie in der Präsentation gespeichert.
 
 
     \[[API-Satz: PowerPointApi 1.2](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
@@ -117,13 +117,13 @@ methods:
       type: number
     return:
       type: <xref uid="powerpoint!PowerPoint.Slide:class" />
-      description: Die Folie am angegebenen Index. Wenn sich der Index nicht im Bereich befindet, wird ein Fehler ausgelöst.
+      description: Die Folie am angegebenen Index. Ein Fehler wird ausgelöst, wenn der Index nicht im Bereich liegt.
 - name: getItemOrNullObject(id)
   uid: powerpoint!PowerPoint.SlideCollection#getItemOrNullObject:member(1)
   package: powerpoint!
   fullName: getItemOrNullObject(id)
   summary: >-
-    Ruft eine Folie mithilfe ihrer eindeutigen ID ab. Wenn eine solche Folie nicht vorhanden ist, wird ein Objekt zurückgegeben, für das eine Eigenschaft auf `isNullObject` "true" festgelegt ist. Weitere Informationen finden Sie unter [*OrNullObject-Methoden und -Eigenschaften.](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+    Ruft eine Folie mit ihrer eindeutigen ID ab. Wenn eine solche Folie nicht vorhanden ist, wird ein Objekt mit einer auf true festgelegten `isNullObject` Eigenschaft zurückgegeben. Weitere Informationen finden Sie unter [*OrNullObject-Methoden und -Eigenschaften.](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[API-Satz: PowerPointApi 1.2](/office/dev/add-ins/reference/requirement-sets/powerpoint-api-requirement-sets)\]
@@ -185,7 +185,7 @@ methods:
     content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): PowerPoint.SlideCollection;'
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden `propertyNamesAndPaths.expand` Navigationseigenschaften angibt.'
+      description: '`propertyNamesAndPaths.select` ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und eine durch Kommas getrennte Zeichenfolge, die die zu ladenden `propertyNamesAndPaths.expand` Navigationseigenschaften angibt.'
       type: <xref uid="office!OfficeExtension.LoadOption:interface" />
     return:
       type: <xref uid="powerpoint!PowerPoint.SlideCollection:class" />
@@ -194,7 +194,7 @@ methods:
   uid: powerpoint!PowerPoint.SlideCollection#toJSON:member(1)
   package: powerpoint!
   fullName: toJSON()
-  summary: Überschreibt die JavaScript-Methode, um eine nützlichere Ausgabe zu ermöglichen, wenn `toJSON()` ein API-Objekt an `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode des Objekts `toJSON` auf, das an das Objekt übergeben wird.) Während es sich bei dem ursprünglichen Objekt um ein API-Objekt handelt, gibt die Methode ein `PowerPoint.SlideCollection` `toJSON` einfaches `PowerPoint.Interfaces.SlideCollectionData`<!-- -->), das ein "items"-Array mit flachen Kopien aller geladenen Eigenschaften aus den Elementen der Auflistung enthält.
+  summary: Überschreibt die JavaScript-Methode, um eine nützlichere Ausgabe zu `toJSON()` bieten, wenn ein API-Objekt an übergeben wird `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode `toJSON` des Objekts auf, das an das Objekt übergeben wird.) Während das ursprüngliche Objekt ein API-Objekt ist, gibt die Methode `PowerPoint.SlideCollection` `toJSON` ein einfaches JavaScript-Objekt zurück (typisiert als `PowerPoint.Interfaces.SlideCollectionData`<!-- -->), das ein "Items"-Array mit flachen Kopien aller geladenen Eigenschaften aus den Elementen der Auflistung enthält.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -205,9 +205,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 6ffa34673d190204091c6128f8b8cfd40ea6fdd1
-  ms.sourcegitcommit: f229afdd4c2bc820ac799394a77b637fc66e87b4
+  ms.openlocfilehash: 4577a34c2b2858fdd385b86722b7bf3886ad9c3c
+  ms.sourcegitcommit: 7a78c85d4a5378180c50442becb98dd816065c5c
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 01/27/2021
-  ms.locfileid: "49992304"
+  ms.lasthandoff: 03/10/2021
+  ms.locfileid: "50607599"
