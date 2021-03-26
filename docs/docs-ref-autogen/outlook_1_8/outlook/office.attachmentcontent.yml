@@ -7,12 +7,12 @@ summary: >-
   Stellt den Inhalt einer Anlage für eine Nachricht oder ein Terminelement dar.
 
 
-  \[[API-Gruppe: Mailbox 1,8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  \[[API-Satz: Postfach 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
 remarks: >-
-  **[Minimale Berechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+  **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
 
 
-  **[Anwendbarer Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Verfassen oder lesen
+  **[Anwendbarer Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
 isPreview: false
 isDeprecated: false
 type: interface
@@ -37,16 +37,16 @@ properties:
     Das Zeichenfolgenformat, das für den Inhalt einer Anlage verwendet werden soll.
 
 
-    Bei Dateianlagen handelt es sich bei der Formatierung um eine Base64-codierte Zeichenfolge.
+    Bei Dateianlagen ist die Formatierung eine base64-codierte Zeichenfolge.
 
 
-    Bei Element Anlagen, die Nachrichten darstellen und durch Drag & Drop oder "Attach Item" angefügt wurden, ist die Formatierung eine Zeichenfolge, die eine EML-formatierte Datei darstellt. **Wichtig**: Wenn ein Nachrichtenelement per Drag & Drop in Outlook im Internet angefügt wurde, wird `getAttachmentContentAsync` ein Fehler ausgelöst.
+    Bei Elementanlagen, die Nachrichten darstellen und per Drag -and-Drop oder "Attach Item" angefügt wurden, ist die Formatierung eine Zeichenfolge, die eine EML-formatierte Datei darstellt. **Wichtig:** Wenn ein Nachrichtenelement per Drag -and-Drop in Outlook im Web angefügt wurde, wird `getAttachmentContentAsync` ein Fehler ausgelöst.
 
 
-    Bei Element Anlagen, die Kalenderelemente darstellen und durch Drag & Drop oder "Attach Item" angefügt wurden, ist die Formatierung eine Zeichenfolge, die eine iCalendar-Datei darstellt. **Wichtig**: Wenn ein Kalenderelement per Drag & Drop in Outlook im Internet angefügt wurde, wird `getAttachmentContentAsync` ein Fehler ausgelöst.
+    Bei Elementanlagen, die Kalenderelemente darstellen und per Drag -and-Drop oder "Attach Item" angefügt wurden, ist die Formatierung eine Zeichenfolge, die eine ICALENDAR-Datei darstellt. **Wichtig:** Wenn ein Kalenderelement per Drag -and-Drop in Outlook im Web angefügt wurde, wird `getAttachmentContentAsync` ein Fehler ausgelöst.
 
 
-    Bei Cloud-Anlagen ist die Formatierung eine URL-Zeichenfolge.
+    Bei Cloudanlagen ist die Formatierung eine URL-Zeichenfolge.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -56,9 +56,9 @@ properties:
       type: <xref uid="outlook!Office.MailboxEnums.AttachmentContentFormat:enum" /> | string
       description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nvar item = Office.context.mailbox.item;\nvar options = {asyncContext: {currentItem: item}};\nitem.getAttachmentsAsync(options, callback);\n\nfunction callback(result) {\n    if (result.value.length > 0) {\n        for (i = 0 ; i < result.value.length ; i++) {\n            result.asyncContext.currentItem.getAttachmentContentAsync(result.value[i].id, handleAttachmentsCallback);\n        }\n    }\n}\n\nfunction handleAttachmentsCallback(result) {\n    // Parse string to be a url, an .eml file, a base64-encoded string, or an .icalendar file.\n    switch (result.value.format) {\n        case Office.MailboxEnums.AttachmentContentFormat.Base64:\n            // Handle file attachment.\n            break;\n        case Office.MailboxEnums.AttachmentContentFormat.Eml:\n            // Handle email item attachment.\n            break;\n        case Office.MailboxEnums.AttachmentContentFormat.ICalendar:\n            // Handle .icalender attachment.\n            break;\n        case Office.MailboxEnums.AttachmentContentFormat.Url:\n            // Handle cloud attachment.\n            break;\n        default:\n            // Handle attachment formats that are not supported.\n    }\n}\n```"
 metadata:
-  ms.openlocfilehash: 832984f1ec4064f0e63ad81ebc8faf7b17c2fe17
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: 5e01fe061eb37df1e061a017d3e41b5ebfc0696b
+  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49193138"
+  ms.lasthandoff: 03/26/2021
+  ms.locfileid: "51224761"
