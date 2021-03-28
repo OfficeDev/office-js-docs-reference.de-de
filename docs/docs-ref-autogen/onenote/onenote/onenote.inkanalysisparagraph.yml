@@ -89,7 +89,7 @@ methods:
     `load(option?: { select?: string; expand?: string; }): OneNote.InkAnalysisParagraph` - Dabei ist option.select eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und options.expand ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.
 
 
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.InkAnalysisParagraph` - Nur für Auflistungstypen verfügbar. Sie ähnelt der vorherigen Signatur. Option.top gibt die maximale Anzahl von Auflistungselementen an, die in das Ergebnis eingeschlossen werden können. Option.skip gibt die Anzahl der Elemente an, die übersprungen und nicht in das Ergebnis einbezogen werden sollen. Wenn option.top angegeben ist, wird das Ergebnisset gestartet, nachdem die angegebene Anzahl von Elementen übersprungen wurde.
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.InkAnalysisParagraph` - Nur für Auflistungstypen verfügbar. Sie ähnelt der vorherigen Signatur. Option.top gibt die maximale Anzahl von Auflistungselementen an, die in das Ergebnis eingeschlossen werden können. Option.skip gibt die Anzahl der Elemente an, die übersprungen und nicht in das Ergebnis einbezogen werden sollen. Wenn option.top angegeben wird, wird das Ergebnisset gestartet, nachdem die angegebene Anzahl von Elementen übersprungen wurde.
   isPreview: false
   isDeprecated: false
   syntax:
@@ -118,28 +118,20 @@ methods:
     return:
       type: <xref uid="onenote!OneNote.InkAnalysisParagraph:class" />
       description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nOneNote.run(function (ctx) {        \n    var app = ctx.application;\n    \n    // Gets the active page.\n    var page = app.getActivePage();\n    \n    // Load a line of ink words.\n    page.load('inkAnalysisOrNull/paragraphs/lines');\n    \n    return ctx.sync()\n        .then(function() {\n            var inkParagraphs = page.inkAnalysisOrNull.paragraphs;\n            \n            // Log id of each line in ink paragraphs.\n            $.each(inkParagraphs.items, function(i, inkParagraph){\n                var inkLines = inkParagraph.lines;\n                $.each(inkLines.items, function (j, inkLine) {\n                    console.log(inkLine.id);\n                })\n            })\n        })\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n}); \n```"
-- name: load(option)
+- name: load(propertyNamesAndPaths)
   uid: onenote!OneNote.InkAnalysisParagraph#load:member(3)
   package: onenote!
-  fullName: load(option)
-  summary: ''
+  fullName: load(propertyNamesAndPaths)
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
   remarks: ''
   isPreview: false
   isDeprecated: false
   syntax:
-    content: >-
-      load(option?: {
-                  select?: string;
-                  expand?: string;
-              }): OneNote.InkAnalysisParagraph;
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): OneNote.InkAnalysisParagraph;'
     parameters:
-    - id: option
-      description: ''
-      type: >-
-        {
-                    select?: string;
-                    expand?: string;
-                }
+    - id: propertyNamesAndPaths
+      description: Dabei ist propertyNamesAndPaths.select eine durch Kommas getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und propertyNamesAndPaths.expand ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.
+      type: '{ select?: string; expand?: string; }'
     return:
       type: <xref uid="onenote!OneNote.InkAnalysisParagraph:class" />
       description: ''
@@ -225,9 +217,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 070f0e5ca201ebfa29544bdaa41f62828245698e
-  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
+  ms.openlocfilehash: d1f0499662867005fb51d565bfb6835458d4e5cd
+  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 03/08/2021
-  ms.locfileid: "50542006"
+  ms.lasthandoff: 03/26/2021
+  ms.locfileid: "51278089"
