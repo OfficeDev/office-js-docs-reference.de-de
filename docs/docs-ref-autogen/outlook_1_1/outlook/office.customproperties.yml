@@ -4,15 +4,15 @@ uid: outlook!Office.CustomProperties:interface
 package: outlook!
 fullName: Office.CustomProperties
 summary: >-
-  Das Objekt stellt benutzerdefinierte Eigenschaften dar, die für ein bestimmtes Element und für `CustomProperties` ein Mail-Add-In für Outlook spezifisch sind. Beispielsweise kann es sein, dass ein Mail-Add-In einige Daten speichern muss, die spezifisch für die aktuelle E-Mail-Nachricht sind, die das Add-in aktiviert hat. Wenn der Benutzer in Zukunft dieselbe Nachricht erneut abruft und das Mail-Add-In erneut aktiviert, kann das Add-in die Daten abrufen, die als benutzerdefinierte Eigenschaften gespeichert wurden. **Wichtig:** Die maximale Länge eines `CustomProperties` JSON-Objekts beträgt 2.500 Zeichen.
+  Das Objekt stellt benutzerdefinierte Eigenschaften dar, die für ein bestimmtes Element spezifisch und `CustomProperties` für ein E-Mail-Add-In für Outlook spezifisch sind. Ein E-Mail-Add-In muss beispielsweise einige Daten speichern, die für die aktuelle E-Mail-Nachricht, die das Add-In aktiviert hat, spezifisch sind. Wenn der Benutzer die gleiche Nachricht in Zukunft erneut durchwacht und das E-Mail-Add-In erneut aktiviert, kann das Add-In die Daten abrufen, die als benutzerdefinierte Eigenschaften gespeichert wurden. **Wichtig:** Die maximale Länge eines `CustomProperties` JSON-Objekts beträgt 2500 Zeichen.
 
 
-  Da Outlook für Mac keine benutzerdefinierten Eigenschaften zwischenspeichert, können Mail-Add-Ins bei einem Netzwerkaustritt des Benutzers nicht auf ihre benutzerdefinierten Eigenschaften zugreifen.
+  Da outlook auf Mac keine benutzerdefinierten Eigenschaften zwischenspeichert, können E-Mail-Add-Ins nicht auf ihre benutzerdefinierten Eigenschaften zugreifen, wenn das Netzwerk des Benutzers nicht mehr funktioniert.
 remarks: >-
-  **[Mindestberechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
+  **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
 
 
-  **[Zutreffender Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
+  **[Anwendbarer Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
 isPreview: false
 isDeprecated: false
 type: interface
@@ -23,10 +23,10 @@ methods:
   fullName: get(name)
   summary: Gibt den Wert der angegebenen benutzerdefinierten Eigenschaft zurück.
   remarks: >-
-    **[Mindestberechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
+    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
 
 
-    **[Zutreffender Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
+    **[Anwendbarer Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
 
 
     #### <a name="examples"></a>Beispiele
@@ -66,10 +66,10 @@ methods:
 
     Damit die Eigenschaft dauerhaft entfernt wird, müssen Sie die `saveAsync`-Methode des `CustomProperties`-Objekts aufrufen.
   remarks: >-
-    **[Mindestberechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
+    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
 
 
-    **[Zutreffender Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
+    **[Anwendbarer Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
 
 
     #### <a name="examples"></a>Beispiele
@@ -92,7 +92,7 @@ methods:
     content: 'remove(name: string): void;'
     parameters:
     - id: name
-      description: Die `name` eigenschaft, die entfernt werden soll.
+      description: Die `name` zu entfernende Eigenschaft.
       type: string
     return:
       type: void
@@ -108,12 +108,12 @@ methods:
     Sie müssen die `saveAsync`-Methode aufrufen, um alle mit der `set`-Methode oder der `remove`-Methode des `CustomProperties`-Objekts vorgenommenen Änderungen beizubehalten. Die Speichernaktion ist asynchron.
 
 
-    Es ist eine bewährte Methode, die Rückruffunktion auf Fehler zu überprüfen und von `saveAsync`<!-- -->. Insbesondere kann ein Lese-Add-In aktiviert werden, während sich der Benutzer in einem Leseformular in einem verbundenen Zustand befindet, und anschließend wird der Benutzer getrennt. Wenn das Add-in im `saveAsync` getrennten Zustand aufruft, `saveAsync` wird ein Fehler zurückgegeben. Ihre Rückrufmethode sollte diesen Fehler entsprechend behandeln.
+    Es ist eine bewährte Methode, ihre Rückruffunktion auf Fehler zu überprüfen und zu behandeln. `saveAsync`<!-- -->. Insbesondere kann ein Lese-Add-In aktiviert werden, während sich der Benutzer in einem Leseformular in einem verbundenen Zustand befindet, und anschließend wird der Benutzer getrennt. Wenn das Add-In aufruft, während sich der Status "Getrennt" `saveAsync` hat, `saveAsync` würde ein Fehler zurückgegeben. Ihre Rückrufmethode sollte diesen Fehler entsprechend behandeln.
   remarks: >-
-    **[Mindestberechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
+    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
 
 
-    **[Zutreffender Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
+    **[Anwendbarer Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
 
 
     #### <a name="examples"></a>Beispiele
@@ -176,7 +176,7 @@ methods:
     content: 'saveAsync(callback?: (asyncResult: Office.AsyncResult<void>) => void, asyncContext?: any): void;'
     parameters:
     - id: callback
-      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion mit einem einzigen `callback` Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->.
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion mit einem einzelnen `callback` Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     - id: asyncContext
       description: Optional. Jegliche Zustandsdaten, die an die Rückrufmethode übergeben werden.
@@ -197,10 +197,10 @@ methods:
 
     Die `set`-Methode erstellt eine neue Eigenschaft, wenn die angegebene Eigenschaft nicht bereits vorhanden ist. Andernfalls wird der vorhandene Wert durch den neuen Wert ersetzt. Der `value`-Parameter kann einen beliebigen Typ aufweisen, er wird jedoch immer als Zeichenfolge an den Server übergeben.
   remarks: >-
-    **[Mindestberechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
+    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
 
 
-    **[Zutreffender Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
+    **[Anwendbarer Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
 
 
     #### <a name="examples"></a>Beispiele
@@ -234,9 +234,9 @@ methods:
       type: void
       description: ''
 metadata:
-  ms.openlocfilehash: 6516b5b5199abd330b9c53246d241c0ce689c529
-  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
+  ms.openlocfilehash: bee6f8552d5d84b0f1001623cbfec0f6e3f5e14e
+  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 01/13/2021
-  ms.locfileid: "49855246"
+  ms.lasthandoff: 03/26/2021
+  ms.locfileid: "51319957"
