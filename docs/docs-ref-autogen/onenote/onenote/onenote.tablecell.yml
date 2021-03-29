@@ -250,7 +250,7 @@ methods:
     `load(option?: { select?: string; expand?: string; }): OneNote.TableCell` - Dabei ist option.select eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und options.expand ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.
 
 
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.TableCell` - Nur für Auflistungstypen verfügbar. Sie ähnelt der vorherigen Signatur. Option.top gibt die maximale Anzahl von Auflistungselementen an, die in das Ergebnis eingeschlossen werden können. Option.skip gibt die Anzahl der Elemente an, die übersprungen und nicht in das Ergebnis einbezogen werden sollen. Wenn option.top angegeben ist, wird das Ergebnisset gestartet, nachdem die angegebene Anzahl von Elementen übersprungen wurde.
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.TableCell` - Nur für Auflistungstypen verfügbar. Sie ähnelt der vorherigen Signatur. Option.top gibt die maximale Anzahl von Auflistungselementen an, die in das Ergebnis eingeschlossen werden können. Option.skip gibt die Anzahl der Elemente an, die übersprungen und nicht in das Ergebnis einbezogen werden sollen. Wenn option.top angegeben wird, wird das Ergebnisset gestartet, nachdem die angegebene Anzahl von Elementen übersprungen wurde.
   isPreview: false
   isDeprecated: false
   syntax:
@@ -279,28 +279,20 @@ methods:
     return:
       type: <xref uid="onenote!OneNote.TableCell:class" />
       description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nOneNote.run(function(ctx) {\n    var app = ctx.application;\n    var outline = app.getActiveOutline();\n    \n    // Queue a command to load outline.paragraphs and their types.\n    ctx.load(outline, \"paragraphs, paragraphs/type\");\n    \n    // Run the queued commands, and return a promise to indicate task completion.\n    return ctx.sync().then(function () {\n        var paragraphs = outline.paragraphs;\n        \n        // for each table, get a table cell at row one and column two.\n        for (var i = 0; i < paragraphs.items.length; i++) {\n            var paragraph = paragraphs.items[i];\n            if (paragraph.type == \"Table\") {\n                var table = paragraph.table;\n                var cell = table.getCell(1 /*Row Index*/, 2 /*Column Index*/);\n                \n                // Queue a command to load the table cell.\n                ctx.load(cell);\n                ctx.sync().then(function() {\n                    console.log(\"Cell Id: \" + cell.id);\n                    console.log(\"Cell Index: \" + cell.cellIndex);\n                    console.log(\"Cell's Row Index: \" + cell.rowIndex);\n                });\n            }\n        }\n        return ctx.sync();\n    })\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\nParentTable, ParentRow, Paragraphs\nOneNote.run(function(ctx) {\n    var app = ctx.application;\n    var outline = app.getActiveOutline();\n    \n    // Queue a command to load outline.paragraphs and their types.\n    ctx.load(outline, \"paragraphs, paragraphs/type\");\n    \n    // Run the queued commands, and return a promise to indicate task completion.\n    return ctx.sync().then(function () {\n        var paragraphs = outline.paragraphs;\n        \n        // for each table, get a table cell at row one and column two.\n        for (var i = 0; i < paragraphs.items.length; i++) {\n            var paragraph = paragraphs.items[i];\n            if (paragraph.type == \"Table\") {\n                var table = paragraph.table;\n                var cell = table.getCell(1 /*Row Index*/, 2 /*Column Index*/);\n                \n                // Queue a command to load parentTable, parentRow and paragraphs of the table cell.\n                ctx.load(cell, \"parentTable, parentRow, paragraphs\");\n                \n                ctx.sync().then(function() {\n                    console.log(\"Parent Table Id: \" + cell.parentTable.id);\n                    console.log(\"Parent Row Id: \" + cell.parentRow.id);\n                    var paragraphs = cell.paragraphs;\n                    \n                    for (var i = 0; i < paragraphs.items.length; i++) {\n                        console.log(\"Paragraph Id: \" + paragraphs.items[i].id);\n                    }\n                });\n            }\n        }\n        return ctx.sync();\n    })\n})\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-- name: load(option)
+- name: load(propertyNamesAndPaths)
   uid: onenote!OneNote.TableCell#load:member(3)
   package: onenote!
-  fullName: load(option)
-  summary: ''
+  fullName: load(propertyNamesAndPaths)
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
   remarks: ''
   isPreview: false
   isDeprecated: false
   syntax:
-    content: >-
-      load(option?: {
-                  select?: string;
-                  expand?: string;
-              }): OneNote.TableCell;
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): OneNote.TableCell;'
     parameters:
-    - id: option
-      description: ''
-      type: >-
-        {
-                    select?: string;
-                    expand?: string;
-                }
+    - id: propertyNamesAndPaths
+      description: Dabei ist propertyNamesAndPaths.select eine durch Kommas getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und propertyNamesAndPaths.expand ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.
+      type: '{ select?: string; expand?: string; }'
     return:
       type: <xref uid="onenote!OneNote.TableCell:class" />
       description: ''
@@ -386,9 +378,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: e1ce9176d0eccba8028e98cd90e4a383400185bb
-  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
+  ms.openlocfilehash: 8564407a1246f9419be0ed1743010f56654f8710
+  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 03/08/2021
-  ms.locfileid: "50542118"
+  ms.lasthandoff: 03/26/2021
+  ms.locfileid: "51320041"
