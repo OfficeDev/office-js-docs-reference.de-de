@@ -18,7 +18,7 @@ properties:
   package: word!
   fullName: body
   summary: >-
-    Ruft das Textkörperobjekt des Dokuments ab. Der Textkörper umfasst den Text ohne Kopfzeilen, Fußzeilen, Textfelder usw. Schreibgeschützt.
+    Ruft das body-Objekt des Dokuments ab. Der Textkörper umfasst den Text ohne Kopfzeilen, Fußzeilen, Textfelder usw. Schreibgeschützt.
 
 
     \[[API-Satz: WordApi 1.1](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
@@ -49,7 +49,7 @@ properties:
   uid: word!Word.Document#context:member
   package: word!
   fullName: context
-  summary: Der dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office-Hostanwendung verbunden.
+  summary: Der Dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office-Hostanwendung verbunden.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -174,7 +174,7 @@ methods:
               }): Word.Document;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden `propertyNamesAndPaths.expand` Navigationseigenschaften angibt.'
+      description: '`propertyNamesAndPaths.select` ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und eine durch Kommas getrennte Zeichenfolge, die die zu ladenden `propertyNamesAndPaths.expand` Navigationseigenschaften angibt.'
       type: >-
         {
                     select?: string;
@@ -219,7 +219,7 @@ methods:
       description: Ein JavaScript-Objekt mit Eigenschaften, die isomorph zu den Eigenschaften des Objekts strukturiert sind, für das die Methode aufgerufen wird.
       type: <xref uid="word!Word.Interfaces.DocumentUpdateData:interface" />
     - id: options
-      description: Bietet eine Option zum Unterdrücken von Fehlern, wenn das Eigenschaftenobjekt versucht, schreibgeschützte Eigenschaften zu setzen.
+      description: Bietet eine Option zum Unterdrücken von Fehlern, wenn das Properties-Objekt versucht, schreibgeschützte Eigenschaften zu setzen.
       type: <xref uid="office!OfficeExtension.UpdateOptions:interface" />
     return:
       type: void
@@ -245,7 +245,7 @@ methods:
   uid: word!Word.Document#toJSON:member(1)
   package: word!
   fullName: toJSON()
-  summary: Überschreibt die JavaScript-Methode, um eine nützlichere Ausgabe zu ermöglichen, wenn `toJSON()` ein API-Objekt an `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode `toJSON` des Objekts auf, das an das Objekt übergeben wird.) Während das ursprüngliche Word.Document-Objekt ein API-Objekt ist, gibt die Methode ein einfaches `toJSON``Word.Interfaces.DocumentData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.
+  summary: 'Überschreibt die JavaScript-Methode, um eine nützlichere Ausgabe zu `toJSON()` bieten, wenn ein API-Objekt an übergeben wird `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode `toJSON` des Objekts auf, das an das Objekt übergeben wird.) Während das ursprüngliche Word.Document-Objekt ein API-Objekt ist, gibt die Methode ein `toJSON` einfaches JavaScript-Objekt zurück (Typ: `Word.Interfaces.DocumentData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -258,7 +258,7 @@ methods:
   uid: word!Word.Document#track:member(1)
   package: word!
   fullName: track()
-  summary: Nachverfolgung des Objekts zwecks automatischer Anpassung auf der Grundlage der umgebenden Änderungen im Dokument. Dieser Aufruf ist eine Kurzhand für `context.trackedObjects.add(thisObject)`<!-- -->. Wenn Sie dieses Objekt aufrufübergreifend und außerhalb der sequenziellen Ausführung eines Batches ".run" verwenden und beim Festlegen einer Eigenschaft oder aufrufen einer Methode für das Objekt den Fehler "InvalidObjectPath" erhalten, musste das Objekt der nachverfolgten Objektsammlung hinzugefügt werden, als das Objekt zum ersten Mal erstellt `.sync` wurde.
+  summary: Nachverfolgung des Objekts zwecks automatischer Anpassung auf der Grundlage der umgebenden Änderungen im Dokument. Dieser Anruf ist eine Kurzhand für `context.trackedObjects.add(thisObject)`<!-- -->. Wenn Sie dieses Objekt für aufrufe und außerhalb der sequenziellen Ausführung eines Batches ".run" verwenden und beim Festlegen einer Eigenschaft oder aufrufen einer Methode für das Objekt den Fehler "InvalidObjectPath" erhalten, mussten Sie das Objekt der nachverfolgten Objektsammlung hinzugefügt haben, als das Objekt zum ersten Mal erstellt `.sync` wurde.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -271,7 +271,7 @@ methods:
   uid: word!Word.Document#untrack:member(1)
   package: word!
   fullName: untrack()
-  summary: Gibt den diesem Objekt zugewiesenen Arbeitsspeicher frei, wenn das Objekt zuvor nachverfolgt wurde. Dieser Aufruf ist kurz für `context.trackedObjects.remove(thisObject)`<!-- -->. Viele nachverfolgte Objekte verlangsamen die Ausführung der Hostanwendung, also achten Sie darauf, alle hinzugefügten Objekte nach abgeschlossener Verwendung freizugeben. Sie müssen den Aufruf aufrufen, `context.sync()` bevor die Speicherfreigabe wirksam wird.
+  summary: Gibt den diesem Objekt zugewiesenen Arbeitsspeicher frei, wenn das Objekt zuvor nachverfolgt wurde. Dieser Anruf ist kurz `context.trackedObjects.remove(thisObject)`<!-- -->. Viele nachverfolgte Objekte verlangsamen die Ausführung der Hostanwendung, also achten Sie darauf, alle hinzugefügten Objekte nach abgeschlossener Verwendung freizugeben. Sie müssen aufrufen, `context.sync()` bevor die Speicherfreigabe wirksam wird.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -282,9 +282,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 1579814bbc12937647ae14c29e675bf40e671454
-  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
+  ms.openlocfilehash: 1323b9cdb29462a7b77293b3e4b0b480b8119993
+  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 01/13/2021
-  ms.locfileid: "49855806"
+  ms.lasthandoff: 03/26/2021
+  ms.locfileid: "51306425"
