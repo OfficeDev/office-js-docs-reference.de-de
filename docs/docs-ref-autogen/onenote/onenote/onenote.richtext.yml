@@ -122,7 +122,7 @@ methods:
     `load(option?: { select?: string; expand?: string; }): OneNote.RichText` - Dabei ist option.select eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und options.expand ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.
 
 
-    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.RichText` - Nur für Auflistungstypen verfügbar. Sie ähnelt der vorherigen Signatur. Option.top gibt die maximale Anzahl von Auflistungselementen an, die in das Ergebnis eingeschlossen werden können. Option.skip gibt die Anzahl der Elemente an, die übersprungen und nicht in das Ergebnis einbezogen werden sollen. Wenn option.top angegeben ist, wird das Ergebnisset gestartet, nachdem die angegebene Anzahl von Elementen übersprungen wurde.
+    `load(option?: { select?: string; expand?: string; top?: number; skip?: number }): OneNote.RichText` - Nur für Auflistungstypen verfügbar. Sie ähnelt der vorherigen Signatur. Option.top gibt die maximale Anzahl von Auflistungselementen an, die in das Ergebnis eingeschlossen werden können. Option.skip gibt die Anzahl der Elemente an, die übersprungen und nicht in das Ergebnis einbezogen werden sollen. Wenn option.top angegeben wird, wird das Ergebnisset gestartet, nachdem die angegebene Anzahl von Elementen übersprungen wurde.
   isPreview: false
   isDeprecated: false
   syntax:
@@ -151,28 +151,20 @@ methods:
     return:
       type: <xref uid="onenote!OneNote.RichText:class" />
       description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nOneNote.run(function (context) {\n\n    // Get the collection of pageContent items from the page.\n    var pageContents = context.application.getActivePage().contents;\n\n    // Get the first PageContent on the page, and then get its outline's paragraphs.\n    var outlinePageContents = ;\n    var paragraphs = ;\n    var richTextParagraphs = ;\n    // Queue a command to load the id and type of each page content in the outline.\n    pageContents.load(\"id,type\");\n\n    // Run the queued commands, and return a promise to indicate task completion.\n    return context.sync()\n        .then(function () {\n            // Load all page contents of type Outline\n            $.each(pageContents.items, function(index, pageContent) {\n                if(pageContent.type == 'Outline')\n                {\n                    pageContent.load('outline,outline/paragraphs,outline/paragraphs/type');\n                    outlinePageContents.push(pageContent);\n                }\n            });\n            return context.sync();\n        })\n        .then(function () {\n            // Load all rich text paragraphs across outlines\n            $.each(outlinePageContents, function(index, outlinePageContent) {\n                var outline = outlinePageContent.outline;\n                paragraphs = paragraphs.concat(outline.paragraphs.items);\n            });\n            $.each(paragraphs, function(index, paragraph) {\n                if(paragraph.type == 'RichText')\n                {\n                    richTextParagraphs.push(paragraph);\n                    paragraph.load(\"id,richText/text\");\n                }\n            });\n            return context.sync();\n        })\n        .then(function () {\n            // Display all rich text paragraphs to the console\n            $.each(richTextParagraphs, function(index, richTextParagraph) {\n                var richText = richTextParagraph.richText;\n                console.log(\n                    \"Paragraph found with richtext content : \" + \n                    richText.text + \" and richtext id : \" + richText.id);\n            });\n            return context.sync();\n        });\n});\n.catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n}); \n```"
-- name: load(option)
+- name: load(propertyNamesAndPaths)
   uid: onenote!OneNote.RichText#load:member(3)
   package: onenote!
-  fullName: load(option)
-  summary: ''
+  fullName: load(propertyNamesAndPaths)
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
   remarks: ''
   isPreview: false
   isDeprecated: false
   syntax:
-    content: >-
-      load(option?: {
-                  select?: string;
-                  expand?: string;
-              }): OneNote.RichText;
+    content: 'load(propertyNamesAndPaths?: { select?: string; expand?: string; }): OneNote.RichText;'
     parameters:
-    - id: option
-      description: ''
-      type: >-
-        {
-                    select?: string;
-                    expand?: string;
-                }
+    - id: propertyNamesAndPaths
+      description: Dabei ist propertyNamesAndPaths.select eine durch Kommas getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und propertyNamesAndPaths.expand ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.
+      type: '{ select?: string; expand?: string; }'
     return:
       type: <xref uid="onenote!OneNote.RichText:class" />
       description: ''
@@ -217,9 +209,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 30f94bc410a22098c3245ce14144797672e9bdfb
-  ms.sourcegitcommit: 276e655472f82435a4b1227fbbb2feb687b659c0
+  ms.openlocfilehash: a77d31af3fb48bdec6ef9000f29b767c38af655d
+  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 03/08/2021
-  ms.locfileid: "50542139"
+  ms.lasthandoff: 03/26/2021
+  ms.locfileid: "51320062"
