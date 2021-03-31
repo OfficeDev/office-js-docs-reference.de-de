@@ -7,7 +7,7 @@ summary: >-
   Stellt Informationen zu der Shape-Auflistung bereit, die das SelectionChanged-Ereignis ausgelöst hat.
 
 
-  \[[API-Menge: 1,1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+  \[[API-Satz: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
 remarks: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nvar eventResult; // Global Variable to store the EventHandlerResult returned on attaching handler.\n\nfunction AttachHandler() {\n    Visio.run(session, function(ctx) {\n        var doc = ctx.document;\n        eventResult = doc.onSelectionChanged.add(\n            function (args) {\n                console.log(\"Selected Shape Name: \"+args.shapeNames[0]);\n            });\n        return ctx.sync().then(function(){\n            console.log(\"Handler attached\");\n        });\n    }).catch(function(error) {\n        console.log(\"Error: \" + error);\n        if (error instanceof OfficeExtension.Error) {\n            console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n        }\n    });\n\n    function onSelectionChanged(args) {\n        console.log(Date.now() + \"Selection Changes Event\" + JSON.stringify(args));\n    }\n}\n\nfunction RemoveHandler() {\n    if (!eventResult || !eventResult.context) {\n        console.log(\"Handler has not been attached\");\n        return;\n    }\n\n    Visio.run(eventResult.context, function(ctx) {\n        eventResult.remove();\n        return ctx.sync().then(function (){\n            eventResult = null;\n            console.log(\"Handler removed\");\n        });\n    }).catch(function(error) {\n        console.log(\"Error: \" + error);\n        if (error instanceof OfficeExtension.Error) {\n            console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n        }\n    });\n}\n```"
 isPreview: false
 isDeprecated: false
@@ -21,7 +21,7 @@ properties:
     Ruft den Namen der Seite mit dem ShapeCollection-Objekt ab, das das SelectionChanged-Ereignis ausgelöst hat.
 
 
-    \[[API-Menge: 1,1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    \[[API-Satz: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -37,7 +37,7 @@ properties:
     Ruft das Array von Shapenamen ab, durch das das SelectionChanged-Ereignis ausgelöst wurde.
 
 
-    \[[API-Menge: 1,1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
+    \[[API-Satz: 1.1](/office/dev/add-ins/reference/overview/visio-javascript-reference-overview)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -46,9 +46,9 @@ properties:
     return:
       type: string[]
 metadata:
-  ms.openlocfilehash: a7a3d22daba7e8e9fc5165f98874830793213684
-  ms.sourcegitcommit: 3bab97ab3b91da7cca497f6fc895408a76bd8b46
+  ms.openlocfilehash: e075e3c33adf5ed647ca7b5b5f28975fbc20a762
+  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 11/18/2020
-  ms.locfileid: "49249489"
+  ms.lasthandoff: 03/26/2021
+  ms.locfileid: "51358025"
