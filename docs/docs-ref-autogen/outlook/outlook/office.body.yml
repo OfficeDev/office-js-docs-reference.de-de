@@ -4,15 +4,15 @@ uid: outlook!Office.Body:interface
 package: outlook!
 fullName: Office.Body
 summary: >-
-  Das Body -Objekt stellt Methoden zum Hinzufügen und Aktualisieren des Inhalts der Nachricht oder des Termins zur Verfügung. Es wird in der body-Eigenschaft des ausgewählten Elements zurückgegeben.
+  Das body-Objekt stellt Methoden zum Hinzufügen und Aktualisieren des Inhalts der Nachricht oder des Termins zur Verfügung. Es wird in der body-Eigenschaft des ausgewählten Elements zurückgegeben.
 
 
   \[[API-Satz: Postfach 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
 remarks: >-
-  **[Mindestberechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
+  **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
 
 
-  **[Zutreffender Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
+  **[Anwendbarer Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
 isPreview: false
 isDeprecated: false
 type: interface
@@ -22,36 +22,36 @@ methods:
   package: outlook!
   fullName: appendOnSendAsync(data, options, callback)
   summary: >-
-    Fügt beim Senden des angegebenen Inhalts an das Ende des Elementtexts nach jeder Signatur an.
+    Fügt den angegebenen Inhalt nach jeder Signatur an das Ende des Elementtexts an.
 
 
-    Wenn der Benutzer Add-Ins ausgeführt, die das [On-Send-Feature mithilfe von \` ItemSend \` im Manifest implementieren](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-on-send-addins?tabs=windows)<!-- -->, wird "append-on-send" vor der On-Send-Funktion ausgeführt.
+    Wenn der Benutzer Add-Ins ausgeführt, die das [On-Send-Feature mithilfe von \` ItemSend \` im Manifest implementieren](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-on-send-addins?tabs=windows)<!-- -->wird append-on-send vor der On-Send-Funktion ausgeführt.
 
 
-    **Wichtig:** Wenn Ihr Add-in die "On-Send"-Funktion und Aufrufe im Handler implementiert, gibt der Aufruf einen Fehler zurück, da dieses Szenario `appendOnSendAsync` `ItemSend` nicht unterstützt `appendOnSendAsync` wird.
+    **Wichtig:** Wenn Ihr Add-In das On-Send-Feature und Aufrufe im Handler implementiert, gibt der Aufruf einen Fehler zurück, da dieses Szenario `appendOnSendAsync` `ItemSend` nicht unterstützt `appendOnSendAsync` wird.
 
 
-    **Wichtig:** Zu verwenden `appendOnSendAsync`<!-- -->muss `ExtendedPermissions` der Manifestknoten die erweiterte `AppendOnSend` Berechtigung enthalten.
+    **Wichtig**: Zu verwenden `appendOnSendAsync`<!-- -->muss `ExtendedPermissions` der Manifestknoten die erweiterte `AppendOnSend` Berechtigung enthalten.
 
 
-    **Hinweis:** Um Daten aus einem vorherigen Aufruf zu löschen, können Sie sie erneut aufrufen, wenn `appendOnSendAsync` der Parameter `data` auf `null`<!-- -->.
+    **Hinweis:** Zum Löschen von Daten aus einem vorherigen Aufruf können Sie ihn erneut `appendOnSendAsync` aufrufen, wenn `data` der Parameter auf festgelegt ist. `null`<!-- -->.
 
 
     \[[API-Satz: Postfach 1.9](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    **[Mindestberechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadWriteItem`
+    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadWriteItem`
 
 
-    **[Zutreffender Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen
+    **[Anwendbarer Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Verfassen
 
 
-    **Fehler:**
+    **Fehler**:
 
 
     - `DataExceedsMaximumSize`<!-- -->: Der `data` Parameter ist länger als 5.000 Zeichen.
 
 
-    - `InvalidFormatError`<!-- -->: Der `options.coercionType` Parameter ist festgelegt, `Office.CoercionType.Html` aber der Nachrichtentext ist im Nur-Text-Text.
+    - `InvalidFormatError`<!-- -->: Der `options.coercionType` Parameter ist auf `Office.CoercionType.Html` festgelegt, aber der Nachrichtentext ist im Nur-Text-Text.
 
 
     #### <a name="examples"></a>Beispiele
@@ -79,10 +79,10 @@ methods:
       description: Die Zeichenfolge, die am Ende des Textkörpers hinzugefügt werden soll. Die Zeichenfolge ist auf 5.000 Zeichen beschränkt.
       type: string
     - id: options
-      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können in der Rückrufmethode jedes Objekt bereitstellen, auf das sie zugreifen möchten. `coercionType`<!-- -->: Das gewünschte Format für die Daten, die angefügt werden sollen. Der Zeichenfolge im `data`-Parameter wird in dieses Format konvertiert.'
+      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können jedes Objekt bereitstellen, auf das sie in der Rückrufmethode zugreifen möchten. `coercionType`<!-- -->: Das gewünschte Format für die daten, die angefügt werden sollen. Der Zeichenfolge im `data`-Parameter wird in dieses Format konvertiert.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" /> & <xref uid="outlook!Office.CoercionTypeOptions:interface" />
     - id: callback
-      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion mit einem einzigen `callback` Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->. Alle aufgetretenen Fehler werden in der `asyncResult.error`-Eigenschaft bereitgestellt.
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion mit einem einzelnen `callback` Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->. Alle aufgetretenen Fehler werden in der `asyncResult.error`-Eigenschaft bereitgestellt.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
@@ -98,15 +98,15 @@ methods:
     Diese Methode gibt den gesamten aktuellen Textkörper im angegebenen Format zurück. `coercionType`<!-- -->.
 
 
-    Bei der Arbeit mit Textkörpern im HTML-Format ist es wichtig zu beachten, dass die Und-Methoden nicht `Body.getAsync` `Body.setAsync` idempotent sind. Der von der Methode zurückgegebene Wert ist nicht unbedingt identisch mit dem Wert, der zuvor in der `getAsync` `setAsync` Methode übergeben wurde. Der Client kann den übergebenen Wert ändern, damit er mit seinem Renderingmodul effizient `setAsync` gerendert wird.
+    Bei der Arbeit mit HTML-formatierten Textkörpern ist es wichtig zu beachten, dass die `Body.getAsync` und-Methoden `Body.setAsync` nicht idempotent sind. Der von der Methode zurückgegebene Wert ist nicht unbedingt identisch mit dem Wert, der `getAsync` zuvor in der Methode übergeben `setAsync` wurde. Der Client kann den übergebenen Wert ändern, damit er mit seinem Renderingmodul effizient `setAsync` gerendert wird.
 
 
     \[[API-Satz: Postfach 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    **[Mindestberechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
+    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
 
 
-    **[Zutreffender Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
+    **[Anwendbarer Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
 
 
     #### <a name="examples"></a>Beispiele
@@ -141,10 +141,10 @@ methods:
       description: Das Format für den zurückgegebenen Text.
       type: <xref uid="office!Office.CoercionType:enum" /> | string
     - id: options
-      description: 'Optional. Ein Objektliteral, das eine oder mehrere der folgenden Eigenschaften enthält: `asyncContext`<!-- -->: Entwickler können in der Rückrufmethode jedes Objekt bereitstellen, auf das sie zugreifen möchten.'
+      description: 'Optional. Ein Objektliteral, das eine oder mehrere der folgenden Eigenschaften enthält: `asyncContext`<!-- -->: Entwickler können jedes Objekt bereitstellen, auf das sie in der Rückrufmethode zugreifen möchten.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion mit einem einzelnen Parameter vom Typ `callback` Office.AsyncResult aufgerufen. Der Textkörper wird im angeforderten Format in der Eigenschaft `asyncResult.value` bereitgestellt.
+      description: Optional. Nach Abschluss der Methode wird die im Parameter übergebene Funktion mit einem einzelnen Parameter vom Typ `callback` Office.AsyncResult aufgerufen. Der Textkörper wird im angeforderten Format in der Eigenschaft `asyncResult.value` bereitgestellt.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;string&gt;) =&gt; void'
     return:
       type: void
@@ -159,10 +159,10 @@ methods:
 
     \[[API-Satz: Postfach 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    **[Mindestberechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
+    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
 
 
-    **[Zutreffender Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen
+    **[Anwendbarer Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Verfassen
 
 
     #### <a name="examples"></a>Beispiele
@@ -185,10 +185,10 @@ methods:
     content: 'getTypeAsync(options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<Office.CoercionType>) => void): void;'
     parameters:
     - id: options
-      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können in der Rückrufmethode jedes Objekt bereitstellen, auf das sie zugreifen möchten.'
+      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können jedes Objekt bereitstellen, auf das sie in der Rückrufmethode zugreifen möchten.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion mit einem einzigen `callback` Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->. Der Inhaltstyp wird als einer der Werte `CoercionType` in der Eigenschaft `asyncResult.value` zurückgegeben.
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion mit einem einzelnen `callback` Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->. Der Inhaltstyp wird als einer der `CoercionType` Werte in der Eigenschaft `asyncResult.value` zurückgegeben.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="office!Office.CoercionType:enum" />&gt;) =&gt; void'
     return:
       type: void
@@ -201,24 +201,24 @@ methods:
     Fügt den angegebenen Inhalt am Anfang des Elementkörpers hinzu.
 
 
-    Die `prependAsync`-Methode fügt die angegebene Zeichenfolge am Beginn des Elementtexts ein. Nach dem Einfügen wird der Cursor relativ zum eingefügten Inhalt an seine ursprüngliche Position zurückgegeben.
+    Die `prependAsync`-Methode fügt die angegebene Zeichenfolge am Beginn des Elementtexts ein. Nach dem Einfügen wird der Cursor relativ zum eingefügten Inhalt an seine ursprüngliche Stelle zurückgegeben.
 
 
-    Bei der Arbeit mit Textkörpern im HTML-Format ist es wichtig zu beachten, dass der Client den übergebenen Wert ändern kann, damit er mit seinem Renderingmodul `prependAsync` effizient gerendert wird. Dies bedeutet, dass der von einem nachfolgenden Aufruf der Methode zurückgegebene Wert nicht unbedingt genau den Wert enthält, der zuvor in der `Body.getAsync` Methode `prependAsync` übergeben wurde.
+    Bei der Arbeit mit HTML-formatierten Textkörpern ist es wichtig zu beachten, dass der Client den übergebenen Wert ändern kann, damit er mit seinem Renderingmodul effizient `prependAsync` gerendert wird. Dies bedeutet, dass der von einem nachfolgenden Aufruf der Methode zurückgegebene Wert nicht unbedingt genau den Wert enthält, der `Body.getAsync` zuvor in der Methode übergeben `prependAsync` wurde.
 
 
-    Wenn Sie Links in das HTML-Markup einbinden, können Sie die Onlinelinkvorschau deaktivieren, indem Sie `id` das Attribut für den Anker festlegen (<!-- -->&lt;<!-- -->a<!-- -->&gt;<!-- -->) auf "LPNoLP" (ein Beispiel finden Sie **im** Abschnitt "Beispiele").
+    Wenn Sie Links in DAS HTML-Markup einbinden, können Sie die Onlinelinkvorschau deaktivieren, indem Sie `id` das Attribut im Anker festlegen (<!-- -->&lt;<!-- -->a<!-- -->&gt;<!-- -->) zu "LPNoLP" (ein Beispiel finden **Sie** im Abschnitt Beispiele).
 
 
     \[[API-Satz: Postfach 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    **[Mindestberechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadWriteItem`
+    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadWriteItem`
 
 
-    **[Zutreffender Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen
+    **[Anwendbarer Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Verfassen
 
 
-    **Fehler:**
+    **Fehler**:
 
 
     - `DataExceedsMaximumSize`<!-- -->: Der Datenparameter ist länger als 1.000.000 Zeichen.
@@ -247,10 +247,10 @@ methods:
       description: Die Zeichenfolge, die am Anfang des Texts eingefügt werden soll. Die Zeichenfolge ist auf 1.000.000 Zeichen beschränkt.
       type: string
     - id: options
-      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können in der Rückrufmethode jedes Objekt bereitstellen, auf das sie zugreifen möchten. `coercionType`<!-- -->: Das gewünschte Format für den Textkörper. Der Zeichenfolge im `data`-Parameter wird in dieses Format konvertiert.'
+      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können jedes Objekt bereitstellen, auf das sie in der Rückrufmethode zugreifen möchten. `coercionType`<!-- -->: Das gewünschte Format für den Textkörper. Der Zeichenfolge im `data`-Parameter wird in dieses Format konvertiert.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" /> & <xref uid="outlook!Office.CoercionTypeOptions:interface" />
     - id: callback
-      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion mit einem einzigen `callback` Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->. Alle aufgetretenen Fehler werden in der `asyncResult.error`-Eigenschaft bereitgestellt.
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion mit einem einzelnen `callback` Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->. Alle aufgetretenen Fehler werden in der `asyncResult.error`-Eigenschaft bereitgestellt.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
@@ -263,27 +263,27 @@ methods:
     Ersetzt den gesamten Textkörper mit dem angegebenen Text.
 
 
-    Bei der Arbeit mit Textkörpern im HTML-Format ist es wichtig zu beachten, dass die Und-Methoden nicht `Body.getAsync` `Body.setAsync` idempotent sind. Der von der Methode zurückgegebene Wert ist nicht unbedingt identisch mit dem Wert, der zuvor in der `getAsync` `setAsync` Methode übergeben wurde. Der Client kann den übergebenen Wert ändern, damit er mit seinem Renderingmodul effizient `setAsync` gerendert wird.
+    Bei der Arbeit mit HTML-formatierten Textkörpern ist es wichtig zu beachten, dass die `Body.getAsync` und-Methoden `Body.setAsync` nicht idempotent sind. Der von der Methode zurückgegebene Wert ist nicht unbedingt identisch mit dem Wert, der `getAsync` zuvor in der Methode übergeben `setAsync` wurde. Der Client kann den übergebenen Wert ändern, damit er mit seinem Renderingmodul effizient `setAsync` gerendert wird.
 
 
-    Wenn Sie Links in das HTML-Markup einbinden, können Sie die Onlinelinkvorschau deaktivieren, indem Sie `id` das Attribut für den Anker festlegen (<!-- -->&lt;<!-- -->a<!-- -->&gt;<!-- -->) auf "LPNoLP" (ein **Beispiel** finden Sie im Abschnitt "Beispiele").
+    Wenn Sie Links in DAS HTML-Markup einbinden, können Sie die Onlinelinkvorschau deaktivieren, indem Sie `id` das Attribut im Anker festlegen (<!-- -->&lt;<!-- -->a<!-- -->&gt;<!-- -->) zu "LPNoLP" (ein Beispiel finden **Sie** im Abschnitt Beispiele).
 
 
     \[[API-Satz: Postfach 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    **[Mindestberechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadWriteItem`
+    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadWriteItem`
 
 
-    **[Zutreffender Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen
+    **[Anwendbarer Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Verfassen
 
 
-    **Fehler:**
+    **Fehler**:
 
 
     - `DataExceedsMaximumSize`<!-- -->: Der Datenparameter ist länger als 1.000.000 Zeichen.
 
 
-    - `InvalidFormatError`<!-- -->: Der `options.coercionType` Parameter ist festgelegt, `Office.CoercionType.Html` und der Nachrichtentext ist im Nur-Text-Text.
+    - `InvalidFormatError`<!-- -->: Der `options.coercionType` Parameter ist auf `Office.CoercionType.Html` festgelegt, und der Nachrichtentext ist im Nur-Text-Text.
 
 
     #### <a name="examples"></a>Beispiele
@@ -325,10 +325,10 @@ methods:
       description: Die Zeichenfolge, die den vorhandenen Text ersetzen soll. Die Zeichenfolge ist auf 1.000.000 Zeichen beschränkt.
       type: string
     - id: options
-      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können in der Rückrufmethode jedes Objekt bereitstellen, auf das sie zugreifen möchten. `coercionType`<!-- -->: Das gewünschte Format für den Textkörper. Der Zeichenfolge im `data`-Parameter wird in dieses Format konvertiert.'
+      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können jedes Objekt bereitstellen, auf das sie in der Rückrufmethode zugreifen möchten. `coercionType`<!-- -->: Das gewünschte Format für den Textkörper. Der Zeichenfolge im `data`-Parameter wird in dieses Format konvertiert.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" /> & <xref uid="outlook!Office.CoercionTypeOptions:interface" />
     - id: callback
-      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion mit einem einzelnen Parameter vom Typ `callback` Office.AsyncResult aufgerufen. Alle aufgetretenen Fehler werden in der `asyncResult.error`-Eigenschaft bereitgestellt.
+      description: Optional. Nach Abschluss der Methode wird die im Parameter übergebene Funktion mit einem einzelnen Parameter vom Typ `callback` Office.AsyncResult aufgerufen. Alle aufgetretenen Fehler werden in der `asyncResult.error`-Eigenschaft bereitgestellt.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
@@ -341,27 +341,27 @@ methods:
     Ersetzt die Auswahl im Textkörper mit dem angegebenen Text.
 
 
-    Die Methode fügt die angegebene Zeichenfolge an der Cursorposition im Textkörper des Elements ein, oder, wenn Text im Editor ausgewählt ist, ersetzt sie den `setSelectedDataAsync` markierten Text. Wenn sich der Cursor nie im Textkörper des Elements befindet oder der Textkörper des Elements den Fokus in der Benutzeroberfläche verloren hat, wird die Zeichenfolge oben im Textkörperinhalt eingefügt. Nach dem Einfügen wird der Cursor am Ende des eingefügten Inhalts platziert.
+    Die Methode fügt die angegebene Zeichenfolge an der Cursorposition im Textkörper des Elements ein, oder wenn Text im Editor ausgewählt ist, ersetzt sie den `setSelectedDataAsync` markierten Text. Wenn sich der Cursor nie im Textkörper des Elements befindet oder der Textkörper des Elements den Fokus in der Benutzeroberfläche verloren hat, wird die Zeichenfolge oben im Textkörperinhalt eingefügt. Nach dem Einfügen wird der Cursor am Ende des eingefügten Inhalts platziert.
 
 
-    Wenn Sie Links in das HTML-Markup einbinden, können Sie die Onlinelinkvorschau deaktivieren, indem Sie das Id-Attribut für den Anker festlegen (<!-- -->&lt;<!-- -->a<!-- -->&gt;<!-- -->) auf "LPNoLP" (ein Beispiel finden Sie **im** Abschnitt "Beispiele").
+    Wenn Sie Links in DAS HTML-Markup einbinden, können Sie die Onlinelinkvorschau deaktivieren, indem Sie das id-Attribut im Anker festlegen (<!-- -->&lt;<!-- -->a<!-- -->&gt;<!-- -->) zu "LPNoLP" (ein Beispiel finden **Sie** im Abschnitt Beispiele).
 
 
     \[[API-Satz: Postfach 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    **[Mindestberechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadWriteItem`
+    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadWriteItem`
 
 
-    **[Zutreffender Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen
+    **[Anwendbarer Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Verfassen
 
 
-    **Fehler:**
+    **Fehler**:
 
 
     - `DataExceedsMaximumSize`<!-- -->: Der `data` Parameter ist länger als 1.000.000 Zeichen.
 
 
-    - `InvalidFormatError`<!-- -->: Der `options.coercionType` Parameter ist festgelegt, `Office.CoercionType.Html` und der Nachrichtentext ist im Nur-Text-Text.
+    - `InvalidFormatError`<!-- -->: Der `options.coercionType` Parameter ist auf `Office.CoercionType.Html` festgelegt, und der Nachrichtentext ist im Nur-Text-Text.
 
 
     #### <a name="examples"></a>Beispiele
@@ -387,10 +387,10 @@ methods:
       description: Die Zeichenfolge, die den vorhandenen Text ersetzen soll. Die Zeichenfolge ist auf 1.000.000 Zeichen beschränkt.
       type: string
     - id: options
-      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können in der Rückrufmethode jedes Objekt bereitstellen, auf das sie zugreifen möchten. `coercionType`<!-- -->: Das gewünschte Format für den Textkörper. Der Zeichenfolge im `data`-Parameter wird in dieses Format konvertiert.'
+      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können jedes Objekt bereitstellen, auf das sie in der Rückrufmethode zugreifen möchten. `coercionType`<!-- -->: Das gewünschte Format für den Textkörper. Der Zeichenfolge im `data`-Parameter wird in dieses Format konvertiert.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" /> & <xref uid="outlook!Office.CoercionTypeOptions:interface" />
     - id: callback
-      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion mit einem einzigen `callback` Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->. Alle aufgetretenen Fehler werden in der `asyncResult.error`-Eigenschaft bereitgestellt.
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion mit einem einzelnen `callback` Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->. Alle aufgetretenen Fehler werden in der `asyncResult.error`-Eigenschaft bereitgestellt.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
@@ -403,30 +403,30 @@ methods:
     Fügt die Signatur des Elementtexts hinzu oder ersetzt sie.
 
 
-    **Wichtig:** In Outlook im Web funktioniert `setSignatureAsync` nur bei Nachrichten.
+    **Wichtig:** In Outlook im Web funktioniert `setSignatureAsync` nur für Nachrichten.
 
 
-    **Wichtig:** Wenn Ihr Add-in das ereignisbasierte Aktivierungsfeature mithilfe [von \` LaunchEvent \` im Manifest implementiert](https://docs.microsoft.com/office/dev/add-ins/outlook/autolaunch)<!-- -->und `setSignatureAsync` Aufrufe im Ereignishandler gilt das folgende Verhalten.
+    **Wichtig:** Wenn Ihr Add-In das ereignisbasierte Aktivierungsfeature mithilfe [von \` LaunchEvent \` im Manifest implementiert](https://docs.microsoft.com/office/dev/add-ins/outlook/autolaunch)<!-- -->und `setSignatureAsync` Aufrufe im Ereignishandler gilt das folgende Verhalten.
 
 
-    - Wenn der Benutzer ein neues Element verfasst (einschließlich Antwort oder Weiterleitung), wird die Signatur festgelegt, das Formular wird jedoch nicht geändert. Dies bedeutet, dass der Benutzer nicht aufgefordert wird, Änderungen zu speichern, wenn er das Formular schließt, ohne weitere Änderungen vorzunehmen.
+    - Wenn der Benutzer ein neues Element (einschließlich Antwort oder Weiterleitung) verfasst, wird die Signatur festgelegt, das Formular wird jedoch nicht geändert. Wenn der Benutzer das Formular schließt, ohne andere Bearbeitungen vorzunehmen, wird er nicht aufgefordert, Änderungen zu speichern.
 
 
     \[[API-Satz: Postfachvorschau](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    **[Mindestberechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadWriteItem`
+    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadWriteItem`
 
 
-    **[Zutreffender Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen
+    **[Anwendbarer Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Verfassen
 
 
-    **Fehler:**
+    **Fehler**:
 
 
     - `DataExceedsMaximumSize`<!-- -->: Der `data` Parameter ist länger als 30.000 Zeichen.
 
 
-    - `InvalidFormatError`<!-- -->: Der `options.coercionType` Parameter ist festgelegt, `Office.CoercionType.Html` und der Nachrichtentext ist im Nur-Text-Text.
+    - `InvalidFormatError`<!-- -->: Der `options.coercionType` Parameter ist auf `Office.CoercionType.Html` festgelegt, und der Nachrichtentext ist im Nur-Text-Text.
 
 
     #### <a name="examples"></a>Beispiele
@@ -489,21 +489,21 @@ methods:
     content: 'setSignatureAsync(data: string, options?: Office.AsyncContextOptions & CoercionTypeOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     parameters:
     - id: data
-      description: Die Zeichenfolge, die die Signatur darstellt, die im Textkörper der E-Mail festgelegt werden soll. Diese Zeichenfolge ist auf 30.000 Zeichen beschränkt.
+      description: Die Zeichenfolge, die die signatur darstellt, die im Textkörper der E-Mail festgelegt werden soll. Diese Zeichenfolge ist auf 30.000 Zeichen beschränkt.
       type: string
     - id: options
-      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können in der Rückrufmethode jedes Objekt bereitstellen, auf das sie zugreifen möchten. `coercionType`<!-- -->: Das Format, auf das die Signatur festgelegt werden soll. Bei Text legt die Methode die Signatur auf "Nur-Text" fest und entfernt alle vorhandenen HTML-Tags. Wenn html, legt die Methode die Signatur auf HTML fest.'
+      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können jedes Objekt bereitstellen, auf das sie in der Rückrufmethode zugreifen möchten. `coercionType`<!-- -->: Das Format, auf das die Signatur festgelegt werden soll. Wenn Text, legt die Methode die Signatur auf Nur-Text fest und entfernt alle vorhandenen HTML-Tags. Bei Html legt die Methode die Signatur auf HTML fest.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" /> & <xref uid="outlook!Office.CoercionTypeOptions:interface" />
     - id: callback
-      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion mit einem einzigen `callback` Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->.
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion mit einem einzelnen `callback` Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
       description: ''
 metadata:
-  ms.openlocfilehash: 15cab161a60d645ff88719f8a7164b3b6bda8dad
-  ms.sourcegitcommit: d14ccd5d21286fdad1d3451f3ac745c603d9400d
+  ms.openlocfilehash: 882f35a0907b52d0aaa20d90a9e5843b464c7c3b
+  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 01/13/2021
-  ms.locfileid: "49856233"
+  ms.lasthandoff: 03/26/2021
+  ms.locfileid: "51352593"
