@@ -15,8 +15,8 @@ Nachfolgend finden Sie einige Möglichkeiten, wie Sie zu dieser Dokumentation be
 
 * Lesen Sie die Informationen unter [Mit GitHub mitwirken](#contribute-using-github), um kleine Änderungen an einem Artikel vorzunehmen.
 * Lesen Sie die Informationen unter [Mit Git mitwirken](#contribute-using-git), um umfangreiche Änderungen vorzunehmen bzw. Änderungen vorzunehmen, die mit Code zu tun haben.
-* Melden von Dokumentationsfehlern über GitHub-Probleme.
-* Fordern Sie eine neue Dokumentation auf [der Microsoft 365 on Q&A-Website](https://docs.microsoft.com/answers/products/m365) an.
+* Melden Sie Dokumentationsfehler, indem Sie zum Abschnitt **Feedback** am Ende des betroffenen Artikels gehen und dann **Diese** Seite auswählen, um ein GitHub-Problem zu erstellen. Wenn dies nicht verfügbar ist, erstellen Sie ein neues Problem direkt auf [GitHub](https://github.com/OfficeDev/office-js-docs-reference/issues).
+* Fordern Sie eine neue Dokumentation mit [GitHub-Problemen an.](https://github.com/OfficeDev/office-js-docs-reference/issues)
 
 ## <a name="contribute-using-github"></a>Mit GitHub mitwirken
 
