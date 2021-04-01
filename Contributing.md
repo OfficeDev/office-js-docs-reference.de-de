@@ -15,21 +15,21 @@ Nachfolgend finden Sie einige Möglichkeiten, wie Sie zu dieser Dokumentation be
 
 * Lesen Sie die Informationen unter [Mit GitHub mitwirken](#contribute-using-github), um kleine Änderungen an einem Artikel vorzunehmen.
 * Lesen Sie die Informationen unter [Mit Git mitwirken](#contribute-using-git), um umfangreiche Änderungen vorzunehmen bzw. Änderungen vorzunehmen, die mit Code zu tun haben.
-* Melden Sie Dokumentationsfehler über GitHub-Probleme.
-* Fordern Sie die neue Dokumentation auf der Website [UserVoice der Office Developer-Plattform](http://officespdev.uservoice.com) an.
+* Melden von Dokumentationsfehlern über GitHub-Probleme.
+* Fordern Sie eine neue Dokumentation auf [der Microsoft 365 on Q&A-Website](https://docs.microsoft.com/answers/products/m365) an.
 
 ## <a name="contribute-using-github"></a>Mit GitHub mitwirken
 
-> **Wichtig**: der Verweis Inhalt in diesem Repository wird automatisch generiert. Lesen Sie die [Hinweise zur Dokumentationstools](https://github.com/OfficeDev/office-js-docs-reference/blob/master/DocumentationToolingNotes.md) vor dem Bearbeiten von Dateien.
+> **Wichtig:** Der Referenzinhalt in diesem Repository wird automatisch generiert. Lesen Sie die [Dokumentationstools, bevor](https://github.com/OfficeDev/office-js-docs-reference/blob/master/DocumentationToolingNotes.md) Sie Dateien bearbeiten.
 
 Verwenden Sie GitHub, um an dieser Dokumentation mitzuwirken, ohne dass Sie hierfür das Repo auf Ihrem Desktop klonen. Dies ist die einfachste Möglichkeit zum Erstellen einer Pullanforderung in diesem Repository. Verwenden Sie diese Methode, um eine kleinere Änderung vorzunehmen, mit der keine Codeänderungen einhergehen.
 
-Wenn Sie diese Methode verwenden, können Sie jeweils zu einem Artikel beitragen.
+Mit dieser Methode können Sie zu einem Artikel gleichzeitig beitragen.
 
 ### <a name="to-contribute-using-github"></a>So können Sie mit GitHub mitwirken
 
 1. Suchen Sie den Artikel, den Sie bei GitHub beisteuern möchten.
-2. Wenn Sie sich auf dem Artikel in GitHub befinden, melden Sie sich bei github an (abonnieren Sie ein kostenloses Konto bei [GitHub](https://github.com/join)).
+2. Wenn Sie sich im Artikel in GitHub befinden, melden Sie sich bei GitHub an (erhalten Sie ein kostenloses Konto [Join GitHub](https://github.com/join)).
 3. Wählen Sie das **Stiftsymbol** aus (bearbeiten Sie die Datei in Ihrer Verzweigung des Projekts), und nehmen Sie Ihre Änderungen im Fenster **<>Edit file** vor.
 4. Führen Sie einen Bildlauf nach unten durch, und geben Sie eine Beschreibung ein.
 5. Wählen Sie **Propose file change**>**Create pull request** aus.
@@ -48,7 +48,7 @@ Verwenden Sie Git, um umfangreiche Änderungen vorzunehmen, z. B.:
 ### <a name="to-contribute-using-git"></a>So können Sie mit Git mitwirken
 
 1. Wenn Sie nicht über ein GitHub-Konto verfügen, richten Sie eines auf [GitHub](https://github.com/join) ein.
-2. Nachdem Sie ein Konto erstellt haben, installieren Sie Git auf Ihrem Computer. Befolgen Sie die Schritte im Lernprogramm zum [Einrichten von git] .
+2. Nachdem Sie ein Konto erstellt haben, installieren Sie Git auf Ihrem Computer. Führen Sie die Schritte im [Lernprogramm Einrichten von Git] aus.
 3. Um eine Pullanforderung mit Git zu übermitteln, führen Sie die Schritte unter [Verwenden von GitHub, Git und diesem Repository](#use-github-git-and-this-repository) durch.
 4. Sie werden aufgefordert, den Lizenzvertrag für Mitwirkende zu unterzeichnen, wenn Sie:
 
@@ -57,7 +57,7 @@ Verwenden Sie Git, um umfangreiche Änderungen vorzunehmen, z. B.:
 
 Als Mitglied der Community müssen Sie den Lizenzvertrag für Mitwirkende (CLA) unterzeichnen, bevor Sie umfangreiche Beiträge zu einem Projekt leisten können. Sie müssen die Dokumentation nur einmal ausfüllen und übermitteln. Überprüfen Sie das Dokument sorgfältig. Möglicherweise muss Ihr Arbeitgeber das Dokument unterzeichnen.
 
-Durch das Unterzeichnen des Lizenzvertrags für Mitwirkende (CLA) erhalten Sie keine Zugriffsrechte auf das Hauptrepository, aber es bedeutet, dass die Office Developer- und Office Developer Content Publishing-Teams in der Lage sind, Ihre Beiträge zu prüfen und überdenken. Ihnen werden Ihre Übermittlungen gutgeschrieben.
+Durch das Unterzeichnen des Lizenzvertrags für Mitwirkende (CLA) erhalten Sie keine Zugriffsrechte auf das Hauptrepository, aber es bedeutet, dass die Office Developer- und Office Developer Content Publishing-Teams in der Lage sind, Ihre Beiträge zu prüfen und überdenken. Sie werden für Ihre Übermittlungen guthaben.
 
 Pullanforderungen werden in der Regel innerhalb von 10 Werktagen bearbeitet.
 
@@ -68,7 +68,7 @@ Pullanforderungen werden in der Regel innerhalb von 10 Werktagen bearbeitet.
 ### <a name="to-set-up-your-fork-of-the-repository"></a>So richten Sie Ihre Verzweigung des Repositorys ein
 
 1. Richten Sie ein GitHub-Konto ein, damit Sie an diesem Projekt mitwirken können. Falls noch nicht geschehen, wechseln Sie zu [GitHub](https://github.com/join), und richten Sie jetzt ein Konto ein.
-2. Installieren Sie Git auf Ihrem Computer. Befolgen Sie die Schritte im Lernprogramm zum [Einrichten von git] .
+2. Installieren Sie Git auf Ihrem Computer. Führen Sie die Schritte im [Lernprogramm Einrichten von Git] aus.
 3. Erstellen Sie Ihre eigene Verzweigung dieses Repositorys. Klicken Sie dazu oben auf der Seite auf die Schaltfläche **Verzweigung**.
 4. Kopieren Sie die Verzweigung auf Ihren Computer. Öffnen Sie hierzu Git Bash. Geben Sie an der Eingabeaufforderung Folgendes ein:
 
@@ -171,7 +171,7 @@ Herzlichen Glückwunsch, Sie haben erfolgreich am Projekt mitgewirkt.
 
 ### <a name="markdown"></a>Markdown
 
-Alle Artikel in diesem Repository verwenden Markdown. Eine vollständige Einführung (und eine Auflistung der gesamten Syntax) finden Sie unter [Daring Fireball-Abschlag].
+Alle Artikel in diesem Repository verwenden Markdown. Eine vollständige Einführung (und eine Auflistung aller Syntax) finden Sie unter [Daring Fireball - Markdown].
 
 ## <a name="faq"></a>Häufig gestellte Fragen
 
@@ -187,23 +187,23 @@ Als Mitglied der Community **müssen Sie den Lizenzvertrag für Mitwirkende (CLA
 
 ### <a name="what-happens-with-my-contributions"></a>Was geschieht mit meinen Beiträgen?
 
-Wenn Sie Ihre Änderungen über eine Pull-Anforderung übermitteln, wird unser Team benachrichtigt und überprüft Ihre Pull-Anforderung. Sie erhalten Benachrichtigungen über Ihre Pull-Anforderung von GitHub; Sie können auch von jemandem aus unserem Team benachrichtigt werden, wenn wir weitere Informationen benötigen. Wenn Ihre Pull-Anforderung genehmigt wird, aktualisieren wir die Dokumentation. Wir behalten uns das Recht vor, ihre Einreichung für rechtliche, stilistische, Klarheit oder andere Probleme zu bearbeiten.
+Wenn Sie Ihre Änderungen über eine Pullanforderung übermitteln, wird unser Team benachrichtigt und ihre Pullanforderung überprüfen. Sie erhalten Benachrichtigungen zu Ihrer Pullanforderung von GitHub; Sie werden möglicherweise auch von einer Person aus unserem Team benachrichtigt, wenn wir weitere Informationen benötigen. Wenn Ihre Pullanforderung genehmigt wurde, aktualisieren wir die Dokumentation. Wir behalten uns das Recht vor, Ihre Übermittlung aus Rechtlichen, Formaten, Klarheit oder anderen Gründen zu bearbeiten.
 
 ### <a name="can-i-become-an-approver-for-this-repositorys-github-pull-requests"></a>Kann ich ein Genehmiger für die Pullanforderungen in GitHub für dieses Repository werden?
 
 Derzeit können externe Mitwirkende keine Pullanforderungen in diesem Repository genehmigen.
 
-### <a name="how-soon-will-i-get-a-response-about-my-change-request"></a>Wie schnell erhalte ich eine Antwort zu meiner Änderungsanforderung?
+### <a name="how-soon-will-i-get-a-response-about-my-change-request"></a>Wie bald wird eine Antwort zu meiner Änderungsanforderung erhalten?
 
 Pullanforderungen werden in der Regel innerhalb von 10 Werktagen bearbeitet.
 
 ## <a name="more-resources"></a>Weitere Ressourcen
 
-* Wenn Sie mehr über das abwägen erfahren möchten, wechseln Sie zur Website des Abschlag Erstellers [Daring Fireball].
-* Wenn Sie mehr über die Verwendung von git und GitHub erfahren möchten, schauen Sie sich zunächst die [GitHub-Hilfe]an.
+* Weitere Informationen zu Markdown finden Sie auf der Website des Markdown-Erstellers [Daring Fireball].
+* Weitere Informationen zur Verwendung von Git und GitHub finden Sie in der [GitHub-Hilfe.]
 
 [GitHub Home]: http://github.com
 [GitHub-Hilfe]: http://help.github.com/
-[Einrichten von git]: https://help.github.com/articles/set-up-git/
-[Daring Fireball-Abschlag]: http://daringfireball.net/projects/markdown/
+[Einrichten von Git]: https://help.github.com/articles/set-up-git/
+[Daring Fireball – Markdown]: http://daringfireball.net/projects/markdown/
 [Daring Fireball]: http://daringfireball.net/
