@@ -76,7 +76,7 @@ methods:
   package: excel!
   fullName: add(address, hasHeaders)
   summary: >-
-    Erstellt eine neue Tabelle. Das Bereichsobjekt oder die Quelladresse bestimmt das Arbeitsblatt, unter dem die Tabelle hinzugefügt wird. Wenn die Tabelle nicht hinzugefügt werden kann (z. B. weil die Adresse ungültig ist oder sich die Tabelle mit einer anderen Tabelle überlappen würde), wird ein Fehler ausgelöst.
+    Erstellt eine neue Tabelle. Das Bereichsobjekt oder die Quelladresse bestimmt das Arbeitsblatt, unter dem die Tabelle hinzugefügt wird. Wenn die Tabelle nicht hinzugefügt werden kann (z. B. weil die Adresse ungültig ist oder die Tabelle mit einer anderen Tabelle überlappen würde), wird ein Fehler ausgelöst.
 
 
     \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -87,10 +87,10 @@ methods:
     content: 'add(address: Range | string, hasHeaders: boolean): Excel.Table;'
     parameters:
     - id: address
-      description: 'Ein Range-Objekt oder eine Zeichenfolgenadresse oder der Name des Bereichs, der die Datenquelle darstellt. Wenn die Adresse keinen Arbeitsblattnamen enthält, wird das aktuell aktive Blatt verwendet. \[Api-Satz: ExcelApi 1.1 / 1.3. Vor ExcelApi 1.3 muss dieser Parameter eine Zeichenfolge sein. Ab Excel Api 1.3 kann dieser Parameter ein Range-Objekt oder eine Zeichenfolge sein.\]'
+      description: 'Ein `Range` Objekt oder eine Zeichenfolgenadresse oder ein Name des Bereichs, der die Datenquelle darstellt. Wenn die Adresse keinen Arbeitsblattnamen enthält, wird das aktuell aktive Blatt verwendet. \[Api-Satz: ExcelApi 1.1 / 1.3. Vor ExcelApi 1.3 muss dieser Parameter eine Zeichenfolge sein. Ab Excel Api 1.3 kann dieser Parameter ein Range-Objekt oder eine Zeichenfolge sein.\]'
       type: <xref uid="excel!Excel.Range:class" /> | string
     - id: hasHeaders
-      description: Boolescher Wert, der angibt, ob die importierten Daten Spaltenüberschriften besitzen. Wenn die Quelle keine Überschriften enthält (d. h. wenn diese Eigenschaft auf falsch festgelegt ist), generiert Excel automatisch eine Überschriftenänderung der Daten nach einer Zeile.
+      description: Ein boolescher Wert, der angibt, ob die importierten Daten Spaltenbeschriftungen enthalten. Wenn die Quelle keine Kopfzeilen enthält (d. h. wenn diese Eigenschaft auf `false`<!-- -->), generiert Excel automatisch eine Kopfzeile und verschiebt die Daten um eine Zeile nach unten.
       type: boolean
     return:
       type: <xref uid="excel!Excel.Table:class" />
@@ -159,7 +159,7 @@ methods:
   package: excel!
   fullName: getItemOrNullObject(key)
   summary: >-
-    Ruft eine Tabelle anhand des Namens oder der ID ab. Wenn die Tabelle nicht vorhanden ist, wird ein NULL-Objekt zurückgegeben.
+    Ruft eine Tabelle anhand des Namens oder der ID ab. Wenn die Tabelle nicht vorhanden ist, gibt diese Funktion ein Objekt zurück, dessen `isNullObject` Eigenschaft auf festgelegt ist. `true`<!-- -->. Weitere Informationen finden Sie unter [*OrNullObject-Methoden und -Eigenschaften.](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[API-Satz: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -241,9 +241,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 084b8262b1533476044d0f64c9433a1e4267045e
-  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
+  ms.openlocfilehash: 68b1ff08860838f6b4d63928b5e086eaf0852c51
+  ms.sourcegitcommit: ce09743deb2fc2a879cd63f96c8ff11ec84a42b2
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 03/26/2021
-  ms.locfileid: "51310247"
+  ms.lasthandoff: 04/02/2021
+  ms.locfileid: "51514920"
