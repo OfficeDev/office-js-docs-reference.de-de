@@ -11,7 +11,7 @@
 |[CommentReplyCollection](/javascript/api/excel/excel.commentreplycollection)|[getItemOrNullObject(commentReplyId: string)](/javascript/api/excel/excel.commentreplycollection#getitemornullobject-commentreplyid-)|Gibt eine Kommentarantwort zurück, die durch ihre ID angegeben ist.|
 |[ConditionalFormatCollection](/javascript/api/excel/excel.conditionalformatcollection)|[getItemOrNullObject(id: string)](/javascript/api/excel/excel.conditionalformatcollection#getitemornullobject-id-)|Gibt ein bedingtes Format zurück, das durch seine ID identifiziert wird.|
 |[DocumentTask](/javascript/api/excel/excel.documenttask)|[percentComplete](/javascript/api/excel/excel.documenttask#percentcomplete)|Gibt den Fertigstellungsprozentsatz des Vorgangs an.|
-||[priority](/javascript/api/excel/excel.documenttask#priority)|Gibt die Priorität des Vorgangs an.|
+||[priorität](/javascript/api/excel/excel.documenttask#priority)|Gibt die Priorität des Vorgangs an.|
 ||[assignees](/javascript/api/excel/excel.documenttask#assignees)|Gibt eine Auflistung von Assignees des Vorgangs zurück.|
 ||[änderungen](/javascript/api/excel/excel.documenttask#changes)|Ruft die Änderungseinträge des Vorgangs ab.|
 ||[comment](/javascript/api/excel/excel.documenttask#comment)|Ruft den Kommentar ab, der der Aufgabe zugeordnet ist.|
@@ -30,7 +30,7 @@
 ||[dueDateTime](/javascript/api/excel/excel.documenttaskchange#duedatetime)|Stellt das Fälligkeitsdatum und die Uhrzeit des Vorgangs in der UTC-Zeitzone dar.|
 ||[id](/javascript/api/excel/excel.documenttaskchange#id)|ID für den Vorgangsänderungsdatensatz.|
 ||[percentComplete](/javascript/api/excel/excel.documenttaskchange#percentcomplete)|Stellt den Fertigstellungsprozentsatz des Vorgangs dar.|
-||[priority](/javascript/api/excel/excel.documenttaskchange#priority)|Stellt die Priorität des Vorgangs dar.|
+||[priorität](/javascript/api/excel/excel.documenttaskchange#priority)|Stellt die Priorität des Vorgangs dar.|
 ||[startDateTime](/javascript/api/excel/excel.documenttaskchange#startdatetime)|Represents the task's start date and time, in UTC time zone.|
 ||[title](/javascript/api/excel/excel.documenttaskchange#title)|Stellt den Titel des Vorgangs dar.|
 ||[type](/javascript/api/excel/excel.documenttaskchange#type)|Stellt den Aktionstyp des Vorgangsänderungsdatensatz dar.|
@@ -48,7 +48,7 @@
 |[FormulaChangedEventDetail](/javascript/api/excel/excel.formulachangedeventdetail)|[cellAddress](/javascript/api/excel/excel.formulachangedeventdetail#celladdress)|Die Adresse der Zelle, die die geänderte Formel enthält.|
 ||[previousFormula](/javascript/api/excel/excel.formulachangedeventdetail#previousformula)|Stellt die vorherige Formel dar, bevor sie geändert wurde.|
 |[GroupShapeCollection](/javascript/api/excel/excel.groupshapecollection)|[getItemOrNullObject(key: string)](/javascript/api/excel/excel.groupshapecollection#getitemornullobject-key-)|Ruft ein Shape mit seinem Namen oder seiner ID ab.|
-|[Identität](/javascript/api/excel/excel.identity)|[displayName](/javascript/api/excel/excel.identity#displayname)|Stellt den Anzeigenamen des Benutzers dar.|
+|[Identity](/javascript/api/excel/excel.identity)|[displayName](/javascript/api/excel/excel.identity#displayname)|Stellt den Anzeigenamen des Benutzers dar.|
 ||[email](/javascript/api/excel/excel.identity#email)|Stellt die E-Mail-Adresse des Benutzers dar.|
 ||[id](/javascript/api/excel/excel.identity#id)|Stellt die eindeutige ID des Benutzers dar.|
 |[IdentityCollection](/javascript/api/excel/excel.identitycollection)|[add(assignee: Identity)](/javascript/api/excel/excel.identitycollection#add-assignee-)|Fügt der Auflistung eine Benutzeridentität hinzu.|
@@ -77,19 +77,7 @@
 ||[getItemOrNullObject(key: number)](/javascript/api/excel/excel.linkeddatatypecollection#getitemornullobject-key-)|Ruft einen verknüpften Datentyp nach ID ab.|
 ||[items](/javascript/api/excel/excel.linkeddatatypecollection#items)|Ruft die geladenen untergeordneten Elemente in dieser Sammlung ab.|
 ||[requestRefreshAll()](/javascript/api/excel/excel.linkeddatatypecollection#requestrefreshall--)|Stellt eine Anforderung zum Aktualisieren aller verknüpften Datentypen in der Auflistung.|
-|[NamedSheetView](/javascript/api/excel/excel.namedsheetview)|[activate()](/javascript/api/excel/excel.namedsheetview#activate--)|Aktiviert diese Blattansicht.|
-||[delete()](/javascript/api/excel/excel.namedsheetview#delete--)|Entfernt die Blattansicht aus dem Arbeitsblatt.|
-||[duplicate(name?: string)](/javascript/api/excel/excel.namedsheetview#duplicate-name-)|Erstellt eine Kopie dieser Blattansicht.|
-||[name](/javascript/api/excel/excel.namedsheetview#name)|Ruft den Namen der Blattansicht ab oder legt den Namen fest.|
-|[NamedSheetViewCollection](/javascript/api/excel/excel.namedsheetviewcollection)|[add(name: string)](/javascript/api/excel/excel.namedsheetviewcollection#add-name-)|Erstellt eine neue Blattansicht mit dem angegebenen Namen.|
-||[enterTemporary()](/javascript/api/excel/excel.namedsheetviewcollection#entertemporary--)|Erstellt und aktiviert eine neue temporäre Blattansicht.|
-||[exit()](/javascript/api/excel/excel.namedsheetviewcollection#exit--)|Beendet die aktuell aktive Blattansicht.|
-||[getActive()](/javascript/api/excel/excel.namedsheetviewcollection#getactive--)|Ruft die aktuell aktive Blattansicht des Arbeitsblatts ab.|
-||[getCount()](/javascript/api/excel/excel.namedsheetviewcollection#getcount--)|Ruft die Anzahl der Blattansichten in diesem Arbeitsblatt ab.|
-||[getItem(key: string)](/javascript/api/excel/excel.namedsheetviewcollection#getitem-key-)|Ruft eine Blattansicht mit ihrem Namen ab.|
-||[getItemAt(index: number)](/javascript/api/excel/excel.namedsheetviewcollection#getitemat-index-)|Ruft eine Blattansicht nach ihrem Index in der Auflistung ab.|
-||[getItemOrNullObject(key: string)](/javascript/api/excel/excel.namedsheetviewcollection#getitemornullobject-key-)|Ruft eine Blattansicht mit ihrem Namen ab.|
-||[items](/javascript/api/excel/excel.namedsheetviewcollection#items)|Ruft die geladenen untergeordneten Elemente in dieser Sammlung ab.|
+|[NamedSheetViewCollection](/javascript/api/excel/excel.namedsheetviewcollection)|[getItemOrNullObject(key: string)](/javascript/api/excel/excel.namedsheetviewcollection#getitemornullobject-key-)|Ruft eine Blattansicht mit ihrem Namen ab.|
 |[PivotLayout](/javascript/api/excel/excel.pivotlayout)|[altTextDescription](/javascript/api/excel/excel.pivotlayout#alttextdescription)|Die Alttextbeschreibung der PivotTable.|
 ||[altTextTitle](/javascript/api/excel/excel.pivotlayout#alttexttitle)|Der Alttexttitel der PivotTable.|
 ||[displayBlankLineAfterEachItem(display: boolean)](/javascript/api/excel/excel.pivotlayout#displayblanklineaftereachitem-display-)|Legt fest, ob nach jedem Element eine leere Zeile angezeigt werden soll.|
@@ -104,10 +92,8 @@
 |[PivotTableScopedCollection](/javascript/api/excel/excel.pivottablescopedcollection)|[getFirstOrNullObject()](/javascript/api/excel/excel.pivottablescopedcollection#getfirstornullobject--)|Ruft die erste PivotTable in der Auflistung ab.|
 |[Range](/javascript/api/excel/excel.range)|[getDependents()](/javascript/api/excel/excel.range#getdependents--)|Gibt ein Objekt zurück, das den Bereich darstellt, der alle Abhängigen einer Zelle im gleichen Arbeitsblatt oder `WorkbookRangeAreas` in mehreren Arbeitsblättern enthält.|
 ||[getDirectDependents()](/javascript/api/excel/excel.range#getdirectdependents--)|Gibt ein Objekt zurück, das den Bereich darstellt, der alle direkten Abhängigkeiten einer Zelle im gleichen Arbeitsblatt oder `WorkbookRangeAreas` in mehreren Arbeitsblättern enthält.|
-||[getExtendedRange(direction: Excel.KeyboardDirection, activeCell?: Range \| string)](/javascript/api/excel/excel.range#getextendedrange-direction--activecell-)|Gibt ein Range-Objekt zurück, das den aktuellen Bereich und bis zum Rand des Bereichs enthält, basierend auf der angegebenen Richtung.|
 ||[getMergedAreasOrNullObject()](/javascript/api/excel/excel.range#getmergedareasornullobject--)|Gibt ein RangeAreas-Objekt zurück, das die zusammengeführten Bereiche in diesem Bereich darstellt.|
 ||[getPrecedents()](/javascript/api/excel/excel.range#getprecedents--)|Gibt ein Objekt zurück, das den Bereich darstellt, der alle Vorgänger einer Zelle im gleichen Arbeitsblatt oder `WorkbookRangeAreas` in mehreren Arbeitsblättern enthält.|
-||[getRangeEdge(direction: Excel.KeyboardDirection, activeCell?: Range \| string)](/javascript/api/excel/excel.range#getrangeedge-direction--activecell-)|Gibt ein Range-Objekt zurück, das die Edgezelle des Datenbereichs ist, die der angegebenen Richtung entspricht.|
 |[RefreshModeChangedEventArgs](/javascript/api/excel/excel.refreshmodechangedeventargs)|[refreshMode](/javascript/api/excel/excel.refreshmodechangedeventargs#refreshmode)|Der verknüpfte Datentypaktualisierungsmodus.|
 ||[ServiceID](/javascript/api/excel/excel.refreshmodechangedeventargs#serviceid)|Die eindeutige ID des Objekts, dessen Aktualisierungsmodus geändert wurde.|
 ||[source](/javascript/api/excel/excel.refreshmodechangedeventargs#source)|Ruft die Quelle des Ereignisses ab.|
@@ -126,7 +112,6 @@
 |[Table](/javascript/api/excel/excel.table)|[clearStyle()](/javascript/api/excel/excel.table#clearstyle--)|Ändert die Tabelle so, dass sie die Standard-Tabellenformatvorlage verwendet.|
 ||[onFiltered](/javascript/api/excel/excel.table#onfiltered)|Tritt auf, wenn ein Filter auf eine bestimmte Tabelle angewendet wird.|
 ||[tableStyle](/javascript/api/excel/excel.table#tablestyle)|Die auf die Tabelle angewendete Formatvorlage.|
-||[resize(newRange: Range \| string)](/javascript/api/excel/excel.table#resize-newrange-)|Ändern Sie die Größe der Tabelle auf den neuen Bereich.|
 ||[setStyle(style: string \| TableStyle \| BuiltInTableStyle)](/javascript/api/excel/excel.table#setstyle-style-)|Legt die auf die Tabelle angewendete Formatvorlage fest.|
 |[TableCollection](/javascript/api/excel/excel.tablecollection)|[onFiltered](/javascript/api/excel/excel.tablecollection#onfiltered)|Tritt auf, wenn ein Filter auf eine beliebige Tabelle in einer Arbeitsmappe oder auf ein Arbeitsblatt angewendet wird.|
 |[TableFilteredEventArgs](/javascript/api/excel/excel.tablefilteredeventargs)|[tableId](/javascript/api/excel/excel.tablefilteredeventargs#tableid)|Ruft die ID der Tabelle ab, in der der Filter angewendet wird.|
@@ -140,9 +125,9 @@
 ||[showPivotFieldList](/javascript/api/excel/excel.workbook#showpivotfieldlist)|Gibt an, ob der Feldlistenbereich der PivotTable auf Arbeitsmappenebene angezeigt wird.|
 ||[use1904DateSystem](/javascript/api/excel/excel.workbook#use1904datesystem)|True, falls die Arbeitsmappe das 1904-Datumssystem verwendet.|
 |[WorkbookActivatedEventArgs](/javascript/api/excel/excel.workbookactivatedeventargs)|[type](/javascript/api/excel/excel.workbookactivatedeventargs#type)|Ruft den Typ des Ereignisses ab.|
-|[Arbeitsblatt](/javascript/api/excel/excel.worksheet)|[namedSheetViews](/javascript/api/excel/excel.worksheet#namedsheetviews)|Gibt eine Auflistung von Blattansichten zurück, die im Arbeitsblatt vorhanden sind.|
-||[onFiltered](/javascript/api/excel/excel.worksheet#onfiltered)|Tritt auf, wenn ein Filter auf ein bestimmtes Arbeitsblatt angewendet wird.|
+|[Arbeitsblatt](/javascript/api/excel/excel.worksheet)|[onFiltered](/javascript/api/excel/excel.worksheet#onfiltered)|Tritt auf, wenn ein Filter auf ein bestimmtes Arbeitsblatt angewendet wird.|
 ||[onFormulaChanged](/javascript/api/excel/excel.worksheet#onformulachanged)|Tritt auf, wenn eine oder mehrere Formeln in diesem Arbeitsblatt geändert werden.|
+||[tabId](/javascript/api/excel/excel.worksheet#tabid)|Gibt einen Wert zurück, der dieses Arbeitsblatt darstellt, das von Open Office XML gelesen werden kann.|
 ||[tasks](/javascript/api/excel/excel.worksheet#tasks)|Gibt eine Auflistung von Aufgaben zurück, die im Arbeitsblatt vorhanden sind.|
 |[WorksheetCollection](/javascript/api/excel/excel.worksheetcollection)|[addFromBase64(base64File: string, sheetNamesToInsert?: string[], positionType?: Excel.WorksheetPositionType, relativeTo?: Worksheet \| string)](/javascript/api/excel/excel.worksheetcollection#addfrombase64-base64file--sheetnamestoinsert--positiontype--relativeto-)|Fügt die angegebenen Arbeitsblätter einer Arbeitsmappe in die aktuelle Arbeitsmappe ein.|
 ||[onFiltered](/javascript/api/excel/excel.worksheetcollection#onfiltered)|Tritt ein, wenn ein Filter eines beliebigen Arbeitsblatts in der Arbeitsmappe angewendet wird.|
