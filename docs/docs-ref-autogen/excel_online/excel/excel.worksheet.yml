@@ -18,7 +18,7 @@ properties:
   package: excel!
   fullName: autoFilter
   summary: >-
-    Stellt das AutoFilter-Objekt des Arbeitsblatts dar.
+    Represents the `AutoFilter` object of the worksheet.
 
 
     \[[API-Satz: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -171,6 +171,22 @@ properties:
     content: 'name: string;'
     return:
       type: string
+- name: namedSheetViews
+  uid: excel!Excel.Worksheet#namedSheetViews:member
+  package: excel!
+  fullName: namedSheetViews
+  summary: >-
+    Gibt eine Auflistung von Blattansichten zurück, die im Arbeitsblatt vorhanden sind.
+
+
+    \[[API-Satz: ExcelApiOnline 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly namedSheetViews: Excel.NamedSheetViewCollection;'
+    return:
+      type: <xref uid="excel!Excel.NamedSheetViewCollection:class" />
 - name: names
   uid: excel!Excel.Worksheet#names:member
   package: excel!
@@ -243,7 +259,7 @@ properties:
   package: excel!
   fullName: onColumnSorted
   summary: >-
-    Tritt auf, wenn eine oder mehrere Spalten sortiert wurden. Dies geschieht, wenn Spalten von links nach rechts sortiert werden.
+    Tritt auf, wenn eine oder mehrere Spalten sortiert wurden. Dies geschieht als Ergebnis eines Sortiervorgangs von links nach rechts.
 
 
     \[[API-Satz: ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -367,7 +383,7 @@ properties:
   package: excel!
   fullName: pageLayout
   summary: >-
-    Ruft das PageLayout-Objekt des Arbeitsblatts ab.
+    Ruft das `PageLayout` Objekt des Arbeitsblatts ab.
 
 
     \[[API-Satz: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -417,7 +433,7 @@ properties:
   package: excel!
   fullName: protection
   summary: >-
-    Gibt das Arbeitsblattschutz-Objekt für ein Arbeitsblatt zurück.
+    Gibt das Blattschutzobjekt für ein Arbeitsblatt zurück.
 
 
     \[[API-Satz: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -532,7 +548,7 @@ properties:
   package: excel!
   fullName: tabColor
   summary: >-
-    Die Registerkartenfarbe des Arbeitsblatts. Beim Abrufen der Registerkartenfarbe ist der Wert null, wenn das Arbeitsblatt nicht sichtbar ist. Wenn das Arbeitsblatt sichtbar ist, die Registerkartenfarbe jedoch auf automatisch festgelegt ist, wird eine leere Zeichenfolge zurückgegeben. Andernfalls wird die Eigenschaft auf eine Farbe im Format "123456" festgelegt, wenn Sie die Farbe festlegen, verwenden Sie eine leere Zeichenfolge, um eine "automatische" Farbe oder eine echte Farbe andernfalls \# festlegen.
+    Die Registerkartenfarbe des Arbeitsblatts. Beim Abrufen der Registerkartenfarbe wird der Wert angezeigt, wenn das Arbeitsblatt nicht sichtbar ist. `null`<!-- -->. Wenn das Arbeitsblatt sichtbar ist, die Registerkartenfarbe jedoch auf automatisch festgelegt ist, wird eine leere Zeichenfolge zurückgegeben. Andernfalls wird die Eigenschaft auf eine Farbe im Format \# RRGGBB (z. B. "FFA500") festgelegt. Verwenden Sie beim Festlegen der Farbe eine leere Zeichenfolge, um eine "automatische" Farbe oder andernfalls eine echte Farbe zu setzen.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -726,7 +742,7 @@ methods:
   package: excel!
   fullName: findAll(text, criteria)
   summary: >-
-    Findet alle Vorkommen der angegebenen Zeichenfolge auf der Grundlage der angegebenen Kriterien und gibt sie als RangeAreas-Objekt zurück, das einen oder mehrere rechteckige Bereiche umfasst.
+    Sucht alle Vorkommen der angegebenen Zeichenfolge basierend auf den angegebenen Kriterien und gibt sie als Objekt zurück, das einen `RangeAreas` oder mehrere rechteckige Bereiche umfasst.
 
 
     \[[API-Satz: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -744,13 +760,13 @@ methods:
       type: <xref uid="excel!Excel.WorksheetSearchCriteria:interface" />
     return:
       type: <xref uid="excel!Excel.RangeAreas:class" />
-      description: Ein RangeArea-Objekt, das einen oder mehrere rechteckige Bereiche umfasst, das den Suchkriterien entspricht. Wenn keine Zellen diese Kriterien erfüllen, wird ein ItemNotFound-Fehler ausgelöst.
+      description: Ein `RangeAreas` Objekt, das einen oder mehrere rechteckige Bereiche umfasst und den Suchkriterien entspricht. Wenn keine Zellen diese Kriterien erfüllen, wird `ItemNotFound` ein Fehler ausgelöst.
 - name: findAllOrNullObject(text, criteria)
   uid: excel!Excel.Worksheet#findAllOrNullObject:member(1)
   package: excel!
   fullName: findAllOrNullObject(text, criteria)
   summary: >-
-    Findet alle Vorkommen der angegebenen Zeichenfolge auf der Grundlage der angegebenen Kriterien und gibt sie als RangeAreas-Objekt zurück, das einen oder mehrere rechteckige Bereiche umfasst.
+    Sucht alle Vorkommen der angegebenen Zeichenfolge basierend auf den angegebenen Kriterien und gibt sie als Objekt zurück, das einen `RangeAreas` oder mehrere rechteckige Bereiche umfasst.
 
 
     \[[API-Satz: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -769,7 +785,7 @@ methods:
     return:
       type: <xref uid="excel!Excel.RangeAreas:class" />
       description: >-
-        Ein RangeArea-Objekt, das einen oder mehrere rechteckige Bereiche umfasst, das den Suchkriterien entspricht. Wenn keine Übereinstimmungen enthalten sind, gibt diese Funktion ein Nullobjekt zurück.
+        Ein `RangeAreas` Objekt, das einen oder mehrere rechteckige Bereiche umfasst und den Suchkriterien entspricht. Wenn keine Übereinstimmungen angezeigt werden, gibt diese Funktion ein Objekt zurück, dessen `isNullObject` Eigenschaft auf festgelegt ist. `true`<!-- -->. Weitere Informationen finden Sie unter [ \* OrNullObject-Methoden und -Eigenschaften.](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
         #### <a name="examples"></a>Beispiele
@@ -801,7 +817,7 @@ methods:
   package: excel!
   fullName: getCell(row, column)
   summary: >-
-    Ruft das Bereichsobjekt ab, das die einzelne Zelle basierend auf Zeilen- und Spaltenanzahl enthält. Die Zelle kann sich außerhalb der Grenzen ihres übergeordneten Bereichs befinden, solange sie innerhalb des Arbeitsblattrasters bleibt.
+    Ruft das `Range` Objekt ab, das die einzelne Zelle basierend auf Zeilen- und Spaltennummern enthält. Die Zelle kann sich außerhalb der Grenzen ihres übergeordneten Bereichs befinden, solange sie innerhalb des Arbeitsblattrasters bleibt.
 
 
     \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -815,7 +831,7 @@ methods:
       description: Die Zeilenanzahl der abzurufenden Zelle. Nullindiziert.
       type: number
     - id: column
-      description: Die Spaltenzahl der abzurufenden Zelle. Nullindiziert.
+      description: Die Spaltenanzahl der abzurufenden Zelle. Nullindiziert.
       type: number
     return:
       type: <xref uid="excel!Excel.Range:class" />
@@ -836,7 +852,7 @@ methods:
     content: 'getNext(visibleOnly?: boolean): Excel.Worksheet;'
     parameters:
     - id: visibleOnly
-      description: Optional. Wenn true, berücksichtigt nur sichtbare Arbeitsblätter und überspringt alle ausgeblendeten Arbeitsblätter.
+      description: Optional. If `true`<!-- -->berücksichtigt nur sichtbare Arbeitsblätter und überspringt ausgeblendete Arbeitsblätter.
       type: boolean
     return:
       type: <xref uid="excel!Excel.Worksheet:class" />
@@ -846,7 +862,7 @@ methods:
   package: excel!
   fullName: getNextOrNullObject(visibleOnly)
   summary: >-
-    Ruft das Arbeitsblatt ab, das auf dieses folgt. Wenn diesem Arbeitsblatt keine Arbeitsblätter folgen, gibt diese Methode ein Nullobjekt zurück.
+    Ruft das Arbeitsblatt ab, das auf dieses folgt. Wenn diesem Arbeitsblatt keine Arbeitsblätter folgen, gibt diese Methode ein Objekt zurück, dessen `isNullObject` Eigenschaft auf festgelegt ist. `true`<!-- -->. Weitere Informationen finden Sie unter [*OrNullObject-Methoden und -Eigenschaften.](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[API-Satz: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -857,7 +873,7 @@ methods:
     content: 'getNextOrNullObject(visibleOnly?: boolean): Excel.Worksheet;'
     parameters:
     - id: visibleOnly
-      description: Optional. Wenn true, berücksichtigt nur sichtbare Arbeitsblätter und überspringt alle ausgeblendeten Arbeitsblätter.
+      description: Optional. If `true`<!-- -->berücksichtigt nur sichtbare Arbeitsblätter und überspringt ausgeblendete Arbeitsblätter.
       type: boolean
     return:
       type: <xref uid="excel!Excel.Worksheet:class" />
@@ -878,7 +894,7 @@ methods:
     content: 'getPrevious(visibleOnly?: boolean): Excel.Worksheet;'
     parameters:
     - id: visibleOnly
-      description: Optional. Wenn true, berücksichtigt nur sichtbare Arbeitsblätter und überspringt alle ausgeblendeten Arbeitsblätter.
+      description: Optional. If `true`<!-- -->berücksichtigt nur sichtbare Arbeitsblätter und überspringt ausgeblendete Arbeitsblätter.
       type: boolean
     return:
       type: <xref uid="excel!Excel.Worksheet:class" />
@@ -888,7 +904,7 @@ methods:
   package: excel!
   fullName: getPreviousOrNullObject(visibleOnly)
   summary: >-
-    Ruft das Arbeitsblatt ab, das diesem Arbeitsblatt vorangegangen ist. Wenn es keine vorherigen Arbeitsblätter gibt, gibt diese Methode einen Null-Objet zurück.
+    Ruft das Arbeitsblatt ab, das diesem Arbeitsblatt vorangegangen ist. Wenn es keine vorherigen Arbeitsblätter gibt, gibt diese Methode ein Objekt zurück, dessen `isNullObject` Eigenschaft auf festgelegt ist. `true`<!-- -->. Weitere Informationen finden Sie unter [*OrNullObject-Methoden und -Eigenschaften.](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[API-Satz: ExcelApi 1.5](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -899,7 +915,7 @@ methods:
     content: 'getPreviousOrNullObject(visibleOnly?: boolean): Excel.Worksheet;'
     parameters:
     - id: visibleOnly
-      description: Optional. Wenn true, berücksichtigt nur sichtbare Arbeitsblätter und überspringt alle ausgeblendeten Arbeitsblätter.
+      description: Optional. If `true`<!-- -->berücksichtigt nur sichtbare Arbeitsblätter und überspringt ausgeblendete Arbeitsblätter.
       type: boolean
     return:
       type: <xref uid="excel!Excel.Worksheet:class" />
@@ -909,7 +925,7 @@ methods:
   package: excel!
   fullName: getRange(address)
   summary: >-
-    Ruft das Range-Objekt ab, das einen einzelnen rechteckigen Zellenblock darstellt, der durch die Adresse oder den Namen angegeben wird.
+    Ruft das Objekt ab, das einen einzelnen rechteckigen Zellenblock darstellt, der `Range` durch die Adresse oder den Namen angegeben wird.
 
 
     \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -930,7 +946,7 @@ methods:
   package: excel!
   fullName: getRangeByIndexes(startRow, startColumn, rowCount, columnCount)
   summary: >-
-    Ruft das Bereichsobjekt, beginnend an einem bestimmten Zeilen- und Spaltenindex, das eine bestimmte Anzahl von Zeilen und Spalten umfasst.
+    Ruft das Objekt ab, das bei einem bestimmten Zeilenindex und Spaltenindex beginnt und eine bestimmte Anzahl von `Range` Zeilen und Spalten umfasst.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -960,7 +976,7 @@ methods:
   package: excel!
   fullName: getRanges(address)
   summary: >-
-    Ruft das RangeAreas-Objekt ab, das einen Block oder mehrere Blöcke rechteckiger Bereiche darstellt, die anhand von Adresse oder Name angegeben sind.
+    Ruft das `RangeAreas` Objekt ab, das einen oder mehrere Blöcke rechteckiger Bereiche darstellt, die durch die Adresse oder den Namen angegeben werden.
 
 
     \[[API-Satz: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -992,7 +1008,7 @@ methods:
     content: 'getUsedRange(valuesOnly?: boolean): Excel.Range;'
     parameters:
     - id: valuesOnly
-      description: 'Optional. Bei True werden nur Zellen mit Werten als verwendete Zellen betrachtet (Formatierung wird ignoriert). \[Api-Satz: ExcelApi 1.2\]'
+      description: 'Optional. If `true`<!-- -->betrachtet nur Zellen mit Werten als verwendete Zellen (ohne Formatierung). \[Api-Satz: ExcelApi 1.2\]'
       type: boolean
     return:
       type: <xref uid="excel!Excel.Range:class" />
@@ -1002,7 +1018,7 @@ methods:
   package: excel!
   fullName: getUsedRangeOrNullObject(valuesOnly)
   summary: >-
-    Der verwendete Bereich ist der kleinste Bereich, der mindestens eine der Zellen umfasst, die einen Wert enthalten oder denen eine Formatierung zugewiesen wurde. Wenn das gesamte Arbeitsblatt leer ist, gibt diese Funktion ein NULL-Objekt zurück.
+    Der verwendete Bereich ist der kleinste Bereich, der mindestens eine der Zellen umfasst, die einen Wert enthalten oder denen eine Formatierung zugewiesen wurde. Wenn das gesamte Arbeitsblatt leer ist, gibt diese Funktion ein Objekt zurück, dessen `isNullObject` Eigenschaft auf festgelegt ist. `true`<!-- -->. Weitere Informationen finden Sie unter [*OrNullObject-Methoden und -Eigenschaften.](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
 
 
     \[[API-Satz: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1096,10 +1112,10 @@ methods:
       description: Zu suchende Zeichenfolge.
       type: string
     - id: replacement
-      description: Zeichenfolge, durch die das Original ersetzt werden soll.
+      description: Die Zeichenfolge, die die ursprüngliche Zeichenfolge ersetzt.
       type: string
     - id: criteria
-      description: Zusätzliche Replace-Kriterien.
+      description: Zusätzliche Ersetzungskriterien.
       type: <xref uid="excel!Excel.ReplaceCriteria:interface" />
     return:
       type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;number&gt;
@@ -1150,7 +1166,7 @@ methods:
   package: excel!
   fullName: showOutlineLevels(rowLevels, columnLevels)
   summary: >-
-    Zeigt Zeilen- oder Spaltengruppen nach ihren Gliederungsebenen an. Gliederung der Gruppe und Zusammenfassung einer Datenliste im Arbeitsblatt. Die Parameter and geben an, wie viele Ebenen der Gliederung `rowLevels` `columnLevels` angezeigt werden sollen. Der zulässige Argumentbereich liegt zwischen 0 und 8. Der Wert 0 ändert die aktuelle Anzeige nicht. Ein Wert, der größer als die aktuelle Anzahl von Ebenen ist, zeigt alle Ebenen an.
+    Zeigt Zeilen- oder Spaltengruppen nach ihren Gliederungsebenen an. Gliederung von Gruppen und Zusammenfassung einer Datenliste im Arbeitsblatt. Die Parameter and geben an, wie viele Ebenen der Gliederung `rowLevels` `columnLevels` angezeigt werden sollen. Der zulässige Argumentbereich liegt zwischen 0 und 8. Der Wert 0 ändert die aktuelle Anzeige nicht. Ein Wert, der größer als die aktuelle Anzahl von Ebenen ist, zeigt alle Ebenen an.
 
 
     \[[API-Satz: ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1184,9 +1200,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: e628df6054ccc86637b472b8af767003a91de77d
-  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
+  ms.openlocfilehash: 7b9cdfda18482f7221ce86d362970b86f1b4f3f2
+  ms.sourcegitcommit: ce09743deb2fc2a879cd63f96c8ff11ec84a42b2
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 03/26/2021
-  ms.locfileid: "51352908"
+  ms.lasthandoff: 04/02/2021
+  ms.locfileid: "51557499"
