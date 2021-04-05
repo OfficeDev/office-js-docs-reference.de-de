@@ -2,12 +2,12 @@
 |:---|:---|:---|
 |[Anwendung](/javascript/api/excel/excel.application)|[calculationEngineVersion](/javascript/api/excel/excel.application#calculationengineversion)|Gibt die Version der Excel-Berechnungsmaschine zurück, die für die letzte vollständige Neuberechnung verwendet wurde.|
 ||[calculationState](/javascript/api/excel/excel.application#calculationstate)|Gibt den Berechnungszustand der Anwendung zurück.|
-||[iterativeCalculation](/javascript/api/excel/excel.application#iterativecalculation)|Gibt die Einstellungen für iterative Berechnung zurück.|
+||[iterativeCalculation](/javascript/api/excel/excel.application#iterativecalculation)|Gibt die iterativen Berechnungseinstellungen zurück.|
 ||[suspendScreenUpdatingUntilNextSync()](/javascript/api/excel/excel.application#suspendscreenupdatinguntilnextsync--)|Die Bildschirmaktualisierung wird angehalten, bis die nächste `context.sync()` aufgerufen wird.|
 |[AutoFilter](/javascript/api/excel/excel.autofilter)|[apply(range: Range \| string, columnIndex?: number, criteria?: Excel.FilterCriteria)](/javascript/api/excel/excel.autofilter#apply-range--columnindex--criteria-)|Wendet den AutoFilter auf einen Bereich an.|
 ||[clearCriteria()](/javascript/api/excel/excel.autofilter#clearcriteria--)|Löscht die Filterkriterien von AutoFilter.|
-||[getRange()](/javascript/api/excel/excel.autofilter#getrange--)|Gibt das Range-Objekt zurück, das den Bereich darstellt, auf den der AutoFilter angewendet wird.|
-||[getRangeOrNullObject()](/javascript/api/excel/excel.autofilter#getrangeornullobject--)|Gibt das Range-Objekt zurück, das den Bereich darstellt, auf den der AutoFilter angewendet wird.|
+||[getRange()](/javascript/api/excel/excel.autofilter#getrange--)|Gibt das `Range` Objekt zurück, das den Bereich darstellt, auf den der AutoFilter angewendet wird.|
+||[getRangeOrNullObject()](/javascript/api/excel/excel.autofilter#getrangeornullobject--)|Gibt das `Range` Objekt zurück, das den Bereich darstellt, auf den der AutoFilter angewendet wird.|
 ||[criteria](/javascript/api/excel/excel.autofilter#criteria)|Ein Array, das alle Filterkriterien in dem per AutoFilter gefilterten Bereich enthält.|
 ||[enabled](/javascript/api/excel/excel.autofilter#enabled)|Gibt an, ob der AutoFilter aktiviert ist.|
 ||[isDataFiltered](/javascript/api/excel/excel.autofilter#isdatafiltered)|Gibt an, ob der AutoFilter Filterkriterien enthält.|
@@ -61,8 +61,8 @@
 ||[locked](/javascript/api/excel/excel.cellpropertiesprotection#locked)|Stellt die `format.protection.locked` Eigenschaft dar.|
 |[ChangedEventDetail](/javascript/api/excel/excel.changedeventdetail)|[valueAfter](/javascript/api/excel/excel.changedeventdetail#valueafter)|Stellt den Wert nach der Änderung dar.|
 ||[valueBefore](/javascript/api/excel/excel.changedeventdetail#valuebefore)|Stellt den Wert vor der Änderung dar.|
-||[valueTypeAfter](/javascript/api/excel/excel.changedeventdetail#valuetypeafter)|Stellt den Typ des Werts nach der Änderung dar.|
-||[valueTypeBefore](/javascript/api/excel/excel.changedeventdetail#valuetypebefore)|Stellt den Typ des Werts vor der Änderung dar.|
+||[valueTypeAfter](/javascript/api/excel/excel.changedeventdetail#valuetypeafter)|Stellt den Werttyp nach der Änderung dar.|
+||[valueTypeBefore](/javascript/api/excel/excel.changedeventdetail#valuetypebefore)|Stellt den Werttyp vor der Änderung dar.|
 |[Chart](/javascript/api/excel/excel.chart)|[activate()](/javascript/api/excel/excel.chart#activate--)|Aktiviert das Diagramm auf der Excel-Benutzeroberfläche.|
 ||[pivotOptions](/javascript/api/excel/excel.chart#pivotoptions)|Verkapselt die Optionen für ein PivotChart.|
 |[ChartAreaFormat](/javascript/api/excel/excel.chartareaformat)|[colorScheme](/javascript/api/excel/excel.chartareaformat#colorscheme)|Gibt das Farbschema des Diagramms an.|
@@ -99,7 +99,7 @@
 ||[gradientMaximumColor](/javascript/api/excel/excel.chartseries#gradientmaximumcolor)|Gibt die Farbe für den maximal zulässigen Wert einer Diagrammreihe einer Region an.|
 ||[gradientMaximumType](/javascript/api/excel/excel.chartseries#gradientmaximumtype)|Gibt den Typ für den maximal zulässigen Wert einer Diagrammreihe für Regionen an.|
 ||[gradientMaximumValue](/javascript/api/excel/excel.chartseries#gradientmaximumvalue)|Gibt den maximal zulässigen Wert einer Diagrammreihe für Regionen an.|
-||[gradientMidpointColor](/javascript/api/excel/excel.chartseries#gradientmidpointcolor)|Gibt die Farbe für den Mittelpunktwert einer Diagrammreihe einer Region an.|
+||[gradientMidpointColor](/javascript/api/excel/excel.chartseries#gradientmidpointcolor)|Gibt die Farbe für den Mittelpunktwert einer Diagrammreihe für Regionenkarten an.|
 ||[gradientMidpointType](/javascript/api/excel/excel.chartseries#gradientmidpointtype)|Gibt den Typ für den Mittelpunktwert einer Kartenreihe für Regionen an.|
 ||[gradientMidpointValue](/javascript/api/excel/excel.chartseries#gradientmidpointvalue)|Gibt den Mittelpunktwert einer Diagrammreihe für Regionenkarten an.|
 ||[gradientMinimumColor](/javascript/api/excel/excel.chartseries#gradientminimumcolor)|Gibt die Farbe für den Minimalwert einer Kartenreihe für Regionen an.|
@@ -120,14 +120,14 @@
 |[ColumnProperties](/javascript/api/excel/excel.columnproperties)|[address](/javascript/api/excel/excel.columnproperties#address)|Stellt die `address` Eigenschaft dar.|
 ||[addressLocal](/javascript/api/excel/excel.columnproperties#addresslocal)|Stellt die `addressLocal` Eigenschaft dar.|
 ||[columnIndex](/javascript/api/excel/excel.columnproperties#columnindex)|Stellt die `columnIndex` Eigenschaft dar.|
-|[ConditionalFormat](/javascript/api/excel/excel.conditionalformat)|[getRanges()](/javascript/api/excel/excel.conditionalformat#getranges--)|Gibt die RangeAreas zurück, die einen oder mehrere rechteckige Bereiche umfassen und auf die das bedingte Format angewendet werden soll.|
-|[DataValidation](/javascript/api/excel/excel.datavalidation)|[getInvalidCells()](/javascript/api/excel/excel.datavalidation#getinvalidcells--)|Gibt ein RangeAreas-Objekt, das einen oder mehrere rechteckige Bereiche umfasst, mit ungültigen Zellwerten zurück.|
-||[getInvalidCellsOrNullObject()](/javascript/api/excel/excel.datavalidation#getinvalidcellsornullobject--)|Gibt ein RangeAreas-Objekt, das einen oder mehrere rechteckige Bereiche umfasst, mit ungültigen Zellwerten zurück.|
-|[FilterCriteria](/javascript/api/excel/excel.filtercriteria)|[subField](/javascript/api/excel/excel.filtercriteria#subfield)|Die vom Filter für Rich Filter-Aktionen umfangreicher Werte verwendete Eigenschaft.|
+|[ConditionalFormat](/javascript/api/excel/excel.conditionalformat)|[getRanges()](/javascript/api/excel/excel.conditionalformat#getranges--)|Gibt den zurück, der einen oder mehrere rechteckige Bereiche umfasst, auf die das `RangeAreas` konditonale Format angewendet wird.|
+|[DataValidation](/javascript/api/excel/excel.datavalidation)|[getInvalidCells()](/javascript/api/excel/excel.datavalidation#getinvalidcells--)|Gibt ein `RangeAreas` Objekt mit einem oder mehreren rechteckigen Bereichen mit ungültigen Zellwerten zurück.|
+||[getInvalidCellsOrNullObject()](/javascript/api/excel/excel.datavalidation#getinvalidcellsornullobject--)|Gibt ein `RangeAreas` Objekt mit einem oder mehreren rechteckigen Bereichen mit ungültigen Zellwerten zurück.|
+|[FilterCriteria](/javascript/api/excel/excel.filtercriteria)|[subField](/javascript/api/excel/excel.filtercriteria#subfield)|Die Eigenschaft, die vom Filter verwendet wird, um einen Rich-Filter auf Rich-Werte zu verwenden.|
 |[GeometricShape](/javascript/api/excel/excel.geometricshape)|[id](/javascript/api/excel/excel.geometricshape#id)|Gibt die ID der Form zurück.|
-||[shape](/javascript/api/excel/excel.geometricshape#shape)|Gibt das Formobjekt für die geometrische Form zurück.|
+||[shape](/javascript/api/excel/excel.geometricshape#shape)|Gibt das `Shape` Objekt für die geometrische Form zurück.|
 |[GroupShapeCollection](/javascript/api/excel/excel.groupshapecollection)|[getCount()](/javascript/api/excel/excel.groupshapecollection#getcount--)|Gibt die Anzahl der Formen in der Formgruppe zurück.|
-||[getItem(key: string)](/javascript/api/excel/excel.groupshapecollection#getitem-key-)|Ruft eine Form anhand ihres Namens oder ihrer ID ab.|
+||[getItem(key: string)](/javascript/api/excel/excel.groupshapecollection#getitem-key-)|Ruft ein Shape mit seinem Namen oder seiner ID ab.|
 ||[getItemAt(index: number)](/javascript/api/excel/excel.groupshapecollection#getitemat-index-)|Ruft eine Form anhand ihrer Position in der Auflistung ab.|
 ||[items](/javascript/api/excel/excel.groupshapecollection#items)|Ruft die geladenen untergeordneten Elemente in dieser Sammlung ab.|
 |[HeaderFooter](/javascript/api/excel/excel.headerfooter)|[centerFooter](/javascript/api/excel/excel.headerfooter#centerfooter)|Die zentriert Fußzeile des Arbeitsblatts.|
@@ -145,7 +145,7 @@
 ||[useSheetScale](/javascript/api/excel/excel.headerfootergroup#usesheetscale)|Ruft eine Kennzeichnung ab, die angibt, ob die Kopf-/Fußzeilen mit dem Prozentsatz für die Skalierung der Seite skaliert werden sollen, die in den Optionen für das Seitenlayout des Arbeitsblatts festgelegt ist, oder legt diese fest.|
 |[Image](/javascript/api/excel/excel.image)|[format](/javascript/api/excel/excel.image#format)|Gibt das Format des Bilds zurück.|
 ||[id](/javascript/api/excel/excel.image#id)|Gibt die Shape-ID für das Bildobjekt an.|
-||[shape](/javascript/api/excel/excel.image#shape)|Gibt das Formobjekt zurück, das dem Bild zugeordnet ist.|
+||[shape](/javascript/api/excel/excel.image#shape)|Gibt das `Shape` dem Bild zugeordnete Objekt zurück.|
 |[IterativeCalculation](/javascript/api/excel/excel.iterativecalculation)|[enabled](/javascript/api/excel/excel.iterativecalculation#enabled)|True, wenn Zirkelbezüge in Excel durch Iteration aufgelöst werden.|
 ||[maxChange](/javascript/api/excel/excel.iterativecalculation#maxchange)|Gibt den maximalen Änderungsbetrag zwischen den einzelnen Iterationen an, wenn Excel Zirkelverweise aufhebt.|
 ||[maxIteration](/javascript/api/excel/excel.iterativecalculation#maxiteration)|Gibt die maximale Anzahl von Iterationen an, die Excel zum Auflösen eines Zirkelverweises verwenden kann.|
@@ -167,7 +167,7 @@
 ||[id](/javascript/api/excel/excel.line#id)|Gibt den Formbezeichner an.|
 ||[isBeginConnected](/javascript/api/excel/excel.line#isbeginconnected)|Gibt an, ob der Anfang der angegebenen Linie mit einer Form verbunden ist.|
 ||[isEndConnected](/javascript/api/excel/excel.line#isendconnected)|Gibt an, ob das Ende der angegebenen Linie mit einer Form verbunden ist.|
-||[shape](/javascript/api/excel/excel.line#shape)|Gibt das Formobjekt zurück, das der Linie zugeordnet ist.|
+||[shape](/javascript/api/excel/excel.line#shape)|Gibt das `Shape` objekt zurück, das der Zeile zugeordnet ist.|
 |[PageBreak](/javascript/api/excel/excel.pagebreak)|[delete()](/javascript/api/excel/excel.pagebreak#delete--)|Löscht ein Seitenumbruchobjekt.|
 ||[getCellAfterBreak()](/javascript/api/excel/excel.pagebreak#getcellafterbreak--)|Ruft die erste Zelle hinter dem Seitenumbruch ab.|
 ||[columnIndex](/javascript/api/excel/excel.pagebreak#columnindex)|Gibt den Spaltenindex für den Seitenumbruch an.|
@@ -184,8 +184,8 @@
 ||[draftMode](/javascript/api/excel/excel.pagelayout#draftmode)|Die Entwurfsmodusoption des Arbeitsblatts.|
 ||[firstPageNumber](/javascript/api/excel/excel.pagelayout#firstpagenumber)|Die erste seitenzahl des Arbeitsblatts, die gedruckt werden soll.|
 ||[footerMargin](/javascript/api/excel/excel.pagelayout#footermargin)|Der Fußzeilenrand des Arbeitsblatts in Punkt zur Verwendung beim Drucken.|
-||[getPrintArea()](/javascript/api/excel/excel.pagelayout#getprintarea--)|Ruft das RangeAreas-Objekt ab, das aus einem oder mehreren rechteckigen Bereichen besteht und den Druckbereich für das Arbeitsblatt darstellt.|
-||[getPrintAreaOrNullObject()](/javascript/api/excel/excel.pagelayout#getprintareaornullobject--)|Ruft das RangeAreas-Objekt ab, das aus einem oder mehreren rechteckigen Bereichen besteht und den Druckbereich für das Arbeitsblatt darstellt.|
+||[getPrintArea()](/javascript/api/excel/excel.pagelayout#getprintarea--)|Ruft das `RangeAreas` Objekt ab, das einen oder mehrere rechteckige Bereiche umfasst, das den Druckbereich für das Arbeitsblatt darstellt.|
+||[getPrintAreaOrNullObject()](/javascript/api/excel/excel.pagelayout#getprintareaornullobject--)|Ruft das `RangeAreas` Objekt ab, das einen oder mehrere rechteckige Bereiche umfasst, das den Druckbereich für das Arbeitsblatt darstellt.|
 ||[getPrintTitleColumns()](/javascript/api/excel/excel.pagelayout#getprinttitlecolumns--)|Ruft das Bereichsobjekt ab, das die Titelspalten darstellt.|
 ||[getPrintTitleColumnsOrNullObject()](/javascript/api/excel/excel.pagelayout#getprinttitlecolumnsornullobject--)|Ruft das Bereichsobjekt ab, das die Titelspalten darstellt.|
 ||[getPrintTitleRows()](/javascript/api/excel/excel.pagelayout#getprinttitlerows--)|Ruft das Bereichsobjekt ab, das die Titelzeilen darstellt.|
@@ -225,66 +225,66 @@
 |[PivotTable](/javascript/api/excel/excel.pivottable)|[enableDataValueEditing](/javascript/api/excel/excel.pivottable#enabledatavalueediting)|Gibt an, ob die PivotTable die Bearbeitung von Werten im Datentext durch den Benutzer zulässt.|
 ||[useCustomSortLists](/javascript/api/excel/excel.pivottable#usecustomsortlists)|Gibt an, ob die PivotTable beim Sortieren benutzerdefinierte Listen verwendet.|
 |[Range](/javascript/api/excel/excel.range)|[autoFill(destinationRange?: \| Bereichszeichenfolge, autoFillType?: Excel.AutoFillType)](/javascript/api/excel/excel.range#autofill-destinationrange--autofilltype-)|Füllt den Bereich vom aktuellen Bereich bis zum Zielbereich mithilfe der angegebenen AutoFill-Logik.|
-||[convertDataTypeToText()](/javascript/api/excel/excel.range#convertdatatypetotext--)|Konvertiert die Zellen mit Datentypen im Bereich in Text.|
-||[convertToLinkedDataType(serviceID: number, languageCulture: string)](/javascript/api/excel/excel.range#converttolinkeddatatype-serviceid--languageculture-)|Konvertiert die Zellen eines Bereichs auf dem Arbeitsblatt in den verknüpften Datentyp.|
-||[copyFrom(sourceRange: Range \| RangeAreas \| string, copyType?: Excel.RangeCopyType, skipBlanks?: boolean, transpose?: boolean)](/javascript/api/excel/excel.range#copyfrom-sourcerange--copytype--skipblanks--transpose-)|Kopiert Daten oder Formatierung von Zellen aus dem Quellbereich oder RangeAreas in den aktuellen Bereich.|
+||[convertDataTypeToText()](/javascript/api/excel/excel.range#convertdatatypetotext--)|Konvertiert die Bereichszellen mit Datentypen in Text.|
+||[convertToLinkedDataType(serviceID: number, languageCulture: string)](/javascript/api/excel/excel.range#converttolinkeddatatype-serviceid--languageculture-)|Konvertiert die Bereichszellen in verknüpfte Datentypen im Arbeitsblatt.|
+||[copyFrom(sourceRange: Range \| RangeAreas \| string, copyType?: Excel.RangeCopyType, skipBlanks?: boolean, transpose?: boolean)](/javascript/api/excel/excel.range#copyfrom-sourcerange--copytype--skipblanks--transpose-)|Kopiert Zelldaten oder Formatierungen aus dem Quellbereich oder `RangeAreas` in den aktuellen Bereich.|
 ||[find(text: string, criteria: Excel.SearchCriteria)](/javascript/api/excel/excel.range#find-text--criteria-)|Sucht die angegebene Zeichenfolge anhand der angegebenen Kriterien.|
 ||[findOrNullObject(text: string, criteria: Excel.SearchCriteria)](/javascript/api/excel/excel.range#findornullobject-text--criteria-)|Sucht die angegebene Zeichenfolge anhand der angegebenen Kriterien.|
-||[flashFill()](/javascript/api/excel/excel.range#flashfill--)|Führt die Blitzvorschau für den aktuellen Bereich aus. Die Blitzvorschau füllt Daten automatisch auf, wenn sie ein Muster erkennt, daher muss der Bereich einspaltig sein und Daten enthalten, um ein Muster erkennen zu können.|
+||[flashFill()](/javascript/api/excel/excel.range#flashfill--)|Führt eine Blitzfüllung für den aktuellen Bereich aus.|
 ||[getCellProperties(cellPropertiesLoadOptions: CellPropertiesLoadOptions)](/javascript/api/excel/excel.range#getcellproperties-cellpropertiesloadoptions-)|Gibt ein 2D-Array zurück, das die Daten für die Schriftart, die Füllung, den Rahmen, die Ausrichtung und andere Eigenschaften jeder Zelle kapselt.|
 ||[getColumnProperties(columnPropertiesLoadOptions: ColumnPropertiesLoadOptions)](/javascript/api/excel/excel.range#getcolumnproperties-columnpropertiesloadoptions-)|Gibt ein eindimensionales Array zurück, das die Daten für die Schriftart, die Füllung, den Rahmen, die Ausrichtung und andere Eigenschaften jeder Spalte kapselt.|
 ||[getRowProperties(rowPropertiesLoadOptions: RowPropertiesLoadOptions)](/javascript/api/excel/excel.range#getrowproperties-rowpropertiesloadoptions-)|Gibt ein eindimensionales Array zurück, das die Daten für die Schriftart, die Füllung, den Rahmen, die Ausrichtung und andere Eigenschaften jeder Zeile kapselt.|
-||[getSpecialCells(cellType: Excel.SpecialCellType, cellValueType?: Excel.SpecialCellValueType)](/javascript/api/excel/excel.range#getspecialcells-celltype--cellvaluetype-)|Ruft das RangeAreas-Objekt ab, das aus einem oder mehreren rechteckigen Bereichen besteht und alle Zellen darstellt, die mit dem angegebenen Typ und Wert übereinstimmen.|
-||[getSpecialCellsOrNullObject(cellType: Excel.SpecialCellType, cellValueType?: Excel.SpecialCellValueType)](/javascript/api/excel/excel.range#getspecialcellsornullobject-celltype--cellvaluetype-)|Ruft das RangeAreas-Objekt ab, das aus einem oder mehreren Bereichen besteht, die alle Zellen darstellen, die mit dem angegebenen Typ und Wert übereinstimmen.|
+||[getSpecialCells(cellType: Excel.SpecialCellType, cellValueType?: Excel.SpecialCellValueType)](/javascript/api/excel/excel.range#getspecialcells-celltype--cellvaluetype-)|Ruft das Objekt ab, das einen oder mehrere rechteckige Bereiche umfasst, das alle Zellen darstellt, die mit dem angegebenen Typ und `RangeAreas` Wert übereinstimmen.|
+||[getSpecialCellsOrNullObject(cellType: Excel.SpecialCellType, cellValueType?: Excel.SpecialCellValueType)](/javascript/api/excel/excel.range#getspecialcellsornullobject-celltype--cellvaluetype-)|Ruft das Objekt ab, das einen oder mehrere Bereiche umfasst, das alle Zellen darstellt, die mit dem angegebenen Typ und `RangeAreas` Wert übereinstimmen.|
 ||[getTables(fullyContained?: boolean)](/javascript/api/excel/excel.range#gettables-fullycontained-)|Ruft eine bereichsbezogene Sammlung von Tabellen ab, die sich mit dem Bereich überschneidet.|
 ||[linkedDataTypeState](/javascript/api/excel/excel.range#linkeddatatypestate)|Stellt den Datentypstatus der einzelnen Zellen dar.|
 ||[removeDuplicates(columns: number[], includesHeader: boolean)](/javascript/api/excel/excel.range#removeduplicates-columns--includesheader-)|Entfernt doppelte Werte aus dem durch die Spalten angegebenen Bereich.|
 ||[replaceAll(text: string, replacement: string, criteria: Excel.ReplaceCriteria)](/javascript/api/excel/excel.range#replaceall-text--replacement--criteria-)|Sucht und ersetzt die angegebene Zeichenfolge auf der Grundlage der im aktuellen Bereich angegebenen Kriterien.|
-||[setCellProperties(cellPropertiesData: SettableCellProperties[][])](/javascript/api/excel/excel.range#setcellproperties-cellpropertiesdata-)|Aktualisiert den Bereich auf der Grundlage eines 2D-Arrays von Zelleigenschaften, das Dinge wie die Schriftart, die Füllung, Rahmen, die Ausrichtung usw. enthält.|
-||[setColumnProperties(columnPropertiesData: SettableColumnProperties[])](/javascript/api/excel/excel.range#setcolumnproperties-columnpropertiesdata-)|Aktualisiert den Bereich auf der Grundlage eines eindimensionalen Arrays von Spalteneigenschaften, das Dinge wie die Schriftart, die Füllung, Rahmen, die Ausrichtung usw. enthält.|
+||[setCellProperties(cellPropertiesData: SettableCellProperties[][])](/javascript/api/excel/excel.range#setcellproperties-cellpropertiesdata-)|Aktualisiert den Bereich basierend auf einem 2D-Array von Zelleigenschaften und kapselt Dinge wie Schriftart, Füllung, Rahmen und Ausrichtung ein.|
+||[setColumnProperties(columnPropertiesData: SettableColumnProperties[])](/javascript/api/excel/excel.range#setcolumnproperties-columnpropertiesdata-)|Aktualisiert den Bereich basierend auf einem eindimensionalen Array von Spalteneigenschaften und kapselt Elemente wie Schriftart, Füllung, Rahmen und Ausrichtung ein.|
 ||[setDirty()](/javascript/api/excel/excel.range#setdirty--)|Legt für einen Bereich Neuberechnung bei der nächsten auszuführenden Neuberechnung fest.|
-||[setRowProperties(rowPropertiesData: SettableRowProperties[])](/javascript/api/excel/excel.range#setrowproperties-rowpropertiesdata-)|Aktualisiert den Bereich auf der Grundlage eines eindimensionalen Arrays von Zeileneigenschaften, das Dinge wie die Schriftart, die Füllung, Rahmen, die Ausrichtung usw. enthält.|
-|[RangeAreas](/javascript/api/excel/excel.rangeareas)|[calculate()](/javascript/api/excel/excel.rangeareas#calculate--)|Berechnet alle Zellen in RangeAreas.|
-||[clear(applyTo?: Excel.ClearApplyTo)](/javascript/api/excel/excel.rangeareas#clear-applyto-)|Löscht Werte, Format, Füllung, Rahmen usw. in jedem der Bereiche, die dieses RangeAreas-Objekt bilden.|
-||[convertDataTypeToText()](/javascript/api/excel/excel.rangeareas#convertdatatypetotext--)|Konvertiert alle Zellen in RangeAreas mit Datentypen in Text.|
-||[convertToLinkedDataType(serviceID: number, languageCulture: string)](/javascript/api/excel/excel.rangeareas#converttolinkeddatatype-serviceid--languageculture-)|Konvertiert alle Zellen in RangeAreas in den verknüpften Datentyp.|
-||[copyFrom(sourceRange: Range \| RangeAreas \| string, copyType?: Excel.RangeCopyType, skipBlanks?: boolean, transpose?: boolean)](/javascript/api/excel/excel.rangeareas#copyfrom-sourcerange--copytype--skipblanks--transpose-)|Kopiert Daten oder Formatierung von Zellen aus dem Quellbereich oder RangeAreas in das aktuelle RangeAreas-Objekt.|
-||[getEntireColumn()](/javascript/api/excel/excel.rangeareas#getentirecolumn--)|Gibt ein RangeAreas-Objekt zurück, das die gesamten Spalten von RangeAreas darstellt (wenn beispielsweise das aktuelle RangeAreas die Zellen "B4:E11, H2" darstellt, wird ein RangeAreas-Objekt zurückgegeben, das die Spalten "B:E, H:H" darstellt).|
-||[getEntireRow()](/javascript/api/excel/excel.rangeareas#getentirerow--)|Gibt ein RangeAreas-Objekt zurück, das die gesamten Zeilen von RangeAreas darstellt (wenn beispielsweise das aktuelle RangeAreas die Zellen "B4:E11" darstellt, wird ein RangeAreas-Objekt zurückgegeben, das die Zeilen "4:11" darstellt).|
-||[getIntersection(anotherRange: Range \| RangeAreas \| string)](/javascript/api/excel/excel.rangeareas#getintersection-anotherrange-)|Gibt das RangeAreas-Objekt zurück, das die Schnittmenge der angegebenen Bereiche oder RangeAreas darstellt.|
-||[getIntersectionOrNullObject(anotherRange: Range \| RangeAreas \| string)](/javascript/api/excel/excel.rangeareas#getintersectionornullobject-anotherrange-)|Gibt das RangeAreas-Objekt zurück, das die Schnittmenge der angegebenen Bereiche oder RangeAreas darstellt.|
-||[getOffsetRangeAreas(rowOffset: number, columnOffset: number)](/javascript/api/excel/excel.rangeareas#getoffsetrangeareas-rowoffset--columnoffset-)|Gibt ein RangeAreas-Objekt zurück, das um den angegebenen Zeilen- und Spaltenoffset verschoben ist.|
-||[getSpecialCells(cellType: Excel.SpecialCellType, cellValueType?: Excel.SpecialCellValueType)](/javascript/api/excel/excel.rangeareas#getspecialcells-celltype--cellvaluetype-)|Gibt ein RangeAreas-Objekt zurück, das alle Zellen darstellt, die dem angegebenen Typ und Wert entsprechen.|
-||[getSpecialCellsOrNullObject(cellType: Excel.SpecialCellType, cellValueType?: Excel.SpecialCellValueType)](/javascript/api/excel/excel.rangeareas#getspecialcellsornullobject-celltype--cellvaluetype-)|Gibt ein RangeAreas-Objekt zurück, das alle Zellen darstellt, die dem angegebenen Typ und Wert entsprechen.|
-||[getTables(fullyContained?: boolean)](/javascript/api/excel/excel.rangeareas#gettables-fullycontained-)|Gibt eine bereichsbezogene Sammlung von Tabellen zurück, die sich mit einem beliebigen Bereich in diesem RangeAreas-Objekt überschneiden.|
-||[getUsedRangeAreas(valuesOnly?: boolean)](/javascript/api/excel/excel.rangeareas#getusedrangeareas-valuesonly-)|Gibt das verwendete RangeAreas zurück, das alle verwendeten Bereiche einzelner rechteckiger Bereiche im RangeAreas-Objekt umfasst.|
-||[getUsedRangeAreasOrNullObject(valuesOnly?: boolean)](/javascript/api/excel/excel.rangeareas#getusedrangeareasornullobject-valuesonly-)|Gibt das verwendete RangeAreas zurück, das alle verwendeten Bereiche einzelner rechteckiger Bereiche im RangeAreas-Objekt umfasst.|
-||[address](/javascript/api/excel/excel.rangeareas#address)|Gibt den RangeAreas-Verweis im A1-Format zurück.|
-||[addressLocal](/javascript/api/excel/excel.rangeareas#addresslocal)|Gibt den RangeAreas-Verweis im Benutzergebietsgebietsprofil zurück.|
-||[areaCount](/javascript/api/excel/excel.rangeareas#areacount)|Gibt die Anzahl der rechteckigen Bereiche zurück, die dieses RangeAreas-Objekt bilden.|
-||[areas](/javascript/api/excel/excel.rangeareas#areas)|Gibt eine Sammlung der rechteckigen Bereiche zurück, die dieses RangeAreas-Objekt bilden.|
-||[cellCount](/javascript/api/excel/excel.rangeareas#cellcount)|Gibt die Anzahl der Zellen in RangeAreas-Objekt zurück und addiert dabei die Zellanzahl aller rechteckigen Einzelbereiche.|
-||[conditionalFormats](/javascript/api/excel/excel.rangeareas#conditionalformats)|Gibt eine Sammlung von ConditionalFormats zurück, die sich mit Zellen in diesem RangeAreas-Objekt überschneiden.|
-||[dataValidation](/javascript/api/excel/excel.rangeareas#datavalidation)|Gibt ein dataValidation-Objekt für alle Bereiche im RangeAreas zurück.|
-||[format](/javascript/api/excel/excel.rangeareas#format)|Gibt ein RangeFormat-Objekt zurück, das die Schriftart, die Füllung, die Rahmen, die Ausrichtung und andere Eigenschaften für alle Bereiche im RangeAreas-Objekt kapselt.|
-||[isEntireColumn](/javascript/api/excel/excel.rangeareas#isentirecolumn)|Gibt an, ob alle Bereiche dieses RangeAreas-Objekts ganze Spalten darstellen (z. B. "A:C, Q:Z").|
-||[isEntireRow](/javascript/api/excel/excel.rangeareas#isentirerow)|Gibt an, ob alle Bereiche dieses RangeAreas-Objekts ganze Zeilen darstellen (z. B. "1:3, 5:7").|
-||[worksheet](/javascript/api/excel/excel.rangeareas#worksheet)|Gibt das Arbeitsblatt für das aktuelle RangeAreas zurück.|
-||[setDirty()](/javascript/api/excel/excel.rangeareas#setdirty--)|Legt für das RangeAreas Neuberechnung bei der nächsten auszuführenden Neuberechnung fest.|
-||[style](/javascript/api/excel/excel.rangeareas#style)|Stellt die Formatvorlage für alle Bereiche in diesem RangeAreas-Objekt dar.|
-|[RangeBorder](/javascript/api/excel/excel.rangeborder)|[tintAndShade](/javascript/api/excel/excel.rangeborder#tintandshade)|Gibt ein Double an, das eine Farbe für Range Border aufhellt oder dunkler macht, der Wert liegt zwischen -1 (dunkelster) und 1 (hellster Wert), mit 0 für die Ursprüngliche Farbe.|
-|[RangeBorderCollection](/javascript/api/excel/excel.rangebordercollection)|[tintAndShade](/javascript/api/excel/excel.rangebordercollection#tintandshade)|Gibt ein Double an, das eine Farbe für Bereichsgrenzen hellt oder abdunkriert, der Wert liegt zwischen -1 (dunkelster) und 1 (hellster Wert), mit 0 für die Ursprüngliche Farbe.|
-|[RangeCollection](/javascript/api/excel/excel.rangecollection)|[getCount()](/javascript/api/excel/excel.rangecollection#getcount--)|Gibt die Anzahl der Bereiche in RangeCollection zurück.|
-||[getItemAt(index: number)](/javascript/api/excel/excel.rangecollection#getitemat-index-)|Gibt das Bereichsobjekt auf der Grundlage seiner Position in RangeCollection zurück.|
+||[setRowProperties(rowPropertiesData: SettableRowProperties[])](/javascript/api/excel/excel.range#setrowproperties-rowpropertiesdata-)|Aktualisiert den Bereich basierend auf einem eindimensionalen Array von Zeileneigenschaften und kapselt Dinge wie Schriftart, Füllung, Rahmen und Ausrichtung ein.|
+|[RangeAreas](/javascript/api/excel/excel.rangeareas)|[calculate()](/javascript/api/excel/excel.rangeareas#calculate--)|Berechnet alle Zellen in `RangeAreas` der .|
+||[clear(applyTo?: Excel.ClearApplyTo)](/javascript/api/excel/excel.rangeareas#clear-applyto-)|Entfernt Werte, Format, Füllung, Rahmen und andere Eigenschaften für jeden Bereich, aus dem dieses Objekt `RangeAreas` besteht.|
+||[convertDataTypeToText()](/javascript/api/excel/excel.rangeareas#convertdatatypetotext--)|Konvertiert alle Zellen in der `RangeAreas` mit Datentypen in Text.|
+||[convertToLinkedDataType(serviceID: number, languageCulture: string)](/javascript/api/excel/excel.rangeareas#converttolinkeddatatype-serviceid--languageculture-)|Konvertiert alle Zellen in den `RangeAreas` verknüpften Datentypen.|
+||[copyFrom(sourceRange: Range \| RangeAreas \| string, copyType?: Excel.RangeCopyType, skipBlanks?: boolean, transpose?: boolean)](/javascript/api/excel/excel.rangeareas#copyfrom-sourcerange--copytype--skipblanks--transpose-)|Kopiert Zellendaten oder Formatierungen aus dem Quellbereich oder `RangeAreas` in die aktuelle `RangeAreas` .|
+||[getEntireColumn()](/javascript/api/excel/excel.rangeareas#getentirecolumn--)|Gibt ein Objekt zurück, das die gesamten Spalten des darstellt (wenn der Aktuelle z. B. die Zellen `RangeAreas` `RangeAreas` `RangeAreas` "B4:E11, H2" darstellt, wird ein zurückgegeben, das die Spalten `RangeAreas` "B:E, H:H") darstellt.|
+||[getEntireRow()](/javascript/api/excel/excel.rangeareas#getentirerow--)|Gibt ein Objekt zurück, das die gesamten Zeilen des darstellt (wenn der Aktuelle z. B. die Zellen `RangeAreas` `RangeAreas` "B4:E11" darstellt, wird ein zurückgegeben, das die Zeilen `RangeAreas` `RangeAreas` "4:11") darstellt.|
+||[getIntersection(anotherRange: Range \| RangeAreas \| string)](/javascript/api/excel/excel.rangeareas#getintersection-anotherrange-)|Gibt das `RangeAreas` Objekt zurück, das die Schnittmenge der angegebenen Bereiche oder `RangeAreas` darstellt.|
+||[getIntersectionOrNullObject(anotherRange: Range \| RangeAreas \| string)](/javascript/api/excel/excel.rangeareas#getintersectionornullobject-anotherrange-)|Gibt das `RangeAreas` Objekt zurück, das die Schnittmenge der angegebenen Bereiche oder `RangeAreas` darstellt.|
+||[getOffsetRangeAreas(rowOffset: number, columnOffset: number)](/javascript/api/excel/excel.rangeareas#getoffsetrangeareas-rowoffset--columnoffset-)|Gibt ein `RangeAreas` Objekt zurück, das um den bestimmten Zeilen- und Spaltenversatz verschoben wird.|
+||[getSpecialCells(cellType: Excel.SpecialCellType, cellValueType?: Excel.SpecialCellValueType)](/javascript/api/excel/excel.rangeareas#getspecialcells-celltype--cellvaluetype-)|Gibt ein `RangeAreas` Objekt zurück, das alle Zellen darstellt, die mit dem angegebenen Typ und Wert übereinstimmen.|
+||[getSpecialCellsOrNullObject(cellType: Excel.SpecialCellType, cellValueType?: Excel.SpecialCellValueType)](/javascript/api/excel/excel.rangeareas#getspecialcellsornullobject-celltype--cellvaluetype-)|Gibt ein `RangeAreas` Objekt zurück, das alle Zellen darstellt, die mit dem angegebenen Typ und Wert übereinstimmen.|
+||[getTables(fullyContained?: boolean)](/javascript/api/excel/excel.rangeareas#gettables-fullycontained-)|Gibt eine Bereichssammlung von Tabellen zurück, die mit einem beliebigen Bereich in diesem Objekt `RangeAreas` überlappen.|
+||[getUsedRangeAreas(valuesOnly?: boolean)](/javascript/api/excel/excel.rangeareas#getusedrangeareas-valuesonly-)|Gibt den `RangeAreas` verwendeten Wert zurück, der alle verwendeten Bereiche einzelner rechteckiger Bereiche im Objekt `RangeAreas` umfasst.|
+||[getUsedRangeAreasOrNullObject(valuesOnly?: boolean)](/javascript/api/excel/excel.rangeareas#getusedrangeareasornullobject-valuesonly-)|Gibt den `RangeAreas` verwendeten Wert zurück, der alle verwendeten Bereiche einzelner rechteckiger Bereiche im Objekt `RangeAreas` umfasst.|
+||[address](/javascript/api/excel/excel.rangeareas#address)|Gibt den `RangeAreas` Verweis im A1-Format zurück.|
+||[addressLocal](/javascript/api/excel/excel.rangeareas#addresslocal)|Gibt den `RangeAreas` Verweis im Benutzer-Locale zurück.|
+||[areaCount](/javascript/api/excel/excel.rangeareas#areacount)|Gibt die Anzahl rechteckiger Bereiche zurück, aus denen dieses Objekt `RangeAreas` besteht.|
+||[areas](/javascript/api/excel/excel.rangeareas#areas)|Gibt eine Auflistung rechteckiger Bereiche zurück, die dieses Objekt `RangeAreas` umfassen.|
+||[cellCount](/javascript/api/excel/excel.rangeareas#cellcount)|Gibt die Anzahl der Zellen im Objekt zurück und summiert die Zellanzahl aller einzelnen `RangeAreas` rechteckigen Bereiche.|
+||[conditionalFormats](/javascript/api/excel/excel.rangeareas#conditionalformats)|Gibt eine Auflistung bedingter Formate zurück, die sich mit beliebigen Zellen in diesem Objekt `RangeAreas` überschneiden.|
+||[dataValidation](/javascript/api/excel/excel.rangeareas#datavalidation)|Gibt ein Datenüberprüfungsobjekt für alle Bereiche in der `RangeAreas` zurück.|
+||[format](/javascript/api/excel/excel.rangeareas#format)|Gibt ein Objekt zurück, das die Schriftart, die Füllung, die Rahmen, die Ausrichtung und andere Eigenschaften für alle Bereiche `RangeFormat` im Objekt `RangeAreas` kapselt.|
+||[isEntireColumn](/javascript/api/excel/excel.rangeareas#isentirecolumn)|Gibt an, ob alle Bereiche dieses Objekts ganze Spalten `RangeAreas` darstellen (z. B. "A:C, Q:Z").|
+||[isEntireRow](/javascript/api/excel/excel.rangeareas#isentirerow)|Gibt an, ob alle Bereiche dieses Objekts ganze Zeilen `RangeAreas` darstellen (z. B. "1:3, 5:7").|
+||[worksheet](/javascript/api/excel/excel.rangeareas#worksheet)|Gibt das Arbeitsblatt für das aktuelle `RangeAreas` zurück.|
+||[setDirty()](/javascript/api/excel/excel.rangeareas#setdirty--)|Legt den `RangeAreas` fest, der neu berechnet werden soll, wenn die nächste Neuberechnung erfolgt.|
+||[style](/javascript/api/excel/excel.rangeareas#style)|Stellt die Formatvorlage für alle Bereiche in diesem Objekt `RangeAreas` dar.|
+|[RangeBorder](/javascript/api/excel/excel.rangeborder)|[tintAndShade](/javascript/api/excel/excel.rangeborder#tintandshade)|Gibt ein Double an, das eine Farbe für den Bereichsrand aufhellt oder dunkler macht, der Wert liegt zwischen -1 (dunkelster) und 1 (hellster Wert), mit 0 für die Ursprüngliche Farbe.|
+|[RangeBorderCollection](/javascript/api/excel/excel.rangebordercollection)|[tintAndShade](/javascript/api/excel/excel.rangebordercollection#tintandshade)|Gibt ein Double an, das eine Farbe für Bereichsränder hellt oder abdunkriert.|
+|[RangeCollection](/javascript/api/excel/excel.rangecollection)|[getCount()](/javascript/api/excel/excel.rangecollection#getcount--)|Gibt die Anzahl der Bereiche in `RangeCollection` zurück.|
+||[getItemAt(index: number)](/javascript/api/excel/excel.rangecollection#getitemat-index-)|Gibt das Range-Objekt basierend auf seiner Position in `RangeCollection` zurück.|
 ||[items](/javascript/api/excel/excel.rangecollection#items)|Ruft die geladenen untergeordneten Elemente in dieser Sammlung ab.|
 |[RangeFill](/javascript/api/excel/excel.rangefill)|[pattern](/javascript/api/excel/excel.rangefill#pattern)|Das Muster eines Bereichs.|
-||[patternColor](/javascript/api/excel/excel.rangefill#patterncolor)|Der HTML-Farbcode, der die Farbe des Bereichsmusters, des Formulars #RRGGBB (z. B. "FFA500") oder als benannte HTML-Farbe (z. B. "orange") darstellt.|
-||[patternTintAndShade](/javascript/api/excel/excel.rangefill#patterntintandshade)|Gibt ein Double an, mit dem eine Musterfarbe für Bereichsfüllung aufgehellt oder abgedunkkelt wird. Der Wert liegt zwischen -1 (dunkelster) und 1 (hellster Wert), mit 0 für die Ursprüngliche Farbe.|
-||[tintAndShade](/javascript/api/excel/excel.rangefill#tintandshade)|Gibt ein Double an, das eine Farbe für Bereichsfüllung aufleuchtet oder abdunkriert.|
+||[patternColor](/javascript/api/excel/excel.rangefill#patterncolor)|Der HTML-Farbcode, der die Farbe des Bereichsmusters in der Form #RRGGBB (z. B. "FFA500") oder als benannte #A0 (z. B. "Orange") darstellt.|
+||[patternTintAndShade](/javascript/api/excel/excel.rangefill#patterntintandshade)|Gibt ein Double an, das eine Musterfarbe für die Bereichsfüllung aufleuchtet oder abdunkriert.|
+||[tintAndShade](/javascript/api/excel/excel.rangefill#tintandshade)|Gibt einen Double-Wert an, der eine Farbe für die Bereichsfüllung hellt oder abdunkriert.|
 |[RangeFont](/javascript/api/excel/excel.rangefont)|[strikethrough](/javascript/api/excel/excel.rangefont#strikethrough)|Gibt den Durchschlagsstatus der Schriftart an.|
-||[subscript](/javascript/api/excel/excel.rangefont#subscript)|Gibt den Subscript-Status der Schriftart an.|
-||[superscript](/javascript/api/excel/excel.rangefont#superscript)|Gibt den Hochgestellten Status der Schriftart an.|
-||[tintAndShade](/javascript/api/excel/excel.rangefont#tintandshade)|Gibt ein Double an, das eine Farbe für Range Font aufhellt oder dunkler macht, der Wert liegt zwischen -1 (dunkelster) und 1 (hellster Wert), mit 0 für die Ursprüngliche Farbe.|
+||[subscript](/javascript/api/excel/excel.rangefont#subscript)|Gibt den Subscriptstatus der Schriftart an.|
+||[superscript](/javascript/api/excel/excel.rangefont#superscript)|Gibt den Hochgestellten status der Schriftart an.|
+||[tintAndShade](/javascript/api/excel/excel.rangefont#tintandshade)|Gibt ein Double an, das eine Farbe für die Bereichsschriftart hellt oder abdunkriert.|
 |[RangeFormat](/javascript/api/excel/excel.rangeformat)|[autoIndent](/javascript/api/excel/excel.rangeformat#autoindent)|Gibt an, ob Text automatisch eingezogen wird, wenn die Textausrichtung auf die gleiche Verteilung festgelegt ist.|
 ||[indentLevel](/javascript/api/excel/excel.rangeformat#indentlevel)|Eine ganze Zahl zwischen 0 und 250, die die Einzugsebene angibt.|
 ||[readingOrder](/javascript/api/excel/excel.rangeformat#readingorder)|Die Leserichtung für den Bereich.|
@@ -292,26 +292,24 @@
 |[RemoveDuplicatesResult](/javascript/api/excel/excel.removeduplicatesresult)|[removed](/javascript/api/excel/excel.removeduplicatesresult#removed)|Die Anzahl der vom Vorgang entfernten doppelten Zeilen.|
 ||[uniqueRemaining](/javascript/api/excel/excel.removeduplicatesresult#uniqueremaining)|Die Anzahl der verbleibenden eindeutigen Zeilen im Ergebnisbereich.|
 |[ReplaceCriteria](/javascript/api/excel/excel.replacecriteria)|[completeMatch](/javascript/api/excel/excel.replacecriteria#completematch)|Gibt an, ob die Übereinstimmung vollständig oder teilweise sein muss.|
-||[matchCase](/javascript/api/excel/excel.replacecriteria#matchcase)|Gibt an, ob bei der Übereinstimmung die Zwischen- und Kleinschreibung beachtet wird.|
+||[matchCase](/javascript/api/excel/excel.replacecriteria#matchcase)|Gibt an, ob bei der Übereinstimmung die Zwischenfalle beachtet wird.|
 |[RowProperties](/javascript/api/excel/excel.rowproperties)|[address](/javascript/api/excel/excel.rowproperties#address)|Stellt die `address` Eigenschaft dar.|
 ||[addressLocal](/javascript/api/excel/excel.rowproperties#addresslocal)|Stellt die `addressLocal` Eigenschaft dar.|
 ||[rowIndex](/javascript/api/excel/excel.rowproperties#rowindex)|Stellt die `rowIndex` Eigenschaft dar.|
 |[SearchCriteria](/javascript/api/excel/excel.searchcriteria)|[completeMatch](/javascript/api/excel/excel.searchcriteria#completematch)|Gibt an, ob die Übereinstimmung vollständig oder teilweise sein muss.|
-||[matchCase](/javascript/api/excel/excel.searchcriteria#matchcase)|Gibt an, ob bei der Übereinstimmung die Zwischen- und Kleinschreibung beachtet wird.|
+||[matchCase](/javascript/api/excel/excel.searchcriteria#matchcase)|Gibt an, ob bei der Übereinstimmung die Zwischenfalle beachtet wird.|
 ||[searchDirection](/javascript/api/excel/excel.searchcriteria#searchdirection)|Gibt die Suchrichtung an.|
 |[SettableCellProperties](/javascript/api/excel/excel.settablecellproperties)|[format](/javascript/api/excel/excel.settablecellproperties#format)|Stellt die `format` Eigenschaft dar.|
 ||[hyperlink](/javascript/api/excel/excel.settablecellproperties#hyperlink)|Stellt die `hyperlink` Eigenschaft dar.|
 ||[style](/javascript/api/excel/excel.settablecellproperties#style)|Stellt die `style` Eigenschaft dar.|
 |[SettableColumnProperties](/javascript/api/excel/excel.settablecolumnproperties)|[columnHidden](/javascript/api/excel/excel.settablecolumnproperties#columnhidden)|Stellt die `columnHidden` Eigenschaft dar.|
 ||[columnWidth](/javascript/api/excel/excel.settablecolumnproperties#columnwidth)||
-||[format: Excel.CellPropertiesFormat & {
-            columnWidth?] (/javascript/api/excel/excel.settablecolumnproperties#format)|Stellt die `format` Eigenschaft dar.|
-|[SettableRowProperties](/javascript/api/excel/excel.settablerowproperties)|[format: Excel.CellPropertiesFormat & {
-            rowHeight?] (/javascript/api/excel/excel.settablerowproperties#format)|Stellt die `format` Eigenschaft dar.|
+||[format: Excel.CellPropertiesFormat & { columnWidth?](/javascript/api/excel/excel.settablecolumnproperties#format)|Stellt die `format` Eigenschaft dar.|
+|[SettableRowProperties](/javascript/api/excel/excel.settablerowproperties)|[format: Excel.CellPropertiesFormat & { rowHeight?](/javascript/api/excel/excel.settablerowproperties#format)|Stellt die `format` Eigenschaft dar.|
 ||[rowHeight](/javascript/api/excel/excel.settablerowproperties#rowheight)||
 ||[rowHidden](/javascript/api/excel/excel.settablerowproperties#rowhidden)|Stellt die `rowHidden` Eigenschaft dar.|
-|[Shape](/javascript/api/excel/excel.shape)|[altTextDescription](/javascript/api/excel/excel.shape#alttextdescription)|Gibt den alternativen Beschreibungstext für ein Shape-Objekt an.|
-||[altTextTitle](/javascript/api/excel/excel.shape#alttexttitle)|Gibt den alternativen Titeltext für ein Shape-Objekt an.|
+|[Shape](/javascript/api/excel/excel.shape)|[altTextDescription](/javascript/api/excel/excel.shape#alttextdescription)|Gibt den alternativen Beschreibungstext für ein Objekt `Shape` an.|
+||[altTextTitle](/javascript/api/excel/excel.shape#alttexttitle)|Gibt den alternativen Titeltext für ein Objekt `Shape` an.|
 ||[delete()](/javascript/api/excel/excel.shape#delete--)|Entfernt die Form aus dem Arbeitsblatt.|
 ||[geometricShapeType](/javascript/api/excel/excel.shape#geometricshapetype)|Gibt den geometrischen Formtyp dieser geometrischen Form an.|
 ||[getAsImage(format: Excel.PictureFormat)](/javascript/api/excel/excel.shape#getasimage-format-)|Konvertiert die Form in ein Bild und gibt das Bild als base64-codierte Zeichenfolge zurück.|
@@ -344,23 +342,23 @@
 ||[top](/javascript/api/excel/excel.shape#top)|Der Abstand in Punkten zwischen der oberen Kante der Form und der oberen Kante der Arbeitsmappe.|
 ||[visible](/javascript/api/excel/excel.shape#visible)|Gibt an, ob die Form sichtbar ist.|
 ||[width](/javascript/api/excel/excel.shape#width)|Gibt die Breite der Form in Punkt an.|
-|[ShapeActivatedEventArgs](/javascript/api/excel/excel.shapeactivatedeventargs)|[shapeId](/javascript/api/excel/excel.shapeactivatedeventargs#shapeid)|Ruft die ID der aktivierten Form ab.|
+|[ShapeActivatedEventArgs](/javascript/api/excel/excel.shapeactivatedeventargs)|[shapeId](/javascript/api/excel/excel.shapeactivatedeventargs#shapeid)|Ruft die ID des aktivierten Shapes ab.|
 ||[type](/javascript/api/excel/excel.shapeactivatedeventargs#type)|Ruft den Typ des Ereignisses ab.|
-||[worksheetId](/javascript/api/excel/excel.shapeactivatedeventargs#worksheetid)|Ruft die ID des Arbeitsblatts ab, auf dem die Form aktiviert wird.|
+||[worksheetId](/javascript/api/excel/excel.shapeactivatedeventargs#worksheetid)|Ruft die ID des Arbeitsblatts ab, in dem das Shape aktiviert wird.|
 |[ShapeCollection](/javascript/api/excel/excel.shapecollection)|[addGeometricShape(geometricShapeType: Excel.GeometricShapeType)](/javascript/api/excel/excel.shapecollection#addgeometricshape-geometricshapetype-)|Fügt dem Arbeitsblatt eine geometrische Form hinzu.|
 ||[addGroup(values: Array<string \| Shape>)](/javascript/api/excel/excel.shapecollection#addgroup-values-)|Gruppiert eine Teilmenge von Formen auf dem Arbeitsblatt dieser Sammlung.|
 ||[addImage(base64ImageString: string)](/javascript/api/excel/excel.shapecollection#addimage-base64imagestring-)|Erstellt ein Bild aus einer base64-codierten Zeichenfolge und fügt es dem Arbeitsblatt hinzu.|
 ||[addLine(startLeft: number, startTop: number, endLeft: number, endTop: number, connectorType?: Excel.ConnectorType)](/javascript/api/excel/excel.shapecollection#addline-startleft--starttop--endleft--endtop--connectortype-)|Fügt einem Arbeitsblatt eine Linie hinzu.|
 ||[addTextBox(text?: string)](/javascript/api/excel/excel.shapecollection#addtextbox-text-)|Fügt dem Arbeitsblatt ein Textfeld mit dem angegebenen Text als Inhalt hinzu.|
 ||[getCount()](/javascript/api/excel/excel.shapecollection#getcount--)|Gibt die Anzahl der Formen auf dem Arbeitsblatt zurück.|
-||[getItem(key: string)](/javascript/api/excel/excel.shapecollection#getitem-key-)|Ruft eine Form anhand ihres Namens oder ihrer ID ab.|
+||[getItem(key: string)](/javascript/api/excel/excel.shapecollection#getitem-key-)|Ruft ein Shape mit seinem Namen oder seiner ID ab.|
 ||[getItemAt(index: number)](/javascript/api/excel/excel.shapecollection#getitemat-index-)|Ruft eine Form anhand ihrer Position in der Sammlung ab.|
 ||[items](/javascript/api/excel/excel.shapecollection#items)|Ruft die geladenen untergeordneten Elemente in dieser Sammlung ab.|
 |[ShapeDeactivatedEventArgs](/javascript/api/excel/excel.shapedeactivatedeventargs)|[shapeId](/javascript/api/excel/excel.shapedeactivatedeventargs#shapeid)|Ruft die ID der deaktivierten Form ab.|
 ||[type](/javascript/api/excel/excel.shapedeactivatedeventargs#type)|Ruft den Typ des Ereignisses ab.|
-||[worksheetId](/javascript/api/excel/excel.shapedeactivatedeventargs#worksheetid)|Ruft die ID des Arbeitsblatts ab, auf dem die Form deaktiviert wird.|
+||[worksheetId](/javascript/api/excel/excel.shapedeactivatedeventargs#worksheetid)|Ruft die ID des Arbeitsblatts ab, in dem das Shape deaktiviert ist.|
 |[ShapeFill](/javascript/api/excel/excel.shapefill)|[clear()](/javascript/api/excel/excel.shapefill#clear--)|Löscht die Füllungsformatierung dieser Form.|
-||[foregroundColor](/javascript/api/excel/excel.shapefill#foregroundcolor)|Stellt die Vordergrundfarbe der Formfüllung im HTML-Farbformat, des Formulars #RRGGBB (z. B. "FFA500") oder als benannte HTML-Farbe (z. B. "orange") dar.|
+||[foregroundColor](/javascript/api/excel/excel.shapefill#foregroundcolor)|Stellt die Vordergrundfarbe der Formfüllung im HTML-Farbformat im Format #RRGGBB (z. B. "FFA500") oder als benannte HTML-Farbe (z. B. "Orange") dar.|
 ||[type](/javascript/api/excel/excel.shapefill#type)|Gibt den Füllungstyp der Form zurück.|
 ||[setSolidColor(color: string)](/javascript/api/excel/excel.shapefill#setsolidcolor-color-)|Legt die Füllungsformatierung der Form auf einfarbige Füllung fest.|
 ||[transparency](/javascript/api/excel/excel.shapefill#transparency)|Gibt den Transparenzprozentsatz der Füllung als Wert zwischen 0,0 (undurchsichtig) und 1,0 (klar) an.|
@@ -371,10 +369,10 @@
 ||[size](/javascript/api/excel/excel.shapefont#size)|Stellt die Schriftgröße in Punkt dar (z. B. 11).|
 ||[underline](/javascript/api/excel/excel.shapefont#underline)|Art der auf die Schriftart angewendeten Unterstreichung.|
 |[ShapeGroup](/javascript/api/excel/excel.shapegroup)|[id](/javascript/api/excel/excel.shapegroup#id)|Gibt den Formbezeichner an.|
-||[shape](/javascript/api/excel/excel.shapegroup#shape)|Gibt das Formobjekt zurück, das der Gruppe zugeordnet ist.|
-||[shapes](/javascript/api/excel/excel.shapegroup#shapes)|Gibt die Sammlung von Shape-Objekten zurück.|
+||[shape](/javascript/api/excel/excel.shapegroup#shape)|Gibt das `Shape` objekt zurück, das der Gruppe zugeordnet ist.|
+||[shapes](/javascript/api/excel/excel.shapegroup#shapes)|Gibt die Auflistung von Objekten `Shape` zurück.|
 ||[ungroup()](/javascript/api/excel/excel.shapegroup#ungroup--)|Hebt die Gruppierung von gruppierten Formen in der angegebenen Formgruppe auf.|
-|[ShapeLineFormat](/javascript/api/excel/excel.shapelineformat)|[color](/javascript/api/excel/excel.shapelineformat#color)|Stellt die Linienfarbe im HTML-Farbformat, des Formulars #RRGGBB (z. B. "FFA500") oder als benannte HTML-Farbe (z. B. "Orange") dar.|
+|[ShapeLineFormat](/javascript/api/excel/excel.shapelineformat)|[color](/javascript/api/excel/excel.shapelineformat#color)|Stellt die Linienfarbe im HTML-Farbformat, im Format #RRGGBB (z. B. "FFA500") oder als benannte HTML-Farbe (z. B. "Orange") dar.|
 ||[dashStyle](/javascript/api/excel/excel.shapelineformat#dashstyle)|Steht für die Linienart der Form.|
 ||[style](/javascript/api/excel/excel.shapelineformat#style)|Stellt die Linienart der Form dar.|
 ||[transparency](/javascript/api/excel/excel.shapelineformat#transparency)|Stellt den Deckungsgrad der angegebenen Linie als Wert von 0,0 (undurchsichtig) bis 1,0 (transparent) dar.|
@@ -383,13 +381,13 @@
 |[SortField](/javascript/api/excel/excel.sortfield)|[subField](/javascript/api/excel/excel.sortfield#subfield)|Gibt das Unterfeld an, das der Zieleigenschaftsname eines rich-Werts ist, nach dem sortiert werden soll.|
 |[StyleCollection](/javascript/api/excel/excel.stylecollection)|[getCount()](/javascript/api/excel/excel.stylecollection#getcount--)|Ruft die Anzahl von Formatvorlagen in der Sammlung ab.|
 ||[getItemAt(index: number)](/javascript/api/excel/excel.stylecollection#getitemat-index-)|Ruft eine Formatvorlage anhand ihrer Position in der Sammlung ab.|
-|[Table](/javascript/api/excel/excel.table)|[autoFilter](/javascript/api/excel/excel.table#autofilter)|Stellt das AutoFilter-Objekt der Tabelle dar.|
+|[Table](/javascript/api/excel/excel.table)|[autoFilter](/javascript/api/excel/excel.table#autofilter)|Represents the `AutoFilter` object of the table.|
 |[TableAddedEventArgs](/javascript/api/excel/excel.tableaddedeventargs)|[source](/javascript/api/excel/excel.tableaddedeventargs#source)|Ruft die Quelle des Ereignisses ab.|
-||[tableId](/javascript/api/excel/excel.tableaddedeventargs#tableid)|Ruft die ID der Tabelle ab, die hinzugefügt wird.|
+||[tableId](/javascript/api/excel/excel.tableaddedeventargs#tableid)|Ruft die ID der hinzugefügten Tabelle ab.|
 ||[type](/javascript/api/excel/excel.tableaddedeventargs#type)|Ruft den Typ des Ereignisses ab.|
-||[worksheetId](/javascript/api/excel/excel.tableaddedeventargs#worksheetid)|Ruft die ID des Arbeitsblatts ab, auf dem die Tabelle hinzugefügt wird.|
+||[worksheetId](/javascript/api/excel/excel.tableaddedeventargs#worksheetid)|Ruft die ID des Arbeitsblatts ab, in dem die Tabelle hinzugefügt wird.|
 |[TableChangedEventArgs](/javascript/api/excel/excel.tablechangedeventargs)|[details](/javascript/api/excel/excel.tablechangedeventargs#details)|Ruft die Informationen zum Änderungsdetail ab.|
-|[TableCollection](/javascript/api/excel/excel.tablecollection)|[onAdded](/javascript/api/excel/excel.tablecollection#onadded)|Tritt ein, wenn in einer Arbeitsmappe eine neue Tabelle hinzugefügt wird.|
+|[TableCollection](/javascript/api/excel/excel.tablecollection)|[onAdded](/javascript/api/excel/excel.tablecollection#onadded)|Tritt auf, wenn eine neue Tabelle in einer Arbeitsmappe hinzugefügt wird.|
 ||[onDeleted](/javascript/api/excel/excel.tablecollection#ondeleted)|Tritt ein, wenn in einer Arbeitsmappe die angegebene Tabelle gelöscht wird.|
 |[TableDeletedEventArgs](/javascript/api/excel/excel.tabledeletedeventargs)|[source](/javascript/api/excel/excel.tabledeletedeventargs#source)|Ruft die Quelle des Ereignisses ab.|
 ||[tableId](/javascript/api/excel/excel.tabledeletedeventargs#tableid)|Ruft die ID der gelöschten Tabelle ab.|
@@ -415,40 +413,40 @@
 ||[verticalAlignment](/javascript/api/excel/excel.textframe#verticalalignment)|Stellt die vertikale Ausrichtung des Textrahmens dar.|
 ||[verticalOverflow](/javascript/api/excel/excel.textframe#verticaloverflow)|Stellt das vertikale Überlaufverhalten des Textrahmens dar.|
 |[TextRange](/javascript/api/excel/excel.textrange)|[getSubstring(start: number, length?: number)](/javascript/api/excel/excel.textrange#getsubstring-start--length-)|Gibt ein TextRange-Objekt für die Teilzeichenfolge im angegebenen Bereich zurück.|
-||[font](/javascript/api/excel/excel.textrange#font)|Gibt ein ShapeFont-Objekt zurück, das die Schriftartattribute für den Textbereich darstellt.|
+||[font](/javascript/api/excel/excel.textrange#font)|Gibt ein `ShapeFont` Objekt zurück, das die Schriftartattribute für den Textbereich darstellt.|
 ||[text](/javascript/api/excel/excel.textrange#text)|Stellt den unformatierten Textinhalt des Textbereichs dar.|
 |[Arbeitsmappe](/javascript/api/excel/excel.workbook)|[chartDataPointTrack](/javascript/api/excel/excel.workbook#chartdatapointtrack)|True, wenn alle Diagramme in der Arbeitsmappe die tatsächlichen Datenpunkte nachverfolgen, mit denen sie verbunden sind.|
 ||[getActiveChart()](/javascript/api/excel/excel.workbook#getactivechart--)|Ruft das derzeit aktive Diagramm in der Arbeitsmappe ab.|
 ||[getActiveChartOrNullObject()](/javascript/api/excel/excel.workbook#getactivechartornullobject--)|Ruft das derzeit aktive Diagramm in der Arbeitsmappe ab.|
-||[getIsActiveCollabSession()](/javascript/api/excel/excel.workbook#getisactivecollabsession--)|True, wenn die Arbeitsmappe von mehreren Benutzern bearbeitet wird (gemeinsame Dokumenterstellung).|
+||[getIsActiveCollabSession()](/javascript/api/excel/excel.workbook#getisactivecollabsession--)|Gibt `true` zurück, ob die Arbeitsmappe von mehreren Benutzern bearbeitet wird (durch gemeinsamen Erstellen).|
 ||[getSelectedRanges()](/javascript/api/excel/excel.workbook#getselectedranges--)|Ruft die aktuell ausgewählten Bereiche (einen oder mehrere) aus der Arbeitsmappe ab.|
 ||[isDirty](/javascript/api/excel/excel.workbook#isdirty)|Gibt an, ob seit dem letzten Speichern der Arbeitsmappe Änderungen vorgenommen wurden.|
-||[autoSave](/javascript/api/excel/excel.workbook#autosave)|Gibt an, ob sich die Arbeitsmappe im automatischen Speichern befindet.|
+||[autoSave](/javascript/api/excel/excel.workbook#autosave)|Gibt an, ob sich die Arbeitsmappe im AutoSave-Modus befindet.|
 ||[calculationEngineVersion](/javascript/api/excel/excel.workbook#calculationengineversion)|Gibt eine Nummer zur Version des Excel-Berechnungsmoduls zurück.|
-||[onAutoSaveSettingChanged](/javascript/api/excel/excel.workbook#onautosavesettingchanged)|Tritt ein, wenn die AutoSpeichern-Einstellung für die Arbeitsmappe geändert wird.|
+||[onAutoSaveSettingChanged](/javascript/api/excel/excel.workbook#onautosavesettingchanged)|Tritt auf, wenn die Einstellung AutoSave in der Arbeitsmappe geändert wird.|
 ||[previouslySaved](/javascript/api/excel/excel.workbook#previouslysaved)|Gibt an, ob die Arbeitsmappe jemals lokal oder online gespeichert wurde.|
 ||[usePrecisionAsDisplayed](/javascript/api/excel/excel.workbook#useprecisionasdisplayed)|True, wenn die Berechnungen in dieser Arbeitsmappe nur mit der Genauigkeit durchgeführt werden, mit der die Zahlen angezeigt werden.|
 |[WorkbookAutoSaveSettingChangedEventArgs](/javascript/api/excel/excel.workbookautosavesettingchangedeventargs)|[type](/javascript/api/excel/excel.workbookautosavesettingchangedeventargs#type)|Ruft den Typ des Ereignisses ab.|
 |[Arbeitsblatt](/javascript/api/excel/excel.worksheet)|[enableCalculation](/javascript/api/excel/excel.worksheet#enablecalculation)|Bestimmt, ob Excel das Arbeitsblatt bei Bedarf neu berechnen soll.|
-||[findAll(text: string, criteria: Excel.WorksheetSearchCriteria)](/javascript/api/excel/excel.worksheet#findall-text--criteria-)|Findet alle Vorkommen der angegebenen Zeichenfolge auf der Grundlage der angegebenen Kriterien und gibt sie als RangeAreas-Objekt zurück, das einen oder mehrere rechteckige Bereiche umfasst.|
-||[findAllOrNullObject(text: string, criteria: Excel.WorksheetSearchCriteria)](/javascript/api/excel/excel.worksheet#findallornullobject-text--criteria-)|Findet alle Vorkommen der angegebenen Zeichenfolge auf der Grundlage der angegebenen Kriterien und gibt sie als RangeAreas-Objekt zurück, das einen oder mehrere rechteckige Bereiche umfasst.|
-||[getRanges(address?: string)](/javascript/api/excel/excel.worksheet#getranges-address-)|Ruft das RangeAreas-Objekt ab, das einen Block oder mehrere Blöcke rechteckiger Bereiche darstellt, die anhand von Adresse oder Name angegeben sind.|
-||[autoFilter](/javascript/api/excel/excel.worksheet#autofilter)|Stellt das AutoFilter-Objekt des Arbeitsblatts dar.|
+||[findAll(text: string, criteria: Excel.WorksheetSearchCriteria)](/javascript/api/excel/excel.worksheet#findall-text--criteria-)|Sucht alle Vorkommen der angegebenen Zeichenfolge basierend auf den angegebenen Kriterien und gibt sie als Objekt zurück, das einen `RangeAreas` oder mehrere rechteckige Bereiche umfasst.|
+||[findAllOrNullObject(text: string, criteria: Excel.WorksheetSearchCriteria)](/javascript/api/excel/excel.worksheet#findallornullobject-text--criteria-)|Sucht alle Vorkommen der angegebenen Zeichenfolge basierend auf den angegebenen Kriterien und gibt sie als Objekt zurück, das einen `RangeAreas` oder mehrere rechteckige Bereiche umfasst.|
+||[getRanges(address?: string)](/javascript/api/excel/excel.worksheet#getranges-address-)|Ruft das `RangeAreas` Objekt ab, das einen oder mehrere Blöcke rechteckiger Bereiche darstellt, die durch die Adresse oder den Namen angegeben werden.|
+||[autoFilter](/javascript/api/excel/excel.worksheet#autofilter)|Represents the `AutoFilter` object of the worksheet.|
 ||[horizontalPageBreaks](/javascript/api/excel/excel.worksheet#horizontalpagebreaks)|Ruft die Sammlung der horizontalen Seitenumbrüche für das Arbeitsblatt ab.|
 ||[onFormatChanged](/javascript/api/excel/excel.worksheet#onformatchanged)|Tritt ein, wenn das Format für ein bestimmtes Arbeitsblatt geändert wird.|
-||[pageLayout](/javascript/api/excel/excel.worksheet#pagelayout)|Ruft das PageLayout-Objekt des Arbeitsblatts ab.|
+||[pageLayout](/javascript/api/excel/excel.worksheet#pagelayout)|Ruft das `PageLayout` Objekt des Arbeitsblatts ab.|
 ||[shapes](/javascript/api/excel/excel.worksheet#shapes)|Gibt die Sammlung aller Formobjekte auf dem Arbeitsblatt zurück.|
 ||[verticalPageBreaks](/javascript/api/excel/excel.worksheet#verticalpagebreaks)|Ruft die Sammlung der vertikalen Seitenumbrüche für das Arbeitsblatt ab.|
 ||[replaceAll(text: string, replacement: string, criteria: Excel.ReplaceCriteria)](/javascript/api/excel/excel.worksheet#replaceall-text--replacement--criteria-)|Sucht und ersetzt die angegebene Zeichenfolge auf der Grundlage der auf dem aktuellen Arbeitsblatt angegebenen Kriterien.|
 |[WorksheetChangedEventArgs](/javascript/api/excel/excel.worksheetchangedeventargs)|[details](/javascript/api/excel/excel.worksheetchangedeventargs#details)|Stellt die Informationen zum Änderungsdetail dar.|
 |[WorksheetCollection](/javascript/api/excel/excel.worksheetcollection)|[onChanged](/javascript/api/excel/excel.worksheetcollection#onchanged)|Tritt ein, wenn eines der Arbeitsblätter in der Arbeitsmappe geändert wird.|
-||[onFormatChanged](/javascript/api/excel/excel.worksheetcollection#onformatchanged)|Tritt ein, wenn sich eins der Arbeitsblätter in der Arbeitsmappe geändert hat.|
+||[onFormatChanged](/javascript/api/excel/excel.worksheetcollection#onformatchanged)|Tritt auf, wenn ein Arbeitsblatt in der Arbeitsmappe ein Format geändert hat.|
 ||[onSelectionChanged](/javascript/api/excel/excel.worksheetcollection#onselectionchanged)|Tritt ein, wenn sich die Auswahl auf einem beliebigen Arbeitsblatt ändert.|
 |[WorksheetFormatChangedEventArgs](/javascript/api/excel/excel.worksheetformatchangedeventargs)|[address](/javascript/api/excel/excel.worksheetformatchangedeventargs#address)|Ruft die Bereichsadresse ab, die den geänderten Bereich eines bestimmten Arbeitsblatts darstellt.|
 ||[getRange(ctx: Excel.RequestContext)](/javascript/api/excel/excel.worksheetformatchangedeventargs#getrange-ctx-)|Ruft den Bereich ab, der den geänderten Bereich eines bestimmten Arbeitsblatts darstellt.|
 ||[getRangeOrNullObject(ctx: Excel.RequestContext)](/javascript/api/excel/excel.worksheetformatchangedeventargs#getrangeornullobject-ctx-)|Ruft den Bereich ab, der den geänderten Bereich eines bestimmten Arbeitsblatts darstellt.|
 ||[source](/javascript/api/excel/excel.worksheetformatchangedeventargs#source)|Ruft die Quelle des Ereignisses ab.|
 ||[type](/javascript/api/excel/excel.worksheetformatchangedeventargs#type)|Ruft den Typ des Ereignisses ab.|
-||[worksheetId](/javascript/api/excel/excel.worksheetformatchangedeventargs#worksheetid)|Ruft die ID des Arbeitsblatts ab, auf dem die Daten geändert wurden.|
+||[worksheetId](/javascript/api/excel/excel.worksheetformatchangedeventargs#worksheetid)|Ruft die ID des Arbeitsblatts ab, in dem sich die Daten geändert haben.|
 |[WorksheetSearchCriteria](/javascript/api/excel/excel.worksheetsearchcriteria)|[completeMatch](/javascript/api/excel/excel.worksheetsearchcriteria#completematch)|Gibt an, ob die Übereinstimmung vollständig oder teilweise sein muss.|
-||[matchCase](/javascript/api/excel/excel.worksheetsearchcriteria#matchcase)|Gibt an, ob bei der Übereinstimmung die Zwischen- und Kleinschreibung beachtet wird.|
+||[matchCase](/javascript/api/excel/excel.worksheetsearchcriteria#matchcase)|Gibt an, ob bei der Übereinstimmung die Zwischenfalle beachtet wird.|
