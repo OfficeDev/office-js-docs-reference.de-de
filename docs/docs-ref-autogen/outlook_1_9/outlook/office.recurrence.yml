@@ -147,11 +147,39 @@ methods:
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'getAsync(options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<Recurrence>) => void): void;'
+    content: 'getAsync(options: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<Recurrence>) => void): void;'
     parameters:
     - id: options
-      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können jedes Objekt bereitstellen, auf das sie in der Rückrufmethode zugreifen möchten.'
+      description: 'Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können jedes Objekt bereitstellen, auf das sie in der Rückrufmethode zugreifen möchten.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion `callback` mit einem einzelnen Parameter aufgerufen. `asyncResult`<!-- -->, bei dem es sich um ein `Office.AsyncResult` Objekt handelt. Die `value` Eigenschaft des Ergebnisses ist ein `Recurrence` Objekt.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.Recurrence:interface" />&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: getAsync(callback)
+  uid: outlook!Office.Recurrence#getAsync:member(2)
+  package: outlook!
+  fullName: getAsync(callback)
+  summary: >-
+    Gibt das aktuelle Serienobjekt einer Terminserie zurück.
+
+
+    Diese Methode gibt das gesamte `Recurrence` Objekt für die Terminserie zurück.
+
+
+    \[[API-Satz: Postfach 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+
+
+    **[Anwendbarer Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getAsync(callback?: (asyncResult: Office.AsyncResult<Recurrence>) => void): void;'
+    parameters:
     - id: callback
       description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion `callback` mit einem einzelnen Parameter aufgerufen. `asyncResult`<!-- -->, bei dem es sich um ein `Office.AsyncResult` Objekt handelt. Die `value` Eigenschaft des Ergebnisses ist ein `Recurrence` Objekt.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.Recurrence:interface" />&gt;) =&gt; void'
@@ -242,13 +270,13 @@ methods:
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'setAsync(recurrencePattern: Recurrence, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    content: 'setAsync(recurrencePattern: Recurrence, options: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     parameters:
     - id: recurrencePattern
       description: Ein Serienobjekt.
       type: <xref uid="outlook!Office.Recurrence:interface" />
     - id: options
-      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können jedes Objekt bereitstellen, auf das sie in der Rückrufmethode zugreifen möchten.'
+      description: 'Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können jedes Objekt bereitstellen, auf das sie in der Rückrufmethode zugreifen möchten.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
       description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion `callback` mit einem einzelnen Parameter aufgerufen. `asyncResult`<!-- -->, bei dem es sich um ein `Office.AsyncResult` Objekt handelt.
@@ -256,10 +284,47 @@ methods:
     return:
       type: void
       description: ''
+- name: setAsync(recurrencePattern, callback)
+  uid: outlook!Office.Recurrence#setAsync:member(2)
+  package: outlook!
+  fullName: setAsync(recurrencePattern, callback)
+  summary: >-
+    Legt das Serienmuster einer Terminserie fest.
+
+
+    **Hinweis**: `setAsync` sollte nur für Serienelemente und nicht für Instanzelemente verfügbar sein.
+
+
+    \[[API-Satz: Postfach 1.7](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadWriteItem`
+
+
+    **[Anwendbarer Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Verfassen
+
+
+    **Fehler**:
+
+
+    - `InvalidEndTime`<!-- -->: Die Endzeit des Termins liegt vor der Startzeit.
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'setAsync(recurrencePattern: Recurrence, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: recurrencePattern
+      description: Ein Serienobjekt.
+      type: <xref uid="outlook!Office.Recurrence:interface" />
+    - id: callback
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion `callback` mit einem einzelnen Parameter aufgerufen. `asyncResult`<!-- -->, bei dem es sich um ein `Office.AsyncResult` Objekt handelt.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
 metadata:
-  ms.openlocfilehash: 057e373f3bd2b5d83dfcec24de0cb548ac6c1fc7
-  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
+  ms.openlocfilehash: 5664a1b416a2bdd23f95864cae287f5ec69d7d07
+  ms.sourcegitcommit: d0f7e3d564e90cdff464157440c36ad19fa526f0
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 03/26/2021
-  ms.locfileid: "51306817"
+  ms.lasthandoff: 04/09/2021
+  ms.locfileid: "51658873"
