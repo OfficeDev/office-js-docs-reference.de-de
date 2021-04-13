@@ -191,13 +191,13 @@ methods:
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'setAsync(dateTime: Date, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    content: 'setAsync(dateTime: Date, options: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     parameters:
     - id: dateTime
       description: Ein Datum/Uhrzeitobjekt in koordinierter Weltzeit (UTC).
       type: Date
     - id: options
-      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können jedes Objekt bereitstellen, auf das sie in der Rückrufmethode zugreifen möchten.'
+      description: 'Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können jedes Objekt bereitstellen, auf das sie in der Rückrufmethode zugreifen möchten.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
       description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion mit einem einzelnen `callback` Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->. Wenn das Festlegen von Datum und Uhrzeit fehlschlägt, enthält die `asyncResult.error`-Eigenschaft einen Fehlercode.
@@ -205,10 +205,53 @@ methods:
     return:
       type: void
       description: ''
+- name: setAsync(dateTime, callback)
+  uid: outlook!Office.Time#setAsync:member(2)
+  package: outlook!
+  fullName: setAsync(dateTime, callback)
+  summary: >-
+    Legt die Start- oder Endzeit eines Termins fest.
+
+
+    Wenn die Methode für die start-Eigenschaft aufgerufen wird, wird die Eigenschaft angepasst, um die Dauer des Termins wie `setAsync` `end` zuvor festgelegt zu erhalten. Wenn die `setAsync`-Methode für die `end`-Eigenschaft aufgerufen wird, wird die Dauer des Termins bis zur neuen Endzeit verlängert.
+
+
+    Die Uhrzeit muss UTC-Format aufweisen; Sie können mithilfe der `convertToUtcClientTime`-Methode die korrekte UTC-Uhrzeit abrufen.
+
+
+    **Wichtig:** Im Windows-Client können Sie diese Funktion nicht verwenden, um den Anfang oder das Ende einer Serie zu aktualisieren.
+
+
+    \[[API-Satz: Postfach 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadWriteItem`
+
+
+    **[Anwendbarer Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Verfassen
+
+
+    **Fehler**:
+
+
+    - `InvalidEndTime`<!-- -->: Die Terminendzeit liegt vor der Terminanfangszeit.
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'setAsync(dateTime: Date, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: dateTime
+      description: Ein Datum/Uhrzeitobjekt in koordinierter Weltzeit (UTC).
+      type: Date
+    - id: callback
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion mit einem einzelnen `callback` Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->. Wenn das Festlegen von Datum und Uhrzeit fehlschlägt, enthält die `asyncResult.error`-Eigenschaft einen Fehlercode.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
 metadata:
-  ms.openlocfilehash: 5a3d71ca79bd9357f073d4175430343eadc697d1
-  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
+  ms.openlocfilehash: 5e283e8dabe220dacaeebb63e68fe9ecc627f27a
+  ms.sourcegitcommit: d0f7e3d564e90cdff464157440c36ad19fa526f0
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 03/26/2021
-  ms.locfileid: "51292219"
+  ms.lasthandoff: 04/09/2021
+  ms.locfileid: "51660078"
