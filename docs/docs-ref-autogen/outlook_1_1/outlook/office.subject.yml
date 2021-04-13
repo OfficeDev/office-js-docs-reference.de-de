@@ -131,13 +131,13 @@ methods:
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'setAsync(subject: string, options?: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    content: 'setAsync(subject: string, options: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     parameters:
     - id: subject
       description: Der Betreff des Termins oder der Nachricht. Die Zeichenfolge ist auf 255 Zeichen beschränkt.
       type: string
     - id: options
-      description: 'Optional. Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können jedes Objekt bereitstellen, auf das sie in der Rückrufmethode zugreifen möchten.'
+      description: 'Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können jedes Objekt bereitstellen, auf das sie in der Rückrufmethode zugreifen möchten.'
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
       description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion mit einem einzelnen `callback` Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->. Wenn das Festlegen des Betreffs fehlschlägt, enthält die `asyncResult.error`-Eigenschaft einen Fehlercode.
@@ -145,10 +145,47 @@ methods:
     return:
       type: void
       description: ''
+- name: setAsync(subject, callback)
+  uid: outlook!Office.Subject#setAsync:member(2)
+  package: outlook!
+  fullName: setAsync(subject, callback)
+  summary: >-
+    Legt den Betreff eines Termins oder einer Nachricht fest.
+
+
+    Die `setAsync`-Methode startet einen asynchronen Aufruf an den Exchange-Server, den Betreff eines Termins oder einer Nachricht festzulegen. Durch das Festlegen des Betreffs wird der aktuelle Betreff überschrieben, Präfixe wie "WG:" oder "AW:" bleiben jedoch erhalten.
+
+
+    \[[API-Satz: Postfach 1.1](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+
+
+    **[Anwendbarer Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Verfassen
+
+
+    **Fehler**:
+
+
+    - `DataExceedsMaximumSize`<!-- -->: Der Subject-Parameter ist länger als 255 Zeichen.
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'setAsync(subject: string, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: subject
+      description: Der Betreff des Termins oder der Nachricht. Die Zeichenfolge ist auf 255 Zeichen beschränkt.
+      type: string
+    - id: callback
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion mit einem einzelnen `callback` Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->. Wenn das Festlegen des Betreffs fehlschlägt, enthält die `asyncResult.error`-Eigenschaft einen Fehlercode.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
 metadata:
-  ms.openlocfilehash: 8194e86cf5c60f5e1a746efe7663c411620b735e
-  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
+  ms.openlocfilehash: 9c3561cc7ebb5c3e6eec323207fe9a367e3e72c8
+  ms.sourcegitcommit: d0f7e3d564e90cdff464157440c36ad19fa526f0
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 03/26/2021
-  ms.locfileid: "51292275"
+  ms.lasthandoff: 04/09/2021
+  ms.locfileid: "51660085"
