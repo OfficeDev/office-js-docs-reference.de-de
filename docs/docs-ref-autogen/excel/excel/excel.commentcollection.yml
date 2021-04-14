@@ -37,57 +37,6 @@ properties:
     content: 'readonly items: Excel.Comment[];'
     return:
       type: <xref uid="excel!Excel.Comment:class" />[]
-- name: onAdded
-  uid: excel!Excel.CommentCollection#onAdded:member
-  package: excel!
-  fullName: onAdded
-  summary: >-
-    Tritt auf, wenn die Kommentare hinzugefügt werden.
-
-
-    \[[API-Satz: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
-  isPreview: false
-  isDeprecated: false
-  syntax:
-    content: 'readonly onAdded: OfficeExtension.EventHandlers<Excel.CommentAddedEventArgs>;'
-    return:
-      type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.CommentAddedEventArgs:interface" />&gt;
-      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/events-comment-event-handler.yaml\nawait Excel.run(async (context) => {\n    const comments = context.workbook.worksheets.getActiveWorksheet().comments;\n\n    // Register the onAdded, onChanged, and onDeleted comment event handlers.\n    comments.onAdded.add(commentAdded);\n    comments.onChanged.add(commentChanged);\n    comments.onDeleted.add(commentDeleted);\n\n    await context.sync();\n\n    console.log(\"Added event handlers for when comments are added, changed, or deleted.\");\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/events-comment-event-handler.yaml\nasync function commentAdded(event: Excel.CommentAddedEventArgs) {\n    await Excel.run(async (context) => {\n        // Retrieve the added comment using the comment ID.\n        // Note: This method assumes only a single comment is added at a time. \n        const addedComment = context.workbook.comments.getItem(event.commentDetails[0].commentId);\n\n        // Load the added comment's data.\n        addedComment.load([\"content\", \"authorName\", \"creationDate\"]);\n\n        await context.sync();\n\n        // Print out the added comment's data.\n        console.log(`A comment was added:`);\n        console.log(`    ID: ${event.commentDetails[0].commentId}`);\n        console.log(`    Comment content:${addedComment.content}`);\n        console.log(`    Comment author:${addedComment.authorName}`);\n        console.log(`    Creation date:${addedComment.creationDate}`);\n    });\n}\n```"
-- name: onChanged
-  uid: excel!Excel.CommentCollection#onChanged:member
-  package: excel!
-  fullName: onChanged
-  summary: >-
-    Tritt auf, wenn Kommentare oder Antworten in einer Kommentarsammlung geändert werden, auch wenn Antworten gelöscht werden.
-
-
-    \[[API-Satz: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
-  isPreview: false
-  isDeprecated: false
-  syntax:
-    content: 'readonly onChanged: OfficeExtension.EventHandlers<Excel.CommentChangedEventArgs>;'
-    return:
-      type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.CommentChangedEventArgs:interface" />&gt;
-      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/events-comment-event-handler.yaml\nawait Excel.run(async (context) => {\n    const comments = context.workbook.worksheets.getActiveWorksheet().comments;\n\n    // Register the onAdded, onChanged, and onDeleted comment event handlers.\n    comments.onAdded.add(commentAdded);\n    comments.onChanged.add(commentChanged);\n    comments.onDeleted.add(commentDeleted);\n\n    await context.sync();\n\n    console.log(\"Added event handlers for when comments are added, changed, or deleted.\");\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/events-comment-event-handler.yaml\nasync function commentChanged(event: Excel.CommentChangedEventArgs) {\n    await Excel.run(async (context) => {\n        // Retrieve the changed comment using the comment ID.\n        // Note: This method assumes only a single comment is changed at a time. \n        const changedComment = context.workbook.comments.getItem(event.commentDetails[0].commentId);\n\n        // Load the changed comment's data.\n        changedComment.load([\"content\", \"authorName\", \"creationDate\"]);\n\n        await context.sync();\n\n        // Print out the changed comment's data.\n        console.log(`A comment was changed:`);\n        console.log(`    ID: ${event.commentDetails[0].commentId}`);\n        console.log(`    Updated comment content: ${changedComment.content}`);\n        console.log(`    Comment author: ${changedComment.authorName}`);\n        console.log(`    Creation date: ${changedComment.creationDate}`);\n    });\n}\n```"
-- name: onDeleted
-  uid: excel!Excel.CommentCollection#onDeleted:member
-  package: excel!
-  fullName: onDeleted
-  summary: >-
-    Tritt auf, wenn Kommentare in der Kommentarsammlung gelöscht werden.
-
-
-    \[[API-Satz: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
-  isPreview: false
-  isDeprecated: false
-  syntax:
-    content: 'readonly onDeleted: OfficeExtension.EventHandlers<Excel.CommentDeletedEventArgs>;'
-    return:
-      type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.CommentDeletedEventArgs:interface" />&gt;
-      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/events-comment-event-handler.yaml\nawait Excel.run(async (context) => {\n    const comments = context.workbook.worksheets.getActiveWorksheet().comments;\n\n    // Register the onAdded, onChanged, and onDeleted comment event handlers.\n    comments.onAdded.add(commentAdded);\n    comments.onChanged.add(commentChanged);\n    comments.onDeleted.add(commentDeleted);\n\n    await context.sync();\n\n    console.log(\"Added event handlers for when comments are added, changed, or deleted.\");\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/events-comment-event-handler.yaml\nasync function commentDeleted(event: Excel.CommentDeletedEventArgs) {\n    await Excel.run(async (context) => {\n        // Print out the deleted comment's ID.\n        // Note: This method assumes only a single comment is deleted at a time. \n        console.log(`A comment was deleted:`);\n        console.log(`    ID: ${event.commentDetails[0].commentId}`);\n    });\n}\n```"
 methods:
 - name: add(cellAddress, content, contentType)
   uid: excel!Excel.CommentCollection#add:member(1)
@@ -329,11 +278,63 @@ methods:
     return:
       type: <xref uid="excel!Excel.Interfaces.CommentCollectionData:interface" />
       description: ''
+events:
+- name: onAdded
+  uid: excel!Excel.CommentCollection#onAdded:member
+  package: excel!
+  fullName: onAdded
+  summary: >-
+    Tritt auf, wenn die Kommentare hinzugefügt werden.
+
+
+    \[[API-Satz: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly onAdded: OfficeExtension.EventHandlers<Excel.CommentAddedEventArgs>;'
+    return:
+      type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.CommentAddedEventArgs:interface" />&gt;
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/events-comment-event-handler.yaml\nawait Excel.run(async (context) => {\n    const comments = context.workbook.worksheets.getActiveWorksheet().comments;\n\n    // Register the onAdded, onChanged, and onDeleted comment event handlers.\n    comments.onAdded.add(commentAdded);\n    comments.onChanged.add(commentChanged);\n    comments.onDeleted.add(commentDeleted);\n\n    await context.sync();\n\n    console.log(\"Added event handlers for when comments are added, changed, or deleted.\");\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/events-comment-event-handler.yaml\nasync function commentAdded(event: Excel.CommentAddedEventArgs) {\n    await Excel.run(async (context) => {\n        // Retrieve the added comment using the comment ID.\n        // Note: This method assumes only a single comment is added at a time. \n        const addedComment = context.workbook.comments.getItem(event.commentDetails[0].commentId);\n\n        // Load the added comment's data.\n        addedComment.load([\"content\", \"authorName\", \"creationDate\"]);\n\n        await context.sync();\n\n        // Print out the added comment's data.\n        console.log(`A comment was added:`);\n        console.log(`    ID: ${event.commentDetails[0].commentId}`);\n        console.log(`    Comment content:${addedComment.content}`);\n        console.log(`    Comment author:${addedComment.authorName}`);\n        console.log(`    Creation date:${addedComment.creationDate}`);\n    });\n}\n```"
+- name: onChanged
+  uid: excel!Excel.CommentCollection#onChanged:member
+  package: excel!
+  fullName: onChanged
+  summary: >-
+    Tritt auf, wenn Kommentare oder Antworten in einer Kommentarsammlung geändert werden, auch wenn Antworten gelöscht werden.
+
+
+    \[[API-Satz: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly onChanged: OfficeExtension.EventHandlers<Excel.CommentChangedEventArgs>;'
+    return:
+      type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.CommentChangedEventArgs:interface" />&gt;
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/events-comment-event-handler.yaml\nawait Excel.run(async (context) => {\n    const comments = context.workbook.worksheets.getActiveWorksheet().comments;\n\n    // Register the onAdded, onChanged, and onDeleted comment event handlers.\n    comments.onAdded.add(commentAdded);\n    comments.onChanged.add(commentChanged);\n    comments.onDeleted.add(commentDeleted);\n\n    await context.sync();\n\n    console.log(\"Added event handlers for when comments are added, changed, or deleted.\");\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/events-comment-event-handler.yaml\nasync function commentChanged(event: Excel.CommentChangedEventArgs) {\n    await Excel.run(async (context) => {\n        // Retrieve the changed comment using the comment ID.\n        // Note: This method assumes only a single comment is changed at a time. \n        const changedComment = context.workbook.comments.getItem(event.commentDetails[0].commentId);\n\n        // Load the changed comment's data.\n        changedComment.load([\"content\", \"authorName\", \"creationDate\"]);\n\n        await context.sync();\n\n        // Print out the changed comment's data.\n        console.log(`A comment was changed:`);\n        console.log(`    ID: ${event.commentDetails[0].commentId}`);\n        console.log(`    Updated comment content: ${changedComment.content}`);\n        console.log(`    Comment author: ${changedComment.authorName}`);\n        console.log(`    Creation date: ${changedComment.creationDate}`);\n    });\n}\n```"
+- name: onDeleted
+  uid: excel!Excel.CommentCollection#onDeleted:member
+  package: excel!
+  fullName: onDeleted
+  summary: >-
+    Tritt auf, wenn Kommentare in der Kommentarsammlung gelöscht werden.
+
+
+    \[[API-Satz: ExcelApi 1.12](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly onDeleted: OfficeExtension.EventHandlers<Excel.CommentDeletedEventArgs>;'
+    return:
+      type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.CommentDeletedEventArgs:interface" />&gt;
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/events-comment-event-handler.yaml\nawait Excel.run(async (context) => {\n    const comments = context.workbook.worksheets.getActiveWorksheet().comments;\n\n    // Register the onAdded, onChanged, and onDeleted comment event handlers.\n    comments.onAdded.add(commentAdded);\n    comments.onChanged.add(commentChanged);\n    comments.onDeleted.add(commentDeleted);\n\n    await context.sync();\n\n    console.log(\"Added event handlers for when comments are added, changed, or deleted.\");\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/events-comment-event-handler.yaml\nasync function commentDeleted(event: Excel.CommentDeletedEventArgs) {\n    await Excel.run(async (context) => {\n        // Print out the deleted comment's ID.\n        // Note: This method assumes only a single comment is deleted at a time. \n        console.log(`A comment was deleted:`);\n        console.log(`    ID: ${event.commentDetails[0].commentId}`);\n    });\n}\n```"
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: cf1b37cb7bc0518ffe8ad49f5775862876623996
-  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
+  ms.openlocfilehash: 124236e412f78dc863616576ecb689368f562a01
+  ms.sourcegitcommit: 3b6cd632df196ae7bf2a1d192e2b60edc82b9e9c
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 03/26/2021
-  ms.locfileid: "51250668"
+  ms.lasthandoff: 04/14/2021
+  ms.locfileid: "51754046"

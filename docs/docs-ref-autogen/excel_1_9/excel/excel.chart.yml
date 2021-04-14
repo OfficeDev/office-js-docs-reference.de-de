@@ -203,40 +203,6 @@ properties:
     return:
       type: string
       description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// Rename the chart to new name, resize the chart to 200 points in both height and weight. \n// Move Chart1 to 100 points to the top and left. \nExcel.run(function (ctx) { \n    var chart = ctx.workbook.worksheets.getItem(\"Sheet1\").charts.getItem(\"Chart1\");    \n    chart.name = \"New Name\";\n    chart.top = 100;\n    chart.left = 100;\n    chart.height = 200;\n    chart.width = 200;\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-- name: onActivated
-  uid: excel!Excel.Chart#onActivated:member
-  package: excel!
-  fullName: onActivated
-  summary: >-
-    Tritt auf, wenn das Diagramm aktiviert wird.
-
-
-    \[[API-Satz: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
-  isPreview: false
-  isDeprecated: false
-  syntax:
-    content: 'readonly onActivated: OfficeExtension.EventHandlers<Excel.ChartActivatedEventArgs>;'
-    return:
-      type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.ChartActivatedEventArgs:interface" />&gt;
-      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (context){\n    var pieChart = context.workbook.worksheets.getActiveWorksheet().charts.getItem(\"Pie\");\n    pieChart.onActivated.add(function (event) {\n        return Excel.run(function (context) {\n            console.log(\"The pie chart is the active chart. ID: \" + event.chartId);\n            return context.sync();\n        });\n    });\n    return context.sync();\n});\n```"
-- name: onDeactivated
-  uid: excel!Excel.Chart#onDeactivated:member
-  package: excel!
-  fullName: onDeactivated
-  summary: >-
-    Tritt auf, wenn das Diagramm deaktiviert ist.
-
-
-    \[[API-Satz: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
-  remarks: ''
-  isPreview: false
-  isDeprecated: false
-  syntax:
-    content: 'readonly onDeactivated: OfficeExtension.EventHandlers<Excel.ChartDeactivatedEventArgs>;'
-    return:
-      type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.ChartDeactivatedEventArgs:interface" />&gt;
-      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (context){\n    var pieChart = context.workbook.worksheets.getActiveWorksheet().charts.getItem(\"Pie\");\n    pieChart.onDeactivated.add(function (event) {\n        return Excel.run(function (context) {\n            console.log(\"The pie chart is NOT active.\");\n            return context.sync();\n        });\n    });\n    return context.sync();\n});\n```"
 - name: pivotOptions
   uid: excel!Excel.Chart#pivotOptions:member
   package: excel!
@@ -719,11 +685,46 @@ methods:
     return:
       type: <xref uid="excel!Excel.Interfaces.ChartData:interface" />
       description: ''
+events:
+- name: onActivated
+  uid: excel!Excel.Chart#onActivated:member
+  package: excel!
+  fullName: onActivated
+  summary: >-
+    Tritt auf, wenn das Diagramm aktiviert wird.
+
+
+    \[[API-Satz: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly onActivated: OfficeExtension.EventHandlers<Excel.ChartActivatedEventArgs>;'
+    return:
+      type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.ChartActivatedEventArgs:interface" />&gt;
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (context){\n    var pieChart = context.workbook.worksheets.getActiveWorksheet().charts.getItem(\"Pie\");\n    pieChart.onActivated.add(function (event) {\n        return Excel.run(function (context) {\n            console.log(\"The pie chart is the active chart. ID: \" + event.chartId);\n            return context.sync();\n        });\n    });\n    return context.sync();\n});\n```"
+- name: onDeactivated
+  uid: excel!Excel.Chart#onDeactivated:member
+  package: excel!
+  fullName: onDeactivated
+  summary: >-
+    Tritt auf, wenn das Diagramm deaktiviert ist.
+
+
+    \[[API-Satz: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly onDeactivated: OfficeExtension.EventHandlers<Excel.ChartDeactivatedEventArgs>;'
+    return:
+      type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.ChartDeactivatedEventArgs:interface" />&gt;
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (context){\n    var pieChart = context.workbook.worksheets.getActiveWorksheet().charts.getItem(\"Pie\");\n    pieChart.onDeactivated.add(function (event) {\n        return Excel.run(function (context) {\n            console.log(\"The pie chart is NOT active.\");\n            return context.sync();\n        });\n    });\n    return context.sync();\n});\n```"
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: a4703cfb35be241ab47ab8549fd0619479a95678
-  ms.sourcegitcommit: ce09743deb2fc2a879cd63f96c8ff11ec84a42b2
+  ms.openlocfilehash: aa01c1e1797b984b074e9595905758db2a9d09ce
+  ms.sourcegitcommit: 3b6cd632df196ae7bf2a1d192e2b60edc82b9e9c
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 04/02/2021
-  ms.locfileid: "51510324"
+  ms.lasthandoff: 04/14/2021
+  ms.locfileid: "51754368"
