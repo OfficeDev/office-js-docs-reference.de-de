@@ -14,7 +14,7 @@ Ihr Feedback ist uns wichtig.
 
     > **WICHTIG:** Ändern Sie keine Dateien im [Ordner /docs/docs-ref-autogen](https://github.com/OfficeDev/office-js-docs-reference/tree/master/docs/docs-ref-autogen) dieses Repositorys. Alle Dateien in diesem Ordner werden automatisch generiert, sodass sie nicht über eine Pullanforderung aktualisiert werden können. Wenn Sie eine Änderung an einer der Dateien im [Ordner /docs/docs-ref-autogen anfordern](https://github.com/OfficeDev/office-js-docs-reference/tree/master/docs/docs-ref-autogen) möchten, übermitteln Sie bitte [ein](https://github.com/OfficeDev/office-js-docs-reference/issues) Problem in diesem Repository. Weitere Informationen dazu, wie die Tools in diesem Repository verwendet werden, finden Sie [hier](https://github.com/OfficeDev/office-js-docs-reference/blob/master/DocumentationToolingNotes.md).
 
-* Geben Sie Ihre Vorschläge und Ideen unter [Microsoft 365](https://docs.microsoft.com/answers/products/m365)on Q&A ein, um uns über Ihre Programmiererfahrung zu erfahren, was Sie in zukünftigen Versionen, Codebeispielen und so weiter sehen möchten.
+* Um eine Featureanforderung für die Office.js-API oder -Plattform zu übermitteln, posten Sie Ihre Idee an die [Microsoft 365 Developer Platform Tech Community,](https://techcommunity.microsoft.com/t5/microsoft-365-developer-platform/idb-p/Microsoft365DeveloperPlatform)oder wenn die Featureanforderung bereits vorhanden ist, fügen Sie Ihre Stimme dafür hinzu.
 
 ## <a name="join-the-microsoft-365-developer-program"></a>Teilnehmen am Microsoft 365-Entwicklerprogramm
 
@@ -24,7 +24,6 @@ Erhalten Sie einen kostenlosen Sandkasten, Tools und andere Ressourcen, die Sie 
 * [Beispieldatenpakete](https://developer.microsoft.com/microsoft-365/dev-program#Sample) Konfigurieren Sie Ihren Sandkasten automatisch, indem Sie Benutzerdaten und Inhalte installieren, um Ihnen beim Erstellen Ihrer Lösungen zu helfen.
 * [Zugriff auf Experten](https://developer.microsoft.com/microsoft-365/dev-program#Experts) Greifen Sie auf Communityereignisse zu, um von Microsoft 365-Experten zu lernen.
 * [Personalisierte Empfehlungen](https://developer.microsoft.com/microsoft-365/dev-program#Recommendations) Suchen Sie entwicklerressourcen schnell aus Ihrem personalisierten Dashboard.
-
 
 ## <a name="microsoft-open-source-code-of-conduct"></a>Microsoft Open Source-Verhaltensregeln
 
