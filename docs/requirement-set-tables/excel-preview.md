@@ -55,7 +55,11 @@
 ||[clear()](/javascript/api/excel/excel.identitycollection#clear--)|Entfernt alle Benutzeridentitäten aus der Auflistung.|
 ||[getCount()](/javascript/api/excel/excel.identitycollection#getcount--)|Ruft die Anzahl der Elemente in der Auflistung ab.|
 ||[getItemAt(index: number)](/javascript/api/excel/excel.identitycollection#getitemat-index-)|Ruft eine Dokumentbenutzeridentität mithilfe des Index in der Auflistung ab.|
+||[items](/javascript/api/excel/excel.identitycollection#items)|Ruft die geladenen untergeordneten Elemente in dieser Sammlung ab.|
 ||[remove(assignee: Identity)](/javascript/api/excel/excel.identitycollection#remove-assignee-)|Entfernt eine Benutzeridentität aus der Auflistung.|
+|[IdentityEntity](/javascript/api/excel/excel.identityentity)|[displayName](/javascript/api/excel/excel.identityentity#displayname)|Stellt den Anzeigenamen des Benutzers dar.|
+||[email](/javascript/api/excel/excel.identityentity#email)|Stellt die E-Mail-Adresse des Benutzers dar.|
+||[id](/javascript/api/excel/excel.identityentity#id)|Stellt die eindeutige ID des Benutzers dar.|
 |[InsertWorksheetOptions](/javascript/api/excel/excel.insertworksheetoptions)|[positionType](/javascript/api/excel/excel.insertworksheetoptions#positiontype)|Die Einfügeposition der neuen Arbeitsblätter in der aktuellen Arbeitsmappe.|
 ||[relativeTo](/javascript/api/excel/excel.insertworksheetoptions#relativeto)|Das Arbeitsblatt in der aktuellen Arbeitsmappe, auf das für den Parameter verwiesen `WorksheetPositionType` wird.|
 ||[sheetNamesToInsert](/javascript/api/excel/excel.insertworksheetoptions#sheetnamestoinsert)|Die Namen der einzelnen arbeitsblätter, die eingefügt werden sollen.|
@@ -129,6 +133,7 @@
 ||[onFormulaChanged](/javascript/api/excel/excel.worksheet#onformulachanged)|Tritt auf, wenn eine oder mehrere Formeln in diesem Arbeitsblatt geändert werden.|
 ||[tabId](/javascript/api/excel/excel.worksheet#tabid)|Gibt einen Wert zurück, der dieses Arbeitsblatt darstellt, das von Open Office XML gelesen werden kann.|
 ||[tasks](/javascript/api/excel/excel.worksheet#tasks)|Gibt eine Auflistung von Aufgaben zurück, die im Arbeitsblatt vorhanden sind.|
+|[WorksheetChangedEventArgs](/javascript/api/excel/excel.worksheetchangedeventargs)|[triggerSource](/javascript/api/excel/excel.worksheetchangedeventargs#triggersource)|Stellt die Triggerquelle des Ereignisses dar.|
 |[WorksheetCollection](/javascript/api/excel/excel.worksheetcollection)|[addFromBase64(base64File: string, sheetNamesToInsert?: string[], positionType?: Excel.WorksheetPositionType, relativeTo?: Worksheet \| string)](/javascript/api/excel/excel.worksheetcollection#addfrombase64-base64file--sheetnamestoinsert--positiontype--relativeto-)|Fügt die angegebenen Arbeitsblätter einer Arbeitsmappe in die aktuelle Arbeitsmappe ein.|
 ||[onFiltered](/javascript/api/excel/excel.worksheetcollection#onfiltered)|Tritt ein, wenn ein Filter eines beliebigen Arbeitsblatts in der Arbeitsmappe angewendet wird.|
 ||[onFormulaChanged](/javascript/api/excel/excel.worksheetcollection#onformulachanged)|Tritt auf, wenn eine oder mehrere Formeln in einem Beliebigen Arbeitsblatt dieser Auflistung geändert werden.|
