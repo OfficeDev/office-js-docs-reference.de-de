@@ -96,7 +96,33 @@ methods:
       type: number
     return:
       type: <xref uid="powerpoint!PowerPoint.Shape:class" />
-      description: Die Form am angegebenen Index. Ein Fehler wird ausgelöst, wenn der Index nicht im Bereich liegt.
+      description: >-
+        Die Form am angegebenen Index. Ein Fehler wird ausgelöst, wenn der Index nicht im Bereich liegt.
+
+
+        #### <a name="examples"></a>Beispiele
+
+
+        ```typescript
+
+        // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/powerpoint/preview-apis/tags.yaml
+
+        await PowerPoint.run(async function(context) {
+          const slide = context.presentation.slides.getItemAt(0);
+          const shape = slide.shapes.getItemAt(0);
+          shape.tags.add("MOUNTAIN", "Denali");
+
+          await context.sync();
+
+          const myShapeTag = shape.tags.getItem("MOUNTAIN");
+          myShapeTag.load("key, value");
+
+          await context.sync();
+
+          console.log("Added key " + JSON.stringify(myShapeTag.key) + " with value " + JSON.stringify(myShapeTag.value));
+        });
+
+        ```
 - name: getItemOrNullObject(id)
   uid: powerpoint!PowerPoint.ShapeCollection#getItemOrNullObject:member(1)
   package: powerpoint!
@@ -184,9 +210,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 4a9530be1076a85e9a949c13675be8815d6f0e48
-  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
+  ms.openlocfilehash: f8bd55d72882491e0a9dfd641e04f4c85db2c521
+  ms.sourcegitcommit: 66ce950cede0c44d43deef165ca96e9f5875d63f
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 03/26/2021
-  ms.locfileid: "51328434"
+  ms.lasthandoff: 04/21/2021
+  ms.locfileid: "51911374"
