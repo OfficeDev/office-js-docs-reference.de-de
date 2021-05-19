@@ -4,7 +4,8 @@
 ||[slideMasterId](/javascript/api/powerpoint/powerpoint.addslideoptions#slidemasterid)|Gibt die ID eines Folienmasters an, der für die neue Folie verwendet werden soll.|
 |[Presentation](/javascript/api/powerpoint/powerpoint.presentation)|[slideMasters](/javascript/api/powerpoint/powerpoint.presentation#slidemasters)|Gibt die Auflistung der `SlideMaster` Objekte zurück, die sich in der Präsentation befinden.|
 ||[tags](/javascript/api/powerpoint/powerpoint.presentation#tags)|Gibt eine Auflistung von Tags zurück, die der Präsentation zugeordnet sind.|
-|[Form](/javascript/api/powerpoint/powerpoint.shape)|[id](/javascript/api/powerpoint/powerpoint.shape#id)|Ruft die eindeutige ID des Shapes ab.|
+|[Form](/javascript/api/powerpoint/powerpoint.shape)|[delete()](/javascript/api/powerpoint/powerpoint.shape#delete--)|Löscht die Form aus der Shape-Auflistung.|
+||[id](/javascript/api/powerpoint/powerpoint.shape#id)|Ruft die eindeutige ID des Shapes ab.|
 ||[tags](/javascript/api/powerpoint/powerpoint.shape#tags)|Gibt eine Auflistung von Tags in der Form zurück.|
 |[ShapeCollection](/javascript/api/powerpoint/powerpoint.shapecollection)|[getCount()](/javascript/api/powerpoint/powerpoint.shapecollection#getcount--)|Ruft die Anzahl der Shapes in der Auflistung ab.|
 ||[getItem(key: string)](/javascript/api/powerpoint/powerpoint.shapecollection#getitem-key-)|Ruft ein Shape mit seiner eindeutigen ID ab.|
@@ -15,7 +16,7 @@
 ||[shapes](/javascript/api/powerpoint/powerpoint.slide#shapes)|Gibt eine Auflistung von Formen auf der Folie zurück.|
 ||[slideMaster](/javascript/api/powerpoint/powerpoint.slide#slidemaster)|Ruft das `SlideMaster` Objekt ab, das den Standardinhalt der Folie darstellt.|
 ||[tags](/javascript/api/powerpoint/powerpoint.slide#tags)|Gibt eine Auflistung von Tags auf der Folie zurück.|
-|[SlideCollection](/javascript/api/powerpoint/powerpoint.slidecollection)|[add(options?: PowerPoint.AddSlideOptions)](/javascript/api/powerpoint/powerpoint.slidecollection#add-options-)|Fügt am Ende der Auflistung eine neue Folie hinzu.|
+|[SlideCollection](/javascript/api/powerpoint/powerpoint.slidecollection)|[add(options?: PowerPoint. AddSlideOptions)](/javascript/api/powerpoint/powerpoint.slidecollection#add-options-)|Fügt am Ende der Auflistung eine neue Folie hinzu.|
 |[SlideLayout](/javascript/api/powerpoint/powerpoint.slidelayout)|[id](/javascript/api/powerpoint/powerpoint.slidelayout#id)|Ruft die eindeutige ID des Folienlayouts ab.|
 ||[name](/javascript/api/powerpoint/powerpoint.slidelayout#name)|Ruft den Namen des Folienlayouts ab.|
 |[SlideLayoutCollection](/javascript/api/powerpoint/powerpoint.slidelayoutcollection)|[getCount()](/javascript/api/powerpoint/powerpoint.slidelayoutcollection#getcount--)|Ruft die Anzahl der Layouts in der Auflistung ab.|

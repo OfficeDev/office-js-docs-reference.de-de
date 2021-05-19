@@ -4,7 +4,7 @@ uid: excel!Excel.Range:class
 package: excel!
 fullName: Excel.Range
 summary: >-
-  Range stellt eine Gruppe von einer oder mehreren zusammenhängenden Zellen wie z. B. einer Zelle, einer Zeile, einer Spalte, einem Zellenblock usw. dar. Weitere Informationen zur Verwendung von Bereichen in der API finden Sie unter [Bereiche in der Excel-JavaScript-API.](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-core-concepts#ranges)<!-- -->.
+  Range stellt eine Gruppe von einer oder mehreren zusammenhängenden Zellen wie z. B. einer Zelle, einer Zeile, einer Spalte, einem Zellenblock usw. dar. Weitere Informationen zur Verwendung von Bereichen in der gesamten API finden Sie unter [Bereiche in der Excel JavaScript-API.](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-core-concepts#ranges)<!-- -->.
 
 
   \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -129,7 +129,7 @@ properties:
   uid: excel!Excel.Range#context:member
   package: excel!
   fullName: context
-  summary: Der Dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office-Hostanwendung verbunden.
+  summary: Der Dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit Office Hostanwendung verbunden.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -351,7 +351,7 @@ properties:
   package: excel!
   fullName: numberFormat
   summary: >-
-    Stellt den Zahlenformatcode von Excel für den angegebenen Bereich dar.
+    Represents Excel the number format code for the given range.
 
 
     \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -384,7 +384,7 @@ properties:
   package: excel!
   fullName: numberFormatLocal
   summary: >-
-    Stellt den Zahlenformatcode von Excel für den angegebenen Bereich basierend auf den Spracheinstellungen des Benutzers dar. Excel führt beim Abrufen oder Festlegen der Eigenschaft keine Sprach- oder Formatkoerzieren `numberFormatLocal` aus. Jeder zurückgegebene Text verwendet die lokal formatierten Zeichenfolgen basierend auf der in den Systemeinstellungen angegebenen Sprache.
+    Represents Excel the number format code for the given range, based on the language settings of the user. Excel führt beim Abrufen oder Festlegen der Eigenschaft keine Sprach- oder Formatkoerzieren `numberFormatLocal` durch. Jeder zurückgegebene Text verwendet die lokal formatierten Zeichenfolgen basierend auf der in den Systemeinstellungen angegebenen Sprache.
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -498,7 +498,7 @@ properties:
   package: excel!
   fullName: text
   summary: >-
-    Textwerte des angegebenen Bereichs. Der Textwert hängt nicht von der Zellenbreite ab. Das Nummernzeichen ( ) ersetzung, das in der Excel-Benutzeroberfläche erfolgt, wirkt sich nicht auf den von der API \# zurückgegebenen Textwert aus.
+    Textwerte des angegebenen Bereichs. Der Textwert hängt nicht von der Zellenbreite ab. Das Nummernzeichen ( ) ersetzung, das in der benutzeroberfläche Excel wird sich nicht auf den von der \# API zurückgegebenen Textwert auswirken.
 
 
     \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1153,7 +1153,7 @@ methods:
     content: 'getDirectDependents(): Excel.WorkbookRangeAreas;'
     return:
       type: <xref uid="excel!Excel.WorkbookRangeAreas:class" />
-      description: ''
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/85-preview-apis/range-direct-dependents.yaml\nawait Excel.run(async (context) => {\n  // Direct dependents are cells that contain formulas that refer to other cells.\n  let range = context.workbook.getActiveCell();\n  let directDependents = range.getDirectDependents();\n  range.load(\"address\");\n  directDependents.areas.load(\"address\");\n  await context.sync();\n  \n  console.log(`Direct dependent cells of ${range.address}:`);\n  \n  // Use the direct dependents API to loop through direct dependents of the active cell.\n  for (let i = 0; i < directDependents.areas.items.length; i++) {\n    // Highlight and print the address of each dependent cell.\n    directDependents.areas.items[i].format.fill.color = \"Yellow\";\n    console.log(`  ${directDependents.areas.items[i].address}`);\n  }\n  await context.sync();\n});\n```"
 - name: getDirectPrecedents()
   uid: excel!Excel.Range#getDirectPrecedents:member(1)
   package: excel!
@@ -1210,7 +1210,7 @@ methods:
   package: excel!
   fullName: getExtendedRange(direction, activeCell)
   summary: >-
-    Gibt ein Range-Objekt zurück, das den aktuellen Bereich und bis zum Rand des Bereichs enthält, basierend auf der angegebenen Richtung. Dies entspricht dem Strg+Umschalt+Pfeiltastenverhalten in der Excel unter Windows-Benutzeroberfläche.
+    Gibt ein Range-Objekt zurück, das den aktuellen Bereich und bis zum Rand des Bereichs enthält, basierend auf der angegebenen Richtung. Dies entspricht dem Strg+Umschalt+Pfeiltastenverhalten in der Excel auf Windows Benutzeroberfläche.
 
 
     \[[API-Satz: ExcelApiOnline 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1234,7 +1234,7 @@ methods:
   package: excel!
   fullName: getExtendedRange(directionString, activeCell)
   summary: >-
-    Gibt ein Range-Objekt zurück, das den aktuellen Bereich und bis zum Rand des Bereichs enthält, basierend auf der angegebenen Richtung. Dies entspricht dem Strg+Umschalt+Pfeiltastenverhalten in der Excel unter Windows-Benutzeroberfläche.
+    Gibt ein Range-Objekt zurück, das den aktuellen Bereich und bis zum Rand des Bereichs enthält, basierend auf der angegebenen Richtung. Dies entspricht dem Strg+Umschalt+Pfeiltastenverhalten in der Excel auf Windows Benutzeroberfläche.
 
 
     \[[API-Satz: ExcelApiOnline 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1258,7 +1258,7 @@ methods:
   package: excel!
   fullName: getImage()
   summary: >-
-    Rendert den Bereich als base64-codiertes Png-Bild. *Wichtig**: Diese API wird derzeit in Excel für Mac nicht unterstützt. Informationen zum aktuellen Status finden Sie unter [OfficeDev/office-js Issue \# 235.](https://github.com/OfficeDev/office-js/issues/235)
+    Rendert den Bereich als base64-codiertes Png-Bild. *Wichtig**: Diese API wird derzeit nicht in der Excel für Mac. Informationen zum aktuellen Status finden Sie unter [OfficeDev/office-js Issue \# 235.](https://github.com/OfficeDev/office-js/issues/235)
 
 
     \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1464,7 +1464,7 @@ methods:
   package: excel!
   fullName: getRangeEdge(direction, activeCell)
   summary: >-
-    Gibt ein Range-Objekt zurück, das die Edgezelle des Datenbereichs ist, die der angegebenen Richtung entspricht. Dies entspricht dem Strg+Pfeil-Tastenverhalten in der Excel unter Windows-Benutzeroberfläche.
+    Gibt ein Range-Objekt zurück, das die Edgezelle des Datenbereichs ist, die der angegebenen Richtung entspricht. Dies entspricht dem Strg+PFEIL-Tastenverhalten in der Excel auf Windows Benutzeroberfläche.
 
 
     \[[API-Satz: ExcelApiOnline 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1488,7 +1488,7 @@ methods:
   package: excel!
   fullName: getRangeEdge(directionString, activeCell)
   summary: >-
-    Gibt ein Range-Objekt zurück, das die Edgezelle des Datenbereichs ist, die der angegebenen Richtung entspricht. Dies entspricht dem Strg+Pfeil-Tastenverhalten in der Excel unter Windows-Benutzeroberfläche.
+    Gibt ein Range-Objekt zurück, das die Edgezelle des Datenbereichs ist, die der angegebenen Richtung entspricht. Dies entspricht dem Strg+PFEIL-Tastenverhalten in der Excel auf Windows Benutzeroberfläche.
 
 
     \[[API-Satz: ExcelApiOnline 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -2351,7 +2351,7 @@ methods:
   uid: excel!Excel.Range#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 'Überschreibt die JavaScript-Methode, um eine nützlichere Ausgabe zu `toJSON()` bieten, wenn ein API-Objekt an übergeben wird `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode `toJSON` des Objekts auf, das an das Objekt übergeben wird.) Während das ursprüngliche Excel.Range-Objekt ein API-Objekt ist, gibt die Methode ein `toJSON` einfaches JavaScript-Objekt zurück (Typ: `Excel.Interfaces.RangeData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
+  summary: Überschreibt die JavaScript-Methode, um eine nützlichere Ausgabe zu `toJSON()` bieten, wenn ein API-Objekt an übergeben wird `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode `toJSON` des Objekts auf, das an das Objekt übergeben wird.) Während die ursprüngliche Excel. Range-Objekt ist ein API-Objekt, die `toJSON` Methode gibt ein einfaches JavaScript-Objekt zurück (typiert als`Excel.Interfaces.RangeData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -2447,9 +2447,9 @@ methods:
       description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\nExcel.run(async (context) => {\n    const largeRange = context.workbook.getSelectedRange();\n    largeRange.load([\"rowCount\", \"columnCount\"]);\n    await context.sync();\n\n    for (let i = 0; i < largeRange.rowCount; i++) {\n        for (let j = 0; j < largeRange.columnCount; j++) {\n            let cell = largeRange.getCell(i, j);\n            cell.values = [[i *j]];\n\n            // call untrack() to release the range from memory\n            cell.untrack();\n        }\n    }\n\n    await context.sync();\n});\n```"
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 9b43598c4a4d45cd34b958f66174b07796ba0730
-  ms.sourcegitcommit: 66ce950cede0c44d43deef165ca96e9f5875d63f
+  ms.openlocfilehash: 0f2f6c7b1615b1993ba6d768478c290259a43f90
+  ms.sourcegitcommit: 56a0dffed6427e832d8f047f6815dd511e55e1f4
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 04/21/2021
-  ms.locfileid: "51911318"
+  ms.lasthandoff: 05/19/2021
+  ms.locfileid: "52529413"
