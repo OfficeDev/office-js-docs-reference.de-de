@@ -1,0 +1,301 @@
+### YamlMime:TSType
+name: Office.EnhancedLocation
+uid: outlook!Office.EnhancedLocation:interface
+package: outlook!
+fullName: Office.EnhancedLocation
+summary: >-
+  Stellt den Satz von Speicherorten für einen Termin dar.
+
+
+  \[[API-Satz: Postfach 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+remarks: >-
+  **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+
+
+  **[Anwendbarer Outlook:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
+isPreview: false
+isDeprecated: false
+type: interface
+methods:
+- name: addAsync(locationIdentifiers, options, callback)
+  uid: outlook!Office.EnhancedLocation#addAsync:member(1)
+  package: outlook!
+  fullName: addAsync(locationIdentifiers, options, callback)
+  summary: >-
+    Fügt dem Satz von Speicherorten hinzu, die dem Termin zugeordnet sind.
+
+
+    \[[API-Satz: Postfach 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadWriteItem`
+
+
+    **[Anwendbarer Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Verfassen
+
+
+    **Fehler**:
+
+
+    - `InvalidFormatError`<!-- -->: Das Format des angegebenen Datenobjekts ist ungültig.
+
+
+    #### <a name="examples"></a>Beispiele
+
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/90-other-item-apis/get-add-remove-enhancedlocation-appointment.yaml
+
+    var locations = [
+      {
+        id: "Contoso",
+        type: Office.MailboxEnums.LocationType.Custom
+      },
+      {
+        id: "room500@test.com",
+        type: Office.MailboxEnums.LocationType.Room
+      }
+    ];
+
+    Office.context.mailbox.item.enhancedLocation.addAsync(locations, (result) => {
+      if (result.status === Office.AsyncResultStatus.Succeeded) {
+        console.log(`Successfully added locations ${JSON.stringify(locations)}`);
+      } else {
+        console.error(`Failed to add locations. Error message: ${result.error.message}`);
+      }
+    });
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'addAsync(locationIdentifiers: LocationIdentifier[], options: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: locationIdentifiers
+      description: Die Speicherorte, die der aktuellen Liste der Speicherorte hinzugefügt werden sollen.
+      type: <xref uid="outlook!Office.LocationIdentifier:interface" />[]
+    - id: options
+      description: 'Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können jedes Objekt bereitstellen, auf das sie in der Rückrufmethode zugreifen möchten.'
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion `callback` mit einem einzelnen Parameter aufgerufen. `asyncResult`<!-- -->, bei dem es sich um ein `Office.AsyncResult` Objekt handelt. Überprüfen Sie `status` die Eigenschaft `asyncResult` von, um zu ermitteln, ob der Aufruf erfolgreich war.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: addAsync(locationIdentifiers, callback)
+  uid: outlook!Office.EnhancedLocation#addAsync:member(2)
+  package: outlook!
+  fullName: addAsync(locationIdentifiers, callback)
+  summary: >-
+    Fügt dem Satz von Speicherorten hinzu, die dem Termin zugeordnet sind.
+
+
+    \[[API-Satz: Postfach 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadWriteItem`
+
+
+    **[Anwendbarer Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Verfassen
+
+
+    **Fehler**:
+
+
+    - `InvalidFormatError`<!-- -->: Das Format des angegebenen Datenobjekts ist ungültig.
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'addAsync(locationIdentifiers: LocationIdentifier[], callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: locationIdentifiers
+      description: Die Speicherorte, die der aktuellen Liste der Speicherorte hinzugefügt werden sollen.
+      type: <xref uid="outlook!Office.LocationIdentifier:interface" />[]
+    - id: callback
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion `callback` mit einem einzelnen Parameter aufgerufen. `asyncResult`<!-- -->, bei dem es sich um ein `Office.AsyncResult` Objekt handelt. Überprüfen Sie `status` die Eigenschaft `asyncResult` von, um zu ermitteln, ob der Aufruf erfolgreich war.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: getAsync(options, callback)
+  uid: outlook!Office.EnhancedLocation#getAsync:member(1)
+  package: outlook!
+  fullName: getAsync(options, callback)
+  summary: >-
+    Ruft den Satz von Speicherorten ab, die dem Termin zugeordnet sind.
+
+
+    \[[API-Satz: Postfach 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+
+
+    **[Anwendbarer Outlook:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
+
+
+    #### <a name="examples"></a>Beispiele
+
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/90-other-item-apis/get-add-remove-enhancedlocation-appointment.yaml
+
+    Office.context.mailbox.item.enhancedLocation.getAsync((result) => {
+      if (result.status !== Office.AsyncResultStatus.Succeeded) {
+        console.error(`Failed to get locations. Error message: ${result.error.message}`);
+        return;
+      }
+      var places = result.value;
+      if (places && places.length > 0) {
+        result.value.forEach(function(place) {
+          console.log(`Location: ${place.displayName} (type: ${place.locationIdentifier.type})`);
+          if (place.locationIdentifier.type === Office.MailboxEnums.LocationType.Room) {
+            console.log("Email address: " + place.emailAddress);
+          }
+        });
+      } else {
+        console.log("There are no locations.");
+      }
+    });
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getAsync(options: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<LocationDetails[]>) => void): void;'
+    parameters:
+    - id: options
+      description: 'Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können jedes Objekt bereitstellen, auf das sie in der Rückrufmethode zugreifen möchten.'
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion `callback` mit einem einzelnen Parameter aufgerufen. `asyncResult`<!-- -->, bei dem es sich um ein `Office.AsyncResult` Objekt handelt.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.LocationDetails:interface" />[]&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: getAsync(callback)
+  uid: outlook!Office.EnhancedLocation#getAsync:member(2)
+  package: outlook!
+  fullName: getAsync(callback)
+  summary: >-
+    Ruft den Satz von Speicherorten ab, die dem Termin zugeordnet sind.
+
+
+    \[[API-Satz: Postfach 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+
+
+    **[Anwendbarer Outlook:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getAsync(callback?: (asyncResult: Office.AsyncResult<LocationDetails[]>) => void): void;'
+    parameters:
+    - id: callback
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion `callback` mit einem einzelnen Parameter aufgerufen. `asyncResult`<!-- -->, bei dem es sich um ein `Office.AsyncResult` Objekt handelt.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;<xref uid="outlook!Office.LocationDetails:interface" />[]&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: removeAsync(locationIdentifiers, options, callback)
+  uid: outlook!Office.EnhancedLocation#removeAsync:member(1)
+  package: outlook!
+  fullName: removeAsync(locationIdentifiers, options, callback)
+  summary: >-
+    Entfernt die Dem Termin zugeordneten Speicherorte.
+
+
+    Wenn mehrere Speicherorte mit demselben Namen angegeben sind, werden alle übereinstimmenden Speicherorte entfernt, auch wenn nur einer in angegeben wurde. `locationIdentifiers`<!-- -->.
+
+
+    \[[API-Satz: Postfach 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadWriteItem`
+
+
+    **[Anwendbarer Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Verfassen
+
+
+    #### <a name="examples"></a>Beispiele
+
+
+    ```javascript
+
+    // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/90-other-item-apis/get-add-remove-enhancedlocation-appointment.yaml
+
+    var locations = [
+      {
+        id: "Contoso",
+        type: Office.MailboxEnums.LocationType.Custom
+      },
+      {
+        id: "room500@test.com",
+        type: Office.MailboxEnums.LocationType.Room
+      }
+    ];
+
+    Office.context.mailbox.item.enhancedLocation.removeAsync(locations, (result) => {
+      if (result.status === Office.AsyncResultStatus.Succeeded) {
+        console.log(`Successfully removed locations ${JSON.stringify(locations)}`);
+      } else {
+        console.error(`Failed to remove locations. Error message: ${result.error.message}`);
+      }
+    });
+
+    ```
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'removeAsync(locationIdentifiers: LocationIdentifier[], options: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: locationIdentifiers
+      description: Die Speicherorte, die aus der aktuellen Liste der Speicherorte entfernt werden sollen.
+      type: <xref uid="outlook!Office.LocationIdentifier:interface" />[]
+    - id: options
+      description: 'Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `asyncContext`<!-- -->: Entwickler können jedes Objekt bereitstellen, auf das sie in der Rückrufmethode zugreifen möchten.'
+      type: <xref uid="office!Office.AsyncContextOptions:interface" />
+    - id: callback
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion `callback` mit einem einzelnen Parameter aufgerufen. `asyncResult`<!-- -->, bei dem es sich um ein `Office.AsyncResult` Objekt handelt. Überprüfen Sie `status` die Eigenschaft `asyncResult` von, um zu ermitteln, ob der Aufruf erfolgreich war.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+- name: removeAsync(locationIdentifiers, callback)
+  uid: outlook!Office.EnhancedLocation#removeAsync:member(2)
+  package: outlook!
+  fullName: removeAsync(locationIdentifiers, callback)
+  summary: >-
+    Entfernt die Dem Termin zugeordneten Speicherorte.
+
+
+    Wenn mehrere Speicherorte mit demselben Namen angegeben sind, werden alle übereinstimmenden Speicherorte entfernt, auch wenn nur einer in angegeben wurde. `locationIdentifiers`<!-- -->.
+
+
+    \[[API-Satz: Postfach 1.8](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+  remarks: >-
+    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadWriteItem`
+
+
+    **[Anwendbarer Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Verfassen
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'removeAsync(locationIdentifiers: LocationIdentifier[], callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    parameters:
+    - id: locationIdentifiers
+      description: Die Speicherorte, die aus der aktuellen Liste der Speicherorte entfernt werden sollen.
+      type: <xref uid="outlook!Office.LocationIdentifier:interface" />[]
+    - id: callback
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion `callback` mit einem einzelnen Parameter aufgerufen. `asyncResult`<!-- -->, bei dem es sich um ein `Office.AsyncResult` Objekt handelt. Überprüfen Sie `status` die Eigenschaft `asyncResult` von, um zu ermitteln, ob der Aufruf erfolgreich war.
+      type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
+    return:
+      type: void
+      description: ''
+metadata:
+  ms.openlocfilehash: 4e00bd0375955a9a15641c8e008f1e1eac81d1ae
+  ms.sourcegitcommit: fc08f53e68f6acec0b6de81691ac5920f3974ed4
+  ms.translationtype: MT
+  ms.contentlocale: de-DE
+  ms.lasthandoff: 05/21/2021
+  ms.locfileid: "52591554"
