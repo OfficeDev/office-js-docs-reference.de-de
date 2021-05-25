@@ -7,13 +7,13 @@ author: o365devx
 ms.author: o365devx
 ms.prod: non-product-specific
 localization_priority: Priority
-ms.date: 03/17/2021
-ms.openlocfilehash: 63d2efa4d4b9406208f3227ec96df467ea0d8877
-ms.sourcegitcommit: a5c179dc927ce89d1ada071d388d582191d3fa1e
+ms.date: 05/10/2021
+ms.openlocfilehash: 809b6378e33eca682005396ff07e79cb37f9ff2c
+ms.sourcegitcommit: fc08f53e68f6acec0b6de81691ac5920f3974ed4
 ms.translationtype: HT
 ms.contentlocale: de-DE
-ms.lasthandoff: 03/24/2021
-ms.locfileid: "51183540"
+ms.lasthandoff: 05/21/2021
+ms.locfileid: "52589683"
 ---
 # <a name="office-add-ins-javascript-api-reference"></a>Office-Add-Ins JavaScript-API-Referenz
 
@@ -66,6 +66,7 @@ Die folgende Liste enthält APIs für die [unterstützten Office-Hostanwendungen
             <h3>Outlook-APIs</h3>
             <ul>
                 <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-preview">Mailbox-Vorschau</a></li>
+                <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.10">Mailbox 1.10</a></li>
                 <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.9">Mailbox 1.9</a></li>
                 <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.8">Postfach 1.8</a></li>
                 <li><a style="font-size: 1rem;" href="/javascript/api/outlook?view=outlook-js-1.7">Mailbox 1.7</a></li>
