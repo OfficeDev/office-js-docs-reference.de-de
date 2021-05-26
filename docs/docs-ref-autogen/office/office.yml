@@ -39,6 +39,7 @@ interfaces:
 - office!Office.GetFileOptions:interface
 - office!Office.GetSelectedDataOptions:interface
 - office!Office.GoToByIdOptions:interface
+- office!Office.Group:interface
 - office!Office.IPromiseConstructor:interface
 - office!Office.MatrixBinding:interface
 - office!Office.NodeDeletedEventArgs:interface
@@ -123,7 +124,7 @@ functions:
 
 
     *Hinweis*: Der reason-Parameter der initialize-Ereignislistenerfunktion gibt nur einen Enumerationswert für Aufgabenbereich- und `InitializationReason` Inhalts-Add-Ins zurück. Es gibt keinen Wert für Outlook-Add-Ins zurück.
-  remarks: "**Supportdetails**\n\nEin Häkchen (v) in der folgenden Matrix weist darauf hin, dass diese Methode in der entsprechenden Office-Hostanwendung unterstützt wird. Eine leere Zelle weist darauf hin, dass die Office-Hostanwendung diese Methode nicht unterstützt.\n\nWeitere Informationen zu Office-Hostanwendungs- und Serveranforderungen finden Sie unter [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.\n\n*Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office unter Windows </th><th> Office im Webbrowser </th><th> Office auf dem iPad </th><th> Outlook auf mobilen Geräten </th><th> Office für Mac </th></tr> <tr><td><strong> Excel </strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> v </td></tr> <tr><td><strong> Outlook </strong></td><td> v </td><td> v </td><td> </td><td> v </td><td> v </td></tr> <tr><td><strong> PowerPoint </strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> v </td></tr> <tr><td><strong> Project </strong></td><td> v </td><td> </td><td> </td><td> </td><td> v </td></tr> <tr><td><strong> Word </strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> v </td></tr> </table>\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// You can use the value of the InitializationEnumeration to implement different logic for\n// when the add-in is first inserted versus when it is already part of the document.\n// The following example shows some simple logic that uses the value of the reason parameter\n// to display how the task pane or content add-in was initialized.\nOffice.initialize = function (reason) {\n    // Checks for the DOM to load using the jQuery ready function.\n    $(document).ready(function () {\n    // After the DOM is loaded, code specific to the add-in can run.\n    // Display initialization reason.\n    if (reason == \"inserted\")\n    write(\"The add-in was just inserted.\");\n\n    if (reason == \"documentOpened\")\n    write(\"The add-in is already part of the document.\");\n    });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  remarks: "**Supportdetails**\n\nEin Häkchen (v) in der folgenden Matrix weist darauf hin, dass diese Methode in der entsprechenden Office-Hostanwendung unterstützt wird. Eine leere Zelle weist darauf hin, dass die Office-Hostanwendung diese Methode nicht unterstützt.\n\nWeitere Informationen zu Office Und Serveranforderungen finden Sie unter [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.\n\n*Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office unter Windows </th><th> Office im Webbrowser </th><th> Office auf dem iPad </th><th> Outlook auf mobilen Geräten </th><th> Office für Mac </th></tr> <tr><td><strong>Excel</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> v </td></tr> <tr><td><strong>Outlook</strong></td><td> v </td><td> v </td><td> </td><td> v </td><td> v </td></tr> <tr><td><strong>PowerPoint</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> v </td></tr> <tr><td><strong>Project</strong></td><td> v </td><td> </td><td> </td><td> </td><td> v </td></tr> <tr><td><strong> Word </strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> v </td></tr> </table>\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// You can use the value of the InitializationEnumeration to implement different logic for\n// when the add-in is first inserted versus when it is already part of the document.\n// The following example shows some simple logic that uses the value of the reason parameter\n// to display how the task pane or content add-in was initialized.\nOffice.initialize = function (reason) {\n    // Checks for the DOM to load using the jQuery ready function.\n    $(document).ready(function () {\n    // After the DOM is loaded, code specific to the add-in can run.\n    // Display initialization reason.\n    if (reason == \"inserted\")\n    write(\"The add-in was just inserted.\");\n\n    if (reason == \"documentOpened\")\n    write(\"The add-in is already part of the document.\");\n    });\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
   isPreview: false
   isDeprecated: false
   syntax:
@@ -138,7 +139,7 @@ functions:
 - name: Office.isSetSupported(name, minVersion)
   uid: office!Office.isSetSupported:function(1)
   package: office!
-  summary: Überprüft, ob der angegebene Anforderungssatz von der Host-Office-Anwendung unterstützt wird.
+  summary: Überprüft, ob der angegebene Anforderungssatz von der Hostanwendung Office wird.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -157,7 +158,7 @@ functions:
 - name: Office.onReady(callback)
   uid: office!Office.onReady:function(1)
   package: office!
-  summary: Stellt sicher, dass die Office-JavaScript-APIs vom Add-In aufgerufen werden können. Wenn das Framework noch nicht initialisiert wurde, wartet der Rückruf oder die Zusage, bis der Office-Host bereit ist, API-Aufrufe zu akzeptieren. Beachten Sie, dass diese API zwar für die Verwendung in einem Office-Add-In vorgesehen ist, sie aber auch außerhalb des Add-Ins verwendet werden kann. In diesem Fall wird Office.js, dass es außerhalb einer Office-Hostanwendung ausgeführt wird, den Rückruf aufrufen und die Zusage mit "null" für den Host und die Plattform auflösen.
+  summary: Stellt sicher, dass die Office-JavaScript-APIs vom Add-In aufgerufen werden können. Wenn das Framework noch nicht initialisiert wurde, wartet der Rückruf oder die Zusage, bis der Office bereit ist, API-Aufrufe zu akzeptieren. Beachten Sie, dass diese API zwar in einem Office verwendet werden soll, sie aber auch außerhalb des Add-Ins verwendet werden kann. In diesem Fall wird Office.js, dass es außerhalb einer Office-Hostanwendung ausgeführt wird, den Rückruf aufrufen und die Zusage mit "null" für den Host und die Plattform auflösen.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -181,10 +182,10 @@ functions:
     Ein Häkchen (v) in der folgenden Matrix weist darauf hin, dass diese Methode in der entsprechenden Office-Hostanwendung unterstützt wird. Eine leere Zelle weist darauf hin, dass die Office-Hostanwendung diese Methode nicht unterstützt.
 
 
-    Weitere Informationen zu Office-Hostanwendungs- und Serveranforderungen finden Sie unter [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
+    Weitere Informationen zu Office Und Serveranforderungen finden Sie unter [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.
 
 
-    *Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office unter Windows </th><th> Office im Webbrowser </th><th> Office auf dem iPad </th></tr> <tr><td><strong> Excel </strong></td><td> v </td><td> v </td><td> v </td></tr> <tr><td><strong> Word </strong></td><td> v </td><td> </td><td> v </td></tr> </table>
+    *Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office unter Windows </th><th> Office im Webbrowser </th><th> Office auf dem iPad </th></tr> <tr><td><strong>Excel</strong></td><td> v </td><td> v </td><td> v </td></tr> <tr><td><strong> Word </strong></td><td> v </td><td> </td><td> v </td></tr> </table>
 
 
     #### <a name="examples"></a>Beispiele
@@ -215,7 +216,7 @@ functions:
       description: Das abzurufende Objekt. Beispiel "bindings BindingName", ruft eine Bindungsversprechung für eine Bindung \# namens "BindingName" ab.
       type: string
     - id: callback
-      description: Optional. Eine Funktion, die beim Zurückgeben des Rückrufs aufgerufen wird, deren einziger Parameter vom Typ [Office.AsyncResult ist.](xref:office!Office.AsyncResult:interface)<!-- -->.
+      description: Optional. Eine Funktion, die beim Rückgabe des Rückrufs aufgerufen wird, deren einziger Parameter vom Typ [Office. AsyncResult](xref:office!Office.AsyncResult:interface)<!-- -->.
       type: '(result: <xref uid="office!Office.AsyncResult:interface" />&lt;any&gt;) =&gt; void'
     return:
       type: <xref uid="office!Office.Binding:interface" />
@@ -224,7 +225,7 @@ functions:
   uid: office!Office.useShortNamespace:function(1)
   package: office!
   summary: Schaltet den Alias für den vollständigen `Office` Namespace ein und `Microsoft.Office.WebExtension` aus.
-  remarks: "**Supportdetails**\n\nEin Häkchen (v) in der folgenden Matrix weist darauf hin, dass diese Methode in der entsprechenden Office-Hostanwendung unterstützt wird. Eine leere Zelle weist darauf hin, dass die Office-Hostanwendung diese Methode nicht unterstützt.\n\nWeitere Informationen zu Office-Hostanwendungs- und Serveranforderungen finden Sie unter [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.\n\n*Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office unter Windows </th><th> Office im Webbrowser </th><th> Office auf dem iPad </th><th> Outlook auf mobilen Geräten </th><th> Office für Mac </th></tr> <tr><td><strong> Excel </strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> <tr><td><strong> Outlook </strong></td><td> v </td><td> v </td><td> </td><td> v </td><td> v </td></tr> <tr><td><strong> PowerPoint </strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> <tr><td><strong> Project </strong></td><td> v </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><strong> Word </strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> </table>\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nfunction startUsingShortNamespace() {\n    if (typeof Office === 'undefined') {\n        Microsoft.Office.WebExtension.useShortNamespace(true);\n    }\n    else {\n        Office.useShortNamespace(true);\n    }\n    write('Office alias is now ' + typeof Office);\n}\n\nfunction stopUsingShortNamespace() {\n    if (typeof Office === 'undefined') {\n        Microsoft.Office.WebExtension.useShortNamespace(false);\n    }\n    else {\n        Office.useShortNamespace(false);\n    }\n    write('Office alias is now ' + typeof Office);\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
+  remarks: "**Supportdetails**\n\nEin Häkchen (v) in der folgenden Matrix weist darauf hin, dass diese Methode in der entsprechenden Office-Hostanwendung unterstützt wird. Eine leere Zelle weist darauf hin, dass die Office-Hostanwendung diese Methode nicht unterstützt.\n\nWeitere Informationen zu Office Und Serveranforderungen finden Sie unter [Requirements for running Office Add-ins](https://docs.microsoft.com/office/dev/add-ins/concepts/requirements-for-running-office-add-ins)<!-- -->.\n\n*Unterstützte Hosts nach Plattform* <table> <tr><th> </th><th> Office unter Windows </th><th> Office im Webbrowser </th><th> Office auf dem iPad </th><th> Outlook auf mobilen Geräten </th><th> Office für Mac </th></tr> <tr><td><strong>Excel</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> <tr><td><strong>Outlook</strong></td><td> v </td><td> v </td><td> </td><td> v </td><td> v </td></tr> <tr><td><strong>PowerPoint</strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> <tr><td><strong>Project</strong></td><td> v </td><td> </td><td> </td><td> </td><td> </td></tr> <tr><td><strong> Word </strong></td><td> v </td><td> v </td><td> v </td><td> </td><td> </td></tr> </table>\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nfunction startUsingShortNamespace() {\n    if (typeof Office === 'undefined') {\n        Microsoft.Office.WebExtension.useShortNamespace(true);\n    }\n    else {\n        Office.useShortNamespace(true);\n    }\n    write('Office alias is now ' + typeof Office);\n}\n\nfunction stopUsingShortNamespace() {\n    if (typeof Office === 'undefined') {\n        Microsoft.Office.WebExtension.useShortNamespace(false);\n    }\n    else {\n        Office.useShortNamespace(false);\n    }\n    write('Office alias is now ' + typeof Office);\n}\n\n// Function that writes to a div with id='message' on the page.\nfunction write(message){\n    document.getElementById('message').innerText += message; \n}\n```"
   isPreview: false
   isDeprecated: false
   syntax:
@@ -237,9 +238,9 @@ functions:
       type: void
       description: ''
 metadata:
-  ms.openlocfilehash: 16cd978a65fa86da9077efd47b65fb42e2e27d28
-  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
+  ms.openlocfilehash: 07fccc1ffd769d68d64b0eba09b7211dfc159e61
+  ms.sourcegitcommit: 5636507f201d29b24a904648908b485512d0ffaf
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 03/26/2021
-  ms.locfileid: "51320622"
+  ms.lasthandoff: 05/26/2021
+  ms.locfileid: "52656787"
