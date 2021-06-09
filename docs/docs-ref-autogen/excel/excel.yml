@@ -960,6 +960,7 @@ interfaces:
 - excel!Excel.WorksheetFilteredEventArgs:interface
 - excel!Excel.WorksheetFormatChangedEventArgs:interface
 - excel!Excel.WorksheetFormulaChangedEventArgs:interface
+- excel!Excel.WorksheetProtectionChangedEventArgs:interface
 - excel!Excel.WorksheetProtectionOptions:interface
 - excel!Excel.WorksheetRowHiddenChangedEventArgs:interface
 - excel!Excel.WorksheetRowSortedEventArgs:interface
@@ -1025,7 +1026,7 @@ functions:
 - name: Excel.run(batch)
   uid: excel!Excel.run:function(1)
   package: excel!
-  summary: Führt ein Batchskript aus, das Aktionen für das Excel-Objektmodell mit einem neuen RequestContext ausführt. Wenn die Zusage aufgelöst wird, werden alle nachverfolgten Objekte freigegeben, die während der Ausführung automatisch zugewiesen wurden.
+  summary: Führt ein Batchskript aus, das Aktionen für das Excel-Objektmodell unter Verwendung eines neuen RequestContext ausführt. Wenn die Zusage aufgelöst wird, werden alle nachverfolgten Objekte, die während der Ausführung automatisch zugeordnet wurden, freigegeben.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1033,7 +1034,7 @@ functions:
     content: 'export function run<T>(batch: (context: Excel.RequestContext) => Promise<T>): Promise<T>;'
     parameters:
     - id: batch
-      description: Eine Funktion, die einen RequestContext einnimmt und eine Zusage zurückgibt (in der Regel nur das Ergebnis von "context.sync()"). Der Kontextparameter erleichtert Anforderungen an die Excel-Anwendung. Da das Office-Add-In und die Excel-Anwendung in zwei verschiedenen Prozessen ausgeführt werden, ist requestContext erforderlich, um zugriff auf das Excel-Objektmodell über das Add-In zu erhalten.
+      description: Eine Funktion, die einen RequestContext akzeptiert und eine Zusage zurückgibt (in der Regel nur das Ergebnis von "context.sync()"). Der Kontextparameter erleichtert anforderungen an die Excel Anwendung. Da das Office-Add-In und die Excel-Anwendung in zwei verschiedenen Prozessen ausgeführt werden, ist der RequestContext erforderlich, um Zugriff auf das Excel-Objektmodell aus dem Add-In zu erhalten.
       type: '(context: <xref uid="excel!Excel.RequestContext:class" />) =&gt; Promise&lt;T&gt;'
     return:
       type: Promise&lt;T&gt;
@@ -1041,7 +1042,7 @@ functions:
 - name: Excel.run(object, batch)
   uid: excel!Excel.run:function(2)
   package: excel!
-  summary: Führt ein Batchskript aus, das Aktionen im Excel-Objektmodell mit dem RequestContext eines zuvor erstellten API-Objekts ausführt. Wenn die Zusage aufgelöst wird, werden alle nachverfolgten Objekte freigegeben, die während der Ausführung automatisch zugewiesen wurden.
+  summary: Führt mithilfe des RequestContext eines zuvor erstellten API-Objekts ein Batchskript aus, das Aktionen für das Excel-Objektmodell ausführt. Wenn die Zusage aufgelöst wird, werden alle nachverfolgten Objekte, die während der Ausführung automatisch zugeordnet wurden, freigegeben.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1049,10 +1050,10 @@ functions:
     content: 'export function run<T>(object: OfficeExtension.ClientObject, batch: (context: Excel.RequestContext) => Promise<T>): Promise<T>;'
     parameters:
     - id: object
-      description: Ein zuvor erstelltes API-Objekt. Der Batch verwendet denselben RequestContext wie das übergebene Objekt, was bedeutet, dass alle auf das Objekt angewendeten Änderungen von "context.sync()" übernommen werden.
+      description: Ein zuvor erstelltes API-Objekt. Der Batch verwendet den gleichen RequestContext wie das übergebene Objekt, was bedeutet, dass alle auf das Objekt angewendeten Änderungen von "context.sync()" übernommen werden.
       type: <xref uid="office!OfficeExtension.ClientObject:class" />
     - id: batch
-      description: Eine Funktion, die einen RequestContext einnimmt und eine Zusage zurückgibt (in der Regel nur das Ergebnis von "context.sync()"). Der Kontextparameter erleichtert Anforderungen an die Excel-Anwendung. Da das Office-Add-In und die Excel-Anwendung in zwei verschiedenen Prozessen ausgeführt werden, ist requestContext erforderlich, um zugriff auf das Excel-Objektmodell über das Add-In zu erhalten.
+      description: Eine Funktion, die einen RequestContext akzeptiert und eine Zusage zurückgibt (in der Regel nur das Ergebnis von "context.sync()"). Der Kontextparameter erleichtert anforderungen an die Excel Anwendung. Da das Office-Add-In und die Excel-Anwendung in zwei verschiedenen Prozessen ausgeführt werden, ist der RequestContext erforderlich, um Zugriff auf das Excel-Objektmodell aus dem Add-In zu erhalten.
       type: '(context: <xref uid="excel!Excel.RequestContext:class" />) =&gt; Promise&lt;T&gt;'
     return:
       type: Promise&lt;T&gt;
@@ -1060,7 +1061,7 @@ functions:
 - name: Excel.run(objects, batch)
   uid: excel!Excel.run:function(3)
   package: excel!
-  summary: Führt ein Batchskript aus, das Aktionen im Excel-Objektmodell mit dem RequestContext von zuvor erstellten API-Objekten ausführt.
+  summary: Führt ein Batchskript aus, das Aktionen für das Excel-Objektmodell unter Verwendung des RequestContext von zuvor erstellten API-Objekten ausführt.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1068,10 +1069,10 @@ functions:
     content: 'export function run<T>(objects: OfficeExtension.ClientObject[], batch: (context: Excel.RequestContext) => Promise<T>): Promise<T>;'
     parameters:
     - id: objects
-      description: Ein Array von zuvor erstellten API-Objekten. Das Array wird überprüft, um sicherzustellen, dass alle Objekte denselben Kontext haben. Der Batch verwendet diesen freigegebenen RequestContext, was bedeutet, dass alle änderungen, die auf diese Objekte angewendet werden, von "context.sync()" übernommen werden.
+      description: Ein Array von zuvor erstellten API-Objekten. Das Array wird überprüft, um sicherzustellen, dass alle Objekte denselben Kontext aufweisen. Der Batch verwendet diesen freigegebenen RequestContext, was bedeutet, dass alle auf diese Objekte angewendeten Änderungen von "context.sync()" übernommen werden.
       type: <xref uid="office!OfficeExtension.ClientObject:class" />[]
     - id: batch
-      description: Eine Funktion, die einen RequestContext einnimmt und eine Zusage zurückgibt (in der Regel nur das Ergebnis von "context.sync()"). Der Kontextparameter erleichtert Anforderungen an die Excel-Anwendung. Da das Office-Add-In und die Excel-Anwendung in zwei verschiedenen Prozessen ausgeführt werden, ist requestContext erforderlich, um zugriff auf das Excel-Objektmodell über das Add-In zu erhalten.
+      description: Eine Funktion, die einen RequestContext akzeptiert und eine Zusage zurückgibt (in der Regel nur das Ergebnis von "context.sync()"). Der Kontextparameter erleichtert anforderungen an die Excel Anwendung. Da das Office-Add-In und die Excel-Anwendung in zwei verschiedenen Prozessen ausgeführt werden, ist der RequestContext erforderlich, um Zugriff auf das Excel-Objektmodell aus dem Add-In zu erhalten.
       type: '(context: <xref uid="excel!Excel.RequestContext:class" />) =&gt; Promise&lt;T&gt;'
     return:
       type: Promise&lt;T&gt;
@@ -1079,7 +1080,7 @@ functions:
 - name: Excel.run(options, batch)
   uid: excel!Excel.run:function(4)
   package: excel!
-  summary: Führt ein Batchskript aus, das Aktionen im Excel-Objektmodell mit dem RequestContext eines zuvor erstellten API-Objekts ausführt. Wenn die Zusage aufgelöst wird, werden alle nachverfolgten Objekte freigegeben, die während der Ausführung automatisch zugewiesen wurden.
+  summary: Führt mithilfe des RequestContext eines zuvor erstellten API-Objekts ein Batchskript aus, das Aktionen für das Excel-Objektmodell ausführt. Wenn die Zusage aufgelöst wird, werden alle nachverfolgten Objekte, die während der Ausführung automatisch zugeordnet wurden, freigegeben.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1087,10 +1088,10 @@ functions:
     content: 'export function run<T>(options: Excel.RunOptions, batch: (context: Excel.RequestContext) => Promise<T>): Promise<T>;'
     parameters:
     - id: options
-      description: Die zusätzlichen Optionen für excel.run, die vorherige Objekte angeben, ob die Anforderung für die Zellbearbeitung, Sitzungsinformationen usw. verzögert werden soll.
+      description: Die zusätzlichen Optionen für diese Excel.run, die vorherige Objekte angeben, ob die Anforderung für die Zellbearbeitung, Sitzungsinformationen usw. verzögert werden soll.
       type: <xref uid="excel!Excel.RunOptions:interface" />
     - id: batch
-      description: Eine Funktion, die einen RequestContext einnimmt und eine Zusage zurückgibt (in der Regel nur das Ergebnis von "context.sync()"). Der Kontextparameter erleichtert Anforderungen an die Excel-Anwendung. Da das Office-Add-In und die Excel-Anwendung in zwei verschiedenen Prozessen ausgeführt werden, ist requestContext erforderlich, um zugriff auf das Excel-Objektmodell über das Add-In zu erhalten.
+      description: Eine Funktion, die einen RequestContext akzeptiert und eine Zusage zurückgibt (in der Regel nur das Ergebnis von "context.sync()"). Der Kontextparameter erleichtert anforderungen an die Excel Anwendung. Da das Office-Add-In und die Excel-Anwendung in zwei verschiedenen Prozessen ausgeführt werden, ist der RequestContext erforderlich, um Zugriff auf das Excel-Objektmodell aus dem Add-In zu erhalten.
       type: '(context: <xref uid="excel!Excel.RequestContext:class" />) =&gt; Promise&lt;T&gt;'
     return:
       type: Promise&lt;T&gt;
@@ -1098,7 +1099,7 @@ functions:
 - name: Excel.run(context, batch)
   uid: excel!Excel.run:function(5)
   package: excel!
-  summary: Führt ein Batchskript aus, das Aktionen für das Excel-Objektmodell mit dem RequestContext eines zuvor erstellten Objekts ausführt. Wenn die Zusage aufgelöst wird, werden alle nachverfolgten Objekte freigegeben, die während der Ausführung automatisch zugewiesen wurden.
+  summary: Führt ein Batchskript aus, das Aktionen für das Excel-Objektmodell unter Verwendung des RequestContext eines zuvor erstellten Objekts ausführt. Wenn die Zusage aufgelöst wird, werden alle nachverfolgten Objekte, die während der Ausführung automatisch zugeordnet wurden, freigegeben.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1106,18 +1107,18 @@ functions:
     content: 'export function run<T>(context: OfficeExtension.ClientRequestContext, batch: (context: Excel.RequestContext) => Promise<T>): Promise<T>;'
     parameters:
     - id: context
-      description: Ein zuvor erstelltes Objekt. Der Batch verwendet denselben RequestContext wie das übergebene Objekt, was bedeutet, dass alle auf das Objekt angewendeten Änderungen von "context.sync()" übernommen werden.
+      description: Ein zuvor erstelltes Objekt. Der Batch verwendet den gleichen RequestContext wie das übergebene Objekt, was bedeutet, dass alle auf das Objekt angewendeten Änderungen von "context.sync()" übernommen werden.
       type: <xref uid="office!OfficeExtension.ClientRequestContext:class" />
     - id: batch
-      description: Eine Funktion, die einen RequestContext einnimmt und eine Zusage zurückgibt (in der Regel nur das Ergebnis von "context.sync()"). Der Kontextparameter erleichtert Anforderungen an die Excel-Anwendung. Da das Office-Add-In und die Excel-Anwendung in zwei verschiedenen Prozessen ausgeführt werden, ist requestContext erforderlich, um zugriff auf das Excel-Objektmodell über das Add-In zu erhalten.
+      description: Eine Funktion, die einen RequestContext akzeptiert und eine Zusage zurückgibt (in der Regel nur das Ergebnis von "context.sync()"). Der Kontextparameter erleichtert anforderungen an die Excel Anwendung. Da das Office-Add-In und die Excel-Anwendung in zwei verschiedenen Prozessen ausgeführt werden, ist der RequestContext erforderlich, um Zugriff auf das Excel-Objektmodell aus dem Add-In zu erhalten.
       type: '(context: <xref uid="excel!Excel.RequestContext:class" />) =&gt; Promise&lt;T&gt;'
     return:
       type: Promise&lt;T&gt;
       description: ''
 metadata:
-  ms.openlocfilehash: 59958c8fd5caed2452c323bdafe89c5c75cce402
-  ms.sourcegitcommit: 66ce950cede0c44d43deef165ca96e9f5875d63f
+  ms.openlocfilehash: c8097d6f594e97ba30ddfff40958b67de72140be
+  ms.sourcegitcommit: c9b22faea92300a0c7600a7054be68285697c6af
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 04/21/2021
-  ms.locfileid: "51910828"
+  ms.lasthandoff: 06/09/2021
+  ms.locfileid: "52852519"
