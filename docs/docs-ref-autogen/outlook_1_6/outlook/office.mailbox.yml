@@ -10,18 +10,18 @@ summary: >-
   Wichtige Eigenschaften:
 
 
-  - `diagnostics`<!-- -->: Stellt Diagnoseinformationen für ein Outlook-Add-In zur Verfügung.
+  - `diagnostics`<!-- -->: Stellt Diagnoseinformationen für ein Outlook-Add-In bereit.
 
 
-  - `item`<!-- -->: Stellt Methoden und Eigenschaften für den Zugriff auf eine Nachricht oder einen Termin in einem Outlook-Add-In zur Verfügung.
+  - `item`<!-- -->: Stellt Methoden und Eigenschaften für den Zugriff auf eine Nachricht oder einen Termin in einem Outlook-Add-In bereit.
 
 
-  - `userProfile`<!-- -->: Stellt Informationen zum Benutzer in einem Outlook-Add-In zur Verfügung.
+  - `userProfile`<!-- -->: Stellt Informationen über den Benutzer in einem Outlook-Add-In bereit.
 remarks: >-
-  **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`Restricted`
+  **[Minimale Berechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`Restricted`
 
 
-  **[Anwendbarer Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
+  **[Zutreffender Outlook Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
 isPreview: false
 isDeprecated: false
 type: interface
@@ -37,21 +37,21 @@ properties:
     Enthält die folgenden Elemente:
 
 
-    - `hostName` (string): Eine Zeichenfolge, die den Namen der Hostanwendung darstellt. Dies sollte einer der folgenden Werte sein: `Outlook`<!-- -->, `OutlookWebApp`<!-- -->, `OutlookIOS`<!-- -->, oder `OutlookAndroid`<!-- -->. **Hinweis**: Der Wert "Outlook" wird für Outlook auf Desktopclients (d. h. Windows und Mac) zurückgegeben.
+    - `hostName` (Zeichenfolge): Eine Zeichenfolge, die den Namen der Hostanwendung darstellt. Es sollte einer der folgenden Werte sein: `Outlook`<!-- -->, `OutlookWebApp`<!-- -->, `OutlookIOS`<!-- -->Oder `OutlookAndroid`<!-- -->. **Hinweis:** Der Wert "Outlook" wird für Outlook auf Desktopclients (z. B. Windows und Mac) zurückgegeben.
 
 
-    - `hostVersion` (Zeichenfolge): Eine Zeichenfolge, die die Version der Hostanwendung oder der Exchange Server (z. B. "15.0.468.0") darstellt. Wenn das E-Mail-Add-In in Outlook auf Desktop- oder mobilen Clients ausgeführt wird, gibt die Eigenschaft die Version der `hostVersion` Hostanwendung Outlook zurück. In Outlook im Web gibt die Eigenschaft die Version des Exchange Server.
+    - `hostVersion`(Zeichenfolge): Eine Zeichenfolge, die die Version der Hostanwendung oder der Exchange Server darstellt (z. B. "15.0.468.0"). Wenn das Mail-Add-In in Outlook auf Desktopclients oder mobilen Clients ausgeführt wird, gibt die `hostVersion` Eigenschaft die Version der Hostanwendung Outlook zurück. In Outlook im Web gibt die Eigenschaft die Version des Exchange Server zurück.
 
 
-    - `OWAView` ( oder Zeichenfolge): Eine Enumeration (oder zeichenfolgenliteral), die die aktuelle `MailboxEnums.OWAView` Ansicht von Outlook im Web darstellt. Wenn es sich bei der Hostanwendung nicht um Outlook im Web handelt, führt der Zugriff auf diese Eigenschaft zu einer nicht definierten Eigenschaft. Outlook im Web verfügt über drei Ansichten ( - wird angezeigt, wenn der Bildschirm schmal ist, - wird angezeigt, wenn der Bildschirm breiter ist, und - wird angezeigt, wenn der Bildschirm breit ist), die der Breite des Bildschirms und des Fensters sowie der Anzahl der Spalten entsprechen, die angezeigt werden `OneColumn` `TwoColumns` `ThreeColumns` können.
+    - `OWAView`( `MailboxEnums.OWAView` oder Zeichenfolge): Eine Enumeration (oder ein Zeichenfolgenliteral), die die aktuelle Ansicht von Outlook im Web darstellt. Wenn die Hostanwendung im Web nicht Outlook ist, führt der Zugriff auf diese Eigenschaft zu undefiniert. Outlook im Web verfügt über drei Ansichten ( `OneColumn` - wird angezeigt, wenn der Bildschirm schmal ist, `TwoColumns` - wird angezeigt, wenn der Bildschirm breiter ist, und `ThreeColumns` - angezeigt, wenn der Bildschirm breit ist), die der Breite des Bildschirms und des Fensters und der Anzahl der Spalten entsprechen, die angezeigt werden können.
 
 
-    Weitere Informationen finden Sie unter [Office.Diagnostics](xref:outlook!Office.Diagnostics:interface)<!-- -->.
+    Weitere Informationen sind unter [Office. Diagnose](xref:outlook!Office.Diagnostics:interface)<!-- -->.
   remarks: >-
-    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+    **[Minimale Berechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
 
 
-    **[Anwendbarer Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
+    **[Zutreffender Outlook Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
   isPreview: false
   isDeprecated: false
   syntax:
@@ -66,21 +66,21 @@ properties:
     Ruft die URL des EWS-Endpunkts (Exchange Web Services) für dieses E-Mail-Konto ab. Nur Lesemodus.
 
 
-    Ihre App muss über die im Manifest angegebene Berechtigung `ReadItem` verfügen, um das `ewsUrl` Mitglied im Lesemodus aufrufen zu können.
+    Ihre App muss über die `ReadItem` im Manifest angegebene Berechtigung verfügen, um das Mitglied im Lesemodus aufzurufen. `ewsUrl`
 
 
-    Im Verfassenmodus müssen Sie die `saveAsync`-Methode aufrufen, bevor Sie das `ewsUrl`-Element verwenden können. Ihre App muss über `ReadWriteItem` Berechtigungen zum Aufrufen der Methode `saveAsync` verfügen.
+    Im Verfassenmodus müssen Sie die `saveAsync`-Methode aufrufen, bevor Sie das `ewsUrl`-Element verwenden können. Ihre App muss `ReadWriteItem` über Berechtigungen zum Aufrufen der Methode `saveAsync` verfügen.
 
 
     **Hinweis:** Dieses Mitglied wird in Outlook unter iOS oder Android nicht unterstützt.
   remarks: >-
-    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+    **[Minimale Berechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
 
 
-    **[Anwendbarer Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
+    **[Zutreffender Outlook Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
 
 
-    Der Wert kann von einem Remotedienst verwendet `ewsUrl` werden, um EWS-Aufrufe an das Postfach des Benutzers zu senden. Sie können z. B. einen Remotedienst erstellen, um [Anlagen aus dem ausgewählten Element zu erhalten.](https://docs.microsoft.com/office/dev/add-ins/outlook/get-attachments-of-an-outlook-item)<!-- -->.
+    Der `ewsUrl` Wert kann von einem Remotedienst verwendet werden, um EWS-Aufrufe an das Postfach des Benutzers auszuführen. Sie können z. B. einen Remotedienst erstellen, um [Anlagen aus dem ausgewählten Element abzurufen.](https://docs.microsoft.com/office/dev/add-ins/outlook/get-attachments-of-an-outlook-item)<!-- -->.
 
 
     #### <a name="examples"></a>Beispiele
@@ -120,13 +120,13 @@ properties:
   package: outlook!
   fullName: item
   summary: >-
-    Das Postfachelement. Je nach Kontext, in dem das Add-In geöffnet wurde, kann der Elementtyp variieren. Wenn Sie die IntelliSense nur für einen bestimmten Typ oder Modus sehen möchten, wird dieses Element in einen der folgenden Elemente umg:
+    Das Postfachelement. Je nach Kontext, in dem das Add-In geöffnet wurde, kann der Elementtyp variieren. Wenn Sie IntelliSense nur für einen bestimmten Typ oder Modus anzeigen möchten, wandeln Sie dieses Element in eine der folgenden Optionen um:
 
 
     [MessageCompose](xref:outlook!Office.MessageCompose:interface)<!-- -->, [MessageRead](xref:outlook!Office.MessageRead:interface)<!-- -->, [AppointmentCompose](xref:outlook!Office.AppointmentCompose:interface)<!-- -->, [AppointmentRead](xref:outlook!Office.AppointmentRead:interface)
 
 
-    **Wichtig:** `item` kann null sein, wenn Ihr Add-In das Anheften des Aufgabenbereichs unterstützt. Weitere Informationen zur Handhabung finden Sie unter [Implementieren eines anheftbaren Aufgabenbereichs in Outlook.](https://docs.microsoft.com/office/dev/add-ins/outlook/pinnable-taskpane#implement-the-event-handler)<!-- -->.
+    **Wichtig:** `item` Kann NULL sein, wenn Ihr Add-In das Anheften des Aufgabenbereichs unterstützt. Ausführliche Informationen zur Handhabung finden Sie unter [Implementieren eines anheftbaren Aufgabenbereichs in Outlook](https://docs.microsoft.com/office/dev/add-ins/outlook/pinnable-taskpane#implement-the-event-handler)<!-- -->.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -142,17 +142,17 @@ properties:
     Ruft die URL des REST-Endpunkts für das betreffende E-Mail-Konto ab.
 
 
-    Ihre App muss über die im Manifest angegebene Berechtigung `ReadItem` verfügen, um das `restUrl` Mitglied im Lesemodus aufrufen zu können.
+    Ihre App muss über die `ReadItem` im Manifest angegebene Berechtigung verfügen, um das Mitglied im Lesemodus aufzurufen. `restUrl`
 
 
-    Im Verfassenmodus müssen Sie die `saveAsync`-Methode aufrufen, bevor Sie das `restUrl`-Element verwenden können. Ihre App muss über `ReadWriteItem` Berechtigungen zum Aufrufen der Methode `saveAsync` verfügen.
+    Im Verfassenmodus müssen Sie die `saveAsync`-Methode aufrufen, bevor Sie das `restUrl`-Element verwenden können. Ihre App muss `ReadWriteItem` über Berechtigungen zum Aufrufen der Methode `saveAsync` verfügen.
 
 
-    In Stellvertretungs- oder freigegebenen Szenarien sollten Sie jedoch stattdessen die Eigenschaft des Objekts `targetRestUrl` `SharedProperties` verwenden (eingeführt in Anforderungssatz 1.8). Weitere Informationen finden Sie im [Artikel zum Stellvertretungszugriff.](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access)
+    In Stellvertretungs- oder freigegebenen Szenarien sollten Sie stattdessen die Eigenschaft des Objekts verwenden `targetRestUrl` `SharedProperties` (eingeführt in Anforderungssatz 1.8). Weitere Informationen finden Sie im Artikel [zum Stellvertretungszugriff.](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access)
 
 
     \[[API-Satz: Postfach 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: "**[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`\n\n**[Anwendbarer Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen\n\nDer Wert `restUrl` kann für [REST-API](https://docs.microsoft.com/outlook/rest/)-Aufrufe an das Postfach des Benutzers verwendet werden.\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/85-tokens-and-service-calls/basic-rest-cors.yaml\nOffice.context.mailbox.getCallbackTokenAsync({ isRest: true }, function (result) {\n    var ewsId = Office.context.mailbox.item.itemId;\n    var token = result.value;\n    var restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);\n    var getMessageUrl = Office.context.mailbox.restUrl + '/v2.0/me/messages/' + restId;\n            \n    var xhr = new XMLHttpRequest();\n    xhr.open('GET', getMessageUrl);\n    xhr.setRequestHeader(\"Authorization\", \"Bearer \" + token);\n    xhr.onload = function (e) {\n        console.log(this.response);\n    }\n    xhr.send();\n});\n```\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/85-tokens-and-service-calls/ids-and-urls.yaml\nconsole.log(\"EWS URL: \" + Office.context.mailbox.ewsUrl);\nvar ewsId = Office.context.mailbox.item.itemId;\nconsole.log(\"EWS item ID: \" + Office.context.mailbox.item.itemId);\n\nconsole.log(\"REST URL: \" + Office.context.mailbox.restUrl);\nvar restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);\nconsole.log(\"REST item ID: \" + restId);\n\nvar ewsId2 = Office.context.mailbox.convertToEwsId(restId, Office.MailboxEnums.RestVersion.v2_0);\nconsole.log(\"EWS ID (from REST ID): \" + ewsId2);\n```"
+  remarks: "**[Minimale Berechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`\n\n**[Zutreffender Outlook Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen\n\nDer Wert `restUrl` kann für [REST-API](https://docs.microsoft.com/outlook/rest/)-Aufrufe an das Postfach des Benutzers verwendet werden.\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/85-tokens-and-service-calls/basic-rest-cors.yaml\nOffice.context.mailbox.getCallbackTokenAsync({ isRest: true }, function (result) {\n    var ewsId = Office.context.mailbox.item.itemId;\n    var token = result.value;\n    var restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);\n    var getMessageUrl = Office.context.mailbox.restUrl + '/v2.0/me/messages/' + restId;\n            \n    var xhr = new XMLHttpRequest();\n    xhr.open('GET', getMessageUrl);\n    xhr.setRequestHeader(\"Authorization\", \"Bearer \" + token);\n    xhr.onload = function (e) {\n        console.log(this.response);\n    }\n    xhr.send();\n});\n```\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/85-tokens-and-service-calls/ids-and-urls.yaml\nconsole.log(\"EWS URL: \" + Office.context.mailbox.ewsUrl);\nvar ewsId = Office.context.mailbox.item.itemId;\nconsole.log(\"EWS item ID: \" + Office.context.mailbox.item.itemId);\n\nconsole.log(\"REST URL: \" + Office.context.mailbox.restUrl);\nvar restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);\nconsole.log(\"REST item ID: \" + restId);\n\nvar ewsId2 = Office.context.mailbox.convertToEwsId(restId, Office.MailboxEnums.RestVersion.v2_0);\nconsole.log(\"EWS ID (from REST ID): \" + ewsId2);\n```"
   isPreview: false
   isDeprecated: false
   syntax:
@@ -167,7 +167,7 @@ properties:
     Informationen zum Benutzer, der dem Postfach zugeordnet ist. Dazu gehören kontotyp, Anzeigename, E-Mail-Adresse und Zeitzone.
 
 
-    Weitere Informationen finden Sie unter [Office.UserProfile](xref:outlook!Office.UserProfile:interface)
+    Weitere Informationen sind unter [Office. UserProfile](xref:outlook!Office.UserProfile:interface)
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -181,18 +181,18 @@ methods:
   package: outlook!
   fullName: addHandlerAsync(eventType, handler, options, callback)
   summary: >-
-    Fügt einen Ereignishandler für ein unterstütztes Ereignis hinzu. **Hinweis**: Ereignisse sind nur im Aufgabenbereich verfügbar.
+    Fügt einen Ereignishandler für ein unterstütztes Ereignis hinzu. **Hinweis:** Ereignisse sind nur für die Implementierung des Aufgabenbereichs verfügbar.
 
 
-    Weitere Informationen zu unterstützten [Ereignissen finden Sie im Abschnitt Postfachobjektmodellereignisse.](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.6/office.context.mailbox#events)
+    Unterstützte Ereignisse finden Sie im [Abschnitt](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.6/office.context.mailbox#events) "Postfachobjektmodellereignisse"<!-- -->.
 
 
     \[[API-Satz: Postfach 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+    **[Minimale Berechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
 
 
-    **[Anwendbarer Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
+    **[Zutreffender Outlook Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
 
 
     #### <a name="examples"></a>Beispiele
@@ -229,19 +229,19 @@ methods:
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'addHandlerAsync(eventType: Office.EventType | string, handler: (type: Office.EventType) => void, options: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    content: 'addHandlerAsync(eventType: Office.EventType | string, handler: any, options: Office.AsyncContextOptions, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     parameters:
     - id: eventType
       description: Das Ereignis, das den Handler aufrufen soll
       type: <xref uid="office!Office.EventType:enum" /> | string
     - id: handler
-      description: Die Funktion, die das Ereignis behandeln soll. Die Funktion muss einen einzigen Parameter akzeptieren (ein Objektliteral). Die type-Eigenschaft für den Parameter wird mit dem `eventType` Parameter übereinstimmen, der an übergeben wird. `addHandlerAsync`<!-- -->.
-      type: '(type: <xref uid="office!Office.EventType:enum" />) =&gt; void'
+      description: Die Funktion, die das Ereignis behandeln soll. Die Funktion muss einen einzigen Parameter akzeptieren (ein Objektliteral). Die `type` Eigenschaft für den Parameter stimmt mit dem Parameter überein, der `eventType` an `addHandlerAsync`<!-- -->.
+      type: any
     - id: options
-      description: Stellt eine Option zum Beibehalten von Kontextdaten eines beliebigen Typs zur Verwendung in einem Rückruf zur Verfügung.
+      description: Bietet eine Option zum Beibehalten von Kontextdaten eines beliebigen Typs, unverändert, für die Verwendung in einem Rückruf.
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion mit einem einzelnen `callback` Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->.
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion `callback` mit einem einzigen Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
@@ -251,31 +251,31 @@ methods:
   package: outlook!
   fullName: addHandlerAsync(eventType, handler, callback)
   summary: >-
-    Fügt einen Ereignishandler für ein unterstütztes Ereignis hinzu. **Hinweis**: Ereignisse sind nur im Aufgabenbereich verfügbar.
+    Fügt einen Ereignishandler für ein unterstütztes Ereignis hinzu. **Hinweis:** Ereignisse sind nur für die Implementierung des Aufgabenbereichs verfügbar.
 
 
-    Weitere Informationen zu unterstützten [Ereignissen finden Sie im Abschnitt Postfachobjektmodellereignisse.](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.6/office.context.mailbox#events)
+    Unterstützte Ereignisse finden Sie im [Abschnitt](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.6/office.context.mailbox#events) "Postfachobjektmodellereignisse"<!-- -->.
 
 
     \[[API-Satz: Postfach 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+    **[Minimale Berechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
 
 
-    **[Anwendbarer Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
+    **[Zutreffender Outlook Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'addHandlerAsync(eventType: Office.EventType | string, handler: (type: Office.EventType) => void, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
+    content: 'addHandlerAsync(eventType: Office.EventType | string, handler: any, callback?: (asyncResult: Office.AsyncResult<void>) => void): void;'
     parameters:
     - id: eventType
       description: Das Ereignis, das den Handler aufrufen soll
       type: <xref uid="office!Office.EventType:enum" /> | string
     - id: handler
-      description: Die Funktion, die das Ereignis behandeln soll. Die Funktion muss einen einzigen Parameter akzeptieren (ein Objektliteral). Die type-Eigenschaft für den Parameter wird mit dem `eventType` Parameter übereinstimmen, der an übergeben wird. `addHandlerAsync`<!-- -->.
-      type: '(type: <xref uid="office!Office.EventType:enum" />) =&gt; void'
+      description: Die Funktion, die das Ereignis behandeln soll. Die Funktion muss einen einzigen Parameter akzeptieren (ein Objektliteral). Die `type` Eigenschaft für den Parameter stimmt mit dem Parameter überein, der `eventType` an `addHandlerAsync`<!-- -->.
+      type: any
     - id: callback
-      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion mit einem einzelnen `callback` Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->.
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion `callback` mit einem einzigen Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
@@ -288,7 +288,7 @@ methods:
     Wandelt eine REST-formatierte Element-ID ins EWS-Format um.
 
 
-    Über eine REST-API abgerufene Element-IDs (z. B. die Outlook Mail-API oder Microsoft Graph) verwenden ein anderes Format als das von Exchange Web Services (EWS) verwendete Format. Die `convertToEwsId` Methode konvertiert eine REST-formatierte ID in das richtige Format für EWS.
+    Element-IDs, die über eine REST-API (z. B. die Outlook Mail-API oder die Microsoft-Graph) abgerufen werden, verwenden ein anderes Format als das von Exchange Webdienste (EWS) verwendete Format. Die `convertToEwsId` Methode konvertiert eine REST-formatierte ID in das richtige Format für EWS.
 
 
     **Hinweis:** Diese Methode wird in Outlook unter iOS oder Android nicht unterstützt.
@@ -296,10 +296,10 @@ methods:
 
     \[[API-Satz: Postfach 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`Restricted`
+    **[Minimale Berechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`Restricted`
 
 
-    **[Anwendbarer Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
+    **[Zutreffender Outlook Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
 
 
     #### <a name="examples"></a>Beispiele
@@ -334,7 +334,7 @@ methods:
     content: 'convertToEwsId(itemId: string, restVersion: MailboxEnums.RestVersion | string): string;'
     parameters:
     - id: itemId
-      description: Eine Element-ID, die für die Outlook-REST-APIs formatiert ist.
+      description: Eine Element-ID, die für die Outlook REST-APIs formatiert ist.
       type: string
     - id: restVersion
       description: Ein Wert, der die Version der Outlook-REST-API angibt, die zum Abrufen der Element-ID verwendet wurde.
@@ -350,15 +350,15 @@ methods:
     Ruft ein Wörterbuch mit Uhrzeitinformationen basierend auf der Zeiteinstellung des lokalen Clients ab.
 
 
-    Die von einer E-Mail-App für Outlook im Web oder Desktopclients verwendeten Datums- und Uhrzeitangaben können unterschiedliche Zeitzonen verwenden. Outlook verwendet die Zeitzone des Clientcomputers. Outlook im Web verwendet die Zeitzone, die im Exchange Admin Center (EAC) festgelegt ist. Sie sollten Datums- und Uhrzeitwerte bearbeiten, damit die auf der Benutzeroberfläche angezeigten Werte immer den von Benutzer erwarteten Zeitzonen entsprechen.
+    Die Von einer Mail-App für Outlook im Web oder Desktopclients verwendeten Datums- und Uhrzeitangaben können unterschiedliche Zeitzonen verwenden. Outlook verwendet die Zeitzone des Clientcomputers. Outlook im Web verwendet die Im Exchange Admin Center (EAC) festgelegte Zeitzone. Sie sollten Datums- und Uhrzeitwerte bearbeiten, damit die auf der Benutzeroberfläche angezeigten Werte immer den von Benutzer erwarteten Zeitzonen entsprechen.
 
 
-    Wenn die E-Mail-App in Outlook auf Desktopclients ausgeführt wird, gibt die Methode ein Wörterbuchobjekt zurück, deren Werte auf die Zeitzone des `convertToLocalClientTime` Clientcomputers festgelegt sind. Wenn die E-Mail-App in Outlook im Web ausgeführt wird, gibt die Methode ein Wörterbuchobjekt zurück, deren Werte auf die zeitzone festgelegt sind, die in der `convertToLocalClientTime` EAC angegeben ist.
+    Wenn die Mail-App in Outlook auf Desktopclients ausgeführt wird, gibt die `convertToLocalClientTime` Methode ein Wörterbuchobjekt zurück, wobei die Werte auf die Zeitzone des Clientcomputers festgelegt sind. Wenn die Mail-App in Outlook im Web ausgeführt wird, gibt die `convertToLocalClientTime` Methode ein Wörterbuchobjekt zurück, deren Werte auf die im EAC angegebene Zeitzone festgelegt sind.
   remarks: >-
-    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+    **[Minimale Berechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
 
 
-    **[Anwendbarer Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
+    **[Zutreffender Outlook Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
   isPreview: false
   isDeprecated: false
   syntax:
@@ -382,7 +382,7 @@ methods:
 
 
     \[[API-Satz: Postfach 1.3](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: "**[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`Restricted`\n\n**[Anwendbarer Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen\n\nÜber EWS oder über die Eigenschaft abgerufene Element-IDs verwenden ein anderes Format als das format, das von REST-APIs verwendet wird (z. B. die `itemId` [Outlook Mail-API](https://docs.microsoft.com/previous-versions/office/office-365-api/api/version-2.0/mail-rest-operations) oder [Microsoft Graph).](https://graph.microsoft.io/)<!-- -->. Die `convertToRestId` Methode konvertiert eine EWS-formatierte ID in das richtige Format für REST.\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/85-tokens-and-service-calls/basic-rest-cors.yaml\nOffice.context.mailbox.getCallbackTokenAsync({ isRest: true }, function (result) {\n    var ewsId = Office.context.mailbox.item.itemId;\n    var token = result.value;\n    var restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);\n    var getMessageUrl = Office.context.mailbox.restUrl + '/v2.0/me/messages/' + restId;\n            \n    var xhr = new XMLHttpRequest();\n    xhr.open('GET', getMessageUrl);\n    xhr.setRequestHeader(\"Authorization\", \"Bearer \" + token);\n    xhr.onload = function (e) {\n        console.log(this.response);\n    }\n    xhr.send();\n});\n```\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/85-tokens-and-service-calls/ids-and-urls.yaml\nconsole.log(\"EWS URL: \" + Office.context.mailbox.ewsUrl);\nvar ewsId = Office.context.mailbox.item.itemId;\nconsole.log(\"EWS item ID: \" + Office.context.mailbox.item.itemId);\n\nconsole.log(\"REST URL: \" + Office.context.mailbox.restUrl);\nvar restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);\nconsole.log(\"REST item ID: \" + restId);\n\nvar ewsId2 = Office.context.mailbox.convertToEwsId(restId, Office.MailboxEnums.RestVersion.v2_0);\nconsole.log(\"EWS ID (from REST ID): \" + ewsId2);\n```"
+  remarks: "**[Minimale Berechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`Restricted`\n\n**[Zutreffender Outlook Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen\n\nElement-IDs, die über EWS oder über die Eigenschaft abgerufen `itemId` werden, verwenden ein anderes Format als das format, das von REST-APIs verwendet wird (z. B. die [Outlook Mail-API](https://docs.microsoft.com/previous-versions/office/office-365-api/api/version-2.0/mail-rest-operations) oder die [Microsoft-Graph](https://graph.microsoft.io/)<!-- -->. Die `convertToRestId` Methode konvertiert eine EWS-formatierte ID in das richtige Format für REST.\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/85-tokens-and-service-calls/basic-rest-cors.yaml\nOffice.context.mailbox.getCallbackTokenAsync({ isRest: true }, function (result) {\n    var ewsId = Office.context.mailbox.item.itemId;\n    var token = result.value;\n    var restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);\n    var getMessageUrl = Office.context.mailbox.restUrl + '/v2.0/me/messages/' + restId;\n            \n    var xhr = new XMLHttpRequest();\n    xhr.open('GET', getMessageUrl);\n    xhr.setRequestHeader(\"Authorization\", \"Bearer \" + token);\n    xhr.onload = function (e) {\n        console.log(this.response);\n    }\n    xhr.send();\n});\n```\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/85-tokens-and-service-calls/ids-and-urls.yaml\nconsole.log(\"EWS URL: \" + Office.context.mailbox.ewsUrl);\nvar ewsId = Office.context.mailbox.item.itemId;\nconsole.log(\"EWS item ID: \" + Office.context.mailbox.item.itemId);\n\nconsole.log(\"REST URL: \" + Office.context.mailbox.restUrl);\nvar restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);\nconsole.log(\"REST item ID: \" + restId);\n\nvar ewsId2 = Office.context.mailbox.convertToEwsId(restId, Office.MailboxEnums.RestVersion.v2_0);\nconsole.log(\"EWS ID (from REST ID): \" + ewsId2);\n```"
   isPreview: false
   isDeprecated: false
   syntax:
@@ -405,12 +405,12 @@ methods:
     Ruft ein `Date` Objekt aus einem Wörterbuch ab, das Zeitinformationen enthält.
 
 
-    Die Methode konvertiert ein Wörterbuch, das ein lokales Datum und eine lokale Uhrzeit enthält, in ein Objekt mit den richtigen Werten für das `convertToUtcClientTime` lokale Datum und die `Date` uhrzeit.
+    Die `convertToUtcClientTime` Methode konvertiert ein Wörterbuch, das ein lokales Datum und eine lokale Uhrzeit enthält, in ein Objekt mit den `Date` richtigen Werten für das lokale Datum und die lokale Uhrzeit.
   remarks: >-
-    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+    **[Minimale Berechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
 
 
-    **[Anwendbarer Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
+    **[Zutreffender Outlook Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
 
 
     #### <a name="examples"></a>Beispiele
@@ -464,21 +464,21 @@ methods:
     Mit der `displayAppointmentForm`-Methode wird ein vorhandener Kalendertermin auf dem Desktop in einem neuen Fenster oder auf Mobilgeräten in einem Dialogfeld geöffnet.
 
 
-    In Outlook auf Mac können Sie diese Methode verwenden, um einen einzelnen Termin, der nicht Teil einer Serienserie ist, oder den Mastertermin einer Serienserie anzeigen. Sie können jedoch keine Instanz der Datenreihe anzeigen, da Sie nicht auf die Eigenschaften (einschließlich der Element-ID) von Instanzen einer Serienserie zugreifen können.
+    In Outlook auf dem Mac können Sie diese Methode verwenden, um einen einzelnen Termin anzuzeigen, der nicht Teil einer Terminserie ist, oder den Mastertermin einer Terminserie. Sie können jedoch keine Instanz der Datenreihe anzeigen, da Sie nicht auf die Eigenschaften (einschließlich der Element-ID) von Instanzen einer Terminserie zugreifen können.
 
 
-    In Outlook im Web öffnet diese Methode das angegebene Formular nur, wenn der Textkörper des Formulars kleiner oder gleich 32K Zeichen ist.
+    In Outlook im Web öffnet diese Methode das angegebene Formular nur, wenn der Textkörper des Formulars kleiner oder gleich 32.000 Zeichen ist.
 
 
-    Wenn der angegebene Elementbezeichner keinen vorhandenen Termin identifiziert, wird auf dem Clientcomputer oder Gerät ein leerer Bereich geöffnet, und es wird keine Fehlermeldung zurückgegeben.
+    Wenn der angegebene Elementbezeichner keinen vorhandenen Termin identifiziert, wird ein leerer Bereich auf dem Clientcomputer oder -gerät geöffnet, und es wird keine Fehlermeldung zurückgegeben.
 
 
     **Hinweis:** Diese Methode wird in Outlook unter iOS oder Android nicht unterstützt.
   remarks: >-
-    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+    **[Minimale Berechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
 
 
-    **[Anwendbarer Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
+    **[Zutreffender Outlook Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
 
 
     #### <a name="examples"></a>Beispiele
@@ -515,21 +515,21 @@ methods:
     Die `displayMessageForm`-Methode öffnet eine vorhandene Nachricht in einem neuen Fenster auf dem Desktop bzw. in einem Dialogfeld auf Mobilgeräten.
 
 
-    In Outlook im Web öffnet diese Methode das angegebene Formular nur, wenn der Textkörper des Formulars kleiner oder gleich 32K Zeichen ist.
+    In Outlook im Web öffnet diese Methode das angegebene Formular nur, wenn der Textkörper des Formulars kleiner oder gleich 32.000 Zeichen ist.
 
 
     Wenn der angegebene Elementbezeichner keine vorhandene Nachricht identifiziert, wird keine Meldung auf dem Clientcomputer angezeigt, und es wird keine Fehlermeldung zurückgegeben.
 
 
-    Verwenden Sie nicht die `displayMessageForm` mit einer itemId, die einen Termin darstellt. Verwenden Sie die `displayAppointmentForm`-Methode, um einen vorhandenen Termin anzuzeigen, und `displayNewAppointmentForm`, um ein Formular zum Erstellen eines neuen Termins anzuzeigen.
+    Verwenden Sie `displayMessageForm` dies nicht mit einer itemId, die einen Termin darstellt. Verwenden Sie die `displayAppointmentForm`-Methode, um einen vorhandenen Termin anzuzeigen, und `displayNewAppointmentForm`, um ein Formular zum Erstellen eines neuen Termins anzuzeigen.
 
 
     **Hinweis:** Diese Methode wird in Outlook unter iOS oder Android nicht unterstützt.
   remarks: >-
-    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+    **[Minimale Berechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
 
 
-    **[Anwendbarer Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
+    **[Zutreffender Outlook Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
 
 
     #### <a name="examples"></a>Beispiele
@@ -569,7 +569,7 @@ methods:
     In Outlook im Web zeigt diese Methode immer ein Formular mit einem Teilnehmerfeld an. Wenn Sie keine Teilnehmer als Eingabeargumente angeben, zeigt die Methode ein Formular mit einer Schaltfläche **Speichern** an. Wenn Sie Teilnehmer angegeben haben, enthält das Formular die Teilnehmer und eine Schaltfläche **Senden**.
 
 
-    Wenn Sie im Outlook Rich Client und Outlook RT Teilnehmer oder Ressourcen in der `requiredAttendees`<!-- -->, `optionalAttendees`<!-- -->oder `resources` Parameter, zeigt diese Methode ein Besprechungsformular mit einer Schaltfläche **Senden** an. Wenn Sie keine Empfänger angeben, zeigt diese Methode ein Terminformular mit der Schaltfläche **Schließen &amp;** speichern an.
+    In the Outlook rich client and Outlook RT, if you specify any attendees or resources in the`requiredAttendees`<!-- -->, `optionalAttendees`<!-- -->oder `resources` Parameter zeigt diese Methode ein Besprechungsformular mit einer Schaltfläche **"Senden"** an. Wenn Sie keine Empfänger angeben, zeigt diese Methode ein Terminformular mit der Schaltfläche **&amp; "Schließen speichern"** an.
 
 
     Wenn einer der Parameter die angegebenen Größenbeschränkungen überschreitet oder wenn ein unbekannter Parametername angegeben wird, wird eine Ausnahme ausgelöst.
@@ -577,10 +577,10 @@ methods:
 
     **Hinweis:** Diese Methode wird in Outlook unter iOS oder Android nicht unterstützt.
   remarks: >-
-    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+    **[Minimale Berechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
 
 
-    **[Anwendbarer Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Lesen
+    **[Zutreffender Outlook modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Lesen
 
 
     #### <a name="examples"></a>Beispiele
@@ -636,10 +636,10 @@ methods:
 
     \[[API-Satz: Postfach 1.6](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+    **[Minimale Berechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
 
 
-    **[Anwendbarer Outlook-Modus](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->**: Lesen
+    **[Zutreffender Outlook modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Lesen
 
 
     #### <a name="examples"></a>Beispiele
@@ -675,37 +675,37 @@ methods:
         Ein Wörterbuch mit allen Werten, die für den Benutzer im neuen Formular ausgefüllt werden sollen. Alle Parameter sind optional.
 
 
-        `toRecipients`<!-- -->: Ein Array von Zeichenfolgen, die die E-Mail-Adressen enthalten, oder ein Array, das ein [EmailAddressDetails-Objekt](xref:outlook!Office.EmailAddressDetails:interface) für jeden Empfänger in der **Zeile An** enthält. Das Array darf maximal 100 Einträge enthalten.
+        `toRecipients`<!-- -->: Ein Zeichenfolgenarray mit den E-Mail-Adressen oder ein Array mit einem [EmailAddressDetails-Objekt](xref:outlook!Office.EmailAddressDetails:interface) für jeden Empfänger in der **Zeile "An".** Das Array darf maximal 100 Einträge enthalten.
 
 
-        `ccRecipients`<!-- -->: Ein Array von Zeichenfolgen, die die E-Mail-Adressen enthalten, oder ein Array, das ein [EmailAddressDetails-Objekt](xref:outlook!Office.EmailAddressDetails:interface) für jeden Empfänger in der **Cc-Zeile** enthält. Das Array darf maximal 100 Einträge enthalten.
+        `ccRecipients`<!-- -->: Ein Zeichenfolgenarray mit den E-Mail-Adressen oder ein Array mit einem [EmailAddressDetails-Objekt](xref:outlook!Office.EmailAddressDetails:interface) für jeden Empfänger in der **Cc-Zeile.** Das Array darf maximal 100 Einträge enthalten.
 
 
-        `bccRecipients`<!-- -->: Ein Array von Zeichenfolgen, die die E-Mail-Adressen enthalten, oder ein Array, das ein [EmailAddressDetails-Objekt](xref:outlook!Office.EmailAddressDetails:interface) für jeden Empfänger in der **Zeile Bcc** enthält. Das Array darf maximal 100 Einträge enthalten.
+        `bccRecipients`<!-- -->: Ein Zeichenfolgenarray mit den E-Mail-Adressen oder ein Array mit einem [EmailAddressDetails-Objekt](xref:outlook!Office.EmailAddressDetails:interface) für jeden Empfänger in der **Bcc-Zeile.** Das Array darf maximal 100 Einträge enthalten.
 
 
         `subject`<!-- -->: Eine Zeichenfolge, die den Betreff der Nachricht enthält. Die Zeichenfolge ist auf maximal 255 Zeichen beschränkt.
 
 
-        `htmlBody`<!-- -->: Der HTML-Textkörper der Nachricht. Der Textkörper ist auf eine maximale Größe von 32 KB beschränkt.
+        `htmlBody`<!-- -->: Der HTML-Text der Nachricht. Der Textkörper ist auf eine maximale Größe von 32 KB beschränkt.
 
 
-        `attachments`<!-- -->: Ein Array von JSON-Objekten, bei dem es sich entweder um Datei- oder Elementanlagen handelt.
+        `attachments`<!-- -->: Ein Array von JSON-Objekten, bei denen es sich entweder um Datei- oder Elementanlagen handelt.
 
 
-        `attachments.type`<!-- -->: Gibt den Anlagentyp an. Muss eine Datei für eine Dateianlage oder ein Element für eine Elementanlage sein.
+        `attachments.type`<!-- -->: Gibt den Typ der Anlage an. Muss eine Datei für eine Dateianlage oder ein Element für eine Elementanlage sein.
 
 
         `attachments.name`<!-- -->: Eine Zeichenfolge, die den Namen der Anlage mit einer Länge von bis zu 255 Zeichen enthält.
 
 
-        `attachments.url`<!-- -->: Wird nur verwendet, wenn der Typ auf Datei festgelegt ist. Der URI des Speicherorts für die Datei.
+        `attachments.url`<!-- -->: Wird nur verwendet, wenn der Typ auf "Datei" festgelegt ist. Der URI des Speicherorts für die Datei.
 
 
-        `attachments.isInline`<!-- -->: Wird nur verwendet, wenn der Typ auf Datei festgelegt ist. Wenn true, gibt an, dass die Anlage inline im Nachrichtentext angezeigt wird und nicht in der Anlagenliste angezeigt werden soll.
+        `attachments.isInline`<!-- -->: Wird nur verwendet, wenn der Typ auf "Datei" festgelegt ist. Wenn "true", gibt an, dass die Anlage inline im Nachrichtentext angezeigt wird und nicht in der Anlagenliste angezeigt werden soll.
 
 
-        `attachments.itemId`<!-- -->: Wird nur verwendet, wenn der Typ auf Element festgelegt ist. Die EWS-Element-ID der vorhandenen E-Mail, die Sie an die neue Nachricht anfügen möchten. Diese Zeichenfolge kann bis zu 100 Zeichen lang sein.
+        `attachments.itemId`<!-- -->: Wird nur verwendet, wenn der Typ auf "Element" festgelegt ist. Die EWS-Element-ID der vorhandenen E-Mail, die Sie an die neue Nachricht anfügen möchten. Diese Zeichenfolge kann bis zu 100 Zeichen lang sein.
       type: any
     return:
       type: void
@@ -715,28 +715,28 @@ methods:
   package: outlook!
   fullName: getCallbackTokenAsync(options, callback)
   summary: >-
-    Ruft eine Zeichenfolge ab, die ein Token enthält, das zum Aufrufen von REST-APIs oder Exchange-Webdiensten (EWS) verwendet wird.
+    Ruft eine Zeichenfolge ab, die ein Token enthält, das zum Aufrufen von REST-APIs oder Exchange Webdienste (EWS) verwendet wird.
 
 
     Die `getCallbackTokenAsync`-Methode führt einen asynchronen Aufruf zum Abruf eines nicht transparenten Tokens vom Exchange-Server aus, der das Postfach des Benutzers hostet. Die Gültigkeitsdauer des Rückruftokens beträgt 5 Minuten.
 
 
-    Das Token wird als Zeichenfolge in der Eigenschaft `asyncResult.value` zurückgegeben.
+    Das Token wird als Zeichenfolge in der `asyncResult.value` Eigenschaft zurückgegeben.
 
 
-    Für das `getCallbackTokenAsync` Aufrufen der Methode im Lesemodus ist eine Mindestberechtigungsstufe von `ReadItem`<!-- -->.
+    Das Aufrufen der `getCallbackTokenAsync` Methode im Lesemodus erfordert eine Minimale Berechtigungsstufe von `ReadItem`<!-- -->.
 
 
-    Wenn Sie `getCallbackTokenAsync` die Methode im Verfassenmodus aufrufen, müssen Sie das Element gespeichert haben. Die `saveAsync` Methode erfordert eine Mindestberechtigungsstufe von `ReadWriteItem`<!-- -->.
+    Wenn Sie die `getCallbackTokenAsync` Methode im Verfassenmodus aufrufen, müssen Sie das Element gespeichert haben. Die `saveAsync` Methode erfordert eine minimale Berechtigungsstufe von `ReadWriteItem`<!-- -->.
 
 
-    **Wichtig:** Anleitungen zu Stellvertretungs- oder freigegebenen Szenarien finden Sie im [Artikel zum Stellvertretungszugriff.](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access)
+    **Wichtig:** Anleitungen zu Delegaten- oder freigegebenen Szenarien finden Sie im Artikel [zum Zugriff auf Stellvertretungen.](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access)
 
 
     *REST-Token*
 
 
-    Wenn ein REST-Token angefordert wird (`options.isRest` = `true`<!-- -->), funktioniert das resultierende Token nicht, um EWS-Aufrufe zu authentifizieren. Der Bereich des Tokens ist auf schreibgeschützten Zugriff auf das aktuelle Element und dessen Anlagen beschränkt, es sei denn im Manifest des Add-Ins ist die Berechtigung `ReadWriteMailbox` angegeben. Ist die Berechtigung `ReadWriteMailbox` angegeben, gewährt das resultierende Token Lese-/Schreibzugriff auf E-Mails, Kalender und Kontakte und erlaubt das Senden von E-Mails.
+    Wenn ein REST-Token angefordert wird (`options.isRest` = `true`<!-- -->), kann das resultierende Token nicht zum Authentifizieren von EWS-Aufrufen verwendet werden. Der Bereich des Tokens ist auf schreibgeschützten Zugriff auf das aktuelle Element und dessen Anlagen beschränkt, es sei denn im Manifest des Add-Ins ist die Berechtigung `ReadWriteMailbox` angegeben. Ist die Berechtigung `ReadWriteMailbox` angegeben, gewährt das resultierende Token Lese-/Schreibzugriff auf E-Mails, Kalender und Kontakte und erlaubt das Senden von E-Mails.
 
 
     Das Add-In sollte die Eigenschaft `restUrl` verwenden, um die korrekte URL für REST-API-Aufrufe zu ermitteln.
@@ -760,30 +760,30 @@ methods:
     *EWS-Tokens*
 
 
-    Wenn ein EWS-Token angefordert wird (`options.isRest` = `false`<!-- -->), funktioniert das resultierende Token nicht, um REST-API-Aufrufe zu authentifizieren. Der Bereich des Tokens ist auf den Zugriff auf das aktuelle Element beschränkt.
+    Wenn ein EWS-Token angefordert wird (`options.isRest` = `false`<!-- -->), kann das resultierende Token nicht zum Authentifizieren von REST-API-Aufrufen verwendet werden. Der Bereich des Tokens ist auf den Zugriff auf das aktuelle Element beschränkt.
 
 
     Das Add-In sollte die Eigenschaft `ewsUrl` verwenden, um die korrekte URL für EWS-Aufrufe zu ermitteln.
 
 
-    Sie können sowohl das Token als auch eine Anlagen- oder Element-ID an ein Drittanbietersystem weitergeben. Das Drittanbietersystem verwendet das Token als Trägerautorisierungstoken, um den Exchange Web Services-Vorgang (EWS) [GetAttachment](https://docs.microsoft.com/exchange/client-developer/web-service-reference/getattachment-operation) oder [GetItem](https://docs.microsoft.com/exchange/client-developer/web-service-reference/getitem-operation) aufzurufen und eine Anlage oder ein Element zurückzugeben. Sie können z. B. einen Remotedienst erstellen, um [Anlagen aus dem ausgewählten Element zu erhalten.](https://docs.microsoft.com/office/dev/add-ins/outlook/get-attachments-of-an-outlook-item)<!-- -->.
+    Sie können sowohl das Token als auch eine Anlagen- oder Element-ID an ein Drittanbietersystem weitergeben. Das Drittanbietersystem verwendet das Token als Trägerautorisierungstoken, um den Exchange Web Services-Vorgang (EWS) [GetAttachment](https://docs.microsoft.com/exchange/client-developer/web-service-reference/getattachment-operation) oder [GetItem](https://docs.microsoft.com/exchange/client-developer/web-service-reference/getitem-operation) aufzurufen und eine Anlage oder ein Element zurückzugeben. Sie können z. B. einen Remotedienst erstellen, um [Anlagen aus dem ausgewählten Element abzurufen.](https://docs.microsoft.com/office/dev/add-ins/outlook/get-attachments-of-an-outlook-item)<!-- -->.
 
 
-    **Hinweis:** Es wird empfohlen, dass Add-Ins nach Möglichkeit die REST-APIs anstelle von Exchange-Webdiensten verwenden.
+    **Hinweis:** Es wird empfohlen, dass Add-Ins nach Möglichkeit die REST-APIs anstelle Exchange Webdienste verwenden.
 
 
     \[[API-Satz: Postfach 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
-  remarks: "**[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`\n\n**[Anwendbarer Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen\n\n**Fehler**:\n\n- `HTTPRequestFailure`<!-- -->: Die Anforderung ist fehlgeschlagen. Den HTTP-Fehlercode finden Sie im Diagnoseobjekt.\n\n- `InternalServerError`<!-- -->: Der Exchange-Server hat einen Fehler zurückgegeben. Weitere Informationen finden Sie im Diagnoseobjekt.\n\n- `NetworkError`<!-- -->: Der Benutzer ist nicht mehr mit dem Netzwerk verbunden. Überprüfen Sie Ihre Netzwerkverbindung, und versuchen Sie es erneut.\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/85-tokens-and-service-calls/basic-rest-cors.yaml\nOffice.context.mailbox.getCallbackTokenAsync({ isRest: true }, function (result) {\n    var ewsId = Office.context.mailbox.item.itemId;\n    var token = result.value;\n    var restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);\n    var getMessageUrl = Office.context.mailbox.restUrl + '/v2.0/me/messages/' + restId;\n            \n    var xhr = new XMLHttpRequest();\n    xhr.open('GET', getMessageUrl);\n    xhr.setRequestHeader(\"Authorization\", \"Bearer \" + token);\n    xhr.onload = function (e) {\n        console.log(this.response);\n    }\n    xhr.send();\n});\n```"
+  remarks: "**[Minimale Berechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`\n\n**[Zutreffender Outlook Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen\n\n**Fehler:**\n\n- `HTTPRequestFailure`<!-- -->: Die Anforderung ist fehlgeschlagen. Den HTTP-Fehlercode finden Sie im Diagnoseobjekt.\n\n- `InternalServerError`<!-- -->: Der Exchange Server hat einen Fehler zurückgegeben. Weitere Informationen finden Sie im Diagnoseobjekt.\n\n- `NetworkError`<!-- -->: Der Benutzer ist nicht mehr mit dem Netzwerk verbunden. Überprüfen Sie Ihre Netzwerkverbindung, und versuchen Sie es erneut.\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/outlook/85-tokens-and-service-calls/basic-rest-cors.yaml\nOffice.context.mailbox.getCallbackTokenAsync({ isRest: true }, function (result) {\n    var ewsId = Office.context.mailbox.item.itemId;\n    var token = result.value;\n    var restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);\n    var getMessageUrl = Office.context.mailbox.restUrl + '/v2.0/me/messages/' + restId;\n            \n    var xhr = new XMLHttpRequest();\n    xhr.open('GET', getMessageUrl);\n    xhr.setRequestHeader(\"Authorization\", \"Bearer \" + token);\n    xhr.onload = function (e) {\n        console.log(this.response);\n    }\n    xhr.send();\n});\n```"
   isPreview: false
   isDeprecated: false
   syntax:
     content: 'getCallbackTokenAsync(options: Office.AsyncContextOptions & { isRest?: boolean }, callback: (asyncResult: Office.AsyncResult<string>) => void): void;'
     parameters:
     - id: options
-      description: 'Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `isRest`<!-- -->: Bestimmt, ob das bereitgestellte Token für die Outlook-REST-APIs oder Exchange-Webdienste verwendet wird. Standardwert ist `false`<!-- -->. `asyncContext`<!-- -->: Alle Zustandsdaten, die an die asynchrone Methode übergeben werden.'
+      description: 'Ein Objektliteral, das mindestens eine der folgenden Eigenschaften enthält. `isRest`<!-- -->: Bestimmt, ob das bereitgestellte Token für die Outlook REST-APIs oder Exchange Webdienste verwendet wird. Standardwert ist `false`<!-- -->. `asyncContext`<!-- -->: Alle Zustandsdaten, die an die asynchrone Methode übergeben werden.'
       type: '<xref uid="office!Office.AsyncContextOptions:interface" /> & { isRest?: boolean }'
     - id: callback
-      description: Wenn die Methode abgeschlossen ist, wird die im Rückrufparameter übergebene Funktion mit einem einzelnen Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->. Das Token wird als Zeichenfolge in der Eigenschaft `asyncResult.value` zurückgegeben. Wenn ein Fehler aufgetreten ist, können die Eigenschaften `asyncResult.error` und `asyncResult.diagnostics` weitere Informationen enthalten.
+      description: Wenn die Methode abgeschlossen ist, wird die im Rückrufparameter übergebene Funktion mit einem einzigen Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->. Das Token wird als Zeichenfolge in der `asyncResult.value` Eigenschaft zurückgegeben. Wenn ein Fehler aufgetreten ist, können die Eigenschaften `asyncResult.error` und `asyncResult.diagnostics` weitere Informationen enthalten.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;string&gt;) =&gt; void'
     return:
       type: void
@@ -799,36 +799,36 @@ methods:
     Die `getCallbackTokenAsync`-Methode führt einen asynchronen Aufruf zum Abruf eines nicht transparenten Tokens vom Exchange-Server aus, der das Postfach des Benutzers hostet. Die Gültigkeitsdauer des Rückruftokens beträgt 5 Minuten.
 
 
-    Das Token wird als Zeichenfolge in der Eigenschaft `asyncResult.value` zurückgegeben.
+    Das Token wird als Zeichenfolge in der `asyncResult.value` Eigenschaft zurückgegeben.
 
 
-    Sie können sowohl das Token als auch eine Anlagen- oder Element-ID an ein Drittanbietersystem weitergeben. Das Drittanbietersystem verwendet das Token als Trägerautorisierungstoken, um den Exchange Web Services-Vorgang (EWS) [GetAttachment](https://docs.microsoft.com/exchange/client-developer/web-service-reference/getattachment-operation) oder [GetItem](https://docs.microsoft.com/exchange/client-developer/web-service-reference/getitem-operation) aufzurufen und eine Anlage oder ein Element zurückzugeben. Sie können z. B. einen Remotedienst erstellen, um [Anlagen aus dem ausgewählten Element zu erhalten.](https://docs.microsoft.com/office/dev/add-ins/outlook/get-attachments-of-an-outlook-item)<!-- -->.
+    Sie können sowohl das Token als auch eine Anlagen- oder Element-ID an ein Drittanbietersystem weitergeben. Das Drittanbietersystem verwendet das Token als Trägerautorisierungstoken, um den Exchange Web Services-Vorgang (EWS) [GetAttachment](https://docs.microsoft.com/exchange/client-developer/web-service-reference/getattachment-operation) oder [GetItem](https://docs.microsoft.com/exchange/client-developer/web-service-reference/getitem-operation) aufzurufen und eine Anlage oder ein Element zurückzugeben. Sie können z. B. einen Remotedienst erstellen, um [Anlagen aus dem ausgewählten Element abzurufen.](https://docs.microsoft.com/office/dev/add-ins/outlook/get-attachments-of-an-outlook-item)<!-- -->.
 
 
-    Für das `getCallbackTokenAsync` Aufrufen der Methode im Lesemodus ist eine Mindestberechtigungsstufe von `ReadItem`<!-- -->.
+    Das Aufrufen der `getCallbackTokenAsync` Methode im Lesemodus erfordert eine Minimale Berechtigungsstufe von `ReadItem`<!-- -->.
 
 
-    Wenn Sie `getCallbackTokenAsync` die Methode im Verfassenmodus aufrufen, müssen Sie das Element gespeichert haben. Die `saveAsync` Methode erfordert eine Mindestberechtigungsstufe von `ReadWriteItem`<!-- -->.
+    Wenn Sie die `getCallbackTokenAsync` Methode im Verfassenmodus aufrufen, müssen Sie das Element gespeichert haben. Die `saveAsync` Methode erfordert eine minimale Berechtigungsstufe von `ReadWriteItem`<!-- -->.
 
 
-    **Wichtig:** Anleitungen zu Stellvertretungs- oder freigegebenen Szenarien finden Sie im [Artikel zum Stellvertretungszugriff.](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access)
+    **Wichtig:** Anleitungen zu Delegaten- oder freigegebenen Szenarien finden Sie im Artikel [zum Zugriff auf Stellvertretungen.](https://docs.microsoft.com/office/dev/add-ins/outlook/delegate-access)
 
 
-    \[[API-Satz: Alle unterstützen den Lesemodus; Unterstützung für den Verfassenmodus für Postfach 1.3 eingeführt](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
+    \[[API-Satz: Alle unterstützen den Lesemodus; Postfach 1.3: Unterstützung des Verfassenmodus eingeführt](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+    **[Minimale Berechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
 
 
-    **[Anwendbarer Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
+    **[Zutreffender Outlook Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
 
 
-    **Fehler**:
+    **Fehler:**
 
 
     - `HTTPRequestFailure`<!-- -->: Die Anforderung ist fehlgeschlagen. Den HTTP-Fehlercode finden Sie im Diagnoseobjekt.
 
 
-    - `InternalServerError`<!-- -->: Der Exchange-Server hat einen Fehler zurückgegeben. Weitere Informationen finden Sie im Diagnoseobjekt.
+    - `InternalServerError`<!-- -->: Der Exchange Server hat einen Fehler zurückgegeben. Weitere Informationen finden Sie im Diagnoseobjekt.
 
 
     - `NetworkError`<!-- -->: Der Benutzer ist nicht mehr mit dem Netzwerk verbunden. Überprüfen Sie Ihre Netzwerkverbindung, und versuchen Sie es erneut.
@@ -856,7 +856,7 @@ methods:
     content: 'getCallbackTokenAsync(callback: (asyncResult: Office.AsyncResult<string>) => void, userContext?: any): void;'
     parameters:
     - id: callback
-      description: Wenn die Methode abgeschlossen ist, wird die im Rückrufparameter übergebene Funktion mit einem einzelnen Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->. Das Token wird als Zeichenfolge in der Eigenschaft `asyncResult.value` zurückgegeben. Wenn ein Fehler aufgetreten ist, können die Eigenschaften `asyncResult.error` und `asyncResult.diagnostics` weitere Informationen enthalten.
+      description: Wenn die Methode abgeschlossen ist, wird die im Rückrufparameter übergebene Funktion mit einem einzigen Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->. Das Token wird als Zeichenfolge in der `asyncResult.value` Eigenschaft zurückgegeben. Wenn ein Fehler aufgetreten ist, können die Eigenschaften `asyncResult.error` und `asyncResult.diagnostics` weitere Informationen enthalten.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;string&gt;) =&gt; void'
     - id: userContext
       description: Optional. Jegliche Zustandsdaten, die an die asynchrone Methode übergeben werden.
@@ -872,24 +872,24 @@ methods:
     Ruft ein Token ab, das den Benutzer und das Office-Add-In identifiziert.
 
 
-    Das Token wird als Zeichenfolge in der Eigenschaft `asyncResult.value` zurückgegeben.
+    Das Token wird als Zeichenfolge in der `asyncResult.value` Eigenschaft zurückgegeben.
   remarks: >-
-    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+    **[Minimale Berechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
 
 
-    **[Anwendbarer Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
+    **[Zutreffender Outlook Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
 
 
-    Die Methode gibt ein Token zurück, mit dem Sie das Add-In und den Benutzer mit einem Drittanbietersystem identifizieren und `getUserIdentityTokenAsync` [authentifizieren können.](https://docs.microsoft.com/office/dev/add-ins/outlook/authentication)<!-- -->.
+    Die `getUserIdentityTokenAsync` Methode gibt ein Token zurück, das Sie verwenden können, um das [Add-In und den Benutzer mit einem Drittanbietersystem](https://docs.microsoft.com/office/dev/add-ins/outlook/authentication) zu identifizieren und zu authentifizieren.<!-- -->.
 
 
-    **Fehler**:
+    **Fehler:**
 
 
     - `HTTPRequestFailure`<!-- -->: Die Anforderung ist fehlgeschlagen. Den HTTP-Fehlercode finden Sie im Diagnoseobjekt.
 
 
-    - `InternalServerError`<!-- -->: Der Exchange-Server hat einen Fehler zurückgegeben. Weitere Informationen finden Sie im Diagnoseobjekt.
+    - `InternalServerError`<!-- -->: Der Exchange Server hat einen Fehler zurückgegeben. Weitere Informationen finden Sie im Diagnoseobjekt.
 
 
     - `NetworkError`<!-- -->: Der Benutzer ist nicht mehr mit dem Netzwerk verbunden. Überprüfen Sie Ihre Netzwerkverbindung, und versuchen Sie es erneut.
@@ -917,7 +917,7 @@ methods:
     content: 'getUserIdentityTokenAsync(callback: (asyncResult: Office.AsyncResult<string>) => void, userContext?: any): void;'
     parameters:
     - id: callback
-      description: Wenn die Methode abgeschlossen ist, wird die im Rückrufparameter übergebene Funktion mit einem einzelnen Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->. Das Token wird als Zeichenfolge in der Eigenschaft `asyncResult.value` zurückgegeben. Wenn ein Fehler aufgetreten ist, können die Eigenschaften `asyncResult.error` und `asyncResult.diagnostics` weitere Informationen enthalten.
+      description: Wenn die Methode abgeschlossen ist, wird die im Rückrufparameter übergebene Funktion mit einem einzigen Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->. Das Token wird als Zeichenfolge in der `asyncResult.value` Eigenschaft zurückgegeben. Wenn ein Fehler aufgetreten ist, können die Eigenschaften `asyncResult.error` und `asyncResult.diagnostics` weitere Informationen enthalten.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;string&gt;) =&gt; void'
     - id: userContext
       description: Optional. Jegliche Zustandsdaten, die an die asynchrone Methode übergeben werden.
@@ -930,7 +930,7 @@ methods:
   package: outlook!
   fullName: makeEwsRequestAsync(data, callback, userContext)
   summary: >-
-    Stellt eine asynchrone Anforderung an einen Exchange Web Services (EWS)-Dienst auf dem Exchange-Server, auf dem das Postfach des Benutzers hostet.
+    Stellt eine asynchrone Anforderung an einen Exchange Webdienstedienst (EWS) auf dem Exchange Server, der das Postfach des Benutzers hostet.
 
 
     In diesen Fällen sollten Add-Ins REST APIs verwenden, um auf das Postfach des Benutzers zuzugreifen.
@@ -942,16 +942,16 @@ methods:
     Sie können keine Elemente, die Ordnern zugeordnet sind, mit der `makeEwsRequestAsync`-Methode anfordern.
 
 
-    Die XML-Anforderung muss die UTF-8-Codierung angeben: `\<?xml version="1.0" encoding="utf-8"?\>`<!-- -->.
+    Die XML-Anforderung muss UTF-8-Codierung angeben: `\<?xml version="1.0" encoding="utf-8"?\>`<!-- -->.
 
 
-    Ihr Add-In muss über die Berechtigung `ReadWriteMailbox` zum Verwenden der Methode `makeEwsRequestAsync` verfügen. Informationen zur Verwendung der Berechtigung und der EWS-Vorgänge, die Sie mit der Methode aufrufen können, finden Sie unter Angeben von Berechtigungen für den Zugriff auf `ReadWriteMailbox` `makeEwsRequestAsync` [E-Mail-Add-Ins](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) auf das Postfach des Benutzers.<!-- -->.
+    Ihr Add-In muss über die `ReadWriteMailbox` Berechtigung verfügen, die Methode zu `makeEwsRequestAsync` verwenden. Informationen zur Verwendung der `ReadWriteMailbox` Berechtigung und der EWS-Vorgänge, die Sie mit der Methode aufrufen können, finden Sie unter Angeben von `makeEwsRequestAsync` Berechtigungen für den [E-Mail-Add-In-Zugriff auf das Postfach des Benutzers.](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions)<!-- -->.
 
 
     Das XML-Ergebnis des EWS-Aufrufs wird als Zeichenfolge in der `asyncResult.value`-Eigenschaft bereitgestellt. Wenn das Ergebnis größer als 1 MB ist, wird stattdessen eine Fehlermeldung zurückgegeben.
 
 
-    **Hinweis**: Diese Methode wird in den folgenden Szenarien nicht unterstützt:
+    **Hinweis:** Diese Methode wird in den folgenden Szenarien nicht unterstützt:
 
 
     - In Outlook unter iOS oder Android.
@@ -960,24 +960,24 @@ methods:
     - Wenn das Add-In in ein Gmail-Postfach geladen wird.
 
 
-    **Hinweis**: Der Serveradministrator muss im EWS-Verzeichnis clientzugriffsserver festgelegt sein, damit die `OAuthAuthentication` `true` Methode `makeEwsRequestAsync` EWS-Anforderungen stellen kann.
+    **Hinweis:** Der Serveradministrator muss `OAuthAuthentication` `true` im EWS-Verzeichnis des Clientzugriffsservers auf "EWS" festlegen, damit die `makeEwsRequestAsync` Methode EWS-Anforderungen ausführen kann.
 
 
     *Versionsunterschiede*
 
 
-    Wenn Sie die Methode in E-Mail-Apps verwenden, die in Outlook-Versionen vor Version `makeEwsRequestAsync` 15.0.4535.1004 ausgeführt werden, sollten Sie den Codierungswert auf ISO-8859-1 festlegen.
+    Wenn Sie die Methode in Mail-Apps verwenden, die `makeEwsRequestAsync` in Outlook Versionen vor Version 15.0.4535.1004 ausgeführt werden, sollten Sie den Codierungswert auf ISO-8859-1 festlegen.
 
 
     `<?xml version="1.0" encoding="iso-8859-1"?>`
 
 
-    Sie müssen den Codierungswert nicht festlegen, wenn Ihre Mail-App in Outlook im Web ausgeführt wird. Mithilfe der Eigenschaft können Sie ermitteln, ob Ihre E-Mail-App in Outlook oder Outlook im Web `mailbox.diagnostics.hostName` ausgeführt wird. Sie können mithilfe der Eigenschaft bestimmen, welche Version von Outlook ausgeführt `mailbox.diagnostics.hostVersion` wird.
+    Sie müssen den Codierungswert nicht festlegen, wenn Ihre Mail-App in Outlook im Web ausgeführt wird. Mithilfe der Eigenschaft können Sie ermitteln, ob Ihre Mail-App in Outlook oder Outlook im Web ausgeführt `mailbox.diagnostics.hostName` wird. Mithilfe der Eigenschaft können Sie ermitteln, welche Version von Outlook ausgeführt `mailbox.diagnostics.hostVersion` wird.
   remarks: >-
-    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadWriteMailbox`
+    **[Minimale Berechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadWriteMailbox`
 
 
-    **[Anwendbarer Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
+    **[Zutreffender Outlook Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
 
 
     #### <a name="examples"></a>Beispiele
@@ -1091,7 +1091,7 @@ methods:
       description: Die EWS-Anforderung.
       type: any
     - id: callback
-      description: Wenn die Methode abgeschlossen ist, wird die im Rückrufparameter übergebene Funktion mit einem einzelnen Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->. Die Eigenschaft des Ergebnisses ist die XML der ALS Zeichenfolge bereitgestellten `value` EWS-Anforderung. Wenn das Ergebnis größer als 1 MB ist, wird stattdessen eine Fehlermeldung zurückgegeben.
+      description: Wenn die Methode abgeschlossen ist, wird die im Rückrufparameter übergebene Funktion mit einem einzigen Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->. Die `value` Eigenschaft des Ergebnisses ist der XML-Code der EWS-Anforderung, die als Zeichenfolge bereitgestellt wird. Wenn das Ergebnis größer als 1 MB ist, wird stattdessen eine Fehlermeldung zurückgegeben.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;string&gt;) =&gt; void'
     - id: userContext
       description: Optional. Jegliche Zustandsdaten, die an die asynchrone Methode übergeben werden.
@@ -1104,18 +1104,18 @@ methods:
   package: outlook!
   fullName: removeHandlerAsync(eventType, options, callback)
   summary: >-
-    Entfernt die Ereignishandler für einen unterstützten Ereignistyp. **Hinweis**: Ereignisse sind nur im Aufgabenbereich verfügbar.
+    Entfernt die Ereignishandler für einen unterstützten Ereignistyp. **Hinweis:** Ereignisse sind nur für die Implementierung des Aufgabenbereichs verfügbar.
 
 
-    Weitere Informationen zu unterstützten [Ereignissen finden Sie im Abschnitt Postfachobjektmodellereignisse.](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.6/office.context.mailbox#events)
+    Unterstützte Ereignisse finden Sie im [Abschnitt](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.6/office.context.mailbox#events) "Postfachobjektmodellereignisse"<!-- -->.
 
 
     \[[API-Satz: Postfach 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+    **[Minimale Berechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
 
 
-    **[Anwendbarer Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
+    **[Zutreffender Outlook Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
   isPreview: false
   isDeprecated: false
   syntax:
@@ -1125,10 +1125,10 @@ methods:
       description: Das Ereignis, das den Handler widerrufen soll.
       type: <xref uid="office!Office.EventType:enum" /> | string
     - id: options
-      description: Stellt eine Option zum Beibehalten von Kontextdaten eines beliebigen Typs zur Verwendung in einem Rückruf zur Verfügung.
+      description: Bietet eine Option zum Beibehalten von Kontextdaten eines beliebigen Typs, unverändert, für die Verwendung in einem Rückruf.
       type: <xref uid="office!Office.AsyncContextOptions:interface" />
     - id: callback
-      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion mit einem einzelnen `callback` Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->.
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion `callback` mit einem einzigen Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
@@ -1138,18 +1138,18 @@ methods:
   package: outlook!
   fullName: removeHandlerAsync(eventType, callback)
   summary: >-
-    Entfernt die Ereignishandler für einen unterstützten Ereignistyp. **Hinweis**: Ereignisse sind nur im Aufgabenbereich verfügbar.
+    Entfernt die Ereignishandler für einen unterstützten Ereignistyp. **Hinweis:** Ereignisse sind nur für die Implementierung des Aufgabenbereichs verfügbar.
 
 
-    Weitere Informationen zu unterstützten [Ereignissen finden Sie im Abschnitt Postfachobjektmodellereignisse.](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.6/office.context.mailbox#events)
+    Unterstützte Ereignisse finden Sie im [Abschnitt](https://docs.microsoft.com/office/dev/add-ins/reference/objectmodel/requirement-set-1.6/office.context.mailbox#events) "Postfachobjektmodellereignisse"<!-- -->.
 
 
     \[[API-Satz: Postfach 1.5](/office/dev/add-ins/reference/requirement-sets/outlook-api-requirement-sets)\]
   remarks: >-
-    **[Mindestberechtigungsstufe](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**:`ReadItem`
+    **[Minimale Berechtigungsstufe:](https://docs.microsoft.com/office/dev/add-ins/outlook/understanding-outlook-add-in-permissions) <!-- -->**`ReadItem`
 
 
-    **[Anwendbarer Outlook-Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
+    **[Zutreffender Outlook Modus:](https://docs.microsoft.com/office/dev/add-ins/outlook/outlook-add-ins-overview#extension-points) <!-- -->** Verfassen oder Lesen
   isPreview: false
   isDeprecated: false
   syntax:
@@ -1159,15 +1159,15 @@ methods:
       description: Das Ereignis, das den Handler widerrufen soll.
       type: <xref uid="office!Office.EventType:enum" /> | string
     - id: callback
-      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion mit einem einzelnen `callback` Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->.
+      description: Optional. Wenn die Methode abgeschlossen ist, wird die im Parameter übergebene Funktion `callback` mit einem einzigen Parameter vom Typ aufgerufen. `Office.AsyncResult`<!-- -->.
       type: '(asyncResult: <xref uid="office!Office.AsyncResult:interface" />&lt;void&gt;) =&gt; void'
     return:
       type: void
       description: ''
 metadata:
-  ms.openlocfilehash: be84e8776323da37892db4edb9c0dbbc04835790
-  ms.sourcegitcommit: d0f7e3d564e90cdff464157440c36ad19fa526f0
+  ms.openlocfilehash: 1c487bae8deb6c61ca1bcd22ed2d0a45d6836da9
+  ms.sourcegitcommit: 1e0143ae4add09dbe22b0080d22fb25101757fba
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 04/09/2021
-  ms.locfileid: "51660148"
+  ms.lasthandoff: 06/11/2021
+  ms.locfileid: "52895651"
