@@ -82,7 +82,7 @@ properties:
   package: excel!
   fullName: columnHidden
   summary: >-
-    Stellt dar, ob alle Spalten des aktuellen Bereichs ausgeblendet sind.
+    Gibt an, ob alle Spalten im aktuellen Bereich ausgeblendet sind. Wert `true` ist, wenn alle Spalten in einem Bereich ausgeblendet sind. Wert `false` ist, wenn keine Spalten im Bereich ausgeblendet sind. Der Wert `null` ist, wenn einige Spalten in einem Bereich ausgeblendet sind und andere Spalten im selben Bereich nicht ausgeblendet werden.
 
 
     \[[API-Satz: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -254,7 +254,7 @@ properties:
   package: excel!
   fullName: hidden
   summary: >-
-    Stellt dar, ob alle Zellen des aktuellen Bereichs ausgeblendet sind.
+    Gibt an, ob alle Zellen im aktuellen Bereich ausgeblendet sind. Wert `true` ist, wenn alle Zellen in einem Bereich ausgeblendet sind. Wert `false` ist, wenn keine Zellen im Bereich ausgeblendet sind. Wert `null` ist, wenn einige Zellen in einem Bereich ausgeblendet sind und andere Zellen im selben Bereich nicht ausgeblendet sind.
 
 
     \[[API-Satz: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -416,7 +416,7 @@ properties:
   package: excel!
   fullName: rowHidden
   summary: >-
-    Stellt dar, ob alle Zeilen des aktuellen Bereichs ausgeblendet sind.
+    Gibt an, ob alle Zeilen im aktuellen Bereich ausgeblendet sind. Wert `true` ist, wenn alle Zeilen in einem Bereich ausgeblendet sind. Wert `false` ist, wenn keine Zeilen im Bereich ausgeblendet sind. Wert `null` ist, wenn einige Zeilen in einem Bereich ausgeblendet sind und andere Zeilen im selben Bereich nicht ausgeblendet sind.
 
 
     \[[API-Satz: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1120,6 +1120,23 @@ methods:
     return:
       type: <xref uid="excel!Excel.Range:class" />
       description: ''
+- name: getDirectDependents()
+  uid: excel!Excel.Range#getDirectDependents:member(1)
+  package: excel!
+  fullName: getDirectDependents()
+  summary: >-
+    Gibt ein `WorkbookRangeAreas` Objekt zurück, das den Bereich darstellt, der alle direkten Nachfolger einer Zelle im selben Arbeitsblatt oder in mehreren Arbeitsblättern enthält.
+
+
+    \[[API-Satz: ExcelApi 1.13](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getDirectDependents(): Excel.WorkbookRangeAreas;'
+    return:
+      type: <xref uid="excel!Excel.WorkbookRangeAreas:class" />
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/85-preview-apis/range-direct-dependents.yaml\nawait Excel.run(async (context) => {\n  // Direct dependents are cells that contain formulas that refer to other cells.\n  let range = context.workbook.getActiveCell();\n  let directDependents = range.getDirectDependents();\n  range.load(\"address\");\n  directDependents.areas.load(\"address\");\n  await context.sync();\n  \n  console.log(`Direct dependent cells of ${range.address}:`);\n  \n  // Use the direct dependents API to loop through direct dependents of the active cell.\n  for (let i = 0; i < directDependents.areas.items.length; i++) {\n    // Highlight and print the address of each dependent cell.\n    directDependents.areas.items[i].format.fill.color = \"Yellow\";\n    console.log(`  ${directDependents.areas.items[i].address}`);\n  }\n  await context.sync();\n});\n```"
 - name: getDirectPrecedents()
   uid: excel!Excel.Range#getDirectPrecedents:member(1)
   package: excel!
@@ -1179,7 +1196,7 @@ methods:
     Gibt basierend auf der angegebenen Richtung ein Bereichsobjekt zurück, das den aktuellen Bereich und bis zum Rand des Bereichs enthält. Dies entspricht dem Tastenverhalten STRG+UMSCHALT+PFEILTASTE im Excel auf Windows Benutzeroberfläche.
 
 
-    \[[API-Satz: ExcelApiOnline 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API-Satz: ExcelApi 1.13](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1203,7 +1220,7 @@ methods:
     Gibt basierend auf der angegebenen Richtung ein Bereichsobjekt zurück, das den aktuellen Bereich und bis zum Rand des Bereichs enthält. Dies entspricht dem Tastenverhalten STRG+UMSCHALT+PFEILTASTE im Excel auf Windows Benutzeroberfläche.
 
 
-    \[[API-Satz: ExcelApiOnline 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API-Satz: ExcelApi 1.13](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1329,23 +1346,23 @@ methods:
     return:
       type: <xref uid="excel!Excel.Range:class" />
       description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"A1:F8\";\n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress).getLastRow();\n    range.load('address');\n    return ctx.sync().then(function() {\n        console.log(range.address); // prints Sheet1!A8:F8\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
-- name: getMergedAreas()
-  uid: excel!Excel.Range#getMergedAreas:member(1)
+- name: getMergedAreasOrNullObject()
+  uid: excel!Excel.Range#getMergedAreasOrNullObject:member(1)
   package: excel!
-  fullName: getMergedAreas()
+  fullName: getMergedAreasOrNullObject()
   summary: >-
-    Gibt ein `RangeAreas` Objekt zurück, das die zusammengeführten Bereiche in diesem Bereich darstellt. Beachten Sie, dass ein Fehler ausgelöst wird, wenn die Anzahl der zusammengeführten Bereiche in diesem Bereich mehr als 512 `InvalidOperation` beträgt.
+    Gibt ein RangeAreas -Objekt zurück, das die zusammengeführten Bereiche in diesem Bereich darstellt. Beachten Sie, dass die API das Ergebnis nicht zurückgeben kann, wenn die Anzahl der zusammengeführten Bereiche in diesem Bereich größer als 512 ist. Wenn rangeAreas nicht vorhanden ist, wird ein NULL-Objekt zurückgegeben.
 
 
-    \[[API-Satz: ExcelApiOnline 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API-Satz: ExcelApi 1.13](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
   syntax:
-    content: 'getMergedAreas(): Excel.RangeAreas;'
+    content: 'getMergedAreasOrNullObject(): Excel.RangeAreas;'
     return:
       type: <xref uid="excel!Excel.RangeAreas:class" />
-      description: ''
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/85-preview-apis/range-merged-ranges.yaml\nawait Excel.run(async (context) => {\n  // Retrieve the worksheet and the table in that worksheet.\n  const sheet = context.workbook.worksheets.getActiveWorksheet();\n  const tableRange = sheet.getRange(\"B2:E6\");\n\n  // Retrieve the merged range within the table and load its details.\n  const mergedAreas = tableRange.getMergedAreasOrNullObject();\n  mergedAreas.load(\"address\");\n  mergedAreas.load(\"cellCount\");\n\n  // Select the merged range.\n  const range = mergedAreas.areas.getItemAt(0);\n  range.select();\n  await context.sync();\n\n  // Print out the details of the `mergedAreas` range object.\n  console.log(`Address of the merged range: ${mergedAreas.address}`);\n  console.log(`Number of cells in the merged range: ${mergedAreas.cellCount}`);\n\n  await context.sync();\n});\n```"
 - name: getOffsetRange(rowOffset, columnOffset)
   uid: excel!Excel.Range#getOffsetRange:member(1)
   package: excel!
@@ -1399,7 +1416,7 @@ methods:
     Gibt ein Bereichsobjekt zurück, bei dem es sich um die Edgezelle des Datenbereichs handelt, die der angegebenen Richtung entspricht. Dies entspricht dem Strg+Pfeiltastenverhalten im Excel auf Windows Benutzeroberfläche.
 
 
-    \[[API-Satz: ExcelApiOnline 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API-Satz: ExcelApi 1.13](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1420,10 +1437,10 @@ methods:
   package: excel!
   fullName: getRangeEdge(directionString, activeCell)
   summary: >-
-    Gibt ein Bereichsobjekt zurück, bei dem es sich um die Edgezelle des Datenbereichs handelt, die der angegebenen Richtung entspricht. Dies entspricht dem Strg+Pfeiltastenverhalten im Excel auf Windows Benutzeroberfläche.
+    Gibt ein Bereichsobjekt zurück, bei dem es sich um die Edgezelle des Datenbereichs handelt, die der angegebenen Richtung entspricht. Dies entspricht dem Strg+Pfeiltastenverhalten im Excel auf Windows Ui.
 
 
-    \[[API-Satz: ExcelApiOnline 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+    \[[API-Satz: ExcelApi 1.13](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -1566,7 +1583,7 @@ methods:
       description: Der Typ der einzuschließenden Zellen.
       type: <xref uid="excel!Excel.SpecialCellType:enum" />
     - id: cellValueType
-      description: Wenn `cellType` entweder `constants` oder `formulas`<!-- -->wird dieses Argument verwendet, um zu bestimmen, welche Zelltypen in das Ergebnis einbezogen werden sollen. Diese Werte können kombiniert werden, um mehr als einen Typ zurückzugeben. Standardmäßig werden alle Konstanten oder Formeln unabhängig vom Typ ausgewählt.
+      description: Wenn `cellType` entweder `constants` oder `formulas`<!-- -->wird dieses Argument verwendet, um zu bestimmen, welche Zelltypen in das Ergebnis einbezogen werden sollen. Diese Werte können kombiniert werden, um mehrere Typen zurückzugeben. Standardmäßig werden alle Konstanten oder Formeln unabhängig vom Typ ausgewählt.
       type: <xref uid="excel!Excel.SpecialCellValueType:enum" />
     return:
       type: <xref uid="excel!Excel.RangeAreas:class" />
@@ -1590,7 +1607,7 @@ methods:
       description: Der Typ der einzuschließenden Zellen.
       type: "\"ConditionalFormats\" | \"DataValidations\" | \"Blanks\" | \"Constants\" | \"Formulas\" | \"SameConditionalFormat\" | \"SameDataValidation\" | \"Visible\""
     - id: cellValueType
-      description: Wenn `cellType` entweder `constants` oder `formulas`<!-- -->wird dieses Argument verwendet, um zu bestimmen, welche Zelltypen in das Ergebnis einbezogen werden sollen. Diese Werte können kombiniert werden, um mehr als einen Typ zurückzugeben. Standardmäßig werden alle Konstanten oder Formeln unabhängig vom Typ ausgewählt.
+      description: Wenn `cellType` entweder `constants` oder `formulas`<!-- -->wird dieses Argument verwendet, um zu bestimmen, welche Zelltypen in das Ergebnis einbezogen werden sollen. Diese Werte können kombiniert werden, um mehrere Typen zurückzugeben. Standardmäßig werden alle Konstanten oder Formeln unabhängig vom Typ ausgewählt.
       type: "\"All\" | \"Errors\" | \"ErrorsLogical\" | \"ErrorsNumbers\" | \"ErrorsText\" | \"ErrorsLogicalNumber\" | \"ErrorsLogicalText\" | \"ErrorsNumberText\" | \"Logical\" | \"LogicalNumbers\" | \"LogicalText\" | \"LogicalNumbersText\" | \"Numbers\" | \"NumbersText\" | \"Text\""
     return:
       type: <xref uid="excel!Excel.RangeAreas:class" />
@@ -1614,7 +1631,7 @@ methods:
       description: Der Typ der einzuschließenden Zellen.
       type: <xref uid="excel!Excel.SpecialCellType:enum" />
     - id: cellValueType
-      description: Wenn `cellType` entweder `constants` oder `formulas`<!-- -->wird dieses Argument verwendet, um zu bestimmen, welche Zelltypen in das Ergebnis einbezogen werden sollen. Diese Werte können kombiniert werden, um mehr als einen Typ zurückzugeben. Standardmäßig werden alle Konstanten oder Formeln unabhängig vom Typ ausgewählt.
+      description: Wenn `cellType` entweder `constants` oder `formulas`<!-- -->wird dieses Argument verwendet, um zu bestimmen, welche Zelltypen in das Ergebnis einbezogen werden sollen. Diese Werte können kombiniert werden, um mehrere Typen zurückzugeben. Standardmäßig werden alle Konstanten oder Formeln unabhängig vom Typ ausgewählt.
       type: <xref uid="excel!Excel.SpecialCellValueType:enum" />
     return:
       type: <xref uid="excel!Excel.RangeAreas:class" />
@@ -1638,7 +1655,7 @@ methods:
       description: Der Typ der einzuschließenden Zellen.
       type: "\"ConditionalFormats\" | \"DataValidations\" | \"Blanks\" | \"Constants\" | \"Formulas\" | \"SameConditionalFormat\" | \"SameDataValidation\" | \"Visible\""
     - id: cellValueType
-      description: Wenn `cellType` entweder `constants` oder `formulas`<!-- -->wird dieses Argument verwendet, um zu bestimmen, welche Zelltypen in das Ergebnis einbezogen werden sollen. Diese Werte können kombiniert werden, um mehr als einen Typ zurückzugeben. Standardmäßig werden alle Konstanten oder Formeln unabhängig vom Typ ausgewählt.
+      description: Wenn `cellType` entweder `constants` oder `formulas`<!-- -->wird dieses Argument verwendet, um zu bestimmen, welche Zelltypen in das Ergebnis einbezogen werden sollen. Diese Werte können kombiniert werden, um mehrere Typen zurückzugeben. Standardmäßig werden alle Konstanten oder Formeln unabhängig vom Typ ausgewählt.
       type: "\"All\" | \"Errors\" | \"ErrorsLogical\" | \"ErrorsNumbers\" | \"ErrorsText\" | \"ErrorsLogicalNumber\" | \"ErrorsLogicalText\" | \"ErrorsNumberText\" | \"Logical\" | \"LogicalNumbers\" | \"LogicalText\" | \"LogicalNumbersText\" | \"Numbers\" | \"NumbersText\" | \"Text\""
     return:
       type: <xref uid="excel!Excel.RangeAreas:class" />
@@ -2379,9 +2396,9 @@ methods:
       description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\nExcel.run(async (context) => {\n    const largeRange = context.workbook.getSelectedRange();\n    largeRange.load([\"rowCount\", \"columnCount\"]);\n    await context.sync();\n\n    for (let i = 0; i < largeRange.rowCount; i++) {\n        for (let j = 0; j < largeRange.columnCount; j++) {\n            let cell = largeRange.getCell(i, j);\n            cell.values = [[i *j]];\n\n            // call untrack() to release the range from memory\n            cell.untrack();\n        }\n    }\n\n    await context.sync();\n});\n```"
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 04d2d6fd68dfc0a6a1c7693692ac653be3d0421e
-  ms.sourcegitcommit: a0029cf9da418726672be2ce2474b6e2aedea2be
+  ms.openlocfilehash: 599829bb4b8352df6c8797f4fcd050d5373604ac
+  ms.sourcegitcommit: 1f63896cdaa3b8ac3bfcb506161116a564538837
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 06/30/2021
-  ms.locfileid: "53204168"
+  ms.lasthandoff: 07/02/2021
+  ms.locfileid: "53260232"
