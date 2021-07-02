@@ -1,6 +1,8 @@
 | Klasse | Felder | Beschreibung |
 |:---|:---|:---|
 |[AutoFilter](/javascript/api/excel/excel.autofilter)|[clearColumnCriteria(columnIndex: number)](/javascript/api/excel/excel.autofilter#clearcolumncriteria-columnindex-)|Löscht die Filterkriterien von AutoFilter.|
+|[ChangeDirectionState](/javascript/api/excel/excel.changedirectionstate)|[deleteShiftDirection](/javascript/api/excel/excel.changedirectionstate#deleteshiftdirection)|Stellt die Richtung (z. B. nach oben oder links) dar, in der die verbleibenden Zellen verschoben werden, wenn eine Zelle oder Zellen gelöscht werden.|
+||[insertShiftDirection](/javascript/api/excel/excel.changedirectionstate#insertshiftdirection)|Stellt die Richtung (z. B. nach unten oder rechts) dar, in die sich die vorhandenen Zellen verschieben, wenn eine oder mehrere neue Zellen eingefügt werden.|
 |[Kommentar](/javascript/api/excel/excel.comment)|[assignTask(assignee: Identity)](/javascript/api/excel/excel.comment#assigntask-assignee-)|Weist die Aufgabe, die dem Kommentar zugeordnet ist, dem angegebenen Benutzer als Zugewiesener zu.|
 ||[getTask()](/javascript/api/excel/excel.comment#gettask--)|Ruft den Vorgang ab, der diesem Kommentar zugeordnet ist.|
 ||[getTaskOrNullObject()](/javascript/api/excel/excel.comment#gettaskornullobject--)|Ruft den Vorgang ab, der diesem Kommentar zugeordnet ist.|
@@ -45,8 +47,6 @@
 ||[items](/javascript/api/excel/excel.documenttaskcollection#items)|Ruft die geladenen untergeordneten Elemente in dieser Sammlung ab.|
 |[DocumentTaskSchedule](/javascript/api/excel/excel.documenttaskschedule)|[dueDateTime](/javascript/api/excel/excel.documenttaskschedule#duedatetime)|Ruft das Datum und die Uhrzeit der Fälligkeit des Vorgangs ab.|
 ||[startDateTime](/javascript/api/excel/excel.documenttaskschedule#startdatetime)|Ruft das Datum und die Uhrzeit ab, zu denen der Vorgang beginnen soll.|
-|[FormulaChangedEventDetail](/javascript/api/excel/excel.formulachangedeventdetail)|[cellAddress](/javascript/api/excel/excel.formulachangedeventdetail#celladdress)|Die Adresse der Zelle, die die geänderte Formel enthält.|
-||[previousFormula](/javascript/api/excel/excel.formulachangedeventdetail#previousformula)|Stellt die vorherige Formel dar, bevor sie geändert wurde.|
 |[GroupShapeCollection](/javascript/api/excel/excel.groupshapecollection)|[getItemOrNullObject(key: string)](/javascript/api/excel/excel.groupshapecollection#getitemornullobject-key-)|Ruft ein Shape anhand seines Namens oder seiner ID ab.|
 |[Identity](/javascript/api/excel/excel.identity)|[displayName](/javascript/api/excel/excel.identity#displayname)|Stellt den Anzeigenamen des Benutzers dar.|
 ||[email](/javascript/api/excel/excel.identity#email)|Stellt die E-Mail-Adresse des Benutzers dar.|
@@ -60,9 +60,6 @@
 |[IdentityEntity](/javascript/api/excel/excel.identityentity)|[displayName](/javascript/api/excel/excel.identityentity#displayname)|Stellt den Anzeigenamen des Benutzers dar.|
 ||[email](/javascript/api/excel/excel.identityentity#email)|Stellt die E-Mail-Adresse des Benutzers dar.|
 ||[id](/javascript/api/excel/excel.identityentity#id)|Stellt die eindeutige ID des Benutzers dar.|
-|[InsertWorksheetOptions](/javascript/api/excel/excel.insertworksheetoptions)|[positionType](/javascript/api/excel/excel.insertworksheetoptions#positiontype)|Die Position zum Einfügen der neuen Arbeitsblätter in der aktuellen Arbeitsmappe.|
-||[Relativeto](/javascript/api/excel/excel.insertworksheetoptions#relativeto)|Das Arbeitsblatt in der aktuellen Arbeitsmappe, auf das für den Parameter verwiesen `WorksheetPositionType` wird.|
-||[sheetNamesToInsert](/javascript/api/excel/excel.insertworksheetoptions#sheetnamestoinsert)|Die Namen der einzelnen einzufügenden Arbeitsblätter.|
 |[LinkedDataType](/javascript/api/excel/excel.linkeddatatype)|[Dataprovider](/javascript/api/excel/excel.linkeddatatype#dataprovider)|Der Name des Datenanbieters für den verknüpften Datentyp.|
 ||[lastRefreshed](/javascript/api/excel/excel.linkeddatatype#lastrefreshed)|Datum und Uhrzeit der lokalen Zeitzone seit dem Öffnen der Arbeitsmappe, als der verknüpfte Datentyp zuletzt aktualisiert wurde.|
 ||[name](/javascript/api/excel/excel.linkeddatatype#name)|Der Name des verknüpften Datentyps.|
@@ -81,22 +78,21 @@
 ||[getItemOrNullObject(key: number)](/javascript/api/excel/excel.linkeddatatypecollection#getitemornullobject-key-)|Ruft einen verknüpften Datentyp nach ID ab.|
 ||[items](/javascript/api/excel/excel.linkeddatatypecollection#items)|Ruft die geladenen untergeordneten Elemente in dieser Sammlung ab.|
 ||[requestRefreshAll()](/javascript/api/excel/excel.linkeddatatypecollection#requestrefreshall--)|Stellt eine Anforderung zum Aktualisieren aller verknüpften Datentypen in der Auflistung.|
+|[LinkedWorkbook](/javascript/api/excel/excel.linkedworkbook)|[breakLinks()](/javascript/api/excel/excel.linkedworkbook#breaklinks--)|Stellt eine Anforderung, um die Verknüpfungen zu unterbrechen, die auf die verknüpfte Arbeitsmappe zeigen.|
+||[id](/javascript/api/excel/excel.linkedworkbook#id)|Die ursprüngliche URL, die auf die verknüpfte Arbeitsmappe verweist.|
+||[refresh()](/javascript/api/excel/excel.linkedworkbook#refresh--)|Stellt eine Anforderung zum Aktualisieren der aus der verknüpften Arbeitsmappe abgerufenen Daten.|
+|[LinkedWorkbookCollection](/javascript/api/excel/excel.linkedworkbookcollection)|[breakAllLinks()](/javascript/api/excel/excel.linkedworkbookcollection#breakalllinks--)|Unterbricht alle Verknüpfungen zu den verknüpften Arbeitsmappen.|
+||[getItem(key: string)](/javascript/api/excel/excel.linkedworkbookcollection#getitem-key-)|Ruft Informationen zu einer verknüpften Arbeitsmappe anhand ihrer URL ab.|
+||[getItemOrNullObject(key: string)](/javascript/api/excel/excel.linkedworkbookcollection#getitemornullobject-key-)|Ruft Informationen zu einer verknüpften Arbeitsmappe anhand ihrer URL ab.|
+||[items](/javascript/api/excel/excel.linkedworkbookcollection#items)|Ruft die geladenen untergeordneten Elemente in dieser Sammlung ab.|
+||[refreshAll()](/javascript/api/excel/excel.linkedworkbookcollection#refreshall--)|Stellt eine Anforderung zum Aktualisieren aller Arbeitsmappenlinks.|
+||[workbookLinksRefreshMode](/javascript/api/excel/excel.linkedworkbookcollection#workbooklinksrefreshmode)|Stellt den Aktualisierungsmodus der Arbeitsmappenlinks dar.|
 |[NamedSheetViewCollection](/javascript/api/excel/excel.namedsheetviewcollection)|[getItemOrNullObject(key: string)](/javascript/api/excel/excel.namedsheetviewcollection#getitemornullobject-key-)|Ruft eine Blattansicht mit ihrem Namen ab.|
-|[PivotLayout](/javascript/api/excel/excel.pivotlayout)|[altTextDescription](/javascript/api/excel/excel.pivotlayout#alttextdescription)|Die Alternativtextbeschreibung der PivotTable.|
-||[altTextTitle](/javascript/api/excel/excel.pivotlayout#alttexttitle)|Der Alttexttitel der PivotTable.|
-||[displayBlankLineAfterEachItem(display: boolean)](/javascript/api/excel/excel.pivotlayout#displayblanklineaftereachitem-display-)|Legt fest, ob nach jedem Element eine leere Zeile angezeigt werden soll.|
-||[emptyCellText](/javascript/api/excel/excel.pivotlayout#emptycelltext)|Der Text, der automatisch in eine beliebige leere Zelle in der PivotTable gefüllt wird, wenn `fillEmptyCells == true` .|
-||[fillEmptyCells](/javascript/api/excel/excel.pivotlayout#fillemptycells)|Gibt an, ob leere Zellen in der PivotTable mit der aufgefüllt werden `emptyCellText` sollen.|
-||[getCell(dataHierarchy: DataPivotHierarchy \| string, rowItems: Array<PivotItem \| string>, columnItems: Array<PivotItem \| string>)](/javascript/api/excel/excel.pivotlayout#getcell-datahierarchy--rowitems--columnitems-)|Ruft eine eindeutige Zelle in der PivotTable ab, die auf einer Datenhierarchie und den Zeilen- und Spaltenelementen ihrer jeweiligen Hierarchie basiert.|
+|[PivotLayout](/javascript/api/excel/excel.pivotlayout)|[getCell(dataHierarchy: DataPivotHierarchy \| string, rowItems: Array<PivotItem \| string>, columnItems: Array<PivotItem \| string>)](/javascript/api/excel/excel.pivotlayout#getcell-datahierarchy--rowitems--columnitems-)|Ruft eine eindeutige Zelle in der PivotTable ab, die auf einer Datenhierarchie und den Zeilen- und Spaltenelementen ihrer jeweiligen Hierarchie basiert.|
 ||[pivotStyle](/javascript/api/excel/excel.pivotlayout#pivotstyle)|Die auf die PivotTable angewendete Formatvorlage.|
-||[repeatAllItemLabels(repeatLabels: boolean)](/javascript/api/excel/excel.pivotlayout#repeatallitemlabels-repeatlabels-)|Legt die Einstellung "Alle Elementbeschriftungen wiederholen" für alle Felder in der PivotTable fest.|
 ||[setStyle(style: string \| PivotTableStyle \| BuiltInPivotTableStyle)](/javascript/api/excel/excel.pivotlayout#setstyle-style-)|Legt die Formatvorlage fest, die auf die PivotTable angewendet wird.|
-||[showFieldHeaders](/javascript/api/excel/excel.pivotlayout#showfieldheaders)|Gibt an, ob die PivotTable Feldüberschriften (Feldbeschriftungen und Filter-Dropdowns) anzeigt.|
-|[PivotTable](/javascript/api/excel/excel.pivottable)|[refreshOnOpen](/javascript/api/excel/excel.pivottable#refreshonopen)|Gibt an, ob die PivotTable beim Öffnen der Arbeitsmappe aktualisiert wird.|
 |[PivotTableScopedCollection](/javascript/api/excel/excel.pivottablescopedcollection)|[getFirstOrNullObject()](/javascript/api/excel/excel.pivottablescopedcollection#getfirstornullobject--)|Ruft die erste PivotTable in der Auflistung ab.|
 |[Range](/javascript/api/excel/excel.range)|[getDependents()](/javascript/api/excel/excel.range#getdependents--)|Gibt ein `WorkbookRangeAreas` Objekt zurück, das den Bereich darstellt, der alle Abhängigen einer Zelle im selben Arbeitsblatt oder in mehreren Arbeitsblättern enthält.|
-||[getDirectDependents()](/javascript/api/excel/excel.range#getdirectdependents--)|Gibt ein `WorkbookRangeAreas` Objekt zurück, das den Bereich darstellt, der alle direkten Nachfolger einer Zelle im selben Arbeitsblatt oder in mehreren Arbeitsblättern enthält.|
-||[getMergedAreasOrNullObject()](/javascript/api/excel/excel.range#getmergedareasornullobject--)|Gibt ein RangeAreas -Objekt zurück, das die zusammengeführten Bereiche in diesem Bereich darstellt.|
 ||[getPrecedents()](/javascript/api/excel/excel.range#getprecedents--)|Gibt ein `WorkbookRangeAreas` Objekt zurück, das den Bereich darstellt, der alle Vorgänger einer Zelle im selben Arbeitsblatt oder in mehreren Arbeitsblättern enthält.|
 |[RefreshModeChangedEventArgs](/javascript/api/excel/excel.refreshmodechangedeventargs)|[Refreshmode](/javascript/api/excel/excel.refreshmodechangedeventargs#refreshmode)|Der Aktualisierungsmodus für den verknüpften Datentyp.|
 ||[ServiceID](/javascript/api/excel/excel.refreshmodechangedeventargs#serviceid)|Die eindeutige ID des Objekts, dessen Aktualisierungsmodus geändert wurde.|
@@ -122,29 +118,22 @@
 ||[type](/javascript/api/excel/excel.tablefilteredeventargs#type)|Ruft den Typ des Ereignisses ab.|
 ||[worksheetId](/javascript/api/excel/excel.tablefilteredeventargs#worksheetid)|Ruft die ID des Arbeitsblatts ab, das die Tabelle enthält.|
 |[TableScopedCollection](/javascript/api/excel/excel.tablescopedcollection)|[getItemOrNullObject(key: string)](/javascript/api/excel/excel.tablescopedcollection#getitemornullobject-key-)|Ruft eine Tabelle anhand des Namens oder der ID ab.|
-|[Workbook](/javascript/api/excel/excel.workbook)|[insertWorksheetsFromBase64(base64File: string, options?: Excel. InsertWorksheetOptions)](/javascript/api/excel/excel.workbook#insertworksheetsfrombase64-base64file--options-)|Fügt die angegebenen Arbeitsblätter aus einer Quellarbeitsmappe in die aktuelle Arbeitsmappe ein.|
-||[linkedDataTypes](/javascript/api/excel/excel.workbook#linkeddatatypes)|Gibt eine Auflistung verknüpfter Datentypen zurück, die Teil der Arbeitsmappe sind.|
-||[onActivated](/javascript/api/excel/excel.workbook#onactivated)|Tritt auf, wenn die Arbeitsmappe aktiviert wird.|
+|[Workbook](/javascript/api/excel/excel.workbook)|[linkedDataTypes](/javascript/api/excel/excel.workbook#linkeddatatypes)|Gibt eine Auflistung verknüpfter Datentypen zurück, die Teil der Arbeitsmappe sind.|
+||[linkedWorkbooks](/javascript/api/excel/excel.workbook#linkedworkbooks)|Gibt eine Auflistung verknüpfter Arbeitsmappen zurück.|
 ||[Aufgaben](/javascript/api/excel/excel.workbook#tasks)|Gibt eine Auflistung von Aufgaben zurück, die in der Arbeitsmappe vorhanden sind.|
 ||[showPivotFieldList](/javascript/api/excel/excel.workbook#showpivotfieldlist)|Gibt an, ob der Feldlistenbereich der PivotTable auf Arbeitsmappenebene angezeigt wird.|
 ||[use1904DateSystem](/javascript/api/excel/excel.workbook#use1904datesystem)|True, falls die Arbeitsmappe das 1904-Datumssystem verwendet.|
-|[WorkbookActivatedEventArgs](/javascript/api/excel/excel.workbookactivatedeventargs)|[type](/javascript/api/excel/excel.workbookactivatedeventargs#type)|Ruft den Typ des Ereignisses ab.|
 |[Arbeitsblatt](/javascript/api/excel/excel.worksheet)|[onFiltered](/javascript/api/excel/excel.worksheet#onfiltered)|Tritt auf, wenn ein Filter auf ein bestimmtes Arbeitsblatt angewendet wird.|
-||[onFormulaChanged](/javascript/api/excel/excel.worksheet#onformulachanged)|Tritt auf, wenn eine oder mehrere Formeln in diesem Arbeitsblatt geändert werden.|
 ||[onProtectionChanged](/javascript/api/excel/excel.worksheet#onprotectionchanged)|Tritt auf, wenn der Arbeitsblattschutzstatus geändert wird.|
 ||[tabId](/javascript/api/excel/excel.worksheet#tabid)|Gibt einen Wert zurück, der dieses Arbeitsblatt darstellt, das von Open Office XML gelesen werden kann.|
 ||[Aufgaben](/javascript/api/excel/excel.worksheet#tasks)|Gibt eine Auflistung von Aufgaben zurück, die im Arbeitsblatt vorhanden sind.|
-|[WorksheetChangedEventArgs](/javascript/api/excel/excel.worksheetchangedeventargs)|[triggerSource](/javascript/api/excel/excel.worksheetchangedeventargs#triggersource)|Stellt die Triggerquelle des Ereignisses dar.|
+|[WorksheetChangedEventArgs](/javascript/api/excel/excel.worksheetchangedeventargs)|[changeDirectionState](/javascript/api/excel/excel.worksheetchangedeventargs#changedirectionstate)|Stellt eine Änderung der Richtung dar, in der die Zellen in einem Arbeitsblatt verschoben werden, wenn eine Zelle oder Zellen gelöscht oder eingefügt werden.|
+||[triggerSource](/javascript/api/excel/excel.worksheetchangedeventargs#triggersource)|Stellt die Triggerquelle des Ereignisses dar.|
 |[WorksheetCollection](/javascript/api/excel/excel.worksheetcollection)|[addFromBase64(base64File: string, sheetNamesToInsert?: string[], positionType?: Excel.WorksheetPositionType, relativeTo?: Worksheet \| string)](/javascript/api/excel/excel.worksheetcollection#addfrombase64-base64file--sheetnamestoinsert--positiontype--relativeto-)|Fügt die angegebenen Arbeitsblätter einer Arbeitsmappe in die aktuelle Arbeitsmappe ein.|
 ||[onFiltered](/javascript/api/excel/excel.worksheetcollection#onfiltered)|Tritt ein, wenn ein Filter eines beliebigen Arbeitsblatts in der Arbeitsmappe angewendet wird.|
-||[onFormulaChanged](/javascript/api/excel/excel.worksheetcollection#onformulachanged)|Tritt auf, wenn eine oder mehrere Formeln in einem Arbeitsblatt dieser Auflistung geändert werden.|
 ||[onProtectionChanged](/javascript/api/excel/excel.worksheetcollection#onprotectionchanged)|Tritt auf, wenn der Arbeitsblattschutzstatus geändert wird.|
 |[WorksheetFilteredEventArgs](/javascript/api/excel/excel.worksheetfilteredeventargs)|[type](/javascript/api/excel/excel.worksheetfilteredeventargs#type)|Ruft den Typ des Ereignisses ab.|
 ||[worksheetId](/javascript/api/excel/excel.worksheetfilteredeventargs#worksheetid)|Ruft die ID des Arbeitsblatts ab, auf das der Filter angewendet wird.|
-|[WorksheetFormulaChangedEventArgs](/javascript/api/excel/excel.worksheetformulachangedeventargs)|[formulaDetails](/javascript/api/excel/excel.worksheetformulachangedeventargs#formuladetails)|Ruft ein Array von `FormulaChangedEventDetail` Objekten ab, die die Details zu allen geänderten Formeln enthalten.|
-||[source](/javascript/api/excel/excel.worksheetformulachangedeventargs#source)|Die Quelle des Ereignisses.|
-||[type](/javascript/api/excel/excel.worksheetformulachangedeventargs#type)|Ruft den Typ des Ereignisses ab.|
-||[worksheetId](/javascript/api/excel/excel.worksheetformulachangedeventargs#worksheetid)|Ruft die ID des Arbeitsblatts ab, in dem die Formel geändert wurde.|
 |[WorksheetProtectionChangedEventArgs](/javascript/api/excel/excel.worksheetprotectionchangedeventargs)|[isProtected](/javascript/api/excel/excel.worksheetprotectionchangedeventargs#isprotected)|Ruft den aktuellen Schutzstatus des Arbeitsblatts ab.|
 ||[source](/javascript/api/excel/excel.worksheetprotectionchangedeventargs#source)|Die Quelle des Ereignisses.|
 ||[type](/javascript/api/excel/excel.worksheetprotectionchangedeventargs#type)|Ruft den Typ des Ereignisses ab.|

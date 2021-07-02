@@ -1,0 +1,245 @@
+### YamlMime:TSType
+name: Excel.Binding
+uid: excel!Excel.Binding:class
+package: excel!
+fullName: Excel.Binding
+summary: >-
+  Stellt eine Office.js-Bindung dar, die in der Arbeitsmappe definiert wird.
+
+
+  \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: context
+  uid: excel!Excel.Binding#context:member
+  package: excel!
+  fullName: context
+  summary: Der dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office Hostanwendung verbunden.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="excel!Excel.RequestContext:class" />
+- name: id
+  uid: excel!Excel.Binding#id:member
+  package: excel!
+  fullName: id
+  summary: >-
+    Stellt den Bindungsbezeichner dar.
+
+
+    \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly id: string;'
+    return:
+      type: string
+- name: type
+  uid: excel!Excel.Binding#type:member
+  package: excel!
+  fullName: type
+  summary: >-
+    Gibt den Typ der Bindung an. Weitere Informationen finden Sie `Excel.BindingType` unter.
+
+
+    \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly type: Excel.BindingType | "Range" | "Table" | "Text";'
+    return:
+      type: <xref uid="excel!Excel.BindingType:enum" /> | "Range" | "Table" | "Text"
+methods:
+- name: delete()
+  uid: excel!Excel.Binding#delete:member(1)
+  package: excel!
+  fullName: delete()
+  summary: >-
+    Löscht die Bindung.
+
+
+    \[[API-Satz: ExcelApi 1.3](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'delete(): void;'
+    return:
+      type: void
+      description: ''
+- name: getRange()
+  uid: excel!Excel.Binding#getRange:member(1)
+  package: excel!
+  fullName: getRange()
+  summary: >-
+    Gibt den durch die Bindung dargestellten Bereich zurück. Löst einen Fehler aus, wenn die Bindung nicht den richtigen Typ aufweist.
+
+
+    \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getRange(): Excel.Range;'
+    return:
+      type: <xref uid="excel!Excel.Range:class" />
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var binding = ctx.workbook.bindings.getItemAt(0);\n    var range = binding.getRange();\n    range.load('cellCount');\n    return ctx.sync().then(function() {\n        console.log(range.cellCount);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: getTable()
+  uid: excel!Excel.Binding#getTable:member(1)
+  package: excel!
+  fullName: getTable()
+  summary: >-
+    Gibt die durch die Bindung dargestellte Tabelle zurück. Löst einen Fehler aus, wenn die Bindung nicht den richtigen Typ aufweist.
+
+
+    \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getTable(): Excel.Table;'
+    return:
+      type: <xref uid="excel!Excel.Table:class" />
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var binding = ctx.workbook.bindings.getItemAt(0);\n    var table = binding.getTable();\n    table.load('name');\n    return ctx.sync().then(function() {\n            console.log(table.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: getText()
+  uid: excel!Excel.Binding#getText:member(1)
+  package: excel!
+  fullName: getText()
+  summary: >-
+    Gibt den durch die Bindung dargestellten Text zurück. Löst einen Fehler aus, wenn die Bindung nicht den richtigen Typ aufweist.
+
+
+    \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getText(): OfficeExtension.ClientResult<string>;'
+    return:
+      type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;string&gt;
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var binding = ctx.workbook.bindings.getItemAt(0);\n    var text = binding.getText();\n    binding.load('text');\n    return ctx.sync().then(function() {\n        console.log(text);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: load(options)
+  uid: excel!Excel.Binding#load:member(1)
+  package: excel!
+  fullName: load(options)
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(options?: Excel.Interfaces.BindingLoadOptions): Excel.Binding;'
+    parameters:
+    - id: options
+      description: Stellt Optionen bereit, für welche Eigenschaften des Objekts geladen werden soll.
+      type: <xref uid="excel!Excel.Interfaces.BindingLoadOptions:interface" />
+    return:
+      type: <xref uid="excel!Excel.Binding:class" />
+      description: ''
+- name: load(propertyNames)
+  uid: excel!Excel.Binding#load:member(2)
+  package: excel!
+  fullName: load(propertyNames)
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.Binding;'
+    parameters:
+    - id: propertyNames
+      description: Eine durch Trennzeichen getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.
+      type: string | string[]
+    return:
+      type: <xref uid="excel!Excel.Binding:class" />
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var binding = ctx.workbook.bindings.getItemAt(0);\n    binding.load('type');\n    return ctx.sync().then(function() {\n        console.log(binding.type);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: load(propertyNamesAndPaths)
+  uid: excel!Excel.Binding#load:member(3)
+  package: excel!
+  fullName: load(propertyNamesAndPaths)
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: >-
+      load(propertyNamesAndPaths?: {
+                  select?: string;
+                  expand?: string;
+              }): Excel.Binding;
+    parameters:
+    - id: propertyNamesAndPaths
+      description: '`propertyNamesAndPaths.select` ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und `propertyNamesAndPaths.expand` eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
+      type: >-
+        {
+                    select?: string;
+                    expand?: string;
+                }
+    return:
+      type: <xref uid="excel!Excel.Binding:class" />
+      description: ''
+- name: toJSON()
+  uid: excel!Excel.Binding#toJSON:member(1)
+  package: excel!
+  fullName: toJSON()
+  summary: Überschreibt die `toJSON()` JavaScript-Methode, um eine hilfreichere Ausgabe bereitzustellen, wenn ein API-Objekt an `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode des Objekts auf, `toJSON` das an das Objekt übergeben wird.) Während die ursprüngliche Excel. Binding-Objekt ist ein API-Objekt, die `toJSON` Methode gibt ein einfaches JavaScript-Objekt zurück (typisiert als`Excel.Interfaces.BindingData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften des ursprünglichen Objekts enthält.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.BindingData;'
+    return:
+      type: <xref uid="excel!Excel.Interfaces.BindingData:interface" />
+      description: ''
+events:
+- name: onDataChanged
+  uid: excel!Excel.Binding#onDataChanged:member
+  package: excel!
+  fullName: onDataChanged
+  summary: >-
+    Tritt ein, wenn die Daten oder die Formatierung in der Datenbindung geändert werden.
+
+
+    \[[API-Satz: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly onDataChanged: OfficeExtension.EventHandlers<Excel.BindingDataChangedEventArgs>;'
+    return:
+      type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.BindingDataChangedEventArgs:interface" />&gt;
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/data-changed.yaml\nawait Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");    \n    const salesTable = sheet.tables.getItem(\"SalesTable\");\n    const salesByQuarterBinding = context.workbook.bindings.add(salesTable.getRange(), \"Table\", \"SalesByQuarter\");\n    salesByQuarterBinding.onDataChanged.add(onSalesDataChanged);\n\n    console.log(\"The data changed handler is registered.\");\n\n    await context.sync();\n});\n```"
+- name: onSelectionChanged
+  uid: excel!Excel.Binding#onSelectionChanged:member
+  package: excel!
+  fullName: onSelectionChanged
+  summary: >-
+    Tritt auf, wenn der ausgewählte Inhalt in der Bindung geändert wird.
+
+
+    *Hinweis**: Wenn mehrere, nicht zusammenhängenden Zellen ausgewählt sind, `Binding.onSelectionChanged` werden nur Zeilen- und Spalteninformationen für eine Auswahl gemeldet. Wird `Worksheet.onSelectionChanged` für mehrere ausgewählte Bereiche verwendet.
+
+
+    \[[API-Satz: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly onSelectionChanged: OfficeExtension.EventHandlers<Excel.BindingSelectionChangedEventArgs>;'
+    return:
+      type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.BindingSelectionChangedEventArgs:interface" />&gt;
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: 195b64dd3ec374689ff3c681e0d1ea2c068cbfc8
+  ms.sourcegitcommit: 1f63896cdaa3b8ac3bfcb506161116a564538837
+  ms.translationtype: MT
+  ms.contentlocale: de-DE
+  ms.lasthandoff: 07/02/2021
+  ms.locfileid: "53262742"
