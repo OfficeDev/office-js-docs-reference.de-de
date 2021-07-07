@@ -13,12 +13,51 @@ isPreview: false
 isDeprecated: false
 type: class
 properties:
+- name: altTextDescription
+  uid: excel!Excel.PivotLayout#altTextDescription:member
+  package: excel!
+  fullName: altTextDescription
+  summary: >-
+    Die Alternativtextbeschreibung der PivotTable.
+
+
+    Alternativer Text bietet alternative, textbasierte Darstellungen der Informationen, die in der PivotTable enthalten sind. Diese Informationen sind nützlich für Personen mit Sehschwächen oder kognitiven Beeinträchtigungen, die die Tabelle möglicherweise nicht sehen oder verstehen können. Ein Titel kann einer Person mit einer Behinderungen vorgelesen werden und wird verwendet, um zu bestimmen, ob sie die Beschreibung des Inhalts hören möchte.
+
+
+    \[[API-Satz: ExcelApi 1.13](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'altTextDescription: string;'
+    return:
+      type: string
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-pivotlayout.yaml\nawait Excel.run(async (context) => {\n  // Set the alt text for the displayed PivotTable.\n  const pivotTable = context.workbook.pivotTables.getItem(\"Farm Sales\");\n  const pivotLayout = pivotTable.layout;\n\n  pivotLayout.altTextTitle = \"Farm Sales PivotTable\";\n  pivotLayout.altTextDescription = \"A summary of fruit sales. It is pivoted on farm name, and fruit type. The aggregated data is both the sums of crates sold at the farms and the sums of crates sold wholesale.\";\n  console.log(\"Adding alt text. Check the PivotTable settings to see the changes.\");\n\n  await context.sync();\n});\n```"
+- name: altTextTitle
+  uid: excel!Excel.PivotLayout#altTextTitle:member
+  package: excel!
+  fullName: altTextTitle
+  summary: >-
+    Der Alttexttitel der PivotTable.
+
+
+    Alternativer Text bietet alternative, textbasierte Darstellungen der Informationen, die in der PivotTable enthalten sind. Diese Informationen sind nützlich für Personen mit Sehschwächen oder kognitiven Beeinträchtigungen, die die Tabelle möglicherweise nicht sehen oder verstehen können. Ein Titel kann einer Person mit einer Behinderungen vorgelesen werden und wird verwendet, um zu bestimmen, ob sie die Beschreibung des Inhalts hören möchte.
+
+
+    \[[API-Satz: ExcelApi 1.13](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'altTextTitle: string;'
+    return:
+      type: string
 - name: autoFormat
   uid: excel!Excel.PivotLayout#autoFormat:member
   package: excel!
   fullName: autoFormat
   summary: >-
-    Gibt an, ob die Formatierung automatisch formatiert wird, wenn sie aktualisiert wird oder wenn Felder verschoben werden.
+    Gibt an, ob die Formatierung bei der Aktualisierung oder beim Verschieben von Feldern automatisch formatiert wird.
 
 
     \[[API-Satz: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -33,7 +72,7 @@ properties:
   uid: excel!Excel.PivotLayout#context:member
   package: excel!
   fullName: context
-  summary: Der Dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office-Hostanwendung verbunden.
+  summary: Der dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office Hostanwendung verbunden.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -41,6 +80,23 @@ properties:
     content: 'context: RequestContext;'
     return:
       type: <xref uid="excel!Excel.RequestContext:class" />
+- name: emptyCellText
+  uid: excel!Excel.PivotLayout#emptyCellText:member
+  package: excel!
+  fullName: emptyCellText
+  summary: >-
+    Der Text, der automatisch in eine leere Zelle in der PivotTable gefüllt wird, wenn `fillEmptyCells == true`<!-- -->. Beachten Sie, dass dieser Wert beibehalten wird, wenn `fillEmptyCells` er auf `false`<!-- -->, und durch das Festlegen dieses Werts wird diese Eigenschaft nicht auf `true`<!-- -->. Standardmäßig ist dies eine leere Zeichenfolge.
+
+
+    \[[API-Satz: ExcelApi 1.13](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'emptyCellText: string;'
+    return:
+      type: string
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-pivotlayout.yaml\nawait Excel.run(async (context) => {\n  // Set a default value for an empty cell in the PivotTable. This doesn't include cells left blank by the layout.\n  const pivotTable = context.workbook.pivotTables.getItem(\"Farm Sales\");\n  const pivotLayout = pivotTable.layout;\n\n  pivotLayout.emptyCellText = \"--\";\n\n  // Set the text alignment to match the rest of the PivotTable.\n  pivotLayout.getDataBodyRange().format.horizontalAlignment = Excel.HorizontalAlignment.right;\n  await context.sync();\n});\n```"
 - name: enableFieldList
   uid: excel!Excel.PivotLayout#enableFieldList:member
   package: excel!
@@ -57,6 +113,23 @@ properties:
     content: 'enableFieldList: boolean;'
     return:
       type: boolean
+- name: fillEmptyCells
+  uid: excel!Excel.PivotLayout#fillEmptyCells:member
+  package: excel!
+  fullName: fillEmptyCells
+  summary: >-
+    Gibt an, ob leere Zellen in der PivotTable mit der `emptyCellText`<!-- -->. Der Standardwert ist `false`<!-- -->. Beachten Sie, dass der Wert von `emptyCellText` Persists beibehalten wird, wenn diese Eigenschaft auf `false`<!-- -->.
+
+
+    \[[API-Satz: ExcelApi 1.13](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'fillEmptyCells: boolean;'
+    return:
+      type: boolean
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-pivotlayout.yaml\nawait Excel.run(async (context) => {\n  // Toggle whether empty cells are filled with a default value.\n  const pivotTable = context.workbook.pivotTables.getItem(\"Farm Sales\");\n  const pivotLayout = pivotTable.layout;\n\n  pivotLayout.load(\"fillEmptyCells\");\n  await context.sync();\n\n  let fillToSet = !pivotLayout.fillEmptyCells;\n  console.log(`Filling empty cells? - ${fillToSet}`);\n\n  pivotLayout.fillEmptyCells = fillToSet;\n  await context.sync();\n});\n```"
 - name: layoutType
   uid: excel!Excel.PivotLayout#layoutType:member
   package: excel!
@@ -73,13 +146,13 @@ properties:
     content: 'layoutType: Excel.PivotLayoutType | "Compact" | "Tabular" | "Outline";'
     return:
       type: <xref uid="excel!Excel.PivotLayoutType:enum" /> | "Compact" | "Tabular" | "Outline"
-      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/85-preview-apis/pivottable-pivotlayout.yaml\nawait Excel.run(async (context) => {\n  // Change the PivotLayout.type to a new type.\n  const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\");\n  pivotTable.layout.load(\"layoutType\");\n  await context.sync();\n\n  // Cycle between the three layout types.\n  if (pivotTable.layout.layoutType === \"Compact\") {\n    pivotTable.layout.layoutType = \"Outline\";\n  } else if (pivotTable.layout.layoutType === \"Outline\") {\n    pivotTable.layout.layoutType = \"Tabular\";\n  } else {\n    pivotTable.layout.layoutType = \"Compact\";\n  }\n\n  await context.sync();\n  console.log(\"Pivot layout is now \" + pivotTable.layout.layoutType);\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-pivotlayout.yaml\nawait Excel.run(async (context) => {\n  // Change the PivotLayout.type to a new type.\n  const pivotTable = context.workbook.worksheets.getActiveWorksheet().pivotTables.getItem(\"Farm Sales\");\n  pivotTable.layout.load(\"layoutType\");\n  await context.sync();\n\n  // Cycle between the three layout types.\n  if (pivotTable.layout.layoutType === \"Compact\") {\n    pivotTable.layout.layoutType = \"Outline\";\n  } else if (pivotTable.layout.layoutType === \"Outline\") {\n    pivotTable.layout.layoutType = \"Tabular\";\n  } else {\n    pivotTable.layout.layoutType = \"Compact\";\n  }\n\n  await context.sync();\n  console.log(\"Pivot layout is now \" + pivotTable.layout.layoutType);\n});\n```"
 - name: preserveFormatting
   uid: excel!Excel.PivotLayout#preserveFormatting:member
   package: excel!
   fullName: preserveFormatting
   summary: >-
-    Gibt an, ob die Formatierung beibehalten wird, wenn der Bericht durch Vorgänge wie das Pivotieren, Sortieren oder Ändern von Seitenfeldelementen aktualisiert oder neu berechnet wird.
+    Gibt an, ob die Formatierung beibehalten wird, wenn der Bericht durch Vorgänge wie Pivotieren, Sortieren oder Ändern von Seitenfeldelementen aktualisiert oder neu berechnet wird.
 
 
     \[[API-Satz: ExcelApi 1.9](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -90,13 +163,13 @@ properties:
     content: 'preserveFormatting: boolean;'
     return:
       type: boolean
-      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/85-preview-apis/pivottable-pivotlayout.yaml\nawait Excel.run(async (context) => {\n  // Set whether the PivotTable keeps the established format after it is refreshed and recalculated.\n  const pivotTable = context.workbook.pivotTables.getItem(\"Farm Sales\");\n  const pivotLayout = pivotTable.layout;\n\n  pivotLayout.load(\"preserveFormatting\");\n  await context.sync();\n\n  let preserveFormattingToSet = !pivotLayout.preserveFormatting;\n  console.log(`Preserve the formatting PivotTable after a refresh? - ${preserveFormattingToSet}`);\n\n  pivotLayout.preserveFormatting = preserveFormattingToSet;\n  await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-pivotlayout.yaml\nawait Excel.run(async (context) => {\n  // Set whether the PivotTable keeps the established format after it is refreshed and recalculated.\n  const pivotTable = context.workbook.pivotTables.getItem(\"Farm Sales\");\n  const pivotLayout = pivotTable.layout;\n\n  pivotLayout.load(\"preserveFormatting\");\n  await context.sync();\n\n  let preserveFormattingToSet = !pivotLayout.preserveFormatting;\n  console.log(`Preserve the formatting PivotTable after a refresh? - ${preserveFormattingToSet}`);\n\n  pivotLayout.preserveFormatting = preserveFormattingToSet;\n  await context.sync();\n});\n```"
 - name: showColumnGrandTotals
   uid: excel!Excel.PivotLayout#showColumnGrandTotals:member
   package: excel!
   fullName: showColumnGrandTotals
   summary: >-
-    Gibt an, ob im PivotTable-Bericht Die Gesamtsummen für Spalten angezeigt werden.
+    Gibt an, ob im PivotTable-Bericht Gesamtsummen für Spalten angezeigt werden.
 
 
     \[[API-Satz: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -107,13 +180,30 @@ properties:
     content: 'showColumnGrandTotals: boolean;'
     return:
       type: boolean
-      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/85-preview-apis/pivottable-pivotlayout.yaml\nawait Excel.run(async (context) => {\n  // Turn the grand totals on and off for the rows and columns.\n  const pivotTable = context.workbook.pivotTables.getItem(\"Farm Sales\");\n  const pivotLayout = pivotTable.layout;\n\n  pivotLayout.load([\"showRowGrandTotals\", \"showColumnGrandTotals\"]);\n  await context.sync();\n\n  let showColumnTotals = !pivotLayout.showColumnGrandTotals;\n  let showRowTotals = !pivotLayout.showRowGrandTotals;\n  console.log(`Show column grand totals? - ${showColumnTotals}`);\n  console.log(`Show row grand totals? - ${showRowTotals}`);\n\n  pivotLayout.showColumnGrandTotals = showColumnTotals;\n  pivotLayout.showRowGrandTotals = showRowTotals;\n\n  await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-pivotlayout.yaml\nawait Excel.run(async (context) => {\n  // Turn the grand totals on and off for the rows and columns.\n  const pivotTable = context.workbook.pivotTables.getItem(\"Farm Sales\");\n  const pivotLayout = pivotTable.layout;\n\n  pivotLayout.load([\"showRowGrandTotals\", \"showColumnGrandTotals\"]);\n  await context.sync();\n\n  let showColumnTotals = !pivotLayout.showColumnGrandTotals;\n  let showRowTotals = !pivotLayout.showRowGrandTotals;\n  console.log(`Show column grand totals? - ${showColumnTotals}`);\n  console.log(`Show row grand totals? - ${showRowTotals}`);\n\n  pivotLayout.showColumnGrandTotals = showColumnTotals;\n  pivotLayout.showRowGrandTotals = showRowTotals;\n\n  await context.sync();\n});\n```"
+- name: showFieldHeaders
+  uid: excel!Excel.PivotLayout#showFieldHeaders:member
+  package: excel!
+  fullName: showFieldHeaders
+  summary: >-
+    Gibt an, ob die PivotTable Feldüberschriften (Feldbeschriftungen und Filter-Dropdowns) anzeigt.
+
+
+    \[[API-Satz: ExcelApi 1.13](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'showFieldHeaders: boolean;'
+    return:
+      type: boolean
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-pivotlayout.yaml\nawait Excel.run(async (context) => {\n  // Turn the field headers on and off for the row and column hierarchies.\n  const pivotTable = context.workbook.pivotTables.getItem(\"Farm Sales\");\n  const pivotLayout = pivotTable.layout;\n  pivotLayout.load(\"showFieldHeaders\");\n  await context.sync();\n\n  let showHeaders = !pivotLayout.showFieldHeaders;\n  console.log(`Show field headers? - ${showHeaders}`);\n  pivotLayout.showFieldHeaders = showHeaders;\n  await context.sync();\n});\n```"
 - name: showRowGrandTotals
   uid: excel!Excel.PivotLayout#showRowGrandTotals:member
   package: excel!
   fullName: showRowGrandTotals
   summary: >-
-    Gibt an, ob im PivotTable-Bericht Die Gesamtsummen für Zeilen angezeigt werden.
+    Gibt an, ob im PivotTable-Bericht Gesamtsummen für Zeilen angezeigt werden.
 
 
     \[[API-Satz: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -124,13 +214,13 @@ properties:
     content: 'showRowGrandTotals: boolean;'
     return:
       type: boolean
-      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/85-preview-apis/pivottable-pivotlayout.yaml\nawait Excel.run(async (context) => {\n  // Turn the grand totals on and off for the rows and columns.\n  const pivotTable = context.workbook.pivotTables.getItem(\"Farm Sales\");\n  const pivotLayout = pivotTable.layout;\n\n  pivotLayout.load([\"showRowGrandTotals\", \"showColumnGrandTotals\"]);\n  await context.sync();\n\n  let showColumnTotals = !pivotLayout.showColumnGrandTotals;\n  let showRowTotals = !pivotLayout.showRowGrandTotals;\n  console.log(`Show column grand totals? - ${showColumnTotals}`);\n  console.log(`Show row grand totals? - ${showRowTotals}`);\n\n  pivotLayout.showColumnGrandTotals = showColumnTotals;\n  pivotLayout.showRowGrandTotals = showRowTotals;\n\n  await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-pivotlayout.yaml\nawait Excel.run(async (context) => {\n  // Turn the grand totals on and off for the rows and columns.\n  const pivotTable = context.workbook.pivotTables.getItem(\"Farm Sales\");\n  const pivotLayout = pivotTable.layout;\n\n  pivotLayout.load([\"showRowGrandTotals\", \"showColumnGrandTotals\"]);\n  await context.sync();\n\n  let showColumnTotals = !pivotLayout.showColumnGrandTotals;\n  let showRowTotals = !pivotLayout.showRowGrandTotals;\n  console.log(`Show column grand totals? - ${showColumnTotals}`);\n  console.log(`Show row grand totals? - ${showRowTotals}`);\n\n  pivotLayout.showColumnGrandTotals = showColumnTotals;\n  pivotLayout.showRowGrandTotals = showRowTotals;\n\n  await context.sync();\n});\n```"
 - name: subtotalLocation
   uid: excel!Excel.PivotLayout#subtotalLocation:member
   package: excel!
   fullName: subtotalLocation
   summary: >-
-    Diese Eigenschaft gibt das `SubtotalLocationType` aller Felder in der PivotTable an. Wenn Felder unterschiedliche Zustände haben, wird dies `null`<!-- -->.
+    Diese Eigenschaft gibt die `SubtotalLocationType` aller Felder in der PivotTable an. Wenn Felder unterschiedliche Zustände aufweisen, ist dies `null`<!-- -->.
 
 
     \[[API-Satz: ExcelApi 1.8](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -142,6 +232,27 @@ properties:
     return:
       type: <xref uid="excel!Excel.SubtotalLocationType:enum" /> | "AtTop" | "AtBottom" | "Off"
 methods:
+- name: displayBlankLineAfterEachItem(display)
+  uid: excel!Excel.PivotLayout#displayBlankLineAfterEachItem:member(1)
+  package: excel!
+  fullName: displayBlankLineAfterEachItem(display)
+  summary: >-
+    Legt fest, ob nach jedem Element eine leere Zeile angezeigt werden soll. Dies wird auf globaler Ebene für die PivotTable festgelegt und auf einzelne PivotFields angewendet. Diese Funktion überschreibt die Einstellung für alle Felder in der PivotTable auf den Wert des `display` Parameters.
+
+
+    \[[API-Satz: ExcelApi 1.13](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'displayBlankLineAfterEachItem(display: boolean): void;'
+    parameters:
+    - id: display
+      description: "\"True\" aktiviert die Einstellung für die Leerzeilenanzeige. Bei \"False\" wird die Option deaktiviert."
+      type: boolean
+    return:
+      type: void
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-pivotlayout.yaml\nawait Excel.run(async (context) => {\n  // Add a blank row after each PivotItem in the row hierarchy.\n  const pivotTable = context.workbook.pivotTables.getItem(\"Farm Sales\");\n  const pivotLayout = pivotTable.layout;\n\n  pivotLayout.displayBlankLineAfterEachItem(true);\n  console.log(\"Setting `PivotLayout.displayBlankLineAfterEachItem` to true.\");\n\n  await context.sync();\n});\n```"
 - name: getColumnLabelRange()
   uid: excel!Excel.PivotLayout#getColumnLabelRange:member(1)
   package: excel!
@@ -230,7 +341,7 @@ methods:
     content: 'getPivotItems(axis: Excel.PivotAxis, cell: Range | string): Excel.PivotItemCollection;'
     parameters:
     - id: axis
-      description: Die Achse, von der die PivotItems-Daten erhalten werden. Muss entweder "Zeile" oder "Spalte" sein.
+      description: Die Achse, von der die PivotItems abgerufen werden sollen. Muss entweder "Zeile" oder "Spalte" sein.
       type: <xref uid="excel!Excel.PivotAxis:enum" />
     - id: cell
       description: Eine einzelne Zelle im Datentext der PivotTable.
@@ -254,7 +365,7 @@ methods:
     content: 'getPivotItems(axisString: "Unknown" | "Row" | "Column" | "Data" | "Filter", cell: Range | string): Excel.PivotItemCollection;'
     parameters:
     - id: axisString
-      description: Die Achse, von der die PivotItems-Daten erhalten werden. Muss entweder "Zeile" oder "Spalte" sein.
+      description: Die Achse, von der die PivotItems abgerufen werden sollen. Muss entweder "Zeile" oder "Spalte" sein.
       type: "\"Unknown\" | \"Row\" | \"Column\" | \"Data\" | \"Filter\""
     - id: cell
       description: Eine einzelne Zelle im Datentext der PivotTable.
@@ -308,7 +419,7 @@ methods:
     content: 'load(options?: Excel.Interfaces.PivotLayoutLoadOptions): Excel.PivotLayout;'
     parameters:
     - id: options
-      description: Stellt Optionen für die Eigenschaften des zu ladenden Objekts zur Verfügung.
+      description: Stellt Optionen bereit, für welche Eigenschaften des Objekts geladen werden soll.
       type: <xref uid="excel!Excel.Interfaces.PivotLayoutLoadOptions:interface" />
     return:
       type: <xref uid="excel!Excel.PivotLayout:class" />
@@ -346,7 +457,7 @@ methods:
               }): Excel.PivotLayout;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und eine durch Kommas getrennte Zeichenfolge, die die zu ladenden `propertyNamesAndPaths.expand` Navigationseigenschaften angibt.'
+      description: '`propertyNamesAndPaths.select` ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und `propertyNamesAndPaths.expand` eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
       type: >-
         {
                     select?: string;
@@ -355,13 +466,34 @@ methods:
     return:
       type: <xref uid="excel!Excel.PivotLayout:class" />
       description: ''
+- name: repeatAllItemLabels(repeatLabels)
+  uid: excel!Excel.PivotLayout#repeatAllItemLabels:member(1)
+  package: excel!
+  fullName: repeatAllItemLabels(repeatLabels)
+  summary: >-
+    Legt die Einstellung "Alle Elementbeschriftungen wiederholen" für alle Felder in der PivotTable fest.
+
+
+    \[[API-Satz: ExcelApi 1.13](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'repeatAllItemLabels(repeatLabels: boolean): void;'
+    parameters:
+    - id: repeatLabels
+      description: "\"True\" aktiviert die Anzeigeeinstellung für die Beschriftungswiege wiederholung. Bei \"False\" wird die Option deaktiviert."
+      type: boolean
+    return:
+      type: void
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-pivotlayout.yaml\nawait Excel.run(async (context) => {\n  // Repeat the PivotItem labels for each row used by another level of the row hierarchy.\n  const pivotTable = context.workbook.pivotTables.getItem(\"Farm Sales\");\n  const pivotLayout = pivotTable.layout;\n\n  pivotLayout.repeatAllItemLabels(true);\n  console.log(\"Setting `PivotLayout.repeatAllItemLabels` to true.\");\n\n  await context.sync();\n});\n```"
 - name: set(properties, options)
   uid: excel!Excel.PivotLayout#set:member(1)
   package: excel!
   fullName: set(properties, options)
   summary: Legt mehrere Eigenschaften eines Objekts gleichzeitig fest. Sie können entweder ein einfaches Objekt mit den entsprechenden Eigenschaften oder ein anderes API-Objekt desselben Typs übergeben.
   remarks: >-
-    Diese Methode verfügt über die folgende zusätzliche Signatur:
+    Diese Methode hat die folgende zusätzliche Signatur:
 
 
     `set(properties: Excel.PivotLayout): void`
@@ -374,7 +506,7 @@ methods:
       description: Ein JavaScript-Objekt mit Eigenschaften, die isomorph zu den Eigenschaften des Objekts strukturiert sind, für das die Methode aufgerufen wird.
       type: <xref uid="excel!Excel.Interfaces.PivotLayoutUpdateData:interface" />
     - id: options
-      description: Bietet eine Option zum Unterdrücken von Fehlern, wenn das Properties-Objekt versucht, schreibgeschützte Eigenschaften zu setzen.
+      description: Bietet eine Option zum Unterdrücken von Fehlern, wenn das Eigenschaftenobjekt versucht, schreibgeschützte Eigenschaften festzulegen.
       type: <xref uid="office!OfficeExtension.UpdateOptions:interface" />
     return:
       type: void
@@ -412,10 +544,10 @@ methods:
     content: 'setAutoSortOnCell(cell: Range | string, sortBy: Excel.SortBy): void;'
     parameters:
     - id: cell
-      description: Eine einzelne Zelle, die die Kriterien für die Anwendung der Autosortierung verwenden soll.
+      description: Eine einzelne Zelle zum Abrufen der Kriterien für die Anwendung der Autosortierung.
       type: <xref uid="excel!Excel.Range:class" /> | string
     - id: sortBy
-      description: Die Richtung der Sortierung.
+      description: Die Sortierrichtung.
       type: <xref uid="excel!Excel.SortBy:enum" />
     return:
       type: void
@@ -436,10 +568,10 @@ methods:
     content: 'setAutoSortOnCell(cell: Range | string, sortByString: "Ascending" | "Descending"): void;'
     parameters:
     - id: cell
-      description: Eine einzelne Zelle, die die Kriterien für die Anwendung der Autosortierung verwenden soll.
+      description: Eine einzelne Zelle zum Abrufen der Kriterien für die Anwendung der Autosortierung.
       type: <xref uid="excel!Excel.Range:class" /> | string
     - id: sortByString
-      description: Die Richtung der Sortierung.
+      description: Die Sortierrichtung.
       type: "\"Ascending\" | \"Descending\""
     return:
       type: void
@@ -448,7 +580,7 @@ methods:
   uid: excel!Excel.PivotLayout#toJSON:member(1)
   package: excel!
   fullName: toJSON()
-  summary: 'Überschreibt die JavaScript-Methode, um eine nützlichere Ausgabe zu `toJSON()` bieten, wenn ein API-Objekt an übergeben wird `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode `toJSON` des Objekts auf, das an das Objekt übergeben wird.) Während das ursprüngliche Excel.PivotLayout-Objekt ein API-Objekt ist, gibt die Methode ein `toJSON` einfaches JavaScript-Objekt zurück (Typ: `Excel.Interfaces.PivotLayoutData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
+  summary: Überschreibt die `toJSON()` JavaScript-Methode, um eine hilfreichere Ausgabe bereitzustellen, wenn ein API-Objekt an `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode des Objekts auf, `toJSON` das an das Objekt übergeben wird.) Während die ursprüngliche Excel. PivotLayout-Objekt ist ein API-Objekt, die `toJSON` Methode gibt ein einfaches JavaScript-Objekt zurück (typisiert als`Excel.Interfaces.PivotLayoutData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften des ursprünglichen Objekts enthält.
   remarks: ''
   isPreview: false
   isDeprecated: false
@@ -459,9 +591,9 @@ methods:
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 93d23d8694300556d39cc64bf1f70563f7df6d62
-  ms.sourcegitcommit: f7c5207ef96c4f6034fcb1b48e1b0036abf4fccc
+  ms.openlocfilehash: ddbf2bba338d2c6de42e70a63d19af4f8e84cd38
+  ms.sourcegitcommit: 418408d346cc899183d6d6a74161ba2ad58bd39d
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 04/16/2021
-  ms.locfileid: "51877136"
+  ms.lasthandoff: 07/02/2021
+  ms.locfileid: "53278363"

@@ -1,0 +1,240 @@
+### YamlMime:TSType
+name: Excel.SlicerCollection
+uid: excel!Excel.SlicerCollection:class
+package: excel!
+fullName: Excel.SlicerCollection
+summary: >-
+  Stellt eine Auflistung aller Datenschnittobjekte in der Arbeitsmappe oder einem Arbeitsblatt dar.
+
+
+  \[[API-Satz: ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: context
+  uid: excel!Excel.SlicerCollection#context:member
+  package: excel!
+  fullName: context
+  summary: Der dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office Hostanwendung verbunden.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="excel!Excel.RequestContext:class" />
+- name: items
+  uid: excel!Excel.SlicerCollection#items:member
+  package: excel!
+  fullName: items
+  summary: Ruft die geladenen untergeordneten Elemente in dieser Sammlung ab.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly items: Excel.Slicer[];'
+    return:
+      type: <xref uid="excel!Excel.Slicer:class" />[]
+methods:
+- name: add(slicerSource, sourceField, slicerDestination)
+  uid: excel!Excel.SlicerCollection#add:member(1)
+  package: excel!
+  fullName: add(slicerSource, sourceField, slicerDestination)
+  summary: >-
+    Fügt der Arbeitsmappe einen neuen Datenschnitt hinzu.
+
+
+    \[[API-Satz: ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'add(slicerSource: string | PivotTable | Table, sourceField: string | PivotField | number | TableColumn, slicerDestination?: string | Worksheet): Excel.Slicer;'
+    parameters:
+    - id: slicerSource
+      description: Die Datenquelle, auf der der neue Datenschnitt basiert. Dabei kann es sich um ein `PivotTable` Objekt, ein `Table` Objekt oder eine Zeichenfolge handeln. Wenn ein PivotTable-Objekt übergeben wird, ist die Datenquelle die Quelle des `PivotTable` Objekts. Wenn ein `Table` Objekt übergeben wird, ist die Datenquelle das `Table` Objekt. Wenn eine Zeichenfolge übergeben wird, wird sie als Name oder ID einer PivotTable oder Tabelle interpretiert.
+      type: string | <xref uid="excel!Excel.PivotTable:class" /> | <xref uid="excel!Excel.Table:class" />
+    - id: sourceField
+      description: Das Feld in der Datenquelle, nach dem gefiltert werden soll. Dabei kann es sich um ein `PivotField` Objekt, ein `TableColumn` Objekt, die ID eines `PivotField` Objekts oder den Namen oder die ID eines `TableColumn`<!-- -->.
+      type: string | <xref uid="excel!Excel.PivotField:class" /> | number | <xref uid="excel!Excel.TableColumn:class" />
+    - id: slicerDestination
+      description: Optional. Das Arbeitsblatt, in dem der neue Datenschnitt erstellt wird. Dabei kann es sich um ein `Worksheet` Objekt oder den Namen oder die ID eines Arbeitsblatts handeln. Dieser Parameter kann ausgelassen werden, wenn die Datenschnittauflistung aus einem Arbeitsblatt abgerufen wird.
+      type: string | <xref uid="excel!Excel.Worksheet:class" />
+    return:
+      type: <xref uid="excel!Excel.Slicer:class" />
+      description: >-
+        Der neue Datenschnitt.
+
+
+        #### <a name="examples"></a>Beispiele
+
+
+        ```typescript
+
+        // Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-slicer.yaml
+
+        await Excel.run(async (context) => {
+            const sheet = context.workbook.worksheets.getItem("Pivot");
+            const slicer = sheet.slicers.add(
+                "Farm Sales", /* The slicer data source. For PivotTables, this can be the PivotTable object reference or name. */
+                "Type" /* The field in the data source to filter by. For PivotTables, this can be a PivotField object reference or ID. */
+            );
+            slicer.name = "Fruit Slicer";
+            await context.sync();
+        });
+
+        ```
+- name: getCount()
+  uid: excel!Excel.SlicerCollection#getCount:member(1)
+  package: excel!
+  fullName: getCount()
+  summary: >-
+    Gibt die Anzahl der Datenschnitte in der Sammlung zurück.
+
+
+    \[[API-Satz: ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getCount(): OfficeExtension.ClientResult<number>;'
+    return:
+      type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;number&gt;
+      description: ''
+- name: getItem(key)
+  uid: excel!Excel.SlicerCollection#getItem:member(1)
+  package: excel!
+  fullName: getItem(key)
+  summary: >-
+    Ruft ein Datenschnittobjekt anhand seines Namens oder seiner ID ab.
+
+
+    \[[API-Satz: ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getItem(key: string): Excel.Slicer;'
+    parameters:
+    - id: key
+      description: Der Name oder die ID des Datenschnitts.
+      type: string
+    return:
+      type: <xref uid="excel!Excel.Slicer:class" />
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/38-pivottable/pivottable-slicer.yaml\nawait Excel.run(async (context) => {\n    const slicer = context.workbook.slicers.getItem(\"Fruit Slicer\");\n    slicer.caption = \"Fruit Types\";\n    slicer.left = 395;\n    slicer.top = 15;\n    slicer.height = 135;\n    slicer.width = 150;\n    await context.sync();\n});\n```"
+- name: getItemAt(index)
+  uid: excel!Excel.SlicerCollection#getItemAt:member(1)
+  package: excel!
+  fullName: getItemAt(index)
+  summary: >-
+    Ruft einen Datenschnitt anhand seiner Position in der Auflistung ab.
+
+
+    \[[API-Satz: ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getItemAt(index: number): Excel.Slicer;'
+    parameters:
+    - id: index
+      description: Index-Wert des abzurufenden Objekts. Nullindiziert.
+      type: number
+    return:
+      type: <xref uid="excel!Excel.Slicer:class" />
+      description: ''
+- name: getItemOrNullObject(key)
+  uid: excel!Excel.SlicerCollection#getItemOrNullObject:member(1)
+  package: excel!
+  fullName: getItemOrNullObject(key)
+  summary: >-
+    Ruft einen Datenschnitt anhand seines Namens oder seiner ID ab. Wenn der Datenschnitt nicht vorhanden ist, gibt diese Funktion ein Objekt zurück, dessen `isNullObject` Eigenschaft auf `true`<!-- -->. Weitere Informationen finden Sie unter [*OrNullObject-Methoden und -Eigenschaften.](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+
+
+    \[[API-Satz: ExcelApi 1.10](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getItemOrNullObject(key: string): Excel.Slicer;'
+    parameters:
+    - id: key
+      description: Name oder ID des abzurufenden Datenschnitts.
+      type: string
+    return:
+      type: <xref uid="excel!Excel.Slicer:class" />
+      description: ''
+- name: load(options)
+  uid: excel!Excel.SlicerCollection#load:member(1)
+  package: excel!
+  fullName: load(options)
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(options?: Excel.Interfaces.SlicerCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.SlicerCollection;'
+    parameters:
+    - id: options
+      description: Stellt Optionen bereit, für welche Eigenschaften des Objekts geladen werden soll.
+      type: <xref uid="excel!Excel.Interfaces.SlicerCollectionLoadOptions:interface" /> & <xref uid="excel!Excel.Interfaces.CollectionLoadOptions:interface" />
+    return:
+      type: <xref uid="excel!Excel.SlicerCollection:class" />
+      description: ''
+- name: load(propertyNames)
+  uid: excel!Excel.SlicerCollection#load:member(2)
+  package: excel!
+  fullName: load(propertyNames)
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.SlicerCollection;'
+    parameters:
+    - id: propertyNames
+      description: Eine durch Trennzeichen getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.
+      type: string | string[]
+    return:
+      type: <xref uid="excel!Excel.SlicerCollection:class" />
+      description: ''
+- name: load(propertyNamesAndPaths)
+  uid: excel!Excel.SlicerCollection#load:member(3)
+  package: excel!
+  fullName: load(propertyNamesAndPaths)
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): Excel.SlicerCollection;'
+    parameters:
+    - id: propertyNamesAndPaths
+      description: '`propertyNamesAndPaths.select` ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und `propertyNamesAndPaths.expand` eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
+      type: <xref uid="office!OfficeExtension.LoadOption:interface" />
+    return:
+      type: <xref uid="excel!Excel.SlicerCollection:class" />
+      description: ''
+- name: toJSON()
+  uid: excel!Excel.SlicerCollection#toJSON:member(1)
+  package: excel!
+  fullName: toJSON()
+  summary: Überschreibt die `toJSON()` JavaScript-Methode, um eine hilfreichere Ausgabe bereitzustellen, wenn ein API-Objekt an `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode des Objekts auf, `toJSON` das an das Objekt übergeben wird.) Während das ursprüngliche `Excel.SlicerCollection` Objekt ein API-Objekt ist, gibt die `toJSON` Methode ein einfaches JavaScript-Objekt zurück (typisiert als `Excel.Interfaces.SlicerCollectionData`<!-- -->), die ein "Items"-Array mit flachen Kopien aller geladenen Eigenschaften aus den Elementen der Auflistung enthält.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.SlicerCollectionData;'
+    return:
+      type: <xref uid="excel!Excel.Interfaces.SlicerCollectionData:interface" />
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: 1227f20e294aca20796d3adb3cc0a66fe202d3ee
+  ms.sourcegitcommit: 1f63896cdaa3b8ac3bfcb506161116a564538837
+  ms.translationtype: MT
+  ms.contentlocale: de-DE
+  ms.lasthandoff: 07/02/2021
+  ms.locfileid: "53270913"
