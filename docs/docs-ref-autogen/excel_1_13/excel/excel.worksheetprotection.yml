@@ -1,0 +1,185 @@
+### YamlMime:TSType
+name: Excel.WorksheetProtection
+uid: excel!Excel.WorksheetProtection:class
+package: excel!
+fullName: Excel.WorksheetProtection
+summary: >-
+  Stellt den Schutz eines Arbeitsblattobjekts dar.
+
+
+  \[[API-Satz: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: context
+  uid: excel!Excel.WorksheetProtection#context:member
+  package: excel!
+  fullName: context
+  summary: Der dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office Hostanwendung verbunden.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="excel!Excel.RequestContext:class" />
+- name: options
+  uid: excel!Excel.WorksheetProtection#options:member
+  package: excel!
+  fullName: options
+  summary: >-
+    Gibt die Schutzoptionen für das Arbeitsblatt an.
+
+
+    \[[API-Satz: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly options: Excel.WorksheetProtectionOptions;'
+    return:
+      type: <xref uid="excel!Excel.WorksheetProtectionOptions:interface" />
+- name: protected
+  uid: excel!Excel.WorksheetProtection#protected:member
+  package: excel!
+  fullName: protected
+  summary: >-
+    Gibt an, ob das Arbeitsblatt geschützt ist.
+
+
+    \[[API-Satz: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly protected: boolean;'
+    return:
+      type: boolean
+methods:
+- name: load(options)
+  uid: excel!Excel.WorksheetProtection#load:member(1)
+  package: excel!
+  fullName: load(options)
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(options?: Excel.Interfaces.WorksheetProtectionLoadOptions): Excel.WorksheetProtection;'
+    parameters:
+    - id: options
+      description: Stellt Optionen bereit, für welche Eigenschaften des Objekts geladen werden soll.
+      type: <xref uid="excel!Excel.Interfaces.WorksheetProtectionLoadOptions:interface" />
+    return:
+      type: <xref uid="excel!Excel.WorksheetProtection:class" />
+      description: ''
+- name: load(propertyNames)
+  uid: excel!Excel.WorksheetProtection#load:member(2)
+  package: excel!
+  fullName: load(propertyNames)
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.WorksheetProtection;'
+    parameters:
+    - id: propertyNames
+      description: Eine durch Trennzeichen getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.
+      type: string | string[]
+    return:
+      type: <xref uid="excel!Excel.WorksheetProtection:class" />
+      description: ''
+- name: load(propertyNamesAndPaths)
+  uid: excel!Excel.WorksheetProtection#load:member(3)
+  package: excel!
+  fullName: load(propertyNamesAndPaths)
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: >-
+      load(propertyNamesAndPaths?: {
+                  select?: string;
+                  expand?: string;
+              }): Excel.WorksheetProtection;
+    parameters:
+    - id: propertyNamesAndPaths
+      description: '`propertyNamesAndPaths.select` ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und `propertyNamesAndPaths.expand` eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
+      type: >-
+        {
+                    select?: string;
+                    expand?: string;
+                }
+    return:
+      type: <xref uid="excel!Excel.WorksheetProtection:class" />
+      description: ''
+- name: protect(options, password)
+  uid: excel!Excel.WorksheetProtection#protect:member(1)
+  package: excel!
+  fullName: protect(options, password)
+  summary: >-
+    Schützt ein Arbeitsblatt. Schlägt fehl, wenn das Arbeitsblatt bereits geschützt wurde.
+
+
+    \[[API-Satz: ExcelApi 1.2 für Optionen; 1.7 für Kennwort](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'protect(options?: Excel.WorksheetProtectionOptions, password?: string): void;'
+    parameters:
+    - id: options
+      description: Optional. Optionen für den Arbeitsblattschutz.
+      type: <xref uid="excel!Excel.WorksheetProtectionOptions:interface" />
+    - id: password
+      description: Optional. Blattschutzkennwort.
+      type: string
+    return:
+      type: void
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/50-workbook/data-protection.yaml\nawait Excel.run(async (context) => {\n    let activeSheet = context.workbook.worksheets.getActiveWorksheet();\n    activeSheet.load(\"protection/protected\");\n\n    await context.sync();\n\n    if (!activeSheet.protection.protected) {\n        activeSheet.protection.protect();\n    }\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/50-workbook/data-protection.yaml\nlet password = await passwordHandler();\npasswordHelper(password);\nawait Excel.run(async (context) => {\n    let activeSheet = context.workbook.worksheets.getActiveWorksheet();\n    activeSheet.load(\"protection/protected\");\n\n    await context.sync();\n\n    if (!activeSheet.protection.protected) {\n        activeSheet.protection.protect(null, password);\n    }\n});\n```"
+- name: toJSON()
+  uid: excel!Excel.WorksheetProtection#toJSON:member(1)
+  package: excel!
+  fullName: toJSON()
+  summary: Überschreibt die `toJSON()` JavaScript-Methode, um eine hilfreichere Ausgabe bereitzustellen, wenn ein API-Objekt an `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode des Objekts auf, `toJSON` das an das Objekt übergeben wird.) Während die ursprüngliche Excel. WorksheetProtection-Objekt ist ein API-Objekt, die `toJSON` Methode gibt ein einfaches JavaScript-Objekt zurück (typisiert als`Excel.Interfaces.WorksheetProtectionData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften des ursprünglichen Objekts enthält.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.WorksheetProtectionData;'
+    return:
+      type: <xref uid="excel!Excel.Interfaces.WorksheetProtectionData:interface" />
+      description: ''
+- name: unprotect(password)
+  uid: excel!Excel.WorksheetProtection#unprotect:member(1)
+  package: excel!
+  fullName: unprotect(password)
+  summary: >-
+    Hebt den Schutz eines Arbeitsblatts auf.
+
+
+    \[[API-Satz: ExcelApi 1.7 für Kennwort](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'unprotect(password?: string): void;'
+    parameters:
+    - id: password
+      description: Blattschutzkennwort.
+      type: string
+    return:
+      type: void
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/50-workbook/data-protection.yaml\nawait Excel.run(async (context) => {\n    let activeSheet = context.workbook.worksheets.getActiveWorksheet();\n    activeSheet.protection.unprotect();\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/50-workbook/data-protection.yaml\nlet password = await passwordHandler();\npasswordHelper(password);\nawait Excel.run(async (context) => {\n    let activeSheet = context.workbook.worksheets.getActiveWorksheet();\n    activeSheet.protection.unprotect(password);\n});\n```"
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: d234df00a1865d0c7b13169a418c1bc1838efc36
+  ms.sourcegitcommit: 1f63896cdaa3b8ac3bfcb506161116a564538837
+  ms.translationtype: MT
+  ms.contentlocale: de-DE
+  ms.lasthandoff: 07/02/2021
+  ms.locfileid: "53272806"
