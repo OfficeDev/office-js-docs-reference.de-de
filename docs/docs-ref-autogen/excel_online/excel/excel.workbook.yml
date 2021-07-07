@@ -4,7 +4,7 @@ uid: excel!Excel.Workbook:class
 package: excel!
 fullName: Excel.Workbook
 summary: >-
-  Workbook is the top level object which contains related workbook objects such as worksheets, tables, and ranges. Weitere Informationen zum Arbeitsmappenobjektmodell finden Sie unter [Verwendung der Excel JavaScript-API unter Verwendung von "Arbeiten mit Arbeitsmappen"](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-workbooks)<!-- -->.
+  Workbook is the top level object which contains related workbook objects such as worksheets, tables, and ranges. Weitere Informationen zum Arbeitsmappenobjektmodell finden Sie unter ["Arbeiten mit Arbeitsmappen mithilfe der Excel JavaScript-API".](https://docs.microsoft.com/office/dev/add-ins/excel/excel-add-ins-workbooks)<!-- -->.
 
 
   \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -665,7 +665,7 @@ methods:
       type: <xref uid="excel!Excel.InsertWorksheetOptions:interface" />
     return:
       type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;string[]&gt;
-      description: "Ein Array von IDs, die jedem neu eingefügten Arbeitsblatt entsprechen.\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/85-preview-apis/workbook-insert-external-worksheets.yaml\n// Retrieve the file and set up an HTML FileReader element. \nconst myFile = <HTMLInputElement>document.getElementById(\"file\");\nconst reader = new FileReader();\n\nreader.onload = (event) => {\n    // Remove the metadata before the base64-encoded string.\n    const startIndex = reader.result.toString().indexOf(\"base64,\");\n    externalWorkbook = reader.result.toString().substr(startIndex + 7);\n};\n\n// Read the file as a data URL so that we can parse the base64-encoded string.\nreader.readAsDataURL(myFile.files[0]);\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/85-preview-apis/workbook-insert-external-worksheets.yaml\nawait Excel.run(async (context) => {\n    // Retrieve the source workbook.\n    const workbook = context.workbook;\n    \n    // Set up the insert options.\n    var options = {\n        sheetNamesToInsert: [], // Insert all the worksheets from the source workbook.\n        positionType: Excel.WorksheetPositionType.after, // Insert after the `relativeTo` sheet.\n        relativeTo: \"Sheet1\" // The sheet relative to which the other worksheets will be inserted. Used with `positionType`.\n    };\n    \n    // Insert the new worksheets.\n    workbook.insertWorksheetsFromBase64(externalWorkbook, options);\n    await context.sync();\n});\n```"
+      description: "Ein Array von IDs, die jedem neu eingefügten Arbeitsblatt entsprechen.\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/50-workbook/workbook-insert-external-worksheets.yaml\n// Retrieve the file and set up an HTML FileReader element. \nconst myFile = <HTMLInputElement>document.getElementById(\"file\");\nconst reader = new FileReader();\n\nreader.onload = (event) => {\n    // Remove the metadata before the base64-encoded string.\n    const startIndex = reader.result.toString().indexOf(\"base64,\");\n    externalWorkbook = reader.result.toString().substr(startIndex + 7);\n};\n\n// Read the file as a data URL so that we can parse the base64-encoded string.\nreader.readAsDataURL(myFile.files[0]);\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/50-workbook/workbook-insert-external-worksheets.yaml\nawait Excel.run(async (context) => {\n    // Retrieve the source workbook.\n    const workbook = context.workbook;\n    \n    // Set up the insert options.\n    var options = {\n        sheetNamesToInsert: [], // Insert all the worksheets from the source workbook.\n        positionType: Excel.WorksheetPositionType.after, // Insert after the `relativeTo` sheet.\n        relativeTo: \"Sheet1\" // The sheet relative to which the other worksheets will be inserted. Used with `positionType`.\n    };\n    \n    // Insert the new worksheets.\n    workbook.insertWorksheetsFromBase64(externalWorkbook, options);\n    await context.sync();\n});\n```"
 - name: load(options)
   uid: excel!Excel.Workbook#load:member(1)
   package: excel!
@@ -838,7 +838,7 @@ events:
     content: 'readonly onActivated: OfficeExtension.EventHandlers<Excel.WorkbookActivatedEventArgs>;'
     return:
       type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.WorkbookActivatedEventArgs:interface" />&gt;
-      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/85-preview-apis/events-workbook-activated.yaml\nasync function workbookActivated(event: Excel.WorkbookActivatedEventArgs) {\n  await Excel.run(async (context) => {\n    // Callback function for when the workbook is activated.\n    console.log(\"The workbook was activated.\");\n  });\n}\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/85-preview-apis/events-workbook-activated.yaml\nawait Excel.run(async (context) => {\n  const workbook = context.workbook;\n\n  // Register the workbook activated event handler.\n  workbook.onActivated.add(workbookActivated);\n\n  await context.sync();\n  console.log(\"Added event handler for workbook activated.\");\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/events-workbook-activated.yaml\nasync function workbookActivated(event: Excel.WorkbookActivatedEventArgs) {\n  await Excel.run(async (context) => {\n    // Callback function for when the workbook is activated.\n    console.log(\"The workbook was activated.\");\n  });\n}\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/30-events/events-workbook-activated.yaml\nawait Excel.run(async (context) => {\n  const workbook = context.workbook;\n\n  // Register the workbook activated event handler.\n  workbook.onActivated.add(workbookActivated);\n\n  await context.sync();\n  console.log(\"Added event handler for workbook activated.\");\n});\n```"
 - name: onAutoSaveSettingChanged
   uid: excel!Excel.Workbook#onAutoSaveSettingChanged:member
   package: excel!
@@ -873,9 +873,9 @@ events:
       type: <xref uid="office!OfficeExtension.EventHandlers:class" />&lt;<xref uid="excel!Excel.SelectionChangedEventArgs:interface" />&gt;
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: a123b9574e5bd9c208048daa913bf12e6c589649
-  ms.sourcegitcommit: 1f63896cdaa3b8ac3bfcb506161116a564538837
+  ms.openlocfilehash: d661c64c08e544278a6ba4ad6b4525c9251cf694
+  ms.sourcegitcommit: 418408d346cc899183d6d6a74161ba2ad58bd39d
   ms.translationtype: MT
   ms.contentlocale: de-DE
   ms.lasthandoff: 07/02/2021
-  ms.locfileid: "53260470"
+  ms.locfileid: "53278356"
