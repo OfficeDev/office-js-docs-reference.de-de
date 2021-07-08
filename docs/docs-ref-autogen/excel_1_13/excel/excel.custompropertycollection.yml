@@ -1,0 +1,212 @@
+### YamlMime:TSType
+name: Excel.CustomPropertyCollection
+uid: excel!Excel.CustomPropertyCollection:class
+package: excel!
+fullName: Excel.CustomPropertyCollection
+summary: >-
+  Enthält die Auflistung benutzerdefinierter Eigenschaften.
+
+
+  \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: context
+  uid: excel!Excel.CustomPropertyCollection#context:member
+  package: excel!
+  fullName: context
+  summary: Der dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office Hostanwendung verbunden.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="excel!Excel.RequestContext:class" />
+- name: items
+  uid: excel!Excel.CustomPropertyCollection#items:member
+  package: excel!
+  fullName: items
+  summary: Ruft die geladenen untergeordneten Elemente in dieser Sammlung ab.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly items: Excel.CustomProperty[];'
+    return:
+      type: <xref uid="excel!Excel.CustomProperty:class" />[]
+methods:
+- name: add(key, value)
+  uid: excel!Excel.CustomPropertyCollection#add:member(1)
+  package: excel!
+  fullName: add(key, value)
+  summary: >-
+    Erstellt eine neue benutzerdefinierte Eigenschaft oder legt eine vorhandene fest.
+
+
+    \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'add(key: string, value: any): Excel.CustomProperty;'
+    parameters:
+    - id: key
+      description: Erforderlich. Der Schlüssel der benutzerdefinierten Eigenschaft, bei dem die Groß-/Kleinschreibung nicht beachtet wird. Die Taste ist auf 255 Zeichen außerhalb von Excel im Web beschränkt (größere Tasten werden automatisch auf 255 Zeichen auf anderen Plattformen gekürzt).
+      type: string
+    - id: value
+      description: Erforderlich. Der Wert der benutzerdefinierten Eigenschaft. Der Wert ist auf 255 Zeichen außerhalb von Excel im Web beschränkt (größere Werte werden automatisch auf 255 Zeichen auf anderen Plattformen gekürzt).
+      type: any
+    return:
+      type: <xref uid="excel!Excel.CustomProperty:class" />
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/26-document/custom-properties.yaml\nawait Excel.run(async (context) => {\n  // Get the key/value pair from the task pane.\n  const userKey = $(\"#key\").text();\n  const userValue = $(\"#value\").text();\n\n  // Add the custom property.\n  const customDocProperties = context.workbook.properties.custom;\n  customDocProperties.add(userKey, userValue);\n\n  await context.sync();\n\n  console.log(`Successfully set custom document property ${userKey}:${userValue}.`);\n});\n```"
+- name: deleteAll()
+  uid: excel!Excel.CustomPropertyCollection#deleteAll:member(1)
+  package: excel!
+  fullName: deleteAll()
+  summary: >-
+    Löscht alle benutzerdefinierten Eigenschaften in dieser Sammlung.
+
+
+    \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'deleteAll(): void;'
+    return:
+      type: void
+      description: ''
+- name: getCount()
+  uid: excel!Excel.CustomPropertyCollection#getCount:member(1)
+  package: excel!
+  fullName: getCount()
+  summary: >-
+    Ruft die Anzahl von benutzerdefinierten Eigenschaften ab.
+
+
+    \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getCount(): OfficeExtension.ClientResult<number>;'
+    return:
+      type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;number&gt;
+      description: ''
+- name: getItem(key)
+  uid: excel!Excel.CustomPropertyCollection#getItem:member(1)
+  package: excel!
+  fullName: getItem(key)
+  summary: >-
+    Ruft ein Objekt für benutzerdefinierte Eigenschaften über seinen Schlüssel ab, bei dem Groß-/Kleinschreibung nicht beachtet wird. Löst einen Fehler aus, wenn die benutzerdefinierte Eigenschaft nicht vorhanden ist.
+
+
+    \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getItem(key: string): Excel.CustomProperty;'
+    parameters:
+    - id: key
+      description: Der Schlüssel, der das benutzerdefinierte Eigenschaftsobjekt identifiziert.
+      type: string
+    return:
+      type: <xref uid="excel!Excel.CustomProperty:class" />
+      description: ''
+- name: getItemOrNullObject(key)
+  uid: excel!Excel.CustomPropertyCollection#getItemOrNullObject:member(1)
+  package: excel!
+  fullName: getItemOrNullObject(key)
+  summary: >-
+    Ruft ein Objekt für benutzerdefinierte Eigenschaften über seinen Schlüssel ab, bei dem Groß-/Kleinschreibung nicht beachtet wird. Wenn die benutzerdefinierte Eigenschaft nicht vorhanden ist, gibt diese Funktion ein Objekt zurück, dessen `isNullObject` Eigenschaft auf `true`<!-- -->. Weitere Informationen finden Sie unter [*OrNullObject-Methoden und -Eigenschaften.](https://docs.microsoft.com/office/dev/add-ins/develop/application-specific-api-model#ornullobject-methods-and-properties)<!-- -->.
+
+
+    \[[API-Satz: ExcelApi 1.7](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getItemOrNullObject(key: string): Excel.CustomProperty;'
+    parameters:
+    - id: key
+      description: Erforderlich. Der Schlüssel, der das benutzerdefinierte Eigenschaftsobjekt identifiziert.
+      type: string
+    return:
+      type: <xref uid="excel!Excel.CustomProperty:class" />
+      description: ''
+- name: load(options)
+  uid: excel!Excel.CustomPropertyCollection#load:member(1)
+  package: excel!
+  fullName: load(options)
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(options?: Excel.Interfaces.CustomPropertyCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.CustomPropertyCollection;'
+    parameters:
+    - id: options
+      description: Stellt Optionen bereit, für welche Eigenschaften des Objekts geladen werden soll.
+      type: <xref uid="excel!Excel.Interfaces.CustomPropertyCollectionLoadOptions:interface" /> & <xref uid="excel!Excel.Interfaces.CollectionLoadOptions:interface" />
+    return:
+      type: <xref uid="excel!Excel.CustomPropertyCollection:class" />
+      description: ''
+- name: load(propertyNames)
+  uid: excel!Excel.CustomPropertyCollection#load:member(2)
+  package: excel!
+  fullName: load(propertyNames)
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.CustomPropertyCollection;'
+    parameters:
+    - id: propertyNames
+      description: Eine durch Trennzeichen getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.
+      type: string | string[]
+    return:
+      type: <xref uid="excel!Excel.CustomPropertyCollection:class" />
+      description: ''
+- name: load(propertyNamesAndPaths)
+  uid: excel!Excel.CustomPropertyCollection#load:member(3)
+  package: excel!
+  fullName: load(propertyNamesAndPaths)
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): Excel.CustomPropertyCollection;'
+    parameters:
+    - id: propertyNamesAndPaths
+      description: '`propertyNamesAndPaths.select` ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und `propertyNamesAndPaths.expand` eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
+      type: <xref uid="office!OfficeExtension.LoadOption:interface" />
+    return:
+      type: <xref uid="excel!Excel.CustomPropertyCollection:class" />
+      description: ''
+- name: toJSON()
+  uid: excel!Excel.CustomPropertyCollection#toJSON:member(1)
+  package: excel!
+  fullName: toJSON()
+  summary: Überschreibt die `toJSON()` JavaScript-Methode, um eine hilfreichere Ausgabe bereitzustellen, wenn ein API-Objekt an `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode des Objekts auf, `toJSON` das an das Objekt übergeben wird.) Während das ursprüngliche `Excel.CustomPropertyCollection` Objekt ein API-Objekt ist, gibt die `toJSON` Methode ein einfaches JavaScript-Objekt zurück (typisiert als `Excel.Interfaces.CustomPropertyCollectionData`<!-- -->), die ein "Items"-Array mit flachen Kopien aller geladenen Eigenschaften aus den Elementen der Auflistung enthält.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.CustomPropertyCollectionData;'
+    return:
+      type: <xref uid="excel!Excel.Interfaces.CustomPropertyCollectionData:interface" />
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: 910d52fb02869069b70719f95be1becc2dae39ce
+  ms.sourcegitcommit: 1f63896cdaa3b8ac3bfcb506161116a564538837
+  ms.translationtype: MT
+  ms.contentlocale: de-DE
+  ms.lasthandoff: 07/02/2021
+  ms.locfileid: "53272539"
