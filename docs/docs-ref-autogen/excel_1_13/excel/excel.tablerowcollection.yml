@@ -1,0 +1,199 @@
+### YamlMime:TSType
+name: Excel.TableRowCollection
+uid: excel!Excel.TableRowCollection:class
+package: excel!
+fullName: Excel.TableRowCollection
+summary: >-
+  Stellt eine Auflistung aller Zeilen dar, die Teil der Tabelle sind.
+
+
+  Beachten Sie, dass im Gegensatz zu Bereichen oder Spalten, die anpassen, wenn neue Zeilen oder Spalten vor ihnen hinzugefügt werden, ein `TableRow` Objekt die physische Position der Tabellenzeile darstellt, jedoch nicht die Daten. Das heißt, wenn die Daten sortiert sind oder neue Zeilen hinzugefügt werden, wird eine Tabellenzeile weiterhin auf den Index zeigen, für den sie erstellt wurde.
+
+
+  \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: context
+  uid: excel!Excel.TableRowCollection#context:member
+  package: excel!
+  fullName: context
+  summary: Der dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office Hostanwendung verbunden.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="excel!Excel.RequestContext:class" />
+- name: count
+  uid: excel!Excel.TableRowCollection#count:member
+  package: excel!
+  fullName: count
+  summary: >-
+    Gibt die Anzahl der Zeilen in der Tabelle zurück.
+
+
+    \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly count: number;'
+    return:
+      type: number
+- name: items
+  uid: excel!Excel.TableRowCollection#items:member
+  package: excel!
+  fullName: items
+  summary: Ruft die geladenen untergeordneten Elemente in dieser Sammlung ab.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly items: Excel.TableRow[];'
+    return:
+      type: <xref uid="excel!Excel.TableRow:class" />[]
+methods:
+- name: add(index, values)
+  uid: excel!Excel.TableRowCollection#add:member(1)
+  package: excel!
+  fullName: add(index, values)
+  summary: >-
+    Fügt der Tabelle mindestens eine Zeile hinzu. Das Rückgabeobjekt ist die oberste Zeile der neu hinzugefügten Zeilen.
+
+
+    Beachten Sie, dass im Gegensatz zu Bereichen oder Spalten, die anpassen, wenn neue Zeilen oder Spalten vor ihnen hinzugefügt werden, ein `TableRow` Objekt die physische Position der Tabellenzeile darstellt, jedoch nicht die Daten. Das heißt, wenn die Daten sortiert sind oder neue Zeilen hinzugefügt werden, wird eine Tabellenzeile weiterhin auf den Index zeigen, für den sie erstellt wurde.
+
+
+    \[[API-Satz: ExcelApi 1.1 zum Hinzufügen einer einzelnen Zeile; 1.4 ermöglicht das Hinzufügen mehrerer Zeilen.](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets) \]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'add(index?: number, values?: Array<Array<boolean | string | number>> | boolean | string | number): Excel.TableRow;'
+    parameters:
+    - id: index
+      description: Optional. Gibt die relative Position der neuen Zeile an. Bei NULL oder -1 erfolgt die Erweiterung am Ende. Alle Zeilen unterhalb der eingefügten Zeile werden nach unten verschoben. Nullindiziert.
+      type: number
+    - id: values
+      description: Optional. Ein 2D-Array mit unformatierten Werten der Tabellenzeile.
+      type: Array&lt;Array&lt;boolean | string | number&gt;&gt; | boolean | string | number
+    return:
+      type: <xref uid="excel!Excel.TableRow:class" />
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var tables = ctx.workbook.tables;\n    var values = [[\"Sample\", \"Values\", \"For\", \"New\", \"Row\"]];\n    var row = tables.getItem(\"Table1\").rows.add(null, values);\n    row.load('index');\n    return ctx.sync().then(function() {\n        console.log(row.index);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: getCount()
+  uid: excel!Excel.TableRowCollection#getCount:member(1)
+  package: excel!
+  fullName: getCount()
+  summary: >-
+    Ruft die Anzahl der Zeilen in der Tabelle ab.
+
+
+    \[[API-Satz: ExcelApi 1.4](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getCount(): OfficeExtension.ClientResult<number>;'
+    return:
+      type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;number&gt;
+      description: ''
+- name: getItemAt(index)
+  uid: excel!Excel.TableRowCollection#getItemAt:member(1)
+  package: excel!
+  fullName: getItemAt(index)
+  summary: >-
+    Ruft eine Zeile anhand ihrer Position in der Auflistung ab.
+
+
+    Beachten Sie, dass im Gegensatz zu Bereichen oder Spalten, die anpassen, wenn neue Zeilen oder Spalten vor ihnen hinzugefügt werden, ein `TableRow` Objekt die physische Position der Tabellenzeile darstellt, jedoch nicht die Daten. Das heißt, wenn die Daten sortiert sind oder neue Zeilen hinzugefügt werden, wird eine Tabellenzeile weiterhin auf den Index zeigen, für den sie erstellt wurde.
+
+
+    \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getItemAt(index: number): Excel.TableRow;'
+    parameters:
+    - id: index
+      description: Index-Wert des abzurufenden Objekts. Nullindiziert.
+      type: number
+    return:
+      type: <xref uid="excel!Excel.TableRow:class" />
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var tablerow = ctx.workbook.tables.getItem('Table1').rows.getItemAt(0);\n    tablerow.load('name');\n    return ctx.sync().then(function() {\n            console.log(tablerow.name);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: load(options)
+  uid: excel!Excel.TableRowCollection#load:member(1)
+  package: excel!
+  fullName: load(options)
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(options?: Excel.Interfaces.TableRowCollectionLoadOptions & Excel.Interfaces.CollectionLoadOptions): Excel.TableRowCollection;'
+    parameters:
+    - id: options
+      description: Stellt Optionen bereit, für welche Eigenschaften des Objekts geladen werden soll.
+      type: <xref uid="excel!Excel.Interfaces.TableRowCollectionLoadOptions:interface" /> & <xref uid="excel!Excel.Interfaces.CollectionLoadOptions:interface" />
+    return:
+      type: <xref uid="excel!Excel.TableRowCollection:class" />
+      description: ''
+- name: load(propertyNames)
+  uid: excel!Excel.TableRowCollection#load:member(2)
+  package: excel!
+  fullName: load(propertyNames)
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.TableRowCollection;'
+    parameters:
+    - id: propertyNames
+      description: Eine durch Trennzeichen getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.
+      type: string | string[]
+    return:
+      type: <xref uid="excel!Excel.TableRowCollection:class" />
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var tablerows = ctx.workbook.tables.getItem('Table1').rows;\n    tablerows.load('items');\n    return ctx.sync().then(function() {\n        console.log(\"tablerows Count: \" + tablerows.count);\n        for (var i = 0; i < tablerows.items.length; i++) {\n            console.log(tablerows.items[i].index);\n        }\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```javascript\n// In the example, we'll select the top 100 rows of the table.\nExcel.run(function (ctx) { \n    var table = ctx.workbook.tables.getItem(\"Table1\");\n    var tableRows = table.rows.load({\"select\" : \"index, values\",\"top\": 100, \"skip\": 0 })\n    return ctx.sync().then(function() {\n        for (var i = 0; i < tableRows.items.length; i++) {\n            console.log(tableRows.items[i].index);\n            console.log(tableRows.items[i].values);\n        }\n    });\n}).catch(function(error) {\n        console.log(\"Error: \" + error);\n        if (error instanceof OfficeExtension.Error) {\n            console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n        }\n});\n```"
+- name: load(propertyNamesAndPaths)
+  uid: excel!Excel.TableRowCollection#load:member(3)
+  package: excel!
+  fullName: load(propertyNamesAndPaths)
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNamesAndPaths?: OfficeExtension.LoadOption): Excel.TableRowCollection;'
+    parameters:
+    - id: propertyNamesAndPaths
+      description: '`propertyNamesAndPaths.select` ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und `propertyNamesAndPaths.expand` eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
+      type: <xref uid="office!OfficeExtension.LoadOption:interface" />
+    return:
+      type: <xref uid="excel!Excel.TableRowCollection:class" />
+      description: ''
+- name: toJSON()
+  uid: excel!Excel.TableRowCollection#toJSON:member(1)
+  package: excel!
+  fullName: toJSON()
+  summary: Überschreibt die `toJSON()` JavaScript-Methode, um eine hilfreichere Ausgabe bereitzustellen, wenn ein API-Objekt an `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode des Objekts auf, `toJSON` das an das Objekt übergeben wird.) Während das ursprüngliche `Excel.TableRowCollection` Objekt ein API-Objekt ist, gibt die `toJSON` Methode ein einfaches JavaScript-Objekt zurück (typisiert als `Excel.Interfaces.TableRowCollectionData`<!-- -->), die ein "Items"-Array mit flachen Kopien aller geladenen Eigenschaften aus den Elementen der Auflistung enthält.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.TableRowCollectionData;'
+    return:
+      type: <xref uid="excel!Excel.Interfaces.TableRowCollectionData:interface" />
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: 0ae9246ea76ea7d4af5c4d74bad3973a3aa6ed67
+  ms.sourcegitcommit: 1f63896cdaa3b8ac3bfcb506161116a564538837
+  ms.translationtype: MT
+  ms.contentlocale: de-DE
+  ms.lasthandoff: 07/02/2021
+  ms.locfileid: "53273490"
