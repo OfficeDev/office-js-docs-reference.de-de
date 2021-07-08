@@ -1,0 +1,244 @@
+### YamlMime:TSType
+name: Excel.TableSort
+uid: excel!Excel.TableSort:class
+package: excel!
+fullName: Excel.TableSort
+summary: >-
+  Verwaltet Sortiervorgänge für `Table` Objekte.
+
+
+  \[[API-Satz: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: context
+  uid: excel!Excel.TableSort#context:member
+  package: excel!
+  fullName: context
+  summary: Der dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office Hostanwendung verbunden.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="excel!Excel.RequestContext:class" />
+- name: fields
+  uid: excel!Excel.TableSort#fields:member
+  package: excel!
+  fullName: fields
+  summary: >-
+    Gibt die aktuellen Bedingungen an, die zum letzten Sortieren der Tabelle verwendet werden.
+
+
+    \[[API-Satz: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly fields: Excel.SortField[];'
+    return:
+      type: <xref uid="excel!Excel.SortField:interface" />[]
+- name: matchCase
+  uid: excel!Excel.TableSort#matchCase:member
+  package: excel!
+  fullName: matchCase
+  summary: >-
+    Gibt an, ob sich die Groß-/Kleinschreibung auf die letzte Sortierung der Tabelle auswirkt.
+
+
+    \[[API-Satz: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly matchCase: boolean;'
+    return:
+      type: boolean
+- name: method
+  uid: excel!Excel.TableSort#method:member
+  package: excel!
+  fullName: method
+  summary: >-
+    Stellt die chinesische Zeichensortiermethode dar, die zuletzt zum Sortieren der Tabelle verwendet wurde.
+
+
+    \[[API-Satz: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly method: Excel.SortMethod | "PinYin" | "StrokeCount";'
+    return:
+      type: <xref uid="excel!Excel.SortMethod:enum" /> | "PinYin" | "StrokeCount"
+methods:
+- name: apply(fields, matchCase, method)
+  uid: excel!Excel.TableSort#apply:member(1)
+  package: excel!
+  fullName: apply(fields, matchCase, method)
+  summary: >-
+    Führt einen Sortiervorgang aus.
+
+
+    \[[API-Satz: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'apply(fields: Excel.SortField[], matchCase?: boolean, method?: Excel.SortMethod): void;'
+    parameters:
+    - id: fields
+      description: Die Liste der Bedingungen, nach denen sortiert werden soll.
+      type: <xref uid="excel!Excel.SortField:interface" />[]
+    - id: matchCase
+      description: Optional. Gibt an, ob sich die Groß-/Kleinschreibung auf die Zeichenfolgensortierung auswirkt.
+      type: boolean
+    - id: method
+      description: Optional. Die Sortiermethode für chinesische Zeichen.
+      type: <xref uid="excel!Excel.SortMethod:enum" />
+    return:
+      type: void
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var tableName = 'Table1';\n    var table = ctx.workbook.tables.getItem(tableName);\n    table.sort.apply([ \n            {\n                key: 2,\n                ascending: true\n            },\n        ], true);\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: apply(fields, matchCase, methodString)
+  uid: excel!Excel.TableSort#apply:member(2)
+  package: excel!
+  fullName: apply(fields, matchCase, methodString)
+  summary: >-
+    Führt einen Sortiervorgang aus.
+
+
+    \[[API-Satz: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'apply(fields: Excel.SortField[], matchCase?: boolean, methodString?: "PinYin" | "StrokeCount"): void;'
+    parameters:
+    - id: fields
+      description: Die Liste der Bedingungen, nach denen sortiert werden soll.
+      type: <xref uid="excel!Excel.SortField:interface" />[]
+    - id: matchCase
+      description: Optional. Gibt an, ob sich die Groß-/Kleinschreibung auf die Zeichenfolgensortierung auswirkt.
+      type: boolean
+    - id: methodString
+      description: Optional. Die Sortiermethode für chinesische Zeichen.
+      type: "\"PinYin\" | \"StrokeCount\""
+    return:
+      type: void
+      description: ''
+- name: clear()
+  uid: excel!Excel.TableSort#clear:member(1)
+  package: excel!
+  fullName: clear()
+  summary: >-
+    Löscht die Sortierung, die derzeit in der Tabelle enthalten ist. Dies ändert nicht die Sortierung der Tabelle, löscht jedoch den Zustand der Kopfzeilen-Schaltflächen.
+
+
+    \[[API-Satz: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'clear(): void;'
+    return:
+      type: void
+      description: ''
+- name: load(options)
+  uid: excel!Excel.TableSort#load:member(1)
+  package: excel!
+  fullName: load(options)
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(options?: Excel.Interfaces.TableSortLoadOptions): Excel.TableSort;'
+    parameters:
+    - id: options
+      description: Stellt Optionen bereit, für welche Eigenschaften des Objekts geladen werden soll.
+      type: <xref uid="excel!Excel.Interfaces.TableSortLoadOptions:interface" />
+    return:
+      type: <xref uid="excel!Excel.TableSort:class" />
+      description: ''
+- name: load(propertyNames)
+  uid: excel!Excel.TableSort#load:member(2)
+  package: excel!
+  fullName: load(propertyNames)
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.TableSort;'
+    parameters:
+    - id: propertyNames
+      description: Eine durch Trennzeichen getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.
+      type: string | string[]
+    return:
+      type: <xref uid="excel!Excel.TableSort:class" />
+      description: ''
+- name: load(propertyNamesAndPaths)
+  uid: excel!Excel.TableSort#load:member(3)
+  package: excel!
+  fullName: load(propertyNamesAndPaths)
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: >-
+      load(propertyNamesAndPaths?: {
+                  select?: string;
+                  expand?: string;
+              }): Excel.TableSort;
+    parameters:
+    - id: propertyNamesAndPaths
+      description: '`propertyNamesAndPaths.select` ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und `propertyNamesAndPaths.expand` eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
+      type: >-
+        {
+                    select?: string;
+                    expand?: string;
+                }
+    return:
+      type: <xref uid="excel!Excel.TableSort:class" />
+      description: ''
+- name: reapply()
+  uid: excel!Excel.TableSort#reapply:member(1)
+  package: excel!
+  fullName: reapply()
+  summary: >-
+    Wendet die aktuellen Sortierparameter erneut auf die Tabelle an.
+
+
+    \[[API-Satz: ExcelApi 1.2](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'reapply(): void;'
+    return:
+      type: void
+      description: ''
+- name: toJSON()
+  uid: excel!Excel.TableSort#toJSON:member(1)
+  package: excel!
+  fullName: toJSON()
+  summary: Überschreibt die `toJSON()` JavaScript-Methode, um eine hilfreichere Ausgabe bereitzustellen, wenn ein API-Objekt an `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode des Objekts auf, `toJSON` das an das Objekt übergeben wird.) Während die ursprüngliche Excel. TableSort-Objekt ist ein API-Objekt, die `toJSON` Methode gibt ein einfaches JavaScript-Objekt zurück (typisiert als`Excel.Interfaces.TableSortData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften des ursprünglichen Objekts enthält.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.TableSortData;'
+    return:
+      type: <xref uid="excel!Excel.Interfaces.TableSortData:interface" />
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: babe81de866042067e33d95b809daf00749a9096
+  ms.sourcegitcommit: 1f63896cdaa3b8ac3bfcb506161116a564538837
+  ms.translationtype: MT
+  ms.contentlocale: de-DE
+  ms.lasthandoff: 07/02/2021
+  ms.locfileid: "53273481"
