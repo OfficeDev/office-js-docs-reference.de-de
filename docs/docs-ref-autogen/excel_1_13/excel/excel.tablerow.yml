@@ -1,0 +1,218 @@
+### YamlMime:TSType
+name: Excel.TableRow
+uid: excel!Excel.TableRow:class
+package: excel!
+fullName: Excel.TableRow
+summary: >-
+  Stellt eine Zeile in einer Tabelle dar.
+
+
+  Beachten Sie, dass im Gegensatz zu Bereichen oder Spalten, die anpassen, wenn neue Zeilen oder Spalten vor ihnen hinzugefügt werden, ein `TableRow` Objekt die physische Position der Tabellenzeile darstellt, jedoch nicht die Daten. Das heißt, wenn die Daten sortiert sind oder neue Zeilen hinzugefügt werden, wird eine Tabellenzeile weiterhin auf den Index zeigen, für den sie erstellt wurde.
+
+
+  \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+remarks: ''
+isPreview: false
+isDeprecated: false
+type: class
+properties:
+- name: context
+  uid: excel!Excel.TableRow#context:member
+  package: excel!
+  fullName: context
+  summary: Der dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office Hostanwendung verbunden.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'context: RequestContext;'
+    return:
+      type: <xref uid="excel!Excel.RequestContext:class" />
+- name: index
+  uid: excel!Excel.TableRow#index:member
+  package: excel!
+  fullName: index
+  summary: >-
+    Gibt die Indexnummer der Zeile in der Zeilenauflistung der Tabelle zurück. Nullindiziert.
+
+
+    \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'readonly index: number;'
+    return:
+      type: number
+- name: values
+  uid: excel!Excel.TableRow#values:member
+  package: excel!
+  fullName: values
+  summary: >-
+    Stellt die Rohwerte des angegebenen Bereichs dar. Bei den zurückgegebenen Daten kann es sich um eine Zeichenfolge, eine Zahl oder einen booleschen Wert handeln. Zellen, die einen Fehler enthalten, geben die Fehlerzeichenfolge zurück. Wenn der zurückgegebene Wert mit einem Pluszeichen ("+"), minus ("-") oder Gleichheitszeichen ("=") beginnt, interpretiert Excel diesen Wert als Formel.
+
+
+    \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'values: any[][];'
+    return:
+      type: any[][]
+methods:
+- name: delete()
+  uid: excel!Excel.TableRow#delete:member(1)
+  package: excel!
+  fullName: delete()
+  summary: >-
+    Löscht die Zeile aus der Tabelle.
+
+
+    \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'delete(): void;'
+    return:
+      type: void
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var tableName = 'Table1';\n    var row = ctx.workbook.tables.getItem(tableName).rows.getItemAt(2);\n    row.delete();\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: getRange()
+  uid: excel!Excel.TableRow#getRange:member(1)
+  package: excel!
+  fullName: getRange()
+  summary: >-
+    Ruft das Bereichsobjekt ab, das mit der gesamten Zeile verknüpft ist.
+
+
+    \[[API-Satz: ExcelApi 1.1](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'getRange(): Excel.Range;'
+    return:
+      type: <xref uid="excel!Excel.Range:class" />
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var tableName = 'Table1';\n    var row = ctx.workbook.tables.getItem(tableName).rows.getItemAt(0);\n    var rowRange = row.getRange();\n    rowRange.load('address');\n    return ctx.sync().then(function() {\n        console.log(rowRange.address);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: load(options)
+  uid: excel!Excel.TableRow#load:member(1)
+  package: excel!
+  fullName: load(options)
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(options?: Excel.Interfaces.TableRowLoadOptions): Excel.TableRow;'
+    parameters:
+    - id: options
+      description: Stellt Optionen bereit, für welche Eigenschaften des Objekts geladen werden soll.
+      type: <xref uid="excel!Excel.Interfaces.TableRowLoadOptions:interface" />
+    return:
+      type: <xref uid="excel!Excel.TableRow:class" />
+      description: ''
+- name: load(propertyNames)
+  uid: excel!Excel.TableRow#load:member(2)
+  package: excel!
+  fullName: load(propertyNames)
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'load(propertyNames?: string | string[]): Excel.TableRow;'
+    parameters:
+    - id: propertyNames
+      description: Eine durch Trennzeichen getrennte Zeichenfolge oder ein Array von Zeichenfolgen, die die zu ladenden Eigenschaften angeben.
+      type: string | string[]
+    return:
+      type: <xref uid="excel!Excel.TableRow:class" />
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var tableName = 'Table1';\n    var row = ctx.workbook.tables.getItem(tableName).rows.getItem(0);\n    row.load('index');\n    return ctx.sync().then(function() {\n        console.log(row.index);\n    });\n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```"
+- name: load(propertyNamesAndPaths)
+  uid: excel!Excel.TableRow#load:member(3)
+  package: excel!
+  fullName: load(propertyNamesAndPaths)
+  summary: Stellt einen Befehl zum Laden der angegebenen Eigenschaften des Objekts in die Warteschlange ein. Vor dem Lesen der Eigenschaften müssen Sie "`context.sync()`" aufrufen.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: >-
+      load(propertyNamesAndPaths?: {
+                  select?: string;
+                  expand?: string;
+              }): Excel.TableRow;
+    parameters:
+    - id: propertyNamesAndPaths
+      description: '`propertyNamesAndPaths.select` ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und `propertyNamesAndPaths.expand` eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
+      type: >-
+        {
+                    select?: string;
+                    expand?: string;
+                }
+    return:
+      type: <xref uid="excel!Excel.TableRow:class" />
+      description: ''
+- name: set(properties, options)
+  uid: excel!Excel.TableRow#set:member(1)
+  package: excel!
+  fullName: set(properties, options)
+  summary: Legt mehrere Eigenschaften eines Objekts gleichzeitig fest. Sie können entweder ein einfaches Objekt mit den entsprechenden Eigenschaften oder ein anderes API-Objekt desselben Typs übergeben.
+  remarks: >-
+    Diese Methode hat die folgende zusätzliche Signatur:
+
+
+    `set(properties: Excel.TableRow): void`
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(properties: Interfaces.TableRowUpdateData, options?: OfficeExtension.UpdateOptions): void;'
+    parameters:
+    - id: properties
+      description: Ein JavaScript-Objekt mit Eigenschaften, die isomorph zu den Eigenschaften des Objekts strukturiert sind, für das die Methode aufgerufen wird.
+      type: <xref uid="excel!Excel.Interfaces.TableRowUpdateData:interface" />
+    - id: options
+      description: Bietet eine Option zum Unterdrücken von Fehlern, wenn das Eigenschaftenobjekt versucht, schreibgeschützte Eigenschaften festzulegen.
+      type: <xref uid="office!OfficeExtension.UpdateOptions:interface" />
+    return:
+      type: void
+      description: ''
+- name: set(properties)
+  uid: excel!Excel.TableRow#set:member(2)
+  package: excel!
+  fullName: set(properties)
+  summary: Legt mehrere Eigenschaften für das Objekt gleichzeitig fest, basierend auf einem vorhandenen geladenen Objekt.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'set(properties: Excel.TableRow): void;'
+    parameters:
+    - id: properties
+      description: ''
+      type: <xref uid="excel!Excel.TableRow:class" />
+    return:
+      type: void
+      description: ''
+- name: toJSON()
+  uid: excel!Excel.TableRow#toJSON:member(1)
+  package: excel!
+  fullName: toJSON()
+  summary: Überschreibt die `toJSON()` JavaScript-Methode, um eine hilfreichere Ausgabe bereitzustellen, wenn ein API-Objekt an `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode des Objekts auf, `toJSON` das an das Objekt übergeben wird.) Während die ursprüngliche Excel. TableRow-Objekt ist ein API-Objekt, die `toJSON` Methode gibt ein einfaches JavaScript-Objekt zurück (typisiert als`Excel.Interfaces.TableRowData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften des ursprünglichen Objekts enthält.
+  remarks: ''
+  isPreview: false
+  isDeprecated: false
+  syntax:
+    content: 'toJSON(): Excel.Interfaces.TableRowData;'
+    return:
+      type: <xref uid="excel!Excel.Interfaces.TableRowData:interface" />
+      description: ''
+extends: <xref uid="office!OfficeExtension.ClientObject:class" />
+metadata:
+  ms.openlocfilehash: 844db0e723f942bcbdadde05d2f778b66afb2dfc
+  ms.sourcegitcommit: 1f63896cdaa3b8ac3bfcb506161116a564538837
+  ms.translationtype: MT
+  ms.contentlocale: de-DE
+  ms.lasthandoff: 07/02/2021
+  ms.locfileid: "53262458"
