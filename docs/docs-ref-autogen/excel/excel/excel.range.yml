@@ -1153,7 +1153,7 @@ methods:
     content: 'getDirectDependents(): Excel.WorkbookRangeAreas;'
     return:
       type: <xref uid="excel!Excel.WorkbookRangeAreas:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/85-preview-apis/range-direct-dependents.yaml\nawait Excel.run(async (context) => {\n  // Direct dependents are cells that contain formulas that refer to other cells.\n  let range = context.workbook.getActiveCell();\n  let directDependents = range.getDirectDependents();\n  range.load(\"address\");\n  directDependents.areas.load(\"address\");\n  await context.sync();\n  \n  console.log(`Direct dependent cells of ${range.address}:`);\n  \n  // Use the direct dependents API to loop through direct dependents of the active cell.\n  for (let i = 0; i < directDependents.areas.items.length; i++) {\n    // Highlight and print the address of each dependent cell.\n    directDependents.areas.items[i].format.fill.color = \"Yellow\";\n    console.log(`  ${directDependents.areas.items[i].address}`);\n  }\n  await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/42-range/range-direct-dependents.yaml\nawait Excel.run(async (context) => {\n  // Direct dependents are cells that contain formulas that refer to other cells.\n  let range = context.workbook.getActiveCell();\n  let directDependents = range.getDirectDependents();\n  range.load(\"address\");\n  directDependents.areas.load(\"address\");\n  await context.sync();\n  \n  console.log(`Direct dependent cells of ${range.address}:`);\n  \n  // Use the direct dependents API to loop through direct dependents of the active cell.\n  for (let i = 0; i < directDependents.areas.items.length; i++) {\n    // Highlight and print the address of each dependent cell.\n    directDependents.areas.items[i].format.fill.color = \"Yellow\";\n    console.log(`  ${directDependents.areas.items[i].address}`);\n  }\n  await context.sync();\n});\n```"
 - name: getDirectPrecedents()
   uid: excel!Excel.Range#getDirectPrecedents:member(1)
   package: excel!
@@ -1228,7 +1228,7 @@ methods:
       type: <xref uid="excel!Excel.Range:class" /> | string
     return:
       type: <xref uid="excel!Excel.Range:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/85-preview-apis/range-get-range-edge.yaml\nawait Excel.run(async (context) => {\n  // Get the selected range.\n  const range = context.workbook.getSelectedRange();\n\n  // Specify the direction with the `KeyboardDirection` enum.\n  const direction = Excel.KeyboardDirection.down;\n\n  // Get the active cell in the workbook.\n  const activeCell = context.workbook.getActiveCell();\n\n  // Get all the cells from the currently selected range to the bottom-most edge of the used range.\n  // This method acts like the Ctrl+Shift+Arrow key keyboard shortcut while a range is selected.\n  const extendedRange = range.getExtendedRange(\n    direction,\n    activeCell // If the selected range contains more than one cell, the active cell must be defined.\n  );\n  extendedRange.select();\n\n  await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/42-range/range-get-range-edge.yaml\nawait Excel.run(async (context) => {\n  // Get the selected range.\n  const range = context.workbook.getSelectedRange();\n\n  // Specify the direction with the `KeyboardDirection` enum.\n  const direction = Excel.KeyboardDirection.down;\n\n  // Get the active cell in the workbook.\n  const activeCell = context.workbook.getActiveCell();\n\n  // Get all the cells from the currently selected range to the bottom-most edge of the used range.\n  // This method acts like the Ctrl+Shift+Arrow key keyboard shortcut while a range is selected.\n  const extendedRange = range.getExtendedRange(\n    direction,\n    activeCell // If the selected range contains more than one cell, the active cell must be defined.\n  );\n  extendedRange.select();\n\n  await context.sync();\n});\n```"
 - name: getExtendedRange(directionString, activeCell)
   uid: excel!Excel.Range#getExtendedRange:member(2)
   package: excel!
@@ -1379,7 +1379,7 @@ methods:
     content: 'getMergedAreasOrNullObject(): Excel.RangeAreas;'
     return:
       type: <xref uid="excel!Excel.RangeAreas:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/85-preview-apis/range-merged-ranges.yaml\nawait Excel.run(async (context) => {\n  // Retrieve the worksheet and the table in that worksheet.\n  const sheet = context.workbook.worksheets.getActiveWorksheet();\n  const tableRange = sheet.getRange(\"B2:E6\");\n\n  // Retrieve the merged range within the table and load its details.\n  const mergedAreas = tableRange.getMergedAreasOrNullObject();\n  mergedAreas.load(\"address\");\n  mergedAreas.load(\"cellCount\");\n\n  // Select the merged range.\n  const range = mergedAreas.areas.getItemAt(0);\n  range.select();\n  await context.sync();\n\n  // Print out the details of the `mergedAreas` range object.\n  console.log(`Address of the merged range: ${mergedAreas.address}`);\n  console.log(`Number of cells in the merged range: ${mergedAreas.cellCount}`);\n\n  await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/42-range/range-merged-ranges.yaml\nawait Excel.run(async (context) => {\n  // Retrieve the worksheet and the table in that worksheet.\n  const sheet = context.workbook.worksheets.getActiveWorksheet();\n  const tableRange = sheet.getRange(\"B2:E6\");\n\n  // Retrieve the merged range within the table and load its details.\n  const mergedAreas = tableRange.getMergedAreasOrNullObject();\n  mergedAreas.load(\"address\");\n  mergedAreas.load(\"cellCount\");\n\n  // Select the merged range.\n  const range = mergedAreas.areas.getItemAt(0);\n  range.select();\n  await context.sync();\n\n  // Print out the details of the `mergedAreas` range object.\n  console.log(`Address of the merged range: ${mergedAreas.address}`);\n  console.log(`Number of cells in the merged range: ${mergedAreas.cellCount}`);\n\n  await context.sync();\n});\n```"
 - name: getOffsetRange(rowOffset, columnOffset)
   uid: excel!Excel.Range#getOffsetRange:member(1)
   package: excel!
@@ -1447,7 +1447,7 @@ methods:
   package: excel!
   fullName: getRangeEdge(direction, activeCell)
   summary: >-
-    Gibt ein Bereichsobjekt zurück, bei dem es sich um die Edgezelle des Datenbereichs handelt, die der angegebenen Richtung entspricht. Dies entspricht dem Strg+Pfeiltastenverhalten im Excel auf Windows Benutzeroberfläche.
+    Gibt ein Bereichsobjekt zurück, bei dem es sich um die Edgezelle des Datenbereichs handelt, die der angegebenen Richtung entspricht. Dies entspricht dem Strg+Pfeiltastenverhalten im Excel auf Windows Ui.
 
 
     \[[API-Satz: ExcelApi 1.13](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1465,13 +1465,13 @@ methods:
       type: <xref uid="excel!Excel.Range:class" /> | string
     return:
       type: <xref uid="excel!Excel.Range:class" />
-      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/85-preview-apis/range-get-range-edge.yaml\nawait Excel.run(async (context) => {\n  // Get the selected range.\n  const range = context.workbook.getSelectedRange();\n\n  // Specify the direction with the `KeyboardDirection` enum.\n  const direction = Excel.KeyboardDirection.up;\n\n  // Get the active cell in the workbook.\n  const activeCell = context.workbook.getActiveCell();\n\n  // Get the top-most cell of the current used range.\n  // This method acts like the Ctrl+Arrow key keyboard shortcut while a range is selected.\n  const rangeEdge = range.getRangeEdge(\n    direction,\n    activeCell // If the selected range contains more than one cell, the active cell must be defined.\n  );\n  rangeEdge.select();\n\n  await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/42-range/range-get-range-edge.yaml\nawait Excel.run(async (context) => {\n  // Get the selected range.\n  const range = context.workbook.getSelectedRange();\n\n  // Specify the direction with the `KeyboardDirection` enum.\n  const direction = Excel.KeyboardDirection.up;\n\n  // Get the active cell in the workbook.\n  const activeCell = context.workbook.getActiveCell();\n\n  // Get the top-most cell of the current used range.\n  // This method acts like the Ctrl+Arrow key keyboard shortcut while a range is selected.\n  const rangeEdge = range.getRangeEdge(\n    direction,\n    activeCell // If the selected range contains more than one cell, the active cell must be defined.\n  );\n  rangeEdge.select();\n\n  await context.sync();\n});\n```"
 - name: getRangeEdge(directionString, activeCell)
   uid: excel!Excel.Range#getRangeEdge:member(2)
   package: excel!
   fullName: getRangeEdge(directionString, activeCell)
   summary: >-
-    Gibt ein Bereichsobjekt zurück, bei dem es sich um die Edgezelle des Datenbereichs handelt, die der angegebenen Richtung entspricht. Dies entspricht dem Strg+Pfeiltastenverhalten im Excel auf Windows Benutzeroberfläche.
+    Gibt ein Bereichsobjekt zurück, bei dem es sich um die Edgezelle des Datenbereichs handelt, die der angegebenen Richtung entspricht. Dies entspricht dem Strg+Pfeiltastenverhalten im Excel auf Windows Ui.
 
 
     \[[API-Satz: ExcelApi 1.13](/office/dev/add-ins/reference/requirement-sets/excel-api-requirement-sets)\]
@@ -1617,7 +1617,7 @@ methods:
       description: Der Typ der einzuschließenden Zellen.
       type: <xref uid="excel!Excel.SpecialCellType:enum" />
     - id: cellValueType
-      description: Wenn `cellType` entweder `constants` oder `formulas`<!-- -->wird dieses Argument verwendet, um zu bestimmen, welche Zelltypen in das Ergebnis einbezogen werden sollen. Diese Werte können kombiniert werden, um mehr als einen Typ zurückzugeben. Standardmäßig werden alle Konstanten oder Formeln unabhängig vom Typ ausgewählt.
+      description: Wenn `cellType` entweder `constants` oder `formulas`<!-- -->wird dieses Argument verwendet, um zu bestimmen, welche Zelltypen in das Ergebnis einbezogen werden sollen. Diese Werte können kombiniert werden, um mehrere Typen zurückzugeben. Standardmäßig werden alle Konstanten oder Formeln unabhängig vom Typ ausgewählt.
       type: <xref uid="excel!Excel.SpecialCellValueType:enum" />
     return:
       type: <xref uid="excel!Excel.RangeAreas:class" />
@@ -1641,7 +1641,7 @@ methods:
       description: Der Typ der einzuschließenden Zellen.
       type: "\"ConditionalFormats\" | \"DataValidations\" | \"Blanks\" | \"Constants\" | \"Formulas\" | \"SameConditionalFormat\" | \"SameDataValidation\" | \"Visible\""
     - id: cellValueType
-      description: Wenn `cellType` entweder `constants` oder `formulas`<!-- -->wird dieses Argument verwendet, um zu bestimmen, welche Zelltypen in das Ergebnis einbezogen werden sollen. Diese Werte können kombiniert werden, um mehr als einen Typ zurückzugeben. Standardmäßig werden alle Konstanten oder Formeln unabhängig vom Typ ausgewählt.
+      description: Wenn `cellType` entweder `constants` oder `formulas`<!-- -->wird dieses Argument verwendet, um zu bestimmen, welche Zelltypen in das Ergebnis einbezogen werden sollen. Diese Werte können kombiniert werden, um mehrere Typen zurückzugeben. Standardmäßig werden alle Konstanten oder Formeln unabhängig vom Typ ausgewählt.
       type: "\"All\" | \"Errors\" | \"ErrorsLogical\" | \"ErrorsNumbers\" | \"ErrorsText\" | \"ErrorsLogicalNumber\" | \"ErrorsLogicalText\" | \"ErrorsNumberText\" | \"Logical\" | \"LogicalNumbers\" | \"LogicalText\" | \"LogicalNumbersText\" | \"Numbers\" | \"NumbersText\" | \"Text\""
     return:
       type: <xref uid="excel!Excel.RangeAreas:class" />
@@ -1665,7 +1665,7 @@ methods:
       description: Der Typ der einzuschließenden Zellen.
       type: <xref uid="excel!Excel.SpecialCellType:enum" />
     - id: cellValueType
-      description: Wenn `cellType` entweder `constants` oder `formulas`<!-- -->wird dieses Argument verwendet, um zu bestimmen, welche Zelltypen in das Ergebnis einbezogen werden sollen. Diese Werte können kombiniert werden, um mehr als einen Typ zurückzugeben. Standardmäßig werden alle Konstanten oder Formeln unabhängig vom Typ ausgewählt.
+      description: Wenn `cellType` entweder `constants` oder `formulas`<!-- -->wird dieses Argument verwendet, um zu bestimmen, welche Zelltypen in das Ergebnis einbezogen werden sollen. Diese Werte können kombiniert werden, um mehrere Typen zurückzugeben. Standardmäßig werden alle Konstanten oder Formeln unabhängig vom Typ ausgewählt.
       type: <xref uid="excel!Excel.SpecialCellValueType:enum" />
     return:
       type: <xref uid="excel!Excel.RangeAreas:class" />
@@ -1689,7 +1689,7 @@ methods:
       description: Der Typ der einzuschließenden Zellen.
       type: "\"ConditionalFormats\" | \"DataValidations\" | \"Blanks\" | \"Constants\" | \"Formulas\" | \"SameConditionalFormat\" | \"SameDataValidation\" | \"Visible\""
     - id: cellValueType
-      description: Wenn `cellType` entweder `constants` oder `formulas`<!-- -->wird dieses Argument verwendet, um zu bestimmen, welche Zelltypen in das Ergebnis einbezogen werden sollen. Diese Werte können kombiniert werden, um mehr als einen Typ zurückzugeben. Standardmäßig werden alle Konstanten oder Formeln unabhängig vom Typ ausgewählt.
+      description: Wenn `cellType` entweder `constants` oder `formulas`<!-- -->wird dieses Argument verwendet, um zu bestimmen, welche Zelltypen in das Ergebnis einbezogen werden sollen. Diese Werte können kombiniert werden, um mehrere Typen zurückzugeben. Standardmäßig werden alle Konstanten oder Formeln unabhängig vom Typ ausgewählt.
       type: "\"All\" | \"Errors\" | \"ErrorsLogical\" | \"ErrorsNumbers\" | \"ErrorsText\" | \"ErrorsLogicalNumber\" | \"ErrorsLogicalText\" | \"ErrorsNumberText\" | \"Logical\" | \"LogicalNumbers\" | \"LogicalText\" | \"LogicalNumbersText\" | \"Numbers\" | \"NumbersText\" | \"Text\""
     return:
       type: <xref uid="excel!Excel.RangeAreas:class" />
@@ -2064,7 +2064,7 @@ methods:
       type: boolean
     return:
       type: void
-      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"A1:C3\";\n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);\n    range.merge(true);\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/85-preview-apis/range-merged-ranges.yaml\nawait Excel.run(async (context) => {\n  // Retrieve the worksheet and the table in that worksheet.\n  const sheet = context.workbook.worksheets.getActiveWorksheet();\n  const tableRange = sheet.getRange(\"B2:E6\");\n\n  // Create a merged range in the first row of the table.\n  const chartTitle = tableRange.getRow(0);\n  chartTitle.merge(true);\n\n  // Format the merged range.\n  chartTitle.format.horizontalAlignment = \"Center\";\n\n  await context.sync();\n});\n```"
+      description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```javascript\nExcel.run(function (ctx) { \n    var sheetName = \"Sheet1\";\n    var rangeAddress = \"A1:C3\";\n    var range = ctx.workbook.worksheets.getItem(sheetName).getRange(rangeAddress);\n    range.merge(true);\n    return ctx.sync(); \n}).catch(function(error) {\n    console.log(\"Error: \" + error);\n    if (error instanceof OfficeExtension.Error) {\n        console.log(\"Debug info: \" + JSON.stringify(error.debugInfo));\n    }\n});\n```\n```typescript\n// Link to full sample: https://raw.githubusercontent.com/OfficeDev/office-js-snippets/prod/samples/excel/42-range/range-merged-ranges.yaml\nawait Excel.run(async (context) => {\n  // Retrieve the worksheet and the table in that worksheet.\n  const sheet = context.workbook.worksheets.getActiveWorksheet();\n  const tableRange = sheet.getRange(\"B2:E6\");\n\n  // Create a merged range in the first row of the table.\n  const chartTitle = tableRange.getRow(0);\n  chartTitle.merge(true);\n\n  // Format the merged range.\n  chartTitle.format.horizontalAlignment = \"Center\";\n\n  await context.sync();\n});\n```"
 - name: moveTo(destinationRange)
   uid: excel!Excel.Range#moveTo:member(1)
   package: excel!
@@ -2430,9 +2430,9 @@ methods:
       description: "\n\n#### <a name=\"examples\"></a>Beispiele\n\n```typescript\nExcel.run(async (context) => {\n    const largeRange = context.workbook.getSelectedRange();\n    largeRange.load([\"rowCount\", \"columnCount\"]);\n    await context.sync();\n\n    for (let i = 0; i < largeRange.rowCount; i++) {\n        for (let j = 0; j < largeRange.columnCount; j++) {\n            let cell = largeRange.getCell(i, j);\n            cell.values = [[i *j]];\n\n            // call untrack() to release the range from memory\n            cell.untrack();\n        }\n    }\n\n    await context.sync();\n});\n```"
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: 75228de3c4919b1c0055dd2a5b2fe4ec4c688870
-  ms.sourcegitcommit: 1f63896cdaa3b8ac3bfcb506161116a564538837
+  ms.openlocfilehash: fb9afb6d919328c65dc8e19b5d84b6bd75376112
+  ms.sourcegitcommit: 418408d346cc899183d6d6a74161ba2ad58bd39d
   ms.translationtype: MT
   ms.contentlocale: de-DE
   ms.lasthandoff: 07/02/2021
-  ms.locfileid: "53260820"
+  ms.locfileid: "53278370"
