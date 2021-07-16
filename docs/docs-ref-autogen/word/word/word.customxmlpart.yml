@@ -4,7 +4,7 @@ uid: word!Word.CustomXmlPart:class
 package: word!
 fullName: Word.CustomXmlPart
 summary: >-
-  Stellt einen benutzerdefinierten XML-Teil dar.
+  Stellt eine benutzerdefinierte XML-Komponente dar.
 
 
   \[[API-Satz: WordApi BETA (NUR VORSCHAU)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
@@ -17,7 +17,7 @@ properties:
   uid: word!Word.CustomXmlPart#context:member
   package: word!
   fullName: context
-  summary: Der Dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office-Hostanwendung verbunden.
+  summary: Der dem Objekt zugeordnete Anforderungskontext. Dadurch wird der Prozess des Add-Ins mit dem Prozess der Office Hostanwendung verbunden.
   remarks: ''
   isPreview: true
   isDeprecated: false
@@ -30,7 +30,7 @@ properties:
   package: word!
   fullName: id
   summary: >-
-    Ruft die ID des benutzerdefinierten XML-Teils ab. Schreibgeschützt.
+    Ruft die ID der benutzerdefinierten XML-Komponente ab. Schreibgeschützt.
 
 
     \[[API-Satz: WordApi BETA (NUR VORSCHAU)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
@@ -46,7 +46,7 @@ properties:
   package: word!
   fullName: namespaceUri
   summary: >-
-    Ruft den Namespace-URI des benutzerdefinierten XML-Teils ab. Schreibgeschützt.
+    Ruft den Namespace-URI der benutzerdefinierten XML-Komponente ab. Schreibgeschützt.
 
 
     \[[API-Satz: WordApi BETA (NUR VORSCHAU)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
@@ -80,11 +80,26 @@ methods:
   package: word!
   fullName: deleteAttribute(xpath, namespaceMappings, name)
   summary: >-
-    Löscht ein Attribut mit dem angegebenen Namen aus dem durch xpath identifizierten Element.
+    Löscht ein Attribut mit dem angegebenen Namen aus dem von xpath identifizierten Element.
 
 
     \[[API-Satz: WordApi BETA (NUR VORSCHAU)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-  remarks: 'Wenn ein Element in der Struktur über ein xmlns-Attribut verfügt (dessen Wert in der Regel, aber nicht immer ein URI ist), muss ein Alias für diesen Attributwert dem Elementnamen im xpath-Parameter vorangestellt werden. Angenommen, die Struktur ist folgendes: <Day> <Month xmlns="http:\/\/calendartypes.org\/xsds\/GregorianCalendar"> <Week>etwas, das</Week> </Month> </Day> der xpath <Week> sein muss/<!-- -->Tag<!-- -->/<!-- -->greg:Month<!-- -->/<!-- -->Week, wobei greg ein Alias ist, der "http:<!-- -->/<!-- -->/<!-- -->calendartypes.org<!-- -->/<!-- -->xsds<!-- -->/<!-- -->GregorianCalendar" im Parameter namespaceMappings.'
+  remarks: >-
+    Wenn ein Element in der Struktur über ein XMLNS-Attribut verfügt (dessen Wert in der Regel, aber nicht immer ein URI ist), muss ein Alias für diesen Attributwert dem Elementnamen im xpath-Parameter vorangestellt werden. Angenommen, die Struktur lautet wie folgt:
+
+
+    ```xml
+
+    <Day>
+      <Month xmlns="http://calendartypes.org/xsds/GregorianCalendar">
+        <Week>something</Week>
+      </Month>
+    </Day>
+
+
+    ```
+
+    Der xpath muss `<Week>` /sein<!-- -->Tag<!-- -->/<!-- -->gregor:Month<!-- -->/<!-- -->Woche, in der "gregor" ein Alias ist, der "http:<!-- -->/<!-- -->/<!-- -->calendartypes.org<!-- -->/<!-- -->xsds<!-- -->/<!-- -->GregorianCalendar" im NamespaceMappings-Parameter.
   isPreview: true
   isDeprecated: false
   syntax:
@@ -94,7 +109,7 @@ methods:
       description: Erforderlich. Absoluter Pfad zum einzelnen Element in der XPath-Notation.
       type: string
     - id: namespaceMappings
-      description: 'Erforderlich. Ein Objekt, dessen Eigenschaftswerte Namespacenamen sind und deren Eigenschaftsnamen Aliase für die entsprechenden Namespaces sind. Beispiel: `{greg: "http://calendartypes.org/xsds/GregorianCalendar"}`<!-- -->. Die Eigenschaftsnamen (z. B. "greg") können eine beliebige Zeichenfolge sein, die keine reservierten XPath-Zeichen verwendet, z. B. den Schrägstrich "/".'
+      description: 'Erforderlich. Ein Objekt, dessen Eigenschaftswerte Namespacenamen sind und dessen Eigenschaftennamen Aliase für die entsprechenden Namespaces sind. Beispiel: `{greg: "http://calendartypes.org/xsds/GregorianCalendar"}`<!-- -->. Bei den Eigenschaftennamen (z. B. "gregor") kann es sich um eine beliebige Zeichenfolge handeln, die keine reservierten XPath-Zeichen verwendet, z. B. den Schrägstrich "/".'
       type: any
     - id: name
       description: Erforderlich. Name des Attributs.
@@ -107,11 +122,26 @@ methods:
   package: word!
   fullName: deleteElement(xpath, namespaceMappings)
   summary: >-
-    Löscht das durch xpath identifizierte Element.
+    Löscht das von xpath identifizierte Element.
 
 
     \[[API-Satz: WordApi BETA (NUR VORSCHAU)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-  remarks: 'Wenn ein Element in der Struktur über ein xmlns-Attribut verfügt (dessen Wert in der Regel, aber nicht immer ein URI ist), muss ein Alias für diesen Attributwert dem Elementnamen im xpath-Parameter vorangestellt werden. Angenommen, die Struktur ist folgendes: <Day> <Month xmlns="http:\/\/calendartypes.org\/xsds\/GregorianCalendar"> <Week>etwas, das</Week> </Month> </Day> der xpath <Week> sein muss/<!-- -->Tag<!-- -->/<!-- -->greg:Month<!-- -->/<!-- -->Week, wobei greg ein Alias ist, der "http:<!-- -->/<!-- -->/<!-- -->calendartypes.org<!-- -->/<!-- -->xsds<!-- -->/<!-- -->GregorianCalendar" im Parameter namespaceMappings.'
+  remarks: >-
+    Wenn ein Element in der Struktur über ein XMLNS-Attribut verfügt (dessen Wert in der Regel, aber nicht immer ein URI ist), muss ein Alias für diesen Attributwert dem Elementnamen im xpath-Parameter vorangestellt werden. Angenommen, die Struktur lautet wie folgt:
+
+
+    ```xml
+
+    <Day>
+      <Month xmlns="http://calendartypes.org/xsds/GregorianCalendar">
+        <Week>something</Week>
+      </Month>
+    </Day>
+
+
+    ```
+
+    Der xpath muss `<Week>` /sein<!-- -->Tag<!-- -->/<!-- -->gregor:Month<!-- -->/<!-- -->Woche, in der "gregor" ein Alias ist, der "http:<!-- -->/<!-- -->/<!-- -->calendartypes.org<!-- -->/<!-- -->xsds<!-- -->/<!-- -->GregorianCalendar" im NamespaceMappings-Parameter.
   isPreview: true
   isDeprecated: false
   syntax:
@@ -121,7 +151,7 @@ methods:
       description: Erforderlich. Absoluter Pfad zum einzelnen Element in der XPath-Notation.
       type: string
     - id: namespaceMappings
-      description: 'Erforderlich. Ein Objekt, dessen Eigenschaftswerte Namespacenamen sind und deren Eigenschaftsnamen Aliase für die entsprechenden Namespaces sind. Beispiel: `{greg: "http://calendartypes.org/xsds/GregorianCalendar"}`<!-- -->. Die Eigenschaftsnamen (z. B. "greg") können eine beliebige Zeichenfolge sein, die keine reservierten XPath-Zeichen verwendet, z. B. den Schrägstrich "/".'
+      description: 'Erforderlich. Ein Objekt, dessen Eigenschaftswerte Namespacenamen sind und dessen Eigenschaftennamen Aliase für die entsprechenden Namespaces sind. Beispiel: `{greg: "http://calendartypes.org/xsds/GregorianCalendar"}`<!-- -->. Bei den Eigenschaftennamen (z. B. "gregor") kann es sich um eine beliebige Zeichenfolge handeln, die keine reservierten XPath-Zeichen verwendet, z. B. den Schrägstrich "/".'
       type: any
     return:
       type: void
@@ -131,7 +161,7 @@ methods:
   package: word!
   fullName: getXml()
   summary: >-
-    Ruft den vollständigen XML-Inhalt des benutzerdefinierten XML-Teils ab.
+    Ruft den vollständigen XML-Inhalt der benutzerdefinierten XML-Komponente ab.
 
 
     \[[API-Satz: WordApi BETA (NUR VORSCHAU)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
@@ -148,11 +178,26 @@ methods:
   package: word!
   fullName: insertAttribute(xpath, namespaceMappings, name, value)
   summary: >-
-    Fügt ein Attribut mit dem angegebenen Namen und Wert in das durch xpath identifizierte Element ein.
+    Fügt ein Attribut mit dem angegebenen Namen und Wert in das von xpath identifizierte Element ein.
 
 
     \[[API-Satz: WordApi BETA (NUR VORSCHAU)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-  remarks: 'Wenn ein Element in der Struktur über ein xmlns-Attribut verfügt (dessen Wert in der Regel, aber nicht immer ein URI ist), muss ein Alias für diesen Attributwert dem Elementnamen im xpath-Parameter vorangestellt werden. Angenommen, die Struktur ist folgendes: <Day> <Month xmlns="http:\/\/calendartypes.org\/xsds\/GregorianCalendar"> <Week>etwas, das</Week> </Month> </Day> der xpath <Week> sein muss/<!-- -->Tag<!-- -->/<!-- -->greg:Month<!-- -->/<!-- -->Week, wobei greg ein Alias ist, der "http:<!-- -->/<!-- -->/<!-- -->calendartypes.org<!-- -->/<!-- -->xsds<!-- -->/<!-- -->GregorianCalendar" im Parameter namespaceMappings.'
+  remarks: >-
+    Wenn ein Element in der Struktur über ein XMLNS-Attribut verfügt (dessen Wert in der Regel, aber nicht immer ein URI ist), muss ein Alias für diesen Attributwert dem Elementnamen im xpath-Parameter vorangestellt werden. Angenommen, die Struktur lautet wie folgt:
+
+
+    ```xml
+
+    <Day>
+      <Month xmlns="http://calendartypes.org/xsds/GregorianCalendar">
+        <Week>something</Week>
+      </Month>
+    </Day>
+
+
+    ```
+
+    Der xpath muss `<Week>` /sein<!-- -->Tag<!-- -->/<!-- -->gregor:Month<!-- -->/<!-- -->Woche, in der "gregor" ein Alias ist, der "http:<!-- -->/<!-- -->/<!-- -->calendartypes.org<!-- -->/<!-- -->xsds<!-- -->/<!-- -->GregorianCalendar" im NamespaceMappings-Parameter.
   isPreview: true
   isDeprecated: false
   syntax:
@@ -162,7 +207,7 @@ methods:
       description: Erforderlich. Absoluter Pfad zum einzelnen Element in der XPath-Notation.
       type: string
     - id: namespaceMappings
-      description: 'Erforderlich. Ein Objekt, dessen Eigenschaftswerte Namespacenamen sind und deren Eigenschaftsnamen Aliase für die entsprechenden Namespaces sind. Beispiel: `{greg: "http://calendartypes.org/xsds/GregorianCalendar"}`<!-- -->. Die Eigenschaftsnamen (z. B. "greg") können eine beliebige Zeichenfolge sein, die keine reservierten XPath-Zeichen verwendet, z. B. den Schrägstrich "/".'
+      description: 'Erforderlich. Ein Objekt, dessen Eigenschaftswerte Namespacenamen sind und dessen Eigenschaftennamen Aliase für die entsprechenden Namespaces sind. Beispiel: `{greg: "http://calendartypes.org/xsds/GregorianCalendar"}`<!-- -->. Bei den Eigenschaftennamen (z. B. "gregor") kann es sich um eine beliebige Zeichenfolge handeln, die keine reservierten XPath-Zeichen verwendet, z. B. den Schrägstrich "/".'
       type: any
     - id: name
       description: Erforderlich. Name des Attributs.
@@ -178,27 +223,42 @@ methods:
   package: word!
   fullName: insertElement(xpath, xml, namespaceMappings, index)
   summary: >-
-    Fügt die angegebene XML unter dem übergeordneten Element ein, das von xpath am untergeordneten Positionsindex identifiziert wird.
+    Fügt den angegebenen XML-Code unter dem übergeordneten Element ein, das von xpath am Index der untergeordneten Position identifiziert wird.
 
 
     \[[API-Satz: WordApi BETA (NUR VORSCHAU)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-  remarks: 'Wenn ein Element in der Struktur über ein xmlns-Attribut verfügt (dessen Wert in der Regel, aber nicht immer ein URI ist), muss ein Alias für diesen Attributwert dem Elementnamen im xpath-Parameter vorangestellt werden. Angenommen, die Struktur ist folgendes: <Day> <Month xmlns="http:\/\/calendartypes.org\/xsds\/GregorianCalendar"> <Week>etwas, das</Week> </Month> </Day> der xpath <Week> sein muss/<!-- -->Tag<!-- -->/<!-- -->greg:Month<!-- -->/<!-- -->Week, wobei greg ein Alias ist, der "http:<!-- -->/<!-- -->/<!-- -->calendartypes.org<!-- -->/<!-- -->xsds<!-- -->/<!-- -->GregorianCalendar" im Parameter namespaceMappings.'
+  remarks: >-
+    Wenn ein Element in der Struktur über ein XMLNS-Attribut verfügt (dessen Wert in der Regel, aber nicht immer ein URI ist), muss ein Alias für diesen Attributwert dem Elementnamen im xpath-Parameter vorangestellt werden. Angenommen, die Struktur lautet wie folgt:
+
+
+    ```xml
+
+    <Day>
+      <Month xmlns="http://calendartypes.org/xsds/GregorianCalendar">
+        <Week>something</Week>
+      </Month>
+    </Day>
+
+
+    ```
+
+    Der xpath muss `<Week>` /sein<!-- -->Tag<!-- -->/<!-- -->gregor:Month<!-- -->/<!-- -->Woche, in der "gregor" ein Alias ist, der "http:<!-- -->/<!-- -->/<!-- -->calendartypes.org<!-- -->/<!-- -->xsds<!-- -->/<!-- -->GregorianCalendar" im NamespaceMappings-Parameter.
   isPreview: true
   isDeprecated: false
   syntax:
     content: 'insertElement(xpath: string, xml: string, namespaceMappings: any, index?: number): void;'
     parameters:
     - id: xpath
-      description: Erforderlich. Absoluter Pfad zum einzelnen übergeordneten Element in der XPath-Notation.
+      description: Erforderlich. Absoluter Pfad zum einfachen übergeordneten Element in der XPath-Notation.
       type: string
     - id: xml
-      description: Erforderlich. EINFÜGENde XML-Inhalte.
+      description: Erforderlich. Einzufügende XML-Inhalt.
       type: string
     - id: namespaceMappings
-      description: 'Erforderlich. Ein Objekt, dessen Eigenschaftswerte Namespacenamen sind und deren Eigenschaftsnamen Aliase für die entsprechenden Namespaces sind. Beispiel: `{greg: "http://calendartypes.org/xsds/GregorianCalendar"}`<!-- -->. Die Eigenschaftsnamen (z. B. "greg") können eine beliebige Zeichenfolge sein, die keine reservierten XPath-Zeichen verwendet, z. B. den Schrägstrich "/".'
+      description: 'Erforderlich. Ein Objekt, dessen Eigenschaftswerte Namespacenamen sind und dessen Eigenschaftennamen Aliase für die entsprechenden Namespaces sind. Beispiel: `{greg: "http://calendartypes.org/xsds/GregorianCalendar"}`<!-- -->. Bei den Eigenschaftennamen (z. B. "gregor") kann es sich um eine beliebige Zeichenfolge handeln, die keine reservierten XPath-Zeichen verwendet, z. B. den Schrägstrich "/".'
       type: any
     - id: index
-      description: Optional. Nullbasierte Position, an der die neue XML eingefügt werden soll. Wenn sie nicht angegeben wird, wird die XML als letztes untergeordnetes Element dieses übergeordneten Elements angefügt.
+      description: Optional. Nullbasierte Position, an der der neue XML-Code eingefügt werden soll. Wenn dies nicht angegeben wird, wird der XML-Code als letztes untergeordnetes Element dieses übergeordneten Elements angefügt.
       type: number
     return:
       type: void
@@ -215,7 +275,7 @@ methods:
     content: 'load(options?: Word.Interfaces.CustomXmlPartLoadOptions): Word.CustomXmlPart;'
     parameters:
     - id: options
-      description: Stellt Optionen für die Eigenschaften des zu ladenden Objekts zur Verfügung.
+      description: Stellt Optionen bereit, für welche Eigenschaften des Objekts geladen werden soll.
       type: <xref uid="word!Word.Interfaces.CustomXmlPartLoadOptions:interface" />
     return:
       type: <xref uid="word!Word.CustomXmlPart:class" />
@@ -253,7 +313,7 @@ methods:
               }): Word.CustomXmlPart;
     parameters:
     - id: propertyNamesAndPaths
-      description: '`propertyNamesAndPaths.select` ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und eine durch Kommas getrennte Zeichenfolge, die die zu ladenden `propertyNamesAndPaths.expand` Navigationseigenschaften angibt.'
+      description: '`propertyNamesAndPaths.select` ist eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Eigenschaften angibt, und `propertyNamesAndPaths.expand` eine durch Trennzeichen getrennte Zeichenfolge, die die zu ladenden Navigationseigenschaften angibt.'
       type: >-
         {
                     select?: string;
@@ -267,11 +327,26 @@ methods:
   package: word!
   fullName: query(xpath, namespaceMappings)
   summary: >-
-    Fragt den XML-Inhalt des benutzerdefinierten XML-Teils ab.
+    Fragt den XML-Inhalt der benutzerdefinierten XML-Komponente ab.
 
 
     \[[API-Satz: WordApi BETA (NUR VORSCHAU)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-  remarks: 'Wenn ein Element in der Struktur über ein xmlns-Attribut verfügt (dessen Wert in der Regel, aber nicht immer ein URI ist), muss ein Alias für diesen Attributwert dem Elementnamen im xpath-Parameter vorangestellt werden. Angenommen, die Struktur ist folgendes: <Day> <Month xmlns="http:\/\/calendartypes.org\/xsds\/GregorianCalendar"> <Week>etwas, das</Week> </Month> </Day> der xpath <Week> sein muss/<!-- -->Tag<!-- -->/<!-- -->greg:Month<!-- -->/<!-- -->Week, wobei greg ein Alias ist, der "http:<!-- -->/<!-- -->/<!-- -->calendartypes.org<!-- -->/<!-- -->xsds<!-- -->/<!-- -->GregorianCalendar" im Parameter namespaceMappings.'
+  remarks: >-
+    Wenn ein Element in der Struktur über ein XMLNS-Attribut verfügt (dessen Wert in der Regel, aber nicht immer ein URI ist), muss ein Alias für diesen Attributwert dem Elementnamen im xpath-Parameter vorangestellt werden. Angenommen, die Struktur lautet wie folgt:
+
+
+    ```xml
+
+    <Day>
+      <Month xmlns="http://calendartypes.org/xsds/GregorianCalendar">
+        <Week>something</Week>
+      </Month>
+    </Day>
+
+
+    ```
+
+    Der xpath muss `<Week>` /sein<!-- -->Tag<!-- -->/<!-- -->gregor:Month<!-- -->/<!-- -->Woche, in der "gregor" ein Alias ist, der "http:<!-- -->/<!-- -->/<!-- -->calendartypes.org<!-- -->/<!-- -->xsds<!-- -->/<!-- -->GregorianCalendar" im NamespaceMappings-Parameter.
   isPreview: true
   isDeprecated: false
   syntax:
@@ -281,17 +356,17 @@ methods:
       description: Erforderlich. Eine XPath-Abfrage.
       type: string
     - id: namespaceMappings
-      description: 'Erforderlich. Ein Objekt, dessen Eigenschaftswerte Namespacenamen sind und deren Eigenschaftsnamen Aliase für die entsprechenden Namespaces sind. Beispiel: `{greg: "http://calendartypes.org/xsds/GregorianCalendar"}`<!-- -->. Die Eigenschaftsnamen (z. B. "greg") können eine beliebige Zeichenfolge sein, die keine reservierten XPath-Zeichen verwendet, z. B. den Schrägstrich "/".'
+      description: 'Erforderlich. Ein Objekt, dessen Eigenschaftswerte Namespacenamen sind und dessen Eigenschaftennamen Aliase für die entsprechenden Namespaces sind. Beispiel: `{greg: "http://calendartypes.org/xsds/GregorianCalendar"}`<!-- -->. Bei den Eigenschaftennamen (z. B. "gregor") kann es sich um eine beliebige Zeichenfolge handeln, die keine reservierten XPath-Zeichen verwendet, z. B. den Schrägstrich "/".'
       type: any
     return:
       type: <xref uid="office!OfficeExtension.ClientResult:class" />&lt;string[]&gt;
-      description: Ein Array, bei dem jedes Element einen Eintrag darstellt, der der XPath-Abfrage entspricht.
+      description: Ein Array, in dem jedes Element einen Eintrag darstellt, der mit der XPath-Abfrage übereinstimmt.
 - name: setXml(xml)
   uid: word!Word.CustomXmlPart#setXml:member(1)
   package: word!
   fullName: setXml(xml)
   summary: >-
-    Legt den vollständigen XML-Inhalt des benutzerdefinierten XML-Teils fest.
+    Legt den vollständigen XML-Inhalt der benutzerdefinierten XML-Komponente fest.
 
 
     \[[API-Satz: WordApi BETA (NUR VORSCHAU)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
@@ -302,7 +377,7 @@ methods:
     content: 'setXml(xml: string): void;'
     parameters:
     - id: xml
-      description: Erforderlich. Festlegen von XML-Inhalten
+      description: Erforderlich. Festzulegende XML-Inhalte.
       type: string
     return:
       type: void
@@ -311,7 +386,7 @@ methods:
   uid: word!Word.CustomXmlPart#toJSON:member(1)
   package: word!
   fullName: toJSON()
-  summary: 'Überschreibt die JavaScript-Methode, um eine nützlichere Ausgabe zu `toJSON()` bieten, wenn ein API-Objekt an übergeben wird `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode `toJSON` des Objekts auf, das an das Objekt übergeben wird.) Während das ursprüngliche Word.CustomXmlPart-Objekt ein API-Objekt ist, gibt die Methode ein `toJSON` einfaches JavaScript-Objekt zurück (Typ: `Word.Interfaces.CustomXmlPartData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften aus dem ursprünglichen Objekt enthält.'
+  summary: Überschreibt die `toJSON()` JavaScript-Methode, um eine hilfreichere Ausgabe bereitzustellen, wenn ein API-Objekt an `JSON.stringify()`<!-- -->. (`JSON.stringify`<!-- -->ruft wiederum die Methode des Objekts auf, `toJSON` das an das Objekt übergeben wird.) Während das ursprüngliche Word.CustomXmlPart-Objekt ein API-Objekt ist, gibt die `toJSON` Methode ein einfaches JavaScript-Objekt zurück (eingegeben als `Word.Interfaces.CustomXmlPartData`<!-- -->), die flache Kopien aller geladenen untergeordneten Eigenschaften des ursprünglichen Objekts enthält.
   remarks: ''
   isPreview: true
   isDeprecated: false
@@ -324,7 +399,7 @@ methods:
   uid: word!Word.CustomXmlPart#track:member(1)
   package: word!
   fullName: track()
-  summary: Nachverfolgung des Objekts zwecks automatischer Anpassung auf der Grundlage der umgebenden Änderungen im Dokument. Dieser Anruf ist eine Kurzhand für `context.trackedObjects.add(thisObject)`<!-- -->. Wenn Sie dieses Objekt für aufrufe und außerhalb der sequenziellen Ausführung eines Batches ".run" verwenden und beim Festlegen einer Eigenschaft oder aufrufen einer Methode für das Objekt den Fehler "InvalidObjectPath" erhalten, mussten Sie das Objekt der nachverfolgten Objektsammlung hinzugefügt haben, als das Objekt zum ersten Mal erstellt `.sync` wurde.
+  summary: Nachverfolgung des Objekts zwecks automatischer Anpassung auf der Grundlage der umgebenden Änderungen im Dokument. Dieser Aufruf ist eine Abkürzung für `context.trackedObjects.add(thisObject)`<!-- -->. Wenn Sie dieses Objekt über `.sync` Aufrufe und außerhalb der sequenziellen Ausführung eines ".run"-Batches verwenden und beim Festlegen einer Eigenschaft oder Aufrufen einer Methode für das Objekt den Fehler "InvalidObjectPath" erhalten, mussten Sie das Objekt der Nachverfolgungsobjektauflistung hinzugefügt haben, als das Objekt zum ersten Mal erstellt wurde.
   remarks: ''
   isPreview: true
   isDeprecated: false
@@ -337,7 +412,7 @@ methods:
   uid: word!Word.CustomXmlPart#untrack:member(1)
   package: word!
   fullName: untrack()
-  summary: Gibt den diesem Objekt zugewiesenen Arbeitsspeicher frei, wenn das Objekt zuvor nachverfolgt wurde. Dieser Anruf ist kurz `context.trackedObjects.remove(thisObject)`<!-- -->. Viele nachverfolgte Objekte verlangsamen die Ausführung der Hostanwendung, also achten Sie darauf, alle hinzugefügten Objekte nach abgeschlossener Verwendung freizugeben. Sie müssen aufrufen, `context.sync()` bevor die Speicherfreigabe wirksam wird.
+  summary: Gibt den diesem Objekt zugewiesenen Arbeitsspeicher frei, wenn das Objekt zuvor nachverfolgt wurde. Dieser Aufruf ist eine Abkürzung für `context.trackedObjects.remove(thisObject)`<!-- -->. Viele nachverfolgte Objekte verlangsamen die Ausführung der Hostanwendung, also achten Sie darauf, alle hinzugefügten Objekte nach abgeschlossener Verwendung freizugeben. Sie müssen aufrufen, `context.sync()` bevor die Speicherfreigabe wirksam wird.
   remarks: ''
   isPreview: true
   isDeprecated: false
@@ -351,11 +426,26 @@ methods:
   package: word!
   fullName: updateAttribute(xpath, namespaceMappings, name, value)
   summary: >-
-    Aktualisiert den Wert eines Attributs mit dem angegebenen Namen des elements, das durch xpath identifiziert wurde.
+    Aktualisiert den Wert eines Attributs mit dem Vornamen des durch xpath identifizierten Elements.
 
 
     \[[API-Satz: WordApi BETA (NUR VORSCHAU)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-  remarks: 'Wenn ein Element in der Struktur über ein xmlns-Attribut verfügt (dessen Wert in der Regel, aber nicht immer ein URI ist), muss ein Alias für diesen Attributwert dem Elementnamen im xpath-Parameter vorangestellt werden. Angenommen, die Struktur ist folgendes: <Day> <Month xmlns="http:\/\/calendartypes.org\/xsds\/GregorianCalendar"> <Week>etwas, das</Week> </Month> </Day> der xpath <Week> sein muss/<!-- -->Tag<!-- -->/<!-- -->greg:Month<!-- -->/<!-- -->Week, wobei greg ein Alias ist, der "http:<!-- -->/<!-- -->/<!-- -->calendartypes.org<!-- -->/<!-- -->xsds<!-- -->/<!-- -->GregorianCalendar" im Parameter namespaceMappings.'
+  remarks: >-
+    Wenn ein Element in der Struktur über ein XMLNS-Attribut verfügt (dessen Wert in der Regel, aber nicht immer ein URI ist), muss ein Alias für diesen Attributwert dem Elementnamen im xpath-Parameter vorangestellt werden. Angenommen, die Struktur lautet wie folgt:
+
+
+    ```xml
+
+    <Day>
+      <Month xmlns="http://calendartypes.org/xsds/GregorianCalendar">
+        <Week>something</Week>
+      </Month>
+    </Day>
+
+
+    ```
+
+    Der xpath muss `<Week>` /sein<!-- -->Tag<!-- -->/<!-- -->gregor:Month<!-- -->/<!-- -->Woche, in der "gregor" ein Alias ist, der "http:<!-- -->/<!-- -->/<!-- -->calendartypes.org<!-- -->/<!-- -->xsds<!-- -->/<!-- -->GregorianCalendar" im NamespaceMappings-Parameter.
   isPreview: true
   isDeprecated: false
   syntax:
@@ -365,7 +455,7 @@ methods:
       description: Erforderlich. Absoluter Pfad zum einzelnen Element in der XPath-Notation.
       type: string
     - id: namespaceMappings
-      description: 'Erforderlich. Ein Objekt, dessen Eigenschaftswerte Namespacenamen sind und deren Eigenschaftsnamen Aliase für die entsprechenden Namespaces sind. Beispiel: `{greg: "http://calendartypes.org/xsds/GregorianCalendar"}`<!-- -->. Die Eigenschaftsnamen (z. B. "greg") können eine beliebige Zeichenfolge sein, die keine reservierten XPath-Zeichen verwendet, z. B. den Schrägstrich "/".'
+      description: 'Erforderlich. Ein Objekt, dessen Eigenschaftswerte Namespacenamen sind und dessen Eigenschaftennamen Aliase für die entsprechenden Namespaces sind. Beispiel: `{greg: "http://calendartypes.org/xsds/GregorianCalendar"}`<!-- -->. Bei den Eigenschaftennamen (z. B. "gregor") kann es sich um eine beliebige Zeichenfolge handeln, die keine reservierten XPath-Zeichen verwendet, z. B. den Schrägstrich "/".'
       type: any
     - id: name
       description: Erforderlich. Name des Attributs.
@@ -381,11 +471,26 @@ methods:
   package: word!
   fullName: updateElement(xpath, xml, namespaceMappings)
   summary: >-
-    Aktualisiert die XML des von xpath identifizierten Elements.
+    Aktualisiert den XML-Code des durch xpath identifizierten Elements.
 
 
     \[[API-Satz: WordApi BETA (NUR VORSCHAU)](/office/dev/add-ins/reference/requirement-sets/word-api-requirement-sets)\]
-  remarks: 'Wenn ein Element in der Struktur über ein xmlns-Attribut verfügt (dessen Wert in der Regel, aber nicht immer ein URI ist), muss ein Alias für diesen Attributwert dem Elementnamen im xpath-Parameter vorangestellt werden. Angenommen, die Struktur ist folgendes: <Day> <Month xmlns="http:\/\/calendartypes.org\/xsds\/GregorianCalendar"> <Week>etwas, das</Week> </Month> </Day> der xpath <Week> sein muss/<!-- -->Tag<!-- -->/<!-- -->greg:Month<!-- -->/<!-- -->Week, wobei greg ein Alias ist, der "http:<!-- -->/<!-- -->/<!-- -->calendartypes.org<!-- -->/<!-- -->xsds<!-- -->/<!-- -->GregorianCalendar" im Parameter namespaceMappings.'
+  remarks: >-
+    Wenn ein Element in der Struktur über ein XMLNS-Attribut verfügt (dessen Wert in der Regel, aber nicht immer ein URI ist), muss ein Alias für diesen Attributwert dem Elementnamen im xpath-Parameter vorangestellt werden. Angenommen, die Struktur lautet wie folgt:
+
+
+    ```xml
+
+    <Day>
+      <Month xmlns="http://calendartypes.org/xsds/GregorianCalendar">
+        <Week>something</Week>
+      </Month>
+    </Day>
+
+
+    ```
+
+    Der xpath muss `<Week>` /sein<!-- -->Tag<!-- -->/<!-- -->gregor:Month<!-- -->/<!-- -->Woche, in der "gregor" ein Alias ist, der "http:<!-- -->/<!-- -->/<!-- -->calendartypes.org<!-- -->/<!-- -->xsds<!-- -->/<!-- -->GregorianCalendar" im NamespaceMappings-Parameter.
   isPreview: true
   isDeprecated: false
   syntax:
@@ -395,19 +500,19 @@ methods:
       description: Erforderlich. Absoluter Pfad zum einzelnen Element in der XPath-Notation.
       type: string
     - id: xml
-      description: Erforderlich. Neue zu speichernde XML-Inhalte.
+      description: Erforderlich. Neuer XML-Inhalt, der gespeichert werden soll.
       type: string
     - id: namespaceMappings
-      description: 'Erforderlich. Ein Objekt, dessen Eigenschaftswerte Namespacenamen sind und deren Eigenschaftsnamen Aliase für die entsprechenden Namespaces sind. Beispiel: `{greg: "http://calendartypes.org/xsds/GregorianCalendar"}`<!-- -->. Die Eigenschaftsnamen (z. B. "greg") können eine beliebige Zeichenfolge sein, die keine reservierten XPath-Zeichen verwendet, z. B. den Schrägstrich "/".'
+      description: 'Erforderlich. Ein Objekt, dessen Eigenschaftswerte Namespacenamen sind und dessen Eigenschaftennamen Aliase für die entsprechenden Namespaces sind. Beispiel: `{greg: "http://calendartypes.org/xsds/GregorianCalendar"}`<!-- -->. Bei den Eigenschaftennamen (z. B. "gregor") kann es sich um eine beliebige Zeichenfolge handeln, die keine reservierten XPath-Zeichen verwendet, z. B. den Schrägstrich "/".'
       type: any
     return:
       type: void
       description: ''
 extends: <xref uid="office!OfficeExtension.ClientObject:class" />
 metadata:
-  ms.openlocfilehash: e5e53dfbbb464a2bb9a6d169cd6e2b6ac23513ad
-  ms.sourcegitcommit: a8a86cfcaff5ad7dacc653d63502c76b1fedbebe
+  ms.openlocfilehash: 1b6e8d84b2aa2f272f8c31024397b14ea986af58
+  ms.sourcegitcommit: 2b28ced217223685e68f6eeb4836964d9b6321ff
   ms.translationtype: MT
   ms.contentlocale: de-DE
-  ms.lasthandoff: 03/26/2021
-  ms.locfileid: "51352180"
+  ms.lasthandoff: 07/16/2021
+  ms.locfileid: "53456243"
